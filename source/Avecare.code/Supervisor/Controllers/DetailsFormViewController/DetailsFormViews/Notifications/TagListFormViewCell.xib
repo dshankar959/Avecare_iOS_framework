@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TagListFormViewCell" rowHeight="68" id="eF2-OZ-hDl" customClass="TagListFormViewCell" customModule="educator" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="391" height="68"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eF2-OZ-hDl" id="dEU-4c-grm">
+                <rect key="frame" x="0.0" y="0.0" width="391" height="68"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e43-nj-tjr">
+                        <rect key="frame" x="0.0" y="14" width="160" height="40"/>
+                        <color key="backgroundColor" name="Main"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="QAr-Kj-YOz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <color key="tintColor" name="MainInversion"/>
+                        <inset key="contentEdgeInsets" minX="20" minY="0.0" maxX="16" maxY="0.0"/>
+                        <inset key="imageEdgeInsets" minX="-16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="Adams, Bobby" image="form-cross-icon">
+                            <color key="titleColor" name="MainInversion"/>
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                        </state>
+                        <connections>
+                            <action selector="didClickTagButton:" destination="eF2-OZ-hDl" eventType="touchUpInside" id="3MH-FD-nUT"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="e43-nj-tjr" firstAttribute="centerY" secondItem="dEU-4c-grm" secondAttribute="centerY" id="4dq-d2-KcX"/>
+                    <constraint firstItem="e43-nj-tjr" firstAttribute="leading" secondItem="dEU-4c-grm" secondAttribute="leading" id="z6v-yP-nEp"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="tagButton" destination="e43-nj-tjr" id="clU-jO-ZuJ"/>
+            </connections>
+            <point key="canvasLocation" x="41.304347826086961" y="120.53571428571428"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="form-cross-icon" width="12" height="12"/>
+        <namedColor name="Main">
+            <color red="0.31372549019607843" green="0.62745098039215685" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MainInversion">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Details Form View Controller-->
+        <scene sceneID="2iN-5D-Odi">
+            <objects>
+                <viewController storyboardIdentifier="DetailsFormViewController" id="0X2-x4-A7G" customClass="DetailsFormViewController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="tD4-BN-URB">
+                        <rect key="frame" x="0.0" y="0.0" width="500" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bkF-nQ-xbH" userLabel="nav-bar-area" customClass="DetailsNavigationView" customModule="educator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="500" height="70"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="00E-sC-XG0" customClass="DetailsView" customModule="educator" customModuleProvider="target">
+                                <rect key="frame" x="30" y="70" width="440" height="530"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="fcr-qY-MuE" appends="YES" id="b57-fq-lF3"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="bkF-nQ-xbH" firstAttribute="top" secondItem="tD4-BN-URB" secondAttribute="top" id="01k-bw-9Y3"/>
+                            <constraint firstAttribute="bottom" secondItem="00E-sC-XG0" secondAttribute="bottom" id="ErY-zS-RhV"/>
+                            <constraint firstItem="00E-sC-XG0" firstAttribute="leading" secondItem="4ga-M4-UIt" secondAttribute="leading" constant="30" id="Llg-Eu-4FN"/>
+                            <constraint firstItem="00E-sC-XG0" firstAttribute="top" secondItem="bkF-nQ-xbH" secondAttribute="bottom" id="OIz-Zm-0cm"/>
+                            <constraint firstItem="bkF-nQ-xbH" firstAttribute="leading" secondItem="4ga-M4-UIt" secondAttribute="leading" id="Wl0-I5-6T7"/>
+                            <constraint firstItem="bkF-nQ-xbH" firstAttribute="bottom" secondItem="4ga-M4-UIt" secondAttribute="top" constant="70" id="fIH-zo-rBp"/>
+                            <constraint firstItem="4ga-M4-UIt" firstAttribute="trailing" secondItem="00E-sC-XG0" secondAttribute="trailing" constant="30" id="itV-QL-ahH"/>
+                            <constraint firstItem="4ga-M4-UIt" firstAttribute="trailing" secondItem="bkF-nQ-xbH" secondAttribute="trailing" id="rqW-Sl-Das"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="4ga-M4-UIt"/>
+                    </view>
+                    <size key="freeformSize" width="500" height="600"/>
+                    <connections>
+                        <outlet property="bottomConstraint" destination="ErY-zS-RhV" id="4PA-Iv-9NE"/>
+                        <outlet property="detailsView" destination="00E-sC-XG0" id="QMU-dH-0Zn"/>
+                        <outlet property="navigationHeaderView" destination="bkF-nQ-xbH" id="jK9-Pw-gQg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ci0-yO-BJL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="fcr-qY-MuE">
+                    <connections>
+                        <action selector="endEditingGesture:" destination="0X2-x4-A7G" id="8MF-FV-qdt"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="39" y="128"/>
+        </scene>
+    </scenes>
+</document>

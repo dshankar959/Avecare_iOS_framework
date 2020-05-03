@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6bL-VT-jm1">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Stories Side View Controller-->
+        <scene sceneID="oFg-uV-dkq">
+            <objects>
+                <viewController storyboardIdentifier="StoriesSideViewController" id="6bL-VT-jm1" customClass="StoriesSideViewController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4Nh-D6-kgE">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Ir-t4-9S6" userLabel="nav-bar-area" customClass="LeftSideNavigationBarView" customModule="educator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="114"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Room 102"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="uWp-Lk-3mS">
+                                <rect key="frame" x="0.0" y="144" width="400" height="456"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="QDq-nd-eEB" userLabel="hide_separators">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                                <connections>
+                                    <outlet property="dataSource" destination="6bL-VT-jm1" id="O00-O0-bDh"/>
+                                    <outlet property="delegate" destination="6bL-VT-jm1" id="RCJ-cf-LnF"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="1Ir-t4-9S6" firstAttribute="top" secondItem="4Nh-D6-kgE" secondAttribute="top" id="1aY-N3-SzI"/>
+                            <constraint firstItem="Tez-1z-IET" firstAttribute="trailing" secondItem="uWp-Lk-3mS" secondAttribute="trailing" id="5Tj-g1-nMI"/>
+                            <constraint firstItem="uWp-Lk-3mS" firstAttribute="leading" secondItem="Tez-1z-IET" secondAttribute="leading" id="OaX-wu-J8M"/>
+                            <constraint firstItem="1Ir-t4-9S6" firstAttribute="bottom" secondItem="Tez-1z-IET" secondAttribute="top" constant="70" id="RGX-Fj-ESL"/>
+                            <constraint firstItem="1Ir-t4-9S6" firstAttribute="leading" secondItem="Tez-1z-IET" secondAttribute="leading" id="RQb-7g-Zjh"/>
+                            <constraint firstItem="uWp-Lk-3mS" firstAttribute="top" secondItem="1Ir-t4-9S6" secondAttribute="bottom" constant="30" id="VkO-5A-jmV"/>
+                            <constraint firstItem="Tez-1z-IET" firstAttribute="bottom" secondItem="uWp-Lk-3mS" secondAttribute="bottom" id="aPC-eQ-RBV"/>
+                            <constraint firstItem="Tez-1z-IET" firstAttribute="trailing" secondItem="1Ir-t4-9S6" secondAttribute="trailing" id="mqX-W0-AZC"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Tez-1z-IET"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="600"/>
+                    <connections>
+                        <outlet property="tableView" destination="uWp-Lk-3mS" id="gtW-oT-Nlg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="og0-Qd-gkW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-175.36231884057972" y="-619.41964285714278"/>
+        </scene>
+    </scenes>
+</document>

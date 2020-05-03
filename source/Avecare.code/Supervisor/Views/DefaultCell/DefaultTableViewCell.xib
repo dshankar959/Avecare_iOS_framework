@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DefaultTableViewCell" rowHeight="71" id="mus-xa-iLW" customClass="DefaultTableViewCell" customModule="educator" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="71"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mus-xa-iLW" id="Lsv-qk-uvt">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="71"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjz-Gl-cmC" customClass="DefaultCellView" customModule="educator" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="71"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="gjz-Gl-cmC" secondAttribute="trailing" id="5h0-po-wOd"/>
+                    <constraint firstItem="gjz-Gl-cmC" firstAttribute="top" secondItem="Lsv-qk-uvt" secondAttribute="top" id="MmH-oO-21j"/>
+                    <constraint firstAttribute="bottom" secondItem="gjz-Gl-cmC" secondAttribute="bottom" id="RMA-1t-his"/>
+                    <constraint firstItem="gjz-Gl-cmC" firstAttribute="leading" secondItem="Lsv-qk-uvt" secondAttribute="leading" id="ekj-qJ-B04"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mainContentView" destination="gjz-Gl-cmC" id="7yn-Fc-ZgY"/>
+            </connections>
+            <point key="canvasLocation" x="-159.42028985507247" y="106.80803571428571"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,295 @@
+import CocoaLumberjack
+import RealmSwift
+
+
+// In generic protocols, to create something like <T> in generics, you need to add `associatedtype`.
+// https://www.bobthedeveloper.io/blog/generic-protocols-with-associated-type
+
+protocol DatabaseLayer {
+    associatedtype T: Object
+
+    func find(withID: String) -> T?
+    func findAll() -> [T]
+    func findAll(sortedBy key: String) -> [T]
+    func createOrUpdateAll(with objects: [Object], update: Bool)
+    func delete(object: Object)
+    func deleteAll(objects: [Object])
+}
+
+
+struct DALConfig {
+    static let DatabaseSchemaVersion: UInt64 = 1
+    static let realmStoreName: String = "avecare.realm"   // default
+    //    static let ISO8601dateFormat = DateConfig.ISO8601dateFormat
+    //    static let defaultSyncToken: String = "00000000000000000000000000000000"
+    static var userRealmFileURL: URL?
+}
+
+
+extension DatabaseLayer {
+
+    // MARK: - DB setup
+
+    private var userRealmFile: URL {
+        if let url = DALConfig.userRealmFileURL {
+            return url
+        }
+
+        let fullURLpath = userAppDirectory.appendingPathComponent(DALConfig.realmStoreName)
+        DALConfig.userRealmFileURL = fullURLpath
+
+        return fullURLpath
+    }
+
+
+    private var realmConfig: Realm.Configuration {
+
+        var config = Realm.Configuration(
+            // Migration Support
+            //
+            // Set the new schema version. This must be greater than the previously used
+            // version (if you've never set a schema version before, the version is 0).
+            schemaVersion: DALConfig.DatabaseSchemaVersion,
+
+            // Set the block which will be called automatically when opening a Realm with
+            // a schema version lower than the one set above.
+            migrationBlock: { _, oldSchemaVersion in
+                // If we haven’t migrated anything yet, then `oldSchemaVersion` == 0
+                if oldSchemaVersion < DALConfig.DatabaseSchemaVersion {
+                    // Realm will automatically detect new properties and removed properties,
+                    // and will update the schema on disk automatically.
+                    DDLogVerbose("⚠️  Migrating Realm DB: from v\(oldSchemaVersion) to v\(DALConfig.DatabaseSchemaVersion)  ⚠️")
+
+                    if oldSchemaVersion < 2 {
+                        DDLogVerbose("⚠️ ++ \"oldSchemaVersion < 2\"  ⚠️")
+                        // Changes for v2:
+                        // ....
+                    }
+
+                }
+        })
+
+        config.fileURL = userRealmFile
+
+        config.shouldCompactOnLaunch = { (totalBytes: Int, usedBytes: Int) -> Bool in
+            let bcf = ByteCountFormatter()
+            bcf.allowedUnits = [.useMB] // optional: restricts the units to MB only
+            bcf.countStyle = .file
+            let totalBytesString = bcf.string(fromByteCount: Int64(totalBytes))
+            let usedBytesString = bcf.string(fromByteCount: Int64(usedBytes))
+
+            DDLogInfo("size_of_realm_file: \(totalBytesString), used_bytes: \(usedBytesString)")
+            let utilization = Double(usedBytes) / Double(totalBytes) * 100.0
+            DDLogInfo(String(format: "utilization: %.0f%%", utilization))
+
+            // totalBytes refers to the size of the file on disk in bytes (data + free space)
+            // usedBytes refers to the number of bytes used by data in the file
+
+            // Compact if the file is over 100mb in size and less than 60% 'used'
+            let filesizeMB = 100 * 1024 * 1024
+            let compactRealm: Bool = (totalBytes > filesizeMB) && (Double(usedBytes) / Double(totalBytes)) < 0.6
+
+            if compactRealm {
+                DDLogError("Compacting Realm database.")
+            }
+
+            return compactRealm
+        }
+
+        return config
+    }
+
+
+    func getDatabase() -> Realm? {
+        do {
+            return try Realm(configuration: realmConfig)
+        } catch let error {
+            DDLogError("Database error: \(error)")
+            fatalError("Database error: \(error)")
+        }
+    }
+
+
+    // MARK: - Low-level CRUD
+
+    // Generic wrapper for DB write transactions.
+    func writeTransaction(writeTransactionBlock: @escaping () -> Void) {
+        autoreleasepool {
+            do {
+                let database = self.getDatabase()
+                try database?.write {
+                    writeTransactionBlock()
+                }
+            } catch let error {
+                DDLogError("Database error: \(error)")
+                fatalError("Database error: \(error)")
+            }
+        }
+    }
+
+
+    func create() {
+        autoreleasepool {
+            do {
+                let database = self.getDatabase()
+                try database?.write {
+                    database?.add(self as! Object)
+                }
+            } catch let error {
+                DDLogError("Database error: \(error)")
+                fatalError("Database error: \(error)")
+            }
+        }
+    }
+
+
+    func create<T: Object>(_ object: T) {
+        autoreleasepool {
+            do {
+                let database = self.getDatabase()
+                try database?.write {
+                    database?.add(object)
+                }
+            } catch let error {
+                DDLogError("Database error: \(error)")
+                fatalError("Database error: \(error)")
+            }
+        }
+    }
+
+
+    // note: 'primary id' required for this to function.
+    func createOrUpdateAll<T: Object>(with objects: [T], update: Bool = true) {
+        autoreleasepool {
+            do {
+                let database = self.getDatabase()
+                try database?.write {
+                    database?.add(objects, update: update ? .all : .error)
+                }
+            } catch let error {
+                DDLogError("Database error: \(error)")
+                fatalError("Database error: \(error)")
+            }
+        }
+    }
+
+
+    func delete() {
+        autoreleasepool {
+            do {
+                let database = self.getDatabase()
+                try database?.write {
+                    database?.delete(self as! Object)
+                }
+            } catch let error {
+                DDLogError("Database error: \(error)")
+                fatalError("Database error: \(error)")
+            }
+        }
+    }
+
+
+    func delete<T: Object>(object: T) {
+        autoreleasepool {
+            do {
+                let database = self.getDatabase()
+                try database?.write {
+                    database?.delete(object)
+                }
+            } catch let error {
+                DDLogError("Database error: \(error)")
+                fatalError("Database error: \(error)")
+            }
+        }
+    }
+
+
+    func deleteAll<T: Object>(objects: [T]) {
+        autoreleasepool {
+            do {
+                let database = self.getDatabase()
+                try database?.write {
+                    database?.delete(objects)
+                }
+            } catch let error {
+                DDLogError("Database error: \(error)")
+                fatalError("Database error: \(error)")
+            }
+        }
+    }
+
+
+    func find(withID: String) -> T? {
+        let database = self.getDatabase()
+        return database?.object(ofType: T.self, forPrimaryKey: withID)
+    }
+
+
+    func findAll() -> [T] {
+        if let database = self.getDatabase() {
+            return database.objects(T.self).map { $0 }
+        } else {
+            return []
+        }
+    }
+
+
+    func findAll<T: Object>(sortedBy key: String) -> [T] {
+        let database = self.getDatabase()
+
+        if let allObjects = database?.objects(T.self) {
+            let results = allObjects.sorted(byKeyPath: key, ascending: true)
+            return Array(results)
+        }
+
+        return []
+    }
+
+
+    // MARK: - Change notifications
+
+    // Setup to observe Realm `CollectionChange` notifications
+    func setupNotificationToken(for observer: AnyObject, _ block: @escaping () -> Void) -> NotificationToken? {
+        let database = getDatabase()
+
+        return database?.objects(T.self).observe { [weak observer] (changes: RealmCollectionChange) in
+            if observer != nil {
+                switch changes {
+                case .initial:
+                return  // ignore first setup
+                case .update:
+                    //                case .update(let objects, let deletions, let insertions, let modifications):
+                    /// .. a write transaction has been committed which either changed which objects are in the collection,
+                    /// and/or modified one or more of the objects in the collection.
+                    //                    DDLogDebug("NotificationToken triggered on: \(observer!) for object: \(T.self)")
+                    /*
+                     DDLogDebug("(triggered!) - objects count = \(objects.count)")
+                     for object in objects {
+                     if let id = object.value(forKey: "id") as? String {
+                     DDLogDebug("id = \(id)")
+                     }
+                     }
+
+                     DDLogDebug("deletions = \(deletions)")
+                     DDLogDebug("insertions = \(insertions)")
+                     DDLogDebug("modifications = \(modifications)")
+                     */
+                    block()
+                case .error(let err):
+                    // An error occurred while opening the Realm file on the background worker thread
+                    fatalError("\(err)")
+                }
+            }
+        }
+    }
+
+
+    // MARK: -
+
+    // *important* for multithreading purposes.
+    // https://stackoverflow.com/a/45810078/7599
+    func forceRefresh() {
+        getDatabase()?.refresh()
+    }
+
+}

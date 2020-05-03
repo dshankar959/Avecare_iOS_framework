@@ -1,0 +1,221 @@
+import("./Fastfile.utils")
+
+
+lane :testing do
+
+#sh "pwd"
+#sh "env"
+#sh "gem environment"
+
+end
+
+
+
+lane :reset_build_env_ios do
+
+  Dir.chdir(ENV["SOURCE_ROOT"]) do
+    puts "Purge all previous build info"
+    sh "/bin/rm -rf ./Pods"
+    sh "/bin/rm -rf ./#{$project_name}.xcworkspace"
+    sh "/bin/rm -rf ./Podfile.lock"
+    sh "/bin/rm -rf ./fastlane/output"
+    sh "/bin/rm -rf ./fastlane/README.md"
+    sh "/bin/rm -rf ./fastlane/report.xml"
+    sh "git checkout -- ./#{$project_name}.xcodeproj"
+  end
+
+  ENV["TARGET_SELECTION"] = 'target1'   # // educator
+  sh "git checkout -- \"#{app_info_plist_path}\""
+
+  # // reset Firebase: GoogleService-Info.plist
+  #
+  build_target_generic = $build_target_generics[ENV["TARGET_SELECTION"]]
+  build_target_generic_path = $build_target_generics[ENV["TARGET_SELECTION"]].capitalize
+  plist_folder = ENV["SOURCE_ROOT"] + "/#{$project_name}.code/#{build_target_generic_path}/Supporting Files/"
+
+  plist_filename = "GoogleService-Info.plist"
+
+  googleServiceInfo_plist_path = plist_folder + plist_filename
+
+  sh "git checkout -- \"#{googleServiceInfo_plist_path}\""
+
+
+  ENV["TARGET_SELECTION"] = 'target2'   # // parent
+  sh "git checkout -- \"#{app_info_plist_path}\""
+
+  # // reset Firebase: GoogleService-Info.plist
+  #
+  build_target_generic = $build_target_generics[ENV["TARGET_SELECTION"]]
+  build_target_generic_path = $build_target_generics[ENV["TARGET_SELECTION"]].capitalize
+  plist_folder = ENV["SOURCE_ROOT"] + "/#{$project_name}.code/#{build_target_generic_path}/Supporting Files/"
+
+  googleServiceInfo_plist_path = plist_folder + plist_filename
+
+  sh "git checkout -- \"#{googleServiceInfo_plist_path}\""
+
+
+end
+
+
+
+lane :reset_build_env_android do
+
+  Dir.chdir(ENV["SOURCE_ROOT"]) do
+    puts "Purge all previous build info"
+    sh "/bin/rm -rf ./app/build"
+    sh "git checkout -- ./app/build.gradle"
+  end
+
+
+end
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Config
+
+$project_name = "Avecare"
+
+$build_target_names = {
+  "target1" => "educator",
+  "target2" => "parent"
+}
+
+
+$build_target_generics = {
+  "target1" => "supervisor",
+  "target2" => "guardian"
+}
+
+# Construct the iOS bundle id's for a specified target and build.
+def bundle_identifier(target_selection, build_type)
+
+  base_id = "com.avecare.hwcccc-"
+  name = $build_target_generics[target_selection]
+
+  if build_type == 'production'
+    # default
+  elsif build_type == 'beta'
+    name = name + ".beta"
+  else
+    name = ""
+  end
+
+  return base_id + name
+
+end
+
+
+# Construct the Xcode build scheme's for a specified target and build.
+def build_scheme(target_selection, build_type)
+
+  name = $build_target_names[target_selection]
+  release_type = "(AppStore)"
+
+  if build_type == 'production'
+    # default
+  elsif build_type == 'beta'
+    release_type = "(Beta)"
+  else
+    release_type = ""
+  end
+
+  return name + release_type
+
+end
+
+
+# Xcode configs across all targets.
+$configurations = {
+  "production" => "Release(AppStore)",
+  "beta" => "Release(Beta)"
+}
+
+$deploy = {
+  "testflight" => "app-store",
+  "appcenter" => "ad-hoc"
+}
+
+$team_name = "Spiria Digital Inc."
+$team_id = "RHNS93D9UP"
+$itc_team_id = "33573"  # (Spiria Digital Inc.)
+
+$AppleMemberCenterUsername = "buildbot@spiria.com"      # Spiria-Toronto mobile CI/CD account.
+
+#$app_xcodeproj_path = "#{Dir.pwd}/../#{$project_name}.xcodeproj"
+
+# Construct the plist paths for a specified target.
+def app_info_plist_path()
+
+  build_target_generic = $build_target_generics[ENV["TARGET_SELECTION"]]
+  build_target_generic_path = $build_target_generics[ENV["TARGET_SELECTION"]].capitalize
+
+	plist_folder = ENV["SOURCE_ROOT"] + "/#{$project_name}.code/#{build_target_generic_path}/Supporting Files/"
+	plist_filename = "#{build_target_generic}-Info.plist"
+
+  return plist_folder + plist_filename
+
+end
+
+$appcenter_API_token = "..."
+
+$appcenter_app_names = {
+  "... Beta - iOS" => "URL",
+}
+
+$flavors = {
+  "production" => "prod",
+  "beta" => "qa"
+}
+
+# Slack 'channel: #'  (compatible with `matter-most`)
+$slack_url = "https://chat.spiria.com/hooks/bggyrxygqbrfmnst3qhcuh7t8c"
+# // <fyi> CI hook (https://slack.com/intl/en-ca/help/articles/115005265063-Incoming-Webhooks-for-Slack)
+$slack_channel = "buildbot-mobile"
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Action lanes
+
+desc "Builds iOS 'Beta' [target 1] and uploads to Testflight"
+lane :educator_beta_ios do
+
+  ENV["TARGET_SELECTION"] = 'target1'   # // educator
+  ENV["BUILD_TYPE"] = 'beta'
+
+  prepare(platform: "ios")
+
+  build4iOS(destination: 'testflight')
+  send_to_TestFlight()
+
+end
+
+
+
+desc "Builds iOS 'Production' [target 1] and uploads to Testflight/AppCenter"
+lane :educator_production_ios do
+
+  ENV["TARGET_SELECTION"] = 'target1'
+  ENV["BUILD_TYPE"] = 'production'
+
+  prepare(platform: "ios")
+
+  build4iOS(destination: 'testflight')
+  send_to_TestFlight()
+
+end
+
+
+
+desc "Builds iOS 'Beta' [target 2] and uploads to Testflight"
+lane :parent_beta_ios do
+
+  ENV["TARGET_SELECTION"] = 'target2'   # // parent
+  ENV["BUILD_TYPE"] = 'beta'
+
+  prepare(platform: "ios")
+
+  build4iOS(destination: 'testflight')
+  send_to_TestFlight()
+
+end

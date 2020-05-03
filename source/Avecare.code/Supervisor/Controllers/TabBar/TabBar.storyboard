@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vCd-Hz-Grc">
+    <device id="ipad9_7" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Supervisor Tab Bar Controller-->
+        <scene sceneID="B7A-xk-JhA">
+            <objects>
+                <tabBarController id="vCd-Hz-Grc" customClass="SupervisorTabBarController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rj4-Ro-xfZ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="G2K-lL-hum" kind="relationship" relationship="viewControllers" id="a0C-OJ-RV4"/>
+                        <segue destination="6LW-4X-HfD" kind="relationship" relationship="viewControllers" id="XuD-lL-SWW"/>
+                        <segue destination="cl7-DV-71D" kind="relationship" relationship="viewControllers" id="LA9-cp-qjM"/>
+                        <segue destination="U9M-D8-fhl" kind="relationship" relationship="viewControllers" id="GOa-se-Xet"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="O7R-Tq-Im5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-474" y="-81"/>
+        </scene>
+        <!--Logs-->
+        <scene sceneID="JFw-Fd-Yww">
+            <objects>
+                <viewController id="G2K-lL-hum" customClass="CustomSplitViewController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iv6-zU-bdH">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FPr-79-53C" userLabel="left">
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="soQ-cv-i13"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zm7-Hp-Dic" userLabel="right">
+                                <rect key="frame" x="280" y="0.0" width="744" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="FPr-79-53C" firstAttribute="top" secondItem="iv6-zU-bdH" secondAttribute="top" id="1U3-rS-pM9"/>
+                            <constraint firstItem="zm7-Hp-Dic" firstAttribute="top" secondItem="iv6-zU-bdH" secondAttribute="top" id="6zT-WP-w8Z"/>
+                            <constraint firstItem="zm7-Hp-Dic" firstAttribute="leading" secondItem="FPr-79-53C" secondAttribute="trailing" id="AVU-Yl-8qO"/>
+                            <constraint firstAttribute="trailing" secondItem="zm7-Hp-Dic" secondAttribute="trailing" id="L2G-24-RpX"/>
+                            <constraint firstItem="FPr-79-53C" firstAttribute="leading" secondItem="iv6-zU-bdH" secondAttribute="leading" id="UHa-ID-ypV"/>
+                            <constraint firstAttribute="bottom" secondItem="FPr-79-53C" secondAttribute="bottom" id="lQO-ET-pPJ"/>
+                            <constraint firstAttribute="bottom" secondItem="zm7-Hp-Dic" secondAttribute="bottom" id="pI9-FD-EaW"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="FWm-4R-Nwb"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Logs" image="logs" id="gGd-Ts-u2a"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="leftControllerIdentifier" value="LogsSideViewController"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="leftControllerStoryboardName" value="Logs"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rightControllerStoryboardName" value="DetailsFormViewController"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rightControllerIdentifier" value="DetailsFormViewController"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="leftContainerView" destination="FPr-79-53C" id="u9y-Di-zLv"/>
+                        <outlet property="rightContainerView" destination="zm7-Hp-Dic" id="CA4-3S-0RT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="phe-Vu-Kri" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1554" y="663"/>
+        </scene>
+        <!--Notifications-->
+        <scene sceneID="TSi-VY-CMY">
+            <objects>
+                <viewController id="6LW-4X-HfD" customClass="CustomSplitViewController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="THe-W0-QzB">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9yV-eW-HW3" userLabel="left">
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="TJa-XM-GVk"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lem-Fo-hsG" userLabel="right">
+                                <rect key="frame" x="280" y="0.0" width="744" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="9yV-eW-HW3" firstAttribute="leading" secondItem="THe-W0-QzB" secondAttribute="leading" id="6Oh-zL-xac"/>
+                            <constraint firstItem="Lem-Fo-hsG" firstAttribute="top" secondItem="THe-W0-QzB" secondAttribute="top" id="UaL-a7-AKd"/>
+                            <constraint firstAttribute="bottom" secondItem="9yV-eW-HW3" secondAttribute="bottom" id="Ucv-De-1RJ"/>
+                            <constraint firstAttribute="trailing" secondItem="Lem-Fo-hsG" secondAttribute="trailing" id="YoY-DY-0Md"/>
+                            <constraint firstItem="Lem-Fo-hsG" firstAttribute="leading" secondItem="9yV-eW-HW3" secondAttribute="trailing" id="iso-in-8tb"/>
+                            <constraint firstAttribute="bottom" secondItem="Lem-Fo-hsG" secondAttribute="bottom" id="kOu-xP-JvA"/>
+                            <constraint firstItem="9yV-eW-HW3" firstAttribute="top" secondItem="THe-W0-QzB" secondAttribute="top" id="tLc-zp-r8t"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="TvB-uX-JiA"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Notifications" image="notifications" id="z5k-db-v0h"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="leftControllerIdentifier" value="NotificationSideViewController"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="leftControllerStoryboardName" value="Notifications"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rightControllerStoryboardName" value="DetailsFormViewController"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rightControllerIdentifier" value="DetailsFormViewController"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="leftContainerView" destination="9yV-eW-HW3" id="j4r-ah-oKV"/>
+                        <outlet property="rightContainerView" destination="Lem-Fo-hsG" id="sS1-Vu-Jcr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9aq-4O-kRf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-875" y="663"/>
+        </scene>
+        <!--Stories-->
+        <scene sceneID="fwN-rV-9te">
+            <objects>
+                <viewController id="cl7-DV-71D" customClass="CustomSplitViewController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="djR-pl-dMg">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I14-Dt-7l5" userLabel="left">
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="zhT-Z6-Q6D"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vhJ-MB-gEV" userLabel="right">
+                                <rect key="frame" x="280" y="0.0" width="744" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vhJ-MB-gEV" firstAttribute="leading" secondItem="I14-Dt-7l5" secondAttribute="trailing" id="44O-jF-6Rh"/>
+                            <constraint firstAttribute="bottom" secondItem="vhJ-MB-gEV" secondAttribute="bottom" id="DqY-4X-aBL"/>
+                            <constraint firstAttribute="trailing" secondItem="vhJ-MB-gEV" secondAttribute="trailing" id="GOc-5H-7B5"/>
+                            <constraint firstItem="vhJ-MB-gEV" firstAttribute="top" secondItem="djR-pl-dMg" secondAttribute="top" id="H7M-DE-bTP"/>
+                            <constraint firstItem="I14-Dt-7l5" firstAttribute="leading" secondItem="djR-pl-dMg" secondAttribute="leading" id="LRc-Na-1Ld"/>
+                            <constraint firstAttribute="bottom" secondItem="I14-Dt-7l5" secondAttribute="bottom" id="Ppx-QI-tOj"/>
+                            <constraint firstItem="I14-Dt-7l5" firstAttribute="top" secondItem="djR-pl-dMg" secondAttribute="top" id="tE8-2t-Nv0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ghX-4P-E2K"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Stories" image="stories" id="DKY-A5-4VQ"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="leftControllerStoryboardName" value="Stories"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rightControllerStoryboardName" value="DetailsFormViewController"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="leftControllerIdentifier" value="StoriesSideViewController"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rightControllerIdentifier" value="DetailsFormViewController"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="leftContainerView" destination="I14-Dt-7l5" id="bks-BL-5Mm"/>
+                        <outlet property="rightContainerView" destination="vhJ-MB-gEV" id="6cj-Qj-dyv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="uwF-0B-f8f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-225" y="663"/>
+        </scene>
+        <!--Settings-->
+        <scene sceneID="YBs-vL-3Jx">
+            <objects>
+                <viewController id="U9M-D8-fhl" customClass="CustomSplitViewController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pLj-Sb-UHo">
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S0k-BD-vtk" userLabel="left">
+                                <rect key="frame" x="0.0" y="0.0" width="280" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="280" id="w8Y-Lb-oaG"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HsE-C7-3co" userLabel="right">
+                                <rect key="frame" x="280" y="0.0" width="744" height="768"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="HsE-C7-3co" secondAttribute="bottom" id="LI9-1m-Qk9"/>
+                            <constraint firstItem="HsE-C7-3co" firstAttribute="top" secondItem="pLj-Sb-UHo" secondAttribute="top" id="P3d-NB-pwv"/>
+                            <constraint firstItem="S0k-BD-vtk" firstAttribute="top" secondItem="pLj-Sb-UHo" secondAttribute="top" id="QLP-cC-o0y"/>
+                            <constraint firstItem="S0k-BD-vtk" firstAttribute="leading" secondItem="pLj-Sb-UHo" secondAttribute="leading" id="WQM-nk-yTh"/>
+                            <constraint firstItem="HsE-C7-3co" firstAttribute="leading" secondItem="S0k-BD-vtk" secondAttribute="trailing" id="Ynz-5N-866"/>
+                            <constraint firstAttribute="bottom" secondItem="S0k-BD-vtk" secondAttribute="bottom" id="gJj-Ib-gHi"/>
+                            <constraint firstAttribute="trailing" secondItem="HsE-C7-3co" secondAttribute="trailing" id="sTg-g5-iaY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rsK-ou-7dF"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Settings" image="settings" id="r8r-XP-SWQ"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="leftControllerStoryboardName" value="Settings"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rightControllerStoryboardName" value="DetailsFormViewController"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="leftControllerIdentifier" value="SettingsSideViewController"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="rightControllerIdentifier" value="DetailsFormViewController"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <outlet property="leftContainerView" destination="S0k-BD-vtk" id="w8u-rZ-LkR"/>
+                        <outlet property="rightContainerView" destination="HsE-C7-3co" id="xxj-BU-ke4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MVe-g8-esL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="417" y="663"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logs" width="18" height="24"/>
+        <image name="notifications" width="22" height="24"/>
+        <image name="settings" width="24" height="24"/>
+        <image name="stories" width="28" height="24"/>
+    </resources>
+</document>

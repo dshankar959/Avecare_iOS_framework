@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ohu-Lk-p7C">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notification Side View Controller-->
+        <scene sceneID="vOj-Rf-hrb">
+            <objects>
+                <viewController storyboardIdentifier="NotificationSideViewController" id="Ohu-Lk-p7C" customClass="NotificationSideViewController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="n2x-pI-4eO">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ACW-rv-CZI" userLabel="nav-bar-area" customClass="LeftSideNavigationBarView" customModule="educator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="114"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Room 102"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7ho-fX-RLc">
+                                <rect key="frame" x="0.0" y="144" width="400" height="456"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="8YL-wl-0M5" userLabel="hide_separators">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ohu-Lk-p7C" id="LZ1-we-IQq"/>
+                                    <outlet property="delegate" destination="Ohu-Lk-p7C" id="NKa-wj-HXT"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="7ho-fX-RLc" firstAttribute="leading" secondItem="rdG-Xp-Tcg" secondAttribute="leading" id="8bt-8N-jhQ"/>
+                            <constraint firstItem="rdG-Xp-Tcg" firstAttribute="trailing" secondItem="7ho-fX-RLc" secondAttribute="trailing" id="9Ru-Xb-tYT"/>
+                            <constraint firstItem="7ho-fX-RLc" firstAttribute="top" secondItem="ACW-rv-CZI" secondAttribute="bottom" constant="30" id="IMp-Lh-x4R"/>
+                            <constraint firstItem="rdG-Xp-Tcg" firstAttribute="trailing" secondItem="ACW-rv-CZI" secondAttribute="trailing" id="QLH-rT-9zM"/>
+                            <constraint firstItem="ACW-rv-CZI" firstAttribute="leading" secondItem="rdG-Xp-Tcg" secondAttribute="leading" id="VOW-SW-RH5"/>
+                            <constraint firstItem="rdG-Xp-Tcg" firstAttribute="bottom" secondItem="7ho-fX-RLc" secondAttribute="bottom" id="odR-eY-Pur"/>
+                            <constraint firstItem="ACW-rv-CZI" firstAttribute="bottom" secondItem="rdG-Xp-Tcg" secondAttribute="top" constant="70" id="qKJ-8h-0Qb"/>
+                            <constraint firstItem="ACW-rv-CZI" firstAttribute="top" secondItem="n2x-pI-4eO" secondAttribute="top" id="ydh-eg-Cgc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rdG-Xp-Tcg"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="600"/>
+                    <connections>
+                        <outlet property="tableView" destination="7ho-fX-RLc" id="9hw-18-4eh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zHA-9v-HYd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-174" y="-619"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3cM-Kz-XWp">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Settings Side View Controller-->
+        <scene sceneID="kNc-cN-ei9">
+            <objects>
+                <viewController storyboardIdentifier="SettingsSideViewController" id="3cM-Kz-XWp" customClass="SettingsSideViewController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Ip2-dG-Pck">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4t-N0-uNJ" userLabel="nav-bar-area" customClass="LeftSideNavigationBarView" customModule="educator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="114"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Room 102"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="79Q-ak-PRI">
+                                <rect key="frame" x="0.0" y="144" width="400" height="354"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="SUi-fq-9Ml" userLabel="hide_separators">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                                <connections>
+                                    <outlet property="dataSource" destination="3cM-Kz-XWp" id="QTv-1z-xeg"/>
+                                    <outlet property="delegate" destination="3cM-Kz-XWp" id="zuE-Qg-Lnk"/>
+                                </connections>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BF6-d0-FVA" customClass="DefaultCellView" customModule="educator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="498" width="400" height="72"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="72" id="4jc-FK-nqR"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="nameText" value="Sign Out"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="iconColor">
+                                        <color key="value" name="red-icon"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="image" keyPath="iconImage" value="signout-icon"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="HDc-LA-vaJ" appends="YES" id="63i-3S-zjq"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="bot-N5-oSc" firstAttribute="trailing" secondItem="BF6-d0-FVA" secondAttribute="trailing" id="3hW-fZ-gHF"/>
+                            <constraint firstItem="bot-N5-oSc" firstAttribute="trailing" secondItem="79Q-ak-PRI" secondAttribute="trailing" id="9uR-ia-ynV"/>
+                            <constraint firstItem="BF6-d0-FVA" firstAttribute="leading" secondItem="bot-N5-oSc" secondAttribute="leading" id="H19-Xb-Zcj"/>
+                            <constraint firstItem="bot-N5-oSc" firstAttribute="bottom" secondItem="BF6-d0-FVA" secondAttribute="bottom" constant="30" id="Igy-9d-xlu"/>
+                            <constraint firstItem="79Q-ak-PRI" firstAttribute="top" secondItem="m4t-N0-uNJ" secondAttribute="bottom" constant="30" id="KbZ-xl-cUH"/>
+                            <constraint firstItem="m4t-N0-uNJ" firstAttribute="top" secondItem="Ip2-dG-Pck" secondAttribute="top" id="YOp-ZU-oeE"/>
+                            <constraint firstItem="m4t-N0-uNJ" firstAttribute="bottom" secondItem="bot-N5-oSc" secondAttribute="top" constant="70" id="bOU-c1-PLh"/>
+                            <constraint firstItem="79Q-ak-PRI" firstAttribute="leading" secondItem="bot-N5-oSc" secondAttribute="leading" id="dec-sy-fUT"/>
+                            <constraint firstItem="BF6-d0-FVA" firstAttribute="top" secondItem="79Q-ak-PRI" secondAttribute="bottom" id="ffe-z9-Cyh"/>
+                            <constraint firstItem="m4t-N0-uNJ" firstAttribute="leading" secondItem="bot-N5-oSc" secondAttribute="leading" id="jFg-Ro-3eH"/>
+                            <constraint firstItem="bot-N5-oSc" firstAttribute="trailing" secondItem="m4t-N0-uNJ" secondAttribute="trailing" id="uf2-MF-xCe"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bot-N5-oSc"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="600"/>
+                    <connections>
+                        <outlet property="tableView" destination="79Q-ak-PRI" id="roe-2b-q1A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bEe-EP-jj8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="HDc-LA-vaJ">
+                    <connections>
+                        <action selector="didTapSignOut:" destination="3cM-Kz-XWp" id="9iY-a2-3Ti"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-175.36231884057972" y="-619.41964285714278"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="signout-icon" width="18" height="14"/>
+        <namedColor name="red-icon">
+            <color red="0.85490196078431369" green="0.28235294117647058" blue="0.49411764705882355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

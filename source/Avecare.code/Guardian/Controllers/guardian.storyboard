@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yp0-vx-sdP">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="RPR-BE-XR9">
+            <objects>
+                <viewController id="Yp0-vx-sdP" customClass="SplashViewController" customModule="parent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Pdm-D1-Bs4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="2c5-aC-5hL"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="ErB-yI-0G0"/>
+                    <connections>
+                        <segue destination="Tty-iZ-FjZ" kind="presentation" identifier="tabbar" modalPresentationStyle="fullScreen" id="y97-m1-rL4"/>
+                        <segue destination="TLQ-wT-Qvv" kind="presentation" identifier="login" modalPresentationStyle="fullScreen" id="p95-97-Jzz"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DC8-d2-c5w" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-396" y="333"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="2hz-LU-OVn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="TLQ-wT-Qvv" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="8Np-xi-3q9"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Apm-ME-sIz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="364" y="171"/>
+        </scene>
+        <!--TabBar-->
+        <scene sceneID="n9x-yH-MGo">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TabBar" id="Tty-iZ-FjZ" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="RCU-lG-66I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="372" y="495"/>
+        </scene>
+    </scenes>
+</document>

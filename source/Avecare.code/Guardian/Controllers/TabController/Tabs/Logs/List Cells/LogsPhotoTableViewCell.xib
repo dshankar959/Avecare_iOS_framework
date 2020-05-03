@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LogsPhotoTableViewCell" rowHeight="172" id="naQ-Su-xok" customClass="LogsPhotoTableViewCell" customModule="parent" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="549" height="172"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="naQ-Su-xok" id="kne-mV-7Pa">
+                <rect key="frame" x="0.0" y="0.0" width="549" height="172"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eOF-oJ-3Bd" userLabel="DetailsPhotoView" customClass="StoriesDetailsPhotoView" customModule="parent" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="549" height="172"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="eOF-oJ-3Bd" secondAttribute="bottom" id="ADD-o2-rxh"/>
+                    <constraint firstAttribute="trailing" secondItem="eOF-oJ-3Bd" secondAttribute="trailing" id="H64-PQ-5Q3"/>
+                    <constraint firstItem="eOF-oJ-3Bd" firstAttribute="top" secondItem="kne-mV-7Pa" secondAttribute="top" id="cuY-YN-eXF"/>
+                    <constraint firstItem="eOF-oJ-3Bd" firstAttribute="leading" secondItem="kne-mV-7Pa" secondAttribute="leading" id="fhG-ZV-ah9"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="detailsPhotoView" destination="eOF-oJ-3Bd" id="2vc-fx-Nip"/>
+            </connections>
+            <point key="canvasLocation" x="192.0289855072464" y="30.133928571428569"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="E9E-R6-Rdr">
+    <device id="ipad11_0rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Splash View Controller-->
+        <scene sceneID="ndG-Mb-Epw">
+            <objects>
+                <viewController id="E9E-R6-Rdr" customClass="SplashViewController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nY9-8m-zlU">
+                        <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qTL-ao-Z2d" userLabel="login">
+                                <rect key="frame" x="597" y="0.0" width="597" height="814"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDZ-xQ-JbE" userLabel="splash">
+                                <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avecare" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ji6-UY-CIR">
+                                        <rect key="frame" x="401" y="363" width="392" height="108"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="90"/>
+                                        <color key="textColor" name="MainInversion"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="Main"/>
+                                <constraints>
+                                    <constraint firstItem="Ji6-UY-CIR" firstAttribute="centerX" secondItem="XDZ-xQ-JbE" secondAttribute="centerX" id="Lk1-DV-bW3"/>
+                                    <constraint firstItem="Ji6-UY-CIR" firstAttribute="centerY" secondItem="XDZ-xQ-JbE" secondAttribute="centerY" id="acY-B9-osA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="XDZ-xQ-JbE" firstAttribute="top" secondItem="nY9-8m-zlU" secondAttribute="top" id="42F-hY-Bj4"/>
+                            <constraint firstAttribute="bottom" secondItem="XDZ-xQ-JbE" secondAttribute="bottom" id="6gw-7e-dlS"/>
+                            <constraint firstItem="XDZ-xQ-JbE" firstAttribute="leading" secondItem="nY9-8m-zlU" secondAttribute="leading" id="LHg-Jg-jL6"/>
+                            <constraint firstAttribute="trailing" secondItem="XDZ-xQ-JbE" secondAttribute="trailing" id="Naj-9r-gA1"/>
+                            <constraint firstItem="qTL-ao-Z2d" firstAttribute="top" secondItem="PAk-jA-XdD" secondAttribute="top" id="RyO-IG-RQc"/>
+                            <constraint firstItem="qTL-ao-Z2d" firstAttribute="width" secondItem="nY9-8m-zlU" secondAttribute="width" multiplier="0.5" id="fvM-Ra-I8O"/>
+                            <constraint firstItem="PAk-jA-XdD" firstAttribute="bottom" secondItem="qTL-ao-Z2d" secondAttribute="bottom" id="jaW-I6-mda"/>
+                            <constraint firstItem="PAk-jA-XdD" firstAttribute="trailing" secondItem="qTL-ao-Z2d" secondAttribute="trailing" id="ppT-t7-mEM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="PAk-jA-XdD"/>
+                    </view>
+                    <connections>
+                        <segue destination="nFD-0A-05U" kind="presentation" identifier="tabbar" modalPresentationStyle="fullScreen" id="6x5-zz-d17"/>
+                        <segue destination="ES6-et-ZUD" kind="presentation" identifier="login" modalPresentationStyle="fullScreen" id="9Ff-gb-VEN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7yd-NN-bC0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-851" y="-882"/>
+        </scene>
+        <!--TabBar-->
+        <scene sceneID="Ghm-dT-re9">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TabBar" id="nFD-0A-05U" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mXe-i8-OyT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-851" y="-401"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="Isz-eq-H0H">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="ES6-et-ZUD" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="G2C-6t-O6a"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Ig-Zd-5Go" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-797" y="-401"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="Main">
+            <color red="0.31372549019607843" green="0.62745098039215685" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MainInversion">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

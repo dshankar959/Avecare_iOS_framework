@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pJl-Hx-umD">
+    <device id="retina3_5" orientation="landscape" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Logs Side View Controller-->
+        <scene sceneID="6s1-nR-ULe">
+            <objects>
+                <viewController storyboardIdentifier="LogsSideViewController" id="pJl-Hx-umD" customClass="LogsSideViewController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4tp-HT-mod">
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DfV-bx-TJZ" userLabel="nav-bar-area" customClass="LeftSideNavigationBarView" customModule="educator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="70"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="title" value="Room 102"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="KZT-nN-Req">
+                                <rect key="frame" x="0.0" y="141" width="400" height="459"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="PFn-xL-G1P" userLabel="hide_separators">
+                                    <rect key="frame" x="0.0" y="128" width="400" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubjectListTableViewCell" rowHeight="72" id="858-vh-t3n" customClass="SubjectListTableViewCell" customModule="educator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="400" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="858-vh-t3n" id="P7q-WO-Ec8">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="72"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ld3-9f-JH5">
+                                                    <rect key="frame" x="15" y="16" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="59b-Gg-a0b"/>
+                                                        <constraint firstAttribute="width" constant="40" id="kUZ-QM-AxR"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arnold, Billy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L0f-0H-pkT">
+                                                    <rect key="frame" x="71" y="15" width="100" height="21"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                    <color key="textColor" name="DarkText"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 5, 2014" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x73-qQ-x5e">
+                                                    <rect key="frame" x="71" y="36" width="74" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
+                                                    <color key="textColor" name="LightText"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="x73-qQ-x5e" firstAttribute="leading" secondItem="ld3-9f-JH5" secondAttribute="trailing" constant="16" id="12K-Ec-ACK"/>
+                                                <constraint firstItem="L0f-0H-pkT" firstAttribute="leading" secondItem="ld3-9f-JH5" secondAttribute="trailing" constant="16" id="1ah-XE-PdH"/>
+                                                <constraint firstItem="x73-qQ-x5e" firstAttribute="top" secondItem="P7q-WO-Ec8" secondAttribute="centerY" id="VnX-37-94U"/>
+                                                <constraint firstItem="ld3-9f-JH5" firstAttribute="leading" secondItem="P7q-WO-Ec8" secondAttribute="leadingMargin" id="bk2-jk-6Uy"/>
+                                                <constraint firstItem="L0f-0H-pkT" firstAttribute="bottom" secondItem="P7q-WO-Ec8" secondAttribute="centerY" id="xPV-uw-Sql"/>
+                                                <constraint firstItem="ld3-9f-JH5" firstAttribute="centerY" secondItem="P7q-WO-Ec8" secondAttribute="centerY" id="zrL-1X-ceQ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="birthDateLabel" destination="x73-qQ-x5e" id="bYT-sH-uAi"/>
+                                            <outlet property="photoImageView" destination="ld3-9f-JH5" id="9SP-8L-PhA"/>
+                                            <outlet property="subjectNameLabel" destination="L0f-0H-pkT" id="8Ga-XT-Jci"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="pJl-Hx-umD" id="0Jn-Il-2AV"/>
+                                    <outlet property="delegate" destination="pJl-Hx-umD" id="tnM-La-XjJ"/>
+                                </connections>
+                            </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="YBt-xY-Dvd">
+                                <rect key="frame" x="8" y="100" width="384" height="32"/>
+                                <segments>
+                                    <segment title="Last Name"/>
+                                    <segment title="First Name"/>
+                                    <segment title="Birthday"/>
+                                </segments>
+                                <connections>
+                                    <action selector="didChangeSegmentControl:" destination="pJl-Hx-umD" eventType="valueChanged" id="e8C-Q3-73p"/>
+                                </connections>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="YBt-xY-Dvd" firstAttribute="top" secondItem="DfV-bx-TJZ" secondAttribute="bottom" constant="30" id="0ru-cF-wb6"/>
+                            <constraint firstItem="euP-6X-ide" firstAttribute="trailing" secondItem="YBt-xY-Dvd" secondAttribute="trailing" constant="8" id="1F5-bk-a8d"/>
+                            <constraint firstItem="YBt-xY-Dvd" firstAttribute="leading" secondItem="euP-6X-ide" secondAttribute="leading" constant="8" id="998-yu-dJa"/>
+                            <constraint firstItem="KZT-nN-Req" firstAttribute="top" secondItem="YBt-xY-Dvd" secondAttribute="bottom" constant="10" id="A2R-oU-FeO"/>
+                            <constraint firstItem="KZT-nN-Req" firstAttribute="leading" secondItem="euP-6X-ide" secondAttribute="leading" id="ERz-6G-tBm"/>
+                            <constraint firstItem="DfV-bx-TJZ" firstAttribute="leading" secondItem="euP-6X-ide" secondAttribute="leading" id="QyC-8y-iEo"/>
+                            <constraint firstItem="euP-6X-ide" firstAttribute="bottom" secondItem="KZT-nN-Req" secondAttribute="bottom" id="Rta-Da-KxZ"/>
+                            <constraint firstItem="euP-6X-ide" firstAttribute="trailing" secondItem="KZT-nN-Req" secondAttribute="trailing" id="Z72-c1-8VE"/>
+                            <constraint firstItem="DfV-bx-TJZ" firstAttribute="top" secondItem="4tp-HT-mod" secondAttribute="top" id="be0-lG-VUa"/>
+                            <constraint firstItem="euP-6X-ide" firstAttribute="trailing" secondItem="DfV-bx-TJZ" secondAttribute="trailing" id="i0a-N3-mN5"/>
+                            <constraint firstItem="DfV-bx-TJZ" firstAttribute="bottom" secondItem="euP-6X-ide" secondAttribute="top" constant="70" id="uFj-OE-2G7"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="euP-6X-ide"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="400" height="600"/>
+                    <connections>
+                        <outlet property="sortSegmentControl" destination="YBt-xY-Dvd" id="bfX-H4-Uzq"/>
+                        <outlet property="tableView" destination="KZT-nN-Req" id="fJE-Mj-2NH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vDy-5r-pou" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-174" y="-619"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="DarkText">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightText">
+            <color red="0.49411764705882355" green="0.52156862745098043" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

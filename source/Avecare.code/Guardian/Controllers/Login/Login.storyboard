@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BIB-zt-0Cr">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="fVN-xh-yUT">
+            <objects>
+                <viewController id="IUv-yB-8nH" customClass="OTPViewController" customModule="parent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fER-ME-3h6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="Sfr-ZL-uS6">
+                                <rect key="frame" x="42.5" y="237.5" width="290" height="192.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="yEx-a2-xG7">
+                                        <rect key="frame" x="0.0" y="0.0" width="290" height="192.5"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wuB-Iu-veR">
+                                                <rect key="frame" x="0.0" y="0.0" width="290" height="67.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter Your Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ZF-dg-Vbn">
+                                                        <rect key="frame" x="59" y="0.0" width="172.5" height="29"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                                        <color key="textColor" name="LightText3"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hQj-Kg-Dcq">
+                                                        <rect key="frame" x="0.0" y="34" width="290" height="33.5"/>
+                                                        <string key="text">A 4-digit security code was sent in the email you received from {facility_name}. 
+</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" name="LightText4"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="1Lj-vL-9mv">
+                                                <rect key="frame" x="0.0" y="87.5" width="290" height="105"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="NNb-f7-8lI">
+                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="50"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T6V-pw-z7M" customClass="PinView" customModule="parent" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="0.0" width="290" height="50"/>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="50" id="F0V-9I-sdD"/>
+                                                                    <constraint firstAttribute="width" constant="290" id="ZI8-a0-4f2"/>
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="pinLength">
+                                                                        <integer key="value" value="4"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="shouldSecureText" value="NO"/>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="borderLineColor">
+                                                                        <color key="value" name="TextPlaceholder"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="color" keyPath="activeBorderLineColor">
+                                                                        <color key="value" name="DarkText"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="borderLineThickness">
+                                                                        <real key="value" value="1"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="activeBorderLineThickness">
+                                                                        <real key="value" value="2"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="fieldCornerRadius">
+                                                                        <real key="value" value="4"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="activeFieldCornerRadius">
+                                                                        <real key="value" value="4"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="interSpace">
+                                                                        <real key="value" value="10"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o6T-Mq-kDk">
+                                                        <rect key="frame" x="0.0" y="65" width="290" height="40"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                        <state key="normal" title="Enter Code" backgroundImage="Primary"/>
+                                                        <connections>
+                                                            <action selector="sendCodeActionWithSender:" destination="IUv-yB-8nH" eventType="touchUpInside" id="Pt3-ld-r00"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="290" id="A6M-8v-zaw"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Sfr-ZL-uS6" firstAttribute="centerX" secondItem="fER-ME-3h6" secondAttribute="centerX" id="SIu-H4-ba8"/>
+                            <constraint firstItem="Sfr-ZL-uS6" firstAttribute="centerY" secondItem="fER-ME-3h6" secondAttribute="centerY" id="eaW-Ip-JTt"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="YR4-i3-J2u"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="EUx-L9-4Nd"/>
+                    <connections>
+                        <outlet property="otpField" destination="T6V-pw-z7M" id="RNa-Ki-dAB"/>
+                        <segue destination="qeq-hO-eGc" kind="presentation" identifier="tabbar" modalPresentationStyle="fullScreen" id="kGX-dV-HCu"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="exy-6Q-IDr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="388" y="37.331334332833585"/>
+        </scene>
+        <!--TabBar-->
+        <scene sceneID="XZj-ng-dWj">
+            <objects>
+                <viewControllerPlaceholder storyboardName="TabBar" id="qeq-hO-eGc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5yv-zd-Ibc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1017" y="35"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="Sqm-cT-CR9">
+            <objects>
+                <viewController id="BIB-zt-0Cr" customClass="LoginViewController" customModule="parent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MNd-Nd-n4h">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="ZOJ-Z2-mbG">
+                                <rect key="frame" x="42.5" y="142.5" width="290" height="262"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FZu-nK-Scp">
+                                        <rect key="frame" x="0.0" y="0.0" width="290" height="262"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nuh-lK-LEz">
+                                                <rect key="frame" x="0.0" y="0.0" width="290" height="67.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbQ-Og-Mb2">
+                                                        <rect key="frame" x="59.5" y="0.0" width="171" height="29"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
+                                                        <color key="textColor" name="LightText3"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X8E-4B-etB">
+                                                        <rect key="frame" x="0.0" y="34" width="290" height="33.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="290" id="cdM-ME-GAZ"/>
+                                                        </constraints>
+                                                        <string key="text">A password will be sent to the email 
+which {facility_name} has on file.</string>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                        <color key="textColor" name="LightText4"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="x6i-T7-xGD">
+                                                <rect key="frame" x="0.0" y="87.5" width="290" height="174.5"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Zwh-a4-uU5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="70.5"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h16-X3-ro3">
+                                                                <rect key="frame" x="0.0" y="0.0" width="44.5" height="20.5"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                                                <color key="textColor" name="DarkText"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Required" textAlignment="natural" minimumFontSize="17" background="Rectangle" translatesAutoresizingMaskIntoConstraints="NO" id="JPY-kC-QBn" customClass="TextField" customModule="parent" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="21.5" width="290" height="49"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="290" id="WWA-Wl-MZh"/>
+                                                                    <constraint firstAttribute="height" constant="49" id="WY3-pE-5cp"/>
+                                                                </constraints>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetX">
+                                                                        <real key="value" value="16"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="insetY">
+                                                                        <real key="value" value="13"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </textField>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZFu-p1-vQa">
+                                                        <rect key="frame" x="0.0" y="85.5" width="290" height="34"/>
+                                                        <subviews>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNc-5W-SGi">
+                                                                <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="34" id="gz8-O3-jda"/>
+                                                                    <constraint firstAttribute="width" constant="34" id="yoH-GV-3GS"/>
+                                                                </constraints>
+                                                                <state key="normal" image="checkbox"/>
+                                                            </button>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FAp-mf-wKK">
+                                                                <rect key="frame" x="34" y="8.5" width="256" height="17"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="320" id="8ub-bd-1gv"/>
+                                                                </constraints>
+                                                                <attributedString key="attributedText">
+                                                                    <fragment content="I agree to the ">
+                                                                        <attributes>
+                                                                            <color key="NSColor" name="LightText4"/>
+                                                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                    <fragment content="Terms &amp; Conditions">
+                                                                        <attributes>
+                                                                            <color key="NSColor" red="0.19215686274509802" green="0.56470588235294117" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                                        </attributes>
+                                                                    </fragment>
+                                                                </attributedString>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="34" id="upX-Kv-XJs"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cwz-R0-qcg">
+                                                        <rect key="frame" x="0.0" y="134.5" width="290" height="40"/>
+                                                        <rect key="contentStretch" x="0.5" y="0.0" width="1" height="1"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="290" id="C33-zo-O4c"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                        <state key="normal" title="Get Code" backgroundImage="Primary"/>
+                                                        <connections>
+                                                            <action selector="getCodeActionWithSender:" destination="BIB-zt-0Cr" eventType="touchUpInside" id="gRD-4H-UMU"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ZOJ-Z2-mbG" firstAttribute="centerY" secondItem="MNd-Nd-n4h" secondAttribute="centerY" constant="-60" id="ggJ-jP-NLK"/>
+                            <constraint firstItem="ZOJ-Z2-mbG" firstAttribute="centerX" secondItem="MNd-Nd-n4h" secondAttribute="centerX" id="rnP-Sc-8yA"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Icn-Sx-LkI"/>
+                    </view>
+                    <connections>
+                        <outlet property="loginField" destination="JPY-kC-QBn" id="Rpu-Xi-jlT"/>
+                        <segue destination="IUv-yB-8nH" kind="presentation" identifier="otp" modalPresentationStyle="fullScreen" id="V9u-Xt-ts8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YmM-bB-eLC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-438" y="38"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="Primary" width="200" height="40"/>
+        <image name="Rectangle" width="290" height="44"/>
+        <image name="checkbox" width="44" height="44"/>
+        <namedColor name="DarkText">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightText3">
+            <color red="0.30196078431372547" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightText4">
+            <color red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightText4">
+            <color red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="TextPlaceholder">
+            <color red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,136 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '12.0'
+
+use_frameworks!
+
+# ignore all warnings from all pods
+inhibit_all_warnings!
+
+# Swift migration support.
+# https://medium.com/@timefrancesco/swift-4-migration-and-cocoapods-31e5ac020980
+#
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+
+        target.build_configurations.each do |config|
+            config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf'
+            config.build_settings['SWIFT_VERSION'] = '5.0'  # default
+            config.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = '$(inherited)'
+
+            if [
+                ].include? target.name
+                config.build_settings['SWIFT_VERSION'] = '4.0'  # legacy
+            end
+
+            if [
+                ].include? target.name
+                config.build_settings['SWIFT_VERSION'] = '4.2'  # legacy
+            end
+
+            if [
+              ].include? target.name
+              config.build_settings['SWIFT_VERSION'] = '5.0'
+            end
+
+            if ['SwiftLint'
+              ].include? target.name
+              config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
+            end
+
+        end
+    end
+end
+
+
+
+def common_pods
+
+  # A fast & simple, yet powerful & flexible logging framework for Mac and iOS
+  # https://github.com/CocoaLumberjack/CocoaLumberjack
+  pod 'CocoaLumberjack/Swift'
+
+  # A tool to enforce Swift style and conventions. https://realm.io
+  # https://github.com/realm/SwiftLint
+  # dev. tool.  (not mandatory, but nice to have for best practices)
+  # .swiftlint.yml file in root folder contains config parameters
+#  pod 'SwiftLint'
+  pod 'SwiftLint', '~> 0.38.2'
+
+  # Add the pod for Firebase Crashlytics
+  pod 'Firebase/Crashlytics'
+  # add the Firebase pod for Google Analytics
+  pod 'Firebase/Analytics'
+
+  # A clean and lightweight progress HUD based on SVProgressHUD, converted to Swift with the help of Swiftify.
+  # https://github.com/Swiftify-Corp/IHProgressHUD
+  #pod 'IHProgressHUD'
+  pod 'IHProgressHUD', :git => 'https://github.com/Swiftify-Corp/IHProgressHUD.git'
+
+  # A Swift Autolayout DSL for iOS & OS X
+  # https://github.com/SnapKit/SnapKit
+  pod 'SnapKit'
+	
+  # DeviceKit is a replacement of UIDevice.
+  # https://github.com/dennisweissmann/DeviceKit
+  pod 'DeviceKit'
+
+  # Simple Swift wrapper for Keychain that works on iOS, watchOS, tvOS and macOS.
+  # https://github.com/kishikawakatsumi/KeychainAccess
+  pod 'KeychainAccess'
+
+  # An easy way to implement pull-to-refresh feature based on UIScrollView extension, written in Swift 4.
+  # https://github.com/WXGBridgeQ/SwiftPullToRefresh
+#  pod 'SwiftPullToRefresh'
+
+  # Replacement for Apple's Reachability re-written in Swift with closures
+  # https://github.com/ashleymills/Reachability.swift
+  #  pod 'ReachabilitySwift', '~> 4.1.0'
+  pod 'ReachabilitySwift'
+
+  # Realm is a mobile database: a replacement for Core Data & SQLite
+  # https://github.com/realm/realm-cocoa
+  pod 'RealmSwift'
+
+  # Network abstraction layer written in Swift.
+  # https://github.com/Moya/Moya
+  pod 'Moya'    # includes 'Alamofire'
+
+  # Use FontAwesome in your Swift projects
+  # https://github.com/thii/FontAwesome.swift
+  pod 'FontAwesome.swift'
+
+  # Effortless ZIP Handling in Swift
+  # https://github.com/weichsel/ZIPFoundation
+#  pod 'ZIPFoundation'
+
+  # Panels is a framework to easily add sliding panels to your application. It takes care of the safe area in new devices and moving your panel when the keyboard is presented/dismissed
+  # https://github.com/antoniocasero/Panels
+  pod 'Panels'
+
+
+  pod 'Kingfisher'
+
+  # https://github.com/mac-cain13/R.swift
+  pod 'R.swift'
+
+
+  pod 'AXPhotoViewer'
+  pod 'BSImagePicker'
+  
+  #With SegueManager it's easy to programatically perform segues and update the destination view controller.
+  #https://github.com/tomlokhorst/SegueManager
+  pod 'SegueManager/R.swift'
+
+end
+
+
+# Apply pods to all project targets.
+project = Xcodeproj::Project.open './Avecare.xcodeproj'
+
+project.targets.each do |t|
+
+    target t.name do
+        common_pods
+    end
+
+end

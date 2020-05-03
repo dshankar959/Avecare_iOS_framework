@@ -1,0 +1,131 @@
+[
+  {
+    "name": "mood",
+    "rowType": 1,
+    "properties": {
+      "iconName": "heart-icon",
+      "iconColor": "00B0CA",
+      "title": "Average Mood",
+      "placeholder": "Select Mood",
+      "options": [
+        {
+          "value": 1,
+          "text": "Mood 1"
+        },
+        {
+          "value": 2,
+          "text": "Mood 2"
+        },
+        {
+          "value": 3,
+          "text": "Mood 3"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Snack",
+    "rowType": 3,
+    "properties": {
+      "iconName": "apple-icon",
+      "iconColor": "FBD476",
+      "title": "Snack",
+      "subtitle": "Number of servings eaten:",
+      "options": [
+        {
+          "value": 1,
+          "text": "1-2"
+        },
+        {
+          "value": 2,
+          "text": "3-4"
+        },
+        {
+          "value": 3,
+          "text": "5-6"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Free Play",
+    "rowType": 2,
+    "properties": {
+      "iconName": "run-icon",
+      "iconColor": "FBD476",
+      "title": "Free Play"
+    }
+  },
+  {
+    "name": "Lunch",
+    "rowType": 3,
+    "properties": {
+      "iconName": "spoon-icon",
+      "iconColor": "FBD476",
+      "title": "Lunch",
+      "subtitle": "Number of servings eaten:",
+      "options": [
+        {
+          "value": 1,
+          "text": "1-2"
+        },
+        {
+          "value": 2,
+          "text": "3-4"
+        },
+        {
+          "value": 3,
+          "text": "5-6"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Rest",
+    "rowType": 3,
+    "properties": {
+      "iconName": "cloud-icon",
+      "iconColor": "FBD476",
+      "title": "Rest",
+      "subtitle": "Select amount of sleep:",
+      "options": [
+        {
+          "value": 1,
+          "text": "30min"
+        },
+        {
+          "value": 2,
+          "text": "1h"
+        },
+        {
+          "value": 3,
+          "text": "2h"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Note",
+    "rowType": 4,
+    "properties": {
+      "iconName": "pencil-icon",
+      "iconColor": "00B0CA",
+      "title": "Educator's Note"
+    }
+  },
+  {
+    "name": "Photo",
+    "rowType": 5,
+    "properties": {
+      "title": "Caption"
+    }
+  },
+  {
+    "name": "Accident Report",
+    "rowType": 6,
+    "properties": {
+      "iconName": "exclamation-icon",
+      "iconColor": "DA487E"
+    }
+  }
+]

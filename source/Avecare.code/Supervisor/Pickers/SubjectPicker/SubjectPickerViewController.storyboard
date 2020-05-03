@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="rdY-AN-kiT">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Subject Picker View Controller-->
+        <scene sceneID="V5c-T3-Ofh">
+            <objects>
+                <viewController id="rdY-AN-kiT" customClass="SubjectPickerViewController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Exl-1D-9yD">
+                        <rect key="frame" x="0.0" y="0.0" width="460" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hIC-qP-dtE">
+                                <rect key="frame" x="0.0" y="90" width="460" height="1"/>
+                                <color key="backgroundColor" name="Separator"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Raa-p9-vtl"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tC6-M4-Myr">
+                                <rect key="frame" x="340" y="29" width="90" height="40"/>
+                                <color key="backgroundColor" name="Main"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="683-uy-0At"/>
+                                    <constraint firstAttribute="width" constant="90" id="R9l-nu-BCb"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" name="MainInversion"/>
+                                </state>
+                                <connections>
+                                    <action selector="didClickDoneButton:" destination="rdY-AN-kiT" eventType="touchUpInside" id="MDX-gD-Dd9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="j3y-sX-rZe">
+                                <rect key="frame" x="40" y="32" width="280" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="xRa-Ix-e5G"/>
+                                </constraints>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Select All" image="checkmark_off">
+                                    <color key="titleColor" name="DarkText"/>
+                                </state>
+                                <state key="selected" image="checkmark_on"/>
+                                <connections>
+                                    <action selector="didClickSelectAllButton:" destination="rdY-AN-kiT" eventType="touchUpInside" id="F2l-bP-n5q"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="72" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y6L-Sc-Fgc">
+                                <rect key="frame" x="0.0" y="91" width="460" height="581"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <view key="tableFooterView" contentMode="scaleToFill" id="KP2-sk-GuE" userLabel="trim_separators">
+                                    <rect key="frame" x="0.0" y="128" width="460" height="0.0"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubjectPickerTableViewCell" rowHeight="72" id="Mqa-VP-DEf" customClass="SubjectPickerTableViewCell" customModule="educator" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="460" height="72"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Mqa-VP-DEf" id="JQa-Dd-fMa">
+                                            <rect key="frame" x="0.0" y="0.0" width="460" height="72"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark_on" translatesAutoresizingMaskIntoConstraints="NO" id="lGM-tD-xQ2">
+                                                    <rect key="frame" x="40" y="2" width="68" height="68"/>
+                                                </imageView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="subject1" translatesAutoresizingMaskIntoConstraints="NO" id="Wy6-li-Q4w">
+                                                    <rect key="frame" x="128" y="-4" width="80" height="80"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Arnold, Billy" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hCd-Z0-5b7">
+                                                    <rect key="frame" x="224" y="27.5" width="84" height="17"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hCd-Z0-5b7" firstAttribute="leading" secondItem="Wy6-li-Q4w" secondAttribute="trailing" constant="16" id="0Lp-Qf-bwv"/>
+                                                <constraint firstItem="lGM-tD-xQ2" firstAttribute="leading" secondItem="JQa-Dd-fMa" secondAttribute="leading" constant="40" id="83P-pu-JQL"/>
+                                                <constraint firstItem="Wy6-li-Q4w" firstAttribute="leading" secondItem="lGM-tD-xQ2" secondAttribute="trailing" constant="20" id="Qsm-IO-h6b"/>
+                                                <constraint firstItem="Wy6-li-Q4w" firstAttribute="centerY" secondItem="JQa-Dd-fMa" secondAttribute="centerY" id="e56-ki-fWq"/>
+                                                <constraint firstItem="lGM-tD-xQ2" firstAttribute="centerY" secondItem="JQa-Dd-fMa" secondAttribute="centerY" id="nFB-Wg-xcr"/>
+                                                <constraint firstItem="hCd-Z0-5b7" firstAttribute="centerY" secondItem="JQa-Dd-fMa" secondAttribute="centerY" id="qBC-5b-Dhc"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="checkboxImageView" destination="lGM-tD-xQ2" id="Z1R-DD-5W3"/>
+                                            <outlet property="photoImageView" destination="Wy6-li-Q4w" id="1yj-B2-9jN"/>
+                                            <outlet property="subjectLabel" destination="hCd-Z0-5b7" id="Eog-Cb-Cnk"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="rdY-AN-kiT" id="f6L-8y-165"/>
+                                    <outlet property="delegate" destination="rdY-AN-kiT" id="y7E-Jj-g2h"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="y6L-Sc-Fgc" firstAttribute="leading" secondItem="QqW-jK-Z14" secondAttribute="leading" id="2SN-Il-b8c"/>
+                            <constraint firstItem="tC6-M4-Myr" firstAttribute="centerY" secondItem="j3y-sX-rZe" secondAttribute="centerY" id="3Na-6g-fmy"/>
+                            <constraint firstItem="y6L-Sc-Fgc" firstAttribute="bottom" secondItem="QqW-jK-Z14" secondAttribute="bottom" id="HTD-AX-0zi"/>
+                            <constraint firstItem="hIC-qP-dtE" firstAttribute="top" secondItem="QqW-jK-Z14" secondAttribute="top" constant="90" id="IWb-ma-Oet"/>
+                            <constraint firstItem="QqW-jK-Z14" firstAttribute="trailing" secondItem="tC6-M4-Myr" secondAttribute="trailing" constant="30" id="cnj-MQ-HGS"/>
+                            <constraint firstItem="hIC-qP-dtE" firstAttribute="top" secondItem="j3y-sX-rZe" secondAttribute="bottom" constant="24" id="dGf-DM-qPa"/>
+                            <constraint firstItem="QqW-jK-Z14" firstAttribute="trailing" secondItem="hIC-qP-dtE" secondAttribute="trailing" id="eHu-wq-5K0"/>
+                            <constraint firstItem="y6L-Sc-Fgc" firstAttribute="top" secondItem="hIC-qP-dtE" secondAttribute="bottom" id="etE-z7-yaN"/>
+                            <constraint firstItem="y6L-Sc-Fgc" firstAttribute="trailing" secondItem="QqW-jK-Z14" secondAttribute="trailing" id="sag-HS-XMd"/>
+                            <constraint firstItem="hIC-qP-dtE" firstAttribute="leading" secondItem="QqW-jK-Z14" secondAttribute="leading" id="uVZ-48-Fkq"/>
+                            <constraint firstItem="j3y-sX-rZe" firstAttribute="leading" secondItem="QqW-jK-Z14" secondAttribute="leading" constant="40" id="ukt-ak-pFk"/>
+                            <constraint firstItem="tC6-M4-Myr" firstAttribute="leading" secondItem="j3y-sX-rZe" secondAttribute="trailing" constant="20" id="wvb-a1-bPU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="QqW-jK-Z14"/>
+                    </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="460" height="672"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="460" height="672"/>
+                    <connections>
+                        <outlet property="doneButton" destination="tC6-M4-Myr" id="Dqe-QN-ejJ"/>
+                        <outlet property="selectAllButton" destination="j3y-sX-rZe" id="GaK-7L-Jc8"/>
+                        <outlet property="tableView" destination="y6L-Sc-Fgc" id="sTR-uW-60k"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="No5-Cz-jfD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-101.25" y="175"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="checkmark_off" width="34" height="34"/>
+        <image name="checkmark_on" width="34" height="34"/>
+        <image name="subject1" width="40" height="40"/>
+        <namedColor name="DarkText">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Main">
+            <color red="0.31372549019607843" green="0.62745098039215685" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="MainInversion">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Separator">
+            <color red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

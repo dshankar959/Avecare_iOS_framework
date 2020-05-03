@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SubjectAccidentReportView" customModule="educator" customModuleProvider="target">
+            <connections>
+                <outlet property="detailsLabel" destination="mBp-PC-q5M" id="3n3-hA-SR9"/>
+                <outlet property="iconImageView" destination="COM-rY-MCb" id="M8f-ht-x48"/>
+                <outlet property="pickerView" destination="dxj-mb-Dwu" id="hlG-Ta-LJB"/>
+                <outlet property="titleLabel" destination="0wB-X4-8nh" id="xcX-HD-EmC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="RnR-38-8bo">
+            <rect key="frame" x="0.0" y="0.0" width="756" height="176"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lAD-B3-Vlz" userLabel="left_space">
+                    <rect key="frame" x="0.0" y="0.0" width="38" height="176"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glI-IS-z5A" userLabel="right_space">
+                    <rect key="frame" x="718" y="0.0" width="38" height="176"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zce-jv-4LU">
+                    <rect key="frame" x="38" y="0.0" width="680" height="176"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-icon" translatesAutoresizingMaskIntoConstraints="NO" id="COM-rY-MCb">
+                            <rect key="frame" x="16" y="16" width="40" height="40"/>
+                            <color key="backgroundColor" name="yellow-icon"/>
+                            <color key="tintColor" name="red-icon"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="E9S-c5-q4U"/>
+                                <constraint firstAttribute="width" constant="40" id="rck-rr-549"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accident Report" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wB-X4-8nh">
+                            <rect key="frame" x="68" y="16" width="112" height="17"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                            <color key="textColor" name="DarkText"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBp-PC-q5M">
+                            <rect key="frame" x="68" y="33" width="576" height="33.5"/>
+                            <string key="text">Your child may have experienced a mild bump, scrape, or bite. This is NOT an emergency.  Please connect with your child’s educator upon pick up.</string>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" name="LightText2"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxj-mb-Dwu" customClass="PickerViewFormView" customModule="educator" customModuleProvider="target">
+                            <rect key="frame" x="68" y="94" width="596" height="62"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="62" id="QaR-E1-kom"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="dxj-mb-Dwu" firstAttribute="top" secondItem="mBp-PC-q5M" secondAttribute="bottom" priority="200" constant="30" id="A38-hO-zca"/>
+                        <constraint firstItem="COM-rY-MCb" firstAttribute="leading" secondItem="pbq-cI-y7I" secondAttribute="leading" constant="16" id="Djw-he-PsN"/>
+                        <constraint firstItem="pbq-cI-y7I" firstAttribute="trailing" secondItem="mBp-PC-q5M" secondAttribute="trailing" constant="36" id="FgN-Qn-ztx"/>
+                        <constraint firstItem="0wB-X4-8nh" firstAttribute="leading" secondItem="COM-rY-MCb" secondAttribute="trailing" constant="12" id="L7Q-T8-Foh"/>
+                        <constraint firstItem="pbq-cI-y7I" firstAttribute="bottom" secondItem="dxj-mb-Dwu" secondAttribute="bottom" constant="20" id="Nau-A1-4cM"/>
+                        <constraint firstItem="dxj-mb-Dwu" firstAttribute="leading" secondItem="0wB-X4-8nh" secondAttribute="leading" id="Q0X-b5-lAn"/>
+                        <constraint firstItem="mBp-PC-q5M" firstAttribute="top" secondItem="0wB-X4-8nh" secondAttribute="bottom" id="S71-d4-RDL"/>
+                        <constraint firstItem="mBp-PC-q5M" firstAttribute="leading" secondItem="0wB-X4-8nh" secondAttribute="leading" id="UGM-Vg-Ifd"/>
+                        <constraint firstItem="0wB-X4-8nh" firstAttribute="top" secondItem="pbq-cI-y7I" secondAttribute="top" constant="16" id="hI0-Ux-MCF"/>
+                        <constraint firstItem="COM-rY-MCb" firstAttribute="top" secondItem="pbq-cI-y7I" secondAttribute="top" constant="16" id="yIw-ai-Bei"/>
+                        <constraint firstItem="pbq-cI-y7I" firstAttribute="trailing" secondItem="dxj-mb-Dwu" secondAttribute="trailing" constant="16" id="zOV-N2-UJo"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="pbq-cI-y7I"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="zce-jv-4LU" firstAttribute="top" secondItem="RnR-38-8bo" secondAttribute="top" id="LWk-Mt-bps"/>
+                <constraint firstItem="glI-IS-z5A" firstAttribute="leading" secondItem="zce-jv-4LU" secondAttribute="trailing" id="OMr-we-zw9"/>
+                <constraint firstAttribute="bottom" secondItem="lAD-B3-Vlz" secondAttribute="bottom" id="bUF-s7-TrD"/>
+                <constraint firstAttribute="trailing" secondItem="glI-IS-z5A" secondAttribute="trailing" id="c8b-Un-j4L"/>
+                <constraint firstAttribute="bottom" secondItem="glI-IS-z5A" secondAttribute="bottom" id="cB3-J9-yoU"/>
+                <constraint firstItem="zce-jv-4LU" firstAttribute="bottom" secondItem="RnR-38-8bo" secondAttribute="bottom" id="dIv-Su-f0i"/>
+                <constraint firstItem="glI-IS-z5A" firstAttribute="top" secondItem="RnR-38-8bo" secondAttribute="top" id="dKd-3C-yvZ"/>
+                <constraint firstItem="lAD-B3-Vlz" firstAttribute="leading" secondItem="RnR-38-8bo" secondAttribute="leading" id="fB6-aI-USP"/>
+                <constraint firstItem="lAD-B3-Vlz" firstAttribute="top" secondItem="RnR-38-8bo" secondAttribute="top" id="heK-Ba-2xN"/>
+                <constraint firstItem="lAD-B3-Vlz" firstAttribute="width" secondItem="RnR-38-8bo" secondAttribute="width" multiplier="0.05" id="rrB-Ed-bd6"/>
+                <constraint firstItem="glI-IS-z5A" firstAttribute="width" secondItem="RnR-38-8bo" secondAttribute="width" multiplier="0.05" id="sJZ-VG-hp3"/>
+                <constraint firstItem="zce-jv-4LU" firstAttribute="leading" secondItem="lAD-B3-Vlz" secondAttribute="trailing" id="y42-xK-hBr"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="ZPi-Eh-ycf"/>
+            <point key="canvasLocation" x="371.25" y="-226.25"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="heart-icon" width="18" height="17"/>
+        <namedColor name="DarkText">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightText2">
+            <color red="0.54117647058823526" green="0.56470588235294117" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="red-icon">
+            <color red="0.85490196078431369" green="0.28235294117647058" blue="0.49411764705882355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="yellow-icon">
+            <color red="0.98431372549019602" green="0.83137254901960789" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

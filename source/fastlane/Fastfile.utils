@@ -1,0 +1,355 @@
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+### PRIVATE LANES
+
+before_all do
+
+#  *** do manual updates of fastlane, as auto-update here has proven to stall the build process at times due to Ruby errors.
+#  update_fastlane
+
+  # Setup some app version details.
+  buildNumber = Time.new.strftime("%Y.%m.%d.%H%M")
+  puts "buildNumber: " + buildNumber
+
+  unix_time = Time.now.to_i.to_s
+  puts "unix_time: " + unix_time
+
+  ENV["BUILD_NUMBER"] = buildNumber
+  ENV["UNIX_TIME"] = unix_time
+
+  # Slack 'channel: #'  (compatible with `matter-most`)
+  ENV["SLACK_URL"] = $slack_url
+  ENV["SLACK_CHANNEL"] = $slack_channel
+
+  Dir.chdir("..") do
+    ENV["SOURCE_ROOT"] = "#{Dir.pwd}"
+  end
+
+
+end
+
+
+
+private_lane :prepare do |options|
+  skip_docs   # Skip the creation of the fastlane/README.md file when running fastlane
+
+  platform = options[:platform] # 'ios' or 'android'
+
+  if platform == 'ios'
+    xcode_select "/Applications/Xcode.app"
+
+    build_target_name = $build_target_names[ENV["TARGET_SELECTION"]]
+    appVersion = get_version_number(xcodeproj: "#{$project_name}.xcodeproj",
+                                    target: build_target_name)
+
+    ENV["APP_VERSION"] = appVersion
+
+    update_project_plist
+
+    purge_pods_and_derived_data
+
+    Dir.chdir(ENV["SOURCE_ROOT"]) do
+      sh "pod update"
+    end
+
+  else # android
+
+    ENV["JAVA_HOME"] = "/Applications/Android Studio.app/Contents/jre/jdk/Contents/Home"
+
+  end
+
+
+end
+
+
+
+private_lane :purge_pods_and_derived_data do
+
+  puts "Purge all previous builds DerivedData"
+  sh "rm -rf ~/Library/Developer/Xcode/DerivedData/*"
+
+  puts "purge pods cache"
+  sh "rm -rf ~/Library/Caches/CocoaPods"
+
+  puts "purge all archives"
+  sh "rm -rf ~/Library/Developer/Xcode/Archives/*"
+
+end
+
+
+
+private_lane :update_project_plist do
+
+  # Update the plist's build number with YYYY.MM.DD.
+  set_info_plist_value(path: "#{app_info_plist_path}", key: "CFBundleVersion", value: ENV["BUILD_NUMBER"])
+
+  # Update the bundle identifier.
+#  update_app_identifier(
+#    xcodeproj: $app_xcodeproj_path,
+#    plist_path: "#{app_info_plist_path}",
+#    app_identifier: bundle_identifier(ENV["TARGET_SELECTION"], ENV["BUILD_TYPE"])
+#  )
+
+end
+
+
+
+private_lane :build4iOS do |options|
+
+  myScheme = build_scheme(ENV["TARGET_SELECTION"], ENV["BUILD_TYPE"])
+  myConfiguration = $configurations[ENV["BUILD_TYPE"]]
+  myExportMethod = $deploy[options[:destination]]
+
+  ENV["IPA_FILENAME"] = $build_target_names[ENV["TARGET_SELECTION"]] + "_" + ENV["APP_VERSION"] + "_" + ENV["BUILD_TYPE"] + "_" + ENV["BUILD_NUMBER"] + ".ipa"
+
+  ENV["SCHEME"] = myScheme
+
+  post_to_slack(message: "🚀  STARTING, build for: " + options[:destination], platform: 'ios')
+
+  puts "scheme: " + myScheme
+  puts "configuration: " + myConfiguration
+  puts "ExportMethod: " + myExportMethod
+  puts "ipa filename: " + ENV["IPA_FILENAME"]
+
+  enable_automatic_code_signing(path: "./#{$project_name}.xcodeproj")
+
+  build_app(
+      workspace: "./#{$project_name}.xcworkspace",
+      configuration: myConfiguration,
+      scheme: myScheme,
+      silent: false,
+      clean: true,
+      include_bitcode: false, # disable for now as it seems buggy
+      include_symbols: true,
+      output_directory: "./fastlane/output",
+      output_name: ENV["IPA_FILENAME"],
+      export_method: myExportMethod,
+      export_xcargs: "-allowProvisioningUpdates",
+      export_team_id: $team_id
+      )
+
+  ENV["DSYM_OUTPUT_PATH"] = "#{Actions.lane_context[SharedValues::DSYM_OUTPUT_PATH]}"
+
+  puts "DSYM_OUTPUT_PATH: " + ENV["DSYM_OUTPUT_PATH"]
+	puts ""
+
+  post_to_slack(message: "👍  build COMPLETE!  🎉", platform: 'ios')
+
+end
+
+
+
+private_lane :build4Android do |options|
+
+  flavor = $flavors[options[:target]]
+
+  # https://github.com/beplus/fastlane-plugin-versioning_android
+  Dir.chdir("../app/") do
+    ENV["APP_VERSION"] = android_get_version_name
+    android_set_version_code(version_code: ENV["UNIX_TIME"])  # only numbers allowed
+  end
+
+  post_to_slack(message: "🚀  STARTING, build for: " + options[:destination], platform: 'android')
+
+  gradle(task: 'clean', project_dir: './')
+  gradle(task: 'assemble', flavor: flavor, build_type: 'Release', project_dir: './')
+
+#  sh("mv", "../android/app/build/outputs/apk/release/app-release.apk", ".")
+  ENV["APK_OUTPUT_PATH]"] = "#{Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}"
+  puts "original APK path is: " + ENV["APK_OUTPUT_PATH]"]
+
+  # Rename output apk file to our own format to aid QA in tracking versions.
+  # apk_output_filename = File.basename(ENV["APK_OUTPUT_PATH]"])
+  apk_output_dir = File.dirname(ENV["APK_OUTPUT_PATH]"])
+
+  ENV["APK_FILENAME"] = "#{$project_name}_" + ENV["APP_VERSION"] + "_" + options[:target] + "_" + ENV["BUILD_NUMBER"] + "(" + ENV["UNIX_TIME"] + ")" + ".apk"
+
+  new_apk_output = apk_output_dir + "/" + ENV["APK_FILENAME"]
+
+  File.rename(ENV["APK_OUTPUT_PATH]"], new_apk_output)
+
+  ENV["APK_OUTPUT_PATH]"] = new_apk_output
+  puts "new APK path is: " + ENV["APK_OUTPUT_PATH]"]
+
+  Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH] = ENV["APK_OUTPUT_PATH]"]
+
+  post_to_slack(message: "👍  build COMPLETE!  🎉", platform: 'android')
+
+end
+
+
+
+private_lane :send_to_TestFlight do |options|
+
+  post_to_slack(message: "📡  Sending to Testflight ...", platform: 'ios')
+
+  # https://github.com/fastlane-old/deliver/issues/235
+  ENV["DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS"] = "-t DAV"
+
+  app_identifier = bundle_identifier(ENV["TARGET_SELECTION"], ENV["BUILD_TYPE"])
+  puts "app_identifier: " + app_identifier
+
+  $testflight_retry=1
+
+  begin
+    puts "upload_to_testflight try #:"
+    puts $testflight_retry
+
+    upload_to_testflight(
+       username:  $AppleMemberCenterUsername,
+       app_identifier: app_identifier,
+       team_id: $itc_team_id,
+       ipa:  "./fastlane/output/" + ENV["IPA_FILENAME"],
+       skip_waiting_for_build_processing: true
+       )
+  rescue => ex
+    $testflight_retry +=1
+    if $testflight_retry <= 4
+      puts "upload_to_testflight try #:"
+      puts $testflight_retry
+
+      upload_to_testflight(
+         username:  $AppleMemberCenterUsername,
+         app_identifier: app_identifier,
+         team_id: $itc_team_id,
+         ipa:  "./fastlane/output/" + ENV["IPA_FILENAME"],
+         skip_waiting_for_build_processing: true
+         )
+    else
+      raise ex
+    end
+  end
+
+  # success!
+  post_to_slack(message: "👍  COMPLETE!  🎉", platform:'ios')
+
+end
+
+
+
+private_lane :send_to_appcenter do |options|
+
+  platform = options[:platform]	# 'ios' or 'android'
+  ownerName = options[:owner_name]
+  ownerType = options[:owner_type]
+  appName = options[:app_name]
+
+  file_path = "./fastlane/output/..."
+  release_notes = ""
+
+  puts "platform: " + platform
+  puts "ownerName: " + ownerName
+  puts "ownerType: " + ownerType
+  puts "appName: " + appName
+
+  post_to_slack(message: "📡  Sending to MS AppCenter ...", platform: platform)
+
+  if platform == 'ios'
+    file_path = "./fastlane/output/" + ENV["IPA_FILENAME"]
+    release_notes = ENV["IPA_FILENAME"]
+
+  else # android
+    file_path = ENV["APK_OUTPUT_PATH]"]
+    release_notes = ENV["APK_FILENAME"]
+  end
+
+  puts "file_path: " + file_path
+
+  # https://github.com/microsoft/fastlane-plugin-appcenter
+  appcenter_upload(
+    api_token: $appcenter_API_token,
+    owner_name: ownerName,    # appcenter account name of the owner of the app (username or organization URL name
+    owner_type: ownerType,    # Default is user - set to organization for appcenter organizations
+    app_name: appName,        # appcenter app name (as seen in app URL)"
+    file: file_path,          # File path to the release build to publish
+    release_notes: release_notes,
+    upload_build_only: true,  # Flag to upload only the build to App Center. Skips uploading symbols or mapping (default: false)
+    notify_testers: true      # Set to false if you don't want to notify testers of your new release (default: `false`)
+  )
+
+  # success!
+  post_to_slack(message: "👍  COMPLETE!  🎉", platform: platform)
+
+end
+
+
+
+private_lane :send_to_PlayStore do |options|
+
+  post_to_slack(message: "📡  Sending to Google PlayStore ...", platform: 'android')
+
+  puts "APK path is: " + ENV["APK_OUTPUT_PATH]"]
+
+#  myConfiguration = $configurations[options[:target]]
+
+  package_name = $bundle_identifiers[options[:target]]
+
+  upload_to_play_store(
+    package_name: package_name,
+    json_key: "#{Dir.pwd}/../_CI_support/api-5993437258774407914-985010-5d1536dab018.json",
+    apk: ENV["APK_OUTPUT_PATH]"],
+    track: 'beta', # Manually release to `production`.
+    skip_upload_metadata: true,
+    skip_upload_images: true,
+    skip_upload_screenshots: true
+    )
+
+  # success!
+  post_to_slack(message: "👍  COMPLETE!  🎉", platform: 'android')
+
+end
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# This lane is called, only if the executed lane was successful.
+after_all do |lane|
+  puts "after_all ... "
+end
+
+
+private_lane :post_to_slack do |options|
+
+  platform = options[:platform]	# 'ios' or 'android'
+
+  if platform == 'ios'
+    build_scheme = "iOS Build scheme: #{ENV["SCHEME"]}  v#{ENV["APP_VERSION"]} (#{ENV["BUILD_NUMBER"]})"
+  elsif platform == 'android'
+    build_scheme = "Android Build: #{ENV["SCHEME"]}  v#{ENV["APP_VERSION"]} (#{ENV["UNIX_TIME"]})"
+  else
+    build_scheme = ""
+  end
+
+  message_text = options[:message]
+  message_text = message_text + "\n\n" + build_scheme
+
+  slack(
+      channel: ENV["SLACK_CHANNEL"],
+      message: message_text
+    )
+
+end
+
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+### ERROR HANDLING
+
+# error block is executed when a error occurs
+error do |lane, exception|
+  puts "<ERROR!>"
+  sh("env")
+
+  # use ENV variable if it exists
+  # https://stackoverflow.com/a/7667928/7599
+  slack_channel = ENV["SLACK_CHANNEL"] || nil
+
+  if slack_channel != nil
+    slack(
+      channel: slack_channel,
+      message: exception.to_s,
+      success: false
+    )
+  end
+
+end

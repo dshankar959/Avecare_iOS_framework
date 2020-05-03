@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="HomeTableViewDisclosureCell" rowHeight="81" id="Ewl-3W-CpO" customClass="HomeTableViewDisclosureCell" customModule="parent" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="462" height="72"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ewl-3W-CpO" id="8V8-kn-07Q">
+                <rect key="frame" x="0.0" y="0.0" width="431" height="72"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="subject2" translatesAutoresizingMaskIntoConstraints="NO" id="Ohy-md-P3j">
+                        <rect key="frame" x="16" y="16" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="CP1-5f-5YG"/>
+                            <constraint firstAttribute="width" constant="40" id="FtT-x2-nFW"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message From the Board" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vky-b2-9Py">
+                        <rect key="frame" x="68" y="16" width="347" height="17"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                        <color key="textColor" name="DarkText"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Holiday - School Closed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SiQ-hs-gRU">
+                        <rect key="frame" x="68" y="39" width="347" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" name="LightText"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vky-b2-9Py" firstAttribute="centerY" secondItem="Ohy-md-P3j" secondAttribute="centerY" priority="200" id="2of-iK-dp6"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Ohy-md-P3j" secondAttribute="bottom" constant="16" id="2pc-cL-ZF5"/>
+                    <constraint firstAttribute="trailing" secondItem="vky-b2-9Py" secondAttribute="trailing" constant="16" id="4Bl-S0-gBO"/>
+                    <constraint firstItem="SiQ-hs-gRU" firstAttribute="top" secondItem="vky-b2-9Py" secondAttribute="bottom" constant="6" id="7Un-tY-r1Z"/>
+                    <constraint firstItem="vky-b2-9Py" firstAttribute="leading" secondItem="Ohy-md-P3j" secondAttribute="trailing" constant="12" id="MqB-pu-aCy"/>
+                    <constraint firstItem="SiQ-hs-gRU" firstAttribute="trailing" secondItem="vky-b2-9Py" secondAttribute="trailing" id="PVy-Lo-mrd"/>
+                    <constraint firstAttribute="bottom" secondItem="SiQ-hs-gRU" secondAttribute="bottom" constant="16" id="Rog-KO-w4A"/>
+                    <constraint firstItem="SiQ-hs-gRU" firstAttribute="leading" secondItem="vky-b2-9Py" secondAttribute="leading" id="YBC-RI-3Tq"/>
+                    <constraint firstItem="Ohy-md-P3j" firstAttribute="top" secondItem="8V8-kn-07Q" secondAttribute="top" constant="16" id="Zb6-87-ngg"/>
+                    <constraint firstItem="vky-b2-9Py" firstAttribute="top" secondItem="8V8-kn-07Q" secondAttribute="top" constant="16" id="rbS-VV-ele"/>
+                    <constraint firstItem="Ohy-md-P3j" firstAttribute="leading" secondItem="8V8-kn-07Q" secondAttribute="leading" constant="16" id="zW1-ZM-7T0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="iconImageView" destination="Ohy-md-P3j" id="YSJ-Rf-lpP"/>
+                <outlet property="subtitleLabel" destination="SiQ-hs-gRU" id="Rxg-LM-t6Z"/>
+                <outlet property="titleLabel" destination="vky-b2-9Py" id="F2Y-ZC-EOG"/>
+            </connections>
+            <point key="canvasLocation" x="118.84057971014494" y="-60.602678571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="subject2" width="40" height="40"/>
+        <namedColor name="DarkText">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightText">
+            <color red="0.49411764705882355" green="0.52156862745098043" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
