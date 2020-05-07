@@ -60,8 +60,8 @@ class OTPViewController: UIViewController, IndicatorProtocol {
         if appSettings.isFirstLaunch() {
             /// First time, fresh install, new user, etc.  Set defaults.
             appSettings.rememberLastUsername = true
-//            appSettings.enableSyncUp = true
-//            appSettings.enableSyncDown = true
+            appSettings.enableSyncUp = true
+            appSettings.enableSyncDown = true
         }
 
         /// Track app version in case we need to perform any custom migration upon an update.
@@ -78,8 +78,8 @@ class OTPViewController: UIViewController, IndicatorProtocol {
             DDLogVerbose("(previousAppVersion [\(previousAppVersion)] < newAppVersion [\(currentAppVersion)])  [UPGRADE!]  🌈")
             // critical upgrades..
 
-//            appSettings.enableSyncUp = true
-//            appSettings.enableSyncDown = true
+            appSettings.enableSyncUp = true
+            appSettings.enableSyncDown = true
 
         } else if versionCompare == .orderedDescending {
             // previousAppVersion > currentAppVersion

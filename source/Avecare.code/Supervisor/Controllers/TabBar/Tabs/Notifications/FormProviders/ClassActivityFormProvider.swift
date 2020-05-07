@@ -88,7 +88,12 @@ extension ClassActivityFormProvider: FormProvider {
     func form() -> Form {
         switch state {
         case .new:
-            guard let id = appDelegate._session.unitDetails?.id else {
+            guard let unitId = RLMSupervisor().details?.primaryUnitId else {
+                state = .error(err: AuthError.unitNotFound.message)
+                return form()
+            }
+
+            guard let id = RLMUnit().details(for: unitId)?.id else {
                 state = .error(err: AuthError.unitNotFound.message)
                 return form()
             }

@@ -11,6 +11,12 @@ import UIKit
 
     override func setup() {
         super.setup()
-        titleLabel.text = appDelegate._session.unitDetails?.name ?? title
+
+        if let unitId = RLMSupervisor().details?.primaryUnitId {
+            titleLabel.text = RLMUnit().details(for: unitId)?.name ?? title
+        }
+
+
+
     }
 }

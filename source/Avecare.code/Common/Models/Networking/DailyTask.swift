@@ -1,5 +1,6 @@
 import Foundation
 
+
 struct DailyTask: Codable {
     struct Complete: Codable {
         let id: Int
@@ -10,10 +11,12 @@ struct DailyTask: Codable {
     let description: String
 }
 
+
 struct DailyTaskRequest: Codable {
     let date: Date
     let tasks: [DailyTask.Complete]
 }
+
 
 struct DailyTaskResponse: Codable {
     let id: Int

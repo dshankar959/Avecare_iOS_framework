@@ -2,6 +2,8 @@ import Foundation
 import CocoaLumberjack
 import Moya
 
+
+
 extension AvecareAPI {
 
     // MARK: - JSON stubbed responses  (Javascript escaped)

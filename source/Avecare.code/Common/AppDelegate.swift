@@ -8,9 +8,9 @@ import Firebase
 
 
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate, IndicatorProtocol {
-    var window: UIWindow?
+    // MARK: - Singleton GLOBALS
 
-    // MARK: - AppDelegate Singleton GLOBALS
+    var window: UIWindow?
 
     // https://stackoverflow.com/questions/45832155/how-do-i-refactor-my-code-to-call-appdelegate-on-the-main-thread/45833540#45833540
     static var _applicationDelegate: AppDelegate!   // treat as #internal.  Use Global: `appDelegate` instead to read.  Underscore to write.
@@ -32,6 +32,7 @@ import Firebase
     }()
 
     var _session: Session = Session()       // treat as #internal.  Use Global: `appSession` instead to read.  Underscore to write.
+    var _syncEngine = SyncEngine()          // treat as #internal.  Use Global: `syncEngine` instead to read.  Underscore to write.
 
     var _loggerDirectory: URL = URL(fileURLWithPath: "")    // location of all log files.
     var _appSettings: AppSettings = AppSettings()
@@ -40,7 +41,6 @@ import Firebase
 
 
     // MARK: -
-
     override init() {
         IHProgressHUD.set(defaultMaskType: .clear)
         IHProgressHUD.setHUD(backgroundColor: #colorLiteral(red: 0.7610064149, green: 0.759601295, blue: 0.8178459406, alpha: 1))
@@ -58,16 +58,6 @@ import Firebase
         #elseif SUPERVISOR
             DDLogInfo("SUPERVISOR.  [eg. \"Educator\", \"Animal Trainer\", etc.]")
         #endif
-
-//        if appSettings.isTesting {
-//            DDLogError("~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~")
-//            DDLogError(" ATTENTION!  SYSTEM UNDER TEST -")
-//            DDLogError(" ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~\n")
-//        }
-
-        // Programmatically enabling CFNetwork diagnostic logging:
-        // https://stackoverflow.com/a/48971763/7599
-//        setenv("CFNETWORK_DIAGNOSTICS", "2", 1)
     }
 
 
@@ -77,7 +67,9 @@ import Firebase
 
         UITabBar.appearance().unselectedItemTintColor = R.color.darkText()
 
-        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(reachabilityChanged(note:)),
+                                               name: .reachabilityChanged, object: reachability)
         do {
             try reachability.startNotifier()
         } catch {
@@ -141,9 +133,25 @@ import Firebase
 
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        DDLogDebug("")
 
         self.window?.isHidden = false
+
+        // Get Available Disk Space  (eg. 96922558464)
+        let availableDiskSpace = Double(Device.volumeAvailableCapacityForOpportunisticUsage ?? 0)
+        DDLogVerbose("available disk space = \(formatBytesToSize(bytes: availableDiskSpace))")
+
+        if availableDiskSpace < Double(250_000_000) {  // 250mb
+            DDLogVerbose("availableDiskSpace < 250_000_000")
+
+            self.popupAlert(title: "⚠️ Storage Almost Full",
+                            message: "Clear some disk space to avoid any app interruption.",
+                            actionTitles: ["Got it!"],
+                            actionStyles: [.default],
+                            actions: [ { action1 in
+                                }, nil])
+            return
+        }
+
     }
 
 

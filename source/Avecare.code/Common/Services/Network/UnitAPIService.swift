@@ -5,13 +5,16 @@ import CocoaLumberjack
 
 struct UnitAPIService {
 
-    static func getUnitDetails(id: Int, completion: @escaping (Result<UnitDetails, AppError>) -> Void) {
+    static func getUnitDetails(id: Int,
+                               completion: @escaping (Result<RLMUnit, AppError>) -> Void) {
+        DDLogDebug("")
+
         apiProvider.request(.unitDetails(id: id)) { result in
             switch result {
             case .success(let response):
                 do {
                     let mappedResponse = try response.map(UnitDetailsResponse.self)
-                    completion(.success(mappedResponse.results))
+                    completion(.success(mappedResponse))
                 } catch {
                     DDLogError("JSON MAPPING ERROR = \(error)")
                     completion(.failure(JSONError.failedToMapData.message))
@@ -23,7 +26,10 @@ struct UnitAPIService {
     }
 
 
-    static func getDailyTasks(unitId: Int, completion: @escaping (Result<[DailyTask], AppError>) -> Void) {
+    static func getDailyTasks(unitId: Int,
+                              completion: @escaping (Result<[DailyTask], AppError>) -> Void) {
+        DDLogDebug("")
+
         apiProvider.request(.unitDailyTasks(id: unitId)) { result in
             switch result {
             case .success(let response):
@@ -41,7 +47,10 @@ struct UnitAPIService {
     }
 
 
-    static func getSubjects(id: Int, completion: @escaping (Result<[RLMSubject], AppError>) -> Void) {
+    static func getSubjects(id: Int,
+                            completion: @escaping (Result<[RLMSubject], AppError>) -> Void) {
+        DDLogDebug("")
+
         apiProvider.request(.unitSubjects(id: id)) { result in
             switch result {
             case .success(let response):
@@ -61,7 +70,10 @@ struct UnitAPIService {
     }
 
 
-    static func getActivities(id: Int, completion: @escaping (Result<[UnitActivity], AppError>) -> Void) {
+    static func getActivities(id: Int,
+                              completion: @escaping (Result<[UnitActivity], AppError>) -> Void) {
+        DDLogDebug("")
+
         apiProvider.request(.unitActivities(id: id)) { result in
             switch result {
             case .success(let response):
@@ -79,7 +91,10 @@ struct UnitAPIService {
     }
 
 
-    static func getReminders(id: Int, completion: @escaping (Result<[UnitReminder], AppError>) -> Void) {
+    static func getReminders(id: Int,
+                             completion: @escaping (Result<[UnitReminder], AppError>) -> Void) {
+        DDLogDebug("")
+
         apiProvider.request(.unitReminders(id: id)) { result in
             switch result {
             case .success(let response):

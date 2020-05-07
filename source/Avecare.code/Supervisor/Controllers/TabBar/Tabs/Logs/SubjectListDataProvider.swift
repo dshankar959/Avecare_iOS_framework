@@ -28,6 +28,7 @@ struct Form {
 }
 
 protocol SubjectListDataProvider: class {
+
     var delegate: SubjectListDataProviderDelegate? { get set }
     var numberOfRows: Int { get }
     func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel
@@ -40,18 +41,20 @@ protocol SubjectListDataProvider: class {
     func navigationItems(at indexPath: IndexPath) -> [DetailsNavigationView.Item]
 }
 
+
 protocol SubjectListDataProviderDelegate: UIViewController, CustomResponderProvider {
     func didUpdateModel(at indexPath: IndexPath)
     func didFetchDataSource()
     func didFailure(_ error: Error)
 }
 
+
 class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
     private var selectedId: Int?
     var delegate: SubjectListDataProviderDelegate?
 
-    //    private var dataSource: Results<RLMSubject>?
+//    private var dataSource: Results<RLMSubject>?
     private var dataSource: [RLMSubject]?
 
     func sortBy(_ sort: SubjectListTableViewCellModel.Sort) {
@@ -60,9 +63,9 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
         case .lastName: dataSource = RLMSubject().findAll(sortedBy: "lastName")
         case .date: dataSource = RLMSubject().findAll(sortedBy: "birthday")
 
-            //        case .firstName: dataSource = dataSource?.sorted(byKeyPath: "firstName")
-            //        case .lastName: dataSource = dataSource?.sorted(byKeyPath: "lastName")
-            //        case .date: dataSource = dataSource?.sorted(byKeyPath: "birthday")
+//        case .firstName: dataSource = dataSource?.sorted(byKeyPath: "firstName")
+//        case .lastName: dataSource = dataSource?.sorted(byKeyPath: "lastName")
+//        case .date: dataSource = dataSource?.sorted(byKeyPath: "birthday")
         }
     }
 
@@ -135,25 +138,13 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
     }
 
-    // load subject list from external source
+
     func fetch() {
-        guard let unitId = appDelegate._session.unitDetails?.id else {
-            return
-        }
-        UnitAPIService.getSubjects(id: unitId) { [weak self] result in
-            switch result {
-            case .success(let subjects):
-                RLMSubject().createOrUpdateAll(with: subjects)
-                self?.dataSource = RLMSubject().findAll()
-
-                self?.sortBy(.firstName)
-                self?.delegate?.didFetchDataSource()
-
-            case .failure(let error):
-                self?.delegate?.didFailure(error)
-            }
-        }
+        dataSource = RLMSubject().findAll()
+        sortBy(.firstName)
+        delegate?.didFetchDataSource()
     }
+
 
     func navigationItems(at indexPath: IndexPath) -> [DetailsNavigationView.Item] {
         let model = dataSource?[indexPath.row]

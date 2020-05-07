@@ -2,7 +2,9 @@ import Foundation
 import CocoaLumberjack
 import KeychainAccess
 
-struct UserService {
+
+
+struct UserKeychainService {
     private static let myKeychain = Keychain(service: Bundle.main.bundleId)
     private static let kUsersKey = "allUsers"
 
@@ -15,20 +17,20 @@ struct UserService {
             return
         }
 
-        var allUsers = UserService.getAllUserProfiles()
+        var allUsers = UserKeychainService.getAllUserProfiles()
         let key = user.email
         allUsers[key] = user    // add/update dictionary
 
         do {
             // Encode dictionary as JSON `Data`
             guard let encodedJSONdata = try? JSONEncoder().encode(allUsers) else {
-                DDLogError("Failed to encode '\(UserService.kUsersKey)' object into 'Data'")
+                DDLogError("Failed to encode '\(UserKeychainService.kUsersKey)' object into 'Data'")
                 DDLogError("allUsers = \(allUsers)")
                 return
             }
 
             // Save encodedJSONdata into Keychain
-            try UserService.myKeychain.set(encodedJSONdata, key: UserService.kUsersKey)
+            try UserKeychainService.myKeychain.set(encodedJSONdata, key: UserKeychainService.kUsersKey)
 
         } catch let error {
             DDLogError("An error occured: \(error)")
@@ -58,7 +60,7 @@ struct UserService {
     }
 
     static func getUserProfile(with email: String) -> UserProfile? {
-        let userProfiles = UserService.getAllUserProfiles()
+        let userProfiles = UserKeychainService.getAllUserProfiles()
 
         if let user = userProfiles[email] {
             return user
@@ -68,7 +70,7 @@ struct UserService {
     }
 
     static func getSingleUserProfileIfPresent() -> UserProfile? {
-        let userProfiles = UserService.getAllUserProfiles()
+        let userProfiles = UserKeychainService.getAllUserProfiles()
 
         if userProfiles.count == 1 {
             return userProfiles.values.first
@@ -79,7 +81,7 @@ struct UserService {
 
     // Since this is possibly a shared iOS device, return the user count that the app has collected.
     static func totalUsers() -> Int {
-        let userProfiles = UserService.getAllUserProfiles()
+        let userProfiles = UserKeychainService.getAllUserProfiles()
 //        DDLogVerbose("App user count = \(userProfiles.count)")
         return userProfiles.count
     }
@@ -87,7 +89,7 @@ struct UserService {
     // MARK: - #debugging
 
     static func dumpAllUserProfilesInKeychain() {
-        let userProfiles = UserService.getAllUserProfiles()
+        let userProfiles = UserKeychainService.getAllUserProfiles()
 
         for (index, item) in userProfiles.enumerated() {
             let profile = item.value

@@ -4,6 +4,17 @@ import Moya
 import Alamofire
 
 
+/*
+Terms           Daycare Term
+----------------------------
+Organization    School Board
+Institution     School
+Unit            Room
+Subject         Student/Child
+Supervisor      Teacher/Educator
+Guardian        Parent of the child
+*/
+
 
 var apiProvider: MoyaProvider<AvecareAPI> {
     #if APPSTORE
@@ -45,7 +56,7 @@ enum AvecareAPI { // API Services
     case guardianSubjects(id: Int)
     // MARK: - INSTITUTIONS
     case institutionDetails(id: Int)
-    case institutionUnits(id: Int)
+//    case institutionUnits(id: Int)
     // MARK: - ORGANIZATION
 //    case organizationList
     case organizationDetails(id: Int)
@@ -93,7 +104,7 @@ extension AvecareAPI: TargetType {
         case .guardianSubjects(let id): return "/guardians/\(id)/subjects"
 
         case .institutionDetails(let id): return "/institutions/\(id)"
-        case .institutionUnits(let id): return "/institutions/\(id)/units"
+//        case .institutionUnits(let id): return "/institutions/\(id)/units"
 
 //        case .organizationList: return "/organizations"
         case .organizationDetails(let id): return "/organizations/\(id)"

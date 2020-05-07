@@ -8,7 +8,7 @@ import RealmSwift
 protocol DatabaseLayer {
     associatedtype T: Object
 
-    func find(withID: String) -> T?
+    func find(withID: Int) -> T?
     func findAll() -> [T]
     func findAll(sortedBy key: String) -> [T]
     func createOrUpdateAll(with objects: [Object], update: Bool)
@@ -18,10 +18,8 @@ protocol DatabaseLayer {
 
 
 struct DALConfig {
-    static let DatabaseSchemaVersion: UInt64 = 1
+    static let DatabaseSchemaVersion: UInt64 = 0
     static let realmStoreName: String = "avecare.realm"   // default
-    //    static let ISO8601dateFormat = DateConfig.ISO8601dateFormat
-    //    static let defaultSyncToken: String = "00000000000000000000000000000000"
     static var userRealmFileURL: URL?
 }
 
@@ -75,12 +73,6 @@ extension DatabaseLayer {
             let bcf = ByteCountFormatter()
             bcf.allowedUnits = [.useMB] // optional: restricts the units to MB only
             bcf.countStyle = .file
-            let totalBytesString = bcf.string(fromByteCount: Int64(totalBytes))
-            let usedBytesString = bcf.string(fromByteCount: Int64(usedBytes))
-
-            DDLogInfo("size_of_realm_file: \(totalBytesString), used_bytes: \(usedBytesString)")
-            let utilization = Double(usedBytes) / Double(totalBytes) * 100.0
-            DDLogInfo(String(format: "utilization: %.0f%%", utilization))
 
             // totalBytes refers to the size of the file on disk in bytes (data + free space)
             // usedBytes refers to the number of bytes used by data in the file
@@ -90,7 +82,14 @@ extension DatabaseLayer {
             let compactRealm: Bool = (totalBytes > filesizeMB) && (Double(usedBytes) / Double(totalBytes)) < 0.6
 
             if compactRealm {
-                DDLogError("Compacting Realm database.")
+                DDLogVerbose("Compacting Realm db (\(DALConfig.realmStoreName)? : \(compactRealm ? "[YES]" : "[NO]")")
+
+                let totalBytesString = bcf.string(fromByteCount: Int64(totalBytes))
+                let usedBytesString = bcf.string(fromByteCount: Int64(usedBytes))
+                DDLogVerbose("size_of_realm_file: \(totalBytesString), used_bytes: \(usedBytesString)")
+
+                let utilization = Double(usedBytes) / Double(totalBytes) * 100.0
+                DDLogVerbose(String(format: "utilization: %.0f%%", utilization))
             }
 
             return compactRealm
@@ -219,7 +218,7 @@ extension DatabaseLayer {
     }
 
 
-    func find(withID: String) -> T? {
+    func find(withID: Int) -> T? {
         let database = self.getDatabase()
         return database?.object(ofType: T.self, forPrimaryKey: withID)
     }

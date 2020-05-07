@@ -3,9 +3,49 @@ struct UserProfile: Codable {
 
     var isLastSignedIn: Bool = false
 
-    var details: SupervisorDetails?
+    var accountType: String? {
+        let accountInfo = RLMAccountInfo().findAll().first
+        return accountInfo?.accountType
+    }
+
+    var accountTypeId: Int? {
+        let accountInfo = RLMAccountInfo().findAll().first
+        return accountInfo?.id
+    }
+
+    var isSupervisor: Bool {
+        if let type = accountType, type.caseInsensitiveCompare("supervisor") == .orderedSame {
+            return true
+        }
+
+        return false
+    }
+
 
     // MARK: -
+
+    enum CodingKeys: String, CodingKey {
+        case userCredentials
+    }
+/*
+    init(from decoder: Decoder) throws {
+        self.init()
+        try self.decode(from: decoder)
+    }
+
+    func decode(from decoder: Decoder) throws {
+        do {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+
+            self.email = try values.decode(String.self, forKey: .email)
+            self.password = try values.decode(String.self, forKey: .password)
+
+        } catch {
+            DDLogError("JSON Decoding error = \(error)")
+            fatalError("JSON Decoding error = \(error)")
+        }
+    }
+*/
 
     init(userCredentials: UserCredentials = UserCredentials()) {
         self.userCredentials = userCredentials
@@ -22,5 +62,7 @@ struct UserProfile: Codable {
     func isEmpty() -> Bool {
         return email.isEmpty
     }
+
+
 
 }

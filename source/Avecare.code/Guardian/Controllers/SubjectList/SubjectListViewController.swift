@@ -1,6 +1,8 @@
 import Foundation
 import UIKit
-import Panels
+//import Panels
+
+
 
 protocol SubjectListViewControllerDelegate: class {
     func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel)

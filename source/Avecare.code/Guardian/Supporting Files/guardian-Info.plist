@@ -37,10 +37,10 @@
 	<string>This app uses GPS to tag content with location data.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app uses GPS to tag content with location data.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app enables you to use your local camera photos for content.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Microphone Usage Description (videos)</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app enables you to use your local camera photos for content.</string>
 	<key>UIFileSharingEnabled</key>
 	<false/>
 	<key>UILaunchStoryboardName</key>
@@ -56,9 +56,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>

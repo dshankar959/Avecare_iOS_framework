@@ -9,6 +9,8 @@ import Foundation
 import Moya
 import CocoaLumberjack
 
+
+
 public final class DDLogNetworkPlugin: PluginType {
     fileprivate let output: (_ items: Any...) -> Void
     fileprivate let requestDataFormatter: ((Data) -> (String))?
@@ -62,6 +64,7 @@ public final class DDLogNetworkPlugin: PluginType {
     }
 }
 
+
 #if !APPSTORE
 private extension DDLogNetworkPlugin {
 
@@ -114,6 +117,7 @@ private extension DDLogNetworkPlugin {
     }
 }
 #endif
+
 
 fileprivate extension DDLogNetworkPlugin {
     static func log(items: Any...) {

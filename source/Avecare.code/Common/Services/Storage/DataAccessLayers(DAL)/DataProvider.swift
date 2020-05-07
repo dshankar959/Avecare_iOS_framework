@@ -6,9 +6,9 @@ import RealmSwift
 protocol DataProvider: DatabaseLayer {
 }
 
+
 extension DataProvider {
     // MARK: - Generic `model` specific operations
-
 
     func find(withSubjectID: Int) -> T? {
         let database = self.getDatabase()

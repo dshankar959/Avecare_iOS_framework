@@ -1,5 +1,7 @@
-import Foundation
+import CocoaLumberjack
 import RealmSwift
+
+
 
 class RLMLogRow: Object, Decodable {
     /*
@@ -79,24 +81,38 @@ class RLMLogRow: Object, Decodable {
         case properties
     }
 
-    required convenience init(from decoder: Decoder) throws {
+    convenience required init(from decoder: Decoder) throws {
         self.init()
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-
-        guard let type = RLMLogRow.RowType(rawValue: try container.decode(Int.self, forKey: .rowType)) else {
-            throw JSONError.invalidRowTypeId.message
-        }
-
-        switch type {
-        case .option: option = try container.decode(RLMLogOptionRow.self, forKey: .properties)
-        case .time: time = try container.decode(RLMLogTimeRow.self, forKey: .properties)
-        case .switcher: switcher = try container.decode(RLMLogSwitcherRow.self, forKey: .properties)
-        case .note: note = try container.decode(RLMLogNoteRow.self, forKey: .properties)
-        case .photo: photo = try container.decode(RLMLogPhotoRow.self, forKey: .properties)
-        case .injury: injury = try container.decode(RLMLogInjuryRow.self, forKey: .properties)
-        }
+        try self.decode(from: decoder)
     }
+
+    func decode(from decoder: Decoder) throws {
+        do {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+
+            guard let type = RLMLogRow.RowType(rawValue: try values.decode(Int.self, forKey: .rowType)) else {
+                throw JSONError.invalidRowTypeId.message
+            }
+
+            switch type {
+            case .option: option = try values.decode(RLMLogOptionRow.self, forKey: .properties)
+            case .time: time = try values.decode(RLMLogTimeRow.self, forKey: .properties)
+            case .switcher: switcher = try values.decode(RLMLogSwitcherRow.self, forKey: .properties)
+            case .note: note = try values.decode(RLMLogNoteRow.self, forKey: .properties)
+            case .photo: photo = try values.decode(RLMLogPhotoRow.self, forKey: .properties)
+            case .injury: injury = try values.decode(RLMLogInjuryRow.self, forKey: .properties)
+            }
+
+        } catch {
+            DDLogError("JSON Decoding error = \(error)")
+            fatalError("JSON Decoding error = \(error)")
+        }
+
+    }
+
+
 }
+
 
 extension RLMLogRow: DataProvider, RLMCleanable {
     typealias T = RLMLogRow
@@ -118,4 +134,5 @@ extension RLMLogRow: DataProvider, RLMCleanable {
 
         delete()
    }
+
 }

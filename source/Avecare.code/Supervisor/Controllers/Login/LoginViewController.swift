@@ -43,19 +43,21 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 
                 self?.onSignInLaunchCheck()
 
+                RLMAccountInfo.saveAccountInfo(for: token.accountType, with: token.accountTypeId)
+
                 #if !DEBUG
                     // #Crashlytics logging
                     Crashlytics.crashlytics().setUserID(userProfile.email)
                 #endif
 
-
+/*
                 /// <- #Testing.
                 /// reset DB with some defaults.
                 do {
                     RLMLogChooseRow().clean()   // wipe rows
 
                     let data = try Data(resource: R.file.logFormRowsJson)
-                    let decoder = JSONDecoder()
+                    let decoder = JSONDecoder()r
                     let log = try decoder.decode([RLMLogChooseRow].self, from: data)
 
                     // Add default rows, et al.
@@ -66,9 +68,23 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                     print(error)
                 }
                 /// #Testing ->
+*/
 
+                self?.showActivityIndicator(withStatus: "Syncing data")
+//                syncEngine.triggerSync()
+                syncEngine.syncAll { error in
+                    DDLogDebug("error = \(String(describing: error))")
+//                    syncEngine.print_isSyncingStatus_description()
+                    if let error = error {
+                        self?.showErrorAlert(error)
+                    } else if !syncEngine.isSyncing {
+                    } else if syncEngine.isSyncCancelled {
+                    }
 
-                self?.getAccountInfo()
+                    self?.hideActivityIndicator()
+
+                }
+
 
             case .failure(let error):
                 self?.handleError(error)
@@ -77,18 +93,8 @@ class LoginViewController: UIViewController, IndicatorProtocol {
     }
 
 
-    private func getAccountInfo() {
-        AccountsAPIService.accountInfo { [weak self] result in
-            switch result {
-            case .success(let info):
-                self?.getSupervisorDetails(id: info.accountTypeId)
-            case .failure(let error):
-                self?.handleError(error)
-            }
-        }
-    }
 
-
+/*
     private func getSupervisorDetails(id: Int) {
         SupervisorsAPIService.getSupervisorDetails(for: id) { [weak self] result in
             switch result {
@@ -113,6 +119,28 @@ class LoginViewController: UIViewController, IndicatorProtocol {
             }
         }
     }
+*/
+
+/*
+    private func getListOfSubjects() {
+        guard let unitId = appDelegate._session.unitDetails?.id else {
+            return
+        }
+        UnitAPIService.getSubjects(id: unitId) { [weak self] result in
+            switch result {
+            case .success(let subjects):
+                RLMSubject().createOrUpdateAll(with: subjects)
+                self?.dataSource = RLMSubject().findAll()
+
+                self?.sortBy(.firstName)
+                self?.delegate?.didFetchDataSource()
+
+            case .failure(let error):
+                self?.delegate?.didFailure(error)
+            }
+        }
+    }
+*/
 
 
     private func getInstitutionDetails(id: Int) {
@@ -141,8 +169,8 @@ class LoginViewController: UIViewController, IndicatorProtocol {
         if appSettings.isFirstLaunch() {
             /// First time, fresh install, new user, etc.  Set defaults.
             appSettings.rememberLastUsername = true
-//            appSettings.enableSyncUp = true
-//            appSettings.enableSyncDown = true
+            appSettings.enableSyncUp = true
+            appSettings.enableSyncDown = true
         }
 
         /// Track app version in case we need to perform any custom migration upon an update.
@@ -159,8 +187,8 @@ class LoginViewController: UIViewController, IndicatorProtocol {
             DDLogVerbose("(previousAppVersion [\(previousAppVersion)] < newAppVersion [\(currentAppVersion)])  [UPGRADE!]  🌈")
             // critical upgrades..
 
-//            appSettings.enableSyncUp = true
-//            appSettings.enableSyncDown = true
+            appSettings.enableSyncUp = true
+            appSettings.enableSyncDown = true
 
         } else if versionCompare == .orderedDescending {
             // previousAppVersion > currentAppVersion

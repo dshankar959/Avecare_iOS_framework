@@ -5,8 +5,8 @@ import CocoaLumberjack
 
 struct AccountsAPIService {
 
-    static func accountInfo(completion: @escaping (Result<AccountInfo, AppError>) -> Void) {
-        DDLogInfo("")
+    static func accountInfo(completion: @escaping (Result<RLMAccountInfo, AppError>) -> Void) {
+        DDLogDebug("")
 
         apiProvider.request(.accountInfo) { result in
             switch result {

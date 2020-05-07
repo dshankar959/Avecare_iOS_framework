@@ -2,6 +2,7 @@ import Foundation
 import RealmSwift
 
 
+
 // Logs -> list of available form rows for + picker
 class RLMLogChooseRow: Object, Decodable {
 

@@ -1,11 +1,8 @@
-//
-//  HomeViewController.swift
-//  guardian
-//
-
 import Foundation
 import UIKit
-import Panels
+//import Panels
+
+
 
 class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!

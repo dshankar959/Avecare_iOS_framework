@@ -7,6 +7,8 @@ struct UserAPIService {
 
     static func authenticateUserWith(userCreds: UserCredentials,
                                      completion:@escaping (Result<APIToken, AppError>) -> Void) {
+        DDLogDebug("")
+
         // Validate user credentials.
         if userCreds.username.isEmpty || userCreds.password.isEmpty {
             return completion(.failure(AuthError.emptyCredentials.message))
@@ -34,6 +36,8 @@ struct UserAPIService {
 
     static func requestOTP(email: String,
                            completion:@escaping (Result<String, AppError>) -> Void) {
+        DDLogDebug("")
+
         // Validate user credentials.
         if email.isEmpty {
             return completion(.failure(AuthError.emptyCredentials.message))

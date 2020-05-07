@@ -14,6 +14,7 @@ struct FileStorageService {
         return FileManager.default.createDirectory(URL(fileURLWithPath: finalDirectory))
     }
 
+
     static func documentsDirectory(for user: UserProfile) -> URL? {
         if user.email.isEmpty {
             DDLogError("Empty email")
@@ -24,6 +25,7 @@ struct FileStorageService {
 
         return FileManager.default.createDirectory(URL(fileURLWithPath: finalDirectory))
     }
+
 
     static func cachesDirectory(for user: UserProfile) -> URL? {
         if user.email.isEmpty {
@@ -36,6 +38,7 @@ struct FileStorageService {
         return FileManager.default.createDirectory(URL(fileURLWithPath: finalDirectory))
     }
 
+
     static func createTempDirectory() -> URL? {
         let folderName = ProcessInfo.processInfo.globallyUniqueString
         let finalDirectory = FileManager.default.tmpDirectory.appendingPathComponent(folderName).path
@@ -43,6 +46,7 @@ struct FileStorageService {
         return FileManager.default.createDirectory(URL(fileURLWithPath: finalDirectory))
     }
 
+    
     static var userAppDirectory: URL {
         if appSession.isSignedIn() || appSession.token.isFake {
             let currentUser = appSession.userProfile
