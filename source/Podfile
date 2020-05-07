@@ -61,6 +61,18 @@ def common_pods
   # add the Firebase pod for Google Analytics
   pod 'Firebase/Analytics'
 
+  # Realm is a mobile database: a replacement for Core Data & SQLite
+  # https://github.com/realm/realm-cocoa
+  pod 'RealmSwift'
+
+  # Network abstraction layer written in Swift.
+  # https://github.com/Moya/Moya
+  pod 'Moya'    # includes 'Alamofire'
+
+  # Use FontAwesome in your Swift projects
+  # https://github.com/thii/FontAwesome.swift
+  pod 'FontAwesome.swift'
+
   # A clean and lightweight progress HUD based on SVProgressHUD, converted to Swift with the help of Swiftify.
   # https://github.com/Swiftify-Corp/IHProgressHUD
   #pod 'IHProgressHUD'
@@ -87,25 +99,14 @@ def common_pods
   #  pod 'ReachabilitySwift', '~> 4.1.0'
   pod 'ReachabilitySwift'
 
-  # Realm is a mobile database: a replacement for Core Data & SQLite
-  # https://github.com/realm/realm-cocoa
-  pod 'RealmSwift'
-
-  # Network abstraction layer written in Swift.
-  # https://github.com/Moya/Moya
-  pod 'Moya'    # includes 'Alamofire'
-
-  # Use FontAwesome in your Swift projects
-  # https://github.com/thii/FontAwesome.swift
-  pod 'FontAwesome.swift'
-
   # Effortless ZIP Handling in Swift
   # https://github.com/weichsel/ZIPFoundation
 #  pod 'ZIPFoundation'
 
-  # Panels is a framework to easily add sliding panels to your application. It takes care of the safe area in new devices and moving your panel when the keyboard is presented/dismissed
+  # Panels is a framework to easily add sliding panels to your application.
+  # It takes care of the safe area in new devices and moving your panel when the keyboard is presented/dismissed.
   # https://github.com/antoniocasero/Panels
-  pod 'Panels'
+#  pod 'Panels'
 
 
   pod 'Kingfisher'
@@ -117,8 +118,8 @@ def common_pods
   pod 'AXPhotoViewer'
   pod 'BSImagePicker'
   
-  #With SegueManager it's easy to programatically perform segues and update the destination view controller.
-  #https://github.com/tomlokhorst/SegueManager
+  # With SegueManager it's easy to programatically perform segues and update the destination view controller.
+  # https://github.com/tomlokhorst/SegueManager
   pod 'SegueManager/R.swift'
 
 end
