@@ -6,39 +6,40 @@ extension SyncEngine {
 
     func syncDOWNunitDetails(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogDebug("")
+        let unitsDAL = RLMUnit()
+
+        // Use function name as key.
+        let syncKey = "\(#function)".removeBrackets()
 
         if self.isSyncBlocked {
-            self.syncUnitDetailsStatus = .complete
+            syncStates[syncKey] = .complete
             syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
             return
         }
 
-        if self.syncUnitDetailsStatus == .syncing {
-            DDLogDebug("syncUnitDetailsStatus =🔄= .syncing")
+        if syncStates[syncKey] == .syncing {
+            DDLogDebug("\(syncKey) =🔄= .syncing")
 //            syncCompletion(nil)
 //            return
         }
-        self.syncUnitDetailsStatus = .syncing
-        notifySyncStateChanged(message: "Syncing down ↓ unit details")
+        syncStates[syncKey] = .syncing
+        notifySyncStateChanged(message: "Syncing down 🔻 unit details")
 
         // Sync down from server and update our local DB.
-        if appSession.userProfile.isSupervisor {
-            if let unitId = RLMSupervisor().details?.primaryUnitId {
-                UnitAPIService.getUnitDetails(id: unitId) { [weak self] result in
-                    switch result {
-                    case .success(let details):
-                        // Update with new data.
-                        self?.unitsDAL.createOrUpdateAll(with: [details])
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total items in DB: \(self?.unitsDAL.findAll().count ?? -1)")
-                        self?.syncUnitDetailsStatus = .complete
-                        syncCompletion(nil)
-                    case .failure(let error):
-                        self?.syncUnitDetailsStatus = .complete
-                        syncCompletion(error)
-                    }
+        if let unitId = RLMSupervisor.details?.primaryUnitId {
+            UnitAPIService.getUnitDetails(unitId: unitId) { [weak self] result in
+                switch result {
+                case .success(let details):
+                    // Update with new data.
+                    unitsDAL.createOrUpdateAll(with: [details])
+                    DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMUnit.className())\' items in DB: \(unitsDAL.findAll().count)")
+                    self?.syncStates[syncKey] = .complete
+                    syncCompletion(nil)
+                case .failure(let error):
+                    self?.syncStates[syncKey] = .complete
+                    syncCompletion(error)
                 }
             }
-        } else {  // guardian
         }
 
     }

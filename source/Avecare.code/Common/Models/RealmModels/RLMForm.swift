@@ -7,10 +7,10 @@ class RLMLogForm: Object, Decodable {
 
     @objc dynamic var localDate: Date?
     @objc dynamic var serverDate: Date?
-
     @objc dynamic var subject: RLMSubject?
 
     let rows = List<RLMLogRow>()
+
 
     enum CodingKeys: String, CodingKey {
         case localDate = "clientLastUpdated"
@@ -39,7 +39,6 @@ class RLMLogForm: Object, Decodable {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")
         }
-
     }
 
 }

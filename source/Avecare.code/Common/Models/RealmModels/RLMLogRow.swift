@@ -107,7 +107,6 @@ class RLMLogRow: Object, Decodable {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")
         }
-
     }
 
 

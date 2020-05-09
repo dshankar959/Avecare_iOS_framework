@@ -36,7 +36,7 @@ extension RLMLogOptionRow: DataProvider, RLMCleanable {
     typealias T = RLMLogOptionRow
 
     func clean() {
-        self.deleteAll(objects: Array(options))
-        self.delete()
+        deleteAll(objects: Array(options))
+        delete()
     }
 }

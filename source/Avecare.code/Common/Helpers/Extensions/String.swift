@@ -57,4 +57,29 @@ extension String {
         return hasPrefix("http://") || hasPrefix("https://")
     }
 
+    // Remove substring between occurrences
+    // https://stackoverflow.com/a/54114340/7599
+    private func regExprOfDetectingStringsBetween(str1: String, str2: String) -> String {
+        return "(?:\(str1))(.*?)(?:\(str2))"
+    }
+
+    func replacingOccurrences(from subString1: String, to subString2: String, with replacement: String) -> String {
+        let regExpr = regExprOfDetectingStringsBetween(str1: subString1, str2: subString2)
+        return replacingOccurrences(of: regExpr, with: replacement, options: .regularExpression)
+    }
+
+    // Trim all bracket parameters "(...)" from a function string.
+    func removeBrackets() -> String {
+        var strCopy = self
+
+        if let startIndex = strCopy.firstIndex(of: "(") {
+            let range = Range(uncheckedBounds: (lower: startIndex, upper: strCopy.endIndex))
+            strCopy.removeSubrange(range)
+            return strCopy.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+
+        return strCopy
+    }
+
+
 }

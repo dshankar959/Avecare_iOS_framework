@@ -30,7 +30,6 @@ class RLMAccountInfo: Object, Decodable {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")
         }
-
     }
 
     override class func primaryKey() -> String? {

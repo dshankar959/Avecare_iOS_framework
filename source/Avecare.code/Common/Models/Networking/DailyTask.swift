@@ -9,6 +9,16 @@ struct DailyTask: Codable {
 
     let id: Int
     let description: String
+
+
+/*
+  "id": 1,
+  "description": "Flush toilets",
+  "isActive": true,
+  "order": 1
+*/
+
+
 }
 
 

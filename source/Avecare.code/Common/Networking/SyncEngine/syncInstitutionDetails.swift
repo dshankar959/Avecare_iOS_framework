@@ -4,9 +4,9 @@ import CocoaLumberjack
 
 extension SyncEngine {
 
-    func syncDOWNsupervisorDetails(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+    func syncDOWNinstitutionDetails(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogDebug("")
-        let supervisorsDAL = RLMSupervisor()
+        let institutionsDAL = RLMInstitution()
 
         // Use function name as key.
         let syncKey = "\(#function)".removeBrackets()
@@ -23,20 +23,17 @@ extension SyncEngine {
 //            return
         }
         syncStates[syncKey] = .syncing
-        notifySyncStateChanged(message: "Syncing down 🔻 supervisor details")
+        notifySyncStateChanged(message: "Syncing down 🔻 institution details")
 
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor {
-            if let supervisorId = appSession.userProfile.accountTypeId {
-                SupervisorsAPIService.getSupervisorDetails(for: supervisorId) { [weak self] result in
+            if let unitId = RLMSupervisor.details?.primaryUnitId, let unitDetails = RLMUnit.details(for: unitId) {
+                InstitutionsAPIService.getInstitutionDetails(id: unitDetails.institutionId) { [weak self] result in
                     switch result {
                     case .success(let details):
-                        if let existingSupervisor = RLMSupervisor().find(withID: details.id) {
-                            existingSupervisor.clean()
-                        }
                         // Update with new data.
-                        supervisorsDAL.createOrUpdateAll(with: [details])
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSupervisor.className())\' items in DB: \(supervisorsDAL.findAll().count)")
+                        institutionsDAL.createOrUpdateAll(with: [details])
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMInstitution.className())\' items in DB: \(RLMInstitution().findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):
@@ -45,8 +42,6 @@ extension SyncEngine {
                     }
                 }
             }
-        } else {  // guardian
-
         }
 
     }

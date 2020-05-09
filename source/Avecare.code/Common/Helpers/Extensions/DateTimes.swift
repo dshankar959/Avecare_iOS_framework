@@ -2,7 +2,8 @@ import UIKit
 import CocoaLumberjack
 
 struct DateConfig {
-    static let ISO8601dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"
+//    static let ISO8601dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"   // GMT+TZ
+    static let ISO8601dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"      // local time without TZ
 }
 
 extension Date {
@@ -28,6 +29,14 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.dateFormat = "yyyyMMdd'T'HHmm"
+
+        return dateFormatter.string(from: date)
+    }
+
+    static func localFormatISO8601StringFromDate(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
 
         return dateFormatter.string(from: date)
     }

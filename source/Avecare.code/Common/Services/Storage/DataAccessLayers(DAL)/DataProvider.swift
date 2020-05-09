@@ -10,6 +10,32 @@ protocol DataProvider: DatabaseLayer {
 extension DataProvider {
     // MARK: - Generic `model` specific operations
 
+    func find(withID: Int) -> T? {
+        let database = self.getDatabase()
+        return database?.object(ofType: T.self, forPrimaryKey: withID)
+    }
+
+
+    func findAll() -> [T] {
+        if let database = self.getDatabase() {
+            return database.objects(T.self).map { $0 }
+        } else {
+            return []
+        }
+    }
+
+
+    func findAll<T: Object>(sortedBy key: String) -> [T] {
+        let database = self.getDatabase()
+
+        if let allObjects = database?.objects(T.self) {
+            let results = allObjects.sorted(byKeyPath: key, ascending: true)
+            return Array(results)
+        }
+
+        return []
+    }
+
     func find(withSubjectID: Int) -> T? {
         let database = self.getDatabase()
         return database?.objects(T.self).filter("subject.id = %@", withSubjectID).first

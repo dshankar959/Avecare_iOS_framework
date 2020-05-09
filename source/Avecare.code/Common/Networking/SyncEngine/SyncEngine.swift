@@ -7,7 +7,7 @@ struct SyncConfig {
     static let timerInterval: TimeInterval = 3600 // seconds
 }
 
-enum SyncStatus {
+enum SyncState {
     case syncing
     case complete
     case unknown
@@ -35,89 +35,33 @@ class SyncEngine {
     // Array of collected closures to call when sync is complete due to multiple triggers.
     var closuresToPerformWhenSyncComplete: [(_ error: AppError?) -> Void] = []
 
+//    var syncOperationsBlock: ((_ error: AppError?) -> Void)
 
-    // DAL's  (Data Access Layer)
-    let supervisorsDAL = RLMSupervisor()
-    let unitsDAL = RLMUnit()
-//    let workflowStatesDAL = RLMWorkflowState()
-//    let locationsDAL = RLMLocation()
-//    let signAnnotationsDAL = RLMSignAnnotation()
-//    let commentsDAL = RLMComment()
-//    let signTypesDAL = RLMSignType()
-//    let usersDAL = RLMUser()
-//    let iconsDAL = RLMIcon()
-//    let colorsDAL = RLMColor()
-//    let textChoicesDAL = RLMTextChoice()
+//    var centralManagerDidUpdateState: ((_ state: Bool) -> Void) = {_ in
+//    }
 
 
-    // states
-    var syncSupervisorDetailsStatus: SyncStatus = .unknown {
-        didSet {
-            DDLogDebug("♻️ .syncStateChanged to \(syncSupervisorDetailsStatus)")
-        }
-    }
-
-    var syncUnitDetailsStatus: SyncStatus = .unknown {
-        didSet {
-            DDLogDebug("♻️ .syncStateChanged to \(syncUnitDetailsStatus)")
-        }
-    }
-
-
-    var syncAllStatus: SyncStatus = .unknown {
-        didSet {
-            DDLogDebug("♻️ .syncStateChanged to \(syncAllStatus)")
-            if syncAllStatus == .syncing {
-                UIApplication.shared.isIdleTimerDisabled = true
-            } else if syncAllStatus == .complete {
-                UIApplication.shared.isIdleTimerDisabled = false
-            }
-        }
-    }
-
+    var syncStates: [String: SyncState] = [:]
 
     var isSyncing: Bool {
-        if self.syncSupervisorDetailsStatus == .syncing ||
-            self.syncUnitDetailsStatus == .syncing //||
-//            self.syncLocationStatus == .syncing ||
-//            self.syncLocationPlanStatus == .syncing ||
-//            self.syncSignAnnotationStatus == .syncing ||
-//            self.syncSignTypeStatus == .syncing ||
-//            self.syncWorkflowStateStatus == .syncing ||
-//            self.syncCommentStatus == .syncing ||
-//            self.syncAttachmentStatus == .syncing ||
-//            self.syncUserStatus == .syncing ||
-//            self.syncArtworkStatus == .syncing ||
-//            self.syncIconStatus == .syncing ||
-//            self.syncIconImageStatus == .syncing ||
-//            self.syncColorStatus == .syncing ||
-//            self.syncTextChoiceStatus == .syncing ||
-//            self.syncAllStatus == .syncing {
-        {
-            return true
-        } else {
-            return false
+        var state: Bool = false
+
+        for (_, value) in syncStates where value == .syncing {
+            state = true
+            break
+        }
+
+//        DDLogDebug("⭐ isSyncing = \(state)")
+        return state
+    }
+
+
+    func print_isSyncingStatus_description() {
+        for (key, value) in syncStates {
+            DDLogDebug("⭐ \(key) = \(value)")
         }
     }
 
-    func print_isSyncingStatus_description() {
-//        DDLogDebug("syncOrgStatus = \(syncEngine.syncOrgStatus)")
-//        DDLogDebug("syncProjectStatus = \(syncEngine.syncProjectStatus)")
-//        DDLogDebug("syncLocationStatus = \(syncEngine.syncLocationStatus)")
-//        DDLogDebug("syncLocationPlanStatus = \(syncEngine.syncLocationPlanStatus)")
-//        DDLogDebug("syncSignAnnotationStatus = \(syncEngine.syncSignAnnotationStatus)")
-//        DDLogDebug("syncSignTypeStatus = \(syncEngine.syncSignTypeStatus)")
-//        DDLogDebug("syncWorkflowStateStatus = \(syncEngine.syncWorkflowStateStatus)")
-//        DDLogDebug("syncCommentStatus = \(syncEngine.syncCommentStatus)")
-//        DDLogDebug("syncAttachmentStatus = \(syncEngine.syncAttachmentStatus)")
-//        DDLogDebug("syncUserStatus = \(syncEngine.syncUserStatus)")
-//        DDLogDebug("syncArtworkStatus = \(syncEngine.syncArtworkStatus)")
-//        DDLogDebug("syncIconStatus = \(syncEngine.syncIconStatus)")
-//        DDLogDebug("syncIconImageStatus = \(syncEngine.syncIconImageStatus)")
-//        DDLogDebug("syncColorStatus = \(syncEngine.syncColorStatus)")
-//        DDLogDebug("syncTextChoiceStatus = \(syncEngine.syncTextChoiceStatus)")
-//        DDLogDebug("syncAllStatus = \(syncEngine.syncAllStatus)")
-    }
 
     var isSyncBlocked: Bool {    // 'read-only' property
         if !isDataConnection {
@@ -133,6 +77,7 @@ class SyncEngine {
         return false
     }
 
+
     var isSyncCancelled: Bool = false {
         didSet {
             if isSyncCancelled {
@@ -144,7 +89,15 @@ class SyncEngine {
     }
 
 
-    // MARK: -
+    let syncOperationsQueue: OperationQueue = {
+        let q = OperationQueue()
+        q.name = "syncOperationsQueue"
+        q.maxConcurrentOperationCount = 1
+
+        return q
+    }()
+
+
     init() {
         NotificationCenter.default.addObserver(self, selector: #selector(didCompleteSyncAll), name: .didCompleteSync, object: SyncEngine.self)
     }
@@ -153,6 +106,80 @@ class SyncEngine {
     deinit {
         NotificationCenter.default.removeObserver(self)
         DDLogWarn("\(self)")
+    }
+
+
+}
+
+
+
+// MARK: -
+extension SyncEngine {
+
+    func syncAll(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+        DDLogVerbose("")
+
+        if !appSettings.enableSyncUp && !appSettings.enableSyncDown {
+            DDLogDebug("🔺🔻❌ sync UP/DOWN ⬆️⬇️ disabled.  ❎❎")
+            syncCompletion(nil)
+            return
+        }
+
+        if self.isSyncBlocked {
+            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
+            return
+        }
+
+        if !appSession.isSignedIn() || appSession.token.isFake {
+            DDLogError("⚠️ Auth required.")
+//            appDelegate.autoSignIn() { error in
+//                if error != nil {
+//                    syncCompletion(AuthError.expiredSession.message)
+//                }
+//            }
+            return
+        }
+
+        if isSyncing {
+            DDLogDebug("❕  syncAll =🔄= .syncing  ❕")
+            closuresToPerformWhenSyncComplete.append { error in
+                syncCompletion(error)
+            }
+            return
+        }
+
+        UIApplication.shared.isIdleTimerDisabled = true
+        resetSyncTimer()
+
+        closuresToPerformWhenSyncComplete.append { error in
+            syncCompletion(error)
+        }
+
+        self.syncOperations() { error in
+            DDLogDebug("⭕️ syncOperations ⬇️ complete!  ✅✅")
+
+            for completion in self.closuresToPerformWhenSyncComplete {
+                completion(error)
+            }
+
+            self.closuresToPerformWhenSyncComplete.removeAll()
+            NotificationCenter.default.post(name: .didCompleteSync, object: SyncEngine.self)
+        }
+
+    }
+
+
+    @objc func didCompleteSyncAll(notification: NSNotification) {
+        if !syncEngine.isSyncing {
+            DDLogVerbose("‼️ sync all complete!")
+        }
+        UIApplication.shared.isIdleTimerDisabled = false
+    }
+
+
+    func notifySyncStateChanged(message: String) {
+        DDLogDebug("\(message)")
+        NotificationCenter.default.post(name: .syncStateChanged, object: SyncEngine.self, userInfo: ["message": message])
     }
 
 

@@ -1,6 +1,8 @@
 import Foundation
 import UIKit
 
+
+
 protocol NotificationTypeDataProvider: class {
     var numberOfRows: Int { get }
     func model(for indexPath: IndexPath) -> NotificationTypeTableViewCellModel

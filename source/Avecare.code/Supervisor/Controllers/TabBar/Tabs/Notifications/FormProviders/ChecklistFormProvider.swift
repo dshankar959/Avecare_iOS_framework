@@ -1,11 +1,15 @@
 import Foundation
 import UIKit
 
+
+
 protocol FormProvider {
     func form() -> Form
 }
 
+
 class ChecklistFormProvider {
+
     enum State {
         case new
         case error(err: Error)
@@ -33,17 +37,18 @@ class ChecklistFormProvider {
     }
 }
 
+
 extension ChecklistFormProvider: FormProvider {
     func form() -> Form {
         switch state {
         case .new:
 
-            guard let unitId = RLMSupervisor().details?.primaryUnitId else {
+            guard let unitId = RLMSupervisor.details?.primaryUnitId else {
                 state = .error(err: AuthError.unitNotFound.message)
                 return form()
             }
 
-            guard let id = RLMUnit().details(for: unitId)?.id else {
+            guard let id = RLMUnit.details(for: unitId)?.id else {
                 state = .error(err: AuthError.unitNotFound.message)
                 return form()
             }
@@ -83,4 +88,5 @@ extension ChecklistFormProvider: FormProvider {
             return Form(viewModels: models)
         }
     }
+
 }

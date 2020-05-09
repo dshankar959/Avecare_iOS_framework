@@ -44,17 +44,17 @@ extension RemindersFormProvider: FormProvider {
     func form() -> Form {
         switch state {
         case .new:
-            guard let unitId = RLMSupervisor().details?.primaryUnitId else {
+            guard let unitId = RLMSupervisor.details?.primaryUnitId else {
                 state = .error(err: AuthError.unitNotFound.message)
                 return form()
             }
 
-            guard let id = RLMUnit().details(for: unitId)?.id else {
+            guard let id = RLMUnit.details(for: unitId)?.id else {
                 state = .error(err: AuthError.unitNotFound.message)
                 return form()
             }
 
-            UnitAPIService.getReminders(id: id) { [weak self] result in
+            UnitAPIService.getReminders(unitId: id) { [weak self] result in
                 switch result {
                 case .success(let reminders):
                     self?.state = .loaded(reminders: reminders.filter({ $0.isActive }))

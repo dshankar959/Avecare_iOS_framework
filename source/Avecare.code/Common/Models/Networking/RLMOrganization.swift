@@ -6,7 +6,7 @@ import RealmSwift
 class RLMOrganization: Object, Decodable {
 
     @objc dynamic var id: Int = -1
-    @objc dynamic var name: String? = nil
+    @objc dynamic var name: String = ""
 
 
     enum CodingKeys: String, CodingKey {
@@ -24,7 +24,7 @@ class RLMOrganization: Object, Decodable {
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
             self.id = try values.decode(Int.self, forKey: .id)
-            self.name = try values.decodeIfPresent(String.self, forKey: .name)
+            self.name = try values.decode(String.self, forKey: .name)
 
         } catch {
             DDLogError("JSON Decoding error = \(error)")
@@ -43,3 +43,5 @@ class RLMOrganization: Object, Decodable {
 extension RLMOrganization: DataProvider {
     typealias T = RLMOrganization
 }
+
+typealias OrganizationDetailsResponse = RLMOrganization

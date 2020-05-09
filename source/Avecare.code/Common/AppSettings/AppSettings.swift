@@ -6,7 +6,8 @@ import CocoaLumberjack
 private let kUseBiometricAuthenticationKey = "useBiometricAuthentication"
 private let kRememberLastUsernameKey = "rememberLastUsername"
 private let kLastUsernameKey = "lastUsername"
-private let khasBeenLaunchedBeforeKey = "hasBeenLaunchedBeforeFlag"
+private let kUserLoginCountKey = "loginCount"
+private let kUserLastLoginDateKey = "lastLoginDate"
 private let kAppVersionKey = "appVersion"
 
 // <internal>
@@ -77,25 +78,29 @@ class AppSettings {
         }
     }
 
-    func isFirstLaunch() -> Bool {
-        if hasBeenLaunchedBeforeFlag == false {
-            DDLogDebug("First Launch!  🆕")
-            hasBeenLaunchedBeforeFlag = true
+    func isFirstLogin() -> Bool {
+        if userLoginCount <= 1 {
+            DDLogDebug("🆕  First Launch!  🆕")
+
+            let defaults = userDefaults(for: appSession.userProfile)
+            defaults.set(Date.ISO8601StringFromDate(Date()), forKey: kUserLastLoginDateKey)
+
             return true
         } else {
             return false
         }
     }
 
-    private var hasBeenLaunchedBeforeFlag: Bool {
+    var userLoginCount: Int {
         get {
-            return userDefaults(for: appSession.userProfile).bool(forKey: khasBeenLaunchedBeforeKey)
+            return userDefaults(for: appSession.userProfile).integer(forKey: kUserLoginCountKey)
         }
         set (newValue) {
-            DDLogDebug("hasBeenLaunchedBefore: \(newValue)")
+            DDLogDebug("UserLoginCount: \(newValue)")
 
             let defaults = userDefaults(for: appSession.userProfile)
-            defaults.set(newValue, forKey: khasBeenLaunchedBeforeKey)
+            defaults.set(newValue, forKey: kUserLoginCountKey)
+            defaults.set(Date.localFormatISO8601StringFromDate(Date()), forKey: kUserLastLoginDateKey)
         }
     }
 

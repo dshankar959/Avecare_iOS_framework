@@ -33,7 +33,6 @@ class RLMUnit: Object, Decodable {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")
         }
-
     }
 
     override class func primaryKey() -> String? {
@@ -47,9 +46,8 @@ class RLMUnit: Object, Decodable {
 extension RLMUnit: DataProvider {
     typealias T = RLMUnit
 
-
-    func details(for unitId: Int) -> RLMUnit? {
-        return self.find(withID: unitId)
+    static func details(for unitId: Int) -> RLMUnit? {
+        return RLMUnit().find(withID: unitId)
     }
 
 

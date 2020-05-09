@@ -17,7 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>...</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
@@ -37,10 +37,16 @@
 	<string>This app uses GPS to tag content with location data.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app uses GPS to tag content with location data.</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Microphone Usage Description (videos)</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This app enables you to use your local camera photos for content.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Font Awesome 5 Duotone-Solid-900</string>
+		<string>Font Awesome 5 Pro-Regular-400</string>
+		<string>Font Awesome 5 Pro-Light-300</string>
+		<string>Font Awesome 5 Brands-Regular-400</string>
+		<string>Font Awesome 5 Pro-Solid-900</string>
+	</array>
 	<key>UIFileSharingEnabled</key>
 	<false/>
 	<key>UILaunchStoryboardName</key>
@@ -59,5 +65,7 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
+	<key>FirebaseScreenReportingEnabled</key>
+	<false/>
 </dict>
 </plist>

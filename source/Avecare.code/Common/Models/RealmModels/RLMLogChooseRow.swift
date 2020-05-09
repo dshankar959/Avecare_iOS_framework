@@ -6,14 +6,16 @@ import RealmSwift
 // Logs -> list of available form rows for + picker
 class RLMLogChooseRow: Object, Decodable {
 
+    @objc dynamic var name = ""
+    @objc dynamic var row: RLMLogRow?
+
+    
     enum CodingKeys: String, CodingKey {
         case name
         case rowType
         case properties
     }
 
-    @objc dynamic var name = ""
-    @objc dynamic var row: RLMLogRow?
 
     override class func primaryKey() -> String? {
         return "name"

@@ -54,10 +54,10 @@ class OTPViewController: UIViewController, IndicatorProtocol {
 
 
     func onSignInLaunchCheck() {
-
         DALConfig.userRealmFileURL = nil    // reset DB access.
 
-        if appSettings.isFirstLaunch() {
+        appSettings.userLoginCount += 1
+        if appSettings.isFirstLogin() {
             /// First time, fresh install, new user, etc.  Set defaults.
             appSettings.rememberLastUsername = true
             appSettings.enableSyncUp = true

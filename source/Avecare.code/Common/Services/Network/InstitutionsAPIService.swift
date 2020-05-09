@@ -6,7 +6,7 @@ import CocoaLumberjack
 struct InstitutionsAPIService {
 
     static func getInstitutionDetails(id: Int,
-                                      completion: @escaping (Result<InstitutionDetails, AppError>) -> Void) {
+                                      completion: @escaping (Result<RLMInstitution, AppError>) -> Void) {
         DDLogDebug("")
 
         apiProvider.request(.institutionDetails(id: id)) { result in

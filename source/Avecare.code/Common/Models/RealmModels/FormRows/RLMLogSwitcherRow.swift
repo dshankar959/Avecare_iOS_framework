@@ -46,7 +46,7 @@ extension RLMLogSwitcherRow: DataProvider, RLMCleanable {
     typealias T = RLMLogSwitcherRow
 
     func clean() {
-        self.deleteAll(objects: Array(options))
-        self.delete()
+        deleteAll(objects: Array(options))
+        delete()
     }
 }

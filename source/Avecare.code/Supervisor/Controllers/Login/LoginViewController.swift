@@ -45,114 +45,42 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 
                 RLMAccountInfo.saveAccountInfo(for: token.accountType, with: token.accountTypeId)
 
+                if appSettings.isFirstLogin() {
+                    do {  // some DB defaults.
+//                        RLMLogChooseRow().clean()   // wipe rows
+                        let data = try Data(resource: R.file.logFormRowsJson)
+                        let log = try JSONDecoder().decode([RLMLogChooseRow].self, from: data)
+
+                        // Add default rows, et al.
+                        RLMLogChooseRow().createOrUpdateAll(with: log)
+
+                    } catch {
+                        DDLogError("JSON Decoding error = \(error)")
+                        fatalError("JSON Decoding error = \(error)")
+                    }
+                }
+
                 #if !DEBUG
                     // #Crashlytics logging
                     Crashlytics.crashlytics().setUserID(userProfile.email)
                 #endif
 
-/*
-                /// <- #Testing.
-                /// reset DB with some defaults.
-                do {
-                    RLMLogChooseRow().clean()   // wipe rows
-
-                    let data = try Data(resource: R.file.logFormRowsJson)
-                    let decoder = JSONDecoder()r
-                    let log = try decoder.decode([RLMLogChooseRow].self, from: data)
-
-                    // Add default rows, et al.
-//                    RLMLogChooseRow().createOrUpdateAll(with: log)
-
-                    print(log.description)
-                } catch {
-                    print(error)
-                }
-                /// #Testing ->
-*/
 
                 self?.showActivityIndicator(withStatus: "Syncing data")
-//                syncEngine.triggerSync()
                 syncEngine.syncAll { error in
-                    DDLogDebug("error = \(String(describing: error))")
-//                    syncEngine.print_isSyncingStatus_description()
+                    syncEngine.print_isSyncingStatus_description()
                     if let error = error {
-                        self?.showErrorAlert(error)
-                    } else if !syncEngine.isSyncing {
-                    } else if syncEngine.isSyncCancelled {
+                        self?.handleError(error)
+                    } else {
+                        self?.hideActivityIndicator()
+                        self?.performSegue(withIdentifier: R.segue.loginViewController.tabbar, sender: nil)
                     }
-
-                    self?.hideActivityIndicator()
-
                 }
-
-
             case .failure(let error):
                 self?.handleError(error)
             }
         }
-    }
 
-
-
-/*
-    private func getSupervisorDetails(id: Int) {
-        SupervisorsAPIService.getSupervisorDetails(for: id) { [weak self] result in
-            switch result {
-            case .success(let details):
-                appDelegate._session.userProfile.details = details
-                self?.getUnitDetails(id: details.primaryUnitId)
-            case .failure(let error):
-                self?.handleError(error)
-            }
-        }
-    }
-
-
-    private func getUnitDetails(id: Int) {
-        UnitAPIService.getUnitDetails(id: id) { [weak self] result in
-            switch result {
-            case .success(let details):
-                appDelegate._session.unitDetails = details
-                self?.getInstitutionDetails(id: details.institutionId)
-            case .failure(let error):
-                self?.handleError(error)
-            }
-        }
-    }
-*/
-
-/*
-    private func getListOfSubjects() {
-        guard let unitId = appDelegate._session.unitDetails?.id else {
-            return
-        }
-        UnitAPIService.getSubjects(id: unitId) { [weak self] result in
-            switch result {
-            case .success(let subjects):
-                RLMSubject().createOrUpdateAll(with: subjects)
-                self?.dataSource = RLMSubject().findAll()
-
-                self?.sortBy(.firstName)
-                self?.delegate?.didFetchDataSource()
-
-            case .failure(let error):
-                self?.delegate?.didFailure(error)
-            }
-        }
-    }
-*/
-
-
-    private func getInstitutionDetails(id: Int) {
-        InstitutionsAPIService.getInstitutionDetails(id: id) { [weak self] result in
-            switch result {
-            case .success(let details):
-                appDelegate._session.institutionDetails = details
-                self?.performSegue(withIdentifier: R.segue.loginViewController.tabbar, sender: nil)
-            case .failure(let error):
-                self?.handleError(error)
-            }
-        }
     }
 
 
@@ -163,10 +91,10 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 
 
     func onSignInLaunchCheck() {
-
         DALConfig.userRealmFileURL = nil    // reset DB access.
 
-        if appSettings.isFirstLaunch() {
+        appSettings.userLoginCount += 1
+        if appSettings.isFirstLogin() {
             /// First time, fresh install, new user, etc.  Set defaults.
             appSettings.rememberLastUsername = true
             appSettings.enableSyncUp = true
@@ -197,7 +125,6 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 
         // done.
         appSettings.appVersion = Bundle.main.versionNumber
-
     }
 
 

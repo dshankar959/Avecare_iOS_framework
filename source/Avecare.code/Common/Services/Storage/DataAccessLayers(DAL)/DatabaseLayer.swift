@@ -7,18 +7,11 @@ import RealmSwift
 
 protocol DatabaseLayer {
     associatedtype T: Object
-
-    func find(withID: Int) -> T?
-    func findAll() -> [T]
-    func findAll(sortedBy key: String) -> [T]
-    func createOrUpdateAll(with objects: [Object], update: Bool)
-    func delete(object: Object)
-    func deleteAll(objects: [Object])
 }
 
 
 struct DALConfig {
-    static let DatabaseSchemaVersion: UInt64 = 0
+    static let DatabaseSchemaVersion: UInt64 = 1
     static let realmStoreName: String = "avecare.realm"   // default
     static var userRealmFileURL: URL?
 }
@@ -57,13 +50,14 @@ extension DatabaseLayer {
                     // Realm will automatically detect new properties and removed properties,
                     // and will update the schema on disk automatically.
                     DDLogVerbose("⚠️  Migrating Realm DB: from v\(oldSchemaVersion) to v\(DALConfig.DatabaseSchemaVersion)  ⚠️")
-
+/*
+                    /// version specific migration steps.. if required.
                     if oldSchemaVersion < 2 {
                         DDLogVerbose("⚠️ ++ \"oldSchemaVersion < 2\"  ⚠️")
                         // Changes for v2:
                         // ....
                     }
-
+*/
                 }
         })
 
@@ -74,9 +68,6 @@ extension DatabaseLayer {
             bcf.allowedUnits = [.useMB] // optional: restricts the units to MB only
             bcf.countStyle = .file
 
-            // totalBytes refers to the size of the file on disk in bytes (data + free space)
-            // usedBytes refers to the number of bytes used by data in the file
-
             // Compact if the file is over 100mb in size and less than 60% 'used'
             let filesizeMB = 100 * 1024 * 1024
             let compactRealm: Bool = (totalBytes > filesizeMB) && (Double(usedBytes) / Double(totalBytes)) < 0.6
@@ -84,7 +75,9 @@ extension DatabaseLayer {
             if compactRealm {
                 DDLogVerbose("Compacting Realm db (\(DALConfig.realmStoreName)? : \(compactRealm ? "[YES]" : "[NO]")")
 
+                // totalBytes refers to the size of the file on disk in bytes (data + free space)
                 let totalBytesString = bcf.string(fromByteCount: Int64(totalBytes))
+                // usedBytes refers to the number of bytes used by data in the file
                 let usedBytesString = bcf.string(fromByteCount: Int64(usedBytes))
                 DDLogVerbose("size_of_realm_file: \(totalBytesString), used_bytes: \(usedBytesString)")
 
@@ -109,23 +102,7 @@ extension DatabaseLayer {
     }
 
 
-    // MARK: - Low-level CRUD
-
-    // Generic wrapper for DB write transactions.
-    func writeTransaction(writeTransactionBlock: @escaping () -> Void) {
-        autoreleasepool {
-            do {
-                let database = self.getDatabase()
-                try database?.write {
-                    writeTransactionBlock()
-                }
-            } catch let error {
-                DDLogError("Database error: \(error)")
-                fatalError("Database error: \(error)")
-            }
-        }
-    }
-
+    // MARK: - Generic Low-level CRUD
 
     func create() {
         autoreleasepool {
@@ -141,8 +118,8 @@ extension DatabaseLayer {
         }
     }
 
-
-    func create<T: Object>(_ object: T) {
+/*
+    func create<T: Object>(_ object: T = self as! Object) {
         autoreleasepool {
             do {
                 let database = self.getDatabase()
@@ -155,7 +132,7 @@ extension DatabaseLayer {
             }
         }
     }
-
+*/
 
     // note: 'primary id' required for this to function.
     func createOrUpdateAll<T: Object>(with objects: [T], update: Bool = true) {
@@ -187,7 +164,7 @@ extension DatabaseLayer {
         }
     }
 
-
+/*
     func delete<T: Object>(object: T) {
         autoreleasepool {
             do {
@@ -201,7 +178,7 @@ extension DatabaseLayer {
             }
         }
     }
-
+*/
 
     func deleteAll<T: Object>(objects: [T]) {
         autoreleasepool {
@@ -218,30 +195,18 @@ extension DatabaseLayer {
     }
 
 
-    func find(withID: Int) -> T? {
-        let database = self.getDatabase()
-        return database?.object(ofType: T.self, forPrimaryKey: withID)
-    }
-
-
-    func findAll() -> [T] {
-        if let database = self.getDatabase() {
-            return database.objects(T.self).map { $0 }
-        } else {
-            return []
+    func writeTransaction(writeTransactionBlock: @escaping () -> Void) {
+        autoreleasepool {
+            do {
+                let database = self.getDatabase()
+                try database?.write {
+                    writeTransactionBlock()
+                }
+            } catch let error {
+                DDLogError("Database error: \(error)")
+                fatalError("Database error: \(error)")
+            }
         }
-    }
-
-
-    func findAll<T: Object>(sortedBy key: String) -> [T] {
-        let database = self.getDatabase()
-
-        if let allObjects = database?.objects(T.self) {
-            let results = allObjects.sorted(byKeyPath: key, ascending: true)
-            return Array(results)
-        }
-
-        return []
     }
 
 
@@ -285,7 +250,7 @@ extension DatabaseLayer {
 
     // MARK: -
 
-    // *important* for multithreading purposes.
+    // Useful for multithreading purposes.
     // https://stackoverflow.com/a/45810078/7599
     func forceRefresh() {
         getDatabase()?.refresh()

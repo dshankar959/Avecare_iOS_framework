@@ -5,11 +5,11 @@ import CocoaLumberjack
 
 struct UnitAPIService {
 
-    static func getUnitDetails(id: Int,
+    static func getUnitDetails(unitId: Int,
                                completion: @escaping (Result<RLMUnit, AppError>) -> Void) {
         DDLogDebug("")
 
-        apiProvider.request(.unitDetails(id: id)) { result in
+        apiProvider.request(.unitDetails(id: unitId)) { result in
             switch result {
             case .success(let response):
                 do {
@@ -47,11 +47,11 @@ struct UnitAPIService {
     }
 
 
-    static func getSubjects(id: Int,
+    static func getSubjects(unitId: Int,
                             completion: @escaping (Result<[RLMSubject], AppError>) -> Void) {
         DDLogDebug("")
 
-        apiProvider.request(.unitSubjects(id: id)) { result in
+        apiProvider.request(.unitSubjects(id: unitId)) { result in
             switch result {
             case .success(let response):
                 do {
@@ -70,11 +70,11 @@ struct UnitAPIService {
     }
 
 
-    static func getActivities(id: Int,
+    static func getActivities(unitId: Int,
                               completion: @escaping (Result<[UnitActivity], AppError>) -> Void) {
         DDLogDebug("")
 
-        apiProvider.request(.unitActivities(id: id)) { result in
+        apiProvider.request(.unitActivities(id: unitId)) { result in
             switch result {
             case .success(let response):
                 do {
@@ -91,11 +91,11 @@ struct UnitAPIService {
     }
 
 
-    static func getReminders(id: Int,
+    static func getReminders(unitId: Int,
                              completion: @escaping (Result<[UnitReminder], AppError>) -> Void) {
         DDLogDebug("")
 
-        apiProvider.request(.unitReminders(id: id)) { result in
+        apiProvider.request(.unitReminders(id: unitId)) { result in
             switch result {
             case .success(let response):
                 do {
