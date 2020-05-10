@@ -97,8 +97,6 @@ enum NetworkError {
     case HTTP(description: String, domain: String)
     case NetworkConnectionLost
 
-//    case CouldNotMakeHttpReq
-
     var message: AppError {
         switch self {
         case .HTTPcode(let statusCode):

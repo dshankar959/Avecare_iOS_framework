@@ -1,11 +1,15 @@
 import Foundation
 import UIKit
 
+
+
 protocol XibView: class {
     func setupContentView()
 }
 
+
 extension XibView where Self: UIView {
+
     func setupContentView() {
         let metatype = type(of: self)
         let bundle = Bundle(for: metatype)
@@ -17,7 +21,9 @@ extension XibView where Self: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         addSubview(view)
     }
+
 }
+
 
 class BaseXibView: UIView, XibView {
     override init(frame: CGRect) {

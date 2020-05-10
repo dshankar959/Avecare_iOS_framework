@@ -277,8 +277,6 @@
 		75EB5A122466683300E077E5 /* syncInstitutionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */; };
 		75EB5A142466791A00E077E5 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A132466791A00E077E5 /* UserCredentials.swift */; };
 		75EB5A152466791A00E077E5 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A132466791A00E077E5 /* UserCredentials.swift */; };
-		75EB5A182466E7A700E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A162466E7A700E077E5 /* SyncEngine+Operations.swift */; };
-		75EB5A192466E7A700E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A162466E7A700E077E5 /* SyncEngine+Operations.swift */; };
 		75EB5A1A2466E7A700E077E5 /* syncSupervisorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A172466E7A700E077E5 /* syncSupervisorDetails.swift */; };
 		75EB5A1B2466E7A700E077E5 /* syncSupervisorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A172466E7A700E077E5 /* syncSupervisorDetails.swift */; };
 		75EB5A1D2466EE1100E077E5 /* syncSubjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A1C2466EE1100E077E5 /* syncSubjects.swift */; };
@@ -287,6 +285,14 @@
 		75EB5A212466FE4400E077E5 /* RLMOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */; };
 		75EB5A232466FE9800E077E5 /* syncOrganizationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A222466FE9800E077E5 /* syncOrganizationDetails.swift */; };
 		75EB5A242466FE9800E077E5 /* syncOrganizationDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A222466FE9800E077E5 /* syncOrganizationDetails.swift */; };
+		75EB5A25246770A200E077E5 /* OrganizationsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547D73CFED29A678ACDFD5 /* OrganizationsAPIService.swift */; };
+		75EB5A26246770B000E077E5 /* SupervisorsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477873D1D818B4B22AC5C /* SupervisorsAPIService.swift */; };
+		75EB5A27246770B900E077E5 /* InstitutionsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615476E15206D0F7BC7080C8 /* InstitutionsAPIService.swift */; };
+		75EB5A28246770B900E077E5 /* GuardiansAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615470B479541EB0ADC83755 /* GuardiansAPIService.swift */; };
+		75EB5A29246770B900E077E5 /* StoriesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154791B455C1EA0E84D309F /* StoriesAPIService.swift */; };
+		75EB5A2A246770B900E077E5 /* SubjectsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */; };
+		75EB5A2D2467A21600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A2C2467A21600E077E5 /* SyncEngine+Operations.swift */; };
+		75EB5A312467A26600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */; };
 		DA3FE2DB8C4BA18334A1EB22 /* Pods_parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */; };
 		F65549F424564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */; };
 		F65549F524564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */; };
@@ -552,11 +558,12 @@
 		75EB5A032463C03300E077E5 /* RLMGuardian.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMGuardian.swift; sourceTree = "<group>"; };
 		75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncInstitutionDetails.swift; sourceTree = "<group>"; };
 		75EB5A132466791A00E077E5 /* UserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
-		75EB5A162466E7A700E077E5 /* SyncEngine+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncEngine+Operations.swift"; sourceTree = "<group>"; };
 		75EB5A172466E7A700E077E5 /* syncSupervisorDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncSupervisorDetails.swift; sourceTree = "<group>"; };
 		75EB5A1C2466EE1100E077E5 /* syncSubjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncSubjects.swift; sourceTree = "<group>"; };
 		75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMOrganization.swift; sourceTree = "<group>"; };
 		75EB5A222466FE9800E077E5 /* syncOrganizationDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncOrganizationDetails.swift; sourceTree = "<group>"; };
+		75EB5A2C2467A21600E077E5 /* SyncEngine+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncEngine+Operations.swift"; sourceTree = "<group>"; };
+		75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncEngine+Operations.swift"; sourceTree = "<group>"; };
 		75EB875223DB93B00068A3A7 /* parent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parent.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD9B063DD34D2DCB204B671C /* Pods-parent.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent.release(appstore).xcconfig"; path = "Target Support Files/Pods-parent/Pods-parent.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		C6A41FD77BCF4377A08E9406 /* Pods-educator.debug(beta).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.debug(beta).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.debug(beta).xcconfig"; sourceTree = "<group>"; };
@@ -1221,6 +1228,7 @@
 			isa = PBXGroup;
 			children = (
 				75886D6E241932AB0079C080 /* Controllers */,
+				75EB5A2E2467A26500E077E5 /* Networking */,
 				75886D6B241932AB0079C080 /* Supporting Files */,
 			);
 			name = Guardian;
@@ -1263,9 +1271,9 @@
 		75886D76241932AB0079C080 /* TabController */ = {
 			isa = PBXGroup;
 			children = (
-				75886D77241932AB0079C080 /* Tabs */,
 				75886D86241932AB0079C080 /* GuardianTabBarController.swift */,
 				75886D87241932AB0079C080 /* TabBar.storyboard */,
+				75886D77241932AB0079C080 /* Tabs */,
 			);
 			path = TabController;
 			sourceTree = "<group>";
@@ -1305,8 +1313,8 @@
 		75886D80241932AB0079C080 /* Logs */ = {
 			isa = PBXGroup;
 			children = (
-				75886D81241932AB0079C080 /* Logs.storyboard */,
 				75886D82241932AB0079C080 /* LogsViewController.swift */,
+				75886D81241932AB0079C080 /* Logs.storyboard */,
 				615476B19DB5477AF15A91F5 /* List Cells */,
 				615474F59BD851603066F624 /* LogsListDataProvider.swift */,
 				615479CD9C14B21CB4104304 /* LogsViewModelFactory.swift */,
@@ -1317,8 +1325,8 @@
 		75886D83241932AB0079C080 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				75886D84241932AB0079C080 /* Profile.storyboard */,
 				75886D85241932AB0079C080 /* ProfileViewController.swift */,
+				75886D84241932AB0079C080 /* Profile.storyboard */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1480,7 +1488,6 @@
 			children = (
 				75EB59DD24618EF600E077E5 /* SyncEngine.swift */,
 				75EB59DE24618EF600E077E5 /* SyncEngine+Timer.swift */,
-				75EB5A162466E7A700E077E5 /* SyncEngine+Operations.swift */,
 				75EB5A172466E7A700E077E5 /* syncSupervisorDetails.swift */,
 				75EB59FA24632D1F00E077E5 /* syncUnitDetails.swift */,
 				75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */,
@@ -1521,8 +1528,33 @@
 		75EB5A062465D4B700E077E5 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				75EB5A2B2467A21600E077E5 /* SyncEngine */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		75EB5A2B2467A21600E077E5 /* SyncEngine */ = {
+			isa = PBXGroup;
+			children = (
+				75EB5A2C2467A21600E077E5 /* SyncEngine+Operations.swift */,
+			);
+			path = SyncEngine;
+			sourceTree = "<group>";
+		};
+		75EB5A2E2467A26500E077E5 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				75EB5A2F2467A26500E077E5 /* SyncEngine */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		75EB5A2F2467A26500E077E5 /* SyncEngine */ = {
+			isa = PBXGroup;
+			children = (
+				75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */,
+			);
+			path = SyncEngine;
 			sourceTree = "<group>";
 		};
 		F65549EE24564F2100574872 /* Font Awesome 5 */ = {
@@ -1541,8 +1573,8 @@
 			isa = PBXGroup;
 			children = (
 				F663BB7824352065003279B9 /* LoginViewController.swift */,
-				F663BB7B24352083003279B9 /* Login.storyboard */,
 				F663BB7E243522C5003279B9 /* OTPViewController.swift */,
+				F663BB7B24352083003279B9 /* Login.storyboard */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2126,8 +2158,8 @@
 				75EB59C02461858700E077E5 /* RLMLogTimeRow.swift in Sources */,
 				75886D3E2419327F0079C080 /* UIImage+Tint.swift in Sources */,
 				75886D642419327F0079C080 /* FileStorageService.swift in Sources */,
+				75EB5A2D2467A21600E077E5 /* SyncEngine+Operations.swift in Sources */,
 				75886D2A2419327F0079C080 /* ErrorMessages.swift in Sources */,
-				75EB5A182466E7A700E077E5 /* SyncEngine+Operations.swift in Sources */,
 				75886D382419327F0079C080 /* DDLogNetworkPlugin.swift in Sources */,
 				75886DF8241932BA0079C080 /* DefaultTableViewCell.swift in Sources */,
 				75EB59CA2461858700E077E5 /* RLMLogPhotoRow.swift in Sources */,
@@ -2241,8 +2273,10 @@
 				F663BB6E24351192003279B9 /* RLMUnit.swift in Sources */,
 				75EB5A052463C03300E077E5 /* RLMGuardian.swift in Sources */,
 				75886D672419327F0079C080 /* ValidateSession.swift in Sources */,
+				75EB5A28246770B900E077E5 /* GuardiansAPIService.swift in Sources */,
 				F663BB6C2435112F003279B9 /* UnitActivity.swift in Sources */,
 				75EB59C12461858700E077E5 /* RLMLogTimeRow.swift in Sources */,
+				75EB5A312467A26600E077E5 /* SyncEngine+Operations.swift in Sources */,
 				75886D99241932AB0079C080 /* ProfileViewController.swift in Sources */,
 				75EB59D72461858700E077E5 /* RLMSubject.swift in Sources */,
 				75886D152419327F0079C080 /* LocationManager.swift in Sources */,
@@ -2264,6 +2298,7 @@
 				75886D472419327F0079C080 /* DateTimes.swift in Sources */,
 				75EB5A152466791A00E077E5 /* UserCredentials.swift in Sources */,
 				75886D3B2419327F0079C080 /* DynamicCodingKey.swift in Sources */,
+				75EB5A27246770B900E077E5 /* InstitutionsAPIService.swift in Sources */,
 				F6A5E1552444DF5400FD77B6 /* ImageStorageService.swift in Sources */,
 				75886D312419327F0079C080 /* Percentage.swift in Sources */,
 				75EB5A0E2465D7BD00E077E5 /* UnitReminder.swift in Sources */,
@@ -2293,12 +2328,12 @@
 				75886D492419327F0079C080 /* UIDevice.swift in Sources */,
 				F663BB7924352065003279B9 /* LoginViewController.swift in Sources */,
 				75EB59C92461858700E077E5 /* RLMOptionValue.swift in Sources */,
+				75EB5A29246770B900E077E5 /* StoriesAPIService.swift in Sources */,
 				615473E128966135AC3D2073 /* APIToken.swift in Sources */,
 				6154739FE190C8520C56FE01 /* Closure.swift in Sources */,
 				615477178CD2A957D0A155BB /* RealmDetachable.swift in Sources */,
 				615478302706516FFFEA01B9 /* StoriesViewController.swift in Sources */,
 				61547F44C319932DE7A455BA /* StoriesDetailsViewController.swift in Sources */,
-				75EB5A192466E7A700E077E5 /* SyncEngine+Operations.swift in Sources */,
 				615474402057962CDECCDF84 /* TextField.swift in Sources */,
 				6154749EE82ECA275C5FD8F2 /* PinView.swift in Sources */,
 				75EB59D92461858700E077E5 /* RLMCleanable.swift in Sources */,
@@ -2318,12 +2353,15 @@
 				75EB59D12461858700E077E5 /* RLMForm.swift in Sources */,
 				615479361B14E35A2EF7BF66 /* LogsOptionTableViewCell.swift in Sources */,
 				6154717E63802ABDBDFFCA4B /* LogsTimeDetailsTableViewCell.swift in Sources */,
+				75EB5A2A246770B900E077E5 /* SubjectsAPIService.swift in Sources */,
 				75EB59D52461858700E077E5 /* RLMLogChooseRow.swift in Sources */,
 				75EB59CF2461858700E077E5 /* RLMLogNoteRow.swift in Sources */,
+				75EB5A26246770B000E077E5 /* SupervisorsAPIService.swift in Sources */,
 				75EB5A1B2466E7A700E077E5 /* syncSupervisorDetails.swift in Sources */,
 				75EB59E624618EF600E077E5 /* SyncEngine+Timer.swift in Sources */,
 				615473AD125A732468C1EFEF /* LogsNoteTableViewCell.swift in Sources */,
 				61547D87D8BB1C3CC4D8FC14 /* LogsPhotoTableViewCell.swift in Sources */,
+				75EB5A25246770A200E077E5 /* OrganizationsAPIService.swift in Sources */,
 				75EB59CB2461858700E077E5 /* RLMLogPhotoRow.swift in Sources */,
 				615472FD03343E8BBC254253 /* LogsViewModelFactory.swift in Sources */,
 				615474F1719D19B2A4E58928 /* HomeTableVIewHeaderView.swift in Sources */,

@@ -76,7 +76,7 @@ enum AvecareAPI { // API Services
     case unitActivities(id: Int)
     case unitCreateActivity(id: Int, request: CreateUnitActivityRequest)
     case unitDailyTasks(id: Int)
-    case unitCreateDailyTask(id: Int, request: DailyTaskRequest)
+    case unitPublishDailyTasks(id: Int, request: DailyTaskRequest)
     case unitInjuries(id: Int)
     case unitCreateInjury(id: Int)
     case unitReminders(id: Int)
@@ -116,7 +116,7 @@ extension AvecareAPI: TargetType {
         case .unitActivities(let id): return "/units/\(id)/available-activities"
         case .unitCreateActivity(let id, _): return "/units/\(id)/activities"
         case .unitDailyTasks(let id): return "/units/\(id)/available-daily-tasks"
-        case .unitCreateDailyTask(let id): return "/units/\(id)/daily-tasks"
+        case .unitPublishDailyTasks(let id, _): return "/units/\(id)/daily-tasks"
         case .unitInjuries(let id): return "/units/\(id)/available-injuries"
         case .unitCreateInjury(let id): return "/units/\(id)/injuries"
         case .unitReminders(let id): return "/units/\(id)/available-reminders"
@@ -138,7 +138,7 @@ extension AvecareAPI: TargetType {
              .oneTimePassword,
              .logout,
              .unitCreateActivity,
-             .unitCreateDailyTask,
+             .unitPublishDailyTasks,
              .unitCreateInjury,
              .unitCreateReminder:
             return .post
@@ -153,9 +153,9 @@ extension AvecareAPI: TargetType {
         case .login(let credentials):
             return .requestJSONEncodable(credentials)
         case .oneTimePassword(let email):
-            return .requestParameters(parameters: ["username": email], encoding: JSONEncoding.default)
+            return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
         case .unitCreateActivity(_, let request as Encodable),
-             .unitCreateDailyTask(_, let request as Encodable):
+             .unitPublishDailyTasks(_, let request as Encodable):
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(Date.ymdFormatter)
             return .requestCustomJSONEncodable(request, encoder: encoder)

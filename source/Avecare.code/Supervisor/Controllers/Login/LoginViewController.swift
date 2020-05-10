@@ -29,7 +29,6 @@ class LoginViewController: UIViewController, IndicatorProtocol {
         let userCredentials = UserCredentials(email: email, password: password)
         showActivityIndicator(withStatus: "Signing in ...")
 
-        // auth -> account info -> supervisor details -> unit details -> tabbar
         UserAPIService.authenticateUserWith(userCreds: userCredentials) { [weak self] result in
             self?.hideActivityIndicator()
 
@@ -37,6 +36,11 @@ class LoginViewController: UIViewController, IndicatorProtocol {
             case .success(let token):
                 DDLogVerbose("Successful login.  👍  [withToken = \(token)]")
                 let userProfile = UserProfile(userCredentials: userCredentials)
+
+                #if !DEBUG
+                    // #Crashlytics logging
+                    Crashlytics.crashlytics().setUserID(userProfile.email)
+                #endif
 
                 // Update any previous session, with new token.
                 appDelegate._session = Session(token: token, userProfile: userProfile)
@@ -60,12 +64,6 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                     }
                 }
 
-                #if !DEBUG
-                    // #Crashlytics logging
-                    Crashlytics.crashlytics().setUserID(userProfile.email)
-                #endif
-
-
                 self?.showActivityIndicator(withStatus: "Syncing data")
                 syncEngine.syncAll { error in
                     syncEngine.print_isSyncingStatus_description()
@@ -76,6 +74,7 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                         self?.performSegue(withIdentifier: R.segue.loginViewController.tabbar, sender: nil)
                     }
                 }
+
             case .failure(let error):
                 self?.handleError(error)
             }
@@ -131,6 +130,5 @@ class LoginViewController: UIViewController, IndicatorProtocol {
     deinit {
         DDLogWarn("\(self)")
     }
-
 
 }

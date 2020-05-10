@@ -6,40 +6,76 @@ import FirebaseCrashlytics
 
 
 class OTPViewController: UIViewController, IndicatorProtocol {
+
     @IBOutlet var otpField: PinView?
-    public var email: String?
+
+    var email: String?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         otpField?.style = .box
     }
+
+
     @IBAction func sendCodeAction(sender: UIButton) {
         guard let email = email, let otp = otpField?.getPin() else {
+            self.showErrorAlert(AuthError.emptyCredentials.message)
             return
         }
 
         let userCredentials = UserCredentials(email: email, password: otp)
         showActivityIndicator(withStatus: "Signing in ...")
 
-        // auth -> account info -> supervisor details -> unit details -> tabbar
         UserAPIService.authenticateUserWith(userCreds: userCredentials) { [weak self] result in
             self?.hideActivityIndicator()
+
             switch result {
             case .success(let token):
                 DDLogVerbose("Successful login.  👍  [withToken = \(token)]")
                 let userProfile = UserProfile(userCredentials: userCredentials)
-
-                // Update any previous session, with new token.
-                appDelegate._session = Session(token: token, userProfile: userProfile)
-
-                self?.onSignInLaunchCheck()
 
                 #if !DEBUG
                     // #Crashlytics logging
                     Crashlytics.crashlytics().setUserID(userProfile.email)
                 #endif
 
-                self?.performSegue(withIdentifier: R.segue.otpViewController.tabbar, sender: nil)
+                // Update any previous session, with new token.
+                appDelegate._session = Session(token: token, userProfile: userProfile)
+
+                self?.onSignInLaunchCheck()
+
+                RLMAccountInfo.saveAccountInfo(for: token.accountType, with: token.accountTypeId)
+
+                if appSettings.isFirstLogin() {
+                    do {  // some DB defaults.
+//                        RLMLogChooseRow().clean()   // wipe rows
+                        let data = try Data(resource: R.file.logFormRowsJson)
+                        let log = try JSONDecoder().decode([RLMLogChooseRow].self, from: data)
+
+                        // Add default rows, et al.
+                        RLMLogChooseRow().createOrUpdateAll(with: log)
+
+                    } catch {
+                        DDLogError("JSON Decoding error = \(error)")
+                        fatalError("JSON Decoding error = \(error)")
+                    }
+                }
+
+                                      self?.performSegue(withIdentifier: R.segue.otpViewController.tabbar, sender: nil)
+
+/*
+                self?.showActivityIndicator(withStatus: "Syncing data")
+                syncEngine.syncAll { error in
+                    syncEngine.print_isSyncingStatus_description()
+                    if let error = error {
+                        self?.handleError(error)
+                    } else {
+                        self?.hideActivityIndicator()
+                        self?.performSegue(withIdentifier: R.segue.otpViewController.tabbar, sender: nil)
+                    }
+                }
+*/
             case .failure(let error):
                 self?.handleError(error)
             }
@@ -88,7 +124,6 @@ class OTPViewController: UIViewController, IndicatorProtocol {
 
         // done.
         appSettings.appVersion = Bundle.main.versionNumber
-
     }
 
 
