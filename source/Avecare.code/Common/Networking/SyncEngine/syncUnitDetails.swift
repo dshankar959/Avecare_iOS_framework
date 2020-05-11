@@ -43,44 +43,52 @@ extension SyncEngine {
                 }
             }
         } else { // guardian
+            // Sync down unit details across all subjects.
             let allSubjects = RLMSubject().findAll()
             if !allSubjects.isEmpty {
-
+                var apiResult: Result<RLMUnit, AppError> = .success(RLMUnit())
                 let operationQueue = OperationQueue()
-                operationQueue.maxConcurrentOperationCount = 1
 
                 let completionOperation = BlockOperation {
-                    DDLogDebug("completionOperation ...")
+                    DDLogDebug("sync completion block")
+                    self.syncStates[syncKey] = .complete
+
+                    switch apiResult {
+                    case .success:
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMUnit.className())\' items in DB: \(unitsDAL.findAll().count)")
+                        syncCompletion(nil)
+                    case .failure(let error):
+                        syncCompletion(error)
+                    }
                 }
 
                 for (index, subject) in allSubjects.enumerated() {
-                    if syncStates[syncKey] == .complete {
-                        return
-                    }
-
                     if let unitId = subject.unitIds.first {
                         let operation = BlockOperation {
+                            if self.syncStates[syncKey] == .complete {  // nothing more to do.
+                                return
+                            }
+
+                            let semaphore = DispatchSemaphore(value: 0) // serialize async API executions in this thread.
+
                             UnitAPIService.getUnitDetails(unitId: unitId) { [weak self] result in
                                 DDLogDebug("#️⃣ \(index+1) of \(allSubjects.count)")
+                                apiResult = result
 
                                 switch result {
                                 case .success(let details):
                                     // Update with new data.
                                     unitsDAL.createOrUpdateAll(with: [details])
-
-                                    if (index+1) == allSubjects.count {
-                                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMUnit.className())\' items in DB: \(unitsDAL.findAll().count)")
-                                        self?.syncStates[syncKey] = .complete
-                                        syncCompletion(nil)
-                                    }
-
-                                case .failure(let error):
+                                case .failure:
                                     self?.syncStates[syncKey] = .complete
-                                    syncCompletion(error)
-                                    return
                                 }
+
+                                semaphore.signal()
                             }
-                        }   // BlockOperation
+
+                            semaphore.wait()
+                        }   // end-of-BlockOperation
+
                         completionOperation.addDependency(operation)
                         operationQueue.addOperation(operation)
                     }

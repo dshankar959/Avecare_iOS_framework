@@ -9,7 +9,7 @@ class RLMLogChooseRow: Object, Decodable {
     @objc dynamic var name = ""
     @objc dynamic var row: RLMLogRow?
 
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case rowType

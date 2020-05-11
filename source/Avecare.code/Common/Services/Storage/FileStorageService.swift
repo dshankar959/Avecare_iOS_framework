@@ -46,7 +46,7 @@ struct FileStorageService {
         return FileManager.default.createDirectory(URL(fileURLWithPath: finalDirectory))
     }
 
-    
+
     static var userAppDirectory: URL {
         if appSession.isSignedIn() || appSession.token.isFake {
             let currentUser = appSession.userProfile

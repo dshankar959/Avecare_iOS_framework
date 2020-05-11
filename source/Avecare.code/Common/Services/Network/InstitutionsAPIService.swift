@@ -9,9 +9,9 @@ struct InstitutionsAPIService {
                                       completion: @escaping (Result<RLMInstitution, AppError>) -> Void) {
         DDLogDebug("")
 
-        apiProvider.request(.institutionDetails(id: id),
+        apiProvider.request(.institutionDetails(id: id)) { result in
 //                            callbackQueue: DispatchQueue.main) { result in
-                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
+//                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
             switch result {
             case .success(let response):
                 do {

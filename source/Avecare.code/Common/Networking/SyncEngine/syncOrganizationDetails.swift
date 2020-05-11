@@ -59,6 +59,9 @@ extension SyncEngine {
                         syncCompletion(error)
                     }
                 }
+            } else {
+                DDLogError("Missing data.")
+                fatalError("Missing data.")
             }
         }
 

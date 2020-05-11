@@ -94,7 +94,9 @@ extension DatabaseLayer {
 
     func getDatabase() -> Realm? {
         do {
-            return try Realm(configuration: realmConfig)
+            let realm = try Realm(configuration: realmConfig)
+            realm.autorefresh = true
+            return realm
         } catch let error {
             DDLogError("Database error: \(error)")
             fatalError("Database error: \(error)")

@@ -9,9 +9,9 @@ struct UnitAPIService {
                                completion: @escaping (Result<RLMUnit, AppError>) -> Void) {
         DDLogDebug("")
 
-        apiProvider.request(.unitDetails(id: unitId),
+        apiProvider.request(.unitDetails(id: unitId)) { result in
 //                            callbackQueue: DispatchQueue.main) { result in
-                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
+//                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
             switch result {
             case .success(let response):
                 do {
@@ -53,8 +53,8 @@ struct UnitAPIService {
                             completion: @escaping (Result<[RLMSubject], AppError>) -> Void) {
         DDLogDebug("")
 
-        apiProvider.request(.unitSubjects(id: unitId), //) { result in
-                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
+        apiProvider.request(.unitSubjects(id: unitId)) { result in
+//                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
             switch result {
             case .success(let response):
                 do {
@@ -77,8 +77,8 @@ struct UnitAPIService {
                               completion: @escaping (Result<[UnitActivity], AppError>) -> Void) {
         DDLogDebug("")
 
-        apiProvider.request(.unitActivities(id: unitId), //) { result in
-                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
+        apiProvider.request(.unitActivities(id: unitId)) { result in
+//                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
             switch result {
             case .success(let response):
                 do {
@@ -99,8 +99,8 @@ struct UnitAPIService {
                              completion: @escaping (Result<[UnitReminder], AppError>) -> Void) {
         DDLogDebug("")
 
-        apiProvider.request(.unitReminders(id: unitId), //) { result in
-                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
+        apiProvider.request(.unitReminders(id: unitId)) { result in
+//                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
             switch result {
             case .success(let response):
                 do {
