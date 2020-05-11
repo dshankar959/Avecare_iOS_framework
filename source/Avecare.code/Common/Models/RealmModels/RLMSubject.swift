@@ -72,4 +72,4 @@ extension RLMSubject: DataProvider {
 }
 
 
-typealias RLMSubjectResponse = APIResponse<[RLMSubject]>
+typealias SubjectsResponse = APIResponse<[RLMSubject]>

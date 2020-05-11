@@ -28,7 +28,6 @@ extension SyncEngine {
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor {
             if let unitId = RLMSupervisor.details?.primaryUnitId {
-
                 UnitAPIService.getSubjects(unitId: unitId) { [weak self] result in
                     switch result {
                     case .success(let details):
@@ -44,10 +43,24 @@ extension SyncEngine {
                 }
             }
         } else {  // guardian
-
+            if let guardianId = appSession.userProfile.accountTypeId {
+                GuardiansAPIService.getSubjects(for: guardianId) { [weak self] result in
+                    switch result {
+                    case .success(let details):
+                        // Update with new data.
+                        RLMGuardian().createOrUpdateAll(with: details)
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMGuardian.className())\' items in DB: \(RLMGuardian().findAll().count)")
+                        self?.syncStates[syncKey] = .complete
+                        syncCompletion(nil)
+                    case .failure(let error):
+                        self?.syncStates[syncKey] = .complete
+                        syncCompletion(error)
+                    }
+                }
+            }
         }
 
-    }
+}
 
 
 }

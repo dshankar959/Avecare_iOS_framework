@@ -62,9 +62,6 @@ class OTPViewController: UIViewController, IndicatorProtocol {
                     }
                 }
 
-                                      self?.performSegue(withIdentifier: R.segue.otpViewController.tabbar, sender: nil)
-
-/*
                 self?.showActivityIndicator(withStatus: "Syncing data")
                 syncEngine.syncAll { error in
                     syncEngine.print_isSyncingStatus_description()
@@ -75,7 +72,7 @@ class OTPViewController: UIViewController, IndicatorProtocol {
                         self?.performSegue(withIdentifier: R.segue.otpViewController.tabbar, sender: nil)
                     }
                 }
-*/
+
             case .failure(let error):
                 self?.handleError(error)
             }

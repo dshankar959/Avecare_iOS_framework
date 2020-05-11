@@ -9,7 +9,9 @@ struct SupervisorsAPIService {
                                      completion: @escaping (Result<RLMSupervisor, AppError>) -> Void) {
         DDLogDebug("")
 
-        apiProvider.request(.supervisorDetails(id: supervisorId)) { result in
+        apiProvider.request(.supervisorDetails(id: supervisorId),
+//                            callbackQueue: DispatchQueue.main) { result in
+                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
             switch result {
             case .success(let response):
                 do {

@@ -277,8 +277,8 @@
 		75EB5A122466683300E077E5 /* syncInstitutionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */; };
 		75EB5A142466791A00E077E5 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A132466791A00E077E5 /* UserCredentials.swift */; };
 		75EB5A152466791A00E077E5 /* UserCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A132466791A00E077E5 /* UserCredentials.swift */; };
-		75EB5A1A2466E7A700E077E5 /* syncSupervisorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A172466E7A700E077E5 /* syncSupervisorDetails.swift */; };
-		75EB5A1B2466E7A700E077E5 /* syncSupervisorDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A172466E7A700E077E5 /* syncSupervisorDetails.swift */; };
+		75EB5A1A2466E7A700E077E5 /* syncUserAccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A172466E7A700E077E5 /* syncUserAccountDetails.swift */; };
+		75EB5A1B2466E7A700E077E5 /* syncUserAccountDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A172466E7A700E077E5 /* syncUserAccountDetails.swift */; };
 		75EB5A1D2466EE1100E077E5 /* syncSubjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A1C2466EE1100E077E5 /* syncSubjects.swift */; };
 		75EB5A1E2466EE1100E077E5 /* syncSubjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A1C2466EE1100E077E5 /* syncSubjects.swift */; };
 		75EB5A202466FE4400E077E5 /* RLMOrganization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */; };
@@ -558,7 +558,7 @@
 		75EB5A032463C03300E077E5 /* RLMGuardian.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMGuardian.swift; sourceTree = "<group>"; };
 		75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncInstitutionDetails.swift; sourceTree = "<group>"; };
 		75EB5A132466791A00E077E5 /* UserCredentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCredentials.swift; sourceTree = "<group>"; };
-		75EB5A172466E7A700E077E5 /* syncSupervisorDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncSupervisorDetails.swift; sourceTree = "<group>"; };
+		75EB5A172466E7A700E077E5 /* syncUserAccountDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncUserAccountDetails.swift; sourceTree = "<group>"; };
 		75EB5A1C2466EE1100E077E5 /* syncSubjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncSubjects.swift; sourceTree = "<group>"; };
 		75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMOrganization.swift; sourceTree = "<group>"; };
 		75EB5A222466FE9800E077E5 /* syncOrganizationDetails.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncOrganizationDetails.swift; sourceTree = "<group>"; };
@@ -1488,7 +1488,7 @@
 			children = (
 				75EB59DD24618EF600E077E5 /* SyncEngine.swift */,
 				75EB59DE24618EF600E077E5 /* SyncEngine+Timer.swift */,
-				75EB5A172466E7A700E077E5 /* syncSupervisorDetails.swift */,
+				75EB5A172466E7A700E077E5 /* syncUserAccountDetails.swift */,
 				75EB59FA24632D1F00E077E5 /* syncUnitDetails.swift */,
 				75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */,
 				75EB5A222466FE9800E077E5 /* syncOrganizationDetails.swift */,
@@ -2168,7 +2168,7 @@
 				75886D422419327F0079C080 /* UIColor.swift in Sources */,
 				75886D602419327F0079C080 /* UserAPIService.swift in Sources */,
 				75886D2E2419327F0079C080 /* CellViewModels.swift in Sources */,
-				75EB5A1A2466E7A700E077E5 /* syncSupervisorDetails.swift in Sources */,
+				75EB5A1A2466E7A700E077E5 /* syncUserAccountDetails.swift in Sources */,
 				299B3587241F907E00D6F9A5 /* FormLabelView.swift in Sources */,
 				F67DF832241C009800793A9C /* ContentSizedTableView.swift in Sources */,
 				75886D442419327F0079C080 /* FileManager.swift in Sources */,
@@ -2357,7 +2357,7 @@
 				75EB59D52461858700E077E5 /* RLMLogChooseRow.swift in Sources */,
 				75EB59CF2461858700E077E5 /* RLMLogNoteRow.swift in Sources */,
 				75EB5A26246770B000E077E5 /* SupervisorsAPIService.swift in Sources */,
-				75EB5A1B2466E7A700E077E5 /* syncSupervisorDetails.swift in Sources */,
+				75EB5A1B2466E7A700E077E5 /* syncUserAccountDetails.swift in Sources */,
 				75EB59E624618EF600E077E5 /* SyncEngine+Timer.swift in Sources */,
 				615473AD125A732468C1EFEF /* LogsNoteTableViewCell.swift in Sources */,
 				61547D87D8BB1C3CC4D8FC14 /* LogsPhotoTableViewCell.swift in Sources */,
@@ -2433,7 +2433,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2487,7 +2487,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2507,7 +2507,7 @@
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Supervisor/Supporting Files/supervisor-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2531,7 +2531,7 @@
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Supervisor/Supporting Files/supervisor-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2589,7 +2589,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -2609,7 +2609,7 @@
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Supervisor/Supporting Files/supervisor-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2633,7 +2633,7 @@
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Guardian/Supporting Files/guardian-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2657,7 +2657,7 @@
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Guardian/Supporting Files/guardian-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2681,7 +2681,7 @@
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Guardian/Supporting Files/guardian-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

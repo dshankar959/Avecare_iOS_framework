@@ -52,9 +52,9 @@ extension RLMGuardian: DataProvider {
     typealias T = RLMGuardian
 
 
-    var details: RLMGuardian? {
+    static var details: RLMGuardian? {
         if let id = appSession.userProfile.accountTypeId {
-            return self.find(withID: id)
+            return RLMGuardian().find(withID: id)
         }
 
         return nil
@@ -62,4 +62,4 @@ extension RLMGuardian: DataProvider {
 
 }
 
-typealias GuardianDetailsResponse = APIResponse<RLMGuardian>
+typealias GuardianDetailsResponse = RLMGuardian

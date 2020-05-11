@@ -44,6 +44,22 @@ extension SyncEngine {
                     }
                 }
             }
+        } else {  // guardian
+            if let institutionDetails = RLMInstitution().findAll().first {
+                OrganizationsAPIService.getOrganizationDetails(id: institutionDetails.organizationId) { [weak self] result in
+                    switch result {
+                    case .success(let details):
+                        // Update with new data.
+                        organizationsDAL.createOrUpdateAll(with: [details])
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMOrganization.className())\' items in DB: \(RLMOrganization().findAll().count)")
+                        self?.syncStates[syncKey] = .complete
+                        syncCompletion(nil)
+                    case .failure(let error):
+                        self?.syncStates[syncKey] = .complete
+                        syncCompletion(error)
+                    }
+                }
+            }
         }
 
     }

@@ -4,9 +4,8 @@ import CocoaLumberjack
 
 extension SyncEngine {
 
-    func syncDOWNsupervisorDetails(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+    func syncDOWNuserAccountDetails(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogDebug("")
-        let supervisorsDAL = RLMSupervisor()
 
         // Use function name as key.
         let syncKey = "\(#function)".removeBrackets()
@@ -23,7 +22,12 @@ extension SyncEngine {
 //            return
         }
         syncStates[syncKey] = .syncing
-        notifySyncStateChanged(message: "Syncing down 🔻 supervisor details")
+
+        if appSession.userProfile.isSupervisor {
+            notifySyncStateChanged(message: "Syncing down 🔻 supervisor details")
+        } else {
+            notifySyncStateChanged(message: "Syncing down 🔻 guardian details")
+        }
 
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor {
@@ -35,8 +39,8 @@ extension SyncEngine {
                             existingSupervisor.clean()
                         }
                         // Update with new data.
-                        supervisorsDAL.createOrUpdateAll(with: [details])
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSupervisor.className())\' items in DB: \(supervisorsDAL.findAll().count)")
+                        RLMSupervisor().createOrUpdateAll(with: [details])
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSupervisor.className())\' items in DB: \(RLMSupervisor().findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):
@@ -46,7 +50,21 @@ extension SyncEngine {
                 }
             }
         } else {  // guardian
-
+            if let guardianId = appSession.userProfile.accountTypeId {
+                GuardiansAPIService.getGuardianDetails(for: guardianId) { [weak self] result in
+                    switch result {
+                    case .success(let details):
+                        // Update with new data.
+                        RLMGuardian().createOrUpdateAll(with: [details])
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMGuardian.className())\' items in DB: \(RLMGuardian().findAll().count)")
+                        self?.syncStates[syncKey] = .complete
+                        syncCompletion(nil)
+                    case .failure(let error):
+                        self?.syncStates[syncKey] = .complete
+                        syncCompletion(error)
+                    }
+                }
+            }
         }
 
     }

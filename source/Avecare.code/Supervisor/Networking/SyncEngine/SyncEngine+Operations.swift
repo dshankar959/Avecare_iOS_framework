@@ -20,8 +20,8 @@ extension SyncEngine {
         }
 
         // Dependancy tree of sync operations.
-        self.syncDOWNsupervisorDetails() { error in
-            DDLogVerbose("syncDOWNsupervisorDetails ♓️ closure")
+        self.syncDOWNuserAccountDetails() { error in
+            DDLogVerbose("syncDOWNuserAccountDetails ♓️ closure")
             if let error = error { syncCompletion(error) } else {
                 self.syncDOWNunitDetails() { error in
                     DDLogVerbose("syncDOWNunitDetails ♓️ closure")
