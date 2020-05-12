@@ -8,7 +8,6 @@ import FirebaseCrashlytics
 class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
 
     @IBOutlet var otpField: PinView?
-    @IBOutlet weak var sendCodeButton: UIButton!
     
     var email: String?
 
@@ -17,7 +16,6 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
         super.viewDidLoad()
         otpField?.style = .box
         otpField?.delegate = self
-        sendCodeButton.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -27,10 +25,6 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
     }
 
     func inputDidFinished() {
-        sendCode()
-    }
-
-    @IBAction func sendCodeAction(sender: UIButton) {
         sendCode()
     }
 
