@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="Sfr-ZL-uS6">
-                                <rect key="frame" x="42.5" y="169" width="290" height="192.5"/>
+                                <rect key="frame" x="42.5" y="196.5" width="290" height="137.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="yEx-a2-xG7">
-                                        <rect key="frame" x="0.0" y="0.0" width="290" height="192.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="290" height="137.5"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="wuB-Iu-veR">
                                                 <rect key="frame" x="0.0" y="0.0" width="290" height="67.5"/>
@@ -41,7 +41,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="1Lj-vL-9mv">
-                                                <rect key="frame" x="0.0" y="87.5" width="290" height="105"/>
+                                                <rect key="frame" x="0.0" y="87.5" width="290" height="50"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="NNb-f7-8lI">
                                                         <rect key="frame" x="0.0" y="0.0" width="290" height="50"/>
@@ -83,14 +83,6 @@
                                                             </view>
                                                         </subviews>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o6T-Mq-kDk">
-                                                        <rect key="frame" x="0.0" y="65" width="290" height="40"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                        <state key="normal" title="Enter Code" backgroundImage="Primary"/>
-                                                        <connections>
-                                                            <action selector="sendCodeActionWithSender:" destination="IUv-yB-8nH" eventType="touchUpInside" id="Pt3-ld-r00"/>
-                                                        </connections>
-                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>

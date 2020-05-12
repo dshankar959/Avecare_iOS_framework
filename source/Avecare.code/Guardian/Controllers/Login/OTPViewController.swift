@@ -5,20 +5,30 @@ import FirebaseCrashlytics
 
 
 
-class OTPViewController: UIViewController, IndicatorProtocol {
+class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
 
     @IBOutlet var otpField: PinView?
-
+    
     var email: String?
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         otpField?.style = .box
+        otpField?.delegate = self
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let firstCell = otpField?.collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? PinCell
+        firstCell?.pinField.becomeFirstResponder()
+    }
 
-    @IBAction func sendCodeAction(sender: UIButton) {
+    func inputDidFinished() {
+        sendCode()
+    }
+
+    private func sendCode() {
         guard let email = email, let otp = otpField?.getPin() else {
             self.showErrorAlert(AuthError.emptyCredentials.message)
             return
@@ -36,8 +46,8 @@ class OTPViewController: UIViewController, IndicatorProtocol {
                 let userProfile = UserProfile(userCredentials: userCredentials)
 
                 #if !DEBUG
-                    // #Crashlytics logging
-                    Crashlytics.crashlytics().setUserID(userProfile.email)
+                // #Crashlytics logging
+                Crashlytics.crashlytics().setUserID(userProfile.email)
                 #endif
 
                 // Update any previous session, with new token.
@@ -49,7 +59,7 @@ class OTPViewController: UIViewController, IndicatorProtocol {
 
                 if appSettings.isFirstLogin() {
                     do {  // some DB defaults.
-//                        RLMLogChooseRow().clean()   // wipe rows
+                        //RLMLogChooseRow().clean()   // wipe rows
                         let data = try Data(resource: R.file.logFormRowsJson)
                         let log = try JSONDecoder().decode([RLMLogChooseRow].self, from: data)
 
@@ -78,7 +88,6 @@ class OTPViewController: UIViewController, IndicatorProtocol {
             }
         }
     }
-
 
     private func handleError(_ error: AppError) {
         DDLogError("\(error)")
