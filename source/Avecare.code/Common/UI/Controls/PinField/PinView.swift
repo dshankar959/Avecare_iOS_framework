@@ -12,7 +12,7 @@ public enum PinViewStyle: Int {
 public class PinView: UIView {
 
     // MARK: - Private Properties -
-    @IBOutlet fileprivate var collectionView: UICollectionView!
+    @IBOutlet var collectionView: UICollectionView!
     @IBOutlet fileprivate var errorView: UIView!
 
     fileprivate var flowLayout: UICollectionViewFlowLayout {
@@ -58,6 +58,8 @@ public class PinView: UIView {
 
     public var didFinishCallback: ((String) -> Void)?
     public var didChangeCallback: ((String) -> Void)?
+
+    var delegate: PinViewDelegate?
 
     // MARK: - Init methods -
     required public init?(coder aDecoder: NSCoder) {
@@ -113,20 +115,6 @@ public class PinView: UIView {
             return
         }
 
-        // check if entered text is a backspace
-        nextTag = isBackSpace() ? textField.tag - 1 : textField.tag + 1
-
-        // Try to find next responder
-        if let nextResponder = textField.superview?.superview?.superview?.superview?.viewWithTag(nextTag) as UIResponder? {
-            // Found next responder, so set it.
-            nextResponder.becomeFirstResponder()
-        } else {
-            // Not found, so dismiss keyboard
-            if index == 1 && shouldDismissKeyboardOnEmptyFirstField {
-                textField.resignFirstResponder()
-            } else if index > 1 { textField.resignFirstResponder() }
-        }
-
         // activate the placeholder if textField empty
         placeholderLabel.isHidden = !(textField.text?.isEmpty ?? true)
 
@@ -148,6 +136,23 @@ public class PinView: UIView {
             password.append(text)
         }
         validateAndSendCallback()
+
+        // check if entered text is a backspace
+        nextTag = isBackSpace() ? textField.tag - 1 : textField.tag + 1
+
+        // Try to find next responder
+        if let nextResponder = textField.superview?.superview?.superview?.superview?.viewWithTag(nextTag) as UIResponder? {
+            // Found next responder, so set it.
+            nextResponder.becomeFirstResponder()
+        } else {
+            // Not found, so dismiss keyboard
+            if index == 1 && shouldDismissKeyboardOnEmptyFirstField {
+                textField.resignFirstResponder()
+            } else if index > 1 { textField.resignFirstResponder() }
+
+            // Call delegate method
+            delegate?.inputDidFinished()
+        }
     }
 
     fileprivate func validateAndSendCallback() {
@@ -395,4 +400,8 @@ extension PinView: UITextFieldDelegate {
         }
         return true
     }
+}
+
+protocol PinViewDelegate {
+    func inputDidFinished()
 }

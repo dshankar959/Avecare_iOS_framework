@@ -111,6 +111,7 @@
                     <navigationItem key="navigationItem" id="EUx-L9-4Nd"/>
                     <connections>
                         <outlet property="otpField" destination="T6V-pw-z7M" id="RNa-Ki-dAB"/>
+                        <outlet property="sendCodeButton" destination="o6T-Mq-kDk" id="aoF-HK-bIB"/>
                         <segue destination="qeq-hO-eGc" kind="presentation" identifier="tabbar" modalPresentationStyle="fullScreen" id="kGX-dV-HCu"/>
                     </connections>
                 </viewController>

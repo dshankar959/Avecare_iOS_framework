@@ -29,3 +29,7 @@ class PinField: UITextField {
         }
     }
 }
+
+class PinCell: UICollectionViewCell {
+    @IBOutlet weak var pinField: PinField!
+}
