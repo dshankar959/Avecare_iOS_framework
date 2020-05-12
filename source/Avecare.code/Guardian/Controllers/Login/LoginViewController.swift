@@ -2,11 +2,13 @@ import Foundation
 import UIKit
 import CocoaLumberjack
 import SegueManager
-
+import FontAwesome_swift
 
 
 class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 
+    @IBOutlet weak var snowflakeIconLabel: UILabel!
+    @IBOutlet weak var snowflakeTitleLabel: UILabel!
     @IBOutlet var loginField: UITextField?
 
     lazy var segueManager: SegueManager = {
@@ -20,6 +22,20 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 //        #if DEBUG
         loginField?.text = "guardian@example.net"
 //        #endif
+
+        snowflakeIconLabel.font = UIFont(name: "FontAwesome5Pro-Light", size: 24)
+        snowflakeIconLabel.text = "\u{f2dc}"
+        snowflakeTitleLabel.text = "Avecare"
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 
 

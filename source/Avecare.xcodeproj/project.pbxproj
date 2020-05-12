@@ -83,7 +83,6 @@
 		61547B5F3DA78E231495AA48 /* UserListFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615475FB8B74A0DD8CC54397 /* UserListFlowLayout.swift */; };
 		61547B7AB691E28FECCD6B86 /* SubjectsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */; };
 		61547BBDB5DA4D4A37131C56 /* StoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615472A224CB134D0BEA6A29 /* StoriesTableViewCell.swift */; };
-		61547BE1DBE11AFB4D0BBCFA /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6154782C95BCF97A3312C8C7 /* PinView.xib */; };
 		61547C0509099E6F3B183060 /* SubjectPickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 615474A9174670CCD2249C23 /* SubjectPickerViewController.storyboard */; };
 		61547C05AA5DE58BB809E4C6 /* SupervisorFilterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154753357285683E03E2515 /* SupervisorFilterTableViewCell.swift */; };
 		61547C7098FB4A48FF8B56DC /* RLMSupervisor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547267EB7BC5F4558F3B70 /* RLMSupervisor.swift */; };
@@ -101,7 +100,6 @@
 		61547F33A9EB29594609704E /* HomeTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547160F43F25A27CE46875 /* HomeTableViewHeaderView.xib */; };
 		61547F3E0A42C0F4AAB76F51 /* placeholders.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6154764E6D3C3E9178996C56 /* placeholders.strings */; };
 		61547F44C319932DE7A455BA /* StoriesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154717A69B557EB291B8570 /* StoriesDetailsViewController.swift */; };
-		61547F57F7FF7710536AA0C1 /* PinCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 615470873B9A27A75C1AC0FC /* PinCell.xib */; };
 		61547F86427E44844CC9DC71 /* SubjectListDataProvider+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477C6C7DC9B6372B7ACC6 /* SubjectListDataProvider+Common.swift */; };
 		6A216CA06A17B11A8377AD9C /* Pods_educator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */; };
 		754E1EA52436505300C8FD30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 754E1EA42436505300C8FD30 /* GoogleService-Info.plist */; };
@@ -294,6 +292,7 @@
 		75EB5A2D2467A21600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A2C2467A21600E077E5 /* SyncEngine+Operations.swift */; };
 		75EB5A312467A26600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */; };
 		DA3FE2DB8C4BA18334A1EB22 /* Pods_parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */; };
+		DC70F062246B436800FFD262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
 		F65549F424564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */; };
 		F65549F524564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */; };
 		F65549F624564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549F024564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf */; };
@@ -347,7 +346,6 @@
 		F6A5E1552444DF5400FD77B6 /* ImageStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154797C8F550C18F3AB7FBF /* ImageStorageService.swift */; };
 		F6B7F28F24254DBF003E16AE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B7F28E24254DBF003E16AE /* LoginViewController.swift */; };
 		F6B7F29124254EA6003E16AE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6B7F29024254EA6003E16AE /* Login.storyboard */; };
-		F6DBA7F124295A94006C83E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
 		F6DBA7F224295A94006C83E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
@@ -1775,6 +1773,7 @@
 			files = (
 				F67DF813241BFE6800793A9C /* SubjectDetailsPickerView.xib in Resources */,
 				75886DF7241932BA0079C080 /* DefaultCellView.xib in Resources */,
+				DC70F062246B436800FFD262 /* Assets.xcassets in Resources */,
 				F67DF82F241C004700793A9C /* Logs.json in Resources */,
 				F65549FA24564F2100574872 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
 				F67DF812241BFE6800793A9C /* SubjectDetailsSegmentView.xib in Resources */,
@@ -1800,7 +1799,6 @@
 				F65549F624564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf in Resources */,
 				F67DF81B241BFE6800793A9C /* InfoMessageFormView.xib in Resources */,
 				299B3589241F907E00D6F9A5 /* FormPhotoView.xib in Resources */,
-				F6DBA7F124295A94006C83E7 /* Assets.xcassets in Resources */,
 				F67DF824241BFE6800793A9C /* PickerViewFormView.xib in Resources */,
 				75886DF4241932BA0079C080 /* supervisor.storyboard in Resources */,
 				29A6D542245450D100D7DB87 /* SupervisorOnly.xcassets in Resources */,
@@ -1815,8 +1813,6 @@
 				61547F3E0A42C0F4AAB76F51 /* placeholders.strings in Resources */,
 				6154774154B2A757866945C1 /* LogFormRows.json in Resources */,
 				6154769C2EB5AE3A9AF2AD45 /* TimeRangePickerView.xib in Resources */,
-				61547BE1DBE11AFB4D0BBCFA /* PinView.xib in Resources */,
-				61547F57F7FF7710536AA0C1 /* PinCell.xib in Resources */,
 				615478E332EE63F3AF019CA9 /* StoriesTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -4,11 +4,12 @@ import CocoaLumberjack
 import FirebaseCrashlytics
 
 
-
 class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
 
+    @IBOutlet weak var snowflakeIconLabel: UILabel!
+    @IBOutlet weak var snowflakeTitleLabel: UILabel!
     @IBOutlet var otpField: PinView?
-    
+
     var email: String?
 
 
@@ -16,6 +17,10 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
         super.viewDidLoad()
         otpField?.style = .box
         otpField?.delegate = self
+
+        snowflakeIconLabel.font = UIFont(name: "FontAwesome5Pro-Light", size: 24)
+        snowflakeIconLabel.text = "\u{f2dc}"
+        snowflakeTitleLabel.text = "Avecare"
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -24,6 +29,10 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
         firstCell?.pinField.becomeFirstResponder()
     }
 
+    @IBAction func requestCodeAgain(_ sender: UIButton) {
+
+    }
+    
     func inputDidFinished() {
         sendCode()
     }
