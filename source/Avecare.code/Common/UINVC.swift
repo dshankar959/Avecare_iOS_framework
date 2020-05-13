@@ -69,7 +69,7 @@ class UINVC: UINavigationController {
 */
 
     deinit {
-        DDLogWarn("\(self)")
+        DDLogWarn("⚠️")
     }
 
     override open func didReceiveMemoryWarning() {
@@ -77,36 +77,4 @@ class UINVC: UINavigationController {
         DDLogError("")
     }
 
-}
-
-
-// https://stackoverflow.com/questions/12904410/completion-block-for-popviewcontroller
-extension UINavigationController {
-    func pushToViewController(_ viewController: UIViewController, animated: Bool = true, completion: @escaping () -> Void) {
-        CATransaction.begin()
-        CATransaction.setCompletionBlock(completion)
-        self.pushViewController(viewController, animated: animated)
-        CATransaction.commit()
-    }
-
-    func popViewController(animated: Bool = true, completion: @escaping () -> Void) {
-        CATransaction.begin()
-        CATransaction.setCompletionBlock(completion)
-        self.popViewController(animated: true)
-        CATransaction.commit()
-    }
-
-    func popToViewController(_ viewController: UIViewController, animated: Bool = true, completion: @escaping () -> Void) {
-        CATransaction.begin()
-        CATransaction.setCompletionBlock(completion)
-        self.popToViewController(viewController, animated: animated)
-        CATransaction.commit()
-    }
-
-    func popToRootViewController(animated: Bool = true, completion: @escaping () -> Void) {
-        CATransaction.begin()
-        CATransaction.setCompletionBlock(completion)
-        self.popToRootViewController(animated: animated)
-        CATransaction.commit()
-    }
 }

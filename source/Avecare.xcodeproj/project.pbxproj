@@ -110,6 +110,8 @@
 		755EAEC2241AC6CC00A6BA4D /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEB9241AC6CC00A6BA4D /* DataProvider.swift */; };
 		755EAEC3241AC6CC00A6BA4D /* DatabaseLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEBA241AC6CC00A6BA4D /* DatabaseLayer.swift */; };
 		755EAEC4241AC6CC00A6BA4D /* DatabaseLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEBA241AC6CC00A6BA4D /* DatabaseLayer.swift */; };
+		75716F84246B9F28002B049C /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75716F83246B9F28002B049C /* UINavigationController.swift */; };
+		75716F85246B9F28002B049C /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75716F83246B9F28002B049C /* UINavigationController.swift */; };
 		75886D0C2419327F0079C080 /* AvecareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886CC92419327F0079C080 /* AvecareAPI.swift */; };
 		75886D0D2419327F0079C080 /* AvecareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886CC92419327F0079C080 /* AvecareAPI.swift */; };
 		75886D0E2419327F0079C080 /* AvecareAPI+sampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886CCA2419327F0079C080 /* AvecareAPI+sampleData.swift */; };
@@ -449,6 +451,7 @@
 		755EAEA9241ABB6900A6BA4D /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		755EAEB9241AC6CC00A6BA4D /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		755EAEBA241AC6CC00A6BA4D /* DatabaseLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseLayer.swift; sourceTree = "<group>"; };
+		75716F83246B9F28002B049C /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		7587162C23DB928300CD262A /* educator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = educator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75886CC92419327F0079C080 /* AvecareAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvecareAPI.swift; sourceTree = "<group>"; };
 		75886CCA2419327F0079C080 /* AvecareAPI+sampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AvecareAPI+sampleData.swift"; sourceTree = "<group>"; };
@@ -1163,6 +1166,7 @@
 				75886CF02419327F0079C080 /* UIColor.swift */,
 				75886CF32419327F0079C080 /* UIDevice.swift */,
 				75886CEE2419327F0079C080 /* UIImage+Tint.swift */,
+				75716F83246B9F28002B049C /* UINavigationController.swift */,
 				75886CF42419327F0079C080 /* UITableViewCell.swift */,
 				75886CED2419327F0079C080 /* UIView.swift */,
 				75886CF82419327F0079C080 /* UIViewController.swift */,
@@ -2219,6 +2223,7 @@
 				61547AB56925D866968908B6 /* RemindersFormProvider.swift in Sources */,
 				61547E52DF293A83AFAA7AEE /* SingleValuePickerView.swift in Sources */,
 				615472276757D8935A85913D /* UnitReminder.swift in Sources */,
+				75716F84246B9F28002B049C /* UINavigationController.swift in Sources */,
 				75EB59D22461858700E077E5 /* RLMLogRow.swift in Sources */,
 				615470CD0BE320D452F569D3 /* Closure.swift in Sources */,
 				61547B3AF808AF602764D88A /* RealmDetachable.swift in Sources */,
@@ -2318,6 +2323,7 @@
 				75886E00241932CC0079C080 /* Theme.swift in Sources */,
 				F6A5E13D2444DE8D00FD77B6 /* SingleValuePickerView.swift in Sources */,
 				75886D1B2419327F0079C080 /* Servers.swift in Sources */,
+				75716F85246B9F28002B049C /* UINavigationController.swift in Sources */,
 				75886D632419327F0079C080 /* UserKeychainService.swift in Sources */,
 				75886D8B241932AB0079C080 /* SubjectListViewController.swift in Sources */,
 				755EAEC4241AC6CC00A6BA4D /* DatabaseLayer.swift in Sources */,

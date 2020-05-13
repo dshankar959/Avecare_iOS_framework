@@ -4,6 +4,7 @@ import CocoaLumberjack
 import FirebaseCrashlytics
 
 
+
 class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
 
     @IBOutlet weak var snowflakeIconLabel: UILabel!
@@ -21,7 +22,10 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
         snowflakeIconLabel.font = UIFont(name: "FontAwesome5Pro-Light", size: 24)
         snowflakeIconLabel.text = "\u{f2dc}"
         snowflakeTitleLabel.text = "Avecare"
+
+        self.navigationController?.hideHairline()
     }
+
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -29,13 +33,39 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
         firstCell?.pinField.becomeFirstResponder()
     }
 
-    @IBAction func requestCodeAgain(_ sender: UIButton) {
 
+    @IBAction func requestCodeAgain(_ sender: UIButton) {
+        otpField?.clearPin()
+
+        guard let email = email else {
+            self.showErrorAlert(AuthError.emptyCredentials.message)
+            return
+        }
+        showActivityIndicator(withStatus: "Requesting one-time password ...")
+
+        // otp redo
+        UserAPIService.requestOTP(email: email) { [weak self] result in
+            self?.hideActivityIndicator()
+
+            switch result {
+            case .success(let message):
+                DDLogVerbose("Successful re-request of OTP.  ✅  [withMessage = \(message)]")
+                self?.showSuccessIndicator(withStatus: "New one-time password re-sent. 🔢")
+
+                let firstCell = self?.otpField?.collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? PinCell
+                firstCell?.pinField.becomeFirstResponder()
+
+            case .failure(let error):
+                self?.handleError(error)
+            }
+        }
     }
-    
+
+
     func inputDidFinished() {
         sendCode()
     }
+
 
     private func sendCode() {
         guard let email = email, let otp = otpField?.getPin() else {
@@ -98,6 +128,7 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
         }
     }
 
+
     private func handleError(_ error: AppError) {
         DDLogError("\(error)")
         self.showErrorAlert(error)
@@ -143,7 +174,7 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
 
 
     deinit {
-        DDLogWarn("\(self)")
+        DDLogWarn("")
     }
 
 }
