@@ -11,12 +11,15 @@ class RLMSupervisor: RLMDefaults {
     @objc dynamic var lastName: String = ""
     @objc dynamic var bio: String = ""
     @objc dynamic var primaryUnitId: String = ""
-    @objc dynamic private var profilePhoto: String = ""
+    @objc dynamic private var profilePhoto: String? = nil
 
     var educationalBackground = List<RLMEducation>()
 
     var profilePhotoURL: URL? {
-        return URL(string: profilePhoto)
+        if let photoURL = profilePhoto {
+            return URL(string: photoURL)
+        }
+        return nil
     }
 
 
@@ -46,7 +49,7 @@ class RLMSupervisor: RLMDefaults {
             self.bio = try values.decode(String.self, forKey: .bio)
             self.educationalBackground = try values.decode(List<RLMEducation>.self, forKey: .educationalBackground)
             self.primaryUnitId = try values.decode(String.self, forKey: .primaryUnitId)
-            self.profilePhoto = try values.decode(String.self, forKey: .profilePhoto)
+            self.profilePhoto = try values.decodeIfPresent(String.self, forKey: .profilePhoto)
 
         } catch {
             DDLogError("JSON Decoding error = \(error)")
