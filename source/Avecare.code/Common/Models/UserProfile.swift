@@ -8,7 +8,7 @@ struct UserProfile: Codable {
         return accountInfo?.accountType
     }
 
-    var accountTypeId: Int? {
+    var accountTypeId: String? {
         let accountInfo = RLMAccountInfo().findAll().first
         return accountInfo?.id
     }

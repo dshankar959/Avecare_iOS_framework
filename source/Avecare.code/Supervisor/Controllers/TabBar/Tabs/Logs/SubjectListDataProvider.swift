@@ -51,7 +51,7 @@ protocol SubjectListDataProviderDelegate: UIViewController, CustomResponderProvi
 
 class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
-    private var selectedId: Int?
+    private var selectedId: String?
     var delegate: SubjectListDataProviderDelegate?
 
 //    private var dataSource: Results<RLMSubject>?

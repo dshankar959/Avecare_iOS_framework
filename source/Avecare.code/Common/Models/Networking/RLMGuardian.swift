@@ -3,9 +3,8 @@ import RealmSwift
 
 
 
-class RLMGuardian: Object, Decodable {
+class RLMGuardian: RLMDefaults {
 
-    @objc dynamic var id: Int = -1
     @objc dynamic var isActive: Bool = true
     @objc dynamic var homePhoneNumber: String = ""
     @objc dynamic var workPhoneNumber: String = ""
@@ -13,7 +12,6 @@ class RLMGuardian: Object, Decodable {
 
 
     enum CodingKeys: String, CodingKey {
-        case id
         case isActive
         case homePhoneNumber
         case workPhoneNumber
@@ -22,14 +20,12 @@ class RLMGuardian: Object, Decodable {
 
     convenience required init(from decoder: Decoder) throws {
         self.init()
-        try self.decode(from: decoder)
-    }
 
-    func decode(from decoder: Decoder) throws {
         do {
+            try self.decode(from: decoder)  // call base class for defaults.
+
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
-            self.id = try values.decode(Int.self, forKey: .id)
             self.isActive = try values.decode(Bool.self, forKey: .isActive)
             self.homePhoneNumber = try values.decode(String.self, forKey: .homePhoneNumber)
             self.workPhoneNumber = try values.decode(String.self, forKey: .workPhoneNumber)
@@ -39,10 +35,6 @@ class RLMGuardian: Object, Decodable {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")
         }
-    }
-
-    override class func primaryKey() -> String? {
-        return "id"
     }
 
 }

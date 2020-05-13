@@ -7,7 +7,7 @@ struct APIResponse<T: Decodable>: Decodable {
 }
 
 
-struct APIListResponse<T: Decodable>: Decodable {
+struct APIPaginatedResponse<T: Decodable>: Decodable {
 
     let count: Int
     let next: String?

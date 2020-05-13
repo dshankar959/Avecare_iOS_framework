@@ -5,7 +5,7 @@ import CocoaLumberjack
 
 struct GuardiansAPIService {
 
-    static func getGuardianDetails(for guardianId: Int,
+    static func getGuardianDetails(for guardianId: String,
                                    completion: @escaping (Result<RLMGuardian, AppError>) -> Void) {
         DDLogDebug("")
 
@@ -26,7 +26,7 @@ struct GuardiansAPIService {
     }
 
 
-    static func getSubjects(for guardianId: Int,
+    static func getSubjects(for guardianId: String,
                             completion: @escaping (Result<[RLMSubject], AppError>) -> Void) {
         DDLogDebug("")
 

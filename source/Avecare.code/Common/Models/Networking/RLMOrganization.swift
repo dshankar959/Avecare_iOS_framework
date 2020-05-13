@@ -3,27 +3,23 @@ import RealmSwift
 
 
 
-class RLMOrganization: Object, Decodable {
+class RLMOrganization: RLMDefaults {
 
-    @objc dynamic var id: Int = -1
     @objc dynamic var name: String = ""
 
 
     enum CodingKeys: String, CodingKey {
-        case id
         case name
     }
 
     convenience required init(from decoder: Decoder) throws {
         self.init()
-        try self.decode(from: decoder)
-    }
 
-    func decode(from decoder: Decoder) throws {
         do {
+            try self.decode(from: decoder)  // call base class for defaults.
+
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
-            self.id = try values.decode(Int.self, forKey: .id)
             self.name = try values.decode(String.self, forKey: .name)
 
         } catch {
@@ -31,11 +27,6 @@ class RLMOrganization: Object, Decodable {
             fatalError("JSON Decoding error = \(error)")
         }
     }
-
-    override class func primaryKey() -> String? {
-        return "id"
-    }
-
 
 }
 

@@ -3,30 +3,26 @@ import RealmSwift
 
 
 
-class RLMUnit: Object, Decodable {
+class RLMUnit: RLMDefaults {
 
-    @objc dynamic var id: Int = -1
-    @objc dynamic var institutionId: Int = -1
+    @objc dynamic var institutionId: String = ""
     @objc dynamic var name: String = ""
 
 
     enum CodingKeys: String, CodingKey {
-        case id
         case institutionId
         case name
     }
 
     convenience required init(from decoder: Decoder) throws {
         self.init()
-        try self.decode(from: decoder)
-    }
 
-    func decode(from decoder: Decoder) throws {
         do {
+            try self.decode(from: decoder)  // call base class for defaults.
+
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
-            self.id = try values.decode(Int.self, forKey: .id)
-            self.institutionId = try values.decode(Int.self, forKey: .institutionId)
+            self.institutionId = try values.decode(String.self, forKey: .institutionId)
             self.name = try values.decode(String.self, forKey: .name)
 
         } catch {
@@ -35,18 +31,13 @@ class RLMUnit: Object, Decodable {
         }
     }
 
-    override class func primaryKey() -> String? {
-        return "id"
-    }
-
-
 }
 
 
 extension RLMUnit: DataProvider {
     typealias T = RLMUnit
 
-    static func details(for unitId: Int) -> RLMUnit? {
+    static func details(for unitId: String) -> RLMUnit? {
         return RLMUnit().find(withID: unitId)
     }
 

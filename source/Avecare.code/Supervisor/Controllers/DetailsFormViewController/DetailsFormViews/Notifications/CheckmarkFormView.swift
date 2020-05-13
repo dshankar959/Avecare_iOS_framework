@@ -4,10 +4,10 @@ import UIKit
 struct CheckmarkFormViewModel: CellViewModel {
     typealias CellType = CheckmarkFormView
 
-    let id: Int
+    let id: String
     let title: String
     let isChecked: Bool
-    let onClick: ((Int) -> Void)?
+    let onClick: ((String) -> Void)?
 
     func setup(cell: CellType) {
         cell.index = id

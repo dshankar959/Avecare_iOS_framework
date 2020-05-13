@@ -3,7 +3,7 @@ import CocoaLumberjack
 struct APIToken: Decodable {
 
     let accountType: String
-    let accountTypeId: Int
+    let accountTypeId: String
     let accessToken: String
 
     var isFake: Bool = false
@@ -20,7 +20,7 @@ struct APIToken: Decodable {
         case accessToken = "token"
     }
 
-    init(withToken: String = "", accountType: String = "", accountTypeId: Int = -1, isFakeToken: Bool = false) {
+    init(withToken: String = "", accountType: String = "", accountTypeId: String = "", isFakeToken: Bool = false) {
         self.accountType = accountType
         self.accountTypeId = accountTypeId
         self.accessToken = withToken

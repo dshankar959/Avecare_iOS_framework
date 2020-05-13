@@ -3,11 +3,10 @@ import RealmSwift
 
 
 
-class RLMInstitution: Object, Decodable {
+class RLMInstitution: RLMDefaults {
 
-    @objc dynamic var id: Int = -1
     @objc dynamic var isActive: Bool = true
-    @objc dynamic var organizationId: Int = -1
+    @objc dynamic var organizationId: String = ""
     @objc dynamic var name: String = ""
     @objc dynamic private var mealPlan: String? = nil
     @objc dynamic private var activities: String? = nil
@@ -22,7 +21,6 @@ class RLMInstitution: Object, Decodable {
 
 
     enum CodingKeys: String, CodingKey {
-        case id
         case isActive
         case organizationId
         case name
@@ -32,16 +30,14 @@ class RLMInstitution: Object, Decodable {
 
     convenience required init(from decoder: Decoder) throws {
         self.init()
-        try self.decode(from: decoder)
-    }
 
-    func decode(from decoder: Decoder) throws {
         do {
+            try self.decode(from: decoder)  // call base class for defaults.
+
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
-            self.id = try values.decode(Int.self, forKey: .id)
             self.isActive = try values.decode(Bool.self, forKey: .isActive)
-            self.organizationId = try values.decode(Int.self, forKey: .organizationId)
+            self.organizationId = try values.decode(String.self, forKey: .organizationId)
             self.name = try values.decode(String.self, forKey: .name)
             self.mealPlan = try values.decodeIfPresent(String.self, forKey: .mealPlan)
             self.activities = try values.decodeIfPresent(String.self, forKey: .activities)
@@ -52,17 +48,13 @@ class RLMInstitution: Object, Decodable {
         }
     }
 
-    override class func primaryKey() -> String? {
-        return "id"
-    }
-
 }
 
 
 extension RLMInstitution: DataProvider {
     typealias T = RLMInstitution
 
-    static func details(for institutionId: Int) -> RLMInstitution? {
+    static func details(for institutionId: String) -> RLMInstitution? {
         return RLMInstitution().find(withID: institutionId)
     }
 

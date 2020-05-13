@@ -5,7 +5,7 @@ import CocoaLumberjack
 
 struct SupervisorsAPIService {
 
-    static func getSupervisorDetails(for supervisorId: Int,
+    static func getSupervisorDetails(for supervisorId: String,
                                      completion: @escaping (Result<RLMSupervisor, AppError>) -> Void) {
         DDLogDebug("")
 

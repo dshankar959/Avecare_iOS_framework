@@ -3,11 +3,11 @@ import Foundation
 
 struct DailyTask: Codable {
     struct Complete: Codable {
-        let id: Int
+        let id: String
         let completed: Bool
     }
 
-    let id: Int
+    let id: String
     let description: String
 
 

@@ -236,6 +236,8 @@
 		75886E00241932CC0079C080 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DFE241932CC0079C080 /* Theme.swift */; };
 		75D62235245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
 		75D62236245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
+		75E2EBFA246C1DDD00A3D51F /* RLMDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */; };
+		75E2EBFB246C1DDD00A3D51F /* RLMDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */; };
 		75EB59C02461858700E077E5 /* RLMLogTimeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59B22461858700E077E5 /* RLMLogTimeRow.swift */; };
 		75EB59C12461858700E077E5 /* RLMLogTimeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59B22461858700E077E5 /* RLMLogTimeRow.swift */; };
 		75EB59C22461858700E077E5 /* RLMLogOptionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59B32461858700E077E5 /* RLMLogOptionRow.swift */; };
@@ -540,6 +542,7 @@
 		75886DD0241932BA0079C080 /* LeftSideNavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftSideNavigationBarView.xib; sourceTree = "<group>"; };
 		75886DFE241932CC0079C080 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		75D62234245B14480032F53D /* RLMInstitution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMInstitution.swift; sourceTree = "<group>"; };
+		75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMDefaults.swift; sourceTree = "<group>"; };
 		75EB59B22461858700E077E5 /* RLMLogTimeRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMLogTimeRow.swift; sourceTree = "<group>"; };
 		75EB59B32461858700E077E5 /* RLMLogOptionRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMLogOptionRow.swift; sourceTree = "<group>"; };
 		75EB59B42461858700E077E5 /* FormRowIconProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormRowIconProtocol.swift; sourceTree = "<group>"; };
@@ -1502,6 +1505,7 @@
 		75EB59B02461858700E077E5 /* RealmModels */ = {
 			isa = PBXGroup;
 			children = (
+				75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */,
 				75EB59BE2461858700E077E5 /* RLMCleanable.swift */,
 				75EB59B12461858700E077E5 /* FormRows */,
 				75EB59BA2461858700E077E5 /* RLMForm.swift */,
@@ -2131,6 +2135,7 @@
 				75886D2C2419327F0079C080 /* AppError.swift in Sources */,
 				75886D4C2419327F0079C080 /* Dictionary.swift in Sources */,
 				75EB5A142466791A00E077E5 /* UserCredentials.swift in Sources */,
+				75E2EBFA246C1DDD00A3D51F /* RLMDefaults.swift in Sources */,
 				75886DEB241932BA0079C080 /* LogsSideViewController.swift in Sources */,
 				75886DFF241932CC0079C080 /* Theme.swift in Sources */,
 				75886DF2241932BA0079C080 /* SupervisorTabBarController.swift in Sources */,
@@ -2359,6 +2364,7 @@
 				75EB59D52461858700E077E5 /* RLMLogChooseRow.swift in Sources */,
 				75EB59CF2461858700E077E5 /* RLMLogNoteRow.swift in Sources */,
 				75EB5A26246770B000E077E5 /* SupervisorsAPIService.swift in Sources */,
+				75E2EBFB246C1DDD00A3D51F /* RLMDefaults.swift in Sources */,
 				75EB5A1B2466E7A700E077E5 /* syncUserAccountDetails.swift in Sources */,
 				75EB59E624618EF600E077E5 /* SyncEngine+Timer.swift in Sources */,
 				615473AD125A732468C1EFEF /* LogsNoteTableViewCell.swift in Sources */,

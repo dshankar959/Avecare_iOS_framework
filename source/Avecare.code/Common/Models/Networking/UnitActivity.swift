@@ -2,14 +2,14 @@ import Foundation
 
 
 struct CreateUnitActivityRequest: Codable {
-    let activityId: Int
+    let activityId: String
     let date: Date
     let instructions: String
 }
 
 
 struct UnitActivity: Codable, CustomStringConvertible, SingleValuePickerItem {
-    let id: Int
+    let id: String
     let description: String
     let isActive: Bool
 }

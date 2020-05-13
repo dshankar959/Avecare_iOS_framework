@@ -18,7 +18,7 @@ class ChecklistFormProvider {
     }
     var state = State.new
 
-    var completedTasks = Set<Int>()
+    var completedTasks = Set<String>()
 
     let indexPath: IndexPath
     weak var delegate: NotificationTypeDataProviderDelegate?
@@ -27,7 +27,7 @@ class ChecklistFormProvider {
         self.indexPath = indexPath
     }
 
-    func completeTask(_ id: Int) {
+    func completeTask(_ id: String) {
         if completedTasks.contains(id) {
             completedTasks.remove(id)
         } else {

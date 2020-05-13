@@ -50,39 +50,39 @@ enum AvecareAPI { // API Services
     // MARK: - ACCOUNTS
     case accountInfo
     // MARK: - GUARDIANS
-    case guardianDetails(id: Int)
-//    case guardianFeed(id: Int)
-//    case guardianLogs(id: Int)
-    case guardianSubjects(id: Int)
+    case guardianDetails(id: String)
+//    case guardianFeed(id: String)
+//    case guardianLogs(id: String)
+    case guardianSubjects(id: String)
     // MARK: - INSTITUTIONS
-    case institutionDetails(id: Int)
-//    case institutionUnits(id: Int)
+    case institutionDetails(id: String)
+//    case institutionUnits(id: String)
     // MARK: - ORGANIZATION
 //    case organizationList
-    case organizationDetails(id: Int)
-    case organizationDailyTemplates(id: Int)
-//    case organizationInstitutions(id: Int)
-    case organizationSubjectTypes(id: Int)
+    case organizationDetails(id: String)
+    case organizationDailyTemplates(id: String)
+//    case organizationInstitutions(id: String)
+    case organizationSubjectTypes(id: String)
     // MARK: - SUBJECTS
-//    case subjectInjuries(id: Int)
-//    case subjectCreateLogs(id: Int)
+//    case subjectInjuries(id: String)
+//    case subjectCreateLogs(id: String)
     // MARK: - SUPERVISORS
-    case supervisorDetails(id: Int)
+    case supervisorDetails(id: String)
     // MARK: - STORIES
-    case unitStories(id: Int)
-    case storyDetails(id: Int)
+    case unitStories(id: String)
+    case storyDetails(id: String)
     // MARK: - UNITS
-    case unitDetails(id: Int)
-    case unitActivities(id: Int)
-    case unitCreateActivity(id: Int, request: CreateUnitActivityRequest)
-    case unitDailyTasks(id: Int)
-    case unitPublishDailyTasks(id: Int, request: DailyTaskRequest)
-    case unitInjuries(id: Int)
-    case unitCreateInjury(id: Int)
-    case unitReminders(id: Int)
-    case unitCreateReminder(id: Int)
-    case unitSubjects(id: Int)
-    case unitSupervisors(id: Int)
+    case unitDetails(id: String)
+    case unitActivities(id: String)
+    case unitCreateActivity(id: String, request: CreateUnitActivityRequest)
+    case unitDailyTasks(id: String)
+    case unitPublishDailyTasks(id: String, request: DailyTaskRequest)
+    case unitInjuries(id: String)
+    case unitCreateInjury(id: String)
+    case unitReminders(id: String)
+    case unitCreateReminder(id: String)
+    case unitSubjects(id: String)
+    case unitSupervisors(id: String)
 
 }
 

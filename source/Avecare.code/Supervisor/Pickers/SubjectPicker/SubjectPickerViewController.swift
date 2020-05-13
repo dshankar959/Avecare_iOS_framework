@@ -23,7 +23,7 @@ class SubjectPickerViewController: UIViewController {
         return RLMSubject().findAll(sortedBy: "firstName")
     }()
 
-    var selectedIds = Set<Int>()
+    var selectedIds = Set<String>()
 
     var isSelectedAll: Bool {
         return dataSource.count == selectedIds.count

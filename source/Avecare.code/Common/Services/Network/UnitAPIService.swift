@@ -5,7 +5,7 @@ import CocoaLumberjack
 
 struct UnitAPIService {
 
-    static func getUnitDetails(unitId: Int,
+    static func getUnitDetails(unitId: String,
                                completion: @escaping (Result<RLMUnit, AppError>) -> Void) {
         DDLogDebug("")
 
@@ -28,7 +28,7 @@ struct UnitAPIService {
     }
 
 
-    static func getDailyTasks(unitId: Int,
+    static func getDailyTasks(unitId: String,
                               completion: @escaping (Result<[DailyTask], AppError>) -> Void) {
         DDLogDebug("")
 
@@ -49,7 +49,7 @@ struct UnitAPIService {
     }
 
 
-    static func getSubjects(unitId: Int,
+    static func getSubjects(unitId: String,
                             completion: @escaping (Result<[RLMSubject], AppError>) -> Void) {
         DDLogDebug("")
 
@@ -73,7 +73,7 @@ struct UnitAPIService {
     }
 
 
-    static func getActivities(unitId: Int,
+    static func getActivities(unitId: String,
                               completion: @escaping (Result<[UnitActivity], AppError>) -> Void) {
         DDLogDebug("")
 
@@ -95,7 +95,7 @@ struct UnitAPIService {
     }
 
 
-    static func getReminders(unitId: Int,
+    static func getReminders(unitId: String,
                              completion: @escaping (Result<[UnitReminder], AppError>) -> Void) {
         DDLogDebug("")
 

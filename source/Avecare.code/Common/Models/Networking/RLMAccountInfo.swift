@@ -3,27 +3,23 @@ import RealmSwift
 
 
 
-class RLMAccountInfo: Object, Decodable {
+class RLMAccountInfo: RLMDefaults {
 
-    @objc dynamic var id: Int = -1
     @objc dynamic var accountType: String? = nil
 
 
     enum CodingKeys: String, CodingKey {
-        case id = "accountTypeId"
         case accountType
     }
 
     convenience required init(from decoder: Decoder) throws {
         self.init()
-        try self.decode(from: decoder)
-    }
 
-    func decode(from decoder: Decoder) throws {
         do {
+            try self.decode(from: decoder)  // call base class for defaults.
+
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
-            self.id = try values.decode(Int.self, forKey: .id)
             self.accountType = try values.decodeIfPresent(String.self, forKey: .accountType)
 
         } catch {
@@ -32,11 +28,6 @@ class RLMAccountInfo: Object, Decodable {
         }
     }
 
-    override class func primaryKey() -> String? {
-        return "id"
-    }
-
-
 }
 
 
@@ -44,7 +35,7 @@ extension RLMAccountInfo: DataProvider {
     typealias T = RLMAccountInfo
 
 
-    static func saveAccountInfo(for accountType: String, with accountTypeId: Int) {
+    static func saveAccountInfo(for accountType: String, with accountTypeId: String) {
         let accountInfo = RLMAccountInfo()
         accountInfo.accountType = accountType
         accountInfo.id = accountTypeId

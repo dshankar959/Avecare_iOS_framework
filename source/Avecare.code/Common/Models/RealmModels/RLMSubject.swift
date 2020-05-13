@@ -3,9 +3,8 @@ import RealmSwift
 
 
 
-class RLMSubject: Object, Decodable {
+class RLMSubject: RLMDefaults {
 
-    @objc dynamic var id: Int = -1
     @objc dynamic var firstName: String = ""
     @objc dynamic var middleName: String = ""
     @objc dynamic var lastName: String = ""
@@ -14,7 +13,7 @@ class RLMSubject: Object, Decodable {
     @objc dynamic var photoConsent: Bool = true
     @objc dynamic private var profilePhoto: String = ""
 
-    var unitIds = List<Int>()
+    var unitIds = List<String>()
 
     var profilePhotoURL: URL? {
         return URL(string: profilePhoto)
@@ -24,7 +23,6 @@ class RLMSubject: Object, Decodable {
 
 
     enum CodingKeys: String, CodingKey {
-        case id
         case firstName
         case middleName
         case lastName
@@ -38,14 +36,12 @@ class RLMSubject: Object, Decodable {
 
     convenience required init(from decoder: Decoder) throws {
         self.init()
-        try self.decode(from: decoder)
-    }
 
-    func decode(from decoder: Decoder) throws {
         do {
+            try self.decode(from: decoder)  // call base class for defaults.
+
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
-            self.id = try values.decode(Int.self, forKey: .id)
             self.firstName = try values.decode(String.self, forKey: .firstName)
             self.middleName = try values.decode(String.self, forKey: .middleName)
             self.lastName = try values.decode(String.self, forKey: .lastName)
@@ -53,7 +49,7 @@ class RLMSubject: Object, Decodable {
             self.subjectTypeId = try values.decode(Int.self, forKey: .subjectTypeId)
             self.photoConsent = try values.decode(Bool.self, forKey: .photoConsent)
             self.profilePhoto = try values.decode(String.self, forKey: .profilePhoto)
-            self.unitIds = try values.decode(List<Int>.self, forKey: .unitIds)
+            self.unitIds = try values.decode(List<String>.self, forKey: .unitIds)
 
         } catch {
             DDLogError("JSON Decoding error = \(error)")
@@ -61,9 +57,6 @@ class RLMSubject: Object, Decodable {
         }
     }
 
-    override class func primaryKey() -> String? {
-        return "id"
-    }
 }
 
 
