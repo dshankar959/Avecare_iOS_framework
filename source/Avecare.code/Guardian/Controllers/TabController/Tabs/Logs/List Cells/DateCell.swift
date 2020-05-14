@@ -11,6 +11,7 @@ import JTAppleCalendar
 
 class DateCell: JTACDayCell {
 
+    @IBOutlet weak var dayOfWeekLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var selectionView: UIView!
     @IBOutlet weak var hasDataView: UIView!
@@ -18,7 +19,15 @@ class DateCell: JTACDayCell {
     var hasData: Bool = false
 
     func configureCell(cellState: CellState) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E"
+        dayOfWeekLabel.text = String(dateFormatter.string(from: cellState.date).first!)
         dateLabel.text = cellState.text
+        if dayOfWeekLabel.text == "S" {
+            dayOfWeekLabel.alpha = 0.2
+        } else {
+            dayOfWeekLabel.alpha = 1
+        }
 
         selectionView.layer.cornerRadius = selectionView.frame.width / 2
         selectionView.clipsToBounds = true

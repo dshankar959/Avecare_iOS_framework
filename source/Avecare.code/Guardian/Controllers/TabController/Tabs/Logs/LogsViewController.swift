@@ -20,9 +20,9 @@ class LogsViewController: UIViewController {
         super.viewDidLoad()
 
         calendarView.scrollDirection = .horizontal
-        calendarView.scrollingMode = .stopAtEachCalendarFrame
+        calendarView.scrollingMode = .nonStopToCell(withResistance: 0.5)
         calendarView.showsHorizontalScrollIndicator = false
-        calendarView.scrollToDate(Date(), animateScroll: false)
+        calendarView.scrollToDate(Date().previous(.sunday, includingTheDate: true), animateScroll: false)
         calendarView.selectDates([Date()])
 
         tableView.register(nibModels: [
@@ -109,14 +109,15 @@ extension LogsViewController: JTACMonthViewDelegate {
 
     func scrollDidEndDecelerating(for calendar: JTACMonthView) {
         let visibleDates = calendarView.visibleDates()
-        let endDate = Date().next(.saturday, includingTheDate: true)
-        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: endDate)!.previous(.sunday, includingTheDate: true)
-        if visibleDates.monthDates.contains(where: {$0.date >= endDate}) {
-            calendarView.scrollToDate(endDate)
-            return
-        }
+        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+        let endLimitDate = Date().next(.saturday, includingTheDate: true)
+        let scrollBackDateForEndLimit = Date().previous(.sunday, includingTheDate: true)
         if visibleDates.monthDates.contains(where: {$0.date <= startDate}) {
             calendarView.scrollToDate(startDate)
+            return
+        }
+        if visibleDates.monthDates.contains(where: {$0.date >= endLimitDate}) {
+            calendarView.scrollToDate(scrollBackDateForEndLimit)
             return
         }
     }
