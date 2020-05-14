@@ -9,7 +9,7 @@ extension SubjectAccidentReportViewModel {
     }
 }
 
-extension DefaultSubjectListDataProvider {
+extension SubjectListDataProvider {
     func viewModel(for row: RLMLogInjuryRow, at indexPath: IndexPath) -> SubjectAccidentReportViewModel {
         var viewModel = SubjectAccidentReportViewModel(row: row)
 
@@ -22,7 +22,7 @@ extension DefaultSubjectListDataProvider {
             view.becomeFirstResponder()
         }, inputView: picker, onInput: { view, _ in
 
-            row.writeTransaction {
+            RLMLogInjuryRow.writeTransaction {
                 row.time = picker.date
             }
             var pickerViewModel = SubjectAccidentReportViewModel.pickerViewModel(from: picker.date)

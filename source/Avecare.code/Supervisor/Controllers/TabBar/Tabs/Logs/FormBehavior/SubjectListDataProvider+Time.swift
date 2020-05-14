@@ -11,7 +11,7 @@ extension SubjectDetailsPickerViewModel {
     }
 }
 
-extension DefaultSubjectListDataProvider {
+extension SubjectListDataProvider {
     func viewModel(for row: RLMLogTimeRow, at indexPath: IndexPath) -> SubjectDetailsPickerViewModel {
         var viewModel = SubjectDetailsPickerViewModel(row: row)
         viewModel.action = { [weak self] view in
@@ -29,7 +29,7 @@ extension DefaultSubjectListDataProvider {
         picker.updateMinMaxRange()
 
         let toolbar = defaultToolbarView(onDone: { [weak self] in
-            row.writeTransaction {
+            RLMLogTimeRow.writeTransaction {
                 row.startTime = picker.startTimePicker.date
                 row.endTime = picker.endTimePicker.date
             }

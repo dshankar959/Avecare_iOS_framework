@@ -2,7 +2,6 @@ import CocoaLumberjack
 import RealmSwift
 
 
-
 class RLMSupervisor: RLMDefaults {
 
     @objc dynamic var title: String = ""
@@ -21,7 +20,6 @@ class RLMSupervisor: RLMDefaults {
         }
         return nil
     }
-
 
     enum CodingKeys: String, CodingKey {
         case title
@@ -61,7 +59,6 @@ class RLMSupervisor: RLMDefaults {
 
 
 extension RLMSupervisor: DataProvider, RLMCleanable {
-    typealias T = RLMSupervisor
 
     func clean() {
         // clear the linked list of objects only
@@ -74,7 +71,7 @@ extension RLMSupervisor: DataProvider, RLMCleanable {
 
     static var details: RLMSupervisor? {
         if let id = appSession.userProfile.accountTypeId {
-            return RLMSupervisor().find(withID: id)
+            return RLMSupervisor.find(withID: id)
         }
 
         return nil

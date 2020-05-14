@@ -33,10 +33,8 @@ class RLMLogOptionRow: Object, Decodable, FormRowIconProtocol {
 
 
 extension RLMLogOptionRow: DataProvider, RLMCleanable {
-    typealias T = RLMLogOptionRow
-
     func clean() {
-        deleteAll(objects: Array(options))
+        RLMOptionValue.deleteAll(objects: Array(options))
         delete()
     }
 }

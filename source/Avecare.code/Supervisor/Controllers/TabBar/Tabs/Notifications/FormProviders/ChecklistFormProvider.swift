@@ -82,7 +82,9 @@ extension ChecklistFormProvider: FormProvider {
 
             models += tasks.map { task in
                 let isCompleted = completedTasks.contains(task.id) == true
-                return CheckmarkFormViewModel(id: task.id, title: task.description, isChecked: isCompleted, onClick: completeTask)
+                return CheckmarkFormViewModel(title: task.description, isChecked: isCompleted, onClick: { [weak self] in
+                    self?.completeTask(task.id)
+                })
             }
 
             return Form(viewModels: models)

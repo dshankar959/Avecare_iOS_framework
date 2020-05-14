@@ -4,12 +4,12 @@ struct UserProfile: Codable {
     var isLastSignedIn: Bool = false
 
     var accountType: String? {
-        let accountInfo = RLMAccountInfo().findAll().first
+        let accountInfo = RLMAccountInfo.findAll().first
         return accountInfo?.accountType
     }
 
     var accountTypeId: String? {
-        let accountInfo = RLMAccountInfo().findAll().first
+        let accountInfo = RLMAccountInfo.findAll().first
         return accountInfo?.id
     }
 

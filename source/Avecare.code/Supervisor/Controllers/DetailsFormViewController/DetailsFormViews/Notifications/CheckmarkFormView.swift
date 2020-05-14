@@ -4,13 +4,11 @@ import UIKit
 struct CheckmarkFormViewModel: CellViewModel {
     typealias CellType = CheckmarkFormView
 
-    let id: String
     let title: String
     let isChecked: Bool
-    let onClick: ((String) -> Void)?
+    let onClick: (() -> Void)?
 
     func setup(cell: CellType) {
-        cell.index = id
         cell.checkmarkButton.isSelected = isChecked
         cell.checkmarkButton.setTitle(title, for: .normal)
         cell.onClick = onClick
@@ -19,10 +17,9 @@ struct CheckmarkFormViewModel: CellViewModel {
 
 class CheckmarkFormView: BaseXibView {
     @IBOutlet weak var checkmarkButton: UIButton!
-    var index = 0
-    var onClick: ((Int) -> Void)?
+    var onClick: (() -> Void)?
 
     @IBAction func didClickCheckmarkButton(_ sender: UIButton) {
-        onClick?(index)
+        onClick?()
     }
 }

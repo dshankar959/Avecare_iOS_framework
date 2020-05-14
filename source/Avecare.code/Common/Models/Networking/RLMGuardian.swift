@@ -2,7 +2,6 @@ import CocoaLumberjack
 import RealmSwift
 
 
-
 class RLMGuardian: RLMDefaults {
 
     @objc dynamic var isActive: Bool = true
@@ -46,7 +45,7 @@ extension RLMGuardian: DataProvider {
 
     static var details: RLMGuardian? {
         if let id = appSession.userProfile.accountTypeId {
-            return RLMGuardian().find(withID: id)
+            return RLMGuardian.find(withID: id)
         }
 
         return nil

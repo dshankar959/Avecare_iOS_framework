@@ -52,10 +52,9 @@ class RLMInstitution: RLMDefaults {
 
 
 extension RLMInstitution: DataProvider {
-    typealias T = RLMInstitution
 
     static func details(for institutionId: String) -> RLMInstitution? {
-        return RLMInstitution().find(withID: institutionId)
+        return RLMInstitution.find(withID: institutionId)
     }
 
 

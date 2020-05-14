@@ -56,7 +56,7 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                         let log = try JSONDecoder().decode([RLMLogChooseRow].self, from: data)
 
                         // Add default rows, et al.
-                        RLMLogChooseRow().createOrUpdateAll(with: log)
+                        RLMLogChooseRow.createOrUpdateAll(with: log)
 
                     } catch {
                         DDLogError("JSON Decoding error = \(error)")

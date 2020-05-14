@@ -39,7 +39,7 @@ extension RLMAccountInfo: DataProvider {
         let accountInfo = RLMAccountInfo()
         accountInfo.accountType = accountType
         accountInfo.id = accountTypeId
-        RLMAccountInfo().createOrUpdateAll(with: [accountInfo])
+        RLMAccountInfo.createOrUpdateAll(with: [accountInfo])
     }
 
 }

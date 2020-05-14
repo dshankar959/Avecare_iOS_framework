@@ -1,16 +1,17 @@
 import Foundation
 import UIKit
+import Kingfisher
 
 struct SubjectPickerTableViewCellModel: CellViewModel {
     typealias CellType = SubjectPickerTableViewCell
 
     let isSelected: Bool
-    let photo: UIImage
+    let profilePhotoURL: URL?
     let subjectName: String
 
     func setup(cell: CellType) {
         cell.checkboxImageView.image = isSelected ? R.image.checkmark_on() : R.image.checkmark_off()
-        cell.photoImageView.image = photo
+        cell.photoImageView.kf.setImage(with: profilePhotoURL)
         cell.subjectLabel.text = subjectName
     }
 }
