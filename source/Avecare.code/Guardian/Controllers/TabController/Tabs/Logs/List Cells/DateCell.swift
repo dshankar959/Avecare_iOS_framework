@@ -1,13 +1,7 @@
-//
-//  DateCell.swift
-//  parent
-//
-//  Created by stephen on 2020-05-13.
-//  Copyright © 2020 Spiria Inc. All rights reserved.
-//
-
 import UIKit
 import JTAppleCalendar
+
+
 
 class DateCell: JTACDayCell {
 
@@ -17,6 +11,7 @@ class DateCell: JTACDayCell {
     @IBOutlet weak var hasDataView: UIView!
 
     var hasData: Bool = false
+
 
     func configureCell(cellState: CellState) {
         let dateFormatter = DateFormatter()
@@ -37,7 +32,7 @@ class DateCell: JTACDayCell {
             dateLabel.textColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         }
 
-        let dateBeforWeek = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+        let dateBeforWeek = Calendar.current.date(byAdding: .day, value: -8, to: Date())!
         if cellState.date > Date() ||
             cellState.date < dateBeforWeek ||
             dayOfWeekLabel.text == "S" {
@@ -48,6 +43,7 @@ class DateCell: JTACDayCell {
 
         hasDataView.isHidden = !hasData
     }
+
 
     private func setDateActive(isActive: Bool) {
         if isActive {
