@@ -63,11 +63,6 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
 
 
     func inputDidFinished() {
-        sendCode()
-    }
-
-
-    private func sendCode() {
         guard let email = email, let otp = otpField?.getPin() else {
             self.showErrorAlert(AuthError.emptyCredentials.message)
             return

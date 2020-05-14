@@ -3,9 +3,10 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -19,8 +20,9 @@
             <objects>
                 <navigationController id="bch-jd-tRf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Logs" image="tab-bar-logs-icon" id="oGE-XK-RRF"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PEV-vn-SLQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="PEV-vn-SLQ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -37,11 +39,153 @@
             <objects>
                 <viewController id="VN9-Za-7jc" customClass="LogsViewController" customModule="parent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tOk-Ow-g8I">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qex-AG-1qg">
+                                <rect key="frame" x="0.0" y="0.0" width="416.5" height="30"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="sxi-ec-Fkd">
+                                <rect key="frame" x="0.0" y="0.0" width="416.5" height="30"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="PJd-Jv-V39">
+                                        <rect key="frame" x="0.0" y="6" width="59.5" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
+                                        <color key="textColor" name="CalendarHeaderText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3UC-PP-cBN">
+                                        <rect key="frame" x="59.5" y="6" width="59.5" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
+                                        <color key="textColor" name="CalendarHeaderText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="B4m-4R-KLJ">
+                                        <rect key="frame" x="119" y="6" width="59.5" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
+                                        <color key="textColor" name="CalendarHeaderText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="W" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="v9f-n4-ep4">
+                                        <rect key="frame" x="178.5" y="6" width="59.5" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
+                                        <color key="textColor" name="CalendarHeaderText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="T" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yPQ-nv-1v4">
+                                        <rect key="frame" x="238" y="6" width="59.5" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
+                                        <color key="textColor" name="CalendarHeaderText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q62-tk-Y3X">
+                                        <rect key="frame" x="297.5" y="6" width="59.5" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
+                                        <color key="textColor" name="CalendarHeaderText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="S" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="i6x-Ad-FNX">
+                                        <rect key="frame" x="357" y="6" width="59.5" height="18"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="13"/>
+                                        <color key="textColor" name="CalendarHeaderText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="mSq-xD-Hma"/>
+                                </constraints>
+                            </stackView>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZJg-De-a0j" customClass="JTACMonthView" customModule="JTAppleCalendar">
+                                <rect key="frame" x="0.0" y="30" width="414" height="60"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="J3i-ne-4u0"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QrU-ip-cnt">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dateCell" id="JdS-XM-Y6N" customClass="DateCell" customModule="parent" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dzU-Zn-OZU">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hxR-jd-5f2">
+                                                    <rect key="frame" x="10" y="10" width="30" height="30"/>
+                                                    <color key="backgroundColor" name="Main"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="6wY-Kk-OqX"/>
+                                                        <constraint firstAttribute="width" constant="30" id="sa7-U3-FzH"/>
+                                                    </constraints>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kZb-c7-eFo">
+                                                    <rect key="frame" x="7" y="15.5" width="36" height="19.5"/>
+                                                    <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="14"/>
+                                                    <color key="textColor" name="CalendarText"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5mc-fs-btx">
+                                                    <rect key="frame" x="23" y="42" width="4" height="4"/>
+                                                    <color key="backgroundColor" name="Main"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="4" id="8jz-TG-ebD"/>
+                                                        <constraint firstAttribute="height" constant="4" id="CDO-z4-nVQ"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5mc-fs-btx" firstAttribute="top" secondItem="hxR-jd-5f2" secondAttribute="bottom" constant="2" id="0Au-5F-9oC"/>
+                                                <constraint firstItem="5mc-fs-btx" firstAttribute="centerX" secondItem="dzU-Zn-OZU" secondAttribute="centerX" id="0Y0-Bo-jEd"/>
+                                                <constraint firstItem="kZb-c7-eFo" firstAttribute="centerY" secondItem="dzU-Zn-OZU" secondAttribute="centerY" id="PBx-g5-Etb"/>
+                                                <constraint firstItem="hxR-jd-5f2" firstAttribute="centerY" secondItem="dzU-Zn-OZU" secondAttribute="centerY" id="hJG-hg-Lk8"/>
+                                                <constraint firstItem="kZb-c7-eFo" firstAttribute="centerX" secondItem="dzU-Zn-OZU" secondAttribute="centerX" id="veS-ed-fDa"/>
+                                                <constraint firstItem="hxR-jd-5f2" firstAttribute="centerX" secondItem="dzU-Zn-OZU" secondAttribute="centerX" id="ypX-0s-GUu"/>
+                                            </constraints>
+                                        </collectionViewCellContentView>
+                                        <connections>
+                                            <outlet property="dateLabel" destination="kZb-c7-eFo" id="qg3-G5-Hph"/>
+                                            <outlet property="hasDataView" destination="5mc-fs-btx" id="frp-2J-vuU"/>
+                                            <outlet property="selectionView" destination="hxR-jd-5f2" id="HgJ-Ms-Stu"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="ibCalendarDataSource" destination="VN9-Za-7jc" id="OWo-Me-MlF"/>
+                                    <outlet property="ibCalendarDelegate" destination="VN9-Za-7jc" id="nRa-ae-9Up"/>
+                                </connections>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxI-6z-YWJ">
+                                <rect key="frame" x="0.0" y="90" width="414" height="40"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaa-Du-qwZ">
+                                        <rect key="frame" x="189.5" y="11.5" width="35.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" name="DarkText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="iaa-Du-qwZ" firstAttribute="centerX" secondItem="mxI-6z-YWJ" secondAttribute="centerX" id="PfN-zj-as4"/>
+                                    <constraint firstAttribute="height" constant="40" id="aPl-bh-8wb"/>
+                                    <constraint firstItem="iaa-Du-qwZ" firstAttribute="centerY" secondItem="mxI-6z-YWJ" secondAttribute="centerY" id="jLC-zQ-keB"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WvE-pV-HgB">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="138" width="414" height="587"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <color key="separatorColor" name="Background"/>
                                 <connections>
@@ -50,17 +194,39 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" name="Separator"/>
                         <constraints>
                             <constraint firstItem="WvE-pV-HgB" firstAttribute="leading" secondItem="JtS-tE-hph" secondAttribute="leading" id="1IM-Cr-Wfz"/>
+                            <constraint firstItem="Qex-AG-1qg" firstAttribute="leading" secondItem="sxi-ec-Fkd" secondAttribute="leading" id="3BY-q6-8GS"/>
                             <constraint firstItem="JtS-tE-hph" firstAttribute="bottom" secondItem="WvE-pV-HgB" secondAttribute="bottom" id="9Je-iV-NBb"/>
-                            <constraint firstItem="WvE-pV-HgB" firstAttribute="top" secondItem="JtS-tE-hph" secondAttribute="top" id="ic7-D9-gqF"/>
+                            <constraint firstItem="Qex-AG-1qg" firstAttribute="bottom" secondItem="sxi-ec-Fkd" secondAttribute="bottom" id="Aia-jd-8Lk"/>
+                            <constraint firstItem="mxI-6z-YWJ" firstAttribute="top" secondItem="ZJg-De-a0j" secondAttribute="bottom" id="FwW-Q1-T5W"/>
+                            <constraint firstItem="Qex-AG-1qg" firstAttribute="trailing" secondItem="sxi-ec-Fkd" secondAttribute="trailing" id="GxG-KY-5Pe"/>
+                            <constraint firstItem="JtS-tE-hph" firstAttribute="trailing" secondItem="mxI-6z-YWJ" secondAttribute="trailing" id="Jgi-qg-VJ9"/>
+                            <constraint firstItem="mxI-6z-YWJ" firstAttribute="leading" secondItem="JtS-tE-hph" secondAttribute="leading" id="Q6d-LR-GHO"/>
+                            <constraint firstItem="sxi-ec-Fkd" firstAttribute="top" secondItem="JtS-tE-hph" secondAttribute="top" id="Snc-b5-pil"/>
+                            <constraint firstItem="ZJg-De-a0j" firstAttribute="leading" secondItem="JtS-tE-hph" secondAttribute="leading" id="UqZ-Gt-Ug2"/>
+                            <constraint firstItem="Qex-AG-1qg" firstAttribute="top" secondItem="sxi-ec-Fkd" secondAttribute="top" id="VeH-Sb-3jM"/>
+                            <constraint firstItem="sxi-ec-Fkd" firstAttribute="leading" secondItem="JtS-tE-hph" secondAttribute="leading" id="d9D-7d-fAb"/>
+                            <constraint firstItem="ZJg-De-a0j" firstAttribute="top" secondItem="sxi-ec-Fkd" secondAttribute="bottom" id="gt8-X3-3EB"/>
+                            <constraint firstItem="sxi-ec-Fkd" firstAttribute="trailing" secondItem="JtS-tE-hph" secondAttribute="trailing" constant="2.5" id="kTs-bx-HfC"/>
+                            <constraint firstItem="WvE-pV-HgB" firstAttribute="top" secondItem="mxI-6z-YWJ" secondAttribute="bottom" constant="8" id="uIj-Dx-hOT"/>
                             <constraint firstItem="JtS-tE-hph" firstAttribute="trailing" secondItem="WvE-pV-HgB" secondAttribute="trailing" id="uhc-dA-3Z9"/>
+                            <constraint firstItem="JtS-tE-hph" firstAttribute="trailing" secondItem="ZJg-De-a0j" secondAttribute="trailing" id="vdq-NX-Oxl"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JtS-tE-hph"/>
                     </view>
                     <navigationItem key="navigationItem" id="IqA-Lt-L0n">
+                        <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title=" " id="Ptz-Ac-DBa"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7wQ-7R-bFg">
+                            <rect key="frame" x="157" y="3" width="100" height="38"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="All">
+                                <color key="titleColor" name="DarkText"/>
+                            </state>
+                        </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="UuA-yK-hfO">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qUy-FN-xMu">
                                 <rect key="frame" x="325" y="4" width="69" height="36"/>
@@ -75,23 +241,26 @@
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="calendarView" destination="ZJg-De-a0j" id="EdF-qy-dlq"/>
+                        <outlet property="selectedDateLabel" destination="iaa-Du-qwZ" id="J5h-XI-Qkb"/>
+                        <outlet property="subjectSelectButton" destination="7wQ-7R-bFg" id="hod-rC-KCk"/>
                         <outlet property="tableView" destination="WvE-pV-HgB" id="QQP-as-YvX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tlg-wW-i9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="94"/>
+            <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="VNk-0o-lRT">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="fXF-UT-ccR" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FjN-WZ-882">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7YX-j5-jVD">
-                                <rect key="frame" x="185.5" y="437.5" width="43" height="21"/>
+                                <rect key="frame" x="185.5" y="393.5" width="43" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -116,6 +285,21 @@
         <image name="tab-bar-logs-icon" width="18" height="18"/>
         <namedColor name="Background">
             <color red="0.94509803921568625" green="0.95294117647058818" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CalendarHeaderText">
+            <color red="0.59607843137254901" green="0.61568627450980395" blue="0.70196078431372544" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="CalendarText">
+            <color red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DarkText">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Main">
+            <color red="0.31372549019607843" green="0.62745098039215685" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Separator">
+            <color red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

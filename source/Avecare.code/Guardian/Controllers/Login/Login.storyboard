@@ -267,14 +267,14 @@
                                                                     <fragment content="I agree to the ">
                                                                         <attributes>
                                                                             <color key="NSColor" name="LightText4"/>
-                                                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                                                            <font key="NSFont" metaFont="system" size="14"/>
                                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                         </attributes>
                                                                     </fragment>
                                                                     <fragment content="Terms &amp; Conditions">
                                                                         <attributes>
                                                                             <color key="NSColor" red="0.19215686274509802" green="0.56470588235294117" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                            <font key="NSFont" metaFont="menu" size="14"/>
+                                                                            <font key="NSFont" metaFont="system" size="14"/>
                                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                         </attributes>
                                                                     </fragment>

@@ -123,6 +123,9 @@ def common_pods
   # https://github.com/tomlokhorst/SegueManager
   pod 'SegueManager/R.swift'
 
+  # Calendar library
+  pod 'JTAppleCalendar'
+
 end
 
 
