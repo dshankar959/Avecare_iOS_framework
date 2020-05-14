@@ -8,8 +8,17 @@ struct SubjectListTableViewCellModel: CellViewModel {
     let photo: UIImage?
 
     func setup(cell: CellType) {
-        cell.photoImageView.image = photo
-        cell.titleLabel.text = title
+        if let photo = photo {
+            cell.photoImageView.image = photo
+            cell.photoImageView.layer.cornerRadius = cell.photoImageView.frame.width / 2
+            cell.photoImageView.clipsToBounds = true
+            cell.titleLabel.text = title
+        } else {
+            cell.titleLabel.text = nil
+            cell.textLabel?.text = title
+            cell.textLabel?.textAlignment = .center
+        }
+
     }
 }
 

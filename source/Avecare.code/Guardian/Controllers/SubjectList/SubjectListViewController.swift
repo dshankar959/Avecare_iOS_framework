@@ -9,17 +9,28 @@ protocol SubjectListViewControllerDelegate: class {
 }
 
 class SubjectListViewController: UIViewController {
+    @IBOutlet weak var drawerView: UIView!
     @IBOutlet weak var tableView: UITableView!
     weak var delegate: SubjectListViewControllerDelegate?
-    var dataProvider: SubjectListDataProvider = DefaultSubjectListDataProvider()
+    var allSubjectsIncluded = false
+    var dataProvider: SubjectListDataProvider {
+        if allSubjectsIncluded {
+            return DefaultSubjectListDataProvider(allSubjectsIncluded: true)
+        } else {
+            return DefaultSubjectListDataProvider()
+        }
+    }
 
     private let cellHeight = CGFloat(57)
     var contentHeight: CGFloat {
-        return CGFloat(dataProvider.numberOfRows) * cellHeight
+        return CGFloat(dataProvider.numberOfRows) * cellHeight + 24
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        drawerView.layer.cornerRadius = drawerView.frame.height / 2
+        drawerView.clipsToBounds = true
     }
 }
 

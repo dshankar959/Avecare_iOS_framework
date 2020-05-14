@@ -69,7 +69,6 @@ class LogsViewController: UIViewController {
 extension LogsViewController: SubjectListViewControllerDelegate {
     func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
         controller.dismiss(animated: true)
-        //subjectFilterButton.setTitle(item.title + "\u{f078}", for: .normal)
         setSubjectSelectButtonTitle(titleText: item.title)
     }
 }
