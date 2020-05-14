@@ -114,7 +114,6 @@ class RLMLogRow: Object, Decodable {
 
 
 extension RLMLogRow: DataProvider, RLMCleanable {
-    typealias T = RLMLogRow
 
     func clean() {
         if let option = option {

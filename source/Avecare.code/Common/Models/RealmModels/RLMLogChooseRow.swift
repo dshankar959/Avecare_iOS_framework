@@ -2,7 +2,6 @@ import Foundation
 import RealmSwift
 
 
-
 // Logs -> list of available form rows for + picker
 class RLMLogChooseRow: Object, Decodable {
 
@@ -45,16 +44,10 @@ class RLMLogChooseRow: Object, Decodable {
 
 
 extension RLMLogChooseRow: DataProvider, RLMCleanable {
-    typealias T = RLMLogChooseRow
 
     func clean() {
-        let allLogChooseRows: [RLMLogChooseRow] = RLMLogChooseRow().findAll()
-
-        for rowObject in allLogChooseRows {
-            rowObject.row?.clean()
-            rowObject.delete()
-//            RLMLogChooseRow().delete(object: rowObject)
-        }
+        row?.clean()
+        delete()
     }
 
 }

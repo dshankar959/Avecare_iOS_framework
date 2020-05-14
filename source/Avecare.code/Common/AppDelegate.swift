@@ -4,7 +4,7 @@ import IHProgressHUD
 import DeviceKit
 import Reachability
 import Firebase
-
+import Kingfisher
 
 
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate, IndicatorProtocol {
@@ -52,6 +52,9 @@ import Firebase
 
         setupLoggingFramework()
         DDLogInfo("")
+
+        // Kingfisher disk image cache
+        ImageCache.default.diskStorage.config.sizeLimit = 100 * 1024 //bytes
 
         #if GUARDIAN
             DDLogInfo("GUARDIAN.  [eg. \"Parent\", \"Pet Owner\", etc.]")
@@ -142,6 +145,9 @@ import Firebase
 
         if availableDiskSpace < Double(250_000_000) {  // 250mb
             DDLogVerbose("availableDiskSpace < 250_000_000")
+
+            // remove disk image cache
+            ImageCache.default.clearDiskCache()
 
             self.popupAlert(title: "⚠️ Storage Almost Full",
                             message: "Clear some disk space to avoid any app interruption.",

@@ -38,7 +38,7 @@ extension RLMUnit: DataProvider {
     typealias T = RLMUnit
 
     static func details(for unitId: String) -> RLMUnit? {
-        return RLMUnit().find(withID: unitId)
+        return RLMUnit.find(withID: unitId)
     }
 
 

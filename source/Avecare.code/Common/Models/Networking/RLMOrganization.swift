@@ -32,7 +32,9 @@ class RLMOrganization: RLMDefaults {
 
 
 extension RLMOrganization: DataProvider {
-    typealias T = RLMOrganization
+    static func details(for organizationId: String) -> RLMOrganization? {
+        return RLMOrganization.find(withID: organizationId)
+    }
 }
 
 typealias OrganizationDetailsResponse = RLMOrganization

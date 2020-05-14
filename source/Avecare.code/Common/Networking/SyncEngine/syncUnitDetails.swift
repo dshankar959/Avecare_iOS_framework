@@ -32,8 +32,8 @@ extension SyncEngine {
                     switch result {
                     case .success(let details):
                         // Update with new data.
-                        unitsDAL.createOrUpdateAll(with: [details])
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMUnit.className())\' items in DB: \(unitsDAL.findAll().count)")
+                        RLMUnit.createOrUpdateAll(with: [details])
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMUnit.className())\' items in DB: \(RLMUnit.findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):
@@ -44,7 +44,7 @@ extension SyncEngine {
             }
         } else { // guardian
             // Sync down unit details across all subjects.
-            let allSubjects = RLMSubject().findAll()
+            let allSubjects = RLMSubject.findAll()
             if !allSubjects.isEmpty {
                 var apiResult: Result<RLMUnit, AppError> = .success(RLMUnit())
                 let operationQueue = OperationQueue()
@@ -55,7 +55,7 @@ extension SyncEngine {
 
                     switch apiResult {
                     case .success:
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMUnit.className())\' items in DB: \(unitsDAL.findAll().count)")
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMUnit.className())\' items in DB: \(RLMUnit.findAll().count)")
                         syncCompletion(nil)
                     case .failure(let error):
                         syncCompletion(error)
@@ -78,7 +78,7 @@ extension SyncEngine {
                                 switch result {
                                 case .success(let details):
                                     // Update with new data.
-                                    unitsDAL.createOrUpdateAll(with: [details])
+                                    RLMUnit.createOrUpdateAll(with: [details])
                                 case .failure:
                                     self?.syncStates[syncKey] = .complete
                                 }

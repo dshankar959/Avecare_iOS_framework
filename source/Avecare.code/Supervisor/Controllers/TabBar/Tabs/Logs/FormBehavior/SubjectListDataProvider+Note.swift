@@ -11,11 +11,11 @@ extension SubjectDetailsNotesViewModel {
     }
 }
 
-extension DefaultSubjectListDataProvider {
+extension SubjectListDataProvider {
     func viewModel(for row: RLMLogNoteRow, at indexPath: IndexPath) -> SubjectDetailsNotesViewModel {
         var viewModel = SubjectDetailsNotesViewModel(row: row)
         viewModel.didEndEditing = { view in
-            row.writeTransaction {
+            RLMLogNoteRow.writeTransaction {
                 if view.textView.text.count > 0 {
                     row.value = view.textView.text
                 } else {

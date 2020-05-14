@@ -21,7 +21,7 @@ extension RLMOptionValue: SingleValuePickerItem {
     }
 }
 
-extension DefaultSubjectListDataProvider {
+extension SubjectListDataProvider {
 
     func viewModel(for row: RLMLogOptionRow, at indexPath: IndexPath) -> SubjectDetailsPickerViewModel {
         var model = SubjectDetailsPickerViewModel(row: row)
@@ -38,7 +38,7 @@ extension DefaultSubjectListDataProvider {
         pickerView.backgroundColor = .white
         let toolbar = defaultToolbarView(onDone: { [weak self] in
             if let value = pickerView.selectedValue?.value {
-                row.writeTransaction {
+                RLMLogOptionRow.writeTransaction {
                     row.selectedValue.value = value
                 }
                 self?.viewModel(for: row, at: indexPath).setup(cell: view)

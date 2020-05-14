@@ -2,33 +2,34 @@ import CocoaLumberjack
 import RealmSwift
 
 
-
 protocol DataProvider: DatabaseLayer {
+
 }
 
-
-extension DataProvider {
+extension DataProvider where Self: Object {
     // MARK: - Generic `model` specific operations
 
-    func find(withID: String) -> T? {
-        let database = self.getDatabase()
-        return database?.object(ofType: T.self, forPrimaryKey: withID)
+    static func find(withID: String) -> Self? {
+        let database = getDatabase()
+        return database?.object(ofType: Self.self, forPrimaryKey: withID)
     }
 
 
-    func findAll() -> [T] {
-        if let database = self.getDatabase() {
-            return database.objects(T.self).map { $0 }
+    static func findAll() -> [Self] {
+        if let database = getDatabase() {
+            return database.objects(Self.self).map {
+                $0
+            }
         } else {
             return []
         }
     }
 
 
-    func findAll<T: Object>(sortedBy key: String) -> [T] {
-        let database = self.getDatabase()
+    static func findAll(sortedBy key: String) -> [Self] {
+        let database = getDatabase()
 
-        if let allObjects = database?.objects(T.self) {
+        if let allObjects = database?.objects(Self.self) {
             let results = allObjects.sorted(byKeyPath: key, ascending: true)
             return Array(results)
         }
@@ -36,20 +37,20 @@ extension DataProvider {
         return []
     }
 
-    func find(withSubjectID: String) -> T? {
-        let database = self.getDatabase()
-        return database?.objects(T.self).filter("subject.id = %@", withSubjectID).first
+    static func find(withSubjectID: String) -> Self? {
+        let database = getDatabase()
+        return database?.objects(Self.self).filter("subject.id = %@", withSubjectID).first
     }
 
 
-    func findAllWith(_ withIDs: [String]) -> [T] {
+    static func findAllWith(_ withIDs: [String]) -> [Self] {
         if withIDs.isEmpty {
             return []
         }
 
-        let database = self.getDatabase()
+        let database = getDatabase()
 
-        if let allObjects = database?.objects(T.self) {
+        if let allObjects = database?.objects(Self.self) {
             let results = allObjects.filter("id IN %@", withIDs)
             return Array(results)
         } else {
