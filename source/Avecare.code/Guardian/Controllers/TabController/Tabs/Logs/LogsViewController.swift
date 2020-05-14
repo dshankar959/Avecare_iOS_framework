@@ -84,12 +84,12 @@ extension LogsViewController: JTACMonthViewDelegate {
     }
 
     func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE MMMM d, yyyy"
+        selectedDateLabel.text = dateFormatter.string(from: date)
+
         if let cell = cell as? DateCell {
             cell.configureCell(cellState: cellState)
-
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEEE MMMM d, yyyy"
-            selectedDateLabel.text = dateFormatter.string(from: date)
         }
     }
 
