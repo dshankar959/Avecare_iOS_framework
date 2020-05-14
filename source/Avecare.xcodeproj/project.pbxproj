@@ -296,6 +296,8 @@
 		75EB5A2D2467A21600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A2C2467A21600E077E5 /* SyncEngine+Operations.swift */; };
 		75EB5A312467A26600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */; };
 		DA3FE2DB8C4BA18334A1EB22 /* Pods_parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */; };
+		DC225E38246C68BF00094BB0 /* CheckmarkFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67DF806241BFE6800793A9C /* CheckmarkFormView.swift */; };
+		DC225E3F246C787F00094BB0 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC225E3E246C787F00094BB0 /* DateCell.swift */; };
 		DC70F062246B436800FFD262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
 		F65549F424564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */; };
 		F65549F524564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */; };
@@ -336,7 +338,6 @@
 		F67DF81C241BFE6800793A9C /* InfoMessageFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67DF803241BFE6800793A9C /* InfoMessageFormView.swift */; };
 		F67DF81D241BFE6800793A9C /* PickerFieldFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67DF804241BFE6800793A9C /* PickerFieldFormView.swift */; };
 		F67DF81E241BFE6800793A9C /* TagListFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67DF805241BFE6800793A9C /* TagListFormView.swift */; };
-		F67DF81F241BFE6800793A9C /* CheckmarkFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67DF806241BFE6800793A9C /* CheckmarkFormView.swift */; };
 		F67DF820241BFE6800793A9C /* InputTextFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67DF807241BFE6800793A9C /* InputTextFormView.swift */; };
 		F67DF821241BFE6800793A9C /* TagListFormViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F67DF808241BFE6800793A9C /* TagListFormViewCell.xib */; };
 		F67DF822241BFE6800793A9C /* CheckmarkFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F67DF809241BFE6800793A9C /* CheckmarkFormView.xib */; };
@@ -572,6 +573,7 @@
 		BD9B063DD34D2DCB204B671C /* Pods-parent.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent.release(appstore).xcconfig"; path = "Target Support Files/Pods-parent/Pods-parent.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		C6A41FD77BCF4377A08E9406 /* Pods-educator.debug(beta).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.debug(beta).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.debug(beta).xcconfig"; sourceTree = "<group>"; };
 		D48B06C16950ED61770C4604 /* Pods-educator.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(appstore).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(appstore).xcconfig"; sourceTree = "<group>"; };
+		DC225E3E246C787F00094BB0 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Duotone-Solid-900.otf"; sourceTree = "<group>"; };
 		F65549F024564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Regular-400.otf"; sourceTree = "<group>"; };
 		F65549F124564F2100574872 /* Font Awesome 5 Pro-Light-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Light-300.otf"; sourceTree = "<group>"; };
@@ -859,6 +861,7 @@
 				615476341CA9B1B5A2A77173 /* LogsNoteTableViewCell.xib */,
 				615476FD4CEE0A15907C0A38 /* LogsTimeDetailsTableViewCell.xib */,
 				615470DDF8B06DE27569E901 /* LogsPhotoTableViewCell.xib */,
+				DC225E3E246C787F00094BB0 /* DateCell.swift */,
 			);
 			path = "List Cells";
 			sourceTree = "<group>";
@@ -2115,7 +2118,6 @@
 				75EB59C82461858700E077E5 /* RLMOptionValue.swift in Sources */,
 				75EB5A1D2466EE1100E077E5 /* syncSubjects.swift in Sources */,
 				75886DD7241932BA0079C080 /* SettingTableViewCellModel.swift in Sources */,
-				F67DF81F241BFE6800793A9C /* CheckmarkFormView.swift in Sources */,
 				75EB59D02461858700E077E5 /* RLMForm.swift in Sources */,
 				75886D3C2419327F0079C080 /* UIView.swift in Sources */,
 				75886D682419327F0079C080 /* AppDelegate+Extension.swift in Sources */,
@@ -2227,6 +2229,7 @@
 				61547E7DB73F3A508FC8C0BE /* ClassActivityFormProvider.swift in Sources */,
 				61547AB56925D866968908B6 /* RemindersFormProvider.swift in Sources */,
 				61547E52DF293A83AFAA7AEE /* SingleValuePickerView.swift in Sources */,
+				DC225E38246C68BF00094BB0 /* CheckmarkFormView.swift in Sources */,
 				615472276757D8935A85913D /* UnitReminder.swift in Sources */,
 				75716F84246B9F28002B049C /* UINavigationController.swift in Sources */,
 				75EB59D22461858700E077E5 /* RLMLogRow.swift in Sources */,
@@ -2286,6 +2289,7 @@
 				75886D99241932AB0079C080 /* ProfileViewController.swift in Sources */,
 				75EB59D72461858700E077E5 /* RLMSubject.swift in Sources */,
 				75886D152419327F0079C080 /* LocationManager.swift in Sources */,
+				DC225E3F246C787F00094BB0 /* DateCell.swift in Sources */,
 				75D62236245B14490032F53D /* RLMInstitution.swift in Sources */,
 				75886D352419327F0079C080 /* DiskHelper.swift in Sources */,
 				75EB5A0D2465D77900E077E5 /* RLMAccountInfo.swift in Sources */,

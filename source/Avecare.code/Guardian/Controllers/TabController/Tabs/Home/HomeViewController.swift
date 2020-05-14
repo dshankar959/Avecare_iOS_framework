@@ -18,6 +18,7 @@ class HomeViewController: UIViewController {
             HomeTableViewDisclosureCellModel.self
         ])
 
+        setSubjectFilerButtonTitle(titleText: "All")
     }
 
     @IBAction func didClickSubjectPickerButton(_ sender: UIButton) {
@@ -30,12 +31,23 @@ class HomeViewController: UIViewController {
             destination.delegate = self
         }
     }
+
+    private func setSubjectFilerButtonTitle(titleText: String) {
+        let titleFont = UIFont.systemFont(ofSize: 16)
+        let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])
+        let chevronFont = UIFont(name: "FontAwesome5Pro-Light", size: 12)
+        let chevronAttributedString = NSAttributedString(string: "\u{f078}", attributes: [NSAttributedString.Key.font: chevronFont!])
+        titleAttributedString.append(chevronAttributedString)
+
+        subjectFilterButton.setAttributedTitle(titleAttributedString, for: .normal)
+    }
 }
 
 extension HomeViewController: SubjectListViewControllerDelegate {
     func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
         controller.dismiss(animated: true)
-        subjectFilterButton.setTitle(item.title, for: .normal)
+        //subjectFilterButton.setTitle(item.title + "\u{f078}", for: .normal)
+        setSubjectFilerButtonTitle(titleText: item.title)
     }
 }
 

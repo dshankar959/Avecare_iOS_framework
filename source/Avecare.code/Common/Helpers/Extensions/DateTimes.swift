@@ -78,5 +78,46 @@ extension Date {
         return formatter
     }
 
+    func isTheSameDay(withDate date: Date) -> Bool {
+        let calendar = Calendar.current
+        return calendar.component(.year, from: self) == calendar.component(.year, from: date) &&
+            calendar.component(.month, from: self) == calendar.component(.month, from: date) &&
+            calendar.component(.day, from: self) == calendar.component(.day, from: date)
+    }
 
+    func next(_ weekday: Weekday,
+              includingTheDate: Bool = false) -> Date {
+        let calendar = Calendar(identifier: .gregorian)
+        let components = DateComponents(weekday: weekday.rawValue)
+
+        if includingTheDate &&
+            calendar.component(.weekday, from: self) == weekday.rawValue {
+            return self
+        }
+
+        return calendar.nextDate(after: self,
+                                 matching: components,
+                                 matchingPolicy: .nextTime,
+                                 direction: .forward)!
+    }
+
+    func previous(_ weekday: Weekday,
+                  includingTheDate: Bool = false) -> Date {
+        let calendar = Calendar(identifier: .gregorian)
+        let components = DateComponents(weekday: weekday.rawValue)
+
+        if includingTheDate &&
+            calendar.component(.weekday, from: self) == weekday.rawValue {
+            return self
+        }
+
+        return calendar.nextDate(after: self,
+                                 matching: components,
+                                 matchingPolicy: .nextTime,
+                                 direction: .backward)!
+    }
+
+   enum Weekday: Int {
+        case sunday = 1, monday, tuesday, wednesday, thursday, friday, saturday
+    }
 }
