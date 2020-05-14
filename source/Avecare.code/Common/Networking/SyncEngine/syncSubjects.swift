@@ -33,7 +33,7 @@ extension SyncEngine {
                     case .success(let details):
                         // Update with new data.
                         subjectsDAL.createOrUpdateAll(with: details)
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSubject.className())\' items in DB: \(subjectsDAL.findAll().count)")
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSubject.className())\' items in DB: \(RLMSubject().findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):
@@ -49,7 +49,7 @@ extension SyncEngine {
                     case .success(let details):
                         // Update with new data.
                         RLMGuardian().createOrUpdateAll(with: details)
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMGuardian.className())\' items in DB: \(RLMGuardian().findAll().count)")
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSubject.className())\' items in DB: \(RLMSubject().findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):

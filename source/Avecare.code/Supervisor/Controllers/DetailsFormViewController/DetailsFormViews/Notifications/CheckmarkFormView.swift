@@ -10,10 +10,10 @@ struct CheckmarkFormViewModel: CellViewModel {
     let onClick: ((String) -> Void)?
 
     func setup(cell: CellType) {
-        cell.index = id
+//        cell.index = id
         cell.checkmarkButton.isSelected = isChecked
         cell.checkmarkButton.setTitle(title, for: .normal)
-        cell.onClick = onClick
+//        cell.onClick = onClick
     }
 }
 
