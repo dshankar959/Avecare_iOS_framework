@@ -20,13 +20,13 @@ extension SubjectDetailsSegmentViewModel {
     }
 }
 
-extension DefaultSubjectListDataProvider {
+extension SubjectListDataProvider {
     func viewModel(for row: RLMLogSwitcherRow, at indexPath: IndexPath) -> SubjectDetailsSegmentViewModel {
         var viewModel = SubjectDetailsSegmentViewModel(row: row)
         viewModel.action = .init(onClick: { [weak self] view in
             self?.showTimePicker(from: view, row: row, at: indexPath)
         }, onSegmentChange: { view, index in
-            row.writeTransaction {
+            RLMLogSwitcherRow.writeTransaction {
                 row.selectedValue.value = row.options[index].value
             }
         })
@@ -42,7 +42,7 @@ extension DefaultSubjectListDataProvider {
         picker.updateMinMaxRange()
 
         let toolbar = defaultToolbarView(onDone: { [weak self] in
-            row.writeTransaction {
+            RLMLogSwitcherRow.writeTransaction {
                 row.startTime = picker.startTimePicker.date
                 row.endTime = picker.endTimePicker.date
             }

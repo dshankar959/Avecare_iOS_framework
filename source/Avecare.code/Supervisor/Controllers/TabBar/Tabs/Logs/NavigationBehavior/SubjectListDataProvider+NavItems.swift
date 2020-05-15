@@ -1,6 +1,6 @@
 import Foundation
 import UIKit
 
-extension DefaultSubjectListDataProvider {
+extension SubjectListDataProvider {
 
 }

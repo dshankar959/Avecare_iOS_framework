@@ -1,12 +1,9 @@
 import CocoaLumberjack
 
-
-
 extension SyncEngine {
 
     func syncOrganizationDetails(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogDebug("")
-        let organizationsDAL = RLMOrganization()
 
         // Use function name as key.
         let syncKey = "\(#function)".removeBrackets()
@@ -19,9 +16,8 @@ extension SyncEngine {
 
         if syncStates[syncKey] == .syncing {
             DDLogDebug("\(syncKey) =🔄= .syncing")
-//            syncCompletion(nil)
-//            return
         }
+
         syncStates[syncKey] = .syncing
         notifySyncStateChanged(message: "Syncing down 🔻 organization details")
 
@@ -34,8 +30,8 @@ extension SyncEngine {
                     switch result {
                     case .success(let details):
                         // Update with new data.
-                        organizationsDAL.createOrUpdateAll(with: [details])
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMOrganization.className())\' items in DB: \(RLMOrganization().findAll().count)")
+                        RLMOrganization.createOrUpdateAll(with: [details])
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMOrganization.className())\' items in DB: \(RLMOrganization.findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):
@@ -45,13 +41,13 @@ extension SyncEngine {
                 }
             }
         } else {  // guardian
-            if let institutionDetails = RLMInstitution().findAll().first {
+            if let institutionDetails = RLMInstitution.findAll().first {
                 OrganizationsAPIService.getOrganizationDetails(id: institutionDetails.organizationId) { [weak self] result in
                     switch result {
                     case .success(let details):
                         // Update with new data.
-                        organizationsDAL.createOrUpdateAll(with: [details])
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMOrganization.className())\' items in DB: \(RLMOrganization().findAll().count)")
+                        RLMOrganization.createOrUpdateAll(with: [details])
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMOrganization.className())\' items in DB: \(RLMOrganization.findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):

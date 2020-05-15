@@ -3,7 +3,6 @@ import UIKit
 import CocoaLumberjack
 import SegueManager
 
-
 class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 
     @IBOutlet weak var snowflakeIconLabel: UILabel!

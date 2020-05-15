@@ -6,7 +6,6 @@ extension SyncEngine {
 
     func syncDOWNsubjects(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogDebug("")
-        let subjectsDAL = RLMSubject()
 
         // Use function name as key.
         let syncKey = "\(#function)".removeBrackets()
@@ -19,11 +18,12 @@ extension SyncEngine {
 
         if syncStates[syncKey] == .syncing {
             DDLogDebug("\(syncKey) =🔄= .syncing")
-//            syncCompletion(nil)
-//            return
         }
+
         syncStates[syncKey] = .syncing
         notifySyncStateChanged(message: "Syncing down 🔻 subject details")
+
+        // TODO:  probably best to compare and remove only the differences between lists of subjects.  (server DB vs local DB)
 
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor {
@@ -32,8 +32,8 @@ extension SyncEngine {
                     switch result {
                     case .success(let details):
                         // Update with new data.
-                        subjectsDAL.createOrUpdateAll(with: details)
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSubject.className())\' items in DB: \(RLMSubject().findAll().count)")
+                        RLMSubject.createOrUpdateAll(with: details)
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSubject.className())\' items in DB: \(RLMSubject.findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):
@@ -44,12 +44,12 @@ extension SyncEngine {
             }
         } else {  // guardian
             if let guardianId = appSession.userProfile.accountTypeId {
-                GuardiansAPIService.getSubjects(for: guardianId) { [weak self] result in
+                      GuardiansAPIService.getSubjects(for: guardianId) { [weak self] result in
                     switch result {
                     case .success(let details):
                         // Update with new data.
-                        RLMGuardian().createOrUpdateAll(with: details)
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSubject.className())\' items in DB: \(RLMSubject().findAll().count)")
+                        RLMSubject.createOrUpdateAll(with: details)
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSubject.className())\' items in DB: \(RLMSubject.findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):

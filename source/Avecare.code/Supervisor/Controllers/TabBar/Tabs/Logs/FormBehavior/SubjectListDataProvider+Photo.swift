@@ -14,11 +14,11 @@ extension SubjectDetailsPhotoViewModel {
     }
 }
 
-extension DefaultSubjectListDataProvider {
+extension SubjectListDataProvider {
     func viewModel(for row: RLMLogPhotoRow, at indexPath: IndexPath) -> SubjectDetailsPhotoViewModel {
         var viewModel = SubjectDetailsPhotoViewModel(row: row)
         viewModel.action = .init(onTextChange: { view in
-            row.writeTransaction {
+            RLMLogPhotoRow.writeTransaction {
                 if view.textView.text.count > 0 {
                     row.text = view.textView.text
                 } else {
@@ -63,7 +63,7 @@ extension DefaultSubjectListDataProvider {
                     // save image locally
                     let url = try service.saveImage(image)
                     // update database
-                    row.writeTransaction {
+                    RLMLogPhotoRow.writeTransaction {
                         row.imageUrl = url.absoluteString
                     }
                     // update UI

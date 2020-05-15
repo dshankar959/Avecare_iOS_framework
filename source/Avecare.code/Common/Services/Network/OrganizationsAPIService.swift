@@ -5,9 +5,8 @@ import CocoaLumberjack
 
 struct OrganizationsAPIService {
 
-    static func getOrganizationDetails(id: String,
-                                       completion: @escaping (Result<RLMOrganization, AppError>) -> Void) {
-        DDLogDebug("")
+    static func getOrganizationDetails(id: String, completion: @escaping (Result<RLMOrganization, AppError>) -> Void) {
+        DDLogVerbose("")
 
         apiProvider.request(.organizationDetails(id: id)) { result in
             switch result {
@@ -15,6 +14,28 @@ struct OrganizationsAPIService {
                 do {
                     let mappedResponse = try response.map(OrganizationDetailsResponse.self)
                     completion(.success(mappedResponse))
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    completion(.failure(JSONError.failedToMapData.message))
+                }
+            case .failure(let error):
+                completion(.failure(getAppErrorFromMoya(with: error)))
+            }
+        }
+    }
+
+
+    typealias LogTemplatesResult = APIPaginatedResponse<RLMFormTemplate>
+    typealias LogTemplatesCompletion = (Result<[RLMFormTemplate], AppError>) -> Void
+    static func getOrganizationLogTemplates(id: String, completion: @escaping LogTemplatesCompletion) {
+        DDLogVerbose("")
+
+        apiProvider.request(.organizationDailyTemplates(id: id)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(LogTemplatesResult.self)
+                    completion(.success(mappedResponse.results))
                 } catch {
                     DDLogError("JSON MAPPING ERROR = \(error)")
                     completion(.failure(JSONError.failedToMapData.message))

@@ -43,10 +43,8 @@ class RLMLogSwitcherRow: Object, Decodable, FormRowIconProtocol {
 }
 
 extension RLMLogSwitcherRow: DataProvider, RLMCleanable {
-    typealias T = RLMLogSwitcherRow
-
     func clean() {
-        deleteAll(objects: Array(options))
+        RLMOptionValue.deleteAll(objects: Array(options))
         delete()
     }
 }

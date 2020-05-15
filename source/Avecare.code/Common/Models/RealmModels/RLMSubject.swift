@@ -2,7 +2,6 @@ import CocoaLumberjack
 import RealmSwift
 
 
-
 class RLMSubject: RLMDefaults {
 
     @objc dynamic var firstName: String = ""
@@ -20,6 +19,28 @@ class RLMSubject: RLMDefaults {
             return URL(string: photoURL)
         }
         return nil
+    }
+
+    var isFormSubmittedToday: Bool {
+        return todayForm.serverDate != nil
+    }
+
+    var todayForm: RLMLogForm {
+        if let form = logForms.last, Calendar.current.isDateInToday(form.localDate) {
+            return form
+        }
+
+        DDLogDebug("Creating today's form for subject: [\(id)], \(firstName) \(lastName) ")
+        let form = RLMLogForm()
+        form.subject = self
+
+        if let template = RLMFormTemplate.find(withSubjectType: subjectTypeId) {
+            DDLogDebug("Loading template: \(template.id)")
+            form.rows.append(objectsIn: template.rows.detached())
+        }
+
+        form.create()
+        return form
     }
 
     let logForms = LinkingObjects(fromType: RLMLogForm.self, property: "subject")   // Inverse relationship

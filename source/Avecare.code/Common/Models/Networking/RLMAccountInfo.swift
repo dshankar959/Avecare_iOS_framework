@@ -36,10 +36,15 @@ extension RLMAccountInfo: DataProvider {
 
 
     static func saveAccountInfo(for accountType: String, with accountTypeId: String) {
+        // full refresh
+        RLMAccountInfo.deleteAllOfType(objectType: RLMAccountInfo.self)
+
+        // TODO:  probably best to compare and remove only the difference.
+
         let accountInfo = RLMAccountInfo()
         accountInfo.accountType = accountType
         accountInfo.id = accountTypeId
-        RLMAccountInfo().createOrUpdateAll(with: [accountInfo])
+        RLMAccountInfo.createOrUpdateAll(with: [accountInfo])
     }
 
 }

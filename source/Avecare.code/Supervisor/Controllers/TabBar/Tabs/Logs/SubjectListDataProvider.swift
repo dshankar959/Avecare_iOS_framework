@@ -2,23 +2,6 @@ import Foundation
 import UIKit
 
 
-// FIXME: testing data, remove it later
-extension UIImage {
-    static var randomSubjectPhoto: UIImage {
-        let images = [R.image.subject1(),
-                      R.image.subject2(),
-                      R.image.subject3(),
-                      R.image.subject4(),
-                      R.image.subject5(),
-                      R.image.subject6(),
-                      R.image.subject7(),
-                      R.image.subject8()]
-
-        return images.randomElement()!!
-    }
-}
-
-
 struct Form {
     let viewModels: [AnyCellViewModel]
 
@@ -27,16 +10,14 @@ struct Form {
     }
 }
 
-protocol SubjectListDataProvider: class {
+protocol SubjectListDataProviderIO: class {
 
     var delegate: SubjectListDataProviderDelegate? { get set }
     var numberOfRows: Int { get }
     func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel
-    func sortBy(_ sort: SubjectListTableViewCellModel.Sort)
+    func sortBy(_ sort: SubjectListDataProvider.Sort)
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath)
     func form(at indexPath: IndexPath) -> Form
-
-    func fetch()
 
     func navigationItems(at indexPath: IndexPath) -> [DetailsNavigationView.Item]
 }
@@ -44,88 +25,63 @@ protocol SubjectListDataProvider: class {
 
 protocol SubjectListDataProviderDelegate: UIViewController, CustomResponderProvider {
     func didUpdateModel(at indexPath: IndexPath)
-    func didFetchDataSource()
     func didFailure(_ error: Error)
 }
 
 
-class DefaultSubjectListDataProvider: SubjectListDataProvider {
+class SubjectListDataProvider: SubjectListDataProviderIO {
+    enum Sort: Int {
+        case lastName = 0
+        case firstName = 1
+        case date = 2
+    }
 
     private var selectedId: String?
     var delegate: SubjectListDataProviderDelegate?
 
-//    private var dataSource: Results<RLMSubject>?
-    private var dataSource: [RLMSubject]?
+    private var dataSource = [RLMSubject]()
 
-    func sortBy(_ sort: SubjectListTableViewCellModel.Sort) {
+    func sortBy(_ sort: Sort) {
         switch sort {
-        case .firstName: dataSource = RLMSubject().findAll(sortedBy: "firstName")
-        case .lastName: dataSource = RLMSubject().findAll(sortedBy: "lastName")
-        case .date: dataSource = RLMSubject().findAll(sortedBy: "birthday")
-
-//        case .firstName: dataSource = dataSource?.sorted(byKeyPath: "firstName")
-//        case .lastName: dataSource = dataSource?.sorted(byKeyPath: "lastName")
-//        case .date: dataSource = dataSource?.sorted(byKeyPath: "birthday")
+        case .firstName: dataSource = RLMSubject.findAll(sortedBy: "firstName")
+        case .lastName: dataSource = RLMSubject.findAll(sortedBy: "lastName")
+        case .date: dataSource = RLMSubject.findAll(sortedBy: "birthday")
         }
     }
 
     var numberOfRows: Int {
-        return dataSource?.count ?? 0
+        return dataSource.count
     }
 
     func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel {
-        guard let model = dataSource?[indexPath.row] else {
-            fatalError()
-        }
-        var viewModel = SubjectListTableViewCellModel(image: UIImage.randomSubjectPhoto,
-                                                      firstName: model.firstName,
-                                                      lastName: model.lastName,
-                                                      date: model.birthday, isChecked: false)
+        let model = dataSource[indexPath.row]
+        var viewModel = SubjectListTableViewCellModel(subject: model)
         viewModel.isSelected = model.id == selectedId
         return viewModel
     }
 
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath) {
-        guard let dataSource = dataSource else {
-            return
-        }
-
         let targetId = dataSource[indexPath.row].id
         var indexes = [IndexPath]()
-        if isSelected {
-            if let last = selectedId {
-                if last != targetId {
-                    // deselect
-                    if let index = dataSource.firstIndex(where: { $0.id == last }) {
-                        indexes.append(IndexPath(row: index, section: 0))
-                    }
 
-                } else {
-                    // already selected
-                    return
-                }
-            }
-            selectedId = targetId
-            indexes.append(indexPath)
-        } else {
-            guard let last = selectedId, last == targetId else {
-                return
-            }
-            selectedId = nil
-            indexes.append(indexPath)
+        // update previous selection
+        if let last = selectedId, last != targetId,
+           let index = dataSource.firstIndex(where: { $0.id == last }) {
+            indexes.append(IndexPath(row: index, section: 0))
         }
+
+        // update new selection
+        selectedId = targetId
+        indexes.append(indexPath)
+
         indexes.forEach { path in
             delegate?.didUpdateModel(at: path)
         }
     }
 
     func form(at indexPath: IndexPath) -> Form {
-        guard let subject = dataSource?[indexPath.row] else {
-            return Form(viewModels: [])
-        }
-        guard let formLog = RLMLogForm().find(withSubjectID: subject.id) else {
-            return Form(viewModels: [])
-        }
+        let subject = dataSource[indexPath.row]
+        let formLog = subject.todayForm
 
         let title = "\(subject.firstName) \(subject.lastName)'s Log"
         let header: [AnyCellViewModel] = [
@@ -138,45 +94,27 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
     }
 
-
-    func fetch() {
-        dataSource = RLMSubject().findAll()
-        sortBy(.firstName)
-        delegate?.didFetchDataSource()
-    }
-
-
     func navigationItems(at indexPath: IndexPath) -> [DetailsNavigationView.Item] {
-        let model = dataSource?[indexPath.row]
-        //TODO: correct logic
-        let isSubmitted = indexPath.row % 2 == 0
+        let subject = dataSource[indexPath.row]
+        let isSubmitted = subject.isFormSubmittedToday
 
         return [
             .imageButton(options: .init(action: { [weak self] view, options, index in
-                let items = RLMLogChooseRow().findAll()
+                let items = RLMLogChooseRow.findAll()
 
                 let picker = SingleValuePickerView(values: items)
                 picker.backgroundColor = .white
 
                 guard let toolbar = self?.defaultToolbarView(onDone: {
-                    guard let subject = self?.dataSource?[indexPath.row],
+                    guard let subject = self?.dataSource[indexPath.row],
                         let row = picker.selectedValue?.row else {
                             return
                     }
 
                     self?.delegate?.customResponder?.resignFirstResponder()
 
-                    let logForm: RLMLogForm
-
-                    if let form = RLMLogForm().find(withSubjectID: subject.id) {
-                        logForm = form
-                    } else {
-                        logForm = RLMLogForm()
-                        logForm.subject = subject
-                        logForm.create()
-                    }
-
-                    logForm.writeTransaction {
+                    let logForm = subject.todayForm
+                    RLMLogForm.writeTransaction {
                         logForm.rows.append(row.detached())
                     }
 

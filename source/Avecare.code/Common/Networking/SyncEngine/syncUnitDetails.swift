@@ -6,7 +6,6 @@ extension SyncEngine {
 
     func syncDOWNunitDetails(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogDebug("")
-        let unitsDAL = RLMUnit()
 
         // Use function name as key.
         let syncKey = "\(#function)".removeBrackets()
@@ -19,9 +18,8 @@ extension SyncEngine {
 
         if syncStates[syncKey] == .syncing {
             DDLogDebug("\(syncKey) =🔄= .syncing")
-//            syncCompletion(nil)
-//            return
         }
+
         syncStates[syncKey] = .syncing
         notifySyncStateChanged(message: "Syncing down 🔻 unit details")
 
@@ -32,8 +30,8 @@ extension SyncEngine {
                     switch result {
                     case .success(let details):
                         // Update with new data.
-                        unitsDAL.createOrUpdateAll(with: [details])
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMUnit.className())\' items in DB: \(unitsDAL.findAll().count)")
+                        RLMUnit.createOrUpdateAll(with: [details])
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMUnit.className())\' items in DB: \(RLMUnit.findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):
@@ -44,7 +42,7 @@ extension SyncEngine {
             }
         } else { // guardian
             // Sync down unit details across all subjects.
-            let allSubjects = RLMSubject().findAll()
+            let allSubjects = RLMSubject.findAll()
             if !allSubjects.isEmpty {
                 var apiResult: Result<RLMUnit, AppError> = .success(RLMUnit())
                 let operationQueue = OperationQueue()
@@ -55,7 +53,7 @@ extension SyncEngine {
 
                     switch apiResult {
                     case .success:
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMUnit.className())\' items in DB: \(unitsDAL.findAll().count)")
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMUnit.className())\' items in DB: \(RLMUnit.findAll().count)")
                         syncCompletion(nil)
                     case .failure(let error):
                         syncCompletion(error)
@@ -78,7 +76,7 @@ extension SyncEngine {
                                 switch result {
                                 case .success(let details):
                                     // Update with new data.
-                                    unitsDAL.createOrUpdateAll(with: [details])
+                                    RLMUnit.createOrUpdateAll(with: [details])
                                 case .failure:
                                     self?.syncStates[syncKey] = .complete
                                 }

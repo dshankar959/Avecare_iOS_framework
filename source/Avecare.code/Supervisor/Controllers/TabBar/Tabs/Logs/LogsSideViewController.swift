@@ -2,22 +2,24 @@ import Foundation
 import UIKit
 
 class LogsSideViewController: UIViewController {
+
+
     @IBOutlet weak var sortSegmentControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
 
-    lazy var dataProvider: SubjectListDataProvider = {
-        let provider = DefaultSubjectListDataProvider()
+    lazy var dataProvider: SubjectListDataProviderIO = {
+        let provider = SubjectListDataProvider()
         provider.delegate = self
         return provider
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataProvider.fetch()
+        didChangeSegmentControl(sortSegmentControl)
     }
 
     @IBAction func didChangeSegmentControl(_ sender: UISegmentedControl) {
-        guard let sort = SubjectListTableViewCellModel.Sort(rawValue: sender.selectedSegmentIndex) else {
+        guard let sort = SubjectListDataProvider.Sort(rawValue: sender.selectedSegmentIndex) else {
             return
         }
         dataProvider.sortBy(sort)
@@ -51,18 +53,6 @@ extension LogsSideViewController: SubjectListDataProviderDelegate {
             let form = dataProvider.form(at: indexPath)
             detailsViewController.detailsView.setFormViews(form.viewModels)
             detailsViewController.navigationHeaderView.items = dataProvider.navigationItems(at: indexPath)
-        }
-    }
-
-    func didFetchDataSource() {
-        tableView.reloadData()
-
-        if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
-            detailsViewController.detailsView.setFormViews([])
-        }
-
-        if dataProvider.numberOfRows > 0 {
-            dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
         }
     }
 

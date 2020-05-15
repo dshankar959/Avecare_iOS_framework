@@ -3,10 +3,10 @@ import UIKit
 
 
 extension SubjectPickerTableViewCellModel {
-    init(details: RLMSubject, isSelected: Bool) {
-        self.photo = UIImage.randomSubjectPhoto
+    init(subject: RLMSubject, isSelected: Bool) {
+        self.profilePhotoURL = subject.profilePhotoURL
         self.isSelected = isSelected
-        self.subjectName = "\(details.firstName), \(details.lastName)"
+        self.subjectName = "\(subject.firstName), \(subject.lastName)"
     }
 }
 
@@ -15,12 +15,10 @@ class SubjectPickerViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
 
-//    var onDone: ((Results<RLMSubject>) -> Void)?
     var onDone: (([RLMSubject]) -> Void)?
 
-//    lazy var dataSource: Results<RLMSubject> = {
     lazy var dataSource: [RLMSubject] = {
-        return RLMSubject().findAll(sortedBy: "firstName")
+        return RLMSubject.findAll(sortedBy: "firstName")
     }()
 
     var selectedIds = Set<String>()
@@ -43,7 +41,7 @@ class SubjectPickerViewController: UIViewController {
         dismiss(animated: true)
 //        onDone?(dataSource.filter("id IN %@", selectedIds))
 
-        let subjects = RLMSubject().findAllWith(Array(selectedIds))
+        let subjects = RLMSubject.findAllWith(Array(selectedIds))
         onDone?(subjects)
     }
 
@@ -74,7 +72,7 @@ extension SubjectPickerViewController: UITableViewDelegate, UITableViewDataSourc
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let detail = dataSource[indexPath.row]
         let isSelected = selectedIds.contains(detail.id)
-        let model = SubjectPickerTableViewCellModel(details: detail, isSelected: isSelected)
+        let model = SubjectPickerTableViewCellModel(subject: detail, isSelected: isSelected)
         return tableView.dequeueReusableCell(withModel: model, for: indexPath)
     }
 
@@ -84,7 +82,7 @@ extension SubjectPickerViewController: UITableViewDelegate, UITableViewDataSourc
         }
         let detail = dataSource[indexPath.row]
         let isSelected = selectedIds.contains(detail.id)
-        let model = SubjectPickerTableViewCellModel(details: detail, isSelected: !isSelected)
+        let model = SubjectPickerTableViewCellModel(subject: detail, isSelected: !isSelected)
         if isSelected {
             selectedIds.remove(detail.id)
         } else {

@@ -1,5 +1,7 @@
 import CocoaLumberjack
 
+
+
 struct APIToken: Decodable {
 
     let accountType: String

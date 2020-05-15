@@ -6,7 +6,6 @@ extension SyncEngine {
 
     func syncDOWNinstitutionDetails(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogDebug("")
-        let institutionsDAL = RLMInstitution()
 
         // Use function name as key.
         let syncKey = "\(#function)".removeBrackets()
@@ -19,9 +18,8 @@ extension SyncEngine {
 
         if syncStates[syncKey] == .syncing {
             DDLogDebug("\(syncKey) =🔄= .syncing")
-//            syncCompletion(nil)
-//            return
         }
+
         syncStates[syncKey] = .syncing
         notifySyncStateChanged(message: "Syncing down 🔻 institution details")
 
@@ -32,8 +30,8 @@ extension SyncEngine {
                     switch result {
                     case .success(let details):
                         // Update with new data.
-                        institutionsDAL.createOrUpdateAll(with: [details])
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMInstitution.className())\' items in DB: \(RLMInstitution().findAll().count)")
+                        RLMInstitution.createOrUpdateAll(with: [details])
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMInstitution.className())\' items in DB: \(RLMInstitution.findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):
@@ -44,7 +42,7 @@ extension SyncEngine {
             }
         } else { // guardian
             // Sync down institution details across all units.
-            let allUnits = RLMUnit().findAll()
+            let allUnits = RLMUnit.findAll()
             if !allUnits.isEmpty {
                 var apiResult: Result<RLMInstitution, AppError> = .success(RLMInstitution())
                 let operationQueue = OperationQueue()
@@ -54,7 +52,7 @@ extension SyncEngine {
 
                     switch apiResult {
                     case .success:
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMInstitution.className())\' items in DB: \(RLMInstitution().findAll().count)")
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMInstitution.className())\' items in DB: \(RLMInstitution.findAll().count)")
                         self.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):
@@ -80,7 +78,7 @@ extension SyncEngine {
                             switch result {
                             case .success(let details):
                                 // Update with new data.
-                                institutionsDAL.createOrUpdateAll(with: [details])
+                                RLMInstitution.createOrUpdateAll(with: [details])
                             case .failure:
                                 self?.syncStates[syncKey] = .complete
                             }

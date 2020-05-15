@@ -6,7 +6,7 @@ import RealmSwift
 // https://www.bobthedeveloper.io/blog/generic-protocols-with-associated-type
 
 protocol DatabaseLayer {
-    associatedtype T: Object
+
 }
 
 
@@ -17,23 +17,23 @@ struct DALConfig {
 }
 
 
-extension DatabaseLayer {
+extension DatabaseLayer where Self: Object {
 
     // MARK: - DB setup
 
-    private var userRealmFile: URL {
+    private static var userRealmFile: URL {
         if let url = DALConfig.userRealmFileURL {
             return url
         }
 
-        let fullURLpath = userAppDirectory.appendingPathComponent(DALConfig.realmStoreName)
-        DALConfig.userRealmFileURL = fullURLpath
+        let fullPathURL = userAppDirectory.appendingPathComponent(DALConfig.realmStoreName)
+        DALConfig.userRealmFileURL = fullPathURL
 
-        return fullURLpath
+        return fullPathURL
     }
 
 
-    private var realmConfig: Realm.Configuration {
+    private static var realmConfig: Realm.Configuration {
 
         var config = Realm.Configuration(
             // Migration Support
@@ -92,7 +92,7 @@ extension DatabaseLayer {
     }
 
 
-    func getDatabase() -> Realm? {
+    static func getDatabase() -> Realm? {
         do {
             let realm = try Realm(configuration: realmConfig)
             realm.autorefresh = true
@@ -109,9 +109,9 @@ extension DatabaseLayer {
     func create() {
         autoreleasepool {
             do {
-                let database = self.getDatabase()
+                let database = Self.getDatabase()
                 try database?.write {
-                    database?.add(self as! Object)
+                    database?.add(self)
                 }
             } catch let error {
                 DDLogError("Database error: \(error)")
@@ -137,10 +137,10 @@ extension DatabaseLayer {
 */
 
     // note: 'primary id' required for this to function.
-    func createOrUpdateAll<T: Object>(with objects: [T], update: Bool = true) {
+    static func createOrUpdateAll(with objects: [Self], update: Bool = true) {
         autoreleasepool {
             do {
-                let database = self.getDatabase()
+                let database = getDatabase()
                 try database?.write {
                     database?.add(objects, update: update ? .all : .error)
                 }
@@ -155,9 +155,9 @@ extension DatabaseLayer {
     func delete() {
         autoreleasepool {
             do {
-                let database = self.getDatabase()
+                let database = Self.getDatabase()
                 try database?.write {
-                    database?.delete(self as! Object)
+                    database?.delete(self)
                 }
             } catch let error {
                 DDLogError("Database error: \(error)")
@@ -182,10 +182,10 @@ extension DatabaseLayer {
     }
 */
 
-    func deleteAll<T: Object>(objects: [T]) {
+    static func deleteAll(objects: [Self]) {
         autoreleasepool {
             do {
-                let database = self.getDatabase()
+                let database = Self.getDatabase()
                 try database?.write {
                     database?.delete(objects)
                 }
@@ -197,10 +197,27 @@ extension DatabaseLayer {
     }
 
 
-    func writeTransaction(writeTransactionBlock: @escaping () -> Void) {
+    static func deleteAllOfType(objectType: Object.Type) {
         autoreleasepool {
             do {
-                let database = self.getDatabase()
+                let database = Self.getDatabase()
+                try database?.write {
+                    if let allObjects = database?.objects(objectType) {
+                        database?.delete(allObjects)
+                    }
+                }
+            } catch let error {
+                DDLogError("Database error: \(error)")
+                fatalError("Database error: \(error)")
+            }
+        }
+    }
+
+
+    static func writeTransaction(writeTransactionBlock: @escaping () -> Void) {
+        autoreleasepool {
+            do {
+                let database = getDatabase()
                 try database?.write {
                     writeTransactionBlock()
                 }
@@ -216,9 +233,9 @@ extension DatabaseLayer {
 
     // Setup to observe Realm `CollectionChange` notifications
     func setupNotificationToken(for observer: AnyObject, _ block: @escaping () -> Void) -> NotificationToken? {
-        let database = getDatabase()
+        let database = Self.getDatabase()
 
-        return database?.objects(T.self).observe { [weak observer] (changes: RealmCollectionChange) in
+        return database?.objects(Self.self).observe { [weak observer] (changes: RealmCollectionChange) in
             if observer != nil {
                 switch changes {
                 case .initial:
@@ -255,7 +272,7 @@ extension DatabaseLayer {
     // Useful for multithreading purposes.
     // https://stackoverflow.com/a/45810078/7599
     func forceRefresh() {
-        getDatabase()?.refresh()
+        Self.getDatabase()?.refresh()
     }
 
 }

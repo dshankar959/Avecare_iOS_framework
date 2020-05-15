@@ -18,9 +18,8 @@ extension SyncEngine {
 
         if syncStates[syncKey] == .syncing {
             DDLogDebug("\(syncKey) =🔄= .syncing")
-//            syncCompletion(nil)
-//            return
         }
+
         syncStates[syncKey] = .syncing
 
         if appSession.userProfile.isSupervisor {
@@ -35,12 +34,12 @@ extension SyncEngine {
                 SupervisorsAPIService.getSupervisorDetails(for: supervisorId) { [weak self] result in
                     switch result {
                     case .success(let details):
-                        if let existingSupervisor = RLMSupervisor().find(withID: details.id) {
+                        if let existingSupervisor = RLMSupervisor.find(withID: details.id) {
                             existingSupervisor.clean()
                         }
                         // Update with new data.
-                        RLMSupervisor().createOrUpdateAll(with: [details])
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSupervisor.className())\' items in DB: \(RLMSupervisor().findAll().count)")
+                        RLMSupervisor.createOrUpdateAll(with: [details])
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSupervisor.className())\' items in DB: \(RLMSupervisor.findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):
@@ -55,8 +54,8 @@ extension SyncEngine {
                     switch result {
                     case .success(let details):
                         // Update with new data.
-                        RLMGuardian().createOrUpdateAll(with: [details])
-                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMGuardian.className())\' items in DB: \(RLMGuardian().findAll().count)")
+                        RLMGuardian.createOrUpdateAll(with: [details])
+                        DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMGuardian.className())\' items in DB: \(RLMGuardian.findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)
                     case .failure(let error):
