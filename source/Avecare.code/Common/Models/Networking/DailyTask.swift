@@ -1,6 +1,7 @@
 import Foundation
 
 
+
 struct DailyTask: Codable {
     struct Complete: Codable {
         let id: String

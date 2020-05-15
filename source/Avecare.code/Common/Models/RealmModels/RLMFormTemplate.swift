@@ -1,18 +1,21 @@
-import Foundation
-import RealmSwift
 import CocoaLumberjack
+import RealmSwift
+
+
 
 class RLMFormTemplate: RLMDefaults {
-    enum CodingKeys: String, CodingKey {
-        case version
-        case template
-        case subjectType
-    }
 
     @objc dynamic var version: Int = 0
     @objc dynamic var subjectType: String = ""
     @objc dynamic var organization: RLMOrganization?
     let rows = List<RLMLogRow>()
+
+
+    enum CodingKeys: String, CodingKey {
+        case version
+        case template
+        case subjectType
+    }
 
     override class func indexedProperties() -> [String] {
         return ["subjectType"]
@@ -34,6 +37,7 @@ class RLMFormTemplate: RLMDefaults {
     }
 
 }
+
 
 extension RLMFormTemplate: DataProvider, RLMCleanable {
     static func find(withSubjectType id: String) -> RLMFormTemplate? {

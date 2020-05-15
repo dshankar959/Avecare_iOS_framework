@@ -16,9 +16,8 @@ extension SyncEngine {
 
         if syncStates[syncKey] == .syncing {
             DDLogDebug("\(syncKey) =🔄= .syncing")
-//            syncCompletion(nil)
-//            return
         }
+
         syncStates[syncKey] = .syncing
         notifySyncStateChanged(message: "Syncing down 🔻 organization details")
 

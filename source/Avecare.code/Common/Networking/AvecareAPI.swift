@@ -115,13 +115,13 @@ extension AvecareAPI: TargetType {
 
         case .unitDetails(let id): return "/units/\(id)"
         case .unitActivities(let id): return "/units/\(id)/available-activities"
-        case .unitCreateActivity(let id, _): return "/units/\(id)/activities"
+        case .unitCreateActivity(let id, _): return "/units/\(id)/activities/"
         case .unitDailyTasks(let id): return "/units/\(id)/available-daily-tasks"
-        case .unitPublishDailyTasks(let id, _): return "/units/\(id)/daily-tasks"
+        case .unitPublishDailyTasks(let id, _): return "/units/\(id)/daily-tasks/"
         case .unitInjuries(let id): return "/units/\(id)/available-injuries"
-        case .unitCreateInjury(let id): return "/units/\(id)/injuries"
+        case .unitCreateInjury(let id): return "/units/\(id)/injuries/"
         case .unitReminders(let id): return "/units/\(id)/available-reminders"
-        case .unitCreateReminder(let id): return "/units/\(id)/reminders"
+        case .unitCreateReminder(let id): return "/units/\(id)/reminders/"
         case .unitSubjects(let id): return "/units/\(id)/subjects"
         case .unitSupervisors(let id): return "/units/\(id)/supervisors"
 

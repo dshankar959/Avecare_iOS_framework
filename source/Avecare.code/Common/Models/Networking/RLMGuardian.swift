@@ -2,6 +2,7 @@ import CocoaLumberjack
 import RealmSwift
 
 
+
 class RLMGuardian: RLMDefaults {
 
     @objc dynamic var isActive: Bool = true

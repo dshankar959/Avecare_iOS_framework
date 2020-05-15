@@ -30,12 +30,12 @@ class RLMSubject: RLMDefaults {
             return form
         }
 
-        DDLogDebug("Creating today's form for subject \(id)")
+        DDLogDebug("Creating today's form for subject: [\(id)], \(firstName) \(lastName) ")
         let form = RLMLogForm()
         form.subject = self
 
         if let template = RLMFormTemplate.find(withSubjectType: subjectTypeId) {
-            DDLogDebug("Loading template \(template.id)")
+            DDLogDebug("Loading template: \(template.id)")
             form.rows.append(objectsIn: template.rows.detached())
         }
 

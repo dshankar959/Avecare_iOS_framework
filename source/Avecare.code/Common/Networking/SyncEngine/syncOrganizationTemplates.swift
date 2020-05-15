@@ -1,7 +1,9 @@
-import Foundation
 import CocoaLumberjack
 
+
+
 extension SyncEngine {
+
     func syncOrganizationTemplates(_ syncCompletion: @escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
 
@@ -19,11 +21,13 @@ extension SyncEngine {
         }
 
         syncStates[syncKey] = .syncing
-        notifySyncStateChanged(message: "Syncing down 🔻 organization details")
+        notifySyncStateChanged(message: "Syncing down 🔻 organization templates")
 
+        // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor,
-           let unitId = RLMSupervisor.details?.primaryUnitId, let unitDetails = RLMUnit.details(for: unitId),
-           let institutionDetails = RLMInstitution.details(for: unitDetails.institutionId) {
+           let unitId = RLMSupervisor.details?.primaryUnitId,
+            let unitDetails = RLMUnit.details(for: unitId),
+            let institutionDetails = RLMInstitution.details(for: unitDetails.institutionId) {
             OrganizationsAPIService.getOrganizationLogTemplates(id: institutionDetails.organizationId) { [weak self] result in
                 switch result {
                 case .success(let templates):

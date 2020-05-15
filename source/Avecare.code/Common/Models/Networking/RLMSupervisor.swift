@@ -2,6 +2,7 @@ import CocoaLumberjack
 import RealmSwift
 
 
+
 class RLMSupervisor: RLMDefaults {
 
     @objc dynamic var title: String = ""

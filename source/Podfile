@@ -65,13 +65,18 @@ def common_pods
   # https://github.com/realm/realm-cocoa
   pod 'RealmSwift'
 
+  # Replacement for Apple's Reachability re-written in Swift with closures
+  # https://github.com/ashleymills/Reachability.swift
+  #  pod 'ReachabilitySwift', '~> 4.1.0'
+  pod 'ReachabilitySwift'
+
   # Network abstraction layer written in Swift.
   # https://github.com/Moya/Moya
   pod 'Moya'    # includes 'Alamofire'
 
   # Use FontAwesome in your Swift projects
   # https://github.com/thii/FontAwesome.swift
-  pod 'FontAwesome.swift'
+#  pod 'FontAwesome.swift'
 
   # A clean and lightweight progress HUD based on SVProgressHUD, converted to Swift with the help of Swiftify.
   # https://github.com/Swiftify-Corp/IHProgressHUD
@@ -94,36 +99,30 @@ def common_pods
   # https://github.com/WXGBridgeQ/SwiftPullToRefresh
 #  pod 'SwiftPullToRefresh'
 
-  # Replacement for Apple's Reachability re-written in Swift with closures
-  # https://github.com/ashleymills/Reachability.swift
-  #  pod 'ReachabilitySwift', '~> 4.1.0'
-  pod 'ReachabilitySwift'
-
   # Effortless ZIP Handling in Swift
   # https://github.com/weichsel/ZIPFoundation
 #  pod 'ZIPFoundation'
 
-  # Panels is a framework to easily add sliding panels to your application.
-  # It takes care of the safe area in new devices and moving your panel when the keyboard is presented/dismissed.
-  # https://github.com/antoniocasero/Panels
-#  pod 'Panels'
-
-
+  # A lightweight, pure-Swift library for downloading and caching images from the web.
+  # https://github.com/onevcat/Kingfisher
   pod 'Kingfisher'
 
   # Strong typed, autocompleted resources like images, fonts and segues in Swift projects.
   # https://github.com/mac-cain13/R.swift
   pod 'R.swift'
 
-
-  pod 'AXPhotoViewer'
-  pod 'BSImagePicker'
-  
   # With SegueManager it's easy to programatically perform segues and update the destination view controller.
   # https://github.com/tomlokhorst/SegueManager
   pod 'SegueManager/R.swift'
 
+#  pod 'AXPhotoViewer'
+
+  # A multiple image picker for iOS
+  # https://github.com/mikaoj/BSImagePicker
+  pod 'BSImagePicker'
+
   # Calendar library
+  # https://github.com/patchthecode/JTAppleCalendar
   pod 'JTAppleCalendar'
 
 end

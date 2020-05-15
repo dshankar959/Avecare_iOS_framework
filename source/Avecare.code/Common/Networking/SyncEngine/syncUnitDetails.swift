@@ -6,7 +6,6 @@ extension SyncEngine {
 
     func syncDOWNunitDetails(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogDebug("")
-        let unitsDAL = RLMUnit()
 
         // Use function name as key.
         let syncKey = "\(#function)".removeBrackets()
@@ -19,9 +18,8 @@ extension SyncEngine {
 
         if syncStates[syncKey] == .syncing {
             DDLogDebug("\(syncKey) =🔄= .syncing")
-//            syncCompletion(nil)
-//            return
         }
+
         syncStates[syncKey] = .syncing
         notifySyncStateChanged(message: "Syncing down 🔻 unit details")
 

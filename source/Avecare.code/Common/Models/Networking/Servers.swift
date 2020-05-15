@@ -1,19 +1,24 @@
-enum ServerURLs: String {
+enum ServerURLs: String, CaseIterable {
     case production
     case beta
+    case qa
     case custom
     case reachability
 
     var description: String {
         switch self {
         case .production:
-            return "https://snowflake-qa.herokuapp.com"
+            return "https://"
         case .beta:
+            return "https://avecare-beta.herokuapp.com"
+        case .qa:
             return "https://snowflake-qa.herokuapp.com"
         case .custom:
             return "https://"
         case .reachability:
-        #if BETA
+        #if QA
+            let newString = ServerURLs.qa.description.replacingOccurrences(of: "https://", with: "", options: .anchored)
+        #elseif BETA
             let newString = ServerURLs.beta.description.replacingOccurrences(of: "https://", with: "", options: .anchored)
         #else
             let newString = ServerURLs.production.description.replacingOccurrences(of: "https://", with: "", options: .anchored)
@@ -22,9 +27,8 @@ enum ServerURLs: String {
             return newString
         }
     }
-
-    static let allValues = [production, beta, custom]
 }
+
 
 struct Servers {
 
@@ -36,14 +40,13 @@ struct Servers {
 
     // MARK: -
     init() {
-        for value in ServerURLs.allValues {
+        for value in ServerURLs.allCases {
             list.append(value.rawValue)
         }
-
     }
 
     func valueFromDescription(_ descriptionValue: String) -> String {
-        for value in ServerURLs.allValues where value.description == descriptionValue {
+        for value in ServerURLs.allCases where value.description == descriptionValue {
             return value.rawValue
         }
 
@@ -51,7 +54,7 @@ struct Servers {
     }
 
     func descriptionFromValue(_ value: String) -> String {
-        for val in ServerURLs.allValues where valueFromDescription(val.description) == value {
+        for val in ServerURLs.allCases where valueFromDescription(val.description) == value {
             return val.description
         }
 
@@ -63,7 +66,9 @@ struct Servers {
     }
 
     func defaultRuntimeURLstring() -> String {
-        #if BETA
+        #if QA
+            return ServerURLs.qa.description
+        #elseif BETA
             return ServerURLs.beta.description
         #else
             return ServerURLs.production.description

@@ -24,6 +24,7 @@ struct OrganizationsAPIService {
         }
     }
 
+
     typealias LogTemplatesResult = APIPaginatedResponse<RLMFormTemplate>
     typealias LogTemplatesCompletion = (Result<[RLMFormTemplate], AppError>) -> Void
     static func getOrganizationLogTemplates(id: String, completion: @escaping LogTemplatesCompletion) {
