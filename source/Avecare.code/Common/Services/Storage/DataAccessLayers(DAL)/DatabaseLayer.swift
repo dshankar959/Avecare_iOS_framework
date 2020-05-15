@@ -197,6 +197,23 @@ extension DatabaseLayer where Self: Object {
     }
 
 
+    static func deleteAllOfType(objectType: Object.Type) {
+        autoreleasepool {
+            do {
+                let database = Self.getDatabase()
+                try database?.write {
+                    if let allObjects = database?.objects(objectType) {
+                        database?.delete(allObjects)
+                    }
+                }
+            } catch let error {
+                DDLogError("Database error: \(error)")
+                fatalError("Database error: \(error)")
+            }
+        }
+    }
+
+
     static func writeTransaction(writeTransactionBlock: @escaping () -> Void) {
         autoreleasepool {
             do {

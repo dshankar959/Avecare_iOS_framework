@@ -23,6 +23,8 @@ extension SyncEngine {
         syncStates[syncKey] = .syncing
         notifySyncStateChanged(message: "Syncing down 🔻 subject details")
 
+        // TODO:  probably best to compare and remove only the differences between lists of subjects.  (server DB vs local DB)
+
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor {
             if let unitId = RLMSupervisor.details?.primaryUnitId {
