@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,27 +16,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Mc-m7-AQJ">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="24"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QvE-dq-2gi">
-                                        <rect key="frame" x="175" y="9" width="64" height="6"/>
-                                        <color key="backgroundColor" name="Separator"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="64" id="7td-JJ-wIH"/>
-                                            <constraint firstAttribute="height" constant="6" id="Ite-Af-v9h"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="BdM-ww-7a0"/>
-                                    <constraint firstItem="QvE-dq-2gi" firstAttribute="centerY" secondItem="9Mc-m7-AQJ" secondAttribute="centerY" id="PDl-vu-v5S"/>
-                                    <constraint firstItem="QvE-dq-2gi" firstAttribute="centerX" secondItem="9Mc-m7-AQJ" secondAttribute="centerX" id="fur-hz-Fa5"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Wr-zP-5Wz">
-                                <rect key="frame" x="0.0" y="24" width="414" height="376"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="pdF-Hc-dnK">
                                     <rect key="frame" x="0.0" y="113" width="414" height="0.0"/>
@@ -87,13 +67,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Nax-QD-Q7n" firstAttribute="top" secondItem="9Mc-m7-AQJ" secondAttribute="top" id="3ni-Pk-Keg"/>
                             <constraint firstItem="Nax-QD-Q7n" firstAttribute="bottom" secondItem="8Wr-zP-5Wz" secondAttribute="bottom" id="Lzb-KU-LzX"/>
                             <constraint firstItem="Nax-QD-Q7n" firstAttribute="trailing" secondItem="8Wr-zP-5Wz" secondAttribute="trailing" id="QdG-be-Xmd"/>
                             <constraint firstItem="8Wr-zP-5Wz" firstAttribute="leading" secondItem="Nax-QD-Q7n" secondAttribute="leading" id="WMx-Qm-N5m"/>
-                            <constraint firstItem="Nax-QD-Q7n" firstAttribute="leading" secondItem="9Mc-m7-AQJ" secondAttribute="leading" id="WZh-yy-5e9"/>
-                            <constraint firstItem="Nax-QD-Q7n" firstAttribute="trailing" secondItem="9Mc-m7-AQJ" secondAttribute="trailing" id="pFB-Hz-l4S"/>
-                            <constraint firstItem="8Wr-zP-5Wz" firstAttribute="top" secondItem="9Mc-m7-AQJ" secondAttribute="bottom" id="zxJ-1q-MXN"/>
+                            <constraint firstItem="8Wr-zP-5Wz" firstAttribute="top" secondItem="Nax-QD-Q7n" secondAttribute="top" id="YhZ-g3-gbC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nax-QD-Q7n"/>
                     </view>
@@ -102,7 +79,6 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="400"/>
                     <connections>
-                        <outlet property="drawerView" destination="QvE-dq-2gi" id="2BM-Ya-QYK"/>
                         <outlet property="tableView" destination="8Wr-zP-5Wz" id="pAC-h6-Rq3"/>
                     </connections>
                 </viewController>
@@ -111,9 +87,4 @@
             <point key="canvasLocation" x="-609.375" y="107.5"/>
         </scene>
     </scenes>
-    <resources>
-        <namedColor name="Separator">
-            <color red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

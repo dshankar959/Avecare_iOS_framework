@@ -9,7 +9,7 @@ protocol SubjectListViewControllerDelegate: class {
 }
 
 class SubjectListViewController: UIViewController {
-    @IBOutlet weak var drawerView: UIView!
+
     @IBOutlet weak var tableView: UITableView!
     weak var delegate: SubjectListViewControllerDelegate?
     var allSubjectsIncluded = false
@@ -23,14 +23,11 @@ class SubjectListViewController: UIViewController {
 
     private let cellHeight = CGFloat(57)
     var contentHeight: CGFloat {
-        return CGFloat(dataProvider.numberOfRows) * cellHeight + 24
+        return CGFloat(dataProvider.numberOfRows) * cellHeight
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        drawerView.layer.cornerRadius = drawerView.frame.height / 2
-        drawerView.clipsToBounds = true
     }
 }
 

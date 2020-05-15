@@ -2,7 +2,6 @@ import Foundation
 import UIKit
 import CocoaLumberjack
 import SegueManager
-import FontAwesome_swift
 
 
 class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
