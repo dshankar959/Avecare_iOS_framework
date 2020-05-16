@@ -9,6 +9,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var subjectFilterButton: UIButton!
 
     var dataProvider: HomeDataProvider = DefaultHomeDataProvider()
+    lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +30,12 @@ class HomeViewController: UIViewController {
         if segue.identifier == R.segue.homeViewController.subjectList.identifier,
            let destination = segue.destination as? SubjectListViewController {
             destination.delegate = self
+            destination.allSubjectsIncluded = true
+            slideInTransitionDelegate.direction = .bottom
+            slideInTransitionDelegate.sizeOfPresentingViewController = CGSize(width: view.frame.size.width,
+                                                                              height: destination.contentHeight)
+            destination.transitioningDelegate = slideInTransitionDelegate
+            destination.modalPresentationStyle = .custom
         }
     }
 
@@ -46,7 +53,6 @@ class HomeViewController: UIViewController {
 extension HomeViewController: SubjectListViewControllerDelegate {
     func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
         controller.dismiss(animated: true)
-        //subjectFilterButton.setTitle(item.title + "\u{f078}", for: .normal)
         setSubjectFilerButtonTitle(titleText: item.title)
     }
 }

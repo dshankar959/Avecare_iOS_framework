@@ -56,34 +56,37 @@
                     </view>
                     <navigationItem key="navigationItem" id="pNi-PV-EZF">
                         <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="h2f-lI-4BT">
-                            <rect key="frame" x="207" y="22" width="0.0" height="0.0"/>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hC9-xh-anh">
+                            <rect key="frame" x="157" y="3" width="100" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9d7-Yn-NpC">
-                                    <rect key="frame" x="-15" y="-17" width="30" height="34"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                    <state key="normal" title="All">
-                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    </state>
-                                </button>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="9d7-Yn-NpC" firstAttribute="centerY" secondItem="h2f-lI-4BT" secondAttribute="centerY" id="6Pn-ZS-83u"/>
-                                <constraint firstItem="9d7-Yn-NpC" firstAttribute="centerX" secondItem="h2f-lI-4BT" secondAttribute="centerX" id="jVH-v1-763"/>
-                            </constraints>
-                        </view>
+                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <state key="normal" title="All">
+                                <color key="titleColor" name="DarkText"/>
+                            </state>
+                            <connections>
+                                <action selector="subjectFilterButtonTouched:" destination="Jqk-Yc-Nb4" eventType="touchUpInside" id="XWy-Bv-YPP"/>
+                            </connections>
+                        </button>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="subjectFilterButton" destination="hC9-xh-anh" id="jr6-no-KlE"/>
                         <outlet property="tableView" destination="rlY-xL-icf" id="bhw-mF-avL"/>
                         <segue destination="Gcb-Ez-APF" kind="show" identifier="details" id="1Nr-WQ-AVa"/>
+                        <segue destination="bpt-tl-O88" kind="presentation" identifier="subjectList" id="ePQ-mt-0Md"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLu-cb-IQv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
+        </scene>
+        <!--SubjectList-->
+        <scene sceneID="ga9-wd-upQ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SubjectList" id="bpt-tl-O88" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g4b-17-6Ai" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="514"/>
         </scene>
         <!--Stories Details View Controller-->
         <scene sceneID="onb-nq-lkB">
@@ -152,6 +155,9 @@
         <image name="tab-bar-stories-icon" width="16" height="19"/>
         <namedColor name="Background">
             <color red="0.94509803921568625" green="0.95294117647058818" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="DarkText">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

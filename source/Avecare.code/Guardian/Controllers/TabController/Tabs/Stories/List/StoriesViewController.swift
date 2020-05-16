@@ -7,11 +7,11 @@ import Foundation
 import UIKit
 
 class StoriesListViewController: UIViewController {
+    @IBOutlet weak var subjectFilterButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
 
-    lazy var dataProvider: StoriesDataProvider = {
-      return DefaultStoriesDataProvider()
-    }()
+    var dataProvider: StoriesDataProvider = DefaultStoriesDataProvider()
+    lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +19,47 @@ class StoriesListViewController: UIViewController {
             StoriesTableViewCellModel.self,
             SupervisorFilterTableViewCellModel.self
         ])
+        
+        setSubjectFilerButtonTitle(titleText: "All")
+    }
+
+    @IBAction func subjectFilterButtonTouched(_ sender: UIButton) {
+        performSegue(withIdentifier: R.segue.storiesListViewController.subjectList.identifier, sender: nil)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let details = R.segue.storiesListViewController.details(segue: segue) {
+        if segue.identifier == R.segue.storiesListViewController.details.identifier,
+            let details = R.segue.storiesListViewController.details(segue: segue) {
             details.destination.details = sender as? StoriesDetails
         }
+
+        if segue.identifier == R.segue.storiesListViewController.subjectList.identifier,
+            let destination = segue.destination as? SubjectListViewController {
+            destination.delegate = self
+            destination.allSubjectsIncluded = true
+            slideInTransitionDelegate.direction = .bottom
+            slideInTransitionDelegate.sizeOfPresentingViewController = CGSize(width: view.frame.size.width,
+                                                                              height: destination.contentHeight)
+            destination.transitioningDelegate = slideInTransitionDelegate
+            destination.modalPresentationStyle = .custom
+        }
+    }
+
+    private func setSubjectFilerButtonTitle(titleText: String) {
+        let titleFont = UIFont.systemFont(ofSize: 16)
+        let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])
+        let chevronFont = UIFont(name: "FontAwesome5Pro-Light", size: 12)
+        let chevronAttributedString = NSAttributedString(string: "\u{f078}", attributes: [NSAttributedString.Key.font: chevronFont!])
+        titleAttributedString.append(chevronAttributedString)
+
+        subjectFilterButton.setAttributedTitle(titleAttributedString, for: .normal)
+    }
+}
+
+extension StoriesListViewController: SubjectListViewControllerDelegate {
+    func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
+        controller.dismiss(animated: true)
+        setSubjectFilerButtonTitle(titleText: item.title)
     }
 }
 

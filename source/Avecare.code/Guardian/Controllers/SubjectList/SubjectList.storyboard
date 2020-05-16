@@ -3,7 +3,7 @@
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -69,8 +69,8 @@
                         <constraints>
                             <constraint firstItem="Nax-QD-Q7n" firstAttribute="bottom" secondItem="8Wr-zP-5Wz" secondAttribute="bottom" id="Lzb-KU-LzX"/>
                             <constraint firstItem="Nax-QD-Q7n" firstAttribute="trailing" secondItem="8Wr-zP-5Wz" secondAttribute="trailing" id="QdG-be-Xmd"/>
-                            <constraint firstItem="8Wr-zP-5Wz" firstAttribute="top" secondItem="Nax-QD-Q7n" secondAttribute="top" id="UXv-Nd-R6h"/>
                             <constraint firstItem="8Wr-zP-5Wz" firstAttribute="leading" secondItem="Nax-QD-Q7n" secondAttribute="leading" id="WMx-Qm-N5m"/>
+                            <constraint firstItem="8Wr-zP-5Wz" firstAttribute="top" secondItem="Nax-QD-Q7n" secondAttribute="top" id="YhZ-g3-gbC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nax-QD-Q7n"/>
                     </view>

@@ -167,6 +167,9 @@
                             <state key="normal" title="All">
                                 <color key="titleColor" name="DarkText"/>
                             </state>
+                            <connections>
+                                <action selector="subjectSelectButtonTouched:" destination="VN9-Za-7jc" eventType="touchUpInside" id="lE8-1j-aiq"/>
+                            </connections>
                         </button>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="UuA-yK-hfO">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qUy-FN-xMu">
@@ -186,11 +189,20 @@
                         <outlet property="selectedDateLabel" destination="iaa-Du-qwZ" id="J5h-XI-Qkb"/>
                         <outlet property="subjectSelectButton" destination="7wQ-7R-bFg" id="hod-rC-KCk"/>
                         <outlet property="tableView" destination="WvE-pV-HgB" id="QQP-as-YvX"/>
+                        <segue destination="QSo-cw-2vx" kind="presentation" identifier="subjectList" id="S9T-J4-AkZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tlg-wW-i9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
+        </scene>
+        <!--SubjectList-->
+        <scene sceneID="IrP-ro-dhR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="SubjectList" id="QSo-cw-2vx" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JFG-Pr-j5z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="498"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="VNk-0o-lRT">

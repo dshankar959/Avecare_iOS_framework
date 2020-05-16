@@ -302,6 +302,10 @@
 		DC225E38246C68BF00094BB0 /* CheckmarkFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67DF806241BFE6800793A9C /* CheckmarkFormView.swift */; };
 		DC225E3F246C787F00094BB0 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC225E3E246C787F00094BB0 /* DateCell.swift */; };
 		DC70F062246B436800FFD262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
+		DCFFD6F6246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */; };
+		DCFFD6F7246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */; };
+		DCFFD6F9246DA6FE0080DEA6 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */; };
+		DCFFD6FA246DA6FE0080DEA6 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */; };
 		F65549F424564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */; };
 		F65549F524564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */; };
 		F65549F624564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549F024564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf */; };
@@ -583,6 +587,8 @@
 		C6A41FD77BCF4377A08E9406 /* Pods-educator.debug(beta).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.debug(beta).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.debug(beta).xcconfig"; sourceTree = "<group>"; };
 		D48B06C16950ED61770C4604 /* Pods-educator.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(appstore).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		DC225E3E246C787F00094BB0 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
+		DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
+		DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
 		F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Duotone-Solid-900.otf"; sourceTree = "<group>"; };
 		F65549F024564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Regular-400.otf"; sourceTree = "<group>"; };
 		F65549F124564F2100574872 /* Font Awesome 5 Pro-Light-300.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Pro-Light-300.otf"; sourceTree = "<group>"; };
@@ -1138,6 +1144,7 @@
 				75886CFE2419327F0079C080 /* XibView */,
 				615474982D92E9922E195648 /* Closure */,
 				61547E5F5299457A9F9AB301 /* FlowLayout */,
+				DCFFD6FB246DA71B0080DEA6 /* Presentation */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1579,6 +1586,15 @@
 				75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */,
 			);
 			path = SyncEngine;
+			sourceTree = "<group>";
+		};
+		DCFFD6FB246DA71B0080DEA6 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */,
+				DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		F65549EE24564F2100574872 /* Font Awesome 5 */ = {
@@ -2152,6 +2168,7 @@
 				75886D2C2419327F0079C080 /* AppError.swift in Sources */,
 				75886D4C2419327F0079C080 /* Dictionary.swift in Sources */,
 				75EB5A142466791A00E077E5 /* UserCredentials.swift in Sources */,
+				DCFFD6F6246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */,
 				75E2EBFA246C1DDD00A3D51F /* RLMDefaults.swift in Sources */,
 				75886DEB241932BA0079C080 /* LogsSideViewController.swift in Sources */,
 				75886DFF241932CC0079C080 /* Theme.swift in Sources */,
@@ -2237,6 +2254,7 @@
 				6154726CA276E2707083B329 /* APIToken.swift in Sources */,
 				615474453FDE920B0B2ABA52 /* SubjectAccidentReportView.swift in Sources */,
 				75EB59E524618EF600E077E5 /* SyncEngine+Timer.swift in Sources */,
+				DCFFD6F9246DA6FE0080DEA6 /* SlideInPresentationController.swift in Sources */,
 				61547B417F71D10BC3AE1170 /* SubjectPickerViewController.swift in Sources */,
 				6154703AE0070C0AD17E57F2 /* SubjectPickerTableViewCell.swift in Sources */,
 				6154731646C983BE37C728B7 /* ChecklistFormProvider.swift in Sources */,
@@ -2336,6 +2354,7 @@
 				F663BB7F243522C5003279B9 /* OTPViewController.swift in Sources */,
 				75886D392419327F0079C080 /* DDLogNetworkPlugin.swift in Sources */,
 				75886D432419327F0079C080 /* UIColor.swift in Sources */,
+				DCFFD6FA246DA6FE0080DEA6 /* SlideInPresentationController.swift in Sources */,
 				75886D612419327F0079C080 /* UserAPIService.swift in Sources */,
 				75886D2F2419327F0079C080 /* CellViewModels.swift in Sources */,
 				75886D452419327F0079C080 /* FileManager.swift in Sources */,
@@ -2394,6 +2413,7 @@
 				75EB5A25246770A200E077E5 /* OrganizationsAPIService.swift in Sources */,
 				75EB59CB2461858700E077E5 /* RLMLogPhotoRow.swift in Sources */,
 				615472FD03343E8BBC254253 /* LogsViewModelFactory.swift in Sources */,
+				DCFFD6F7246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */,
 				615474F1719D19B2A4E58928 /* HomeTableVIewHeaderView.swift in Sources */,
 				61547527266DD8DB51B90A5A /* HomeTableViewDisclosureCell.swift in Sources */,
 			);
