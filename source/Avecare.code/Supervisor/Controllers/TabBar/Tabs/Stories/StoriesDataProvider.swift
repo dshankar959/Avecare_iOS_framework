@@ -36,7 +36,7 @@ class StoriesDataProvider: StoriesDataProviderIO {
     var delegate: StoriesDataProviderDelegate?
 
     var dataSource = [RLMStory]()
-    let imageStorageService = ImageStorageService(for: appSession.userProfile)
+    let imageStorageService = ImageStorageService()
 
     func fetchAll() {
         dataSource = RLMStory.findAll()

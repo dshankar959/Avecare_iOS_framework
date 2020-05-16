@@ -1,6 +1,6 @@
-import Foundation
 import UIKit
 import CocoaLumberjack
+
 
 
 struct Form {
@@ -32,6 +32,7 @@ protocol SubjectListDataProviderDelegate: UIViewController, CustomResponderProvi
 
 
 class SubjectListDataProvider: SubjectListDataProviderIO {
+
     enum Sort: Int {
         case lastName = 0
         case firstName = 1
@@ -42,7 +43,12 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
     var delegate: SubjectListDataProviderDelegate?
 
     private var dataSource = [RLMSubject]()
-    let imageStorageService = ImageStorageService(for: appSession.userProfile)
+    let imageStorageService = ImageStorageService()
+
+    var numberOfRows: Int {
+        return dataSource.count
+    }
+
 
     func sortBy(_ sort: Sort) {
         switch sort {
@@ -50,10 +56,6 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         case .lastName: dataSource = RLMSubject.findAll(sortedBy: "lastName")
         case .date: dataSource = RLMSubject.findAll(sortedBy: "birthday")
         }
-    }
-
-    var numberOfRows: Int {
-        return dataSource.count
     }
 
     func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel {
@@ -69,7 +71,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
 
         // update previous selection
         if let last = selectedId, last != targetId,
-           let index = dataSource.firstIndex(where: { $0.id == last }) {
+            let index = dataSource.firstIndex(where: { $0.id == last }) {
             indexes.append(IndexPath(row: index, section: 0))
         }
 
@@ -90,7 +92,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         let header: [AnyCellViewModel] = [
             FormLabelViewModel.title(title),
             FormLabelViewModel.subtitle("Never")
-                    .inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 32, right: 0))
+                .inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 32, right: 0))
         ]
 
         return Form(viewModels: header + formLog.rows.map({ self.viewModel(for: $0, at: indexPath) }))
@@ -111,8 +113,8 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
 
                 guard let toolbar = self?.defaultToolbarView(onDone: {
                     guard let subject = self?.dataSource[indexPath.row],
-                          let row = picker.selectedValue?.reusableRow() else {
-                        return
+                        let row = picker.selectedValue?.reusableRow() else {
+                            return
                     }
 
                     self?.delegate?.customResponder?.resignFirstResponder()
@@ -132,12 +134,12 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
 
                 self?.delegate?.customResponder?.becomeFirstResponder(inputView: picker, accessoryView: toolbar)
 
-            }, isEnabled: !isSubmitted, image: R.image.plusIcon())),
+                }, isEnabled: !isSubmitted, image: R.image.plusIcon())),
             .offset(value: 10),
             // Navigation Publish for selected subject
             .button(options: .init(action: { [weak self] view, options, index in
                 self?.publishDailyForm(at: indexPath)
-            }, isEnabled: !isSubmitted, text: "Publish", textColor: R.color.mainInversion(), cornerRadius: 4))
+                }, isEnabled: !isSubmitted, text: "Publish", textColor: R.color.mainInversion(), cornerRadius: 4))
 
         ]
     }
@@ -151,7 +153,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         case .note: return viewModel(for: row.note!, at: indexPath)
         case .photo: return viewModel(for: row.photo!, at: indexPath)
         case .injury: return viewModel(for: row.injury!, at: indexPath)
-                // swiftlint:enable:force_cast
+        // swiftlint:enable:force_cast
         }
     }
 
@@ -178,4 +180,5 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
             }
         }
     }
+
 }

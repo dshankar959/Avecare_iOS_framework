@@ -1,22 +1,28 @@
-import Foundation
 import UIKit
 import BSImagePicker
 import Photos
+import CocoaLumberjack
+
+
 
 extension SubjectDetailsPhotoViewModel {
-    init(row: RLMLogPhotoRow) {
+    init(row: RLMLogPhotoRow, storage: ImageStorageService) {
         title = row.title
         note = row.text
 
-        if let path = row.imageUrl {
-            image = URL(string: path)
+        if let remoteURL = row.remoteImageURL {
+            image = URL(string: remoteURL)
+        } else if let localURL = storage.imageURL(name: row.filename) {
+            image = localURL
         }
     }
 }
 
+
 extension SubjectListDataProvider {
+
     func viewModel(for row: RLMLogPhotoRow, at indexPath: IndexPath) -> SubjectDetailsPhotoViewModel {
-        var viewModel = SubjectDetailsPhotoViewModel(row: row)
+        var viewModel = SubjectDetailsPhotoViewModel(row: row, storage: imageStorageService)
         viewModel.action = .init(onTextChange: { view in
             RLMLogPhotoRow.writeTransaction {
                 if view.textView.text.count > 0 {
@@ -31,6 +37,7 @@ extension SubjectListDataProvider {
         return viewModel
     }
 
+
     private func showImagePicker(from view: SubjectDetailsPhotoView, row: RLMLogPhotoRow, at indexPath: IndexPath) {
         let imagePicker = ImagePickerController()
         imagePicker.settings.selection.max = 1
@@ -40,41 +47,43 @@ extension SubjectListDataProvider {
                 return
             }
 
+            // FIXME: setup size if needed
             let size = 375 * UIScreen.main.scale
-            PHImageManager.default().requestImage(for: asset,
-                                                  targetSize: CGSize(width: size, height: size),
-                                                  contentMode: .aspectFit,
-                                                  options: nil) { image, _ in
-                guard let image = image else {
-                    return
+            PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: size, height: size),
+                                                  contentMode: .aspectFit, options: nil) { [weak self] image, info in
+
+                guard !((info?[PHImageResultIsDegradedKey] as? Bool) ?? false),
+                    let image = image, let service = self?.imageStorageService else {
+                        return
                 }
-                let service = ImageStorageService()
 
                 // remove previous local image
-                if let path = row.imageUrl, path.isFilePath, let filePath = URL(string: path) {
+                if let fileURL = service.imageURL(name: row.filename) {
                     do {
-                        try service.removeImage(at: filePath)
+                        try service.removeImage(at: fileURL)
                     } catch {
-                        print(error)
+                        DDLogError("\(error)")
                     }
                 }
 
                 do {
                     // save image locally
-                    let url = try service.saveImage(image)
+                    let url = try service.saveImage(image, name: row.filename)
                     // update database
                     RLMLogPhotoRow.writeTransaction {
-                        row.imageUrl = url?.absoluteString
+                        // reset remoteImageURL to start use local image by name
+                        row.remoteImageURL = nil
+                        // TODO: update form local date
                     }
                     // update UI
                     view.setImage(url)
 
                 } catch {
-                    print(error)
+                    DDLogError("\(error)")
                 }
-
             }
         })
 
     }
+
 }
