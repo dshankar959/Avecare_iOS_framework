@@ -3,7 +3,7 @@ import RealmSwift
 
 
 
-class RLMLogRow: Object, Decodable {
+class RLMLogRow: Object, Codable {
     /*
     switch self {
     case .option: return RLMLogOptionRow.self
@@ -109,7 +109,31 @@ class RLMLogRow: Object, Decodable {
         }
     }
 
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
 
+        if let option = option {
+            try container.encode(RowType.option.rawValue, forKey: .rowType)
+            try container.encode(option, forKey: .properties)
+        } else if let time = time {
+            try container.encode(RowType.time.rawValue, forKey: .rowType)
+            try container.encode(time, forKey: .properties)
+        } else if let switcher = switcher {
+            try container.encode(RowType.switcher.rawValue, forKey: .rowType)
+            try container.encode(switcher, forKey: .properties)
+        } else if let note = note {
+            try container.encode(RowType.note.rawValue, forKey: .rowType)
+            try container.encode(note, forKey: .properties)
+        } else if let photo = photo {
+            try container.encode(RowType.photo.rawValue, forKey: .rowType)
+            try container.encode(photo, forKey: .properties)
+        } else if let injury = injury {
+            try container.encode(RowType.injury.rawValue, forKey: .rowType)
+            try container.encode(injury, forKey: .properties)
+        } else {
+            fatalError()
+        }
+    }
 }
 
 

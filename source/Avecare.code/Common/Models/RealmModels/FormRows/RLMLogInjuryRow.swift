@@ -16,13 +16,25 @@ class RLMLogInjuryRow: Object, Decodable, FormRowIconProtocol {
         try decodeIcon(from: decoder)
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let time = try container.decodeIfPresent(Date.self, forKey: .time) {
+
+        let formatter = Date.timeFormatter
+        if let timeString = try container.decodeIfPresent(String.self, forKey: .time),
+        let time = formatter.date(from: timeString) {
             self.time = time
         }
     }
 }
 
+extension RLMLogInjuryRow: Encodable {
+    func encode(to encoder: Encoder) throws {
+        try encodeIcon(to: encoder)
+
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        let formatter = Date.timeFormatter
+        try container.encode(formatter.string(from: time), forKey: .time)
+    }
+}
 
 extension RLMLogInjuryRow: DataProvider {
-    typealias T = RLMLogInjuryRow
+
 }

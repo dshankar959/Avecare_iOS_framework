@@ -21,4 +21,11 @@ extension FormRowIconProtocol {
             iconColor =  value
         }
     }
+
+    func encodeIcon(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: FormRowIconKeys.self)
+        try container.encode(iconName, forKey: .iconName)
+        let color = String(iconColor, radix: 16).uppercased()
+        try container.encode(color, forKey: .iconColor)
+    }
 }

@@ -4,11 +4,13 @@ struct UserProfile: Codable {
     var isLastSignedIn: Bool = false
 
     var accountType: String? {
+        // FIXME:
         let accountInfo = RLMAccountInfo.findAll().first
         return accountInfo?.accountType
     }
 
     var accountTypeId: String? {
+        // FIXME: this can lead to issues when app start using previous record from database instead of current
         let accountInfo = RLMAccountInfo.findAll().first
         return accountInfo?.id
     }

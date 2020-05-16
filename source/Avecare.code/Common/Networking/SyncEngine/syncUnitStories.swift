@@ -3,6 +3,6 @@ import CocoaLumberjack
 
 
 
-struct StoriesAPIService {
+extension SyncEngine {
 
 }

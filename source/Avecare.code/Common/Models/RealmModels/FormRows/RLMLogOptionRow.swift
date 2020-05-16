@@ -31,6 +31,22 @@ class RLMLogOptionRow: Object, Decodable, FormRowIconProtocol {
     }
 }
 
+extension RLMLogOptionRow: Encodable {
+    func encode(to encoder: Encoder) throws {
+        try encodeIcon(to: encoder)
+
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        try container.encode(title, forKey: .title)
+        try container.encode(placeholder, forKey: .placeholder)
+        try container.encode(selectedValue, forKey: .selectedValue)
+
+        var optionsContainer = container.nestedUnkeyedContainer(forKey: .options)
+        for option in options {
+            try optionsContainer.encode(option)
+        }
+    }
+}
 
 extension RLMLogOptionRow: DataProvider, RLMCleanable {
     func clean() {

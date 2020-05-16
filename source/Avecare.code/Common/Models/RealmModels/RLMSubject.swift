@@ -54,7 +54,7 @@ class RLMSubject: RLMDefaults {
 
         if let template = RLMFormTemplate.find(withSubjectType: subjectTypeId) {
             DDLogDebug("Loading template: \(template.id)")
-            form.rows.append(objectsIn: template.rows.detached())
+            form.rows.append(objectsIn: template.reuseTemplateRows())
         }
 
         form.create()
@@ -86,7 +86,13 @@ class RLMSubject: RLMDefaults {
             self.firstName = try values.decode(String.self, forKey: .firstName)
             self.middleName = try values.decode(String.self, forKey: .middleName)
             self.lastName = try values.decode(String.self, forKey: .lastName)
-            self.birthday = try values.decode(Date.self, forKey: .birthday)
+
+            let birthDayString: String = try values.decode(String.self, forKey: .birthday)
+            guard let birthday = Date.ymdFormatter.date(from: birthDayString) else {
+                fatalError("JSON Decoding error = 'Invalid birthday format'")
+            }
+            self.birthday =  birthday
+
             self.subjectTypeId = try values.decode(String.self, forKey: .subjectTypeId)
             self.photoConsent = try values.decode(Bool.self, forKey: .photoConsent)
             self.profilePhoto = try values.decodeIfPresent(String.self, forKey: .profilePhoto)
@@ -102,7 +108,7 @@ class RLMSubject: RLMDefaults {
 
 
 extension RLMSubject: DataProvider {
-    typealias T = RLMSubject
+
 }
 
 

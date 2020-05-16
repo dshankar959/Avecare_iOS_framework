@@ -38,7 +38,14 @@ class RLMLogChooseRow: Object, Decodable {
         case .photo: row = try RLMLogRow(row: try container.decode(RLMLogPhotoRow.self, forKey: .properties))
         case .injury: row = try RLMLogRow(row: try container.decode(RLMLogInjuryRow.self, forKey: .properties))
         }
+    }
 
+    func reusableRow() -> RLMLogRow? {
+        let row = self.row?.detached()
+        if let photo = row?.photo {
+            photo.prepareForReuse()
+        }
+        return row
     }
 }
 

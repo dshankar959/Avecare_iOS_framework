@@ -36,6 +36,12 @@ class RLMFormTemplate: RLMDefaults {
         }
     }
 
+    func reuseTemplateRows() -> List<RLMLogRow> {
+        let rows = self.rows.detached()
+        rows.compactMap({ $0.photo }).forEach({ $0.prepareForReuse() })
+        return rows
+    }
+
 }
 
 

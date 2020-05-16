@@ -8,11 +8,14 @@ struct FormTextViewModel: CellViewModel {
     let textColor: UIColor? = R.color.darkText()
     let placeholder: String
     let value: String?
+    let isEditable: Bool
 
     var onChange: ((CellType, String?) -> Void)?
 
     func setup(cell: CellType) {
-        cell.onChange = onChange
+        if isEditable {
+            cell.onChange = onChange
+        }
 
         cell.textView.font = font
         cell.textViewPlaceholder.font = font
@@ -25,6 +28,8 @@ struct FormTextViewModel: CellViewModel {
             cell.textView.textColor = color
             cell.textViewPlaceholder.textColor = color
         }
+
+        cell.textView.isUserInteractionEnabled = isEditable
     }
 }
 

@@ -83,7 +83,9 @@ enum AvecareAPI { // API Services
     case unitCreateReminder(id: String)
     case unitSubjects(id: String)
     case unitSupervisors(id: String)
+    case unitPublishStory(story: StoryAPIModel)
 
+    case subjectPublishDailyLog(request: DailyFormAPIModel)
 }
 
 
@@ -124,16 +126,17 @@ extension AvecareAPI: TargetType {
         case .unitCreateReminder(let id): return "/units/\(id)/reminders/"
         case .unitSubjects(let id): return "/units/\(id)/subjects"
         case .unitSupervisors(let id): return "/units/\(id)/supervisors"
+        case .unitPublishStory(let story): return "/units/\(story.unitId)/stories/"
 
         case .unitStories(let id): return "/units/\(id)/stories"
         case .storyDetails(let id): return "/stories/\(id)"
 
         case .supervisorDetails(let id): return "/supervisors/\(id)"
+        case .subjectPublishDailyLog(let request): return "/subjects/\(request.subjectId)/daily-logs/"
         }
     }
 
     var method: Moya.Method {
-//        DDLogDebug("method")
         switch self {
         case .login,
              .oneTimePassword,
@@ -141,15 +144,15 @@ extension AvecareAPI: TargetType {
              .unitCreateActivity,
              .unitPublishDailyTasks,
              .unitCreateInjury,
-             .unitCreateReminder:
+             .unitCreateReminder,
+             .subjectPublishDailyLog,
+            .unitPublishStory:
             return .post
-        default:
-            return .get
+        default: return .get
         }
     }
 
     var task: Task {
-//        DDLogDebug("task")
         switch self {
         case .login(let credentials):
             return .requestJSONEncodable(credentials)
@@ -160,13 +163,15 @@ extension AvecareAPI: TargetType {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(Date.ymdFormatter)
             return .requestCustomJSONEncodable(request, encoder: encoder)
+        case .subjectPublishDailyLog(let request as MultipartEncodable),
+             .unitPublishStory(let request as MultipartEncodable):
+            return .uploadMultipart(request.formData)
         default:
             return .requestPlain
         }
     }
 
     var headers: [String: String]? {
-//        DDLogDebug("headers")
         switch self {
         case .login,
              .oneTimePassword:
@@ -175,55 +180,6 @@ extension AvecareAPI: TargetType {
         default:
             return ["Authorization": "Token \(appSession.token.accessToken)"]
         }
-    }
-
-    // MARK: - MultipartData -
-    // ref: https://stackoverflow.com/questions/49568660/how-to-upload-image-using-multipart-request-with-moya-swift
-    var multipartBody: [Moya.MultipartFormData]? {
-
-        switch self {
-/*
-        case .uploadFile(let ofType, _, let filePathURL, let withJSONparameters):
-            var formData: [Moya.MultipartFormData] = []
-
-            if let filePath = filePathURL {
-                if ofType is RLMFeedback.Type {
-                    DDLogDebug(".uploadFile(feedback):")
-                    if let fileData = try? Data(contentsOf: filePath) {
-                        let filenameWithExtension = filePath.lastPathComponent
-                        formData.append(Moya.MultipartFormData(provider: .data(fileData),
-                                                               name: "attachment",
-                                                               fileName: filenameWithExtension,
-                                                               mimeType: "application/octet-stream"))
-                    }
-                } else {  // image
-                    DDLogDebug(".uploadFile(image):")
-                    if let image = UIImage(contentsOfFile: filePath.path) {
-                        if let imageData = image.jpegData(compressionQuality: 1.0) {
-                            let filenameWithExtension = filePath.lastPathComponent
-                            formData.append(Moya.MultipartFormData(provider: .data(imageData),
-                                                                   name: "attachment_upload",
-                                                                   fileName: filenameWithExtension,
-                                                                   mimeType: "image/jpg"))
-                        }
-                    }
-                }
-            }
-
-            if let parameters = withJSONparameters {
-                for (key, value) in parameters {
-                    let valueString = "\(value)"
-                    let valueData = valueString.data(using: String.Encoding.utf8) ?? Data()
-                    formData.append(Moya.MultipartFormData(provider: .data(valueData), name: key))
-                }
-            }
-
-            return formData
-*/
-        default:
-            return []
-        }
-
     }
 
     // Filter HTTP status codes from 200-399
