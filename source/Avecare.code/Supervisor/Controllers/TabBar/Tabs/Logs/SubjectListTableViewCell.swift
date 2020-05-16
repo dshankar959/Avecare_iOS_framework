@@ -1,6 +1,7 @@
-import Foundation
 import UIKit
 import Kingfisher
+
+
 
 struct SubjectListTableViewCellModel: CellViewModel {
     typealias CellType = SubjectListTableViewCell
@@ -10,6 +11,7 @@ struct SubjectListTableViewCellModel: CellViewModel {
     let lastName: String
     let birthDate: Date
     let isChecked: Bool
+
 
     init(subject: RLMSubject) {
         firstName = subject.firstName
@@ -31,6 +33,7 @@ struct SubjectListTableViewCellModel: CellViewModel {
         cell.accessoryType = isChecked ? .checkmark : .none
     }
 }
+
 
 class SubjectListTableViewCell: UITableViewCell {
     @IBOutlet weak var photoImageView: UIImageView!

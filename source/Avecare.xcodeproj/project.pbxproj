@@ -1441,10 +1441,10 @@
 		75886DAF241932BA0079C080 /* Logs */ = {
 			isa = PBXGroup;
 			children = (
-				75886DB0241932BA0079C080 /* SubjectListTableViewCell.swift */,
-				75886DB1241932BA0079C080 /* SubjectListDataProvider.swift */,
-				75886DB2241932BA0079C080 /* Logs.storyboard */,
 				75886DBD241932BA0079C080 /* LogsSideViewController.swift */,
+				75886DB1241932BA0079C080 /* SubjectListDataProvider.swift */,
+				75886DB0241932BA0079C080 /* SubjectListTableViewCell.swift */,
+				75886DB2241932BA0079C080 /* Logs.storyboard */,
 				615474CE5DC3A3CCACAAD0D6 /* FormBehavior */,
 				61547AD82550C7909011E04B /* NavigationBehavior */,
 			);

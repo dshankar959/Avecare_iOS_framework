@@ -22,11 +22,29 @@ class RLMSubject: RLMDefaults {
     }
 
     var isFormSubmittedToday: Bool {
-        return todayForm.serverDate != nil
+        return todayForm.serverLastUpdated != nil
     }
 
+    let logForms = LinkingObjects(fromType: RLMLogForm.self, property: "subject")   // Inverse relationship
+
     var todayForm: RLMLogForm {
-        if let form = logForms.last, Calendar.current.isDateInToday(form.localDate) {
+/*
+//        let mostRecentLogForm = logForms.sorted(byKeyPath: "clientLastUpdated", ascending: false).first
+
+        // Collect the subjects log forms and sort by date last updated on device.
+        let allLogForms: [RLMLogForm] = Array(logForms)
+        let sortedLogForms = allLogForms.sorted(by: { $0.clientLastUpdated.compare($1.clientLastUpdated) == .orderedAscending})
+
+        let mostRecentLogForm = RLMLogForm(value: sortedLogForms.last)
+
+//        Calendar.current.isDateInToday(mostRecentLogForm.clientLastUpdated)
+//        if let mostRecentLogForm = sortedLogForms.last, Calendar.current.isDateInToday(mostRecentLogForm.clientLastUpdated) {
+//            return mostRecentLogForm
+//        }
+
+*/
+
+        if let form = logForms.last, Calendar.current.isDateInToday(form.clientLastUpdated) {
             return form
         }
 
@@ -43,7 +61,6 @@ class RLMSubject: RLMDefaults {
         return form
     }
 
-    let logForms = LinkingObjects(fromType: RLMLogForm.self, property: "subject")   // Inverse relationship
 
 
     enum CodingKeys: String, CodingKey {

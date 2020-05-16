@@ -2,18 +2,18 @@ import CocoaLumberjack
 import RealmSwift
 
 
-// In generic protocols, to create something like <T> in generics, you need to add `associatedtype`.
-// https://www.bobthedeveloper.io/blog/generic-protocols-with-associated-type
-
-protocol DatabaseLayer {
-
-}
-
 
 struct DALConfig {
     static let DatabaseSchemaVersion: UInt64 = 1
     static let realmStoreName: String = "avecare.realm"   // default
     static var userRealmFileURL: URL?
+}
+
+
+// In generic protocols, to create something like <T> in generics, you need to add `associatedtype`.
+// https://www.bobthedeveloper.io/blog/generic-protocols-with-associated-type
+protocol DatabaseLayer {
+//    associatedtype T: Object
 }
 
 

@@ -48,7 +48,7 @@ extension SubjectListDataProvider {
                 guard let image = image else {
                     return
                 }
-                let service = ImageStorageService(for: appSession.userProfile)
+                let service = ImageStorageService()
 
                 // remove previous local image
                 if let path = row.imageUrl, path.isFilePath, let filePath = URL(string: path) {
@@ -64,7 +64,7 @@ extension SubjectListDataProvider {
                     let url = try service.saveImage(image)
                     // update database
                     RLMLogPhotoRow.writeTransaction {
-                        row.imageUrl = url.absoluteString
+                        row.imageUrl = url?.absoluteString
                     }
                     // update UI
                     view.setImage(url)

@@ -2,6 +2,7 @@ import Foundation
 import UIKit
 
 
+
 struct Form {
     let viewModels: [AnyCellViewModel]
 
@@ -9,6 +10,7 @@ struct Form {
         self.viewModels = viewModels
     }
 }
+
 
 protocol SubjectListDataProviderIO: class {
 

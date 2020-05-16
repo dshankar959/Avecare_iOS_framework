@@ -55,3 +55,21 @@ class RLMDefaults: Object, Decodable {
     }
 
 }
+
+
+extension RLMDefaults {
+
+    static func == (lhs: RLMDefaults, rhs: RLMDefaults) -> Bool {
+        var equal: Bool = false
+
+        if !lhs.id.isEmpty, !rhs.id.isEmpty {
+            if lhs.id.caseInsensitiveCompare(rhs.id) == .orderedSame {
+                // returns true if 'value1' equals 'value2' (case insensitive)
+                equal = true
+            }
+        }
+
+       return equal
+    }
+
+}

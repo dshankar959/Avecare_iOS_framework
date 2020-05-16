@@ -1,8 +1,8 @@
-import Foundation
 import UIKit
 
-class LogsSideViewController: UIViewController {
 
+
+class LogsSideViewController: UIViewController {
 
     @IBOutlet weak var sortSegmentControl: UISegmentedControl!
     @IBOutlet weak var tableView: UITableView!
@@ -12,6 +12,7 @@ class LogsSideViewController: UIViewController {
         provider.delegate = self
         return provider
     }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class LogsSideViewController: UIViewController {
         tableView.reloadData()
     }
 }
+
 
 extension LogsSideViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -42,7 +44,9 @@ extension LogsSideViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+
 extension LogsSideViewController: SubjectListDataProviderDelegate {
+
     func didUpdateModel(at indexPath: IndexPath) {
         let model = dataProvider.model(for: indexPath)
         if let cell = tableView.cellForRow(at: indexPath) {
@@ -58,7 +62,9 @@ extension LogsSideViewController: SubjectListDataProviderDelegate {
 
     func didFailure(_ error: Error) {
     }
+
 }
+
 
 extension LogsSideViewController: CustomResponderProvider {
     var customResponder: CustomResponder? {

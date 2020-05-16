@@ -3,7 +3,8 @@ import CocoaLumberjack
 
 struct DateConfig {
 //    static let ISO8601dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"   // GMT+TZ
-    static let ISO8601dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"      // local time without TZ
+//    static let ISO8601dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS"      // local time without TZ
+    static let ISO8601dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"   // local Zulu time
 }
 
 extension Date {
