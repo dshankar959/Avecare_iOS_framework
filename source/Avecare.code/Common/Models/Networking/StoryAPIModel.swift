@@ -35,7 +35,7 @@ extension StoryAPIModel: MultipartEncodable {
         if let value = body.data(using: .utf8) {
             data.append(.init(provider: .data(value), name: CodingKeys.body.rawValue))
         }
-        if let value =  Date.localFormatISO8601StringFromDate(publishedAt).data(using: .utf8) {
+        if let value =  Date.local24hrFormatISO8601StringFromDate(publishedAt).data(using: .utf8) {
             data.append(.init(provider: .data(value), name: CodingKeys.publishedAt.rawValue))
         }
         // FIXME: fill this json when templates ready

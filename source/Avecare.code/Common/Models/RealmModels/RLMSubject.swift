@@ -2,6 +2,7 @@ import CocoaLumberjack
 import RealmSwift
 
 
+
 class RLMSubject: RLMDefaults {
 
     @objc dynamic var firstName: String = ""
@@ -37,10 +38,35 @@ class RLMSubject: RLMDefaults {
 
         let mostRecentLogForm = RLMLogForm(value: sortedLogForms.last)
 
+        DDLogVerbose("Today's date = \(Date())")
+        DDLogVerbose("Today's date = \(Date.ISO8601StringFromDate(Date()))")
+        DDLogVerbose("Today's date = \(Date.local24hrFormatISO8601StringFromDate(Date()))")
+
+
+        DDLogVerbose("mostRecentLogForm date = \(mostRecentLogForm.clientLastUpdated)")
+
+
+        let dateTimeString = "2020-05-17T00:01:59.486Z"
+        let myDateTime = Date.dateFromISO8601String(dateTimeString)
+
+        let calendar = Calendar.current
+        DDLogVerbose("myDateTime.isDateInToday = \(calendar.isDateInToday(myDateTime!))")
+
 //        Calendar.current.isDateInToday(mostRecentLogForm.clientLastUpdated)
 //        if let mostRecentLogForm = sortedLogForms.last, Calendar.current.isDateInToday(mostRecentLogForm.clientLastUpdated) {
 //            return mostRecentLogForm
 //        }
+
+
+
+        if let form = logForms.last,
+            Calendar.current.isDateInToday(form.clientLastUpdated) {
+
+            DDLogVerbose("logForms.last date = \(form.clientLastUpdated)")
+            DDLogVerbose("Calendar.current.isDateInToday = \(Calendar.current.isDateInToday(form.clientLastUpdated))")
+
+            DDLogVerbose(" - ")
+        }
 
 */
 

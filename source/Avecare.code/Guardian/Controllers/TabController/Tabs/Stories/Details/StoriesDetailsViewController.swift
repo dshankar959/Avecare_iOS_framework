@@ -1,6 +1,8 @@
 import Foundation
 import UIKit
 
+
+
 protocol StoriesDetailsDataSource {
     func viewModels() -> [AnyCellViewModel]
 }
@@ -16,14 +18,18 @@ struct StoriesDetails: StoriesDetailsDataSource {
 
     func viewModels() -> [AnyCellViewModel] {
         var models = [AnyCellViewModel]()
+
         if let title = title, let description = description {
             models.append(StoriesDetailsTitleViewModel(title: title, description: description, date: Date()))
         }
+
         if let photo = photo {
             models.append(StoriesDetailsPhotoViewModel(image: photo.image, description: photo.caption))
         }
+
         return models
     }
+
 }
 
 

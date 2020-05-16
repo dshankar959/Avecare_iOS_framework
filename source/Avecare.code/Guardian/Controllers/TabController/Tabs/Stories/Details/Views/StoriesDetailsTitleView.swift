@@ -11,7 +11,7 @@ struct StoriesDetailsTitleViewModel: CellViewModel {
     func setup(cell: CellType) {
         cell.titleLabel.text = title
         cell.descriptionTextLabel.text = description
-        cell.dateLabel.text = Date.ymdFormatter2.string(from: date)
+        cell.dateLabel.text = Date.monthDayYearFormatter.string(from: date)
     }
 }
 
