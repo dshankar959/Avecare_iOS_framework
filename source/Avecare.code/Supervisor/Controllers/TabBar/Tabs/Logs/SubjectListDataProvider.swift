@@ -1,6 +1,6 @@
 import Foundation
 import UIKit
-
+import CocoaLumberjack
 
 struct Form {
     let viewModels: [AnyCellViewModel]
@@ -40,6 +40,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
     var delegate: SubjectListDataProviderDelegate?
 
     private var dataSource = [RLMSubject]()
+    let imageStorageService = ImageStorageService(for: appSession.userProfile)
 
     func sortBy(_ sort: Sort) {
         switch sort {
@@ -87,7 +88,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         let header: [AnyCellViewModel] = [
             FormLabelViewModel.title(title),
             FormLabelViewModel.subtitle("Never")
-                .inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 32, right: 0))
+                    .inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 32, right: 0))
         ]
 
         return Form(viewModels: header + formLog.rows.map({ self.viewModel(for: $0, at: indexPath) }))
@@ -99,6 +100,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         let isSubmitted = subject.isFormSubmittedToday
 
         return [
+            // Navigation + for selected subject
             .imageButton(options: .init(action: { [weak self] view, options, index in
                 let items = RLMLogChooseRow.findAll()
 
@@ -107,15 +109,15 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
 
                 guard let toolbar = self?.defaultToolbarView(onDone: {
                     guard let subject = self?.dataSource[indexPath.row],
-                        let row = picker.selectedValue?.row else {
-                            return
+                          let row = picker.selectedValue?.reusableRow() else {
+                        return
                     }
 
                     self?.delegate?.customResponder?.resignFirstResponder()
 
                     let logForm = subject.todayForm
                     RLMLogForm.writeTransaction {
-                        logForm.rows.append(row.detached())
+                        logForm.rows.append(row)
                     }
 
                     self?.delegate?.didUpdateModel(at: indexPath)
@@ -128,11 +130,12 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
 
                 self?.delegate?.customResponder?.becomeFirstResponder(inputView: picker, accessoryView: toolbar)
 
-                }, isEnabled: !isSubmitted, image: R.image.plusIcon())),
+            }, isEnabled: !isSubmitted, image: R.image.plusIcon())),
             .offset(value: 10),
+            // Navigation Publish for selected subject
             .button(options: .init(action: { [weak self] view, options, index in
-
-                }, isEnabled: !isSubmitted, text: "Publish", textColor: R.color.mainInversion(), cornerRadius: 4))
+                self?.publishDailyForm(at: indexPath)
+            }, isEnabled: !isSubmitted, text: "Publish", textColor: R.color.mainInversion(), cornerRadius: 4))
 
         ]
     }
@@ -146,7 +149,31 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         case .note: return viewModel(for: row.note!, at: indexPath)
         case .photo: return viewModel(for: row.photo!, at: indexPath)
         case .injury: return viewModel(for: row.injury!, at: indexPath)
-            // swiftlint:enable:force_cast
+                // swiftlint:enable:force_cast
+        }
+    }
+
+    func publishDailyForm(at indexPath: IndexPath) {
+        let subject = dataSource[indexPath.row]
+        let form = dataSource[indexPath.row].todayForm
+        let request = DailyFormAPIModel(form: form, subjectId: subject.id, storage: imageStorageService)
+
+        SubjectsAPIService.publishDailyLog(log: request) { [weak self] result in
+            switch result {
+            case .success(let update):
+
+                form.rows.compactMap({ $0.photo }).forEach({ photoRow in
+                    // FIXME: WIP: filename missmatch, Moya issue?
+                    guard let remoteInfo = update.files.first(where: {$0.fileName == photoRow.filename }) else {
+                        return
+                    }
+                    RLMLogPhotoRow.writeTransaction {
+                        photoRow.remoteImageURL = remoteInfo.fileUrl
+                    }
+                })
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }

@@ -34,9 +34,7 @@ struct GuardiansAPIService {
             switch result {
             case .success(let response):
                 do {
-                    let decoder = JSONDecoder()
-                    decoder.dateDecodingStrategy = .formatted(Date.ymdFormatter)
-                    let mappedResponse = try response.map(SubjectsResponse.self, using: decoder)
+                    let mappedResponse = try response.map(SubjectsResponse.self)
                     completion(.success(mappedResponse.results))
                 } catch {
                     DDLogError("JSON MAPPING ERROR = \(error)")

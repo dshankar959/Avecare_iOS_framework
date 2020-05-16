@@ -23,7 +23,16 @@ class RLMLogNoteRow: Object, Decodable, FormRowIconProtocol {
     }
 }
 
+extension RLMLogNoteRow: Encodable {
+    func encode(to encoder: Encoder) throws {
+        try encodeIcon(to: encoder)
+
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(title, forKey: .title)
+        try container.encode(value, forKey: .value)
+    }
+}
 
 extension RLMLogNoteRow: DataProvider {
-    typealias T = RLMLogNoteRow
+
 }

@@ -58,14 +58,8 @@ class SubjectDetailsPhotoView: BaseXibView {
     func setImage(_ url: URL?) {
         if let url = url {
             imagePlaceholderView.isHidden = true
-            // no cache for local images
             if url.absoluteString.isFilePath {
-                photoImageView.kf.setImage(with: url,
-                        options: [
-                            .memoryCacheExpiration(.expired),
-                            .diskCacheExpiration(.expired)
-                        ]
-                )
+                photoImageView.image = UIImage(contentsOfFile: url.path)
             } else {
                 photoImageView.kf.setImage(with: url)
             }

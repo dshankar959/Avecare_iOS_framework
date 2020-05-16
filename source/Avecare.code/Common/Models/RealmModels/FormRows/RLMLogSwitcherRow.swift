@@ -42,6 +42,25 @@ class RLMLogSwitcherRow: Object, Decodable, FormRowIconProtocol {
     }
 }
 
+extension RLMLogSwitcherRow: Encodable {
+    func encode(to encoder: Encoder) throws {
+        try encodeIcon(to: encoder)
+
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        let formatter = Date.timeFormatter
+        try container.encode(title, forKey: .title)
+        try container.encode(subtitle, forKey: .subtitle)
+        try container.encode(formatter.string(from: startTime), forKey: .startTime)
+        try container.encode(formatter.string(from: endTime), forKey: .endTime)
+        try container.encodeIfPresent(selectedValue, forKey: .selectedValue)
+
+        var optionsContainer = container.nestedUnkeyedContainer(forKey: .options)
+        for option in options {
+            try optionsContainer.encode(option)
+        }
+    }
+}
+
 extension RLMLogSwitcherRow: DataProvider, RLMCleanable {
     func clean() {
         RLMOptionValue.deleteAll(objects: Array(options))

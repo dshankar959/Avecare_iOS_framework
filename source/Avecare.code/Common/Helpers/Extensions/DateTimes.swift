@@ -66,6 +66,18 @@ extension Date {
         return formatter
     }
 
+    static var shortMonthTimeFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, hh:mm a"
+        return formatter
+    }
+
+    static var fullMonthDayFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM d"
+        return formatter
+    }
+
     static var fullFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
@@ -74,7 +86,7 @@ extension Date {
 
     static var timeFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mma"
+        formatter.dateFormat = "hh:mma"
         return formatter
     }
 
