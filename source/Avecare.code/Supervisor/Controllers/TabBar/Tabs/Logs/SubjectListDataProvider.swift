@@ -1,5 +1,5 @@
-import Foundation
 import UIKit
+import CocoaLumberjack
 
 
 
@@ -32,6 +32,7 @@ protocol SubjectListDataProviderDelegate: UIViewController, CustomResponderProvi
 
 
 class SubjectListDataProvider: SubjectListDataProviderIO {
+
     enum Sort: Int {
         case lastName = 0
         case firstName = 1
@@ -42,6 +43,12 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
     var delegate: SubjectListDataProviderDelegate?
 
     private var dataSource = [RLMSubject]()
+    let imageStorageService = ImageStorageService()
+
+    var numberOfRows: Int {
+        return dataSource.count
+    }
+
 
     func sortBy(_ sort: Sort) {
         switch sort {
@@ -49,10 +56,6 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         case .lastName: dataSource = RLMSubject.findAll(sortedBy: "lastName")
         case .date: dataSource = RLMSubject.findAll(sortedBy: "birthday")
         }
-    }
-
-    var numberOfRows: Int {
-        return dataSource.count
     }
 
     func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel {
@@ -68,7 +71,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
 
         // update previous selection
         if let last = selectedId, last != targetId,
-           let index = dataSource.firstIndex(where: { $0.id == last }) {
+            let index = dataSource.firstIndex(where: { $0.id == last }) {
             indexes.append(IndexPath(row: index, section: 0))
         }
 
@@ -88,7 +91,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         let title = "\(subject.firstName) \(subject.lastName)'s Log"
         let header: [AnyCellViewModel] = [
             FormLabelViewModel.title(title),
-            FormLabelViewModel.subtitle("Never")
+            FormLabelViewModel.subtitle("-")
                 .inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 32, right: 0))
         ]
 
@@ -101,6 +104,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         let isSubmitted = subject.isFormSubmittedToday
 
         return [
+            // Navigation + for selected subject
             .imageButton(options: .init(action: { [weak self] view, options, index in
                 let items = RLMLogChooseRow.findAll()
 
@@ -109,7 +113,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
 
                 guard let toolbar = self?.defaultToolbarView(onDone: {
                     guard let subject = self?.dataSource[indexPath.row],
-                        let row = picker.selectedValue?.row else {
+                        let row = picker.selectedValue?.reusableRow() else {
                             return
                     }
 
@@ -117,7 +121,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
 
                     let logForm = subject.todayForm
                     RLMLogForm.writeTransaction {
-                        logForm.rows.append(row.detached())
+                        logForm.rows.append(row)
                     }
 
                     self?.delegate?.didUpdateModel(at: indexPath)
@@ -132,8 +136,9 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
 
                 }, isEnabled: !isSubmitted, image: R.image.plusIcon())),
             .offset(value: 10),
+            // Navigation Publish for selected subject
             .button(options: .init(action: { [weak self] view, options, index in
-
+                self?.publishDailyForm(at: indexPath)
                 }, isEnabled: !isSubmitted, text: "Publish", textColor: R.color.mainInversion(), cornerRadius: 4))
 
         ]
@@ -148,7 +153,32 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         case .note: return viewModel(for: row.note!, at: indexPath)
         case .photo: return viewModel(for: row.photo!, at: indexPath)
         case .injury: return viewModel(for: row.injury!, at: indexPath)
-            // swiftlint:enable:force_cast
+        // swiftlint:enable:force_cast
         }
     }
+
+    func publishDailyForm(at indexPath: IndexPath) {
+        let subject = dataSource[indexPath.row]
+        let form = dataSource[indexPath.row].todayForm
+        let request = DailyFormAPIModel(form: form, subjectId: subject.id, storage: imageStorageService)
+
+        SubjectsAPIService.publishDailyLog(log: request) { [weak self] result in
+            switch result {
+            case .success(let update):
+
+                form.rows.compactMap({ $0.photo }).forEach({ photoRow in
+                    // FIXME: WIP: filename missmatch, Moya issue?
+                    guard let remoteInfo = update.files.first(where: {$0.fileName == photoRow.filename }) else {
+                        return
+                    }
+                    RLMLogPhotoRow.writeTransaction {
+                        photoRow.remoteImageURL = remoteInfo.fileUrl
+                    }
+                })
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+
 }

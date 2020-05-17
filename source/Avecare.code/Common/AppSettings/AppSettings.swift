@@ -100,7 +100,7 @@ class AppSettings {
 
             let defaults = userDefaults(for: appSession.userProfile)
             defaults.set(newValue, forKey: kUserLoginCountKey)
-            defaults.set(Date.localFormatISO8601StringFromDate(Date()), forKey: kUserLastLoginDateKey)
+            defaults.set(Date.local24hrFormatISO8601StringFromDate(Date()), forKey: kUserLastLoginDateKey)
         }
     }
 

@@ -3,7 +3,7 @@ import RealmSwift
 
 
 
-class RLMDefaults: Object, Decodable {
+class RLMDefaults: Object, Codable {
 
     @objc dynamic var id: String = ""
 //    @objc dynamic var serverLastUpdated: String? = nil
@@ -40,9 +40,12 @@ class RLMDefaults: Object, Decodable {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")
         }
-
     }
 
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: DefaultCodingKeys.self)
+        try container.encode(id.lowercased(), forKey: .id)
+    }
 
     override static func primaryKey() -> String {
         return "id"

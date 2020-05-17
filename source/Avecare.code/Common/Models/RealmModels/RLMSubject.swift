@@ -2,6 +2,7 @@ import CocoaLumberjack
 import RealmSwift
 
 
+
 class RLMSubject: RLMDefaults {
 
     @objc dynamic var firstName: String = ""
@@ -37,10 +38,35 @@ class RLMSubject: RLMDefaults {
 
         let mostRecentLogForm = RLMLogForm(value: sortedLogForms.last)
 
+        DDLogVerbose("Today's date = \(Date())")
+        DDLogVerbose("Today's date = \(Date.ISO8601StringFromDate(Date()))")
+        DDLogVerbose("Today's date = \(Date.local24hrFormatISO8601StringFromDate(Date()))")
+
+
+        DDLogVerbose("mostRecentLogForm date = \(mostRecentLogForm.clientLastUpdated)")
+
+
+        let dateTimeString = "2020-05-17T00:01:59.486Z"
+        let myDateTime = Date.dateFromISO8601String(dateTimeString)
+
+        let calendar = Calendar.current
+        DDLogVerbose("myDateTime.isDateInToday = \(calendar.isDateInToday(myDateTime!))")
+
 //        Calendar.current.isDateInToday(mostRecentLogForm.clientLastUpdated)
 //        if let mostRecentLogForm = sortedLogForms.last, Calendar.current.isDateInToday(mostRecentLogForm.clientLastUpdated) {
 //            return mostRecentLogForm
 //        }
+
+
+
+        if let form = logForms.last,
+            Calendar.current.isDateInToday(form.clientLastUpdated) {
+
+            DDLogVerbose("logForms.last date = \(form.clientLastUpdated)")
+            DDLogVerbose("Calendar.current.isDateInToday = \(Calendar.current.isDateInToday(form.clientLastUpdated))")
+
+            DDLogVerbose(" - ")
+        }
 
 */
 
@@ -54,7 +80,7 @@ class RLMSubject: RLMDefaults {
 
         if let template = RLMFormTemplate.find(withSubjectType: subjectTypeId) {
             DDLogDebug("Loading template: \(template.id)")
-            form.rows.append(objectsIn: template.rows.detached())
+            form.rows.append(objectsIn: template.reuseTemplateRows())
         }
 
         form.create()
@@ -86,7 +112,13 @@ class RLMSubject: RLMDefaults {
             self.firstName = try values.decode(String.self, forKey: .firstName)
             self.middleName = try values.decode(String.self, forKey: .middleName)
             self.lastName = try values.decode(String.self, forKey: .lastName)
-            self.birthday = try values.decode(Date.self, forKey: .birthday)
+
+            let birthDayString: String = try values.decode(String.self, forKey: .birthday)
+            guard let birthday = Date.ymdFormatter.date(from: birthDayString) else {
+                fatalError("JSON Decoding error = 'Invalid birthday format'")
+            }
+            self.birthday =  birthday
+
             self.subjectTypeId = try values.decode(String.self, forKey: .subjectTypeId)
             self.photoConsent = try values.decode(Bool.self, forKey: .photoConsent)
             self.profilePhoto = try values.decodeIfPresent(String.self, forKey: .profilePhoto)
@@ -102,7 +134,7 @@ class RLMSubject: RLMDefaults {
 
 
 extension RLMSubject: DataProvider {
-    typealias T = RLMSubject
+
 }
 
 

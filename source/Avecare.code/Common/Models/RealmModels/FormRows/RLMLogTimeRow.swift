@@ -22,16 +22,30 @@ class RLMLogTimeRow: Object, Decodable, FormRowIconProtocol {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         title = try container.decode(String.self, forKey: .title)
 
-        if let time = try container.decodeIfPresent(Date.self, forKey: .startTime) {
+        let formatter = Date.timeFormatter
+        if let timeString = try container.decodeIfPresent(String.self, forKey: .startTime),
+        let time = formatter.date(from: timeString) {
             startTime = time
         }
-        if let time = try container.decodeIfPresent(Date.self, forKey: .endTime) {
+        if let timeString = try container.decodeIfPresent(String.self, forKey: .endTime),
+           let time = formatter.date(from: timeString) {
             endTime = time
         }
     }
 }
 
+extension RLMLogTimeRow: Encodable {
+    func encode(to encoder: Encoder) throws {
+        try encodeIcon(to: encoder)
+
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        let formatter = Date.timeFormatter
+        try container.encode(title, forKey: .title)
+        try container.encode(formatter.string(from: startTime), forKey: .startTime)
+        try container.encode(formatter.string(from: endTime), forKey: .endTime)
+    }
+}
 
 extension RLMLogTimeRow: DataProvider {
-    typealias T = RLMLogTimeRow
+
 }

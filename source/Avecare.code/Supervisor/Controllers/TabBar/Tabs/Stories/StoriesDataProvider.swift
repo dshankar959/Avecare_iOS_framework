@@ -1,137 +1,110 @@
 import Foundation
-import UIKit
-import BSImagePicker
-import Photos
+import CocoaLumberjack
 
-protocol StoriesDataProviderDelegate: UIViewController {
-    func didUpdateModel(at indexPath: IndexPath, details: Bool)
+extension StoriesTableViewCellModel {
+    init(story: RLMStory, imageStorage: ImageStorageService) {
+        title = story.title
+        date = story.localDate
+        details = story.body
+        photoURL = story.photoURL(using: imageStorage)
+        photoCaption = story.photoCaption
+    }
 }
 
-protocol StoriesDataProvider: class {
+protocol StoriesDataProviderDelegate: UIViewController {
+    func didCreateNewStory()
+    func didUpdateModel(at indexPath: IndexPath, details: Bool)
+    func moveStory(at fromIndexPath: IndexPath, to toIndexPath: IndexPath)
+}
+
+protocol StoriesDataProviderIO: class, StoriesDataProviderNavigation {
     var delegate: StoriesDataProviderDelegate? { get set }
+
+    func fetchAll()
+
     var numberOfRows: Int { get }
+
     func model(for indexPath: IndexPath) -> StoriesTableViewCellModel
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath)
+
     func form(at indexPath: IndexPath) -> Form
 }
 
-class DefaultStoriesDataProvider: StoriesDataProvider {
+class StoriesDataProvider: StoriesDataProviderIO {
 
-    private var lastSelectedIndexPath: IndexPath?
+    private var selectedStoryId: String?
     var delegate: StoriesDataProviderDelegate?
 
-    var dataSource: [StoriesTableViewCellModel] = [
-        StoriesTableViewCellModel(title: nil, date: Date(), details: nil, photo: nil, photoCaption: nil),
+    var dataSource = [RLMStory]()
+    let imageStorageService = ImageStorageService()
 
-        StoriesTableViewCellModel(title: "Colouring and Fine Motors Skills Development", date: Date(),
-                details: "1" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage1(),
-                photoCaption: "photo caption 1"),
+    func fetchAll() {
+        dataSource = RLMStory.findAll()
+        if dataSource.count == 0 {
+            createNewStory()
+        } else {
+            sort()
+        }
+    }
 
-        StoriesTableViewCellModel(title: "Language Skills in the Classroom and at Home", date: Date(),
-                details: "2" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage2(),
-                photoCaption: "photo caption 2"),
-
-        StoriesTableViewCellModel(title: "Finger Painting - Classic Activities are Still Big Hits", date: Date(),
-                details: "3" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage3(),
-                photoCaption: "photo caption 3"),
-
-        StoriesTableViewCellModel(title: "Team Building Play", date: Date(),
-                details: "4" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage4(),
-                photoCaption: "photo caption 4"),
-
-        StoriesTableViewCellModel(title: "Our Little Artists with Big Imaginations", date: Date(),
-                details: "5" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage5(),
-                photoCaption: "photo caption 5"),
-
-        StoriesTableViewCellModel(title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit", date: Date(),
-                details: "6" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage6(),
-                photoCaption: "photo caption 6")
-    ]
+    func sort() {
+        dataSource.sort { story1, story2 in
+            let date1 = story1.serverDate ?? story1.localDate
+            let date2 = story2.serverDate ?? story2.localDate
+            return date1 > date2
+        }
+    }
 
     var numberOfRows: Int {
         return dataSource.count
     }
 
     func model(for indexPath: IndexPath) -> StoriesTableViewCellModel {
-        return dataSource[indexPath.row]
+        let story = dataSource[indexPath.row]
+        var viewModel = StoriesTableViewCellModel(story: story, imageStorage: imageStorageService)
+        viewModel.isSelected = story.id == selectedStoryId
+        return viewModel
     }
 
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath) {
-        if isSelected {
-            if let last = lastSelectedIndexPath {
-                if last != indexPath {
-                    // deselect
-                    dataSource[last.row].isSelected = false
-                    delegate?.didUpdateModel(at: last, details: true)
-                } else {
-                    // already selected
-                    return
-                }
-            }
-            dataSource[indexPath.row].isSelected = isSelected
-            lastSelectedIndexPath = indexPath
-            delegate?.didUpdateModel(at: indexPath, details: true)
-        } else {
-            guard let last = lastSelectedIndexPath, last == indexPath else {
-                return
-            }
-            dataSource[last.row].isSelected = false
-            delegate?.didUpdateModel(at: last, details: true)
+        let targetId = dataSource[indexPath.row].id
+        let last = selectedStoryId
+        // update new selection
+        selectedStoryId = targetId
+
+        // update previous selection
+        if let last = last, last != targetId,
+           let index = dataSource.firstIndex(where: { $0.id == last }) {
+            delegate?.didUpdateModel(at: IndexPath(row: index, section: 0), details: false)
         }
+        delegate?.didUpdateModel(at: indexPath, details: true)
     }
 
     func form(at indexPath: IndexPath) -> Form {
-        let titleFont: UIFont = .systemFont(ofSize: 36)
-        let subtitleFont: UIFont = .systemFont(ofSize: 14)
-
-        let action = FormPhotoViewModel.Action(onTextChange: { [weak self] view, textValue in
-            self?.dataSource[indexPath.row].photoCaption = textValue
-        }, onPhotoTap: { [weak self] view in
-            self?.showImagePicker(from: view, at: indexPath)
-        })
-
+        let story = dataSource[indexPath.row]
         return Form(viewModels: [
-            FormTextViewModel(font: titleFont, placeholder: "Type Your Story Title Here",
-                    value: dataSource[indexPath.row].title, onChange: { [weak self] _, textValue in
-                self?.dataSource[indexPath.row].title = textValue
-                self?.delegate?.didUpdateModel(at: indexPath, details: false)
-            }),
-
-            FormLabelViewModel.subtitle("Last saved - Jan 5, 7:16 AM")
-                    .inset(by: UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)),
-
-            FormTextViewModel(font: subtitleFont, placeholder: "Begin typing here.",
-                    value: dataSource[indexPath.row].title, onChange: { [weak self] _, textValue in
-                self?.dataSource[indexPath.row].details = textValue
-            }),
-
-            FormPhotoViewModel(photo: dataSource[indexPath.row].photo,
-                    caption: dataSource[indexPath.row].photoCaption,
-                    placeholder: "Photo caption goes here.", action: action)
-                    .inset(by: UIEdgeInsets(top: 20, left: 0, bottom: 0, right: 0))
+            titleViewModel(for: story),
+            subtitleViewModel(for: story).inset(by: .init(top: 20, left: 0, bottom: 20, right: 0)),
+            bodyViewModel(for: story),
+            photoViewModel(for: story).inset(by: .init(top: 20, left: 0, bottom: 0, right: 0))
         ])
     }
-}
 
-extension DefaultStoriesDataProvider {
-    func showImagePicker(from view: FormPhotoView, at indexPath: IndexPath) {
-        let imagePicker = ImagePickerController()
-        imagePicker.settings.selection.max = 1
+    func updateEditDate(for story: RLMStory) {
+        RLMStory.writeTransaction {
+            story.localDate = Date()
+        }
 
-        delegate?.presentImagePicker(imagePicker, select: nil, deselect: nil, cancel: nil, finish: { (assets) in
-            guard let asset = assets.first else {
-                return
-            }
+        guard let startIndex = dataSource.firstIndex(of: story) else {
+            return
+        }
+        sort()
 
-            let size = 375 * UIScreen.main.scale
-            PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: size, height: size),
-                    contentMode: .aspectFit, options: nil) { [weak self] (image, _) in
-                self?.dataSource[indexPath.row].photo = image
-                view.photoImageView.image = image
-                self?.delegate?.didUpdateModel(at: indexPath, details: false)
-            }
-            // User finished selection assets.
-        })
+        guard let endIndex = dataSource.firstIndex(of: story), startIndex != endIndex else {
+            return
+        }
 
+        delegate?.moveStory(at: IndexPath(row: startIndex, section: 0),
+                to: IndexPath(row: endIndex, section: 0))
     }
 }

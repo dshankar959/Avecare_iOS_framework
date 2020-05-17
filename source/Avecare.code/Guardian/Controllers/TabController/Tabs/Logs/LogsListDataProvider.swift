@@ -28,9 +28,7 @@ class DefaultLogsDataProvider: LogsDataProvider {
 extension DefaultLogsDataProvider {
     private func createRealmDataSource() throws -> [RLMLogRow] {
         let data = try Data(resource: R.file.form1Json)
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        let form = try decoder.decode(RLMLogForm.self, from: data)
+        let form = try JSONDecoder().decode(RLMLogForm.self, from: data)
         return Array(form.rows)
     }
 }

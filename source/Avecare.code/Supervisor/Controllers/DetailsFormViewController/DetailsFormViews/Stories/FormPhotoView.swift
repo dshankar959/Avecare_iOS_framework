@@ -1,5 +1,6 @@
 import Foundation
 import UIKit
+import Kingfisher
 
 struct FormPhotoViewModel: CellViewModel {
     typealias CellType = FormPhotoView
@@ -9,21 +10,26 @@ struct FormPhotoViewModel: CellViewModel {
         let onPhotoTap: ((CellType) -> Void)?
     }
 
-    let photo: UIImage?
+    let photoURL: URL?
     let caption: String?
     let placeholder: String
+    let isEditable: Bool
 
     var action: Action?
 
     func setup(cell: CellType) {
-        cell.onChange = action?.onTextChange
-        cell.onPhotoTap = action?.onPhotoTap
+        if isEditable {
+            cell.onChange = action?.onTextChange
+            cell.onPhotoTap = action?.onPhotoTap
+        }
 
-        cell.photoImageView.image = photo ?? R.image.noPhotoPlaceholder()
+        cell.photoImageView.kf.setImage(with: photoURL, placeholder: R.image.noPhotoPlaceholder())
         cell.textView.text = caption
         cell.textViewPlaceholder.text = placeholder
 
         cell.updatePlaceholderVisibility()
+
+        cell.textView.isUserInteractionEnabled = isEditable
     }
 }
 
