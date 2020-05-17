@@ -22,14 +22,6 @@ extension Notification.Name {
 // MARK: -
 class SyncEngine {
 
-    lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone.autoupdatingCurrent
-        formatter.dateFormat = DateConfig.ISO8601dateFormat
-        return formatter
-    }()
-
     var syncTimer: Timer? = nil
 
     // Array of collected closures to call when sync is complete due to multiple triggers.

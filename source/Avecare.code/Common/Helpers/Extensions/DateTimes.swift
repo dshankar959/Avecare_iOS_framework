@@ -3,30 +3,15 @@ import CocoaLumberjack
 
 
 
-struct DateConfig {
-    //    static let ISO8601dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"   // UTC+TZ, eg. 2018-10-15T16:29:32.024000-04:00
-    static let ISO8601dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"   // UTC Zulu, eg. 2020-15-15T20:39:07.486Z
-    static let ISO8601filedateFormat = "yyyyMMdd'T'HHmm"            // eg. 20201520T2139
-    static let ISO8601local24hrFormat = "yyyy-MM-dd'T'HH:mm:ss"     // eg. 2020-05-16T15:31:22
-}
-
-
 extension Date {
 
     static func ISO8601StringFromDate(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = DateConfig.ISO8601dateFormat
-
+        let dateFormatter = ISO8601Formatter
         return dateFormatter.string(from: date)
     }
 
     static func dateFromISO8601String(_ string: String) -> Date? {
-        let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
-        dateFormatter.dateFormat = DateConfig.ISO8601dateFormat
-
+        let dateFormatter = ISO8601Formatter
         return dateFormatter.date(from: string)
     }
 
@@ -34,7 +19,7 @@ extension Date {
     static func shortISO8601FileStringFromDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = DateConfig.ISO8601filedateFormat
+        dateFormatter.dateFormat = "yyyyMMdd'T'HHmm"        // eg. 20201520T2139
 
         return dateFormatter.string(from: date)
     }
@@ -42,7 +27,7 @@ extension Date {
     static func local24hrFormatISO8601StringFromDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = DateConfig.ISO8601local24hrFormat
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"  // eg. 2020-05-16T15:31:22
 
         return dateFormatter.string(from: date)
     }
@@ -59,7 +44,13 @@ extension Date {
 
     // MARK: -
 
-    static var ymdFormatter: DateFormatter {
+    static var ISO8601Formatter: ISO8601DateFormatter {
+        let formatter = ISO8601DateFormatter()
+        formatter.formatOptions.insert(.withFractionalSeconds)
+        return formatter
+    }
+
+    static var yearMonthDayFormatter: DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter

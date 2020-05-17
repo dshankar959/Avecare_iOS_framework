@@ -29,48 +29,10 @@ class RLMSubject: RLMDefaults {
     let logForms = LinkingObjects(fromType: RLMLogForm.self, property: "subject")   // Inverse relationship
 
     var todayForm: RLMLogForm {
-/*
-//        let mostRecentLogForm = logForms.sorted(byKeyPath: "clientLastUpdated", ascending: false).first
-
         // Collect the subjects log forms and sort by date last updated on device.
-        let allLogForms: [RLMLogForm] = Array(logForms)
-        let sortedLogForms = allLogForms.sorted(by: { $0.clientLastUpdated.compare($1.clientLastUpdated) == .orderedAscending})
-
-        let mostRecentLogForm = RLMLogForm(value: sortedLogForms.last)
-
-        DDLogVerbose("Today's date = \(Date())")
-        DDLogVerbose("Today's date = \(Date.ISO8601StringFromDate(Date()))")
-        DDLogVerbose("Today's date = \(Date.local24hrFormatISO8601StringFromDate(Date()))")
-
-
-        DDLogVerbose("mostRecentLogForm date = \(mostRecentLogForm.clientLastUpdated)")
-
-
-        let dateTimeString = "2020-05-17T00:01:59.486Z"
-        let myDateTime = Date.dateFromISO8601String(dateTimeString)
-
-        let calendar = Calendar.current
-        DDLogVerbose("myDateTime.isDateInToday = \(calendar.isDateInToday(myDateTime!))")
-
-//        Calendar.current.isDateInToday(mostRecentLogForm.clientLastUpdated)
-//        if let mostRecentLogForm = sortedLogForms.last, Calendar.current.isDateInToday(mostRecentLogForm.clientLastUpdated) {
-//            return mostRecentLogForm
-//        }
-
-
-
-        if let form = logForms.last,
-            Calendar.current.isDateInToday(form.clientLastUpdated) {
-
-            DDLogVerbose("logForms.last date = \(form.clientLastUpdated)")
-            DDLogVerbose("Calendar.current.isDateInToday = \(Calendar.current.isDateInToday(form.clientLastUpdated))")
-
-            DDLogVerbose(" - ")
-        }
-
-*/
-
-        if let form = logForms.last, Calendar.current.isDateInToday(form.clientLastUpdated) {
+        let sortedLogForms = logForms.sorted(by: { $0.clientLastUpdated.compare($1.clientLastUpdated) == .orderedAscending})
+        // Get the most recent form.
+        if let form = sortedLogForms.last, Calendar.current.isDateInToday(form.clientLastUpdated) {
             return form
         }
 
@@ -114,7 +76,7 @@ class RLMSubject: RLMDefaults {
             self.lastName = try values.decode(String.self, forKey: .lastName)
 
             let birthDayString: String = try values.decode(String.self, forKey: .birthday)
-            guard let birthday = Date.ymdFormatter.date(from: birthDayString) else {
+            guard let birthday = Date.yearMonthDayFormatter.date(from: birthDayString) else {
                 fatalError("JSON Decoding error = 'Invalid birthday format'")
             }
             self.birthday =  birthday

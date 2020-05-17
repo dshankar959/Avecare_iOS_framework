@@ -6,6 +6,7 @@ import CocoaLumberjack
 extension AppDelegate {
 
     func setupLoggingFramework() {
+/*
         // #disable noisy `Warnings` only.
         let ddlogLevelFlags = DDLogFlag.error.rawValue |
                               DDLogFlag.debug.rawValue |
@@ -13,7 +14,7 @@ extension AppDelegate {
                               DDLogFlag.verbose.rawValue
 
         dynamicLogLevel = DDLogLevel.init(rawValue: ddlogLevelFlags)!
-
+*/
         // console
         if let ttyLogger = DDTTYLogger.sharedInstance {
             DDLog.add(ttyLogger) // TTY = Xcode console

@@ -127,10 +127,10 @@ fileprivate extension DDLogNetworkPlugin {
                 let message = item as? String ?? nil
                 if let msg = message {
                     if let data = msg.data(using: .utf8) {
-                        do {
-                            let rawJSON = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
-                            DDLogVerbose("JSON: \(rawJSON)\n")
-                        } catch {
+                        if let rawJSON = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
+                            let jsonData = try? JSONSerialization.data(withJSONObject: rawJSON, options: .prettyPrinted) {
+                            DDLogVerbose("JSON: \(String(decoding: jsonData, as: UTF8.self))\n")
+                        } else {
                             DDLogVerbose(msg)
                         }
                     }

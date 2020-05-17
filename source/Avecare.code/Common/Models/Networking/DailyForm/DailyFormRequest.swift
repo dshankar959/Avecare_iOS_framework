@@ -48,7 +48,7 @@ extension DailyFormAPIModel: MultipartEncodable {
             DDLogError("JSON Encoding error = \(error)")
             fatalError("JSON Encoding error = \(error)")
         }
-        if let value = Date.ymdFormatter.string(from: Date()).data(using: .utf8) {
+        if let value = Date.yearMonthDayFormatter.string(from: Date()).data(using: .utf8) {
             data.append(.init(provider: .data(value), name: CodingKeys.date.rawValue))
         }
 

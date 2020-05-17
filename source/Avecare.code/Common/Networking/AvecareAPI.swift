@@ -161,7 +161,7 @@ extension AvecareAPI: TargetType {
         case .unitCreateActivity(_, let request as Encodable),
              .unitPublishDailyTasks(_, let request as Encodable):
             let encoder = JSONEncoder()
-            encoder.dateEncodingStrategy = .formatted(Date.ymdFormatter)
+            encoder.dateEncodingStrategy = .formatted(Date.yearMonthDayFormatter)
             return .requestCustomJSONEncodable(request, encoder: encoder)
         case .subjectPublishDailyLog(let request as MultipartEncodable),
              .unitPublishStory(let request as MultipartEncodable):
