@@ -9,6 +9,9 @@ struct SupervisorCollectionViewCellModel: CellViewModel {
 
     func setup(cell: CellType) {
         cell.photoImageView.image = image
+        cell.photoImageView.layer.cornerRadius = cell.photoImageView.frame.height / 2
+        cell.photoImageView.clipsToBounds = true
+
         cell.nameLabel.text = name
     }
 }

@@ -18,11 +18,10 @@
         <!--Logs-->
         <scene sceneID="qMX-oD-47x">
             <objects>
-                <navigationController id="bch-jd-tRf" sceneMemberID="viewController">
+                <navigationController id="bch-jd-tRf" customClass="UINVC" customModule="parent" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Logs" image="tab-bar-logs-icon" id="oGE-XK-RRF"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="PEV-vn-SLQ">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PEV-vn-SLQ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -39,11 +38,11 @@
             <objects>
                 <viewController id="VN9-Za-7jc" customClass="LogsViewController" customModule="parent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tOk-Ow-g8I">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZJg-De-a0j" customClass="JTACMonthView" customModule="JTAppleCalendar">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="90"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="J3i-ne-4u0"/>
@@ -116,7 +115,7 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxI-6z-YWJ">
-                                <rect key="frame" x="0.0" y="90" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="178" width="414" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaa-Du-qwZ">
                                         <rect key="frame" x="189.5" y="11.5" width="35.5" height="17"/>
@@ -133,8 +132,8 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WvE-pV-HgB">
-                                <rect key="frame" x="0.0" y="138" width="414" height="587"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <rect key="frame" x="0.0" y="226" width="414" height="587"/>
+                                <color key="backgroundColor" name="Background"/>
                                 <color key="separatorColor" name="Background"/>
                                 <connections>
                                     <outlet property="dataSource" destination="VN9-Za-7jc" id="tGg-Wd-y8W"/>
@@ -142,7 +141,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" name="Separator"/>
+                        <color key="backgroundColor" name="Background"/>
                         <constraints>
                             <constraint firstItem="WvE-pV-HgB" firstAttribute="leading" secondItem="JtS-tE-hph" secondAttribute="leading" id="1IM-Cr-Wfz"/>
                             <constraint firstItem="JtS-tE-hph" firstAttribute="bottom" secondItem="WvE-pV-HgB" secondAttribute="bottom" id="9Je-iV-NBb"/>
@@ -189,7 +188,7 @@
                         <outlet property="selectedDateLabel" destination="iaa-Du-qwZ" id="J5h-XI-Qkb"/>
                         <outlet property="subjectSelectButton" destination="7wQ-7R-bFg" id="hod-rC-KCk"/>
                         <outlet property="tableView" destination="WvE-pV-HgB" id="QQP-as-YvX"/>
-                        <segue destination="QSo-cw-2vx" kind="presentation" identifier="subjectList" id="S9T-J4-AkZ"/>
+                        <segue destination="9aY-7i-pAY" kind="presentation" identifier="subjectList" id="pHs-2N-d3n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tlg-wW-i9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -197,23 +196,23 @@
             <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
         </scene>
         <!--SubjectList-->
-        <scene sceneID="IrP-ro-dhR">
+        <scene sceneID="ZgV-UH-96G">
             <objects>
-                <viewControllerPlaceholder storyboardName="SubjectList" id="QSo-cw-2vx" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JFG-Pr-j5z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewControllerPlaceholder storyboardName="SubjectList" id="9aY-7i-pAY" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GeG-2M-9Zy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="498"/>
+            <point key="canvasLocation" x="138" y="497"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="VNk-0o-lRT">
             <objects>
                 <viewController hidesBottomBarWhenPushed="YES" id="fXF-UT-ccR" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FjN-WZ-882">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Menu" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7YX-j5-jVD">
-                                <rect key="frame" x="185.5" y="393.5" width="43" height="21"/>
+                                <rect key="frame" x="185.5" y="437.5" width="43" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -250,9 +249,6 @@
         </namedColor>
         <namedColor name="Main">
             <color red="0.31372549019607843" green="0.62745098039215685" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="Separator">
-            <color red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

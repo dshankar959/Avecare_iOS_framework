@@ -37,7 +37,8 @@ extension SupervisorFilterTableViewCell: UICollectionViewDataSource, UICollectio
     }
 
     public func collectionView(_ collectionView: UICollectionView,
-                               layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+                               layout collectionViewLayout: UICollectionViewLayout,
+                               sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.size.width / 4
         let height = width * 1.1 // + 10%
         return CGSize(width: width, height: height)
