@@ -17,6 +17,11 @@ class LogsSideViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         didChangeSegmentControl(sortSegmentControl)
+
+        // select first row by default
+        if dataProvider.numberOfRows > 0 {
+            dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
+        }
     }
 
     @IBAction func didChangeSegmentControl(_ sender: UISegmentedControl) {

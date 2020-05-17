@@ -13,10 +13,10 @@ struct SubjectListTableViewCellModel: CellViewModel {
     let isChecked: Bool
 
 
-    init(subject: RLMSubject) {
+    init(subject: RLMSubject, storage: ImageStorageService) {
         firstName = subject.firstName
         lastName = subject.lastName
-        profilePhoto = subject.profilePhotoURL
+        profilePhoto = subject.photoURL(using: storage)
         birthDate = subject.birthday
         isChecked = subject.isFormSubmittedToday
     }

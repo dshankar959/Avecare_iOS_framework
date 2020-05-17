@@ -24,7 +24,7 @@ class RLMLogTimeRow: Object, Decodable, FormRowIconProtocol {
 
         let formatter = Date.timeFormatter
         if let timeString = try container.decodeIfPresent(String.self, forKey: .startTime),
-        let time = formatter.date(from: timeString) {
+           let time = formatter.date(from: timeString) {
             startTime = time
         }
         if let timeString = try container.decodeIfPresent(String.self, forKey: .endTime),

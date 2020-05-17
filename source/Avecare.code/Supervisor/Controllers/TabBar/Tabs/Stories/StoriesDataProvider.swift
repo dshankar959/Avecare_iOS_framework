@@ -2,11 +2,11 @@ import Foundation
 import CocoaLumberjack
 
 extension StoriesTableViewCellModel {
-    init(story: RLMStory, imageStorage: ImageStorageService) {
+    init(story: RLMStory, storage: ImageStorageService) {
         title = story.title
-        date = story.localDate
+        date = story.serverLastUpdated ?? story.clientLastUpdated
         details = story.body
-        photoURL = story.photoURL(using: imageStorage)
+        photoURL = story.photoURL(using: storage)
         photoCaption = story.photoCaption
     }
 }
@@ -49,8 +49,8 @@ class StoriesDataProvider: StoriesDataProviderIO {
 
     func sort() {
         dataSource.sort { story1, story2 in
-            let date1 = story1.serverDate ?? story1.localDate
-            let date2 = story2.serverDate ?? story2.localDate
+            let date1 = story1.serverLastUpdated ?? story1.clientLastUpdated
+            let date2 = story2.serverLastUpdated ?? story2.clientLastUpdated
             return date1 > date2
         }
     }
@@ -61,7 +61,7 @@ class StoriesDataProvider: StoriesDataProviderIO {
 
     func model(for indexPath: IndexPath) -> StoriesTableViewCellModel {
         let story = dataSource[indexPath.row]
-        var viewModel = StoriesTableViewCellModel(story: story, imageStorage: imageStorageService)
+        var viewModel = StoriesTableViewCellModel(story: story, storage: imageStorageService)
         viewModel.isSelected = story.id == selectedStoryId
         return viewModel
     }
@@ -92,7 +92,7 @@ class StoriesDataProvider: StoriesDataProviderIO {
 
     func updateEditDate(for story: RLMStory) {
         RLMStory.writeTransaction {
-            story.localDate = Date()
+            story.clientLastUpdated = Date()
         }
 
         guard let startIndex = dataSource.firstIndex(of: story) else {

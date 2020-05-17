@@ -5,11 +5,11 @@ struct SubjectListTableViewCellModel: CellViewModel {
     typealias CellType = SubjectListTableViewCell
 
     let title: String
-    let photo: UIImage?
+    let photo: URL?
 
     func setup(cell: CellType) {
-        if let photo = photo {
-            cell.photoImageView.image = photo
+        if let photoURL = photo {
+            cell.photoImageView.image = UIImage(contentsOfFile: photoURL.path)
             cell.photoImageView.layer.cornerRadius = cell.photoImageView.frame.width / 2
             cell.photoImageView.clipsToBounds = true
             cell.titleLabel.text = title

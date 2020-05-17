@@ -17,11 +17,12 @@ class StoriesSideViewController: UIViewController {
             StoriesTableViewCellModel.self
         ])
 
+        dataProvider.fetchAll()
+
+        // select first row by default
         if dataProvider.numberOfRows > 0 {
             dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
         }
-
-        dataProvider.fetchAll()
     }
 }
 

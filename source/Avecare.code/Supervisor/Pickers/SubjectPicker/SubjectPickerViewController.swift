@@ -3,8 +3,8 @@ import UIKit
 
 
 extension SubjectPickerTableViewCellModel {
-    init(subject: RLMSubject, isSelected: Bool) {
-        self.profilePhotoURL = subject.profilePhotoURL
+    init(subject: RLMSubject, storage: ImageStorageService, isSelected: Bool) {
+        self.profilePhotoURL = subject.photoURL(using: storage)
         self.isSelected = isSelected
         self.subjectName = "\(subject.firstName), \(subject.lastName)"
     }
@@ -14,6 +14,8 @@ class SubjectPickerViewController: UIViewController {
     @IBOutlet weak var selectAllButton: UIButton!
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
+
+    let storage = ImageStorageService()
 
     var onDone: (([RLMSubject]) -> Void)?
 
@@ -72,7 +74,7 @@ extension SubjectPickerViewController: UITableViewDelegate, UITableViewDataSourc
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let detail = dataSource[indexPath.row]
         let isSelected = selectedIds.contains(detail.id)
-        let model = SubjectPickerTableViewCellModel(subject: detail, isSelected: isSelected)
+        let model = SubjectPickerTableViewCellModel(subject: detail, storage: storage, isSelected: isSelected)
         return tableView.dequeueReusableCell(withModel: model, for: indexPath)
     }
 
@@ -82,7 +84,7 @@ extension SubjectPickerViewController: UITableViewDelegate, UITableViewDataSourc
         }
         let detail = dataSource[indexPath.row]
         let isSelected = selectedIds.contains(detail.id)
-        let model = SubjectPickerTableViewCellModel(subject: detail, isSelected: !isSelected)
+        let model = SubjectPickerTableViewCellModel(subject: detail, storage: storage, isSelected: !isSelected)
         if isSelected {
             selectedIds.remove(detail.id)
         } else {

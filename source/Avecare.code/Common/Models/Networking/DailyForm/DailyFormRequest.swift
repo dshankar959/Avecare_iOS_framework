@@ -2,15 +2,11 @@ import Foundation
 import Moya
 import CocoaLumberjack
 
+
 protocol MultipartEncodable {
     var formData: [Moya.MultipartFormData] { get }
 }
 
-struct FileAPIModel: Codable {
-    let id: String
-    let fileName: String
-    let fileUrl: String
-}
 
 struct DailyFormAPIModel {
 
@@ -18,18 +14,19 @@ struct DailyFormAPIModel {
     let subjectId: String
     let date: Date
     let log: RLMLogForm
-    let storage: ImageStorageService
 
     private enum CodingKeys: String, CodingKey {
         case id, subjectId, date, log, files
     }
 
-    init(form: RLMLogForm, subjectId: String, storage: ImageStorageService) {
+    init(form: RLMLogForm, storage: ImageStorageService) {
         self.id = newUUID
+        guard let subjectId = form.subject?.id else {
+            fatalError()
+        }
         self.subjectId = subjectId
         self.date = Date()
         self.log = form
-        self.storage = storage
     }
 
 }
@@ -52,10 +49,10 @@ extension DailyFormAPIModel: MultipartEncodable {
             data.append(.init(provider: .data(value), name: CodingKeys.date.rawValue))
         }
 
+        let storage = ImageStorageService()
         log.rows.compactMap({ $0.photo }).forEach({
-            if let url = storage.imageURL(name: $0.filename) {
-                // FIXME: filename uploads/f7f80844-3f74-4ab7-95ac-36fee470f859.jpg
-                data.append(.init(provider: .file(url), name: $0.filename, fileName: $0.filename))
+            if let url = storage.imageURL(name: $0.id) {
+                data.append(.init(provider: .file(url), name: $0.id))
             }
         })
 
@@ -63,6 +60,4 @@ extension DailyFormAPIModel: MultipartEncodable {
     }
 }
 
-struct FilesAPIResponseModel: Decodable {
-    let files: [FileAPIModel]
-}
+

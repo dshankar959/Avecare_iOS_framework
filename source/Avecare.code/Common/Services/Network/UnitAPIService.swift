@@ -114,15 +114,43 @@ struct UnitAPIService {
         }
     }
 
-    static func publishStory(_ story: StoryAPIModel, completion: @escaping (Result<FilesAPIResponseModel, AppError>) -> Void) {
+    static func publishStory(_ story: PublishStoryRequestModel, completion: @escaping (Result<FilesResponseModel, AppError>) -> Void) {
         DDLogVerbose("")
 
         apiProvider.request(.unitPublishStory(story: story)) { result in
             switch result {
             case .success(let response):
                 do {
-                    let mappedResponse = try response.map(APIResponse<FilesAPIResponseModel>.self)
-                    completion(.success(mappedResponse.results))
+                    let mappedResponse = try response.map(FilesResponseModel.self)
+                    completion(.success(mappedResponse))
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    completion(.failure(JSONError.failedToMapData.message))
+                }
+            case .failure(let error):
+                completion(.failure(getAppErrorFromMoya(with: error)))
+            }
+        }
+    }
+
+    static func getPublishedStories(unitId: String, completion: @escaping (Result<[RLMStory], AppError>) -> Void) {
+        DDLogVerbose("")
+
+        apiProvider.request(.unitPublishedStories(unitId: unitId)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(APIPaginatedResponse<PublishStoryResponseModel>.self)
+                    let storage = ImageStorageService()
+                    var stories = [RLMStory]()
+                    for model in mappedResponse.results {
+                        stories.append(model.story)
+                        if let file = model.files.first, file.id == model.story.id,
+                           let url = URL(string: file.fileUrl) {
+                            _ = try storage.saveImage(url, name: model.story.id)
+                        }
+                    }
+                    completion(.success(stories))
                 } catch {
                     DDLogError("JSON MAPPING ERROR = \(error)")
                     completion(.failure(JSONError.failedToMapData.message))

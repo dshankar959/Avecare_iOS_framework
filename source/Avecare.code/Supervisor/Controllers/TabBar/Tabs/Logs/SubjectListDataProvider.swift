@@ -49,7 +49,6 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         return dataSource.count
     }
 
-
     func sortBy(_ sort: Sort) {
         switch sort {
         case .firstName: dataSource = RLMSubject.findAll(sortedBy: "firstName")
@@ -60,7 +59,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
 
     func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel {
         let model = dataSource[indexPath.row]
-        var viewModel = SubjectListTableViewCellModel(subject: model)
+        var viewModel = SubjectListTableViewCellModel(subject: model, storage: imageStorageService)
         viewModel.isSelected = model.id == selectedId
         return viewModel
     }
@@ -113,9 +112,11 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
 
                 guard let toolbar = self?.defaultToolbarView(onDone: {
                     guard let subject = self?.dataSource[indexPath.row],
-                        let row = picker.selectedValue?.reusableRow() else {
+                        let row = picker.selectedValue?.row?.detached() else {
                             return
                     }
+
+                    row.prepareForReuse()
 
                     self?.delegate?.customResponder?.resignFirstResponder()
 
@@ -158,23 +159,14 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
     }
 
     func publishDailyForm(at indexPath: IndexPath) {
-        let subject = dataSource[indexPath.row]
         let form = dataSource[indexPath.row].todayForm
-        let request = DailyFormAPIModel(form: form, subjectId: subject.id, storage: imageStorageService)
+        let request = DailyFormAPIModel(form: form, storage: imageStorageService)
 
         SubjectsAPIService.publishDailyLog(log: request) { [weak self] result in
             switch result {
-            case .success(let update):
+            case .success:
+                print("success")
 
-                form.rows.compactMap({ $0.photo }).forEach({ photoRow in
-                    // FIXME: WIP: filename missmatch, Moya issue?
-                    guard let remoteInfo = update.files.first(where: {$0.fileName == photoRow.filename }) else {
-                        return
-                    }
-                    RLMLogPhotoRow.writeTransaction {
-                        photoRow.remoteImageURL = remoteInfo.fileUrl
-                    }
-                })
             case .failure(let error):
                 print(error)
             }

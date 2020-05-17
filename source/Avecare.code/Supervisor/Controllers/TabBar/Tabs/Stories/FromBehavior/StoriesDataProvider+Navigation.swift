@@ -10,7 +10,7 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
     // DO NOT USE INDEX PATH IN BLOCKS AS ORDER MAY CHANGE
     func navigationItems(at indexPath: IndexPath) -> [DetailsNavigationView.Item] {
         let story = dataSource[indexPath.row]
-        let isSubmitted = story.serverDate != nil
+        let isSubmitted = story.serverLastUpdated != nil
 
         let publishText = isSubmitted ? "Published" : "Publish"
         let publishColor = isSubmitted ? R.color.lightText4() : R.color.main()
@@ -30,7 +30,13 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
     }
 
     func createNewStory() {
+        guard let unitId = RLMSupervisor.details?.primaryUnitId,
+                let unit = RLMUnit.find(withID: unitId) else {
+            return
+        }
+
         let story = RLMStory(id: newUUID)
+        story.unit = unit
         story.create()
         dataSource.insert(story, at: 0)
         delegate?.didCreateNewStory()
@@ -40,27 +46,17 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
         guard let unitId = RLMSupervisor.details?.primaryUnitId else {
             return
         }
-        let publishAt = Date()
-        let model = StoryAPIModel(unitId: unitId, story: story, date: publishAt, storage: imageStorageService)
 
+        //  update serverDate
+        RLMStory.writeTransaction {
+            story.serverLastUpdated = Date()
+        }
+        let model = PublishStoryRequestModel(unitId: unitId, story: story, storage: imageStorageService)
+
+        // TODO: show loader
         UnitAPIService.publishStory(model) { [weak self] result in
             switch result {
-            case .success(let filesList):
-                // link remote image url to story
-                // & update serverDate
-                RLMStory.writeTransaction {
-                    story.remoteImageURL = filesList.files.first?.fileUrl
-                    story.serverDate = publishAt
-                }
-
-                // TODO: we can add local image to Kingfisher cache to avoid loading from remote
-
-                // remove local image as we going to use remote link
-                if let service = self?.imageStorageService,
-                   let url = service.imageURL(name: story.id) {
-                    try? service.removeImage(at: url)
-                }
-
+            case .success:
                 // update UI to block editing
                 // story will be moved to 1st position after sort()
                 // because serverDate updated

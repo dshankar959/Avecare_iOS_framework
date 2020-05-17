@@ -83,7 +83,8 @@ enum AvecareAPI { // API Services
     case unitCreateReminder(id: String)
     case unitSubjects(id: String)
     case unitSupervisors(id: String)
-    case unitPublishStory(story: StoryAPIModel)
+    case unitPublishStory(story: PublishStoryRequestModel)
+    case unitPublishedStories(unitId: String)
 
     case subjectPublishDailyLog(request: DailyFormAPIModel)
 }
@@ -127,6 +128,7 @@ extension AvecareAPI: TargetType {
         case .unitSubjects(let id): return "/units/\(id)/subjects"
         case .unitSupervisors(let id): return "/units/\(id)/supervisors"
         case .unitPublishStory(let story): return "/units/\(story.unitId)/stories/"
+        case .unitPublishedStories(let unitId): return "/units/\(unitId)/stories"
 
         case .unitStories(let id): return "/units/\(id)/stories"
         case .storyDetails(let id): return "/stories/\(id)"

@@ -10,9 +10,7 @@ extension SubjectDetailsPhotoViewModel {
         title = row.title
         note = row.text
 
-        if let remoteURL = row.remoteImageURL {
-            image = URL(string: remoteURL)
-        } else if let localURL = storage.imageURL(name: row.filename) {
+        if let localURL = storage.imageURL(name: row.id) {
             image = localURL
         }
     }
@@ -56,9 +54,8 @@ extension SubjectListDataProvider {
                     let image = image, let service = self?.imageStorageService else {
                         return
                 }
-
                 // remove previous local image
-                if let fileURL = service.imageURL(name: row.filename) {
+                if let fileURL = service.imageURL(name: row.id) {
                     do {
                         try service.removeImage(at: fileURL)
                     } catch {
@@ -68,13 +65,8 @@ extension SubjectListDataProvider {
 
                 do {
                     // save image locally
-                    let url = try service.saveImage(image, name: row.filename)
-                    // update database
-                    RLMLogPhotoRow.writeTransaction {
-                        // reset remoteImageURL to start use local image by name
-                        row.remoteImageURL = nil
-                        // TODO: update form local date
-                    }
+                    let url = try service.saveImage(image, name: row.id)
+                    // TODO: update form local date
                     // update UI
                     view.setImage(url)
 
