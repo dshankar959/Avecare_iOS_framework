@@ -30,12 +30,17 @@ class RLMLogSwitcherRow: Object, Decodable, FormRowIconProtocol {
         title = try container.decode(String.self, forKey: .title)
         subtitle = try container.decode(String.self, forKey: .subtitle)
         selectedValue.value = try container.decodeIfPresent(Int.self, forKey: .selectedValue)
-        if let time = try container.decodeIfPresent(Date.self, forKey: .startTime) {
+
+        let formatter = Date.timeFormatter
+        if let timeString = try container.decodeIfPresent(String.self, forKey: .startTime),
+           let time = formatter.date(from: timeString) {
             startTime = time
         }
-        if let time = try container.decodeIfPresent(Date.self, forKey: .endTime) {
+        if let timeString = try container.decodeIfPresent(String.self, forKey: .endTime),
+           let time = formatter.date(from: timeString) {
             endTime = time
         }
+
         if let options = try container.decodeIfPresent([RLMOptionValue].self, forKey: .options) {
             self.options.append(objectsIn: options)
         }

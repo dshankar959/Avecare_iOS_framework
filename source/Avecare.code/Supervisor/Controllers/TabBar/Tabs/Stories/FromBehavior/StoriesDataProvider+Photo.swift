@@ -7,18 +7,19 @@ import CocoaLumberjack
 extension StoriesDataProvider {
 
     func photoViewModel(for story: RLMStory) -> FormPhotoViewModel {
-        let photoRowAction = FormPhotoViewModel.Action(onTextChange: { view, textValue in
+        let isSubmitted = story.serverLastUpdated != nil
+        let photoRowAction = FormPhotoViewModel.Action(onTextChange: { [weak self] view, textValue in
             RLMStory.writeTransaction {
-                story.localDate = Date()
                 story.photoCaption = textValue ?? ""
             }
+            // update date, side menu row will be moved to 1st position
+            self?.updateEditDate(for: story)
         }, onPhotoTap: { [weak self] view in
             self?.showImagePicker(from: view, for: story)
         })
 
-        return FormPhotoViewModel(photoURL: story.photoURL(using: imageStorageService),
-                caption: story.photoCaption,
-                placeholder: "Photo caption goes here.", isEditable: story.serverDate == nil, action: photoRowAction)
+        return FormPhotoViewModel(photoURL: story.photoURL(using: imageStorageService), caption: story.photoCaption,
+                placeholder: "Photo caption goes here.", isEditable: !isSubmitted, action: photoRowAction)
     }
 
     func showImagePicker(from view: FormPhotoView, for story: RLMStory) {
@@ -52,13 +53,6 @@ extension StoriesDataProvider {
                 do {
                     // save image locally
                     _ = try service.saveImage(image, name: story.id)
-
-                    // update database
-                    RLMStory.writeTransaction {
-                        // reset remoteImageURL to start use local image by name
-                        story.remoteImageURL = nil
-                    }
-
                     // update from photo
                     view.photoImageView.image = image
                     // update date

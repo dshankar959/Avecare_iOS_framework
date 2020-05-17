@@ -26,8 +26,8 @@
         "title": "Snack",
         "subtitle": "Number of servings eaten:",
         "selectedValue": 1,
-        "startTime": "2020-04-26T07:00:00Z",
-        "endTime": "2020-04-26T10:00:00Z",
+        "startTime": "07:00AM",
+        "endTime": "10:00AM",
         "options": [
           {
             "value": 1,
@@ -54,8 +54,8 @@
         "title": "Lunch",
         "subtitle": "Number of servings eaten:",
         "selectedValue": 2,
-        "startTime": "2020-04-26T12:00:00Z",
-        "endTime": "2020-04-26T13:00:00Z",
+        "startTime": "12:00AM",
+        "endTime": "01:00PM",
         "options": [
           {
             "value": 2,
@@ -72,8 +72,8 @@
         "title": "Rest",
         "subtitle": "Select amount of sleep:",
         "selectedValue": 1,
-        "startTime": "2020-04-26T10:30:00Z",
-        "endTime": "2020-04-26T11:30:00Z",
+        "startTime": "10:30AM",
+        "endTime": "11:30AM",
         "options": [
           {
             "value": 1,
@@ -88,8 +88,8 @@
         "iconName": "tree-icon",
         "iconColor": "FBD476",
         "title": "Outdoor",
-        "startTime": "2020-04-26T14:30:00Z",
-        "endTime": "2020-04-26T15:30:00Z"
+        "startTime": "02:30PM",
+        "endTime": "03:30PM"
       }
     },
     {
@@ -100,8 +100,8 @@
         "title": "Snack",
         "subtitle": "Number of servings eaten:",
         "selectedValue": 1,
-        "startTime": "2020-04-26T15:30:00Z",
-        "endTime": "2020-04-26T16:00:00Z",
+        "startTime": "03:30PM",
+        "endTime": "04:00PM",
         "options": [
           {
             "value": 1,

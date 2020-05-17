@@ -36,12 +36,6 @@ class RLMFormTemplate: RLMDefaults {
         }
     }
 
-    func reuseTemplateRows() -> List<RLMLogRow> {
-        let rows = self.rows.detached()
-        rows.compactMap({ $0.photo }).forEach({ $0.prepareForReuse() })
-        return rows
-    }
-
 }
 
 
@@ -54,4 +48,6 @@ extension RLMFormTemplate: DataProvider, RLMCleanable {
         // remove linked rows
         rows.forEach({ $0.clean() })
     }
+
+
 }

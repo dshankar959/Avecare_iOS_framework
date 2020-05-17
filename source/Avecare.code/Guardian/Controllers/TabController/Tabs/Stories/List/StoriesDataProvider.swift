@@ -41,29 +41,29 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
     let educators = DefaultEducatorsDataProvider()
 
     var dataSource: [StoriesTableViewCellModel] = [
-        StoriesTableViewCellModel(title: "Colouring and Fine Motors Skills Development", date: Date(),
-                details: "1" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage1(),
-                photoCaption: "photo caption 1"),
-
-        StoriesTableViewCellModel(title: "Language Skills in the Classroom and at Home", date: Date(),
-                details: "2" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage2(),
-                photoCaption: "photo caption 2"),
-
-        StoriesTableViewCellModel(title: "Finger Painting - Classic Activities are Still Big Hits", date: Date(),
-                details: "3" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage3(),
-                photoCaption: "photo caption 3"),
-
-        StoriesTableViewCellModel(title: "Team Building Play", date: Date(),
-                details: "4" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage4(),
-                photoCaption: "photo caption 4"),
-
-        StoriesTableViewCellModel(title: "Our Little Artists with Big Imaginations", date: Date(),
-                details: "5" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage5(),
-                photoCaption: "photo caption 5"),
-
-        StoriesTableViewCellModel(title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit", date: Date(),
-                details: "6" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage6(),
-                photoCaption: "photo caption 6")
+//        StoriesTableViewCellModel(title: "Colouring and Fine Motors Skills Development", date: Date(),
+//                details: "1" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage1(),
+//                photoCaption: "photo caption 1"),
+//
+//        StoriesTableViewCellModel(title: "Language Skills in the Classroom and at Home", date: Date(),
+//                details: "2" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage2(),
+//                photoCaption: "photo caption 2"),
+//
+//        StoriesTableViewCellModel(title: "Finger Painting - Classic Activities are Still Big Hits", date: Date(),
+//                details: "3" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage3(),
+//                photoCaption: "photo caption 3"),
+//
+//        StoriesTableViewCellModel(title: "Team Building Play", date: Date(),
+//                details: "4" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage4(),
+//                photoCaption: "photo caption 4"),
+//
+//        StoriesTableViewCellModel(title: "Our Little Artists with Big Imaginations", date: Date(),
+//                details: "5" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage5(),
+//                photoCaption: "photo caption 5"),
+//
+//        StoriesTableViewCellModel(title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit", date: Date(),
+//                details: "6" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage6(),
+//                photoCaption: "photo caption 6")
     ]
 
     var numberOfRows: Int {
@@ -89,12 +89,12 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
     func details(at indexPath: IndexPath) -> StoriesDetails {
         guard indexPath.section == 1 else { fatalError() }
         let parent = dataSource[indexPath.row]
-        let photo: StoriesDetails.Photo?
-        if let img = parent.photo {
-            photo = .init(image: img, caption: parent.photoCaption)
-        } else {
-            photo = nil
-        }
+        let photo: StoriesDetails.Photo? = nil
+//        if let img = parent.photo {
+//            photo = .init(image: img, caption: parent.photoCaption)
+//        } else {
+//            photo = nil
+//        }
         return StoriesDetails(title: parent.title, description: parent.details, photo: photo)
     }
 }

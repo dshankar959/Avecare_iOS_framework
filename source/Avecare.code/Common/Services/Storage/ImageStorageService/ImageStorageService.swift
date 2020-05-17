@@ -7,7 +7,6 @@ struct ImageStorageService {
 
     let directory: URL
 
-
     init() {
         directory = userAppDirectory.appendingPathComponent("images")
         _ = FileManager.default.createDirectory(directory)
@@ -26,6 +25,16 @@ struct ImageStorageService {
         // We should *never get here*
         DDLogError("⚠️ Error saving image!")
         throw NSError(domain: "Error saving image!  (no jpeg data?)", code: -1)
+    }
+
+
+    func saveImage(_ remoteImageURL: URL, name: String = newUUID) throws -> URL {
+        DDLogVerbose("Loading Image from - \(remoteImageURL)")
+        let data = try Data(contentsOf: remoteImageURL)
+        let localImageURL = directory.appendingPathComponent(name).appendingPathExtension("jpg")
+        try data.write(to: localImageURL)
+        DDLogVerbose("Did Save Image to - \(localImageURL)")
+        return localImageURL
     }
 
 

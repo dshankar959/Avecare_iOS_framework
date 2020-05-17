@@ -64,11 +64,11 @@ extension LogsOptionTableViewCellModel {
 
 extension LogsPhotoTableViewCellModel {
     init(row: RLMLogPhotoRow) {
-        if let imgName = row.imageUrl, let img = UIImage(named: imgName) {
-            image = img
-        } else {
+//        if let imgName = row.imageUrl, let img = UIImage(named: imgName) {
+//            image = img
+//        } else {
             image = nil
-        }
+//        }
         caption = row.text
     }
 }

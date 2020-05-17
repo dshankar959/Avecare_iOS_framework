@@ -40,23 +40,19 @@ class RLMLogChooseRow: Object, Decodable {
         }
     }
 
-    func reusableRow() -> RLMLogRow? {
-        let row = self.row?.detached()
-        if let photo = row?.photo {
-            photo.prepareForReuse()
-        }
-        return row
-    }
 }
 
 
-extension RLMLogChooseRow: DataProvider, RLMCleanable {
+extension RLMLogChooseRow: DataProvider, RLMCleanable, RLMReusable {
 
     func clean() {
         row?.clean()
         delete()
     }
 
+    func prepareForReuse() {
+        row?.prepareForReuse()
+    }
 }
 
 

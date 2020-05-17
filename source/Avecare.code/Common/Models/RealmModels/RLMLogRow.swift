@@ -137,7 +137,7 @@ class RLMLogRow: Object, Codable {
 }
 
 
-extension RLMLogRow: DataProvider, RLMCleanable {
+extension RLMLogRow: DataProvider, RLMCleanable, RLMReusable {
 
     func clean() {
         if let option = option {
@@ -157,4 +157,9 @@ extension RLMLogRow: DataProvider, RLMCleanable {
         delete()
    }
 
+    func prepareForReuse() {
+        if let photo = photo {
+            photo.prepareForReuse()
+        }
+    }
 }

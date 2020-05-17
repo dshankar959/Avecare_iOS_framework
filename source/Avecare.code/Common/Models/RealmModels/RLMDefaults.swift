@@ -3,7 +3,7 @@ import RealmSwift
 
 
 
-class RLMDefaults: Object, Codable {
+class RLMDefaults: Object, Codable, RLMReusable {
 
     @objc dynamic var id: String = ""
 //    @objc dynamic var serverLastUpdated: String? = nil
@@ -31,7 +31,12 @@ class RLMDefaults: Object, Codable {
         do {
             let values = try decoder.container(keyedBy: DefaultCodingKeys.self)
 
-            self.id = try values.decode(String.self, forKey: .id).lowercased()
+            if let id = try values.decodeIfPresent(String.self, forKey: .id)?.lowercased() {
+                self.id = id
+            } else {
+                self.id = newUUID
+            }
+
 //            self.serverLastUpdated = try values.decodeIfPresent(String.self, forKey: .serverLastUpdated)
 //            self.clientLastUpdated = try values.decodeIfPresent(String.self, forKey: .clientLastUpdated)
 //            self.syncToken = try values.decode(String.self, forKey: .syncToken)
@@ -51,12 +56,14 @@ class RLMDefaults: Object, Codable {
         return "id"
     }
 
-
     convenience init(id: String) {
         self.init()
         self.id = id
     }
 
+    func prepareForReuse() {
+        id = newUUID
+    }
 }
 
 

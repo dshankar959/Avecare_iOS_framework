@@ -19,6 +19,7 @@ extension SyncEngine {
             return
         }
 
+        // FIXME: No to pyramids
         // Dependancy tree of sync operations.
         self.syncDOWNuserAccountDetails() { error in
             DDLogVerbose("syncDOWNuserAccountDetails ♓️ closure")
@@ -38,7 +39,10 @@ extension SyncEngine {
                                                 self.syncOrganizationTemplates() { error in
                                                     DDLogVerbose("syncOrganizationTemplates ♓️ closure")
                                                     if let error = error { syncCompletion(error) } else {
-                                                        syncCompletion(nil)
+                                                        self.syncDOWNUnitStories { error in
+                                                            DDLogVerbose("syncDOWNUnitStories ♓️ closure")
+                                                            syncCompletion(error)
+                                                        }
                                                     }
                                                 }
                                             }

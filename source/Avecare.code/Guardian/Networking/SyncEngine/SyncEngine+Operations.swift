@@ -35,7 +35,10 @@ extension SyncEngine {
                                         self.syncOrganizationDetails() { error in
                                             DDLogVerbose("syncOrganizationDetails ♓️ closure")
                                             if let error = error { syncCompletion(error) } else {
-                                                syncCompletion(nil)
+                                                self.syncDOWNUnitStories { error in
+                                                    DDLogVerbose("syncDOWNUnitStories ♓️ closure")
+                                                    syncCompletion(error)
+                                                }
                                             }
                                         }
                                     }
