@@ -20,6 +20,8 @@ class HomeViewController: UIViewController {
         ])
 
         setSubjectFilerButtonTitle(titleText: "All")
+
+        self.navigationController?.hideHairline()
     }
 
     @IBAction func didClickSubjectPickerButton(_ sender: UIButton) {

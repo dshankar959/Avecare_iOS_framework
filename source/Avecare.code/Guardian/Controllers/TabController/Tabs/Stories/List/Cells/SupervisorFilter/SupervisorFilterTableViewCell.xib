@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EDUCATORS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tl-I8-lXD">
-                        <rect key="frame" x="12" y="8" width="89" height="31.5"/>
+                        <rect key="frame" x="12" y="16" width="89" height="23.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
                 <constraints>
                     <constraint firstItem="u7X-OL-k3o" firstAttribute="top" secondItem="2tl-I8-lXD" secondAttribute="bottom" constant="8" id="0gq-iw-O7h"/>
                     <constraint firstItem="2tl-I8-lXD" firstAttribute="leading" secondItem="CRw-vn-9dL" secondAttribute="leading" constant="12" id="Yuh-Oy-fXz"/>
-                    <constraint firstItem="2tl-I8-lXD" firstAttribute="top" secondItem="CRw-vn-9dL" secondAttribute="top" constant="8" id="bTm-ZV-YgI"/>
+                    <constraint firstItem="2tl-I8-lXD" firstAttribute="top" secondItem="CRw-vn-9dL" secondAttribute="top" constant="16" id="bTm-ZV-YgI"/>
                     <constraint firstItem="u7X-OL-k3o" firstAttribute="leading" secondItem="CRw-vn-9dL" secondAttribute="leading" id="iJM-gK-WgB"/>
                     <constraint firstAttribute="trailing" secondItem="u7X-OL-k3o" secondAttribute="trailing" id="n6g-VF-KDF"/>
                     <constraint firstAttribute="bottom" secondItem="u7X-OL-k3o" secondAttribute="bottom" constant="8" id="zFl-g0-e15"/>

@@ -15,12 +15,16 @@ class StoriesListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
         tableView.register(nibModels: [
             StoriesTableViewCellModel.self,
             SupervisorFilterTableViewCellModel.self
         ])
-        
+
         setSubjectFilerButtonTitle(titleText: "All")
+
+        self.navigationController?.hideHairline()
     }
 
     @IBAction func subjectFilterButtonTouched(_ sender: UIButton) {
@@ -90,5 +94,18 @@ extension StoriesListViewController: UITableViewDelegate, UITableViewDataSource 
 
         let details = dataProvider.details(at: indexPath)
         performSegue(withIdentifier: R.segue.storiesListViewController.details, sender: details)
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return .leastNormalMagnitude
+        default:
+            return 8
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
     }
 }

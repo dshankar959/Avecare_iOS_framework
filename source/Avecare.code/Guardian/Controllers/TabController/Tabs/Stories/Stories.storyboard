@@ -12,7 +12,7 @@
         <!--Stories-->
         <scene sceneID="SyT-OE-3Gy">
             <objects>
-                <navigationController id="cw6-QF-8IY" sceneMemberID="viewController">
+                <navigationController id="cw6-QF-8IY" customClass="UINVC" customModule="parent" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Stories" image="tab-bar-stories-icon" id="NoK-08-EMQ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="6A4-du-bCp">
@@ -56,7 +56,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="pNi-PV-EZF">
                         <nil key="title"/>
-                        <button key="titleView" opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hC9-xh-anh">
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hC9-xh-anh">
                             <rect key="frame" x="157" y="3" width="100" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>

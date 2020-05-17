@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="257" id="jdz-HU-6e4" customClass="ProfileSubjectTableViewCell" customModule="parent" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="246"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jdz-HU-6e4" id="cmF-YU-tJv">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="246"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="N4I-v9-1Vt">
+                        <rect key="frame" x="0.0" y="10" width="414" height="116"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="N4I-v9-1Vt" secondAttribute="height" multiplier="1:0.28" id="Dog-2C-dsZ"/>
+                        </constraints>
+                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Opb-Yz-Fs2">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                        <connections>
+                            <outlet property="dataSource" destination="jdz-HU-6e4" id="OxB-xk-r4b"/>
+                            <outlet property="delegate" destination="jdz-HU-6e4" id="dB4-0n-3Dt"/>
+                        </connections>
+                    </collectionView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vwG-LV-btr">
+                        <rect key="frame" x="15" y="136" width="89" height="42"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="36"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k7K-p1-uN7">
+                        <rect key="frame" x="15" y="186" width="35.5" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" name="LightText"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="vwG-LV-btr" firstAttribute="leading" secondItem="cmF-YU-tJv" secondAttribute="leading" constant="15" id="0mu-6W-tzz"/>
+                    <constraint firstAttribute="trailing" secondItem="N4I-v9-1Vt" secondAttribute="trailing" id="6iZ-Pu-542"/>
+                    <constraint firstItem="k7K-p1-uN7" firstAttribute="leading" secondItem="cmF-YU-tJv" secondAttribute="leading" constant="15" id="8wx-28-JiP"/>
+                    <constraint firstItem="N4I-v9-1Vt" firstAttribute="top" secondItem="cmF-YU-tJv" secondAttribute="top" constant="10" id="Qn2-Yc-psf"/>
+                    <constraint firstItem="k7K-p1-uN7" firstAttribute="top" secondItem="vwG-LV-btr" secondAttribute="bottom" constant="8" id="eWk-qB-AVg"/>
+                    <constraint firstItem="N4I-v9-1Vt" firstAttribute="leading" secondItem="cmF-YU-tJv" secondAttribute="leading" id="lQO-7r-R69"/>
+                    <constraint firstItem="vwG-LV-btr" firstAttribute="top" secondItem="N4I-v9-1Vt" secondAttribute="bottom" constant="10" id="mCl-6a-OIo"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="k7K-p1-uN7" secondAttribute="bottom" constant="32" id="ws3-a8-kaQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="selectedSubjectDOBLabel" destination="k7K-p1-uN7" id="5zo-Qi-CGl"/>
+                <outlet property="selectedSubjectNameLabel" destination="vwG-LV-btr" id="u0W-1v-Sv1"/>
+                <outlet property="subjectsCollectionView" destination="N4I-v9-1Vt" id="3yL-Ta-GSf"/>
+            </connections>
+            <point key="canvasLocation" x="834.78260869565224" y="204.57589285714286"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="LightText">
+            <color red="0.49411764705882355" green="0.52156862745098043" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
