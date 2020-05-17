@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 import Kingfisher
 
+
+
 struct StoriesTableViewCellModel: CellViewModel {
     typealias CellType = StoriesTableViewCell
 
@@ -17,6 +19,7 @@ struct StoriesTableViewCellModel: CellViewModel {
         cell.backgroundColor = isSelected ? R.color.background() : .white
         cell.dateLabel.text = Date.fullMonthDayFormatter.string(from: date)
         cell.titleLabel.text = title
+
         if let url = photoURL, url.absoluteString.isFilePath {
             cell.photoImageView.image = UIImage(contentsOfFile: url.path)
         } else {

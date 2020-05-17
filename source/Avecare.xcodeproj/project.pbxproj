@@ -249,6 +249,8 @@
 		75886E00241932CC0079C080 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DFE241932CC0079C080 /* Theme.swift */; };
 		75D62235245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
 		75D62236245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
+		75D7FF5C2470FC6F0002E1F9 /* DailyFormRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615473C479A061F759D2F5FC /* DailyFormRequest.swift */; };
+		75D7FF5D2470FD0D0002E1F9 /* StoryAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547FB6B8CD619FC8942D63 /* StoryAPIModel.swift */; };
 		75E2EBFA246C1DDD00A3D51F /* RLMDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */; };
 		75E2EBFB246C1DDD00A3D51F /* RLMDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */; };
 		75EB59C02461858700E077E5 /* RLMLogTimeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59B22461858700E077E5 /* RLMLogTimeRow.swift */; };
@@ -2444,11 +2446,13 @@
 				DCFFD6FA246DA6FE0080DEA6 /* SlideInPresentationController.swift in Sources */,
 				75886D612419327F0079C080 /* UserAPIService.swift in Sources */,
 				75886D2F2419327F0079C080 /* CellViewModels.swift in Sources */,
+				75D7FF5C2470FC6F0002E1F9 /* DailyFormRequest.swift in Sources */,
 				75886D452419327F0079C080 /* FileManager.swift in Sources */,
 				75886D272419327F0079C080 /* AppSettings.swift in Sources */,
 				F663BB6D24351187003279B9 /* DailyTask.swift in Sources */,
 				F663BB7424351313003279B9 /* SubjectListTableViewCell.swift in Sources */,
 				F663BB77243513AC003279B9 /* SubjectListDataProvier.swift in Sources */,
+				75D7FF5D2470FD0D0002E1F9 /* StoryAPIModel.swift in Sources */,
 				75886D552419327F0079C080 /* CGFloat.swift in Sources */,
 				75886D4B2419327F0079C080 /* UITableViewCell.swift in Sources */,
 				75886D512419327F0079C080 /* CGPoint.swift in Sources */,

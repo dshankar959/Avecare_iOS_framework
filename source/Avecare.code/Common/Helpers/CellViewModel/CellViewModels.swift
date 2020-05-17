@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
-import MapKit
+
+
 
 public protocol AnyCellViewModel {
     static var cellType: UIView.Type { get }
@@ -124,21 +125,4 @@ public extension UICollectionView {
             register(model.cellType, forCellWithReuseIdentifier: identifier)
         }
     }
-}
-
-extension MKMapView {
-
-//    public func dequeueReusableAnnotationView(withAnyModel viewModel: AnyCellViewModel, for annotation: MKAnnotation) -> MKAnnotationView {
-//        let identifier = String(describing: type(of: viewModel).cellType)
-//        let annotationView = dequeueReusableAnnotationView(withIdentifier: identifier, for: annotation)
-//        viewModel.setup(cell: annotationView)
-//        return annotationView
-//    }
-//
-//    public func register(viewModels: [AnyCellViewModel.Type]) {
-//        for model in viewModels {
-//            let identifier = String(describing: model.cellType)
-//            register(model.cellType, forAnnotationViewWithReuseIdentifier: identifier)
-//        }
-//    }
 }
