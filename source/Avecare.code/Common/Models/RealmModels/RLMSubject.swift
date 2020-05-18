@@ -11,16 +11,8 @@ class RLMSubject: RLMDefaults {
     @objc dynamic var birthday = Date()
     @objc dynamic var subjectTypeId: String = ""
     @objc dynamic var photoConsent: Bool = true
-    @objc dynamic private var profilePhoto: String? = nil
 
     var unitIds = List<String>()
-
-    var profilePhotoURL: URL? {
-        if let photoURL = profilePhoto {
-            return URL(string: photoURL)
-        }
-        return nil
-    }
 
     var isFormSubmittedToday: Bool {
         return todayForm.serverLastUpdated != nil
@@ -42,7 +34,9 @@ class RLMSubject: RLMDefaults {
 
         if let template = RLMFormTemplate.find(withSubjectType: subjectTypeId) {
             DDLogDebug("Loading template: \(template.id)")
-            form.rows.append(objectsIn: template.reuseTemplateRows())
+            let rows = template.rows.detached()
+            rows.forEach({ $0.prepareForReuse() })
+            form.rows.append(objectsIn: rows)
         }
 
         form.create()
@@ -83,7 +77,14 @@ class RLMSubject: RLMDefaults {
 
             self.subjectTypeId = try values.decode(String.self, forKey: .subjectTypeId)
             self.photoConsent = try values.decode(Bool.self, forKey: .photoConsent)
-            self.profilePhoto = try values.decodeIfPresent(String.self, forKey: .profilePhoto)
+
+            // load and save image during json response decoding synchronously
+            // TODO: some image loading task
+            if let profilePhoto = try values.decodeIfPresent(String.self, forKey: .profilePhoto),
+               let url = URL(string: profilePhoto) {
+                _ = try ImageStorageService().saveImage(url, name: id)
+            }
+
             self.unitIds = try values.decode(List<String>.self, forKey: .unitIds)
 
         } catch {
@@ -95,8 +96,14 @@ class RLMSubject: RLMDefaults {
 }
 
 
-extension RLMSubject: DataProvider {
+extension RLMSubject {
+    func photoURL(using storage: ImageStorageService) -> URL? {
+        return storage.imageURL(name: id)
+    }
+}
 
+
+extension RLMSubject: DataProvider {
 }
 
 

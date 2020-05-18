@@ -13,10 +13,14 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        #if DEBUG
-            loginField?.text = "supervisor@example.net"
-            passwordField?.text = "123456"
-//        #endif
+        #if DEBUG
+//        loginField?.text = "supervisor@example.net"
+//        passwordField?.text = "123456"
+
+        loginField?.text = "535cc_Room_100@avecare.com"
+        passwordField?.text = "123456"
+        #endif
+
     }
 
 
