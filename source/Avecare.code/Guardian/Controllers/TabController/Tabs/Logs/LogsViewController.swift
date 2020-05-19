@@ -1,11 +1,7 @@
-//
-//  LogsViewController.swift
-//  guardian
-//
-
-import Foundation
 import UIKit
 import JTAppleCalendar
+
+
 
 class LogsViewController: UIViewController {
 
@@ -17,6 +13,7 @@ class LogsViewController: UIViewController {
     let dataProvider = DefaultLogsDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
     let subjectListDataProvider = DefaultSubjectListDataProvider() // To retrieve default subject
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,12 +63,14 @@ class LogsViewController: UIViewController {
     }
 }
 
+
 extension LogsViewController: SubjectListViewControllerDelegate {
     func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
         controller.dismiss(animated: true)
         setSubjectSelectButtonTitle(titleText: item.title)
     }
 }
+
 
 extension LogsViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -92,6 +91,7 @@ extension LogsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
+
 extension LogsViewController: JTACMonthViewDataSource {
     func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
         let formatter = DateFormatter()
@@ -106,6 +106,7 @@ extension LogsViewController: JTACMonthViewDataSource {
                                        hasStrictBoundaries: false)
     }
 }
+
 
 extension LogsViewController: JTACMonthViewDelegate {
     func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTACDayCell {

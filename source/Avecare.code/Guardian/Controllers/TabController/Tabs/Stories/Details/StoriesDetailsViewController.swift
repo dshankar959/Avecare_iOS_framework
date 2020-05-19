@@ -54,7 +54,6 @@ extension StoriesDetailsViewController {
     func addView<T: CellViewModel>(with model: T) -> T.CellType {
         let view = model.buildView()
         stackView.addArrangedSubview(view)
-        // swiftlint:disable:next force_cast
         return view as! T.CellType
     }
 

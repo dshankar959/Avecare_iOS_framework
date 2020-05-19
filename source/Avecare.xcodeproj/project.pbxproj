@@ -347,7 +347,7 @@
 		F663BB6F2435119C003279B9 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547B55A492A05FAE40E47B /* APIResponse.swift */; };
 		F663BB7424351313003279B9 /* SubjectListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886D70241932AB0079C080 /* SubjectListTableViewCell.swift */; };
 		F663BB7624351327003279B9 /* SubjectListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DB1241932BA0079C080 /* SubjectListDataProvider.swift */; };
-		F663BB77243513AC003279B9 /* SubjectListDataProvier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886D73241932AB0079C080 /* SubjectListDataProvier.swift */; };
+		F663BB77243513AC003279B9 /* SubjectListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886D73241932AB0079C080 /* SubjectListDataProvider.swift */; };
 		F663BB7924352065003279B9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F663BB7824352065003279B9 /* LoginViewController.swift */; };
 		F663BB7C24352083003279B9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F663BB7B24352083003279B9 /* Login.storyboard */; };
 		F663BB7F243522C5003279B9 /* OTPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F663BB7E243522C5003279B9 /* OTPViewController.swift */; };
@@ -547,7 +547,7 @@
 		75886D70241932AB0079C080 /* SubjectListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectListTableViewCell.swift; sourceTree = "<group>"; };
 		75886D71241932AB0079C080 /* SubjectListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectListViewController.swift; sourceTree = "<group>"; };
 		75886D72241932AB0079C080 /* SubjectList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SubjectList.storyboard; sourceTree = "<group>"; };
-		75886D73241932AB0079C080 /* SubjectListDataProvier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectListDataProvier.swift; sourceTree = "<group>"; };
+		75886D73241932AB0079C080 /* SubjectListDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectListDataProvider.swift; sourceTree = "<group>"; };
 		75886D74241932AB0079C080 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		75886D75241932AB0079C080 /* guardian.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = guardian.storyboard; sourceTree = "<group>"; };
 		75886D7A241932AB0079C080 /* HomeDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeDataProvider.swift; sourceTree = "<group>"; };
@@ -1353,10 +1353,10 @@
 		75886D6F241932AB0079C080 /* SubjectList */ = {
 			isa = PBXGroup;
 			children = (
-				75886D70241932AB0079C080 /* SubjectListTableViewCell.swift */,
 				75886D71241932AB0079C080 /* SubjectListViewController.swift */,
+				75886D70241932AB0079C080 /* SubjectListTableViewCell.swift */,
+				75886D73241932AB0079C080 /* SubjectListDataProvider.swift */,
 				75886D72241932AB0079C080 /* SubjectList.storyboard */,
-				75886D73241932AB0079C080 /* SubjectListDataProvier.swift */,
 			);
 			path = SubjectList;
 			sourceTree = "<group>";
@@ -1385,9 +1385,9 @@
 		75886D78241932AB0079C080 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				75886D7C241932AB0079C080 /* HomeViewController.swift */,
 				75886D7A241932AB0079C080 /* HomeDataProvider.swift */,
 				75886D7B241932AB0079C080 /* Home.storyboard */,
-				75886D7C241932AB0079C080 /* HomeViewController.swift */,
 				61547D0B8D0292B053F6BF24 /* Cells */,
 			);
 			path = Home;
@@ -2462,7 +2462,7 @@
 				75886D272419327F0079C080 /* AppSettings.swift in Sources */,
 				F663BB6D24351187003279B9 /* DailyTask.swift in Sources */,
 				F663BB7424351313003279B9 /* SubjectListTableViewCell.swift in Sources */,
-				F663BB77243513AC003279B9 /* SubjectListDataProvier.swift in Sources */,
+				F663BB77243513AC003279B9 /* SubjectListDataProvider.swift in Sources */,
 				75D7FF5D2470FD0D0002E1F9 /* PublishStoryRequestModel.swift in Sources */,
 				75886D552419327F0079C080 /* CGFloat.swift in Sources */,
 				75886D4B2419327F0079C080 /* UITableViewCell.swift in Sources */,

@@ -1,5 +1,7 @@
-import Foundation
 import UIKit
+import CocoaLumberjack
+
+
 
 @objc
 public enum PinViewStyle: Int {
@@ -7,6 +9,7 @@ public enum PinViewStyle: Int {
     case underline
     case box
 }
+
 
 @objc
 public class PinView: UIView {
@@ -61,7 +64,9 @@ public class PinView: UIView {
 
     var delegate: PinViewDelegate?
 
+
     // MARK: - Init methods -
+
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadView()
@@ -89,11 +94,12 @@ public class PinView: UIView {
     }
 
     // MARK: - Private methods -
+
     @objc fileprivate func textFieldDidChange(_ textField: UITextField) {
         var nextTag = textField.tag
         let index = nextTag - 100
         guard let placeholderLabel = textField.superview?.viewWithTag(400) as? UILabel else {
-            showPinError(error: "ERR-101: Type Mismatch - Line 100")
+            showPinError(error: "Type Mismatch")
             return
         }
 
@@ -160,6 +166,7 @@ public class PinView: UIView {
 
         let pin = getPin()
         guard !pin.isEmpty else { return }
+
         didFinishCallback?(pin)
     }
 
@@ -169,12 +176,11 @@ public class PinView: UIView {
 
             if let placeholderLabel = collectionView.cellForItem(at: IndexPath(item: index, section: 0))?.viewWithTag(400) as? UILabel {
                 placeholderLabel.text = String(char)
-            } else { showPinError(error: "ERR-102: Type Mismatch - Line 172") }
+            } else { showPinError(error: "Type Mismatch") }
         }
     }
 
     fileprivate func stylePinField(containerView: UIView, underLine: UIView, isActive: Bool) {
-
         containerView.backgroundColor = isActive ? activeFieldBackgroundColor : fieldBackgroundColor
         containerView.layer.cornerRadius = isActive ? activeFieldCornerRadius : fieldCornerRadius
 
@@ -199,7 +205,7 @@ public class PinView: UIView {
             containerView.layer.borderWidth = isActive ? activeBorderLineThickness : borderLineThickness
             containerView.layer.borderColor = isActive ? activeBorderLineColor.cgColor : borderLineColor.cgColor
         }
-     }
+    }
 
     @IBAction fileprivate func refreshPinView() {
         view.removeFromSuperview()
@@ -211,9 +217,7 @@ public class PinView: UIView {
 
     fileprivate func showPinError(error: String) {
         errorView.isHidden = false
-        print("\n----------PinView Error----------")
-        print(error)
-        print("-----------------------------------")
+        DDLogError("PinView error: \(error)")
     }
 
     // MARK: - Public methods -
@@ -223,7 +227,6 @@ public class PinView: UIView {
     /// - Returns: The entered PIN.
     @objc
     public func getPin() -> String {
-
         guard !isLoading else { return "" }
         guard password.count == pinLength && password.joined().trimmingCharacters(in: CharacterSet(charactersIn: " ")).count == pinLength else {
             return ""
@@ -234,9 +237,7 @@ public class PinView: UIView {
     /// Clears the entered PIN
     @objc
     public func clearPin() {
-
         guard !isLoading else { return }
-
         password.removeAll()
         refreshPinView()
     }
@@ -246,24 +247,23 @@ public class PinView: UIView {
     /// - Parameter pin: The pin which is to be entered onto the PinView.
     @objc
     public func pastePin(pin: String) {
-
         password = []
-        for (index, char) in pin.enumerated() {
 
+        for (index, char) in pin.enumerated() {
             guard index < pinLength else { return }
 
-            //Get the first textField
+            // Get the first textField
             guard let textField = collectionView.cellForItem(at: IndexPath(item: index, section: 0))?.viewWithTag(101 + index) as? PinField,
                 let placeholderLabel = collectionView.cellForItem(at: IndexPath(item: index, section: 0))?.viewWithTag(400) as? UILabel
-            else {
-                showPinError(error: "ERR-103: Type Mismatch - Line 257")
-                return
+                else {
+                    showPinError(error: "Type Mismatch")
+                    return
             }
 
             textField.text = String(char)
             placeholderLabel.isHidden = true
 
-            //secure text after a bit
+            // secure text after a bit
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500), execute: {
                 if textField.text != "" {
                     if self.shouldSecureText { textField.text = self.secureCharacter } else {}
@@ -275,22 +275,27 @@ public class PinView: UIView {
             validateAndSendCallback()
         }
     }
+
 }
 
+
 // MARK: - CollectionView methods -
+
 extension PinView: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return pinLength
     }
+
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath)
         guard let textField = cell.viewWithTag(100) as? PinField,
             let containerView = cell.viewWithTag(51),
             let underLine = cell.viewWithTag(50),
             let placeholderLabel = cell.viewWithTag(400) as? UILabel
-        else {
-            showPinError(error: "ERR-104: Tag Mismatch - Line 291")
-            return UICollectionViewCell()
+            else {
+                showPinError(error: "Tag Mismatch")
+                return UICollectionViewCell()
         }
         // Setting up textField
         textField.tag = 101 + indexPath.row
@@ -366,8 +371,12 @@ extension PinView: UICollectionViewDataSource, UICollectionViewDelegate, UIColle
         flowLayout.invalidateLayout()
     }
 }
+
+
 // MARK: - TextField Methods -
+
 extension PinView: UITextFieldDelegate {
+
     public func textFieldDidBeginEditing(_ textField: UITextField) {
         let text = textField.text ?? ""
         if let placeholderLabel = textField.superview?.viewWithTag(400) as? UILabel {
@@ -377,19 +386,19 @@ extension PinView: UITextFieldDelegate {
                 textField.isSecureTextEntry = false
                 placeholderLabel.isHidden = false
             }
-        } else { showPinError(error: "ERR-105: Type Mismatch - Line 377") }
+        } else { showPinError(error: "Type Mismatch") }
 
         if let containerView = textField.superview?.viewWithTag(51),
-        let underLine = textField.superview?.viewWithTag(50) {
+            let underLine = textField.superview?.viewWithTag(50) {
             self.stylePinField(containerView: containerView, underLine: underLine, isActive: true)
-        } else { showPinError(error: "ERR-106: Type Mismatch - Line 387") }
+        } else { showPinError(error: "Type Mismatch") }
     }
 
     public func textFieldDidEndEditing(_ textField: UITextField) {
         if let containerView = textField.superview?.viewWithTag(51),
-        let underLine = textField.superview?.viewWithTag(50) {
+            let underLine = textField.superview?.viewWithTag(50) {
             self.stylePinField(containerView: containerView, underLine: underLine, isActive: false)
-        } else { showPinError(error: "ERR-107: Type Mismatch - Line 394") }
+        } else { showPinError(error: "Type Mismatch") }
     }
 
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -1,17 +1,13 @@
-import Foundation
 import UIKit
 
-extension SubjectListTableViewCellModel {
-    init(with subject: RLMSubject, storage: ImageStorageService) {
-        title = subject.firstName
-        photo = subject.photoURL(using: storage)
-    }
-}
+
 
 protocol SubjectListDataProvider: class {
     var numberOfRows: Int { get }
+
     func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel
 }
+
 
 class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
@@ -38,5 +34,13 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
         } else {
             return SubjectListTableViewCellModel(with: dataSource[indexPath.row + 1], storage: storage)
         }
+    }
+}
+
+
+extension SubjectListTableViewCellModel {
+    init(with subject: RLMSubject, storage: ImageStorageService) {
+        title = "\(subject.firstName) \(subject.lastName)"
+        photo = subject.photoURL(using: storage)
     }
 }

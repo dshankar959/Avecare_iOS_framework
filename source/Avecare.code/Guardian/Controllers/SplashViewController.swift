@@ -1,7 +1,9 @@
-import Foundation
 import UIKit
 
+
+
 class SplashViewController: UIViewController {
+
     var sessionService: ValidateSessionProtocol! = ValidateSessionMockService()
 
     override func viewDidAppear(_ animated: Bool) {
@@ -16,4 +18,5 @@ class SplashViewController: UIViewController {
         })
 
     }
+
 }

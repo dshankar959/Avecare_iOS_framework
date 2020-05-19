@@ -1,7 +1,8 @@
-import Foundation
 import UIKit
 import CocoaLumberjack
 import SegueManager
+
+
 
 class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 
@@ -17,19 +18,33 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        #if DEBUG
-        loginField?.text = "guardian@example.net"
-//        #endif
 
         snowflakeIconLabel.font = UIFont(name: "FontAwesome5Pro-Light", size: 24)
         snowflakeIconLabel.text = "\u{f2dc}"
         snowflakeTitleLabel.text = "Avecare"
     }
 
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
+
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        #if DEBUG
+//        loginField?.text = "guardian@example.net"
+        loginField?.text = "parent1@example.net"
+//        loginField?.text = "sdwornik@spiria.com"
+
+        // auto-sign-in, to speed up local testing.
+        getCodeAction(sender: UIButton())
+
+        #endif
+    }
+
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)

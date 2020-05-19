@@ -160,7 +160,7 @@
                         <nil key="title"/>
                         <barButtonItem key="backBarButtonItem" title=" " id="Ptz-Ac-DBa"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="7wQ-7R-bFg">
-                            <rect key="frame" x="157" y="3" width="100" height="38"/>
+                            <rect key="frame" x="107" y="3" width="200" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <state key="normal" title="All">
@@ -170,7 +170,7 @@
                                 <action selector="subjectSelectButtonTouched:" destination="VN9-Za-7jc" eventType="touchUpInside" id="lE8-1j-aiq"/>
                             </connections>
                         </button>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="UuA-yK-hfO">
+                        <barButtonItem key="rightBarButtonItem" id="UuA-yK-hfO">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qUy-FN-xMu">
                                 <rect key="frame" x="325" y="4" width="69" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

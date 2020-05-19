@@ -1,6 +1,5 @@
 import Foundation
 import UIKit
-//import Panels
 
 
 
@@ -8,11 +7,15 @@ protocol SubjectListViewControllerDelegate: class {
     func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel)
 }
 
+
 class SubjectListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+
     weak var delegate: SubjectListViewControllerDelegate?
-    var allSubjectsIncluded = false
+
+    var allSubjectsIncluded = true
+
     var dataProvider: SubjectListDataProvider {
         if allSubjectsIncluded {
             return DefaultSubjectListDataProvider(allSubjectsIncluded: true)
@@ -30,6 +33,7 @@ class SubjectListViewController: UIViewController {
         super.viewDidLoad()
     }
 }
+
 
 extension SubjectListViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

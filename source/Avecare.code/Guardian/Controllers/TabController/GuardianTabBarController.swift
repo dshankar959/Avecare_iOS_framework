@@ -9,9 +9,6 @@ class GuardianTabBarController: UITabBarController {
         super.viewDidLoad()
         DDLogInfo("")
 
-        // disable profile view temporarily.
-        //self.viewControllers?.remove(at: 3)
-
     }
 
 

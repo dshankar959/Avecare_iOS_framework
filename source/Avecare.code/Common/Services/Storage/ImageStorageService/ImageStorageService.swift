@@ -22,18 +22,19 @@ struct ImageStorageService {
             return imageURL
         }
 
-        // We should *never get here*
-        DDLogError("⚠️ Error saving image!")
-        throw NSError(domain: "Error saving image!  (no jpeg data?)", code: -1)
+        DDLogError("⚠️ Error saving image! 🤨")
+        throw NSError(domain: "Error saving image!  (no jpeg data? 🤨)", code: -1)
     }
 
 
     func saveImage(_ remoteImageURL: URL, name: String = newUUID) throws -> URL {
-        DDLogVerbose("Loading Image from - \(remoteImageURL)")
+        DDLogVerbose("Loading image from: \(remoteImageURL)")
+
         let data = try Data(contentsOf: remoteImageURL)
         let localImageURL = directory.appendingPathComponent(name).appendingPathExtension("jpg")
         try data.write(to: localImageURL)
-        DDLogVerbose("Did Save Image to - \(localImageURL)")
+
+        DDLogVerbose("Did save image to: \(localImageURL)")
         return localImageURL
     }
 

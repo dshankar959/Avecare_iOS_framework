@@ -1,19 +1,23 @@
-import Foundation
 import UIKit
 
+
+
 class RemindersFormProvider {
+
     enum State {
         case new
         case error(err: Error)
         case loading
         case loaded(reminders: [UnitReminder])
     }
+
     var state = State.new
     var subjects = [RLMSubject]()
     var selectedReminder: UnitReminder?
 
     let indexPath: IndexPath
     weak var delegate: NotificationTypeDataProviderDelegate?
+
 
     init(indexPath: IndexPath) {
         self.indexPath = indexPath
@@ -38,9 +42,13 @@ class RemindersFormProvider {
         subjects.remove(at: index)
         delegate?.didUpdateModel(at: indexPath)
     }
+
 }
 
+
+
 extension RemindersFormProvider: FormProvider {
+
     func form() -> Form {
         switch state {
         case .new:

@@ -1,9 +1,10 @@
-import Foundation
 import UIKit
 
+
+
 struct LogsViewModelFactory {
+
     static func viewModel(for row: RLMLogRow) -> AnyCellViewModel {
-        // swiftlint:disable:force_cast
         switch row.rowType {
         case .option: return viewModel(for: row.option!)
         case .time: return viewModel(for: row.time!)
@@ -12,36 +13,37 @@ struct LogsViewModelFactory {
         case .photo: return viewModel(for: row.photo!)
         case .injury: return viewModel(for: row.injury!)
         }
-        // swiftlint:enable:force_cast
     }
 
-        static func viewModel(for row: RLMLogOptionRow) -> LogsOptionTableViewCellModel {
-            return .init(row: row)
-        }
+    static func viewModel(for row: RLMLogOptionRow) -> LogsOptionTableViewCellModel {
+        return .init(row: row)
+    }
 
-        static func viewModel(for row: RLMLogTimeRow) -> LogsOptionTableViewCellModel {
-            return .init(row: row)
-        }
+    static func viewModel(for row: RLMLogTimeRow) -> LogsOptionTableViewCellModel {
+        return .init(row: row)
+    }
 
-        static func viewModel(for row: RLMLogSwitcherRow) -> LogsTimeDetailsTableViewCellModel {
-            return .init(row: row)
-        }
+    static func viewModel(for row: RLMLogSwitcherRow) -> LogsTimeDetailsTableViewCellModel {
+        return .init(row: row)
+    }
 
-        static func viewModel(for row: RLMLogNoteRow) -> LogsNoteTableViewCellModel {
-            return .init(row: row)
-        }
+    static func viewModel(for row: RLMLogNoteRow) -> LogsNoteTableViewCellModel {
+        return .init(row: row)
+    }
 
-        static func viewModel(for row: RLMLogPhotoRow) -> LogsPhotoTableViewCellModel {
-            return .init(row: row)
-        }
+    static func viewModel(for row: RLMLogPhotoRow) -> LogsPhotoTableViewCellModel {
+        return .init(row: row)
+    }
 
-        static func viewModel(for row: RLMLogInjuryRow) -> LogsNoteTableViewCellModel {
-            return .init(row: row)
-        }
+    static func viewModel(for row: RLMLogInjuryRow) -> LogsNoteTableViewCellModel {
+        return .init(row: row)
+    }
 
 }
 
+
 extension LogsOptionTableViewCellModel {
+
     init(row: RLMLogOptionRow) {
         icon = UIImage(named: row.iconName)
         iconColor = UIColor(rgb: row.iconColor)
@@ -60,9 +62,12 @@ extension LogsOptionTableViewCellModel {
         let formatter = Date.timeFormatter
         selectedOption = formatter.string(from: row.startTime) + " - " + formatter.string(from: row.endTime)
     }
+
 }
 
+
 extension LogsPhotoTableViewCellModel {
+
     init(row: RLMLogPhotoRow) {
 //        if let imgName = row.imageUrl, let img = UIImage(named: imgName) {
 //            image = img
@@ -71,9 +76,12 @@ extension LogsPhotoTableViewCellModel {
 //        }
         caption = row.text
     }
+
 }
 
+
 extension LogsNoteTableViewCellModel {
+
     init(row: RLMLogInjuryRow) {
         icon = UIImage(named: row.iconName)
         iconColor = UIColor(rgb: row.iconColor)
@@ -87,9 +95,12 @@ extension LogsNoteTableViewCellModel {
         title = row.title
         text = row.value
     }
+
 }
 
+
 extension LogsTimeDetailsTableViewCellModel {
+
     init(row: RLMLogSwitcherRow) {
         icon = UIImage(named: row.iconName)
         iconColor = UIColor(rgb: row.iconColor)
@@ -102,4 +113,5 @@ extension LogsTimeDetailsTableViewCellModel {
             selectedOption2 = selectedText
         }
     }
+
 }

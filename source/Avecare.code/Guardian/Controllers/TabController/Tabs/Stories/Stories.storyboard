@@ -57,7 +57,7 @@
                     <navigationItem key="navigationItem" id="pNi-PV-EZF">
                         <nil key="title"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hC9-xh-anh">
-                            <rect key="frame" x="157" y="3" width="100" height="38"/>
+                            <rect key="frame" x="107" y="3" width="200" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <state key="normal" title="All">

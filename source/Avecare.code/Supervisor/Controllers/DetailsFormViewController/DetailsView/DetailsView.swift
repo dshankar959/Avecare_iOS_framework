@@ -1,6 +1,7 @@
-import Foundation
 import UIKit
 import SnapKit
+
+
 
 @IBDesignable class DetailsView: BaseXibView {
     @IBOutlet weak var scrollView: UIScrollView!
@@ -17,7 +18,9 @@ import SnapKit
     }
 }
 
+
 extension DetailsView {
+
     func addSeparator() {
         let view = UIView()
         view.backgroundColor = contentView.backgroundColor
@@ -28,7 +31,6 @@ extension DetailsView {
     func addView<T: CellViewModel>(with model: T) -> T.CellType {
         let view = model.buildView()
         stackView.addArrangedSubview(view)
-        // swiftlint:disable:next force_cast
         return view as! T.CellType
     }
 
@@ -42,7 +44,9 @@ extension DetailsView {
     }
 }
 
+
 extension DetailsView: CustomResponder {
+
     override var inputView: UIView? {
         customInputView
     }

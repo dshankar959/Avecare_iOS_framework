@@ -65,7 +65,10 @@ extension InjuryReportFormProvider: FormProvider {
                     self?.injuryDate = datePicker.date
                     view.setTextValue(self?.injuryDateString)
                 }))
+
+        // swiftlint:disable line_length
         let text = "Your child may have experienced a mild bump, scrape, or bite. This is NOT an emergency. Please connect with your child’s educator upon pick up."
+        // swiftlint:enable line_length
 
         var viewModels = [AnyCellViewModel]()
         viewModels.append(DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right))

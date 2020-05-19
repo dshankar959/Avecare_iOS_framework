@@ -194,10 +194,10 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="65" translatesAutoresizingMaskIntoConstraints="NO" id="ZOJ-Z2-mbG">
-                                <rect key="frame" x="42.5" y="128" width="290" height="207"/>
+                                <rect key="frame" x="42.5" y="152.5" width="290" height="158"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="FZu-nK-Scp">
-                                        <rect key="frame" x="0.0" y="0.0" width="290" height="207"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="290" height="158"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="nuh-lK-LEz">
                                                 <rect key="frame" x="0.0" y="0.0" width="290" height="67.5"/>
@@ -220,7 +220,7 @@
                                                 </subviews>
                                             </stackView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="x6i-T7-xGD">
-                                                <rect key="frame" x="0.0" y="87.5" width="290" height="119.5"/>
+                                                <rect key="frame" x="0.0" y="87.5" width="290" height="70.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="Zwh-a4-uU5">
                                                         <rect key="frame" x="0.0" y="0.0" width="290" height="70.5"/>
@@ -231,7 +231,7 @@
                                                                 <color key="textColor" name="DarkText"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Required" textAlignment="natural" minimumFontSize="17" background="Rectangle" translatesAutoresizingMaskIntoConstraints="NO" id="JPY-kC-QBn" customClass="TextField" customModule="parent" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Required" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JPY-kC-QBn" customClass="TextField" customModule="parent" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="21.5" width="290" height="49"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="290" id="WWA-Wl-MZh"/>
@@ -250,8 +250,8 @@
                                                             </textField>
                                                         </subviews>
                                                     </stackView>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZFu-p1-vQa">
-                                                        <rect key="frame" x="0.0" y="85.5" width="290" height="34"/>
+                                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZFu-p1-vQa">
+                                                        <rect key="frame" x="0.0" y="0.0" width="290" height="34"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNc-5W-SGi">
                                                                 <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
@@ -267,14 +267,14 @@
                                                                     <fragment content="I agree to the ">
                                                                         <attributes>
                                                                             <color key="NSColor" name="LightText4"/>
-                                                                            <font key="NSFont" metaFont="system" size="14"/>
+                                                                            <font key="NSFont" metaFont="menu" size="14"/>
                                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                         </attributes>
                                                                     </fragment>
                                                                     <fragment content="Terms &amp; Conditions">
                                                                         <attributes>
                                                                             <color key="NSColor" red="0.19215686274509802" green="0.56470588235294117" blue="0.93333333333333335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                            <font key="NSFont" metaFont="system" size="14"/>
+                                                                            <font key="NSFont" metaFont="menu" size="14"/>
                                                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                                         </attributes>
                                                                     </fragment>
@@ -293,7 +293,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cwz-R0-qcg">
-                                <rect key="frame" x="107.5" y="375" width="160" height="40"/>
+                                <rect key="frame" x="107.5" y="350.5" width="160" height="40"/>
                                 <rect key="contentStretch" x="0.5" y="0.0" width="1" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="HyB-lD-NM6"/>
@@ -353,7 +353,6 @@
     </scenes>
     <resources>
         <image name="Primary" width="200" height="40"/>
-        <image name="Rectangle" width="290" height="44"/>
         <image name="checkbox" width="44" height="44"/>
         <namedColor name="DarkText">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

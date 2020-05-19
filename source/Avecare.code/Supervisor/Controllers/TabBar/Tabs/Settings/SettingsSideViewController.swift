@@ -1,7 +1,9 @@
-import Foundation
 import UIKit
 
+
+
 class SettingsSideViewController: UIViewController {
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var signOutButton: DefaultCellView!
 
@@ -16,15 +18,20 @@ class SettingsSideViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
         tableView.register(nibModels: [SettingTableViewCellModel.self])
     }
+
 }
 
+
 extension SettingsSideViewController {
+
     @IBAction func didTapSignOut(_ recognizer: UITapGestureRecognizer) {
 
     }
 }
 
+
 extension SettingsSideViewController: UITableViewDelegate, UITableViewDataSource {
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataProvider.numberOfRows
     }
@@ -37,9 +44,12 @@ extension SettingsSideViewController: UITableViewDelegate, UITableViewDataSource
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataProvider.model(for: indexPath).action?()
     }
+
 }
 
+
 extension SettingsSideViewController: SettingsDataProviderDelegate {
+
     func showAbout() {
 
     }
@@ -51,4 +61,5 @@ extension SettingsSideViewController: SettingsDataProviderDelegate {
     func showRules() {
 
     }
+
 }

@@ -31,20 +31,21 @@ extension SyncEngine {
             OrganizationsAPIService.getOrganizationLogTemplates(id: institutionDetails.organizationId) { [weak self] result in
                 switch result {
                 case .success(let templates):
+                    // TODO: compare versions, and id's, to preserve old templates.
                     // delete old templates
                     RLMFormTemplate.findAll().forEach({
                         $0.clean()
                         $0.delete()
                     })
 
-                    // link with organization
                     guard let organization = RLMOrganization.details(for: institutionDetails.organizationId) else {
                         // FIXME: add error processing if needed
                         fatalError()
                     }
+                    // link with organization  (inverse relationship)
                     templates.forEach({ $0.organization = organization })
 
-                    // save downloaded templates
+                    // save downloaded template(s)
                     RLMFormTemplate.createOrUpdateAll(with: templates)
                     DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMFormTemplate.className())\' items in DB: \(RLMFormTemplate.findAll().count)")
                     self?.syncStates[syncKey] = .complete

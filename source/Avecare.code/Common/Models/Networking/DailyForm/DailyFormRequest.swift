@@ -59,5 +59,3 @@ extension DailyFormAPIModel: MultipartEncodable {
         return data
     }
 }
-
-

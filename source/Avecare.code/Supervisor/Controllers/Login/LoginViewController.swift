@@ -68,7 +68,7 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                     }
                 }
 
-                self?.showActivityIndicator(withStatus: "Syncing data")
+                self?.showActivityIndicator(withStatus: "Syncing ...")
                 syncEngine.syncAll { error in
                     syncEngine.print_isSyncingStatus_description()
                     if let error = error {

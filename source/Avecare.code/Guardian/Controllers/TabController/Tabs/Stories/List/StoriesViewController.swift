@@ -1,12 +1,9 @@
-//
-//  StoriesViewController.swift
-//  guardian
-//
-
-import Foundation
 import UIKit
 
+
+
 class StoriesListViewController: UIViewController {
+
     @IBOutlet weak var subjectFilterButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
 

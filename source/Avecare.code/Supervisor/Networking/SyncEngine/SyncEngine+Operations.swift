@@ -4,7 +4,6 @@ import CocoaLumberjack
 
 extension SyncEngine {
 
-
     func syncOperations(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
 
@@ -19,7 +18,6 @@ extension SyncEngine {
             return
         }
 
-        // FIXME: No to pyramids
         // Dependancy tree of sync operations.
         self.syncDOWNuserAccountDetails() { error in
             DDLogVerbose("syncDOWNuserAccountDetails ♓️ closure")
@@ -33,11 +31,11 @@ extension SyncEngine {
                                 self.syncOrganizationDetails() { error in
                                     DDLogVerbose("syncOrganizationDetails ♓️ closure")
                                     if let error = error { syncCompletion(error) } else {
-                                        self.syncDOWNsubjects() { error in
-                                            DDLogVerbose("syncDOWNsubjects ♓️ closure")
+                                        self.syncOrganizationTemplates() { error in
+                                            DDLogVerbose("syncOrganizationTemplates ♓️ closure")
                                             if let error = error { syncCompletion(error) } else {
-                                                self.syncOrganizationTemplates() { error in
-                                                    DDLogVerbose("syncOrganizationTemplates ♓️ closure")
+                                                self.syncDOWNsubjects() { error in
+                                                    DDLogVerbose("syncDOWNsubjects ♓️ closure")
                                                     if let error = error { syncCompletion(error) } else {
                                                         self.syncDOWNUnitStories { error in
                                                             DDLogVerbose("syncDOWNUnitStories ♓️ closure")

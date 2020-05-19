@@ -1,15 +1,16 @@
-import Foundation
 import UIKit
-//import Panels
+import CocoaLumberjack
 
 
 
 class HomeViewController: UIViewController {
+
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subjectFilterButton: UIButton!
 
     var dataProvider: HomeDataProvider = DefaultHomeDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +45,7 @@ class HomeViewController: UIViewController {
     private func setSubjectFilerButtonTitle(titleText: String) {
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])
+
         let chevronFont = UIFont(name: "FontAwesome5Pro-Light", size: 12)
         let chevronAttributedString = NSAttributedString(string: "\u{f078}", attributes: [NSAttributedString.Key.font: chevronFont!])
         titleAttributedString.append(chevronAttributedString)
@@ -60,14 +62,6 @@ extension HomeViewController: SubjectListViewControllerDelegate {
 }
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
-    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard dataProvider.canDismiss(at: indexPath) else { return nil }
-        let action = UIContextualAction(style: .destructive, title: "Dismiss") { _, _, closure in
-            print("Dismiss")
-            closure(true)
-        }
-        return UISwipeActionsConfiguration(actions: [action])
-    }
 
     public func numberOfSections(in tableView: UITableView) -> Int {
         return dataProvider.numberOfSections
@@ -90,4 +84,16 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return dataProvider.headerViewModel(for: section)?.buildView()
     }
+
+    // TODO: review technical design on how we should handle dismissing notifications
+/*
+    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard dataProvider.canDismiss(at: indexPath) else { return nil }
+        let action = UIContextualAction(style: .destructive, title: "Dismiss") { _, _, closure in
+            DDLogVerbose("Dismiss")
+            closure(true)
+        }
+        return UISwipeActionsConfiguration(actions: [action])
+    }
+*/
 }

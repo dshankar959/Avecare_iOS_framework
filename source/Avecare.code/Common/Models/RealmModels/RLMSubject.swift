@@ -79,7 +79,6 @@ class RLMSubject: RLMDefaults {
             self.photoConsent = try values.decode(Bool.self, forKey: .photoConsent)
 
             // load and save image during json response decoding synchronously
-            // TODO: some image loading task
             if let profilePhoto = try values.decodeIfPresent(String.self, forKey: .profilePhoto),
                let url = URL(string: profilePhoto) {
                 _ = try ImageStorageService().saveImage(url, name: id)

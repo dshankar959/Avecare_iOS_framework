@@ -146,7 +146,6 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
     }
 
     func viewModel(for row: RLMLogRow, at indexPath: IndexPath) -> AnyCellViewModel {
-        // swiftlint:disable:force_cast
         switch row.rowType {
         case .option: return viewModel(for: row.option!, at: indexPath)
         case .time: return viewModel(for: row.time!, at: indexPath)
@@ -154,7 +153,6 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         case .note: return viewModel(for: row.note!, at: indexPath)
         case .photo: return viewModel(for: row.photo!, at: indexPath)
         case .injury: return viewModel(for: row.injury!, at: indexPath)
-        // swiftlint:enable:force_cast
         }
     }
 
@@ -162,13 +160,13 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         let form = dataSource[indexPath.row].todayForm
         let request = DailyFormAPIModel(form: form, storage: imageStorageService)
 
-        SubjectsAPIService.publishDailyLog(log: request) { [weak self] result in
+        SubjectsAPIService.publishDailyLog(log: request) { result in
             switch result {
             case .success:
-                print("success")
+                DDLogVerbose("success")
 
             case .failure(let error):
-                print(error)
+                DDLogError("\(error)")
             }
         }
     }

@@ -1,9 +1,13 @@
 import Foundation
+import CocoaLumberjack
+
+
 
 protocol LogsDataProvider: class {
     func numberOfRows(for section: Int) -> Int
     func model(for indexPath: IndexPath) -> AnyCellViewModel
 }
+
 
 class DefaultLogsDataProvider: LogsDataProvider {
 
@@ -11,8 +15,8 @@ class DefaultLogsDataProvider: LogsDataProvider {
         do {
             return try createRealmDataSource()
         } catch {
-            print(error)
-            fatalError(error.localizedDescription)
+            DDLogError("\(error)")
+            fatalError("\(error.localizedDescription)")
         }
     }()
 
@@ -25,10 +29,14 @@ class DefaultLogsDataProvider: LogsDataProvider {
     }
 }
 
+
 extension DefaultLogsDataProvider {
+
     private func createRealmDataSource() throws -> [RLMLogRow] {
         let data = try Data(resource: R.file.form1Json)
         let form = try JSONDecoder().decode(RLMLogForm.self, from: data)
+
         return Array(form.rows)
     }
+
 }

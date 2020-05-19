@@ -1,11 +1,20 @@
-import Foundation
 import UIKit
 
+
+
+class SubjectListTableViewCell: UITableViewCell {
+    @IBOutlet weak var photoImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+}
+
+
 struct SubjectListTableViewCellModel: CellViewModel {
+
     typealias CellType = SubjectListTableViewCell
 
     let title: String
     let photo: URL?
+
 
     func setup(cell: CellType) {
         if let photoURL = photo {
@@ -20,9 +29,5 @@ struct SubjectListTableViewCellModel: CellViewModel {
         }
 
     }
-}
 
-class SubjectListTableViewCell: UITableViewCell {
-    @IBOutlet weak var photoImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
 }

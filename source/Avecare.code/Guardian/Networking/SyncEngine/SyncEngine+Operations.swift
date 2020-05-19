@@ -4,7 +4,6 @@ import CocoaLumberjack
 
 extension SyncEngine {
 
-
     func syncOperations(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
 
