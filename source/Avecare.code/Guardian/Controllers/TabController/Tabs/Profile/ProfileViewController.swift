@@ -29,7 +29,10 @@ class ProfileViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //
+        if segue.identifier == R.segue.profileViewController.details.identifier,
+            let details = R.segue.profileViewController.details(segue: segue) {
+            details.destination.profileDetails = sender as! ProfileDetails
+        }
     }
 }
 
@@ -64,7 +67,13 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //
+        if indexPath.section == 2 {
+            let details = ProfileDetails.menu//dataProvider.details(at: indexPath)
+            performSegue(withIdentifier: R.segue.profileViewController.details, sender: details)
+        } else if indexPath.section == 3 {
+            performSegue(withIdentifier: R.segue.profileViewController.about, sender: nil)
+        }
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
 

@@ -97,7 +97,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJB-CQ-7ak">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Val-WY-DCj" userLabel="ContentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
@@ -139,7 +139,6 @@
                         <viewLayoutGuide key="safeArea" id="Mae-0U-9kP"/>
                     </view>
                     <navigationItem key="navigationItem" id="mWy-Kg-aZd"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="contentView" destination="Val-WY-DCj" id="NyC-Xn-g2r"/>
                         <outlet property="scrollView" destination="PJB-CQ-7ak" id="Jan-8T-NEO"/>
