@@ -32,19 +32,19 @@ extension SyncEngine {
                 switch result {
                 case .success(let templates):
                     // TODO: compare versions, and id's, to preserve old templates.
-                    // delete old templates
+                    // for now, delete old templates
                     RLMFormTemplate.findAll().forEach({
                         $0.clean()
                         $0.delete()
                     })
-
+/*
                     guard let organization = RLMOrganization.details(for: institutionDetails.organizationId) else {
                         // FIXME: add error processing if needed
                         fatalError()
                     }
                     // link with organization  (inverse relationship)
                     templates.forEach({ $0.organization = organization })
-
+*/
                     // save downloaded template(s)
                     RLMFormTemplate.createOrUpdateAll(with: templates)
                     DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMFormTemplate.className())\' items in DB: \(RLMFormTemplate.findAll().count)")

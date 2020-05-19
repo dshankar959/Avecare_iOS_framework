@@ -23,9 +23,9 @@ extension SyncEngine {
         syncStates[syncKey] = .syncing
 
         if appSession.userProfile.isSupervisor {
-            notifySyncStateChanged(message: "Syncing down 🔻 supervisor details")
+            notifySyncStateChanged(message: "Syncing down 🔻 supervisor profile")
         } else {
-            notifySyncStateChanged(message: "Syncing down 🔻 guardian details")
+            notifySyncStateChanged(message: "Syncing down 🔻 guardian profile")
         }
 
         // Sync down from server and update our local DB.
@@ -35,7 +35,7 @@ extension SyncEngine {
                     switch result {
                     case .success(let details):
                         if let existingSupervisor = RLMSupervisor.find(withID: details.id) {
-                            existingSupervisor.clean()
+                            existingSupervisor.clean()  // note: clears the linked list of objects only
                         }
                         // Update with new data.
                         RLMSupervisor.createOrUpdateAll(with: [details])

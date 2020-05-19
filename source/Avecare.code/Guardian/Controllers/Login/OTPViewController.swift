@@ -120,7 +120,7 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
             appSettings.enableSyncDown = true
         }
 
-
+/*
         #if DEBUG
         if !appSettings.isFirstLogin() {
             // Control syncing.
@@ -130,7 +130,7 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
             appSettings.enableSyncDown = false
         }
         #endif
-
+*/
 
         /// Track app version in case we need to perform any custom migration upon an update.
         let previousAppVersion = appSettings.appVersion ?? ""

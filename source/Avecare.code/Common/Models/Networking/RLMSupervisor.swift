@@ -11,16 +11,9 @@ class RLMSupervisor: RLMDefaults {
     @objc dynamic var lastName: String = ""
     @objc dynamic var bio: String = ""
     @objc dynamic var primaryUnitId: String = ""
-    @objc dynamic private var profilePhoto: String? = nil
 
     var educationalBackground = List<RLMEducation>()
 
-    var profilePhotoURL: URL? {
-        if let photoURL = profilePhoto {
-            return URL(string: photoURL)
-        }
-        return nil
-    }
 
     enum CodingKeys: String, CodingKey {
         case title
@@ -48,8 +41,12 @@ class RLMSupervisor: RLMDefaults {
             self.bio = try values.decode(String.self, forKey: .bio)
             self.educationalBackground = try values.decode(List<RLMEducation>.self, forKey: .educationalBackground)
             self.primaryUnitId = try values.decode(String.self, forKey: .primaryUnitId)
-            self.profilePhoto = try values.decodeIfPresent(String.self, forKey: .profilePhoto)
 
+            // load and save image during json response decoding synchronously
+            if let profilePhoto = try values.decodeIfPresent(String.self, forKey: .profilePhoto),
+               let url = URL(string: profilePhoto) {
+                _ = try ImageStorageService().saveImage(url, name: id)
+            }
         } catch {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")
@@ -119,4 +116,40 @@ class RLMEducation: Object, Decodable {
 
 extension RLMEducation: DataProvider {
     typealias T = RLMEducation
+}
+
+// MARK: -
+
+struct SupervisorAccount: Decodable {
+    let supervisorId: String
+    let isUnitType: Bool
+    let showInUnitList: Bool
+
+    enum CodingKeys: String, CodingKey {
+        case supervisorId = "id"
+        case isUnitType
+        case showInUnitList
+    }
+
+
+    init(supervisorId: String = "", isUnitType: Bool = false, showInUnitList: Bool = false) {   // default struct initializer
+        self.supervisorId = supervisorId
+        self.isUnitType = isUnitType
+        self.showInUnitList = showInUnitList
+    }
+
+    init(from decoder: Decoder) throws {
+        do {
+            let values = try decoder.container(keyedBy: CodingKeys.self)
+
+            self.supervisorId = try values.decode(String.self, forKey: .supervisorId)
+            self.isUnitType = try values.decode(Bool.self, forKey: .isUnitType)
+            self.showInUnitList = try values.decode(Bool.self, forKey: .showInUnitList)
+
+        } catch {
+            DDLogError("JSON Decoding error = \(error)")
+            fatalError("JSON Decoding error = \(error)")
+        }
+    }
+
 }

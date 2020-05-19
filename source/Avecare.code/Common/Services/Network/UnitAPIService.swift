@@ -71,6 +71,28 @@ struct UnitAPIService {
     }
 
 
+    static func getSupervisorAccounts(unitId: String,
+                                      completion: @escaping (Result<[SupervisorAccount], AppError>) -> Void) {
+        DDLogVerbose("")
+
+        apiProvider.request(.unitSupervisors(id: unitId)) { result in
+//                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(APIPaginatedResponse<SupervisorAccount>.self)
+                    completion(.success(mappedResponse.results))
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    completion(.failure(JSONError.failedToMapData.message))
+                }
+            case .failure(let error):
+                completion(.failure(getAppErrorFromMoya(with: error)))
+            }
+        }
+    }
+
+
     static func getActivities(unitId: String,
                               completion: @escaping (Result<[UnitActivity], AppError>) -> Void) {
         DDLogVerbose("")

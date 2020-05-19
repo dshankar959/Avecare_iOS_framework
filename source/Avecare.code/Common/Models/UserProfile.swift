@@ -23,31 +23,16 @@ struct UserProfile: Codable {
         return false
     }
 
-
-    // MARK: -
+    var isGuardian: Bool {
+        return !isSupervisor
+    }
 
     enum CodingKeys: String, CodingKey {
         case userCredentials
     }
-/*
-    init(from decoder: Decoder) throws {
-        self.init()
-        try self.decode(from: decoder)
-    }
 
-    func decode(from decoder: Decoder) throws {
-        do {
-            let values = try decoder.container(keyedBy: CodingKeys.self)
 
-            self.email = try values.decode(String.self, forKey: .email)
-            self.password = try values.decode(String.self, forKey: .password)
-
-        } catch {
-            DDLogError("JSON Decoding error = \(error)")
-            fatalError("JSON Decoding error = \(error)")
-        }
-    }
-*/
+    // MARK: -
 
     init(userCredentials: UserCredentials = UserCredentials()) {
         self.userCredentials = userCredentials

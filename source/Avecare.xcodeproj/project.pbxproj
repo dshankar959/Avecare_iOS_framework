@@ -130,6 +130,8 @@
 		756D6A19246DE37500DF17E7 /* RLMFormTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615475A03445475FEEADDF5A /* RLMFormTemplate.swift */; };
 		75716F84246B9F28002B049C /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75716F83246B9F28002B049C /* UINavigationController.swift */; };
 		75716F85246B9F28002B049C /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75716F83246B9F28002B049C /* UINavigationController.swift */; };
+		75865C0524743CE2002E7427 /* syncUnitSupervisors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75865C0424743CE1002E7427 /* syncUnitSupervisors.swift */; };
+		75865C0624743CE2002E7427 /* syncUnitSupervisors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75865C0424743CE1002E7427 /* syncUnitSupervisors.swift */; };
 		75886D0C2419327F0079C080 /* AvecareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886CC92419327F0079C080 /* AvecareAPI.swift */; };
 		75886D0D2419327F0079C080 /* AvecareAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886CC92419327F0079C080 /* AvecareAPI.swift */; };
 		75886D0E2419327F0079C080 /* AvecareAPI+sampleData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886CCA2419327F0079C080 /* AvecareAPI+sampleData.swift */; };
@@ -501,6 +503,7 @@
 		755EAEB9241AC6CC00A6BA4D /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		755EAEBA241AC6CC00A6BA4D /* DatabaseLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseLayer.swift; sourceTree = "<group>"; };
 		75716F83246B9F28002B049C /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
+		75865C0424743CE1002E7427 /* syncUnitSupervisors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncUnitSupervisors.swift; sourceTree = "<group>"; };
 		7587162C23DB928300CD262A /* educator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = educator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75886CC92419327F0079C080 /* AvecareAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AvecareAPI.swift; sourceTree = "<group>"; };
 		75886CCA2419327F0079C080 /* AvecareAPI+sampleData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AvecareAPI+sampleData.swift"; sourceTree = "<group>"; };
@@ -1586,6 +1589,7 @@
 				75EB59DE24618EF600E077E5 /* SyncEngine+Timer.swift */,
 				75EB5A172466E7A700E077E5 /* syncUserAccountDetails.swift */,
 				75EB59FA24632D1F00E077E5 /* syncUnitDetails.swift */,
+				75865C0424743CE1002E7427 /* syncUnitSupervisors.swift */,
 				75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */,
 				75EB5A222466FE9800E077E5 /* syncOrganizationDetails.swift */,
 				75EB5A1C2466EE1100E077E5 /* syncSubjects.swift */,
@@ -2231,6 +2235,7 @@
 				75886D562419327F0079C080 /* IndicatorProtocol.swift in Sources */,
 				F67DF81C241BFE6800793A9C /* InfoMessageFormView.swift in Sources */,
 				75886DF0241932BA0079C080 /* NotificationTypeDataProvider.swift in Sources */,
+				75865C0524743CE2002E7427 /* syncUnitSupervisors.swift in Sources */,
 				75886D282419327F0079C080 /* AppDelegate.swift in Sources */,
 				75886D402419327F0079C080 /* Bundle+AppInfo.swift in Sources */,
 				75EB59C82461858700E077E5 /* RLMOptionValue.swift in Sources */,
@@ -2487,6 +2492,7 @@
 				61547F44C319932DE7A455BA /* StoriesDetailsViewController.swift in Sources */,
 				615474402057962CDECCDF84 /* TextField.swift in Sources */,
 				6154749EE82ECA275C5FD8F2 /* PinView.swift in Sources */,
+				75865C0624743CE2002E7427 /* syncUnitSupervisors.swift in Sources */,
 				75EB59D92461858700E077E5 /* RLMCleanable.swift in Sources */,
 				61547EFCF73D0FF79FA58C02 /* PinField.swift in Sources */,
 				61547BBDB5DA4D4A37131C56 /* StoriesTableViewCell.swift in Sources */,

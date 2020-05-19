@@ -72,7 +72,7 @@ extension SyncEngine {
                         let semaphore = DispatchSemaphore(value: 0) // serialize async API executions in this thread.
 
                         InstitutionsAPIService.getInstitutionDetails(id: institutionId) { [weak self] result in
-                            DDLogDebug("#️⃣ \(index+1) of \(allUnits.count)")
+                            DDLogDebug("#️⃣ \(index+1) of \(allUnits.count) Unit(s)")
                             apiResult = result
 
                             switch result {
