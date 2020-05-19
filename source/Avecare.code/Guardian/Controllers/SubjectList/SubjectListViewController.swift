@@ -14,11 +14,11 @@ class SubjectListViewController: UIViewController {
 
     weak var delegate: SubjectListViewControllerDelegate?
 
-    var allSubjectsIncluded = true
+    var listIncludesAllSelection = false
 
     var dataProvider: SubjectListDataProvider {
-        if allSubjectsIncluded {
-            return DefaultSubjectListDataProvider(allSubjectsIncluded: true)
+        if listIncludesAllSelection {
+            return DefaultSubjectListDataProvider(listIncludesAllSelection: true)
         } else {
             return DefaultSubjectListDataProvider()
         }

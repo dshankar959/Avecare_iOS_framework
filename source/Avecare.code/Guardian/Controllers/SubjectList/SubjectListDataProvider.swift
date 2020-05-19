@@ -1,7 +1,6 @@
 import UIKit
 
 
-
 protocol SubjectListDataProvider: class {
     var numberOfRows: Int { get }
 
@@ -11,17 +10,25 @@ protocol SubjectListDataProvider: class {
 
 class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
-    private let allSubjectsIncluded: Bool
+    private let listIncludesAllSelection: Bool
     let storage = ImageStorageService()
 
-    init(allSubjectsIncluded: Bool? = nil) {
-        self.allSubjectsIncluded = allSubjectsIncluded ?? false
+    init(listIncludesAllSelection: Bool? = nil) {
+        self.listIncludesAllSelection = listIncludesAllSelection ?? false
     }
 
-    private lazy var dataSource = RLMSubject.findAll(sortedBy: "firstName")
+    private var dataSource: [RLMSubject] {
+        var subjects = RLMSubject.findAll(sortedBy: "firstName")
+        if listIncludesAllSelection {
+            let allSelection = RLMSubject()
+            allSelection.firstName = "All"
+            subjects.insert(allSelection, at: 0)
+        }
+        return subjects
+    }
 
     var numberOfRows: Int {
-        if allSubjectsIncluded {
+        if listIncludesAllSelection {
             return dataSource.count
         } else {
             return dataSource.count - 1
@@ -29,7 +36,7 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
     }
 
     func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel {
-        if allSubjectsIncluded {
+        if listIncludesAllSelection {
             return SubjectListTableViewCellModel(with: dataSource[indexPath.row], storage: storage)
         } else {
             return SubjectListTableViewCellModel(with: dataSource[indexPath.row + 1], storage: storage)
@@ -40,6 +47,7 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
 extension SubjectListTableViewCellModel {
     init(with subject: RLMSubject, storage: ImageStorageService) {
+        id = subject.id
         title = "\(subject.firstName) \(subject.lastName)"
         photo = subject.photoURL(using: storage)
     }

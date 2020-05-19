@@ -12,22 +12,30 @@ struct SubjectListTableViewCellModel: CellViewModel {
 
     typealias CellType = SubjectListTableViewCell
 
+    let id: String
     let title: String
     let photo: URL?
 
 
     func setup(cell: CellType) {
+        cell.photoImageView.layer.cornerRadius = cell.photoImageView.frame.width / 2
+        cell.photoImageView.clipsToBounds = true
+
         if let photoURL = photo {
             cell.photoImageView.image = UIImage(contentsOfFile: photoURL.path)
-            cell.photoImageView.layer.cornerRadius = cell.photoImageView.frame.width / 2
-            cell.photoImageView.clipsToBounds = true
-            cell.titleLabel.text = title
         } else {
+            cell.photoImageView.image = UIImage(named: "avatar_default")
+        }
+
+        if id.count > 0 {
+            cell.photoImageView.isHidden = false
+            cell.titleLabel.text = title
+            cell.textLabel?.text = nil
+        } else {
+            cell.photoImageView.isHidden = true
             cell.titleLabel.text = nil
             cell.textLabel?.text = title
             cell.textLabel?.textAlignment = .center
         }
-
     }
-
 }
