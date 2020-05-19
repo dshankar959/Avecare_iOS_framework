@@ -9,6 +9,7 @@ struct SubjectDetailsPickerViewModel: CellViewModel {
     let title: String
     var selectedOption: String
     var action: ((CellType) -> Void)? = nil
+    let isEditable: Bool
 
     func setup(cell: CellType) {
         cell.iconImageView.backgroundColor = iconColor?.withAlphaComponent(0.3)
@@ -16,7 +17,10 @@ struct SubjectDetailsPickerViewModel: CellViewModel {
         cell.iconImageView.image = icon
         cell.titleLabel.text = title
         cell.selectedOptionButton.setTitle(selectedOption, for: .normal)
-        cell.onClick = action
+
+        if isEditable {
+            cell.onClick = action
+        }
     }
 }
 

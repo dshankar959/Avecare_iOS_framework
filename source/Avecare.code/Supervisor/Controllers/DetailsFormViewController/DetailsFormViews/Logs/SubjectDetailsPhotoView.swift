@@ -15,14 +15,21 @@ struct SubjectDetailsPhotoViewModel: CellViewModel {
     var title: String
     var action: Action? = nil
 
+    let isEditable: Bool
+
     func setup(cell: CellType) {
         cell.textViewTitle.text = title
         cell.textView.text = note
         cell.setImage(image)
         cell.updatePlaceholderVisibility()
 
-        cell.onTextChange = action?.onTextChange
-        cell.onPhotoTap = action?.onPhotoTap
+        if isEditable {
+            cell.onTextChange = action?.onTextChange
+            cell.onPhotoTap = action?.onPhotoTap
+            cell.textView.isEditable = true
+        } else {
+            cell.textView.isEditable = false
+        }
     }
 }
 

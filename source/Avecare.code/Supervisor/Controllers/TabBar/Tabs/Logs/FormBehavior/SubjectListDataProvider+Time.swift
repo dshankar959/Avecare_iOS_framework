@@ -2,25 +2,27 @@ import Foundation
 import UIKit
 
 extension SubjectDetailsPickerViewModel {
-    init(row: RLMLogTimeRow) {
+    init(row: RLMLogTimeRow, isEditable: Bool) {
         icon = UIImage(named: row.iconName)
         iconColor = UIColor(rgb: row.iconColor)
         title = row.title
         let formatter = Date.timeFormatter
         selectedOption = formatter.string(from: row.startTime) + " - " + formatter.string(from: row.endTime)
+        self.isEditable = isEditable
     }
 }
 
 extension SubjectListDataProvider {
-    func viewModel(for row: RLMLogTimeRow, at indexPath: IndexPath) -> SubjectDetailsPickerViewModel {
-        var viewModel = SubjectDetailsPickerViewModel(row: row)
+    func viewModel(for row: RLMLogTimeRow, editable: Bool, at indexPath: IndexPath, updateCallback: @escaping (Date) -> Void) -> SubjectDetailsPickerViewModel {
+        var viewModel = SubjectDetailsPickerViewModel(row: row, isEditable: editable)
         viewModel.action = { [weak self] view in
-            self?.showTimePicker(from: view, row: row, at: indexPath)
+            self?.showTimePicker(from: view, row: row, at: indexPath, updateCallback: updateCallback)
         }
         return viewModel
     }
 
-    private func showTimePicker(from view: SubjectDetailsPickerView, row: RLMLogTimeRow, at indexPath: IndexPath) {
+    private func showTimePicker(from view: SubjectDetailsPickerView, row: RLMLogTimeRow, at indexPath: IndexPath,
+                                updateCallback: @escaping (Date) -> Void) {
         guard let responder = delegate?.customResponder else { return }
 
         let picker = TimeRangePickerView(frame: CGRect(x: 0, y: 0, width: 320, height: 278))
@@ -33,7 +35,8 @@ extension SubjectListDataProvider {
                 row.startTime = picker.startTimePicker.date
                 row.endTime = picker.endTimePicker.date
             }
-            self?.viewModel(for: row, at: indexPath).setup(cell: view)
+            updateCallback(Date())
+            self?.viewModel(for: row, editable: true, at: indexPath, updateCallback: updateCallback).setup(cell: view)
             responder.resignFirstResponder()
         }, onCancel: {
             responder.resignFirstResponder()

@@ -2,18 +2,17 @@ import Foundation
 import RealmSwift
 
 
-class RLMStory: RLMDefaults {
+class RLMStory: RLMDefaults, RLMPublishable {
 
     @objc dynamic var title: String = ""
+    // RLMPublishable
     @objc dynamic var serverLastUpdated: Date?      // ISO8601 datetime stamp of last server-side change
     @objc dynamic var clientLastUpdated = Date()    // ISO8601 datetime stamp of last local change
+    @objc dynamic var rawPublishState: Int = PublishState.local.rawValue
     @objc dynamic var body: String = ""
     // access local photo via @id
     @objc dynamic var photoCaption: String = ""
-    // if serverLastUpdated != nil && isPublished == false
-    // -> require submit to server
-    // TODO: implement delayed publishing
-    @objc dynamic var isPublished: Bool = false
+
     @objc dynamic var unit: RLMUnit?
 
     private enum CodingKeys: String, CodingKey {

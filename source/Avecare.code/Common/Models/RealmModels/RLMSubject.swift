@@ -15,7 +15,7 @@ class RLMSubject: RLMDefaults {
     var unitIds = List<String>()
 
     var isFormSubmittedToday: Bool {
-        return todayForm.serverLastUpdated != nil
+        return todayForm.publishState != .local
     }
 
     let logForms = LinkingObjects(fromType: RLMLogForm.self, property: "subject")   // Inverse relationship
@@ -29,7 +29,7 @@ class RLMSubject: RLMDefaults {
         }
 
         DDLogDebug("Creating today's form for subject: [\(id)], \(firstName) \(lastName) ")
-        let form = RLMLogForm()
+        let form = RLMLogForm(id: newUUID)
         form.subject = self
 
         if let template = RLMFormTemplate.find(withSubjectType: subjectTypeId) {
@@ -42,7 +42,6 @@ class RLMSubject: RLMDefaults {
         form.create()
         return form
     }
-
 
 
     enum CodingKeys: String, CodingKey {

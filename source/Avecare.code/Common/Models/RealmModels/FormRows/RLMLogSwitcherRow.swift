@@ -1,5 +1,6 @@
 import Foundation
 import RealmSwift
+import CocoaLumberjack
 
 class RLMLogSwitcherRow: Object, Decodable, FormRowIconProtocol {
     enum CodingKeys: String, CodingKey {
@@ -19,7 +20,7 @@ class RLMLogSwitcherRow: Object, Decodable, FormRowIconProtocol {
     @objc dynamic var startTime = Date()
     @objc dynamic var endTime = Date(timeIntervalSinceNow: 30 * 60)
 
-    let selectedValue = RealmOptional<Int>()
+    @objc dynamic var selectedValue: Int = 0
     let options = List<RLMOptionValue>()
 
     required convenience init(from decoder: Decoder) throws {
@@ -29,7 +30,6 @@ class RLMLogSwitcherRow: Object, Decodable, FormRowIconProtocol {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         title = try container.decode(String.self, forKey: .title)
         subtitle = try container.decode(String.self, forKey: .subtitle)
-        selectedValue.value = try container.decodeIfPresent(Int.self, forKey: .selectedValue)
 
         let formatter = Date.timeFormatter
         if let timeString = try container.decodeIfPresent(String.self, forKey: .startTime),
@@ -44,6 +44,14 @@ class RLMLogSwitcherRow: Object, Decodable, FormRowIconProtocol {
         if let options = try container.decodeIfPresent([RLMOptionValue].self, forKey: .options) {
             self.options.append(objectsIn: options)
         }
+        if let value = try container.decodeIfPresent(Int.self, forKey: .selectedValue) {
+            selectedValue = value
+        } else if let value = options.first?.value {
+            selectedValue = value
+        } else {
+            DDLogError("JSON Decoding error: No selected value")
+        }
+
     }
 }
 

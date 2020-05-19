@@ -4,7 +4,7 @@ import CocoaLumberjack
 extension StoriesTableViewCellModel {
     init(story: RLMStory, storage: ImageStorageService) {
         title = story.title
-        date = story.serverLastUpdated ?? story.clientLastUpdated
+        date = story.clientLastUpdated
         details = story.body
         photoURL = story.photoURL(using: storage)
         photoCaption = story.photoCaption
@@ -49,8 +49,8 @@ class StoriesDataProvider: StoriesDataProviderIO {
 
     func sort() {
         dataSource.sort { story1, story2 in
-            let date1 = story1.serverLastUpdated ?? story1.clientLastUpdated
-            let date2 = story2.serverLastUpdated ?? story2.clientLastUpdated
+            let date1 = story1.clientLastUpdated
+            let date2 = story2.clientLastUpdated
             return date1 > date2
         }
     }

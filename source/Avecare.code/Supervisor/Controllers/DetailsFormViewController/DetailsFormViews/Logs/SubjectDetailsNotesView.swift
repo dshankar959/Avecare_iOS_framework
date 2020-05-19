@@ -13,6 +13,8 @@ struct SubjectDetailsNotesViewModel: CellViewModel {
 
     var didEndEditing: ((CellType) -> Void)? = nil
 
+    let isEditable: Bool
+
     func setup(cell: CellType) {
         cell.iconImageView.backgroundColor = iconColor?.withAlphaComponent(0.3)
         cell.iconImageView.tintColor = iconColor
@@ -21,7 +23,12 @@ struct SubjectDetailsNotesViewModel: CellViewModel {
 
         cell.textView.text = note
 
-        cell.onEndEditing = didEndEditing
+        if isEditable {
+            cell.onEndEditing = didEndEditing
+            cell.textView.isEditable = true
+        } else {
+            cell.textView.isEditable = false
+        }
 
         cell.updatePlaceholderVisibility()
     }

@@ -3,14 +3,15 @@ import RealmSwift
 
 
 
-class RLMLogForm: Object, Codable {
-
+class RLMLogForm: RLMDefaults, RLMPublishable {
+    // RLMPublishable
     @objc dynamic var serverLastUpdated: Date?      // ISO8601 datetime stamp of last server-side change
     @objc dynamic var clientLastUpdated = Date()    // ISO8601 datetime stamp of last local change
+    @objc dynamic var rawPublishState: Int = PublishState.local.rawValue
+
     @objc dynamic var subject: RLMSubject?
 
     let rows = List<RLMLogRow>()
-
 
     enum CodingKeys: String, CodingKey {
         case serverLastUpdated
@@ -19,12 +20,8 @@ class RLMLogForm: Object, Codable {
         case rows
     }
 
-    convenience required init(from decoder: Decoder) throws {
-        self.init()
-        try decode(from: decoder)
-    }
-
-    func encode(to encoder: Encoder) throws {
+    override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         // dates
@@ -41,8 +38,9 @@ class RLMLogForm: Object, Codable {
         }
     }
 
-    func decode(from decoder: Decoder) throws {
+    override func decode(from decoder: Decoder) throws {
         do {
+            try super.decode(from: decoder)
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
             // dates
@@ -67,6 +65,11 @@ class RLMLogForm: Object, Codable {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")
         }
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        rows.forEach({ $0.prepareForReuse() })
     }
 }
 

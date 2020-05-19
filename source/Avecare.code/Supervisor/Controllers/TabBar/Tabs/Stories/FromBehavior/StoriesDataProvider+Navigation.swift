@@ -10,7 +10,7 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
     // DO NOT USE INDEX PATH IN BLOCKS AS ORDER MAY CHANGE
     func navigationItems(at indexPath: IndexPath) -> [DetailsNavigationView.Item] {
         let story = dataSource[indexPath.row]
-        let isSubmitted = story.serverLastUpdated != nil
+        let isSubmitted = story.publishState != .local
 
         let publishText = isSubmitted ? "Published" : "Publish"
         let publishColor = isSubmitted ? R.color.lightText4() : R.color.main()
@@ -46,10 +46,9 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
         guard let unitId = RLMSupervisor.details?.primaryUnitId else {
             return
         }
-
-        //  update serverDate
         RLMStory.writeTransaction {
-            story.serverLastUpdated = Date()
+            story.clientLastUpdated = Date()
+            story.publishState = .publishing
         }
         let model = PublishStoryRequestModel(unitId: unitId, story: story, storage: imageStorageService)
 
@@ -64,8 +63,18 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
                 guard let index = self?.dataSource.firstIndex(of: story) else {
                     return
                 }
+                let currentPosition = IndexPath(row: index, section: 0)
+
+                //  update serverDate
+                RLMStory.writeTransaction {
+                    let date = Date() // FIXME: should be date from server response?
+                    story.clientLastUpdated = date
+                    story.serverLastUpdated = date
+                    story.publishState = .published
+                }
+
                 self?.sort()
-                self?.delegate?.moveStory(at: IndexPath(row: index, section: 0), to: newPosition)
+                self?.delegate?.moveStory(at: currentPosition, to: newPosition)
                 self?.delegate?.didUpdateModel(at: newPosition, details: true)
             case .failure(let error):
                 DDLogError("\(error)")

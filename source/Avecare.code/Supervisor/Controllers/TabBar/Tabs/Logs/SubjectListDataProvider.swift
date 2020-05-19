@@ -31,7 +31,7 @@ protocol SubjectListDataProviderDelegate: UIViewController, CustomResponderProvi
 }
 
 
-class SubjectListDataProvider: SubjectListDataProviderIO {
+class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelDelegate {
 
     enum Sort: Int {
         case lastName = 0
@@ -41,8 +41,9 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
 
     private var selectedId: String?
     var delegate: SubjectListDataProviderDelegate?
+    weak var subtitleDateLabel: UILabel?
 
-    private var dataSource = [RLMSubject]()
+    var dataSource = [RLMSubject]()
     let imageStorageService = ImageStorageService()
 
     var numberOfRows: Int {
@@ -87,88 +88,44 @@ class SubjectListDataProvider: SubjectListDataProviderIO {
         let subject = dataSource[indexPath.row]
         let formLog = subject.todayForm
 
+        let isSubmitted = formLog.publishState != .local
+
+        let updateClientDate: (Date) -> Void = { [weak self] date in
+            let date = Date()
+            RLMLogForm.writeTransaction {
+                formLog.clientLastUpdated = date
+            }
+            if let uSelf = self, let label = uSelf.subtitleDateLabel {
+                DateSubtitleViewModel(date: date, isSubmitted: isSubmitted,
+                        delegate: uSelf).setup(cell: label)
+            }
+        }
+
         let title = "\(subject.firstName) \(subject.lastName)'s Log"
         let header: [AnyCellViewModel] = [
             FormLabelViewModel.title(title),
-            FormLabelViewModel.subtitle("-")
+            DateSubtitleViewModel(date: formLog.clientLastUpdated, isSubmitted: isSubmitted, delegate: self)
                 .inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 32, right: 0))
         ]
 
-        return Form(viewModels: header + formLog.rows.map({ self.viewModel(for: $0, at: indexPath) }))
+        return Form(viewModels: header + formLog.rows.map({
+            self.viewModel(for: $0, editable: !isSubmitted, at: indexPath, updateCallback: updateClientDate)
+        }))
 
     }
 
-    func navigationItems(at indexPath: IndexPath) -> [DetailsNavigationView.Item] {
-        let subject = dataSource[indexPath.row]
-        let isSubmitted = subject.isFormSubmittedToday
 
-        return [
-            // Navigation + for selected subject
-            .imageButton(options: .init(action: { [weak self] view, options, index in
-                let items = RLMLogChooseRow.findAll()
-
-                let picker = SingleValuePickerView(values: items)
-                picker.backgroundColor = .white
-
-                guard let toolbar = self?.defaultToolbarView(onDone: {
-                    guard let subject = self?.dataSource[indexPath.row],
-                        let row = picker.selectedValue?.row?.detached() else {
-                            return
-                    }
-
-                    row.prepareForReuse()
-
-                    self?.delegate?.customResponder?.resignFirstResponder()
-
-                    let logForm = subject.todayForm
-                    RLMLogForm.writeTransaction {
-                        logForm.rows.append(row)
-                    }
-
-                    self?.delegate?.didUpdateModel(at: indexPath)
-
-                }, onCancel: {
-                    self?.delegate?.customResponder?.resignFirstResponder()
-                }) else {
-                    return
-                }
-
-                self?.delegate?.customResponder?.becomeFirstResponder(inputView: picker, accessoryView: toolbar)
-
-                }, isEnabled: !isSubmitted, image: R.image.plusIcon())),
-            .offset(value: 10),
-            // Navigation Publish for selected subject
-            .button(options: .init(action: { [weak self] view, options, index in
-                self?.publishDailyForm(at: indexPath)
-                }, isEnabled: !isSubmitted, text: "Publish", textColor: R.color.mainInversion(), cornerRadius: 4))
-
-        ]
-    }
-
-    func viewModel(for row: RLMLogRow, at indexPath: IndexPath) -> AnyCellViewModel {
+    private func viewModel(for row: RLMLogRow, editable: Bool, at indexPath: IndexPath, updateCallback: @escaping (Date) -> Void) -> AnyCellViewModel {
         switch row.rowType {
-        case .option: return viewModel(for: row.option!, at: indexPath)
-        case .time: return viewModel(for: row.time!, at: indexPath)
-        case .switcher: return viewModel(for: row.switcher!, at: indexPath)
-        case .note: return viewModel(for: row.note!, at: indexPath)
-        case .photo: return viewModel(for: row.photo!, at: indexPath)
-        case .injury: return viewModel(for: row.injury!, at: indexPath)
+        case .option: return viewModel(for: row.option!, editable: editable, at: indexPath, updateCallback: updateCallback)
+        case .time: return viewModel(for: row.time!, editable: editable, at: indexPath, updateCallback: updateCallback)
+        case .switcher: return viewModel(for: row.switcher!, editable: editable, at: indexPath, updateCallback: updateCallback)
+        case .note: return viewModel(for: row.note!, editable: editable, at: indexPath, updateCallback: updateCallback)
+        case .photo: return viewModel(for: row.photo!, editable: editable, at: indexPath, updateCallback: updateCallback)
+        case .injury: return viewModel(for: row.injury!, editable: editable, at: indexPath, updateCallback: updateCallback)
         }
     }
 
-    func publishDailyForm(at indexPath: IndexPath) {
-        let form = dataSource[indexPath.row].todayForm
-        let request = DailyFormAPIModel(form: form, storage: imageStorageService)
 
-        SubjectsAPIService.publishDailyLog(log: request) { result in
-            switch result {
-            case .success:
-                DDLogVerbose("success")
-
-            case .failure(let error):
-                DDLogError("\(error)")
-            }
-        }
-    }
 
 }

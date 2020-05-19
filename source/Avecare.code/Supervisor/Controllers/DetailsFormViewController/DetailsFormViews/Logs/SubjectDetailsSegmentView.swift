@@ -20,6 +20,8 @@ struct SubjectDetailsSegmentViewModel: CellViewModel {
 
     var action: Action? = nil
 
+    let isEditable: Bool
+
     func setup(cell: CellType) {
         cell.iconImageView.backgroundColor = iconColor?.withAlphaComponent(0.3)
         cell.iconImageView.tintColor = iconColor
@@ -35,8 +37,14 @@ struct SubjectDetailsSegmentViewModel: CellViewModel {
         }
         cell.segmentControl.selectedSegmentIndex = selectedSegmentIndex
 
-        cell.onClick = action?.onClick
-        cell.onSegmentChange = action?.onSegmentChange
+        if isEditable {
+            cell.onClick = action?.onClick
+            cell.onSegmentChange = action?.onSegmentChange
+            cell.segmentControl.isUserInteractionEnabled = true
+        } else {
+            cell.segmentControl.isUserInteractionEnabled = false
+        }
+
     }
 }
 

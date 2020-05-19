@@ -4,7 +4,7 @@ import UIKit
 extension StoriesDataProvider {
     func titleViewModel(for story: RLMStory) -> FormTextViewModel {
         let titleFont: UIFont = .systemFont(ofSize: 36)
-        let isSubmitted = story.serverLastUpdated != nil
+        let isSubmitted = story.publishState != .local
         return FormTextViewModel(font: titleFont, placeholder: "Type Your Story Title Here",
                 value: story.title, isEditable: !isSubmitted, onChange: { [weak self] _, textValue in
             RLMStory.writeTransaction {
