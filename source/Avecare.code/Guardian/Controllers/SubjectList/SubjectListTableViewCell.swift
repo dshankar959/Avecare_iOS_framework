@@ -12,7 +12,7 @@ struct SubjectListTableViewCellModel: CellViewModel {
 
     typealias CellType = SubjectListTableViewCell
 
-    let id: String
+    let id: String?
     let title: String
     let photo: URL?
 
@@ -27,15 +27,15 @@ struct SubjectListTableViewCellModel: CellViewModel {
             cell.photoImageView.image = UIImage(named: "avatar_default")
         }
 
-        if id.count > 0 {
-            cell.photoImageView.isHidden = false
-            cell.titleLabel.text = title
-            cell.textLabel?.text = nil
-        } else {
+        if id == nil {
             cell.photoImageView.isHidden = true
             cell.titleLabel.text = nil
             cell.textLabel?.text = title
             cell.textLabel?.textAlignment = .center
+        } else {
+            cell.photoImageView.isHidden = false
+            cell.titleLabel.text = title
+            cell.textLabel?.text = nil
         }
     }
 }

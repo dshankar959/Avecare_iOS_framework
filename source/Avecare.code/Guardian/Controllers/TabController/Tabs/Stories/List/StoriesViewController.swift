@@ -10,6 +10,8 @@ class StoriesListViewController: UIViewController {
     var dataProvider: StoriesDataProvider = DefaultStoriesDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
+    var selectedSubject: RLMSubject? = nil
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -19,9 +21,12 @@ class StoriesListViewController: UIViewController {
             SupervisorFilterTableViewCellModel.self
         ])
 
-        setSubjectFilerButtonTitle(titleText: "All")
-
         self.navigationController?.hideHairline()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateScreen()
     }
 
     @IBAction func subjectFilterButtonTouched(_ sender: UIButton) {
@@ -46,7 +51,27 @@ class StoriesListViewController: UIViewController {
         }
     }
 
-    private func setSubjectFilerButtonTitle(titleText: String) {
+    private func updateScreen() {
+        updateSelectedSubject()
+        // TODO - update screen with selected subject
+        updateSubjectFilterButton()
+    }
+
+    private func updateSelectedSubject() {
+        if let selectedSubjectId = selectedSubjectId {
+            selectedSubject = RLMSubject.find(withID: selectedSubjectId)
+        } else {
+            selectedSubject = nil
+        }
+    }
+
+    private func updateSubjectFilterButton() {
+        let titleText: String
+        if let selectedSubject = selectedSubject {
+            titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
+        } else {
+            titleText = "All"
+        }
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])
         let chevronFont = UIFont(name: "FontAwesome5Pro-Light", size: 12)
@@ -60,7 +85,8 @@ class StoriesListViewController: UIViewController {
 extension StoriesListViewController: SubjectListViewControllerDelegate {
     func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
         controller.dismiss(animated: true)
-        setSubjectFilerButtonTitle(titleText: item.title)
+
+        updateScreen()
     }
 }
 

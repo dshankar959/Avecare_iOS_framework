@@ -46,7 +46,9 @@ extension SubjectListViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.subjectList(self, didSelect: dataProvider.model(for: indexPath))
+        let selectedSubject = dataProvider.model(for: indexPath)
+        selectedSubjectId = selectedSubject.id
+        delegate?.subjectList(self, didSelect: selectedSubject)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

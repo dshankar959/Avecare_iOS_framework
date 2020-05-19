@@ -31,23 +31,24 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
         if listIncludesAllSelection {
             return dataSource.count
         } else {
-            return dataSource.count - 1
+            return dataSource.count
         }
     }
 
     func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel {
-        if listIncludesAllSelection {
-            return SubjectListTableViewCellModel(with: dataSource[indexPath.row], storage: storage)
-        } else {
-            return SubjectListTableViewCellModel(with: dataSource[indexPath.row + 1], storage: storage)
-        }
+        return SubjectListTableViewCellModel(with: dataSource[indexPath.row], storage: storage)
     }
 }
 
 
 extension SubjectListTableViewCellModel {
     init(with subject: RLMSubject, storage: ImageStorageService) {
-        id = subject.id
+        if subject.id.count > 0 {
+            id = subject.id
+        } else {
+            id = nil
+        }
+
         title = "\(subject.firstName) \(subject.lastName)"
         photo = subject.photoURL(using: storage)
     }

@@ -37,6 +37,8 @@ import Kingfisher
     var _loggerDirectory: URL = URL(fileURLWithPath: "")    // location of all log files.
     var _appSettings: AppSettings = AppSettings()
 
+    var _selectedSubjectId: String? = nil
+
 //    var _isShuttingDown: Bool = false
 
 
