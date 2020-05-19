@@ -41,12 +41,12 @@ extension SubjectListViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = dataProvider.model(for: indexPath)
+        let model = dataProvider.listTableViewmodel(for: indexPath)
         return tableView.dequeueReusableCell(withModel: model, for: indexPath)
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedSubject = dataProvider.model(for: indexPath)
+        let selectedSubject = dataProvider.listTableViewmodel(for: indexPath)
         selectedSubjectId = selectedSubject.id
         delegate?.subjectList(self, didSelect: selectedSubject)
     }

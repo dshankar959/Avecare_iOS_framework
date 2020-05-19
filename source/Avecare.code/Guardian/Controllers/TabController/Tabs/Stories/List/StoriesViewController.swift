@@ -7,7 +7,7 @@ class StoriesListViewController: UIViewController {
     @IBOutlet weak var subjectFilterButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
 
-    var dataProvider: StoriesDataProvider = DefaultStoriesDataProvider()
+    let dataProvider: StoriesDataProvider = DefaultStoriesDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
     var selectedSubject: RLMSubject? = nil

@@ -11,7 +11,7 @@ import UIKit
 struct ProfileSubjectTableViewCellModel: CellViewModel {
     typealias CellType = ProfileSubjectTableViewCell
 
-    weak var dataProvider: SubjectsDataProvider?
+    weak var dataProvider: SubjectListDataProvider?
 
     func setup(cell: CellType) {
         cell.dataProvider = dataProvider
@@ -25,7 +25,7 @@ class ProfileSubjectTableViewCell: UITableViewCell {
     @IBOutlet weak var selectedSubjectNameLabel: UILabel!
     @IBOutlet weak var selectedSubjectDOBLabel: UILabel!
 
-    weak var dataProvider: SubjectsDataProvider?
+    weak var dataProvider: SubjectListDataProvider?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,11 +35,34 @@ class ProfileSubjectTableViewCell: UITableViewCell {
         ])
     }
 
+    func refreshView() {
+        if let dataProvider = dataProvider {
+            if let selectedSubjectId = selectedSubjectId {
+                for i in 0..<dataProvider.numberOfRows {
+                    let indexPath = IndexPath(row: i, section: 0)
+                    let model = dataProvider.imageCollectionViewmodel(for: indexPath)
+                    if model.id == selectedSubjectId {
+                        setLabels(withSelectedModel: model)
+                        subjectsCollectionView.scrollToItem(at: indexPath, at: .right, animated: false)
+                        break
+                    }
+                }
+            } else {
+                let indexPath = IndexPath(row: 0, section: 0)
+                let model = dataProvider.imageCollectionViewmodel(for: indexPath)
+                setLabels(withSelectedModel: model)
+                subjectsCollectionView.scrollToItem(at: indexPath, at: .right, animated: false)
+            }
+        }
+
+        subjectsCollectionView.reloadData()
+    }
+
     private func setLabels(withSelectedModel model: ProfileSubjectImageCollectionViewCellModel) {
         selectedSubjectNameLabel.text = model.fullName
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d, yyyy"
-        selectedSubjectDOBLabel.text = formatter.string(from: model.dateOfBirth ?? Date())
+        selectedSubjectDOBLabel.text = formatter.string(from: model.birthDay)
     }
 }
 
@@ -49,14 +72,23 @@ extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let model = dataProvider?.model(for: indexPath) else {
+        guard let model = dataProvider?.imageCollectionViewmodel(for: indexPath) else {
             fatalError()
         }
         let cell = collectionView.dequeueReusableCell(withModel: model, for: indexPath)
-        if indexPath.row == 0 {
-            cell.isSelected = true
-            setLabels(withSelectedModel: model)
+        if let selectedSubjectId = selectedSubjectId {
+            if model.id == selectedSubjectId {
+                cell.isSelected = true
+            } else {
+                cell.isSelected = false
+            }
+        } else {
+            if indexPath.row == 0 {
+                cell.isSelected = true
+                setLabels(withSelectedModel: model)
+            }
         }
+
         return cell
     }
 
@@ -69,9 +101,10 @@ extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let selectedModel = dataProvider?.model(for: indexPath) else {
+        guard let selectedModel = dataProvider?.imageCollectionViewmodel(for: indexPath) else {
             fatalError()
         }
         setLabels(withSelectedModel: selectedModel)
+        selectedSubjectId = selectedModel.id
     }
 }

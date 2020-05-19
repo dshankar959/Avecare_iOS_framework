@@ -9,9 +9,7 @@ class ProfileViewController: UIViewController {
 
     @IBOutlet weak var profileTableView: UITableView!
 
-    lazy var dataProvider: ProfileDataProvider = {
-        return DefaultProfileDataProvider()
-    }()
+    let dataProvider: ProfileDataProvider = DefaultProfileDataProvider()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +21,11 @@ class ProfileViewController: UIViewController {
         ])
 
         self.navigationController?.hideHairline()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        profileTableView.reloadData()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -42,6 +45,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataProvider.model(for: indexPath)
         let cell = tableView.dequeueReusableCell(withAnyModel: model, for: indexPath)
+
+        (cell as? ProfileSubjectTableViewCell)?.refreshView()
 
         if indexPath.section < 2 {
             cell.selectionStyle = .none

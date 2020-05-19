@@ -21,7 +21,7 @@ class DefaultProfileDataProvider: ProfileDataProvider {
         let profileMenus: [ProfileMenuTableViewCellModel]
     }
 
-    let subjects = DefaultSubjectsDataProvider()
+    let subjects = DefaultSubjectListDataProvider()
     let educators = DefaultEducatorsDataProvider()
 
     private lazy var dataSource: [Section] = [
@@ -59,38 +59,5 @@ class DefaultProfileDataProvider: ProfileDataProvider {
         default:
             return dataSource[indexPath.section - 2].profileMenus[indexPath.row]
         }
-    }
-}
-
-protocol SubjectsDataProvider: class {
-    var numberOfRows: Int { get }
-    func model(for indexPath: IndexPath) -> ProfileSubjectImageCollectionViewCellModel
-}
-
-class DefaultSubjectsDataProvider: SubjectsDataProvider {
-    var dataSource: [ProfileSubjectImageCollectionViewCellModel] = [
-        ProfileSubjectImageCollectionViewCellModel(avatarImage: R.image.subject1(),
-                                                   fullName: "Liam Smith",
-                                                   dobString: "2010/05/05"),
-        ProfileSubjectImageCollectionViewCellModel(avatarImage: R.image.subject2(),
-                                                   fullName: "William Johnes",
-                                                   dobString: "2012/06/11"),
-        ProfileSubjectImageCollectionViewCellModel(avatarImage: R.image.subject3(),
-                                                   fullName: "Benjamin Hobbse",
-                                                   dobString: "2013/10/25"),
-        ProfileSubjectImageCollectionViewCellModel(avatarImage: R.image.subject4(),
-                                                   fullName: "Elijah Robson",
-                                                   dobString: "2011/03/15"),
-        ProfileSubjectImageCollectionViewCellModel(avatarImage: R.image.subject5(),
-                                                   fullName: "Brandon Fraser",
-                                                   dobString: "2014/01/05")
-    ]
-
-    var numberOfRows: Int {
-        return dataSource.count
-    }
-
-    func model(for indexPath: IndexPath) -> ProfileSubjectImageCollectionViewCellModel {
-        return dataSource[indexPath.row]
     }
 }

@@ -1662,12 +1662,12 @@
 		DC4FFA032470B9120079A27C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				DC4FFA052470B9AE0079A27C /* ProfileMenuTableViewCell.swift */,
-				DC4FFA042470B9AE0079A27C /* ProfileMenuTableViewCell.xib */,
-				DC4FFA062470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift */,
-				DC4FFA072470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.xib */,
 				DC4FFA082470B9AE0079A27C /* ProfileSubjectTableViewCell.swift */,
 				DC4FFA092470B9AE0079A27C /* ProfileSubjectTableViewCell.xib */,
+				DC4FFA062470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift */,
+				DC4FFA072470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.xib */,
+				DC4FFA052470B9AE0079A27C /* ProfileMenuTableViewCell.swift */,
+				DC4FFA042470B9AE0079A27C /* ProfileMenuTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";

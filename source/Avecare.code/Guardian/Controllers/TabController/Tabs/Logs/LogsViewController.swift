@@ -75,7 +75,7 @@ class LogsViewController: UIViewController {
         if let selectedSubject = selectedSubject {
             titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
         } else {
-            titleText = subjectListDataProvider.model(for: IndexPath.init(item: 0, section: 0)).title
+            titleText = subjectListDataProvider.listTableViewmodel(for: IndexPath.init(item: 0, section: 0)).title
         }
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])

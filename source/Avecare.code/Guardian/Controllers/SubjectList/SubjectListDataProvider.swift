@@ -4,7 +4,8 @@ import UIKit
 protocol SubjectListDataProvider: class {
     var numberOfRows: Int { get }
 
-    func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel
+    func listTableViewmodel(for indexPath: IndexPath) -> SubjectListTableViewCellModel
+    func imageCollectionViewmodel(for indexPath: IndexPath) -> ProfileSubjectImageCollectionViewCellModel
 }
 
 
@@ -35,8 +36,12 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
         }
     }
 
-    func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel {
+    func listTableViewmodel(for indexPath: IndexPath) -> SubjectListTableViewCellModel {
         return SubjectListTableViewCellModel(with: dataSource[indexPath.row], storage: storage)
+    }
+
+    func imageCollectionViewmodel(for indexPath: IndexPath) -> ProfileSubjectImageCollectionViewCellModel {
+        return ProfileSubjectImageCollectionViewCellModel(with: dataSource[indexPath.row], storage: storage)
     }
 }
 
@@ -51,5 +56,14 @@ extension SubjectListTableViewCellModel {
 
         title = "\(subject.firstName) \(subject.lastName)"
         photo = subject.photoURL(using: storage)
+    }
+}
+
+extension ProfileSubjectImageCollectionViewCellModel {
+    init(with subject: RLMSubject, storage: ImageStorageService) {
+        id = subject.id
+        fullName = "\(subject.firstName) \(subject.lastName)"
+        photo = subject.photoURL(using: storage)
+        birthDay = subject.birthday
     }
 }

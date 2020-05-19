@@ -8,7 +8,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subjectFilterButton: UIButton!
 
-    var dataProvider: HomeDataProvider = DefaultHomeDataProvider()
+    let dataProvider: HomeDataProvider = DefaultHomeDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
     var selectedSubject: RLMSubject? = nil
