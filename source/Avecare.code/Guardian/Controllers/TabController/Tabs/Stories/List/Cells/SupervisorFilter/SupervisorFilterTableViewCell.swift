@@ -14,6 +14,7 @@ struct SupervisorFilterTableViewCellModel: CellViewModel {
 class SupervisorFilterTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     weak var dataProvider: EducatorsDataProvider?
+    weak var parentVC: UIViewController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -48,7 +49,9 @@ extension SupervisorFilterTableViewCell: UICollectionViewDataSource, UICollectio
         return CGSize(width: width, height: height)
     }
 
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView,
+                                   withVelocity velocity: CGPoint,
+                                   targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let bounds = scrollView.bounds
         let xTarget = targetContentOffset.pointee.x
@@ -84,4 +87,16 @@ extension SupervisorFilterTableViewCell: UICollectionViewDataSource, UICollectio
     private var snapToMostVisibleColumnVelocityThreshold: CGFloat {
         return 0.3
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let parentVC = parentVC as? ViewControllerWithSupervisorFilterViewCell,
+            let selectedModel = dataProvider?.model(for: indexPath) {
+            let selectedEducatorSummary = EducatorSummaryTableViewCellModel(name: selectedModel.title + " " + selectedModel.name)
+            parentVC.educatorDidSelect(selectedEducatorSummary: selectedEducatorSummary)
+        }
+    }
+}
+
+protocol ViewControllerWithSupervisorFilterViewCell: class {
+    func educatorDidSelect(selectedEducatorSummary: EducatorSummaryTableViewCellModel)
 }

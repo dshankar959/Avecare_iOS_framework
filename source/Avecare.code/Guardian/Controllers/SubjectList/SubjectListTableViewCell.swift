@@ -1,7 +1,5 @@
 import UIKit
 
-
-
 class SubjectListTableViewCell: UITableViewCell {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!

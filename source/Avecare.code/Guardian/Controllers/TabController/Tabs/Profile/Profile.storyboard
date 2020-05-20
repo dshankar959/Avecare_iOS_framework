@@ -43,11 +43,20 @@
                         <outlet property="profileTableView" destination="Qr7-MF-SNP" id="scT-jD-uxB"/>
                         <segue destination="5TN-PD-oxj" kind="show" identifier="details" id="3mf-3o-pYt"/>
                         <segue destination="I14-wI-r1K" kind="show" identifier="about" id="HDP-FH-V8F"/>
+                        <segue destination="BF4-fh-86D" kind="presentation" identifier="educatorDetails" id="L1d-4j-5e8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0F5-HI-3dk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-183" y="78"/>
+        </scene>
+        <!--EducatorDetails-->
+        <scene sceneID="KXc-9s-E1D">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EducatorDetails" id="BF4-fh-86D" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4sr-Jr-qSx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-183" y="472"/>
         </scene>
         <!--Profile Details View Controller-->
         <scene sceneID="eiW-Zy-9Fa">

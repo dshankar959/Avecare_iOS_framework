@@ -74,6 +74,7 @@
                         <outlet property="tableView" destination="rlY-xL-icf" id="bhw-mF-avL"/>
                         <segue destination="Gcb-Ez-APF" kind="show" identifier="details" id="1Nr-WQ-AVa"/>
                         <segue destination="bpt-tl-O88" kind="presentation" identifier="subjectList" id="ePQ-mt-0Md"/>
+                        <segue destination="GYr-aw-lUI" kind="presentation" identifier="educatorDetails" id="UHR-S4-RLR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LLu-cb-IQv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -86,7 +87,15 @@
                 <viewControllerPlaceholder storyboardName="SubjectList" id="bpt-tl-O88" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4b-17-6Ai" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="514"/>
+            <point key="canvasLocation" x="4" y="522"/>
+        </scene>
+        <!--EducatorDetails-->
+        <scene sceneID="Xyy-mv-vHp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="EducatorDetails" id="GYr-aw-lUI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PyP-Q3-shu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="275" y="522"/>
         </scene>
         <!--Stories Details View Controller-->
         <scene sceneID="onb-nq-lkB">
