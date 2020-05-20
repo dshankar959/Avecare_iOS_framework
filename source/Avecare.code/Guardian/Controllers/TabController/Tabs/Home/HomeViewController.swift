@@ -33,7 +33,7 @@ class HomeViewController: UIViewController {
         if segue.identifier == R.segue.homeViewController.subjectList.identifier,
            let destination = segue.destination as? SubjectListViewController {
             destination.delegate = self
-            destination.allSubjectsIncluded = true
+            destination.dataProvider.allSubjectsIncluded = true
             slideInTransitionDelegate.direction = .bottom
             slideInTransitionDelegate.sizeOfPresentingViewController = CGSize(width: view.frame.size.width,
                                                                               height: destination.contentHeight)
@@ -55,9 +55,14 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: SubjectListViewControllerDelegate {
-    func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
+    func subjectListDidSelectAll(_ controller: SubjectListViewController) {
         controller.dismiss(animated: true)
-        setSubjectFilerButtonTitle(titleText: item.title)
+        setSubjectFilerButtonTitle(titleText: "All")
+    }
+
+    func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
+        controller.dismiss(animated: true)
+        setSubjectFilerButtonTitle(titleText: subject.firstName)
     }
 }
 

@@ -12,11 +12,17 @@ class LogsViewController: UIViewController {
 
     let dataProvider = DefaultLogsDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
-    let subjectListDataProvider = DefaultSubjectListDataProvider() // To retrieve default subject
+    let subjectListDataProvider = DefaultSubjectListDataProvider()
 
+    var filterDate: Date {
+        calendarView.selectedDates.first?.startOfDay ?? Date().startOfDay
+    }
+    lazy var filterSubject: RLMSubject = subjectListDataProvider.model(at: IndexPath(item: 0, section: 0))
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
 
         calendarView.scrollDirection = .horizontal
         calendarView.scrollingMode = .nonStopToCell(withResistance: 0.5)
@@ -31,9 +37,13 @@ class LogsViewController: UIViewController {
             LogsPhotoTableViewCellModel.self
         ])
 
-        setSubjectSelectButtonTitle(titleText: subjectListDataProvider.model(for: IndexPath.init(item: 0, section: 0)).title)
-
         self.navigationController?.hideHairline()
+        setSubjectSelectButtonTitle(titleText: filterSubject.firstName)
+    }
+
+    func reloadData() {
+        dataProvider.fetchLogForm(subject: filterSubject, date: filterDate)
+        tableView.reloadData()
     }
 
     @IBAction func subjectSelectButtonTouched(_ sender: UIButton) {
@@ -41,14 +51,14 @@ class LogsViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == R.segue.logsViewController.subjectList.identifier,
-           let destination = segue.destination as? SubjectListViewController {
-            destination.delegate = self
+        if let info = R.segue.logsViewController.subjectList(segue: segue) {
+            info.destination.delegate = self
+            info.destination.dataProvider = subjectListDataProvider
             slideInTransitionDelegate.direction = .bottom
             slideInTransitionDelegate.sizeOfPresentingViewController = CGSize(width: view.frame.size.width,
-                                                                              height: destination.contentHeight)
-            destination.transitioningDelegate = slideInTransitionDelegate
-            destination.modalPresentationStyle = .custom
+                                                                              height: info.destination.contentHeight)
+            info.destination.transitioningDelegate = slideInTransitionDelegate
+            info.destination.modalPresentationStyle = .custom
         }
     }
 
@@ -65,9 +75,17 @@ class LogsViewController: UIViewController {
 
 
 extension LogsViewController: SubjectListViewControllerDelegate {
-    func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
+    func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
         controller.dismiss(animated: true)
-        setSubjectSelectButtonTitle(titleText: item.title)
+        setSubjectSelectButtonTitle(titleText: subject.firstName)
+        filterSubject = subject
+        reloadData()
+    }
+
+    // not used for this view controller
+    func subjectListDidSelectAll(_ controller: SubjectListViewController) {
+        controller.dismiss(animated: true)
+        setSubjectSelectButtonTitle(titleText: "All")
     }
 }
 
@@ -129,6 +147,7 @@ extension LogsViewController: JTACMonthViewDelegate {
         if let cell = cell as? DateCell {
             cell.configureCell(cellState: cellState)
         }
+        reloadData()
     }
 
     func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {

@@ -14,7 +14,7 @@ struct DailyFormAPIModel {
     let subjectId: String
     let date: Date
     let log: RLMLogForm
-
+    let files: [FilesResponseModel.File]
     private enum CodingKeys: String, CodingKey {
         case id, subjectId, date, log, files
     }
@@ -27,6 +27,9 @@ struct DailyFormAPIModel {
         self.subjectId = subjectId
         self.date = Date()
         self.log = form
+
+        // files array used only when receive response from server
+        self.files = .init()
     }
 
 }
@@ -57,5 +60,22 @@ extension DailyFormAPIModel: MultipartEncodable {
         })
 
         return data
+    }
+}
+
+extension DailyFormAPIModel: Decodable {
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+
+        id = try container.decode(String.self, forKey: .id)
+        subjectId = try container.decode(String.self, forKey: .subjectId)
+        let formatter = Date.yearMonthDayFormatter
+        guard let date = formatter.date(from: try container.decode(String.self, forKey: .date)) else {
+            DDLogError("JSON DECODING ERROR: Invalid date format")
+            fatalError("JSON DECODING ERROR: Invalid date format")
+        }
+        self.date = date
+        log = try container.decode(RLMLogForm.self, forKey: .log)
+        files = try container.decode([FilesResponseModel.File].self, forKey: .files)
     }
 }

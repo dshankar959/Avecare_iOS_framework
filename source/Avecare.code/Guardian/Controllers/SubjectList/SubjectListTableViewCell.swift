@@ -1,12 +1,10 @@
 import UIKit
 
 
-
 class SubjectListTableViewCell: UITableViewCell {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
 }
-
 
 struct SubjectListTableViewCellModel: CellViewModel {
 
@@ -14,7 +12,6 @@ struct SubjectListTableViewCellModel: CellViewModel {
 
     let title: String
     let photo: URL?
-
 
     func setup(cell: CellType) {
         if let photoURL = photo {
@@ -29,5 +26,14 @@ struct SubjectListTableViewCellModel: CellViewModel {
         }
 
     }
+}
 
+
+struct SubjectListAllTableViewCell: CellViewModel {
+    typealias CellType = UITableViewCell
+
+    func setup(cell: CellType) {
+        cell.textLabel?.text = "All"
+        cell.textLabel?.textAlignment = .center
+    }
 }
