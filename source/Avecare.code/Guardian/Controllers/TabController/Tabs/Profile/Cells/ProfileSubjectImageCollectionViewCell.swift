@@ -31,7 +31,7 @@ struct ProfileSubjectImageCollectionViewCellModel: CellViewModel {
         if let photoURL = photo {
             cell.avatarImageView.image = UIImage(contentsOfFile: photoURL.path)
         } else {
-            cell.avatarImageView.image = UIImage(named: "avatar_default")
+            cell.avatarImageView.image = R.image.avatar_default()
         }
     }
 }

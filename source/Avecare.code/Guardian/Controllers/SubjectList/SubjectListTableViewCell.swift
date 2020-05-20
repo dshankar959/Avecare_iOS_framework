@@ -24,7 +24,7 @@ struct SubjectListTableViewCellModel: CellViewModel {
         if let photoURL = photo {
             cell.photoImageView.image = UIImage(contentsOfFile: photoURL.path)
         } else {
-            cell.photoImageView.image = UIImage(named: "avatar_default")
+            cell.photoImageView.image = R.image.avatar_default()
         }
 
         if id == nil {

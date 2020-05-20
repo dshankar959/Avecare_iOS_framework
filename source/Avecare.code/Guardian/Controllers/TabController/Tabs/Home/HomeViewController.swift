@@ -49,7 +49,7 @@ class HomeViewController: UIViewController {
     private func updateScreen() {
         updateSelectedSubject()
         // TODO - update screen with selected subject
-        updateSubjectFilerButton()
+        updateSubjectFilterButton()
     }
 
     private func updateSelectedSubject() {
@@ -60,7 +60,7 @@ class HomeViewController: UIViewController {
         }
     }
 
-    private func updateSubjectFilerButton() {
+    private func updateSubjectFilterButton() {
         let titleText: String
         if let selectedSubject = selectedSubject {
             titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
@@ -110,7 +110,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return dataProvider.headerViewModel(for: section)?.buildView()
     }
 
-    // TODO: review technical design on how we should handle dismissing notifications
+    // TODO: review technical design on how we should handle dismissing notifications [S.D]
 /*
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard dataProvider.canDismiss(at: indexPath) else { return nil }

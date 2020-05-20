@@ -1,5 +1,6 @@
-import Foundation
 import UIKit
+
+
 
 struct SupervisorCollectionViewCellModel: CellViewModel {
     typealias CellType = SupervisorCollectionViewCell
@@ -15,13 +16,14 @@ struct SupervisorCollectionViewCellModel: CellViewModel {
         if let photoURL = photo {
             cell.photoImageView.image = UIImage(contentsOfFile: photoURL.path)
         } else {
-            cell.photoImageView.image = UIImage(named: "avatar_default")
+            cell.photoImageView.image = R.image.avatar_default()
         }
 
         cell.titleLabel.text = title
         cell.nameLabel.text = name
     }
 }
+
 
 class SupervisorCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var photoImageView: UIImageView!
