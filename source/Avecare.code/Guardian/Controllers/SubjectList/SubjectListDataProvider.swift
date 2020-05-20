@@ -12,7 +12,7 @@ protocol SubjectListDataProvider: class {
 class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
     private let listIncludesAllSelection: Bool
-    let storage = ImageStorageService()
+    private let storage = ImageStorageService()
 
     init(listIncludesAllSelection: Bool? = nil) {
         self.listIncludesAllSelection = listIncludesAllSelection ?? false

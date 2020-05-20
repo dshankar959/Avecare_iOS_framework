@@ -26,6 +26,7 @@ class ProfileSubjectTableViewCell: UITableViewCell {
     @IBOutlet weak var selectedSubjectDOBLabel: UILabel!
 
     weak var dataProvider: SubjectListDataProvider?
+    weak var parentVC: ProfileViewController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -106,5 +107,6 @@ extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionV
         }
         setLabels(withSelectedModel: selectedModel)
         selectedSubjectId = selectedModel.id
+        parentVC?.updateEducators()
     }
 }

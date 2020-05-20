@@ -25,6 +25,20 @@ class ProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        updateEducators()
+    }
+
+    func updateEducators() {
+        if let selectedSubjectId = selectedSubjectId,
+            let selectedSubject = RLMSubject.find(withID: selectedSubjectId) {
+            dataProvider.unitIds = Array(selectedSubject.unitIds)
+        } else if let defaultSelectedSubject = RLMSubject.findAll(sortedBy: "firstName").first {
+            dataProvider.unitIds = Array(defaultSelectedSubject.unitIds)
+        } else {
+            dataProvider.unitIds = [String]()
+        }
+
         profileTableView.reloadData()
     }
 
@@ -49,7 +63,14 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         let model = dataProvider.model(for: indexPath)
         let cell = tableView.dequeueReusableCell(withAnyModel: model, for: indexPath)
 
+        if let profileSubjectCell = cell as? ProfileSubjectTableViewCell {
+            profileSubjectCell.refreshView()
+            profileSubjectCell.parentVC = self
+        }
+        /*
         (cell as? ProfileSubjectTableViewCell)?.refreshView()
+        (cell as? ProfileSubjectTableViewCell)?.parentVC = self*/
+        (cell as? SupervisorFilterTableViewCell)?.refreshView()
 
         if indexPath.section < 2 {
             cell.selectionStyle = .none

@@ -22,6 +22,10 @@ class SupervisorFilterTableViewCell: UITableViewCell {
             SupervisorCollectionViewCellModel.self
         ])
     }
+
+    func refreshView() {
+        collectionView.reloadData()
+    }
 }
 
 extension SupervisorFilterTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {

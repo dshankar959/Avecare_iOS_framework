@@ -1,7 +1,5 @@
 import UIKit
 
-
-
 class StoriesListViewController: UIViewController {
 
     @IBOutlet weak var subjectFilterButton: UIButton!
@@ -53,8 +51,8 @@ class StoriesListViewController: UIViewController {
 
     private func updateScreen() {
         updateSelectedSubject()
-        // TODO - update screen with selected subject
         updateSubjectFilterButton()
+        updateEducators()
     }
 
     private func updateSelectedSubject() {
@@ -80,6 +78,15 @@ class StoriesListViewController: UIViewController {
 
         subjectFilterButton.setAttributedTitle(titleAttributedString, for: .normal)
     }
+
+    private func updateEducators() {
+        if let selectedSubject = selectedSubject {
+            dataProvider.unitIds = Array(selectedSubject.unitIds)
+        } else {
+            dataProvider.unitIds = [String]()
+        }
+        tableView.reloadData()
+    }
 }
 
 extension StoriesListViewController: SubjectListViewControllerDelegate {
@@ -102,8 +109,12 @@ extension StoriesListViewController: UITableViewDelegate, UITableViewDataSource 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataProvider.model(for: indexPath)
         let cell = tableView.dequeueReusableCell(withAnyModel: model, for: indexPath)
+
         cell.separatorInset = .zero
         cell.layoutMargins = .zero
+
+        (cell as? SupervisorFilterTableViewCell)?.refreshView()
+
         return cell
     }
 

@@ -52,7 +52,12 @@ class RLMSupervisor: RLMDefaults {
             fatalError("JSON Decoding error = \(error)")
         }
     }
+}
 
+extension RLMSupervisor {
+    func photoURL(using storage: ImageStorageService) -> URL? {
+        return storage.imageURL(name: id)
+    }
 }
 
 
