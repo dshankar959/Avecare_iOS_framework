@@ -11,7 +11,7 @@ import UIKit
 class SlideInPresentationController: UIPresentationController {
     private var dimmingView: UIView!
     private var direction: PresentationDirection
-    private var sizeOfPresentingViewController: CGSize!
+    private var sizeOfPresentingViewController: CGSize! // default size when its value is .zero
 
     init(presentedViewController: UIViewController,
          presenting presentingViewController: UIViewController?,
@@ -78,7 +78,9 @@ class SlideInPresentationController: UIPresentationController {
             if sizeOfPresentingViewController == .zero {
                 return CGSize(width: parentSize.width, height: parentSize.height * (2.0 / 3.0))
             } else {
-                return CGSize(width: parentSize.width, height: sizeOfPresentingViewController.height)
+                // set max height (2/3 of parent size)
+                let height = min(sizeOfPresentingViewController.height, parentSize.height * (2.0 / 3.0))
+                return CGSize(width: parentSize.width, height: height)
             }
         }
     }
@@ -99,7 +101,8 @@ class SlideInPresentationController: UIPresentationController {
             if sizeOfPresentingViewController == .zero {
                 frame.origin.y = containerView!.frame.height * (1.0 / 3.0)
             } else {
-                frame.origin.y = containerView!.frame.height - sizeOfPresentingViewController.height
+                let height = min(sizeOfPresentingViewController.height, containerView!.frame.height * (2.0 / 3.0))
+                frame.origin.y = containerView!.frame.height - height
             }
         default:
             frame.origin = .zero

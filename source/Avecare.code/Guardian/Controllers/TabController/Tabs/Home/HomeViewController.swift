@@ -8,9 +8,10 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subjectFilterButton: UIButton!
 
-    var dataProvider: HomeDataProvider = DefaultHomeDataProvider()
+    let dataProvider: HomeDataProvider = DefaultHomeDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
+    var selectedSubject: RLMSubject? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,9 +21,12 @@ class HomeViewController: UIViewController {
             HomeTableViewDisclosureCellModel.self
         ])
 
-        setSubjectFilerButtonTitle(titleText: "All")
-
         self.navigationController?.hideHairline()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateScreen()
     }
 
     @IBAction func didClickSubjectPickerButton(_ sender: UIButton) {
@@ -33,7 +37,7 @@ class HomeViewController: UIViewController {
         if segue.identifier == R.segue.homeViewController.subjectList.identifier,
            let destination = segue.destination as? SubjectListViewController {
             destination.delegate = self
-            destination.allSubjectsIncluded = true
+            destination.listIncludesAllSelection = true
             slideInTransitionDelegate.direction = .bottom
             slideInTransitionDelegate.sizeOfPresentingViewController = CGSize(width: view.frame.size.width,
                                                                               height: destination.contentHeight)
@@ -42,7 +46,27 @@ class HomeViewController: UIViewController {
         }
     }
 
-    private func setSubjectFilerButtonTitle(titleText: String) {
+    private func updateScreen() {
+        updateSelectedSubject()
+        // TODO - update screen with selected subject
+        updateSubjectFilerButton()
+    }
+
+    private func updateSelectedSubject() {
+        if let selectedSubjectId = selectedSubjectId {
+            selectedSubject = RLMSubject.find(withID: selectedSubjectId)
+        } else {
+            selectedSubject = nil
+        }
+    }
+
+    private func updateSubjectFilerButton() {
+        let titleText: String
+        if let selectedSubject = selectedSubject {
+            titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
+        } else {
+            titleText = "All"
+        }
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])
 
@@ -57,7 +81,8 @@ class HomeViewController: UIViewController {
 extension HomeViewController: SubjectListViewControllerDelegate {
     func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
         controller.dismiss(animated: true)
-        setSubjectFilerButtonTitle(titleText: item.title)
+
+        updateScreen()
     }
 }
 

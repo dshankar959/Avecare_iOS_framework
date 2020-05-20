@@ -14,6 +14,7 @@ class LogsViewController: UIViewController {
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
     let subjectListDataProvider = DefaultSubjectListDataProvider() // To retrieve default subject
 
+    var selectedSubject: RLMSubject? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,9 +32,12 @@ class LogsViewController: UIViewController {
             LogsPhotoTableViewCellModel.self
         ])
 
-        setSubjectSelectButtonTitle(titleText: subjectListDataProvider.model(for: IndexPath.init(item: 0, section: 0)).title)
-
         self.navigationController?.hideHairline()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateScreen()
     }
 
     @IBAction func subjectSelectButtonTouched(_ sender: UIButton) {
@@ -52,7 +56,27 @@ class LogsViewController: UIViewController {
         }
     }
 
-    private func setSubjectSelectButtonTitle(titleText: String) {
+    private func updateScreen() {
+        updateSelectedSubject()
+        // TODO - update screen with selected subject
+        updateSubjectSelectButton()
+    }
+
+    private func updateSelectedSubject() {
+        if let selectedSubjectId = selectedSubjectId {
+            selectedSubject = RLMSubject.find(withID: selectedSubjectId)
+        } else {
+            selectedSubject = nil
+        }
+    }
+
+    private func updateSubjectSelectButton() {
+        let titleText: String
+        if let selectedSubject = selectedSubject {
+            titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
+        } else {
+            titleText = subjectListDataProvider.listTableViewmodel(for: IndexPath.init(item: 0, section: 0)).title
+        }
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])
         let chevronFont = UIFont(name: "FontAwesome5Pro-Light", size: 12)
@@ -67,7 +91,8 @@ class LogsViewController: UIViewController {
 extension LogsViewController: SubjectListViewControllerDelegate {
     func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
         controller.dismiss(animated: true)
-        setSubjectSelectButtonTitle(titleText: item.title)
+
+        updateScreen()
     }
 }
 

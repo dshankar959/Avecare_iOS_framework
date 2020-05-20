@@ -14,11 +14,11 @@ class SubjectListViewController: UIViewController {
 
     weak var delegate: SubjectListViewControllerDelegate?
 
-    var allSubjectsIncluded = true
+    var listIncludesAllSelection = false
 
     var dataProvider: SubjectListDataProvider {
-        if allSubjectsIncluded {
-            return DefaultSubjectListDataProvider(allSubjectsIncluded: true)
+        if listIncludesAllSelection {
+            return DefaultSubjectListDataProvider(listIncludesAllSelection: true)
         } else {
             return DefaultSubjectListDataProvider()
         }
@@ -41,12 +41,14 @@ extension SubjectListViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = dataProvider.model(for: indexPath)
+        let model = dataProvider.listTableViewmodel(for: indexPath)
         return tableView.dequeueReusableCell(withModel: model, for: indexPath)
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        delegate?.subjectList(self, didSelect: dataProvider.model(for: indexPath))
+        let selectedSubject = dataProvider.listTableViewmodel(for: indexPath)
+        selectedSubjectId = selectedSubject.id
+        delegate?.subjectList(self, didSelect: selectedSubject)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
