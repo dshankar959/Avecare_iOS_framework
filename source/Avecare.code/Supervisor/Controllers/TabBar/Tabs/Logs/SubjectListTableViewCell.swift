@@ -25,12 +25,17 @@ struct SubjectListTableViewCellModel: CellViewModel {
 
     func setup(cell: CellType) {
         cell.backgroundColor = isSelected ? R.color.background() : .white
-        cell.photoImageView.kf.setImage(with: profilePhoto)
         cell.subjectNameLabel.text = "\(lastName), \(firstName)"
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d, yyyy"
         cell.birthDateLabel.text = formatter.string(from: birthDate)
         cell.accessoryType = isChecked ? .checkmark : .none
+
+        if let photoFileURL = profilePhoto {
+            cell.photoImageView.kf.setImage(with: photoFileURL)
+        } else {
+            cell.photoImageView.image = R.image.avatar_default()
+        }
     }
 }
 
