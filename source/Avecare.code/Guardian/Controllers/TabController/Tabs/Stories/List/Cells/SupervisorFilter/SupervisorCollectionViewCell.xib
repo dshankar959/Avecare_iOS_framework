@@ -19,29 +19,43 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="200" verticalHuggingPriority="1000" image="edu1" translatesAutoresizingMaskIntoConstraints="NO" id="r8n-Qd-rEK">
                         <rect key="frame" x="49" y="0.0" width="60" height="60"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="60" id="5Zd-0p-1dm"/>
+                            <constraint firstAttribute="width" constant="60" id="cbD-z3-nid"/>
+                        </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMo-zF-43x">
-                        <rect key="frame" x="8" y="60" width="142" height="77"/>
-                        <string key="text">Mr.
-Allen</string>
-                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="DgF-ju-692">
+                        <rect key="frame" x="8" y="64" width="142" height="69"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mr." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RuD-dN-MSD">
+                                <rect key="frame" x="0.0" y="0.0" width="142" height="34.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Allen" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMo-zF-43x">
+                                <rect key="frame" x="0.0" y="34.5" width="142" height="34.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="r8n-Qd-rEK" firstAttribute="top" secondItem="GxF-jm-RPM" secondAttribute="top" id="2nz-wJ-QO0"/>
                     <constraint firstItem="r8n-Qd-rEK" firstAttribute="centerX" secondItem="GxF-jm-RPM" secondAttribute="centerX" id="4J6-r5-lRq"/>
-                    <constraint firstAttribute="trailing" secondItem="XMo-zF-43x" secondAttribute="trailing" constant="8" id="BoG-Cz-nnY"/>
-                    <constraint firstItem="XMo-zF-43x" firstAttribute="leading" secondItem="GxF-jm-RPM" secondAttribute="leading" constant="8" id="aJm-2j-pm3"/>
-                    <constraint firstItem="XMo-zF-43x" firstAttribute="top" secondItem="r8n-Qd-rEK" secondAttribute="bottom" id="ljE-4n-Wgq"/>
-                    <constraint firstAttribute="bottom" secondItem="XMo-zF-43x" secondAttribute="bottom" id="oo9-uf-LGp"/>
+                    <constraint firstItem="DgF-ju-692" firstAttribute="leading" secondItem="GxF-jm-RPM" secondAttribute="leading" constant="8" id="KBx-kS-mTd"/>
+                    <constraint firstItem="DgF-ju-692" firstAttribute="top" secondItem="r8n-Qd-rEK" secondAttribute="bottom" constant="4" id="PiU-5l-hud"/>
+                    <constraint firstAttribute="bottom" secondItem="DgF-ju-692" secondAttribute="bottom" constant="4" id="mvd-XF-XdY"/>
+                    <constraint firstAttribute="trailing" secondItem="DgF-ju-692" secondAttribute="trailing" constant="8" id="xNE-6N-Uo1"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="158" height="137"/>
             <connections>
                 <outlet property="nameLabel" destination="XMo-zF-43x" id="8Ii-Gg-iEz"/>
                 <outlet property="photoImageView" destination="r8n-Qd-rEK" id="ds7-aU-s4r"/>
+                <outlet property="titleLabel" destination="RuD-dN-MSD" id="1cl-tl-iBo"/>
             </connections>
             <point key="canvasLocation" x="55.072463768115945" y="169.75446428571428"/>
         </collectionViewCell>

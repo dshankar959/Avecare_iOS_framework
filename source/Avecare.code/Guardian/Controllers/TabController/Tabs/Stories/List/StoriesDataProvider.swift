@@ -1,44 +1,75 @@
 import Foundation
 
 protocol StoriesDataProvider: class {
+    var unitIds: [String] { get set }
     func numberOfRows(for section: Int) -> Int
     func model(for indexPath: IndexPath) -> AnyCellViewModel
     func details(at indexPath: IndexPath) -> StoriesDetails
 }
 
 protocol EducatorsDataProvider: class {
+    var unitIds: [String] { get set }
     var numberOfRows: Int { get }
     func model(for indexPath: IndexPath) -> SupervisorCollectionViewCellModel
 }
 
 class DefaultEducatorsDataProvider: EducatorsDataProvider {
-    var dataSource: [SupervisorCollectionViewCellModel] = [
-        SupervisorCollectionViewCellModel(name: "Mr.\nAllen", image: R.image.edu1()),
-        SupervisorCollectionViewCellModel(name: "Mrs.\nKennedy", image: R.image.edu2()),
-        SupervisorCollectionViewCellModel(name: "Ms.\nDouglas", image: R.image.edu3()),
-        SupervisorCollectionViewCellModel(name: "Mr.\nAllen", image: R.image.edu1()),
-        SupervisorCollectionViewCellModel(name: "Mrs.\nKennedy", image: R.image.edu2()),
-        SupervisorCollectionViewCellModel(name: "Ms.\nDouglas", image: R.image.edu3()),
-        SupervisorCollectionViewCellModel(name: "Mr.\nAllen", image: R.image.edu1()),
-        SupervisorCollectionViewCellModel(name: "Mrs.\nKennedy", image: R.image.edu2()),
-        SupervisorCollectionViewCellModel(name: "Ms.\nDouglas", image: R.image.edu3()),
-        SupervisorCollectionViewCellModel(name: "Mr.\nAllen", image: R.image.edu1()),
-        SupervisorCollectionViewCellModel(name: "Mrs.\nKennedy", image: R.image.edu2()),
-        SupervisorCollectionViewCellModel(name: "Ms.\nDouglas", image: R.image.edu3())
-    ]
+    private let supervisors = RLMSupervisor.findAll()
+    private let storage = ImageStorageService()
+
+    private var dataSource = [RLMSupervisor]()
+
+    var unitIds: [String] = [] {
+        didSet {
+            if unitIds.count > 0 {
+                dataSource = filter(for: supervisors, with: unitIds)
+            } else {
+                dataSource = supervisors
+            }
+        }
+    }
+
+    private func filter(for supervisors: [RLMSupervisor], with unitIds: [String]) -> [RLMSupervisor] {
+        var result = [RLMSupervisor]()
+        unitIds.forEach { (unitId) in
+            let filterdSupervisors = supervisors.filter { $0.primaryUnitId == unitId }
+            result.append(contentsOf: filterdSupervisors)
+        }
+        return result
+    }
 
     var numberOfRows: Int {
         return dataSource.count
     }
 
     func model(for indexPath: IndexPath) -> SupervisorCollectionViewCellModel {
-        return dataSource[indexPath.row]
+        return SupervisorCollectionViewCellModel(with: dataSource[indexPath.row], storage: storage)
+    }
+}
+
+extension SupervisorCollectionViewCellModel {
+    init(with educator: RLMSupervisor, storage: ImageStorageService) {
+        let titleString: String
+        if educator.title.count > 0 {
+            titleString = educator.title
+        } else {
+            titleString = "Ms."
+        }
+        title = titleString
+        name = educator.lastName
+        photo = educator.photoURL(using: storage)
     }
 }
 
 class DefaultStoriesDataProvider: StoriesDataProvider {
 
     let educators = DefaultEducatorsDataProvider()
+
+    var unitIds = [String]() {
+        didSet {
+            educators.unitIds = unitIds
+        }
+    }
 
     var dataSource: [StoriesTableViewCellModel] = [
 //        StoriesTableViewCellModel(title: "Colouring and Fine Motors Skills Development", date: Date(),

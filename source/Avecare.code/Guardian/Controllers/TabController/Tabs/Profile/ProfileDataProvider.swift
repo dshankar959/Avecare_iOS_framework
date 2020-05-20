@@ -9,6 +9,7 @@
 import Foundation
 
 protocol ProfileDataProvider: class {
+    var unitIds: [String] { get set }
     var numberOfSections: Int { get }
     func numberOfRows(for section: Int) -> Int
     func model(for indexPath: IndexPath) -> AnyCellViewModel
@@ -23,6 +24,12 @@ class DefaultProfileDataProvider: ProfileDataProvider {
 
     let subjects = DefaultSubjectListDataProvider()
     let educators = DefaultEducatorsDataProvider()
+
+    var unitIds = [String]() {
+        didSet {
+            educators.unitIds = unitIds
+        }
+    }
 
     private lazy var dataSource: [Section] = [
         Section(profileMenus: [
