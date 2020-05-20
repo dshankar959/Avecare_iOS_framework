@@ -1,5 +1,6 @@
-import Foundation
 import UIKit
+
+
 
 @IBDesignable class DetailsNavigationView: BaseXibView {
 
@@ -28,8 +29,10 @@ import UIKit
         }
     }
 
+
     func updateButtons() {
         stackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
+
         for index in 0..<items.count {
             let item = items[index]
             switch item {
@@ -53,6 +56,7 @@ import UIKit
                 }
 
                 stackView.addArrangedSubview(button)
+
             case .imageButton(let options):
                 let button = UIButton(type: .system)
                 button.tintColor = options.tintColor
@@ -70,6 +74,7 @@ import UIKit
                 }
 
                 stackView.addArrangedSubview(button)
+
             case .offset(let value):
                 let offsetView = UIView()
                 offsetView.snp.makeConstraints { maker in

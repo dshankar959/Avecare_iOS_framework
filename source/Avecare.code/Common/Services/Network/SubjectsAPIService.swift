@@ -4,6 +4,7 @@ import CocoaLumberjack
 
 
 struct SubjectsAPIService {
+
     static func publishDailyLog(log: DailyFormAPIModel, completion: @escaping (Result<FilesResponseModel, AppError>) -> Void) {
         apiProvider.request(.subjectPublishDailyLog(request: log)) { result in
             switch result {
@@ -20,4 +21,5 @@ struct SubjectsAPIService {
             }
         }
     }
+
 }

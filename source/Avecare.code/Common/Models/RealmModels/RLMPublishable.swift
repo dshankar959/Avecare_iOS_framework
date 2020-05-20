@@ -1,6 +1,8 @@
 import Foundation
 import CocoaLumberjack
 
+
+
 enum PublishState: Int, Codable {
     case local = 0          // client side record
     case publishing = 1     // need to send to the server
@@ -28,4 +30,5 @@ extension RLMPublishable {
             rawPublishState = newValue.rawValue
         }
     }
+
 }

@@ -108,8 +108,8 @@ extension LogsTimeDetailsTableViewCellModel {
         let formatter = Date.timeFormatter
         selectedOption1 = formatter.string(from: row.startTime) + " - " + formatter.string(from: row.endTime)
 
-        if let selectedId = row.selectedValue.value,
-           let selectedText = row.options.first(where: { $0.value == selectedId })?.text {
+        let selectedId = row.selectedValue
+        if let selectedText = row.options.first(where: { $0.value == selectedId })?.text {
             selectedOption2 = selectedText
         }
     }
