@@ -38,13 +38,16 @@ class ProfileSubjectTableViewCell: UITableViewCell {
 
     func refreshView() {
         if let dataProvider = dataProvider {
+            let visibleIndexPaths = subjectsCollectionView.indexPathsForVisibleItems
             if let selectedSubjectId = selectedSubjectId {
                 for i in 0..<dataProvider.numberOfRows {
                     let indexPath = IndexPath(row: i, section: 0)
                     let model = dataProvider.imageCollectionViewmodel(for: indexPath)
                     if model.id == selectedSubjectId {
                         setLabels(withSelectedModel: model)
-                        subjectsCollectionView.scrollToItem(at: indexPath, at: .right, animated: false)
+                        if !visibleIndexPaths.contains(indexPath) {
+                            subjectsCollectionView.scrollToItem(at: indexPath, at: .right, animated: false)
+                        }
                         break
                     }
                 }
@@ -52,7 +55,9 @@ class ProfileSubjectTableViewCell: UITableViewCell {
                 let indexPath = IndexPath(row: 0, section: 0)
                 let model = dataProvider.imageCollectionViewmodel(for: indexPath)
                 setLabels(withSelectedModel: model)
-                subjectsCollectionView.scrollToItem(at: indexPath, at: .right, animated: false)
+                if !visibleIndexPaths.contains(indexPath) {
+                    subjectsCollectionView.scrollToItem(at: indexPath, at: .right, animated: false)
+                }
             }
         }
 
