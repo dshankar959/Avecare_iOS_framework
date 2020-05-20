@@ -21,7 +21,7 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 
         snowflakeIconLabel.font = UIFont(name: "FontAwesome5Pro-Light", size: 24)
         snowflakeIconLabel.text = "\u{f2dc}"
-        snowflakeTitleLabel.text = "Avecare"
+        snowflakeTitleLabel.text = "Daily Wonders"
     }
 
 
@@ -41,7 +41,7 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 //        loginField?.text = "jvanschyndel@spiria.com"
 
         // auto-sign-in, to speed up local testing.
-        getCodeAction(sender: UIButton())
+//        getCodeAction(sender: UIButton())
 
         #endif
     }

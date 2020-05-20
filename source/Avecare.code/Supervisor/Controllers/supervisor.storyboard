@@ -24,8 +24,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XDZ-xQ-JbE" userLabel="splash">
                                 <rect key="frame" x="0.0" y="0.0" width="1194" height="834"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Avecare" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ji6-UY-CIR">
-                                        <rect key="frame" x="445.5" y="363" width="303.5" height="108"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Wonders" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ji6-UY-CIR">
+                                        <rect key="frame" x="325" y="363" width="544.5" height="108"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="90"/>
                                         <color key="textColor" name="MainInversion"/>
                                         <nil key="highlightedColor"/>

@@ -21,7 +21,7 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
 
         snowflakeIconLabel.font = UIFont(name: "FontAwesome5Pro-Light", size: 24)
         snowflakeIconLabel.text = "\u{f2dc}"
-        snowflakeTitleLabel.text = "Avecare"
+        snowflakeTitleLabel.text = "Daily Wonders"  // TODO: app name should be taken from theme package
 
         self.navigationController?.hideHairline()
     }
