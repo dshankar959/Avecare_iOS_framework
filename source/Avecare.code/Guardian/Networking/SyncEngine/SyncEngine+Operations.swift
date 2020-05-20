@@ -34,12 +34,15 @@ extension SyncEngine {
                                         self.syncOrganizationDetails() { error in
                                             DDLogVerbose("syncOrganizationDetails ♓️ closure")
                                             if let error = error { syncCompletion(error) } else {
-                                                self.syncDOWNUnitStories { error in
-                                                    DDLogVerbose("syncDOWNUnitStories ♓️ closure")
+                                                self.syncUnitSupervisors() { error in
+                                                    DDLogVerbose("syncUnitSupervisors ♓️ closure")
                                                     if let error = error { syncCompletion(error) } else {
-                                                        self.syncDOWNSubjectLogs { error in
-                                                            DDLogVerbose("syncDOWNSubjectLogs ♓️ closure")
-                                                            syncCompletion(error)
+                                                        self.syncDOWNUnitStories { error in
+                                                            DDLogVerbose("syncDOWNUnitStories ♓️ closure")
+                                                            self.syncDOWNSubjectLogs { error in
+                                                                DDLogVerbose("syncDOWNSubjectLogs ♓️ closure")
+                                                                syncCompletion(error)
+                                                            }
                                                         }
                                                     }
                                                 }

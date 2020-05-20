@@ -14,17 +14,15 @@ struct SubjectListTableViewCellModel: CellViewModel {
     let photo: URL?
 
     func setup(cell: CellType) {
-        if let photoURL = photo {
-            cell.photoImageView.image = UIImage(contentsOfFile: photoURL.path)
-            cell.photoImageView.layer.cornerRadius = cell.photoImageView.frame.width / 2
-            cell.photoImageView.clipsToBounds = true
-            cell.titleLabel.text = title
-        } else {
-            cell.titleLabel.text = nil
-            cell.textLabel?.text = title
-            cell.textLabel?.textAlignment = .center
-        }
+        cell.titleLabel.text = title
 
+        cell.photoImageView.layer.cornerRadius = cell.photoImageView.frame.width / 2
+        cell.photoImageView.clipsToBounds = true
+        if let photoURL = photo {
+            cell.photoImageView.image = UIImage(contentsOfFile: photoURL.path) ?? R.image.avatar_default()
+        } else {
+            cell.photoImageView.image = R.image.avatar_default()
+        }
     }
 }
 

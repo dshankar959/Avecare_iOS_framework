@@ -1,14 +1,14 @@
 import UIKit
 
 
-
 protocol SubjectListDataProvider: class {
     var allSubjectsIncluded: Bool { get set }
 
     var numberOfRows: Int { get }
 
     func model(at indexPath: IndexPath) -> RLMSubject
-    func cellViewModel(for indexPath: IndexPath) -> AnyCellViewModel
+    func listCellViewModel(for indexPath: IndexPath) -> AnyCellViewModel
+    func profileCellViewModel(for indexPath: IndexPath) -> ProfileSubjectImageCollectionViewCellModel
     func title(for indexPath: IndexPath) -> String
 }
 
@@ -25,11 +25,7 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
     private lazy var dataSource = RLMSubject.findAll(sortedBy: "firstName")
 
     var numberOfRows: Int {
-        if allSubjectsIncluded {
-            return dataSource.count
-        } else {
-            return dataSource.count - 1
-        }
+        return dataSource.count - (allSubjectsIncluded ? 1 : 0)
     }
 
     func model(at indexPath: IndexPath) -> RLMSubject {
@@ -40,11 +36,15 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
         }
     }
 
-    func cellViewModel(for indexPath: IndexPath) -> AnyCellViewModel {
+    func listCellViewModel(for indexPath: IndexPath) -> AnyCellViewModel {
         if allSubjectsIncluded, indexPath.row == 0 {
             return SubjectListAllTableViewCell()
         }
         return SubjectListTableViewCellModel(with: model(at: indexPath), storage: storage)
+    }
+
+    func profileCellViewModel(for indexPath: IndexPath) -> ProfileSubjectImageCollectionViewCellModel {
+        ProfileSubjectImageCollectionViewCellModel(with: model(at: indexPath), storage: storage)
     }
 
     func title(for indexPath: IndexPath) -> String {
@@ -60,5 +60,14 @@ extension SubjectListTableViewCellModel {
     init(with subject: RLMSubject, storage: ImageStorageService) {
         title = "\(subject.firstName) \(subject.lastName)"
         photo = subject.photoURL(using: storage)
+    }
+}
+
+extension ProfileSubjectImageCollectionViewCellModel {
+    init(with subject: RLMSubject, storage: ImageStorageService) {
+        id = subject.id
+        fullName = "\(subject.firstName) \(subject.lastName)"
+        photo = subject.photoURL(using: storage)
+        birthDay = subject.birthday
     }
 }

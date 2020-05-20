@@ -11,18 +11,12 @@ import UIKit
 struct ProfileSubjectImageCollectionViewCellModel: CellViewModel {
     typealias CellType = ProfileSubjectImageCollectionViewCell
 
-    let avatarImage: UIImage?
+    let id: String
+    let photo: URL?
     let fullName: String
-    let dobString: String
-
-    var dateOfBirth: Date? {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy/MM/dd"
-        return formatter.date(from: dobString)
-    }
+    let birthDay: Date
 
     func setup(cell: CellType) {
-        cell.avatarImageView.image = avatarImage
         cell.avatarImageView.layer.cornerRadius = cell.avatarImageView.frame.width / 2
         cell.avatarImageView.clipsToBounds = true
 
@@ -32,6 +26,12 @@ struct ProfileSubjectImageCollectionViewCellModel: CellViewModel {
             cell.subjectSelectView.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
         } else {
             cell.subjectSelectView.backgroundColor = .white
+        }
+
+        if let photoURL = photo {
+            cell.avatarImageView.image = UIImage(contentsOfFile: photoURL.path)
+        } else {
+            cell.avatarImageView.image = R.image.avatar_default()
         }
     }
 }

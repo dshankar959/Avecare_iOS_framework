@@ -1,8 +1,10 @@
-import Foundation
 import UIKit
 import CocoaLumberjack
 
-extension SubjectListDataProvider {
+
+
+extension SubjectListDataProvider: IndicatorProtocol {
+
     func navigationItems(at indexPath: IndexPath) -> [DetailsNavigationView.Item] {
         let subject = dataSource[indexPath.row]
         let isSubmitted = subject.isFormSubmittedToday
@@ -49,9 +51,10 @@ extension SubjectListDataProvider {
                 self?.publishDailyForm(at: indexPath)
             }, isEnabled: !isSubmitted, text: "Publish", textColor: R.color.mainInversion(),
                     tintColor: publishColor, cornerRadius: 4))
-
         ]
+
     }
+
 
     func publishDailyForm(at indexPath: IndexPath) {
         let form = dataSource[indexPath.row].todayForm
@@ -62,11 +65,14 @@ extension SubjectListDataProvider {
             form.publishState = .publishing
         }
 
-        // TODO: Show loading indicator
+        showActivityIndicator(withStatus: "Publishing daily log ...")
+        // TODO: Shows loading indicator.  Is this the best place to call this?
+
         SubjectsAPIService.publishDailyLog(log: request) { [weak self] result in
             switch result {
             case .success:
                 DDLogVerbose("success")
+                self?.showSuccessIndicator(withStatus: "Published")
 
                 RLMLogForm.writeTransaction {
                     let date = Date() // FIXME: should be date from server response?
@@ -78,7 +84,9 @@ extension SubjectListDataProvider {
                 self?.delegate?.didUpdateModel(at: indexPath)
             case .failure(let error):
                 DDLogError("\(error)")
+                self?.showErrorAlert(AuthError.emptyCredentials.message)
             }
         }
     }
+
 }

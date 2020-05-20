@@ -17,6 +17,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
     }
 
     private lazy var dataSource: [Section] = {
+        return []   // hide for now until we have integrated with API
         return [
             Section(header: .init(icon: R.image.pinIcon(), text: "IMPORTANT ITEMS"),
                     dismiss: true,

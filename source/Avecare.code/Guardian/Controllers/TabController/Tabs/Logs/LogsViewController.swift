@@ -17,10 +17,12 @@ class LogsViewController: UIViewController {
     var filterDate: Date {
         calendarView.selectedDates.first?.startOfDay ?? Date().startOfDay
     }
-    lazy var filterSubject: RLMSubject = subjectListDataProvider.model(at: IndexPath(item: 0, section: 0))
+
+    weak var subjectSelection: SubjectSelectionProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        subjectSelection = tabBarController as? GuardianTabBarController
 
         tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
 
@@ -38,12 +40,11 @@ class LogsViewController: UIViewController {
         ])
 
         self.navigationController?.hideHairline()
-        setSubjectSelectButtonTitle(titleText: filterSubject.firstName)
     }
 
-    func reloadData() {
-        dataProvider.fetchLogForm(subject: filterSubject, date: filterDate)
-        tableView.reloadData()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateScreen()
     }
 
     @IBAction func subjectSelectButtonTouched(_ sender: UIButton) {
@@ -62,7 +63,28 @@ class LogsViewController: UIViewController {
         }
     }
 
-    private func setSubjectSelectButtonTitle(titleText: String) {
+    private func updateScreen() {
+        // subject must be selected
+        let subject: RLMSubject
+        if let selection = subjectSelection?.subject {
+            subject = selection
+        } else {
+            guard subjectListDataProvider.numberOfRows > 0 else {
+                return
+            }
+            let indexPath = IndexPath(row: 0, section: 0)
+            subject = subjectListDataProvider.model(at: indexPath)
+            subjectSelection?.subject = subject
+        }
+
+        updateSubjectSelectButton(subject: subject)
+        dataProvider.fetchLogForm(subject: subject, date: filterDate)
+        tableView.reloadData()
+    }
+
+
+    private func updateSubjectSelectButton(subject: RLMSubject) {
+        let titleText =  "\(subject.firstName) \(subject.lastName)"
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])
         let chevronFont = UIFont(name: "FontAwesome5Pro-Light", size: 12)
@@ -77,15 +99,15 @@ class LogsViewController: UIViewController {
 extension LogsViewController: SubjectListViewControllerDelegate {
     func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
         controller.dismiss(animated: true)
-        setSubjectSelectButtonTitle(titleText: subject.firstName)
-        filterSubject = subject
-        reloadData()
+        subjectSelection?.subject = subject
+        updateScreen()
     }
 
     // not used for this view controller
     func subjectListDidSelectAll(_ controller: SubjectListViewController) {
         controller.dismiss(animated: true)
-        setSubjectSelectButtonTitle(titleText: "All")
+        subjectSelection?.subject = nil
+        updateScreen()
     }
 }
 
@@ -147,7 +169,7 @@ extension LogsViewController: JTACMonthViewDelegate {
         if let cell = cell as? DateCell {
             cell.configureCell(cellState: cellState)
         }
-        reloadData()
+        updateScreen()
     }
 
     func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {

@@ -226,7 +226,6 @@
                         <viewLayoutGuide key="safeArea" id="RYE-nL-CLk"/>
                     </view>
                     <navigationItem key="navigationItem" id="9dC-JN-gNE"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKH-zV-Nka" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

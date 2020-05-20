@@ -38,7 +38,7 @@ extension SubjectListViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = dataProvider.cellViewModel(for: indexPath)
+        let model = dataProvider.listCellViewModel(for: indexPath)
         return tableView.dequeueReusableCell(withAnyModel: model, for: indexPath)
     }
 

@@ -60,8 +60,11 @@ extension SyncEngine {
                     }
                 }
 
+                var operations: [BlockOperation] = []
+
                 for (index, subject) in allSubjects.enumerated() {
                     if let unitId = subject.unitIds.first {
+
                         let operation = BlockOperation {
                             if self.syncStates[syncKey] == .complete {  // nothing more to do.
                                 return
@@ -70,7 +73,7 @@ extension SyncEngine {
                             let semaphore = DispatchSemaphore(value: 0) // serialize async API executions in this thread.
 
                             UnitAPIService.getUnitDetails(unitId: unitId) { [weak self] result in
-                                DDLogDebug("#️⃣ \(index+1) of \(allSubjects.count)")
+                                DDLogDebug("#️⃣ \(index+1) of \(allSubjects.count) Subject(s)")
                                 apiResult = result
 
                                 switch result {
@@ -87,12 +90,22 @@ extension SyncEngine {
                             semaphore.wait()
                         }   // end-of-BlockOperation
 
+                        operations.append(operation)
                         completionOperation.addDependency(operation)
-                        operationQueue.addOperation(operation)
                     }
                 }
 
+                // FIFO
+                for (index, op) in operations.enumerated() {
+                    if index == 0 {
+                        continue    // skip first one.
+                    }
+                    // Depend on previous one.
+                    op.addDependency(operations[index-1])
+                }
+
                 OperationQueue.main.addOperation(completionOperation)
+                operationQueue.addOperations(operations, waitUntilFinished: false)  // trigger!
             }
         }
 

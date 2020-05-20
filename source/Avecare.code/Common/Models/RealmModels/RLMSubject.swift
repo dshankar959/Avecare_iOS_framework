@@ -8,6 +8,9 @@ class RLMSubject: RLMDefaults {
     @objc dynamic var firstName: String = ""
     @objc dynamic var middleName: String = ""
     @objc dynamic var lastName: String = ""
+    var fullName: String {
+        return "\(firstName) \(lastName)"
+    }
     @objc dynamic var birthday = Date()
     @objc dynamic var subjectTypeId: String = ""
     @objc dynamic var photoConsent: Bool = true

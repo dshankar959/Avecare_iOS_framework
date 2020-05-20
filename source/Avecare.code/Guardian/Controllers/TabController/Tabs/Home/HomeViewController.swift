@@ -8,21 +8,26 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subjectFilterButton: UIButton!
 
-    var dataProvider: HomeDataProvider = DefaultHomeDataProvider()
+    let dataProvider: HomeDataProvider = DefaultHomeDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
+    weak var subjectSelection: SubjectSelectionProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        subjectSelection = tabBarController as? GuardianTabBarController
 
         tableView.register(nibModels: [
             LogsNoteTableViewCellModel.self,
             HomeTableViewDisclosureCellModel.self
         ])
 
-        setSubjectFilerButtonTitle(titleText: "All")
-
         self.navigationController?.hideHairline()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateScreen()
     }
 
     @IBAction func didClickSubjectPickerButton(_ sender: UIButton) {
@@ -42,7 +47,17 @@ class HomeViewController: UIViewController {
         }
     }
 
-    private func setSubjectFilerButtonTitle(titleText: String) {
+    private func updateScreen() {
+        updateSubjectFilterButton()
+    }
+
+    private func updateSubjectFilterButton() {
+        let titleText: String
+        if let selectedSubject = subjectSelection?.subject {
+            titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
+        } else {
+            titleText = "All"
+        }
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])
 
@@ -57,12 +72,14 @@ class HomeViewController: UIViewController {
 extension HomeViewController: SubjectListViewControllerDelegate {
     func subjectListDidSelectAll(_ controller: SubjectListViewController) {
         controller.dismiss(animated: true)
-        setSubjectFilerButtonTitle(titleText: "All")
+        subjectSelection?.subject = nil
+        updateScreen()
     }
 
     func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
         controller.dismiss(animated: true)
-        setSubjectFilerButtonTitle(titleText: subject.firstName)
+        subjectSelection?.subject = subject
+        updateScreen()
     }
 }
 
@@ -90,7 +107,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return dataProvider.headerViewModel(for: section)?.buildView()
     }
 
-    // TODO: review technical design on how we should handle dismissing notifications
+    // TODO: review technical design on how we should handle dismissing notifications [S.D]
 /*
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         guard dataProvider.canDismiss(at: indexPath) else { return nil }

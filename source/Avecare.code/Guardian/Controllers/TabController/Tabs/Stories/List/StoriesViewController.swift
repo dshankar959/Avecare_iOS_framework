@@ -1,17 +1,18 @@
 import UIKit
 
-
-
 class StoriesListViewController: UIViewController {
 
     @IBOutlet weak var subjectFilterButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
 
-    var dataProvider: StoriesDataProvider = DefaultStoriesDataProvider()
+    let dataProvider: StoriesDataProvider = DefaultStoriesDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
+
+    weak var subjectSelection: SubjectSelectionProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        subjectSelection = tabBarController as? GuardianTabBarController
 
         tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
         tableView.register(nibModels: [
@@ -19,9 +20,12 @@ class StoriesListViewController: UIViewController {
             SupervisorFilterTableViewCellModel.self
         ])
 
-        setSubjectFilerButtonTitle(titleText: "All")
-
         self.navigationController?.hideHairline()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updateScreen()
     }
 
     @IBAction func subjectFilterButtonTouched(_ sender: UIButton) {
@@ -46,7 +50,19 @@ class StoriesListViewController: UIViewController {
         }
     }
 
-    private func setSubjectFilerButtonTitle(titleText: String) {
+    private func updateScreen() {
+        updateSubjectFilterButton()
+        updateEducators()
+    }
+
+
+    private func updateSubjectFilterButton() {
+        let titleText: String
+        if let selectedSubject = subjectSelection?.subject {
+            titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
+        } else {
+            titleText = "All"
+        }
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])
         let chevronFont = UIFont(name: "FontAwesome5Pro-Light", size: 12)
@@ -55,17 +71,28 @@ class StoriesListViewController: UIViewController {
 
         subjectFilterButton.setAttributedTitle(titleAttributedString, for: .normal)
     }
+
+    private func updateEducators() {
+        if let selectedSubject = subjectSelection?.subject {
+            dataProvider.unitIds = Array(selectedSubject.unitIds)
+        } else {
+            dataProvider.unitIds = [String]()
+        }
+        tableView.reloadData()
+    }
 }
 
 extension StoriesListViewController: SubjectListViewControllerDelegate {
     func subjectListDidSelectAll(_ controller: SubjectListViewController) {
         controller.dismiss(animated: true)
-        setSubjectFilerButtonTitle(titleText: "All")
+        subjectSelection?.subject = nil
+        updateScreen()
     }
 
     func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
         controller.dismiss(animated: true)
-        setSubjectFilerButtonTitle(titleText: subject.firstName)
+        subjectSelection?.subject = subject
+        updateScreen()
     }
 }
 
@@ -81,8 +108,12 @@ extension StoriesListViewController: UITableViewDelegate, UITableViewDataSource 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataProvider.model(for: indexPath)
         let cell = tableView.dequeueReusableCell(withAnyModel: model, for: indexPath)
+
         cell.separatorInset = .zero
         cell.layoutMargins = .zero
+
+        (cell as? SupervisorFilterTableViewCell)?.refreshView()
+
         return cell
     }
 

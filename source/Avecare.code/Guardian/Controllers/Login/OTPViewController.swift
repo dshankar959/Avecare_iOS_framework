@@ -21,7 +21,7 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
 
         snowflakeIconLabel.font = UIFont(name: "FontAwesome5Pro-Light", size: 24)
         snowflakeIconLabel.text = "\u{f2dc}"
-        snowflakeTitleLabel.text = "Avecare"
+        snowflakeTitleLabel.text = "Daily Wonders"  // TODO: app name should be taken from theme package
 
         self.navigationController?.hideHairline()
     }
@@ -120,7 +120,7 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
             appSettings.enableSyncDown = true
         }
 
-
+/*
         #if DEBUG
         if !appSettings.isFirstLogin() {
             // Control syncing.
@@ -130,7 +130,7 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
             appSettings.enableSyncDown = false
         }
         #endif
-
+*/
 
         /// Track app version in case we need to perform any custom migration upon an update.
         let previousAppVersion = appSettings.appVersion ?? ""
