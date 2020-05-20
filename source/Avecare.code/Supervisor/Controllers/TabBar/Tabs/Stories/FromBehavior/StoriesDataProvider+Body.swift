@@ -6,7 +6,7 @@ extension StoriesDataProvider {
 
     func bodyViewModel(for story: RLMStory) -> FormTextViewModel {
         let subtitleFont: UIFont = .systemFont(ofSize: 14)
-        let isSubmitted = story.serverLastUpdated != nil
+        let isSubmitted = story.publishState != .local
 
         return FormTextViewModel(font: subtitleFont, placeholder: "Begin typing here.",
                 value: story.body, isEditable: !isSubmitted, onChange: { [weak self] _, textValue in

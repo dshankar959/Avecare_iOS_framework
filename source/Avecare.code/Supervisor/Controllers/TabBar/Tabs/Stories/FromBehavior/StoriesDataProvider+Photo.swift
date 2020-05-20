@@ -7,7 +7,7 @@ import CocoaLumberjack
 extension StoriesDataProvider {
 
     func photoViewModel(for story: RLMStory) -> FormPhotoViewModel {
-        let isSubmitted = story.serverLastUpdated != nil
+        let isSubmitted = story.publishState != .local
         let photoRowAction = FormPhotoViewModel.Action(onTextChange: { [weak self] view, textValue in
             RLMStory.writeTransaction {
                 story.photoCaption = textValue ?? ""

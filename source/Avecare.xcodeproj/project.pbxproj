@@ -37,6 +37,7 @@
 		6154728813E2250C4A11F814 /* RLMFormTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615475A03445475FEEADDF5A /* RLMFormTemplate.swift */; };
 		615472B2CEF57EA92478927F /* SubjectListDataProvider+Option.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154767E71E8092BD4B8C466 /* SubjectListDataProvider+Option.swift */; };
 		615472CBDE78C09CE3F64F4F /* SupervisorCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547A1FA28CB839453C5EAD /* SupervisorCollectionViewCell.xib */; };
+		615472EF87CB602755619EC0 /* RLMPublishable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154766961FE6617406A657F /* RLMPublishable.swift */; };
 		615472FD03343E8BBC254253 /* LogsViewModelFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615479CD9C14B21CB4104304 /* LogsViewModelFactory.swift */; };
 		615473040C1C0CC2EFCA526E /* SubjectListDataProvider+Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547DC653D9C215F105D41E /* SubjectListDataProvider+Photo.swift */; };
 		6154731646C983BE37C728B7 /* ChecklistFormProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615471088CC460480F672FCC /* ChecklistFormProvider.swift */; };
@@ -48,6 +49,7 @@
 		6154739FE190C8520C56FE01 /* Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547C17CC0E23426250CCAD /* Closure.swift */; };
 		615473AD125A732468C1EFEF /* LogsNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547DE9A6DB6076BBBF8D86 /* LogsNoteTableViewCell.swift */; };
 		615473E128966135AC3D2073 /* APIToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154776EEBDD5F8468C41A59 /* APIToken.swift */; };
+		615473E75C758CC6A9261774 /* RLMPublishable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154766961FE6617406A657F /* RLMPublishable.swift */; };
 		615474402057962CDECCDF84 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477A05C137912CDD2DABD /* TextField.swift */; };
 		615474453FDE920B0B2ABA52 /* SubjectAccidentReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615479F7C3DD7F44D7336517 /* SubjectAccidentReportView.swift */; };
 		6154745D996E633787CD0A2F /* FilesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547A001A9E896379830128 /* FilesResponseModel.swift */; };
@@ -73,6 +75,7 @@
 		6154779DD64F75D8B70F59FC /* RLMReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478BBE87EEEB048C429BF /* RLMReusable.swift */; };
 		615477CD524B2F1C20B297C9 /* InstitutionsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615476E15206D0F7BC7080C8 /* InstitutionsAPIService.swift */; };
 		615477F71296A06747353D27 /* RLMReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478BBE87EEEB048C429BF /* RLMReusable.swift */; };
+		61547808F82CBE95D41D18D2 /* SubjectListDataProvider+Subtitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547C3AB951F69EB4C23C1E /* SubjectListDataProvider+Subtitle.swift */; };
 		6154781CC1E9D4B79428BC3B /* StoriesDataProvider+Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547591AC635E1EB090F102 /* StoriesDataProvider+Body.swift */; };
 		615478302706516FFFEA01B9 /* StoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615476A0791F88C1DF8DC29A /* StoriesViewController.swift */; };
 		615478C6E0C0561E921C0005 /* syncOrganizationTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547CE19B2A59BB3A73A52C /* syncOrganizationTemplates.swift */; };
@@ -433,6 +436,7 @@
 		615476341CA9B1B5A2A77173 /* LogsNoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogsNoteTableViewCell.xib; sourceTree = "<group>"; };
 		61547637BA1F27AE456E3BAA /* LogsTimeDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTimeDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		6154764E6D3C3E9178996C56 /* placeholders.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = placeholders.strings; sourceTree = "<group>"; };
+		6154766961FE6617406A657F /* RLMPublishable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMPublishable.swift; sourceTree = "<group>"; };
 		6154767E71E8092BD4B8C466 /* SubjectListDataProvider+Option.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Option.swift"; sourceTree = "<group>"; };
 		615476A0791F88C1DF8DC29A /* StoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
 		615476A733FC27107FD3D4C8 /* SingleValuePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleValuePickerView.swift; sourceTree = "<group>"; };
@@ -473,6 +477,7 @@
 		61547BBC4F5F4748C5E93244 /* UnitReminder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitReminder.swift; sourceTree = "<group>"; };
 		61547BF984C577F414B32894 /* TimeRangePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRangePickerView.swift; sourceTree = "<group>"; };
 		61547C17CC0E23426250CCAD /* Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Closure.swift; sourceTree = "<group>"; };
+		61547C3AB951F69EB4C23C1E /* SubjectListDataProvider+Subtitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Subtitle.swift"; sourceTree = "<group>"; };
 		61547C4449BE6B0CE9311214 /* ApplicationCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCore.swift; sourceTree = "<group>"; };
 		61547C4E1BD0B55D3EC3943A /* HomeTableVIewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableVIewHeaderView.swift; sourceTree = "<group>"; };
 		61547C86A6589BD1A80D59D6 /* StoriesDataProvider+Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoriesDataProvider+Title.swift"; sourceTree = "<group>"; };
@@ -896,6 +901,7 @@
 				61547DC653D9C215F105D41E /* SubjectListDataProvider+Photo.swift */,
 				615478D8AB934A1DD5AD4BF9 /* SubjectListDataProvider+Injury.swift */,
 				615477C6C7DC9B6372B7ACC6 /* SubjectListDataProvider+Common.swift */,
+				61547C3AB951F69EB4C23C1E /* SubjectListDataProvider+Subtitle.swift */,
 			);
 			path = FormBehavior;
 			sourceTree = "<group>";
@@ -1612,6 +1618,7 @@
 				615475A03445475FEEADDF5A /* RLMFormTemplate.swift */,
 				615474E20C4A1706A2D294F0 /* RLMStory.swift */,
 				615478BBE87EEEB048C429BF /* RLMReusable.swift */,
+				6154766961FE6617406A657F /* RLMPublishable.swift */,
 			);
 			path = RealmModels;
 			sourceTree = "<group>";
@@ -2389,6 +2396,8 @@
 				615477704DE5A548304F7B1F /* syncUnitStories.swift in Sources */,
 				615477F71296A06747353D27 /* RLMReusable.swift in Sources */,
 				6154745D996E633787CD0A2F /* FilesResponseModel.swift in Sources */,
+				615472EF87CB602755619EC0 /* RLMPublishable.swift in Sources */,
+				61547808F82CBE95D41D18D2 /* SubjectListDataProvider+Subtitle.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2530,6 +2539,7 @@
 				6154779DD64F75D8B70F59FC /* RLMReusable.swift in Sources */,
 				61547DC92C618D6FC9A81227 /* syncUnitStories.swift in Sources */,
 				61547D0BE9189E92DB28BD3E /* FilesResponseModel.swift in Sources */,
+				615473E75C758CC6A9261774 /* RLMPublishable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

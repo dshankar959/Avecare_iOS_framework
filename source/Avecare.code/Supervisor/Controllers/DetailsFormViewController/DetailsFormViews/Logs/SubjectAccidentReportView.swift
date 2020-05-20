@@ -10,13 +10,17 @@ struct SubjectAccidentReportViewModel: CellViewModel {
 
     var action: PickerViewFormViewModel.Action? = nil
 
+    let isEditable: Bool
+
     func setup(cell: CellType) {
         cell.iconImageView.backgroundColor = iconColor?.withAlphaComponent(0.3)
         cell.iconImageView.tintColor = iconColor
         cell.iconImageView.image = icon
 
         var viewModel = Self.pickerViewModel(from: time)
-        viewModel.action = action
+        if isEditable {
+            viewModel.action = action
+        }
         viewModel.setup(cell: cell.pickerView)
     }
 
