@@ -74,7 +74,7 @@ class LogsViewController: UIViewController {
             }
             let indexPath = IndexPath(row: 0, section: 0)
             subject = subjectListDataProvider.model(at: indexPath)
-            subjectSelection?.subject = subject
+            //subjectSelection?.subject = subject -- Don't ever store it on subjectSelection
         }
 
         updateSubjectSelectButton(subject: subject)
