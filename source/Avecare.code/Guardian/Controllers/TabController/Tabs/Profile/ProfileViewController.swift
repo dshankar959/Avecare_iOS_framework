@@ -10,6 +10,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var profileTableView: UITableView!
 
     let dataProvider: ProfileDataProvider = DefaultProfileDataProvider()
+    lazy var slideInTransitionDelegate = SlideInPresentationManager()
     weak var subjectSelection: SubjectSelectionProtocol?
 
     override func viewDidLoad() {
@@ -56,6 +57,15 @@ class ProfileViewController: UIViewController {
             let details = R.segue.profileViewController.details(segue: segue) {
             details.destination.profileDetails = sender as! ProfileDetails
         }
+
+        if segue.identifier == R.segue.profileViewController.educatorDetails.identifier,
+            let destination = segue.destination as? EducatorDetailsViewController {
+            destination.selectedEducator = sender as? EducatorSummaryTableViewCellModel
+
+            slideInTransitionDelegate.direction = .bottom
+            destination.transitioningDelegate = slideInTransitionDelegate
+            destination.modalPresentationStyle = .custom
+        }
     }
 }
 
@@ -76,10 +86,11 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             profileSubjectCell.parentVC = self
             profileSubjectCell.refreshView()
         }
-        /*
-        (cell as? ProfileSubjectTableViewCell)?.refreshView()
-        (cell as? ProfileSubjectTableViewCell)?.parentVC = self*/
-        (cell as? SupervisorFilterTableViewCell)?.refreshView()
+
+        if let supervisorCell = cell as? SupervisorFilterTableViewCell {
+            supervisorCell.refreshView()
+            supervisorCell.parentVC = self
+        }
 
         if indexPath.section < 2 {
             cell.selectionStyle = .none
@@ -118,5 +129,11 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return .leastNormalMagnitude
+    }
+}
+
+extension ProfileViewController: ViewControllerWithSupervisorFilterViewCell {
+    func educatorDidSelect(selectedEducatorSummary: EducatorSummaryTableViewCellModel) {
+        performSegue(withIdentifier: R.segue.profileViewController.educatorDetails, sender: selectedEducatorSummary)
     }
 }

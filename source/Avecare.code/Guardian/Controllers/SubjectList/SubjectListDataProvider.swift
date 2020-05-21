@@ -25,7 +25,7 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
     private lazy var dataSource = RLMSubject.findAll(sortedBy: "firstName")
 
     var numberOfRows: Int {
-        return dataSource.count - (allSubjectsIncluded ? 1 : 0)
+        return dataSource.count + (allSubjectsIncluded ? 1 : 0)
     }
 
     func model(at indexPath: IndexPath) -> RLMSubject {

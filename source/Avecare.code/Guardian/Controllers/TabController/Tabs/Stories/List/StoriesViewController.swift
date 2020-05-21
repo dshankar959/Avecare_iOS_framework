@@ -48,6 +48,15 @@ class StoriesListViewController: UIViewController {
             destination.transitioningDelegate = slideInTransitionDelegate
             destination.modalPresentationStyle = .custom
         }
+
+        if segue.identifier == R.segue.storiesListViewController.educatorDetails.identifier,
+            let destination = segue.destination as? EducatorDetailsViewController {
+            destination.selectedEducator = sender as? EducatorSummaryTableViewCellModel
+
+            slideInTransitionDelegate.direction = .bottom
+            destination.transitioningDelegate = slideInTransitionDelegate
+            destination.modalPresentationStyle = .custom
+        }
     }
 
     private func updateScreen() {
@@ -112,7 +121,10 @@ extension StoriesListViewController: UITableViewDelegate, UITableViewDataSource 
         cell.separatorInset = .zero
         cell.layoutMargins = .zero
 
-        (cell as? SupervisorFilterTableViewCell)?.refreshView()
+        if let supervisorCell = cell as? SupervisorFilterTableViewCell {
+            supervisorCell.refreshView()
+            supervisorCell.parentVC = self
+        }
 
         return cell
     }
@@ -140,5 +152,11 @@ extension StoriesListViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return .leastNormalMagnitude
+    }
+}
+
+extension StoriesListViewController: ViewControllerWithSupervisorFilterViewCell {
+    func educatorDidSelect(selectedEducatorSummary: EducatorSummaryTableViewCellModel) {
+        performSegue(withIdentifier: R.segue.storiesListViewController.educatorDetails, sender: selectedEducatorSummary)
     }
 }

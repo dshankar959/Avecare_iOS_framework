@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="enL-6S-EK2">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Educator Details View Controller-->
+        <scene sceneID="G7x-dE-GIr">
+            <objects>
+                <viewController id="enL-6S-EK2" customClass="EducatorDetailsViewController" customModule="parent" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gzb-nk-y6O">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="068-lH-gfb">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="enL-6S-EK2" id="jvc-5c-Jom"/>
+                                    <outlet property="delegate" destination="enL-6S-EK2" id="hWf-tM-P5S"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="068-lH-gfb" firstAttribute="bottom" secondItem="amM-8u-QkS" secondAttribute="bottom" id="AXT-Nb-Hiz"/>
+                            <constraint firstItem="068-lH-gfb" firstAttribute="leading" secondItem="amM-8u-QkS" secondAttribute="leading" id="Ez1-Yl-ga4"/>
+                            <constraint firstItem="068-lH-gfb" firstAttribute="top" secondItem="amM-8u-QkS" secondAttribute="top" id="NFC-gv-E9X"/>
+                            <constraint firstItem="068-lH-gfb" firstAttribute="trailing" secondItem="amM-8u-QkS" secondAttribute="trailing" id="yop-63-N0r"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="amM-8u-QkS"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="414" height="400"/>
+                    <connections>
+                        <outlet property="tableView" destination="068-lH-gfb" id="5nn-28-fPc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2nf-jr-kpY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="58.125" y="101.25"/>
+        </scene>
+    </scenes>
+</document>
