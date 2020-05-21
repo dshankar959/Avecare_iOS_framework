@@ -49,6 +49,7 @@ extension SupervisorFilterTableViewCell: UICollectionViewDataSource, UICollectio
         return CGSize(width: width, height: height)
     }
 
+    // Scroll snapping
     func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                    withVelocity velocity: CGPoint,
                                    targetContentOffset: UnsafeMutablePointer<CGPoint>) {

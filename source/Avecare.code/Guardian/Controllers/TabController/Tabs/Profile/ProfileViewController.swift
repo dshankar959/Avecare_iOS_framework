@@ -42,7 +42,7 @@ class ProfileViewController: UIViewController {
             if dataProvider.subjectsProvider.numberOfRows > 0 {
                 let indexPath = IndexPath(row: 0, section: 0)
                 let subject = dataProvider.subjectsProvider.model(at: indexPath)
-                subjectSelection?.subject = subject
+                //subjectSelection?.subject = subject -- Don't ever store it on subjectSelection
                 dataProvider.unitIds = Array(subject.unitIds)
             } else {
                 dataProvider.unitIds = [String]()
