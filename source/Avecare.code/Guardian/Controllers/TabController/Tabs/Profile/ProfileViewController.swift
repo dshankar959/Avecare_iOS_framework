@@ -142,20 +142,50 @@ extension ProfileViewController: ViewControllerWithSupervisorFilterViewCell {
 }
 
 extension ProfileViewController: IndicatorProtocol {
-    private func logout() {
-        showActivityIndicator(withStatus: "Requesting logout ...")
-        UserAPIService.logout { [weak self] result in
-            self?.hideActivityIndicator()
 
+    private func logout() {
+        showActivityIndicator(withStatus: "Signing Out...")
+        UserAPIService.logout { [weak self] result in
             switch result {
             case .success(let message):
-                DDLogVerbose("Successful logout.✅  [withStatusCode = \(message)]")
-                if let tabBarController = self?.tabBarController as? GuardianTabBarController {
-                    tabBarController.onLogout()
-                }
+                DDLogVerbose("Logged out from the serve successfully.✅  [with status code = \(message)]")
+                self?.resetSyncEngine()
             case .failure(let error):
+                self?.hideActivityIndicator()
                 DDLogError("\(error)")
                 self?.showErrorAlert(error)
+            }
+        }
+    }
+
+    private func resetSyncEngine() {
+        syncEngine.stopSyncTimer()
+        syncEngine.isSyncCancelled = true
+        syncEngine.notifySyncStateChanged(message: "...cancelling...")
+
+        if syncEngine.isSyncing {
+            DDLogInfo("Waiting for sync to complete.")
+            syncEngine.syncAll { [weak self] error in
+                DDLogInfo("Sync completed.")
+                self?.resetApp()
+            }
+        } else {
+            resetApp()
+        }
+    }
+
+    private func resetApp() {
+        DDLogInfo("Resetting app.")
+        appDelegate._syncEngine = SyncEngine()
+        appDelegate._appSettings = AppSettings()
+        appDelegate._session = Session()
+
+        // give extra time for animations and 'writes' to settle.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            self?.hideActivityIndicator()
+
+            if let tabBarController = self?.tabBarController as? GuardianTabBarController {
+                tabBarController.onLogout()
             }
         }
     }
