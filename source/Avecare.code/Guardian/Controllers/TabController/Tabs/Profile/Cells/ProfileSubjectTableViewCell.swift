@@ -41,7 +41,6 @@ class ProfileSubjectTableViewCell: UITableViewCell {
               let selectedSubjectId = parentVC?.subjectSelection?.subject?.id else {
             return
         }
-        subjectsCollectionView.reloadData()
 
         let visibleIndexPaths = subjectsCollectionView.indexPathsForVisibleItems
         for i in 0..<dataProvider.numberOfRows {
@@ -55,7 +54,8 @@ class ProfileSubjectTableViewCell: UITableViewCell {
                 break
             }
         }
-
+        
+        subjectsCollectionView.reloadData()
     }
 
     private func setLabels(forModelAt indexPath: IndexPath) {
