@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import CocoaLumberjack
 
 class ProfileViewController: UIViewController {
 
@@ -113,6 +114,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             performSegue(withIdentifier: R.segue.profileViewController.details, sender: details)
         } else if indexPath.section == 3 {
             performSegue(withIdentifier: R.segue.profileViewController.about, sender: nil)
+        } else if indexPath.section == 4 {
+            logout()
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
@@ -135,5 +138,25 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 extension ProfileViewController: ViewControllerWithSupervisorFilterViewCell {
     func educatorDidSelect(selectedEducatorSummary: EducatorSummaryTableViewCellModel) {
         performSegue(withIdentifier: R.segue.profileViewController.educatorDetails, sender: selectedEducatorSummary)
+    }
+}
+
+extension ProfileViewController: IndicatorProtocol {
+    private func logout() {
+        showActivityIndicator(withStatus: "Requesting logout ...")
+        UserAPIService.logout { [weak self] result in
+            self?.hideActivityIndicator()
+
+            switch result {
+            case .success(let message):
+                DDLogVerbose("Successful logout.✅  [withStatusCode = \(message)]")
+                if let tabBarController = self?.tabBarController as? GuardianTabBarController {
+                    tabBarController.onLogout()
+                }
+            case .failure(let error):
+                DDLogError("\(error)")
+                self?.showErrorAlert(error)
+            }
+        }
     }
 }

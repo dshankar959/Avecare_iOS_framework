@@ -102,6 +102,12 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
         }
     }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == R.segue.otpViewController.tabbar.identifier,
+            let destination = segue.destination as? GuardianTabBarController {
+            destination.loginFlowNavigation = navigationController
+        }
+    }
 
     private func handleError(_ error: AppError) {
         DDLogError("\(error)")
