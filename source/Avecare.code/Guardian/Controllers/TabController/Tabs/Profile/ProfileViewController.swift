@@ -6,7 +6,7 @@
 import UIKit
 import CocoaLumberjack
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, IndicatorProtocol {
 
     @IBOutlet weak var profileTableView: UITableView!
 
@@ -115,7 +115,16 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.section == 3 {
             performSegue(withIdentifier: R.segue.profileViewController.about, sender: nil)
         } else if indexPath.section == 4 {
-            logout()
+            // Log out
+            UserAthenticateService.shared.signOut { [weak self] error in
+                if let error = error {
+                    self?.showErrorAlert(error)
+                } else {
+                    if let tabBarController = self?.tabBarController as? GuardianTabBarController {
+                        tabBarController.onLogout()
+                    }
+                }
+            }
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
@@ -138,55 +147,5 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 extension ProfileViewController: ViewControllerWithSupervisorFilterViewCell {
     func educatorDidSelect(selectedEducatorSummary: EducatorSummaryTableViewCellModel) {
         performSegue(withIdentifier: R.segue.profileViewController.educatorDetails, sender: selectedEducatorSummary)
-    }
-}
-
-extension ProfileViewController: IndicatorProtocol {
-
-    private func logout() {
-        showActivityIndicator(withStatus: "Signing Out...")
-        UserAPIService.logout { [weak self] result in
-            switch result {
-            case .success(let message):
-                DDLogVerbose("Logged out from the serve successfully.✅  [with status code = \(message)]")
-                self?.resetSyncEngine()
-            case .failure(let error):
-                self?.hideActivityIndicator()
-                DDLogError("\(error)")
-                self?.showErrorAlert(error)
-            }
-        }
-    }
-
-    private func resetSyncEngine() {
-        syncEngine.stopSyncTimer()
-        syncEngine.isSyncCancelled = true
-        syncEngine.notifySyncStateChanged(message: "...cancelling...")
-
-        if syncEngine.isSyncing {
-            DDLogInfo("Waiting for sync to complete.")
-            syncEngine.syncAll { [weak self] error in
-                DDLogInfo("Sync completed.")
-                self?.resetApp()
-            }
-        } else {
-            resetApp()
-        }
-    }
-
-    private func resetApp() {
-        DDLogInfo("Resetting app.")
-        appDelegate._syncEngine = SyncEngine()
-        appDelegate._appSettings = AppSettings()
-        appDelegate._session = Session()
-
-        // give extra time for animations and 'writes' to settle.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            self?.hideActivityIndicator()
-
-            if let tabBarController = self?.tabBarController as? GuardianTabBarController {
-                tabBarController.onLogout()
-            }
-        }
     }
 }
