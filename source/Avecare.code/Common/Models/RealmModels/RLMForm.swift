@@ -75,5 +75,10 @@ class RLMLogForm: RLMDefaults, RLMPublishable {
 
 
 extension RLMLogForm: DataProvider {
-
+    static func find(withSubjectID: String, date: Date) -> Self? {
+        let database = getDatabase()
+        return database?.objects(Self.self)
+                .filter("subject.id = %@ AND serverLastUpdated = %@", withSubjectID, date)
+                .first
+    }
 }

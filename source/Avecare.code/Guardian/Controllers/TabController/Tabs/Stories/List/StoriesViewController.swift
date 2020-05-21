@@ -8,10 +8,11 @@ class StoriesListViewController: UIViewController {
     let dataProvider: StoriesDataProvider = DefaultStoriesDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
-    var selectedSubject: RLMSubject? = nil
+    weak var subjectSelection: SubjectSelectionProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        subjectSelection = tabBarController as? GuardianTabBarController
 
         tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
         tableView.register(nibModels: [
@@ -40,7 +41,7 @@ class StoriesListViewController: UIViewController {
         if segue.identifier == R.segue.storiesListViewController.subjectList.identifier,
             let destination = segue.destination as? SubjectListViewController {
             destination.delegate = self
-            destination.listIncludesAllSelection = true
+            destination.dataProvider.allSubjectsIncluded = true
             slideInTransitionDelegate.direction = .bottom
             slideInTransitionDelegate.sizeOfPresentingViewController = CGSize(width: view.frame.size.width,
                                                                               height: destination.contentHeight)
@@ -59,22 +60,14 @@ class StoriesListViewController: UIViewController {
     }
 
     private func updateScreen() {
-        updateSelectedSubject()
         updateSubjectFilterButton()
         updateEducators()
     }
 
-    private func updateSelectedSubject() {
-        if let selectedSubjectId = selectedSubjectId {
-            selectedSubject = RLMSubject.find(withID: selectedSubjectId)
-        } else {
-            selectedSubject = nil
-        }
-    }
 
     private func updateSubjectFilterButton() {
         let titleText: String
-        if let selectedSubject = selectedSubject {
+        if let selectedSubject = subjectSelection?.subject {
             titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
         } else {
             titleText = "All"
@@ -89,7 +82,7 @@ class StoriesListViewController: UIViewController {
     }
 
     private func updateEducators() {
-        if let selectedSubject = selectedSubject {
+        if let selectedSubject = subjectSelection?.subject {
             dataProvider.unitIds = Array(selectedSubject.unitIds)
         } else {
             dataProvider.unitIds = [String]()
@@ -99,9 +92,15 @@ class StoriesListViewController: UIViewController {
 }
 
 extension StoriesListViewController: SubjectListViewControllerDelegate {
-    func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
+    func subjectListDidSelectAll(_ controller: SubjectListViewController) {
         controller.dismiss(animated: true)
+        subjectSelection?.subject = nil
+        updateScreen()
+    }
 
+    func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
+        controller.dismiss(animated: true)
+        subjectSelection?.subject = subject
         updateScreen()
     }
 }

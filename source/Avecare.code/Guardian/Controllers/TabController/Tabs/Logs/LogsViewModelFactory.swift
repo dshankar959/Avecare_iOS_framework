@@ -4,13 +4,13 @@ import UIKit
 
 struct LogsViewModelFactory {
 
-    static func viewModel(for row: RLMLogRow) -> AnyCellViewModel {
+    static func viewModel(for row: RLMLogRow, storage: ImageStorageService) -> AnyCellViewModel {
         switch row.rowType {
         case .option: return viewModel(for: row.option!)
         case .time: return viewModel(for: row.time!)
         case .switcher: return viewModel(for: row.switcher!)
         case .note: return viewModel(for: row.note!)
-        case .photo: return viewModel(for: row.photo!)
+        case .photo: return viewModel(for: row.photo!, storage: storage)
         case .injury: return viewModel(for: row.injury!)
         }
     }
@@ -31,8 +31,8 @@ struct LogsViewModelFactory {
         return .init(row: row)
     }
 
-    static func viewModel(for row: RLMLogPhotoRow) -> LogsPhotoTableViewCellModel {
-        return .init(row: row)
+    static func viewModel(for row: RLMLogPhotoRow, storage: ImageStorageService) -> LogsPhotoTableViewCellModel {
+        return .init(row: row, storage: storage)
     }
 
     static func viewModel(for row: RLMLogInjuryRow) -> LogsNoteTableViewCellModel {
@@ -68,12 +68,12 @@ extension LogsOptionTableViewCellModel {
 
 extension LogsPhotoTableViewCellModel {
 
-    init(row: RLMLogPhotoRow) {
-//        if let imgName = row.imageUrl, let img = UIImage(named: imgName) {
-//            image = img
-//        } else {
+    init(row: RLMLogPhotoRow, storage: ImageStorageService) {
+        if let url = storage.imageURL(name: row.id) {
+            image = UIImage(contentsOfFile: url.path)
+        } else {
             image = nil
-//        }
+        }
         caption = row.text
     }
 
@@ -108,8 +108,7 @@ extension LogsTimeDetailsTableViewCellModel {
         let formatter = Date.timeFormatter
         selectedOption1 = formatter.string(from: row.startTime) + " - " + formatter.string(from: row.endTime)
 
-        let selectedId = row.selectedValue
-        if let selectedText = row.options.first(where: { $0.value == selectedId })?.text {
+        if let selectedText = row.options.first(where: { $0.value == row.selectedValue })?.text {
             selectedOption2 = selectedText
         }
     }

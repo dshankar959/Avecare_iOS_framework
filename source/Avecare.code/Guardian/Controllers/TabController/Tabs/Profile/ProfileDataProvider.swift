@@ -9,6 +9,10 @@
 import Foundation
 
 protocol ProfileDataProvider: class {
+    var subjectsProvider: SubjectListDataProvider { get }
+    var educatorsProvider: EducatorsDataProvider { get }
+    var subjectSelection: SubjectSelectionProtocol? { get set }
+
     var unitIds: [String] { get set }
     var numberOfSections: Int { get }
     func numberOfRows(for section: Int) -> Int
@@ -22,12 +26,13 @@ class DefaultProfileDataProvider: ProfileDataProvider {
         let profileMenus: [ProfileMenuTableViewCellModel]
     }
 
-    let subjects = DefaultSubjectListDataProvider()
-    let educators = DefaultEducatorsDataProvider()
+    let subjectsProvider: SubjectListDataProvider = DefaultSubjectListDataProvider()
+    let educatorsProvider: EducatorsDataProvider = DefaultEducatorsDataProvider()
+    weak var subjectSelection: SubjectSelectionProtocol?
 
     var unitIds = [String]() {
         didSet {
-            educators.unitIds = unitIds
+            educatorsProvider.unitIds = unitIds
         }
     }
 
@@ -60,9 +65,9 @@ class DefaultProfileDataProvider: ProfileDataProvider {
     func model(for indexPath: IndexPath) -> AnyCellViewModel {
         switch indexPath.section {
         case 0:
-            return ProfileSubjectTableViewCellModel(dataProvider: subjects)
+            return ProfileSubjectTableViewCellModel(dataProvider: subjectsProvider)
         case 1:
-            return SupervisorFilterTableViewCellModel(dataProvider: educators)
+            return SupervisorFilterTableViewCellModel(dataProvider: educatorsProvider)
         default:
             return dataSource[indexPath.section - 2].profileMenus[indexPath.row]
         }

@@ -34,13 +34,15 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
         super.viewDidAppear(animated)
 
         #if DEBUG
+        loginField?.text = "sdwornik@spiria.com"
 //        loginField?.text = "guardian@example.net"
 //        loginField?.text = "parent1@example.net"
-        loginField?.text = "sdwornik@spiria.com"
-//        loginField?.text = "jvanschyndel@spiria.com"
+//        loginField?.text = "parent2@example.net"
+//        loginField?.text = "parent3@example.net"
+//        loginField?.text = "parent4@example.net"
 
         // auto-sign-in, to speed up local testing.
-//        getCodeAction(sender: UIButton())
+        getCodeAction(sender: UIButton())
 
         #endif
     }

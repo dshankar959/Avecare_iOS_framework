@@ -51,15 +51,6 @@ var appSettings: AppSettings {      // 'read-only' property
     return appDelegate._appSettings
 }
 
-var selectedSubjectId: String? {
-    get {
-        return appDelegate._selectedSubjectId
-    }
-    set {
-        appDelegate._selectedSubjectId = newValue
-    }
-}
-
 var iOSblue: UIColor {
     return UIColor(hex: "007aff")
 }

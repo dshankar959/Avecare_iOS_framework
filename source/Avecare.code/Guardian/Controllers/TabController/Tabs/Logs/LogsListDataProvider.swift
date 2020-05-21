@@ -1,42 +1,37 @@
 import Foundation
 import CocoaLumberjack
-
+import CocoaLumberjack
 
 
 protocol LogsDataProvider: class {
     func numberOfRows(for section: Int) -> Int
     func model(for indexPath: IndexPath) -> AnyCellViewModel
+
+    func fetchLogForm(subject: RLMSubject, date: Date)
 }
 
 
 class DefaultLogsDataProvider: LogsDataProvider {
 
-    lazy var dataSource: [RLMLogRow] = {
-        do {
-            return try createRealmDataSource()
-        } catch {
-            DDLogError("\(error)")
-            fatalError("\(error.localizedDescription)")
-        }
-    }()
+    var logForm: RLMLogForm?
+    let imageStorage = ImageStorageService()
 
     func numberOfRows(for section: Int) -> Int {
-        return dataSource.count
+        return logForm?.rows.count ?? 0
     }
 
     func model(for indexPath: IndexPath) -> AnyCellViewModel {
-        return LogsViewModelFactory.viewModel(for: dataSource[indexPath.row])
+        guard let model = logForm?.rows[indexPath.row] else {
+            DDLogError("Tried to access invalid Index")
+            fatalError("Tried to access invalid Index")
+        }
+        return LogsViewModelFactory.viewModel(for: model, storage: imageStorage)
+    }
+
+    func fetchLogForm(subject: RLMSubject, date: Date) {
+        logForm = RLMLogForm.find(withSubjectID: subject.id, date: date)
     }
 }
 
 
-extension DefaultLogsDataProvider {
 
-    private func createRealmDataSource() throws -> [RLMLogRow] {
-        let data = try Data(resource: R.file.form1Json)
-        let form = try JSONDecoder().decode(RLMLogForm.self, from: data)
-
-        return Array(form.rows)
-    }
-
-}

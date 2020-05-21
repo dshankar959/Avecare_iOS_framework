@@ -12,12 +12,19 @@ class LogsViewController: UIViewController {
 
     let dataProvider = DefaultLogsDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
-    let subjectListDataProvider = DefaultSubjectListDataProvider() // To retrieve default subject
+    let subjectListDataProvider = DefaultSubjectListDataProvider()
 
-    var selectedSubject: RLMSubject? = nil
+    var filterDate: Date {
+        calendarView.selectedDates.first?.startOfDay ?? Date().startOfDay
+    }
+
+    weak var subjectSelection: SubjectSelectionProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        subjectSelection = tabBarController as? GuardianTabBarController
+
+        tableView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
 
         calendarView.scrollDirection = .horizontal
         calendarView.scrollingMode = .nonStopToCell(withResistance: 0.5)
@@ -45,38 +52,39 @@ class LogsViewController: UIViewController {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == R.segue.logsViewController.subjectList.identifier,
-           let destination = segue.destination as? SubjectListViewController {
-            destination.delegate = self
+        if let info = R.segue.logsViewController.subjectList(segue: segue) {
+            info.destination.delegate = self
+            info.destination.dataProvider = subjectListDataProvider
             slideInTransitionDelegate.direction = .bottom
             slideInTransitionDelegate.sizeOfPresentingViewController = CGSize(width: view.frame.size.width,
-                                                                              height: destination.contentHeight)
-            destination.transitioningDelegate = slideInTransitionDelegate
-            destination.modalPresentationStyle = .custom
+                                                                              height: info.destination.contentHeight)
+            info.destination.transitioningDelegate = slideInTransitionDelegate
+            info.destination.modalPresentationStyle = .custom
         }
     }
 
     private func updateScreen() {
-        updateSelectedSubject()
-        // TODO - update screen with selected subject
-        updateSubjectSelectButton()
+        // subject must be selected
+        let subject: RLMSubject
+        if let selection = subjectSelection?.subject {
+            subject = selection
+        } else {
+            guard subjectListDataProvider.numberOfRows > 0 else {
+                return
+            }
+            let indexPath = IndexPath(row: 0, section: 0)
+            subject = subjectListDataProvider.model(at: indexPath)
+            subjectSelection?.subject = subject
+        }
+
+        updateSubjectSelectButton(subject: subject)
+        dataProvider.fetchLogForm(subject: subject, date: filterDate)
+        tableView.reloadData()
     }
 
-    private func updateSelectedSubject() {
-        if let selectedSubjectId = selectedSubjectId {
-            selectedSubject = RLMSubject.find(withID: selectedSubjectId)
-        } else {
-            selectedSubject = nil
-        }
-    }
 
-    private func updateSubjectSelectButton() {
-        let titleText: String
-        if let selectedSubject = selectedSubject {
-            titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
-        } else {
-            titleText = subjectListDataProvider.listTableViewmodel(for: IndexPath.init(item: 0, section: 0)).title
-        }
+    private func updateSubjectSelectButton(subject: RLMSubject) {
+        let titleText =  "\(subject.firstName) \(subject.lastName)"
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])
         let chevronFont = UIFont(name: "FontAwesome5Pro-Light", size: 12)
@@ -89,9 +97,16 @@ class LogsViewController: UIViewController {
 
 
 extension LogsViewController: SubjectListViewControllerDelegate {
-    func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
+    func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
         controller.dismiss(animated: true)
+        subjectSelection?.subject = subject
+        updateScreen()
+    }
 
+    // not used for this view controller
+    func subjectListDidSelectAll(_ controller: SubjectListViewController) {
+        controller.dismiss(animated: true)
+        subjectSelection?.subject = nil
         updateScreen()
     }
 }
@@ -154,6 +169,7 @@ extension LogsViewController: JTACMonthViewDelegate {
         if let cell = cell as? DateCell {
             cell.configureCell(cellState: cellState)
         }
+        updateScreen()
     }
 
     func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {

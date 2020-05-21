@@ -39,7 +39,10 @@ extension SyncEngine {
                                                     if let error = error { syncCompletion(error) } else {
                                                         self.syncDOWNUnitStories { error in
                                                             DDLogVerbose("syncDOWNUnitStories ♓️ closure")
-                                                            syncCompletion(error)
+                                                            self.syncDOWNSubjectLogs { error in
+                                                                DDLogVerbose("syncDOWNSubjectLogs ♓️ closure")
+                                                                syncCompletion(error)
+                                                            }
                                                         }
                                                     }
                                                 }

@@ -11,10 +11,11 @@ class HomeViewController: UIViewController {
     let dataProvider: HomeDataProvider = DefaultHomeDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
-    var selectedSubject: RLMSubject? = nil
+    weak var subjectSelection: SubjectSelectionProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        subjectSelection = tabBarController as? GuardianTabBarController
 
         tableView.register(nibModels: [
             LogsNoteTableViewCellModel.self,
@@ -37,7 +38,7 @@ class HomeViewController: UIViewController {
         if segue.identifier == R.segue.homeViewController.subjectList.identifier,
            let destination = segue.destination as? SubjectListViewController {
             destination.delegate = self
-            destination.listIncludesAllSelection = true
+            destination.dataProvider.allSubjectsIncluded = true
             slideInTransitionDelegate.direction = .bottom
             slideInTransitionDelegate.sizeOfPresentingViewController = CGSize(width: view.frame.size.width,
                                                                               height: destination.contentHeight)
@@ -47,22 +48,12 @@ class HomeViewController: UIViewController {
     }
 
     private func updateScreen() {
-        updateSelectedSubject()
-        // TODO - update screen with selected subject
         updateSubjectFilterButton()
-    }
-
-    private func updateSelectedSubject() {
-        if let selectedSubjectId = selectedSubjectId {
-            selectedSubject = RLMSubject.find(withID: selectedSubjectId)
-        } else {
-            selectedSubject = nil
-        }
     }
 
     private func updateSubjectFilterButton() {
         let titleText: String
-        if let selectedSubject = selectedSubject {
+        if let selectedSubject = subjectSelection?.subject {
             titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
         } else {
             titleText = "All"
@@ -79,9 +70,15 @@ class HomeViewController: UIViewController {
 }
 
 extension HomeViewController: SubjectListViewControllerDelegate {
-    func subjectList(_ controller: SubjectListViewController, didSelect item: SubjectListTableViewCellModel) {
+    func subjectListDidSelectAll(_ controller: SubjectListViewController) {
         controller.dismiss(animated: true)
+        subjectSelection?.subject = nil
+        updateScreen()
+    }
 
+    func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
+        controller.dismiss(animated: true)
+        subjectSelection?.subject = subject
         updateScreen()
     }
 }

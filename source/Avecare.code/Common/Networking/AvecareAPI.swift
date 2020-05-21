@@ -65,7 +65,8 @@ enum AvecareAPI { // API Services
     case organizationSubjectTypes(id: String)
     // MARK: - SUBJECTS
 //    case subjectInjuries(id: String)
-//    case subjectCreateLogs(id: String)
+    case subjectPublishDailyLog(request: DailyFormAPIModel)
+    case subjectGetLogs(request: SubjectsAPIService.SubjectLogsRequest)
     // MARK: - SUPERVISORS
     case supervisorDetails(id: String)
     // MARK: - STORIES
@@ -86,7 +87,6 @@ enum AvecareAPI { // API Services
     case unitPublishStory(story: PublishStoryRequestModel)
     case unitPublishedStories(unitId: String)
 
-    case subjectPublishDailyLog(request: DailyFormAPIModel)
 }
 
 
@@ -116,6 +116,9 @@ extension AvecareAPI: TargetType {
 //        case .organizationInstitutions(let id): return "/organizations/\(id)/institutions"
         case .organizationSubjectTypes(let id): return "/organizations/\(id)/subject-types"     // might not be required
 
+        case .subjectPublishDailyLog(let request): return "/subjects/\(request.subjectId)/daily-logs/"
+        case .subjectGetLogs(let request): return "/subjects/\(request.subjectId)/daily-logs/"
+
         case .unitDetails(let id): return "/units/\(id)"
         case .unitActivities(let id): return "/units/\(id)/available-activities"
         case .unitCreateActivity(let id, _): return "/units/\(id)/activities/"
@@ -134,7 +137,7 @@ extension AvecareAPI: TargetType {
         case .storyDetails(let id): return "/stories/\(id)"
 
         case .supervisorDetails(let id): return "/supervisors/\(id)"
-        case .subjectPublishDailyLog(let request): return "/subjects/\(request.subjectId)/daily-logs/"
+
         }
     }
 
@@ -165,6 +168,12 @@ extension AvecareAPI: TargetType {
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(Date.yearMonthDayFormatter)
             return .requestCustomJSONEncodable(request, encoder: encoder)
+        case .subjectGetLogs(let request):
+            if let date = request.formattedDate {
+                return .requestParameters(parameters: ["date": date], encoding: URLEncoding.default)
+            } else {
+                return .requestPlain
+            }
         case .subjectPublishDailyLog(let request as MultipartEncodable),
              .unitPublishStory(let request as MultipartEncodable):
             return .uploadMultipart(request.formData)

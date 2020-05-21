@@ -37,38 +37,35 @@ class ProfileSubjectTableViewCell: UITableViewCell {
     }
 
     func refreshView() {
-        if let dataProvider = dataProvider {
-            let visibleIndexPaths = subjectsCollectionView.indexPathsForVisibleItems
-            if let selectedSubjectId = selectedSubjectId {
-                for i in 0..<dataProvider.numberOfRows {
-                    let indexPath = IndexPath(row: i, section: 0)
-                    let model = dataProvider.imageCollectionViewmodel(for: indexPath)
-                    if model.id == selectedSubjectId {
-                        setLabels(withSelectedModel: model)
-                        if !visibleIndexPaths.contains(indexPath) {
-                            subjectsCollectionView.scrollToItem(at: indexPath, at: .right, animated: false)
-                        }
-                        break
-                    }
-                }
-            } else {
-                let indexPath = IndexPath(row: 0, section: 0)
-                let model = dataProvider.imageCollectionViewmodel(for: indexPath)
-                setLabels(withSelectedModel: model)
+        guard let dataProvider = dataProvider,
+              let selectedSubjectId = parentVC?.subjectSelection?.subject?.id else {
+            return
+        }
+        subjectsCollectionView.reloadData()
+
+        let visibleIndexPaths = subjectsCollectionView.indexPathsForVisibleItems
+        for i in 0..<dataProvider.numberOfRows {
+            let indexPath = IndexPath(row: i, section: 0)
+            let model = dataProvider.model(at: indexPath)
+            if model.id == selectedSubjectId {
+                setLabels(forModelAt: indexPath)
                 if !visibleIndexPaths.contains(indexPath) {
                     subjectsCollectionView.scrollToItem(at: indexPath, at: .right, animated: false)
                 }
+                break
             }
         }
 
-        subjectsCollectionView.reloadData()
     }
 
-    private func setLabels(withSelectedModel model: ProfileSubjectImageCollectionViewCellModel) {
+    private func setLabels(forModelAt indexPath: IndexPath) {
+        guard let model = dataProvider?.model(at: indexPath) else {
+            return
+        }
         selectedSubjectNameLabel.text = model.fullName
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM d, yyyy"
-        selectedSubjectDOBLabel.text = formatter.string(from: model.birthDay)
+        selectedSubjectDOBLabel.text = formatter.string(from: model.birthday)
     }
 }
 
@@ -78,11 +75,11 @@ extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let model = dataProvider?.imageCollectionViewmodel(for: indexPath) else {
+        guard let model = dataProvider?.profileCellViewModel(for: indexPath) else {
             fatalError()
         }
         let cell = collectionView.dequeueReusableCell(withModel: model, for: indexPath)
-        if let selectedSubjectId = selectedSubjectId {
+        if let selectedSubjectId = parentVC?.subjectSelection?.subject?.id {
             if model.id == selectedSubjectId {
                 cell.isSelected = true
             } else {
@@ -91,7 +88,7 @@ extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionV
         } else {
             if indexPath.row == 0 {
                 cell.isSelected = true
-                setLabels(withSelectedModel: model)
+                setLabels(forModelAt: indexPath)
             }
         }
 
@@ -107,11 +104,11 @@ extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let selectedModel = dataProvider?.imageCollectionViewmodel(for: indexPath) else {
+        guard let selectedModel = dataProvider?.model(at: indexPath) else {
             fatalError()
         }
-        setLabels(withSelectedModel: selectedModel)
-        selectedSubjectId = selectedModel.id
+        setLabels(forModelAt: indexPath)
+        parentVC?.subjectSelection?.subject = selectedModel
         parentVC?.updateEducators()
     }
 }

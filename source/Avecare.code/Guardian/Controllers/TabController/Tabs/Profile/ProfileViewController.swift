@@ -11,9 +11,13 @@ class ProfileViewController: UIViewController {
 
     let dataProvider: ProfileDataProvider = DefaultProfileDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
+    weak var subjectSelection: SubjectSelectionProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        subjectSelection = tabBarController as? GuardianTabBarController
+        (dataProvider as? DefaultProfileDataProvider)?.subjectSelection = subjectSelection
 
         profileTableView.register(nibModels: [
             ProfileSubjectTableViewCellModel.self,
@@ -31,13 +35,18 @@ class ProfileViewController: UIViewController {
     }
 
     func updateEducators() {
-        if let selectedSubjectId = selectedSubjectId,
-            let selectedSubject = RLMSubject.find(withID: selectedSubjectId) {
+        // if subject not selected, select 1st by default
+        if let selectedSubject = subjectSelection?.subject {
             dataProvider.unitIds = Array(selectedSubject.unitIds)
-        } else if let defaultSelectedSubject = RLMSubject.findAll(sortedBy: "firstName").first {
-            dataProvider.unitIds = Array(defaultSelectedSubject.unitIds)
         } else {
-            dataProvider.unitIds = [String]()
+            if dataProvider.subjectsProvider.numberOfRows > 0 {
+                let indexPath = IndexPath(row: 0, section: 0)
+                let subject = dataProvider.subjectsProvider.model(at: indexPath)
+                subjectSelection?.subject = subject
+                dataProvider.unitIds = Array(subject.unitIds)
+            } else {
+                dataProvider.unitIds = [String]()
+            }
         }
 
         profileTableView.reloadData()
@@ -74,8 +83,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withAnyModel: model, for: indexPath)
 
         if let profileSubjectCell = cell as? ProfileSubjectTableViewCell {
-            profileSubjectCell.refreshView()
             profileSubjectCell.parentVC = self
+            profileSubjectCell.refreshView()
         }
 
         if let supervisorCell = cell as? SupervisorFilterTableViewCell {
