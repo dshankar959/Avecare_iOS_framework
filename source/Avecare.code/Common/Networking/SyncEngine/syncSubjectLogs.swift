@@ -1,7 +1,9 @@
 import CocoaLumberjack
-import RealmSwift
+
+
 
 extension SyncEngine {
+
     func syncDOWNSubjectLogs(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
 
@@ -77,8 +79,8 @@ extension SyncEngine {
                                 let photoRows = logForm.rows.compactMap({ $0.photo })
                                 for row in photoRows {
                                     guard let file = files.first(where: { $0.id == row.id }),
-                                            let url = URL(string: file.fileUrl) else {
-                                        continue
+                                        let url = URL(string: file.fileUrl) else {
+                                            continue
                                     }
                                     do {
                                         _ = try storage.saveImage(url, name: row.id)
@@ -109,4 +111,6 @@ extension SyncEngine {
             OperationQueue.main.addOperation(completionOperation)
         }
     }
+
+
 }

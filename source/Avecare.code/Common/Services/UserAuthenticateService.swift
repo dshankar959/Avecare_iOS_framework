@@ -1,19 +1,14 @@
-//
-//  UserAthenticateService.swift
-//  Avecare
-//
-//  Created by stephen on 2020-05-21.
-//  Copyright © 2020 Spiria Inc. All rights reserved.
-//
-
 import UIKit
 import CocoaLumberjack
 
-class UserAthenticateService: IndicatorProtocol {
 
-    static let shared = UserAthenticateService()
 
-    // MARK: - Sing In
+class UserAuthenticateService: IndicatorProtocol {
+
+    static let shared = UserAuthenticateService()
+
+
+    // MARK: - Sign-in
 
     func signIn(userCredentials: UserCredentials, completion:@escaping (AppError?) -> Void) {
         showActivityIndicator(withStatus: "Signing in ...")
@@ -70,6 +65,7 @@ class UserAthenticateService: IndicatorProtocol {
         }
     }
 
+
     private func onSignInLaunchCheck() {
         DALConfig.userRealmFileURL = nil    // reset DB access.
 
@@ -81,17 +77,17 @@ class UserAthenticateService: IndicatorProtocol {
             appSettings.enableSyncDown = true
         }
 
-/*
-        #if DEBUG
-        if !appSettings.isFirstLogin() {
-            // Control syncing.
-            // If you've already synced down the data you want to work with, there is no need to keep syncing it down.
-            // So you can disable syncing to speed-up coding.
-            appSettings.enableSyncUp = false
-            appSettings.enableSyncDown = false
-        }
-        #endif
-*/
+        /*
+         #if DEBUG
+         if !appSettings.isFirstLogin() {
+         // Control syncing.
+         // If you've already synced down the data you want to work with, there is no need to keep syncing it down.
+         // So you can disable syncing to speed-up coding.
+         appSettings.enableSyncUp = false
+         appSettings.enableSyncDown = false
+         }
+         #endif
+         */
 
         /// Track app version in case we need to perform any custom migration upon an update.
         let previousAppVersion = appSettings.appVersion ?? ""
@@ -119,7 +115,8 @@ class UserAthenticateService: IndicatorProtocol {
         appSettings.appVersion = Bundle.main.versionNumber
     }
 
-    // MARK: - Sign Out
+
+    // MARK: - Sign-out
 
     func signOut(completion:@escaping (AppError?) -> Void) {
         showActivityIndicator(withStatus: "Signing Out...")
@@ -137,6 +134,7 @@ class UserAthenticateService: IndicatorProtocol {
             }
         }
     }
+
 
     private func resetSyncEngine(completion:@escaping () -> Void) {
         syncEngine.stopSyncTimer()
@@ -158,6 +156,7 @@ class UserAthenticateService: IndicatorProtocol {
         }
     }
 
+
     private func resetApp(completion:@escaping () -> Void) {
         DDLogInfo("Resetting app.")
         appDelegate._syncEngine = SyncEngine()
@@ -170,4 +169,5 @@ class UserAthenticateService: IndicatorProtocol {
             completion()
         }
     }
+
 }

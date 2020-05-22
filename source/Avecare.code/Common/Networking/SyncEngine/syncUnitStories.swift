@@ -1,8 +1,9 @@
-import Foundation
 import CocoaLumberjack
 
 
+
 extension SyncEngine {
+
     func syncDOWNUnitStories(_ syncCompletion: @escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
 
@@ -115,4 +116,6 @@ extension SyncEngine {
             }
         }
     }
+
+
 }

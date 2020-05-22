@@ -19,8 +19,9 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 
 //        loginField?.text = "535cc_Room_100@avecare.com" // School Age
 //        loginField?.text = "535cc_Room_200@avecare.com" // Preschool
-        loginField?.text = "535cc_Room_300@avecare.com" // Toddler
+//        loginField?.text = "535cc_Room_300@avecare.com" // Toddler
 //        loginField?.text = "535cc_Room_400@avecare.com" // Kindergarten
+        loginField?.text = "room_13@avecare.com"    // quarantine
         passwordField?.text = "123456"
         #endif
 
@@ -34,7 +35,7 @@ class LoginViewController: UIViewController, IndicatorProtocol {
         }
 
         let userCredentials = UserCredentials(email: email, password: password)
-        UserAthenticateService.shared.signIn(userCredentials: userCredentials) { [weak self] error in
+        UserAuthenticateService.shared.signIn(userCredentials: userCredentials) { [weak self] error in
             if let error = error {
                 self?.handleError(error)
             } else {
@@ -43,12 +44,15 @@ class LoginViewController: UIViewController, IndicatorProtocol {
         }
     }
 
+
     private func handleError(_ error: AppError) {
         DDLogError("\(error)")
         self.showErrorAlert(error)
     }
 
+
     deinit {
         DDLogWarn("\(self)")
     }
+
 }

@@ -1,12 +1,6 @@
-//
-//  AboutTableViewCell.swift
-//  educator
-//
-//  Created by stephen on 2020-05-19.
-//  Copyright © 2020 Spiria Inc. All rights reserved.
-//
-
 import UIKit
+
+
 
 struct AboutTableViewCellModel: CellViewModel {
     typealias CellType = AboutTableViewCell

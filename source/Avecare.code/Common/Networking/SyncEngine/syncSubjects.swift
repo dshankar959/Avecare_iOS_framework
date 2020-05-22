@@ -23,7 +23,7 @@ extension SyncEngine {
         syncStates[syncKey] = .syncing
         notifySyncStateChanged(message: "Syncing down 🔻 subject details")
 
-        // TODO:  probably best to compare and remove only the differences between lists of subjects.  (server DB vs local DB)
+        // FIXME:  probably best to compare and remove only the differences between lists of subjects.  (server DB vs local DB)
 
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor {
@@ -44,7 +44,7 @@ extension SyncEngine {
             }
         } else {  // guardian
             if let guardianId = appSession.userProfile.accountTypeId {
-                      GuardiansAPIService.getSubjects(for: guardianId) { [weak self] result in
+                GuardiansAPIService.getSubjects(for: guardianId) { [weak self] result in
                     switch result {
                     case .success(let details):
                         // Update with new data.
@@ -60,7 +60,7 @@ extension SyncEngine {
             }
         }
 
-}
+    }
 
 
 }

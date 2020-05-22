@@ -32,6 +32,3 @@ class DefaultLogsDataProvider: LogsDataProvider {
         logForm = RLMLogForm.find(withSubjectID: subject.id, date: date)
     }
 }
-
-
-

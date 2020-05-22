@@ -115,8 +115,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         } else if indexPath.section == 3 {
             performSegue(withIdentifier: R.segue.profileViewController.about, sender: nil)
         } else if indexPath.section == 4 {
-            // Log out
-            UserAthenticateService.shared.signOut { [weak self] error in
+            // Sign-out
+            UserAuthenticateService.shared.signOut { [weak self] error in
                 if let error = error {
                     self?.showErrorAlert(error)
                 } else {

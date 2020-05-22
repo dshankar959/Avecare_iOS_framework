@@ -1,12 +1,6 @@
-//
-//  SlideInPresentationController.swift
-//  Avecare
-//
-//  Created by stephen on 2020-05-14.
-//  Copyright © 2020 Spiria Inc. All rights reserved.
-//
-
 import UIKit
+
+
 
 class SlideInPresentationController: UIPresentationController {
     private var dimmingView: UIView!

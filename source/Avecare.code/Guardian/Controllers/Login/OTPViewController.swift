@@ -45,7 +45,7 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
         }
 
         let userCredentials = UserCredentials(email: email, password: otp)
-        UserAthenticateService.shared.signIn(userCredentials: userCredentials) { [weak self] error in
+        UserAuthenticateService.shared.signIn(userCredentials: userCredentials) { [weak self] error in
             if let error = error {
                 self?.handleError(error)
             } else {

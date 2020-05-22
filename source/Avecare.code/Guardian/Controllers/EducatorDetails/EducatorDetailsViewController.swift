@@ -1,13 +1,6 @@
-//
-//  EducatorDetailsViewController.swift
-//  educator
-//
-//  Created by stephen on 2020-05-20.
-//  Copyright © 2020 Spiria Inc. All rights reserved.
-//
-
-import Foundation
 import UIKit
+
+
 
 class EducatorDetailsViewController: UIViewController {
 

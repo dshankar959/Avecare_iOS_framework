@@ -35,7 +35,6 @@ extension SyncEngine {
 
                 switch apiResult {
                 case .success:
-//                    DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSupervisor.className())\' items in DB: \(RLMSupervisor.findAll().count)")
                     syncCompletion(nil)
                 case .failure(let error):
                     syncCompletion(error)

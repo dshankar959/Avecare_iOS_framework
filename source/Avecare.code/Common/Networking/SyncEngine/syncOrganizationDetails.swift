@@ -1,5 +1,7 @@
 import CocoaLumberjack
 
+
+
 extension SyncEngine {
 
     func syncOrganizationDetails(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
