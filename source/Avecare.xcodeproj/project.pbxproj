@@ -325,6 +325,8 @@
 		DA3FE2DB8C4BA18334A1EB22 /* Pods_parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */; };
 		DC225E38246C68BF00094BB0 /* CheckmarkFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67DF806241BFE6800793A9C /* CheckmarkFormView.swift */; };
 		DC225E3F246C787F00094BB0 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC225E3E246C787F00094BB0 /* DateCell.swift */; };
+		DC3617F324770B4D004C0B83 /* UserAthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3617F224770B4D004C0B83 /* UserAthenticateService.swift */; };
+		DC3617F424770B4D004C0B83 /* UserAthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3617F224770B4D004C0B83 /* UserAthenticateService.swift */; };
 		DC4FFA0A2470B9AE0079A27C /* ProfileMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC4FFA042470B9AE0079A27C /* ProfileMenuTableViewCell.xib */; };
 		DC4FFA0B2470B9AE0079A27C /* ProfileMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA052470B9AE0079A27C /* ProfileMenuTableViewCell.swift */; };
 		DC4FFA0C2470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA062470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift */; };
@@ -643,6 +645,7 @@
 		C6A41FD77BCF4377A08E9406 /* Pods-educator.debug(beta).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.debug(beta).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.debug(beta).xcconfig"; sourceTree = "<group>"; };
 		D48B06C16950ED61770C4604 /* Pods-educator.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(appstore).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		DC225E3E246C787F00094BB0 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
+		DC3617F224770B4D004C0B83 /* UserAthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAthenticateService.swift; sourceTree = "<group>"; };
 		DC4FFA042470B9AE0079A27C /* ProfileMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMenuTableViewCell.xib; sourceTree = "<group>"; };
 		DC4FFA052470B9AE0079A27C /* ProfileMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMenuTableViewCell.swift; sourceTree = "<group>"; };
 		DC4FFA062470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSubjectImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1311,6 +1314,7 @@
 				75886D012419327F0079C080 /* Network */,
 				75886D042419327F0079C080 /* Storage */,
 				75886D072419327F0079C080 /* Session */,
+				DC3617F224770B4D004C0B83 /* UserAthenticateService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -2426,6 +2430,7 @@
 				61547D2E2DC865E404CF15C7 /* SubjectListDataProvider+Injury.swift in Sources */,
 				6154733B79881FF0F0C4C775 /* SubjectListDataProvider+Note.swift in Sources */,
 				615472B2CEF57EA92478927F /* SubjectListDataProvider+Option.swift in Sources */,
+				DC3617F324770B4D004C0B83 /* UserAthenticateService.swift in Sources */,
 				615471C3EAAA9F493D956400 /* SubjectListDataProvider+NavItems.swift in Sources */,
 				6154733769337340AB149C8B /* CustomInput.swift in Sources */,
 				61547F86427E44844CC9DC71 /* SubjectListDataProvider+Common.swift in Sources */,
@@ -2476,6 +2481,7 @@
 				75EB59FC24632D1F00E077E5 /* syncUnitDetails.swift in Sources */,
 				75886D692419327F0079C080 /* AppDelegate+Extension.swift in Sources */,
 				75886D4F2419327F0079C080 /* String.swift in Sources */,
+				DC3617F424770B4D004C0B83 /* UserAthenticateService.swift in Sources */,
 				75886D132419327F0079C080 /* UINVC.swift in Sources */,
 				75886D172419327F0079C080 /* UserProfile.swift in Sources */,
 				75886D97241932AB0079C080 /* LogsViewController.swift in Sources */,
