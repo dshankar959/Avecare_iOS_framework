@@ -142,6 +142,14 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return .leastNormalMagnitude
     }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section < 2 {
+            return UITableView.automaticDimension
+        } else {
+            return 60
+        }
+    }
 }
 
 extension ProfileViewController: ViewControllerWithSupervisorFilterViewCell {
