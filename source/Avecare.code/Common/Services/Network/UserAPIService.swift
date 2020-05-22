@@ -63,4 +63,14 @@ struct UserAPIService {
     }
 
 
+    static func logout(completion:@escaping (Result<Int, AppError>) -> Void) {
+        apiProvider.request(.logout) { result in
+            switch result {
+            case .success(let response):
+                completion(.success(response.statusCode))
+            case .failure(let error):
+                completion(.failure(getAppErrorFromMoya(with: error)))
+            }
+        }
+    }
 }

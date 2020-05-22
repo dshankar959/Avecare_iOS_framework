@@ -4,8 +4,9 @@
 //
 
 import UIKit
+import CocoaLumberjack
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, IndicatorProtocol {
 
     @IBOutlet weak var profileTableView: UITableView!
 
@@ -113,6 +114,17 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             performSegue(withIdentifier: R.segue.profileViewController.details, sender: details)
         } else if indexPath.section == 3 {
             performSegue(withIdentifier: R.segue.profileViewController.about, sender: nil)
+        } else if indexPath.section == 4 {
+            // Log out
+            UserAthenticateService.shared.signOut { [weak self] error in
+                if let error = error {
+                    self?.showErrorAlert(error)
+                } else {
+                    if let tabBarController = self?.tabBarController as? GuardianTabBarController {
+                        tabBarController.onLogout()
+                    }
+                }
+            }
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
