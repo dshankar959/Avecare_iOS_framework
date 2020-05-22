@@ -61,7 +61,7 @@ class ProfileViewController: UIViewController, IndicatorProtocol {
 
         if segue.identifier == R.segue.profileViewController.educatorDetails.identifier,
             let destination = segue.destination as? EducatorDetailsViewController {
-            destination.selectedEducator = sender as? EducatorSummaryTableViewCellModel
+            destination.selectedEducatorId = sender as? String ?? ""
 
             slideInTransitionDelegate.direction = .bottom
             destination.transitioningDelegate = slideInTransitionDelegate
@@ -145,7 +145,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension ProfileViewController: ViewControllerWithSupervisorFilterViewCell {
-    func educatorDidSelect(selectedEducatorSummary: EducatorSummaryTableViewCellModel) {
-        performSegue(withIdentifier: R.segue.profileViewController.educatorDetails, sender: selectedEducatorSummary)
+    func educatorDidSelect(selectedEducatorId: String) {
+        performSegue(withIdentifier: R.segue.profileViewController.educatorDetails, sender: selectedEducatorId)
     }
 }

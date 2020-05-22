@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="EducatorSummaryTableViewCell" customModule="parent" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="EducatorBioTableViewCell" customModule="parent" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="331" height="202"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -58,9 +58,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="educationHeaderLabel" destination="R9I-Sg-Lug" id="9SM-YC-Qk7"/>
-                <outlet property="nameText" destination="R0m-oW-3Do" id="N8K-Q1-4gJ"/>
-                <outlet property="summaryText" destination="XLQ-an-jUh" id="7Cc-ba-4bY"/>
+                <outlet property="bioLabel" destination="XLQ-an-jUh" id="SvX-y9-6Mo"/>
+                <outlet property="educationHeaderLabel" destination="R9I-Sg-Lug" id="frX-ti-uiw"/>
+                <outlet property="nameLabel" destination="R0m-oW-3Do" id="WJd-2u-QK1"/>
             </connections>
             <point key="canvasLocation" x="145.6521739130435" y="187.5"/>
         </tableViewCell>

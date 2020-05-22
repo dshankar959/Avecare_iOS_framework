@@ -49,6 +49,8 @@ class DefaultEducatorsDataProvider: EducatorsDataProvider {
 
 extension SupervisorCollectionViewCellModel {
     init(with educator: RLMSupervisor, storage: ImageStorageService) {
+        id = educator.id
+
         let titleString: String
         if educator.title.count > 0 {
             titleString = educator.title
@@ -56,6 +58,7 @@ extension SupervisorCollectionViewCellModel {
             titleString = "Ms."
         }
         title = titleString
+        
         name = educator.lastName
         photo = educator.photoURL(using: storage)
     }

@@ -8,11 +8,9 @@ class EducatorDetailsViewController: UIViewController {
 
     private var dataProvider: EducatorDetailsDataProvider = DefaultEducatorDetailsDataProvider()
 
-    var selectedEducator: EducatorSummaryTableViewCellModel? = nil {
+    var selectedEducatorId: String = "" {
         didSet {
-            if let selectedEducator = selectedEducator {
-                dataProvider.addEducatorSummary(model: selectedEducator)
-            }
+            dataProvider.createDataProvider(with: selectedEducatorId)
         }
     }
 
@@ -20,7 +18,7 @@ class EducatorDetailsViewController: UIViewController {
         super.viewDidLoad()
 
         tableView.register(nibModels: [
-            EducatorSummaryTableViewCellModel.self,
+            EducatorBioTableViewCellModel.self,
             LogsNoteTableViewCellModel.self
         ])
     }
