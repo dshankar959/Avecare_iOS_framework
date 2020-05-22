@@ -25,6 +25,6 @@ class ProfileMenuTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        contentView.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: 60)
     }
 }

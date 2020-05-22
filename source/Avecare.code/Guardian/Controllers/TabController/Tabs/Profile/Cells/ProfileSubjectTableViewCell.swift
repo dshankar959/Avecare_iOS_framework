@@ -93,7 +93,7 @@ extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionV
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.size.width / 3
-        let height = width
+        let height = width * 0.95
         return CGSize(width: width, height: height)
     }
 
