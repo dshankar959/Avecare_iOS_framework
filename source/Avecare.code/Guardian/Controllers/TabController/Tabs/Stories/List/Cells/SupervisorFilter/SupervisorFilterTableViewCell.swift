@@ -92,12 +92,11 @@ extension SupervisorFilterTableViewCell: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let parentVC = parentVC as? ViewControllerWithSupervisorFilterViewCell,
             let selectedModel = dataProvider?.model(for: indexPath) {
-            let selectedEducatorSummary = EducatorSummaryTableViewCellModel(name: selectedModel.title + " " + selectedModel.name)
-            parentVC.educatorDidSelect(selectedEducatorSummary: selectedEducatorSummary)
+            parentVC.educatorDidSelect(selectedEducatorId: selectedModel.id)
         }
     }
 }
 
 protocol ViewControllerWithSupervisorFilterViewCell: class {
-    func educatorDidSelect(selectedEducatorSummary: EducatorSummaryTableViewCellModel)
+    func educatorDidSelect(selectedEducatorId: String)
 }

@@ -339,8 +339,8 @@
 		DC4FFA1C247488A90079A27C /* AboutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA18247488A40079A27C /* AboutTableViewCell.swift */; };
 		DC4FFA1D247488B00079A27C /* AboutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC4FFA19247488A40079A27C /* AboutTableViewCell.xib */; };
 		DC4FFA1F24748FA80079A27C /* AboutDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA1E24748FA70079A27C /* AboutDetailsViewController.swift */; };
-		DC5E9907247555720088083C /* EducatorSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E9905247555720088083C /* EducatorSummaryTableViewCell.swift */; };
-		DC5E9908247555720088083C /* EducatorSummaryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC5E9906247555720088083C /* EducatorSummaryTableViewCell.xib */; };
+		DC5E9907247555720088083C /* EducatorBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E9905247555720088083C /* EducatorBioTableViewCell.swift */; };
+		DC5E9908247555720088083C /* EducatorBioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC5E9906247555720088083C /* EducatorBioTableViewCell.xib */; };
 		DC5E9909247555760088083C /* EducatorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E99032475551C0088083C /* EducatorDetailsViewController.swift */; };
 		DC5E990A2475557D0088083C /* EducatorDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5E99012475543F0088083C /* EducatorDetails.storyboard */; };
 		DC5E990C24755B990088083C /* EducatorDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */; };
@@ -660,8 +660,8 @@
 		DC4FFA1E24748FA70079A27C /* AboutDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDetailsViewController.swift; sourceTree = "<group>"; };
 		DC5E99012475543F0088083C /* EducatorDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EducatorDetails.storyboard; sourceTree = "<group>"; };
 		DC5E99032475551C0088083C /* EducatorDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorDetailsViewController.swift; sourceTree = "<group>"; };
-		DC5E9905247555720088083C /* EducatorSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorSummaryTableViewCell.swift; sourceTree = "<group>"; };
-		DC5E9906247555720088083C /* EducatorSummaryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EducatorSummaryTableViewCell.xib; sourceTree = "<group>"; };
+		DC5E9905247555720088083C /* EducatorBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorBioTableViewCell.swift; sourceTree = "<group>"; };
+		DC5E9906247555720088083C /* EducatorBioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EducatorBioTableViewCell.xib; sourceTree = "<group>"; };
 		DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorDetailsDataProvider.swift; sourceTree = "<group>"; };
 		DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
 		DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
@@ -1731,8 +1731,8 @@
 		DC5E990D247560260088083C /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				DC5E9905247555720088083C /* EducatorSummaryTableViewCell.swift */,
-				DC5E9906247555720088083C /* EducatorSummaryTableViewCell.xib */,
+				DC5E9905247555720088083C /* EducatorBioTableViewCell.swift */,
+				DC5E9906247555720088083C /* EducatorBioTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2053,7 +2053,7 @@
 				DC4FFA1D247488B00079A27C /* AboutTableViewCell.xib in Resources */,
 				61547F33A9EB29594609704E /* HomeTableViewHeaderView.xib in Resources */,
 				615471C64C68B780700660A5 /* HomeTableViewDisclosureCell.xib in Resources */,
-				DC5E9908247555720088083C /* EducatorSummaryTableViewCell.xib in Resources */,
+				DC5E9908247555720088083C /* EducatorBioTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2568,7 +2568,7 @@
 				75865C0624743CE2002E7427 /* syncUnitSupervisors.swift in Sources */,
 				75EB59D92461858700E077E5 /* RLMCleanable.swift in Sources */,
 				61547EFCF73D0FF79FA58C02 /* PinField.swift in Sources */,
-				DC5E9907247555720088083C /* EducatorSummaryTableViewCell.swift in Sources */,
+				DC5E9907247555720088083C /* EducatorBioTableViewCell.swift in Sources */,
 				61547BBDB5DA4D4A37131C56 /* StoriesTableViewCell.swift in Sources */,
 				DC4FFA0E2470B9AE0079A27C /* ProfileSubjectTableViewCell.swift in Sources */,
 				615474DD4D6B43A12920A720 /* StoriesDataProvider.swift in Sources */,

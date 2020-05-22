@@ -51,7 +51,7 @@ class StoriesListViewController: UIViewController {
 
         if segue.identifier == R.segue.storiesListViewController.educatorDetails.identifier,
             let destination = segue.destination as? EducatorDetailsViewController {
-            destination.selectedEducator = sender as? EducatorSummaryTableViewCellModel
+            destination.selectedEducatorId = sender as? String ?? ""
 
             slideInTransitionDelegate.direction = .bottom
             destination.transitioningDelegate = slideInTransitionDelegate
@@ -156,7 +156,7 @@ extension StoriesListViewController: UITableViewDelegate, UITableViewDataSource 
 }
 
 extension StoriesListViewController: ViewControllerWithSupervisorFilterViewCell {
-    func educatorDidSelect(selectedEducatorSummary: EducatorSummaryTableViewCellModel) {
-        performSegue(withIdentifier: R.segue.storiesListViewController.educatorDetails, sender: selectedEducatorSummary)
+    func educatorDidSelect(selectedEducatorId: String) {
+        performSegue(withIdentifier: R.segue.storiesListViewController.educatorDetails, sender: selectedEducatorId)
     }
 }

@@ -5,6 +5,7 @@ import UIKit
 struct SupervisorCollectionViewCellModel: CellViewModel {
     typealias CellType = SupervisorCollectionViewCell
 
+    let id: String
     let title: String
     let name: String
     let photo: URL?
