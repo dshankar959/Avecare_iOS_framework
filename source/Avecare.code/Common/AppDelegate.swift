@@ -46,8 +46,6 @@ import Kingfisher
     override init() {
         IHProgressHUD.set(defaultMaskType: .clear)
         IHProgressHUD.setHUD(backgroundColor: #colorLiteral(red: 0.7610064149, green: 0.759601295, blue: 0.8178459406, alpha: 1))
-        //FIXME:
-        //IHProgressHUD.set(foregroundColor: Theme.slateGray.mainColor)
 
         super.init()
         AppDelegate._applicationDelegate = self
