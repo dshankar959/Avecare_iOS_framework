@@ -10,7 +10,7 @@ class SlideInPresentationController: UIPresentationController {
     init(presentedViewController: UIViewController,
          presenting presentingViewController: UIViewController?,
          direction: PresentationDirection,
-         sizeOfPresentingViewController: CGSize) {
+         sizeOfPresentingViewController: CGSize = .zero) {
         self.direction = direction
         self.sizeOfPresentingViewController = sizeOfPresentingViewController
 
@@ -60,13 +60,15 @@ class SlideInPresentationController: UIPresentationController {
     }
 
     override func size(forChildContentContainer container: UIContentContainer,
-                       withParentContainerSize parentSize: CGSize) -> CGSize {
+                       withParentContainerSize parentSize: CGSize
+    ) -> CGSize {
         switch direction {
         case .left, .right:
             if sizeOfPresentingViewController == .zero {
                 return CGSize(width: parentSize.width * (2.0 / 3.0), height: parentSize.height)
             } else {
-                return CGSize(width: sizeOfPresentingViewController.width, height: parentSize.height)
+                let width = min(sizeOfPresentingViewController.width, parentSize.width * (2.0 / 3.0))
+                return CGSize(width: width, height: parentSize.height)
             }
         case .top, .bottom:
             if sizeOfPresentingViewController == .zero {
@@ -89,7 +91,8 @@ class SlideInPresentationController: UIPresentationController {
             if sizeOfPresentingViewController == .zero {
                 frame.origin.x = containerView!.frame.width * (1.0 / 3.0)
             } else {
-                frame.origin.x = containerView!.frame.width - sizeOfPresentingViewController.width
+                let width = min(sizeOfPresentingViewController.width, containerView!.frame.width * (2.0 / 3.0))
+                frame.origin.x = containerView!.frame.width - width
             }
         case .bottom:
             if sizeOfPresentingViewController == .zero {

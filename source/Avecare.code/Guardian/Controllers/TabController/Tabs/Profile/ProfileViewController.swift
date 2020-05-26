@@ -62,8 +62,9 @@ class ProfileViewController: UIViewController, IndicatorProtocol {
         if segue.identifier == R.segue.profileViewController.educatorDetails.identifier,
             let destination = segue.destination as? EducatorDetailsViewController {
             destination.selectedEducatorId = sender as? String ?? ""
-
+            destination.direction = .bottom
             slideInTransitionDelegate.direction = .bottom
+            slideInTransitionDelegate.sizeOfPresentingViewController = .zero
             destination.transitioningDelegate = slideInTransitionDelegate
             destination.modalPresentationStyle = .custom
         }

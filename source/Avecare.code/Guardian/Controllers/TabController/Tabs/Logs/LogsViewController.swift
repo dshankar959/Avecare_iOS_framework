@@ -55,6 +55,7 @@ class LogsViewController: UIViewController {
         if let info = R.segue.logsViewController.subjectList(segue: segue) {
             info.destination.delegate = self
             info.destination.dataProvider = subjectListDataProvider
+            info.destination.direction = .bottom
             slideInTransitionDelegate.direction = .bottom
             slideInTransitionDelegate.sizeOfPresentingViewController = CGSize(width: view.frame.size.width,
                                                                               height: info.destination.contentHeight)

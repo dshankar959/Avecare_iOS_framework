@@ -39,6 +39,7 @@ class HomeViewController: UIViewController {
            let destination = segue.destination as? SubjectListViewController {
             destination.delegate = self
             destination.dataProvider.allSubjectsIncluded = true
+            destination.direction = .bottom
             slideInTransitionDelegate.direction = .bottom
             slideInTransitionDelegate.sizeOfPresentingViewController = CGSize(width: view.frame.size.width,
                                                                               height: destination.contentHeight)
