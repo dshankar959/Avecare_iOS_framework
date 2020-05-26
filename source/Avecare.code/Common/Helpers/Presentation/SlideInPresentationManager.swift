@@ -37,7 +37,11 @@ extension SlideInPresentationManager: UIViewControllerTransitioningDelegate {
     func animationController(
         forDismissed dismissed: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        // Put presented view controller here
+        #if SUPERVISOR
+        // Put presented view controllers for educator app here
+
+        #elseif GUARDIAN
+        // Put presented view controller for parent app here
         if let subjectListVC = dismissed as? SubjectListViewController {
             return SlideInPresentationAnimator(direction: direction,
                                                isPresentation: false,
@@ -46,9 +50,9 @@ extension SlideInPresentationManager: UIViewControllerTransitioningDelegate {
             return SlideInPresentationAnimator(direction: direction,
                                                isPresentation: false,
                                                interactionController: educatorDetailsVC.panningInterationController)
-        } else {
-            return SlideInPresentationAnimator(direction: direction, isPresentation: false)
         }
+        #endif
+        return SlideInPresentationAnimator(direction: direction, isPresentation: false)
     }
 
     func interactionControllerForDismissal(
