@@ -37,11 +37,10 @@ extension SlideInPresentationManager: UIViewControllerTransitioningDelegate {
     func animationController(
         forDismissed dismissed: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        #if educator
+        #if SUPERVISOR
         // Put presented view controllers for educator app here
 
-        #endif
-        #if parent
+        #elseif GUARDIAN
         // Put presented view controller for parent app here
         if let subjectListVC = dismissed as? SubjectListViewController {
             return SlideInPresentationAnimator(direction: direction,
