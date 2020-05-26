@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pCD-Dy-s2b">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pCD-Dy-s2b">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,8 +17,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vkq-Zf-RRC">
+                                <rect key="frame" x="177" y="6" width="60" height="8"/>
+                                <color key="backgroundColor" name="Drawer"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="Beb-uD-3pQ"/>
+                                    <constraint firstAttribute="height" constant="8" id="rIB-xS-wMf"/>
+                                </constraints>
+                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="57" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Wr-zP-5Wz">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="400"/>
+                                <rect key="frame" x="0.0" y="22" width="414" height="378"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <view key="tableFooterView" contentMode="scaleToFill" id="pdF-Hc-dnK">
                                     <rect key="frame" x="0.0" y="113" width="414" height="0.0"/>
@@ -67,10 +76,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="vkq-Zf-RRC" firstAttribute="centerX" secondItem="bci-TU-thy" secondAttribute="centerX" id="90s-BH-1FH"/>
                             <constraint firstItem="Nax-QD-Q7n" firstAttribute="bottom" secondItem="8Wr-zP-5Wz" secondAttribute="bottom" id="Lzb-KU-LzX"/>
                             <constraint firstItem="Nax-QD-Q7n" firstAttribute="trailing" secondItem="8Wr-zP-5Wz" secondAttribute="trailing" id="QdG-be-Xmd"/>
                             <constraint firstItem="8Wr-zP-5Wz" firstAttribute="leading" secondItem="Nax-QD-Q7n" secondAttribute="leading" id="WMx-Qm-N5m"/>
-                            <constraint firstItem="8Wr-zP-5Wz" firstAttribute="top" secondItem="Nax-QD-Q7n" secondAttribute="top" id="YhZ-g3-gbC"/>
+                            <constraint firstItem="vkq-Zf-RRC" firstAttribute="top" secondItem="Nax-QD-Q7n" secondAttribute="top" constant="6" id="WfD-ko-oc1"/>
+                            <constraint firstItem="8Wr-zP-5Wz" firstAttribute="top" secondItem="vkq-Zf-RRC" secondAttribute="bottom" constant="8" id="fMO-gl-zxj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nax-QD-Q7n"/>
                     </view>
@@ -79,6 +90,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="414" height="400"/>
                     <connections>
+                        <outlet property="drawerView" destination="vkq-Zf-RRC" id="R5b-G0-qmW"/>
                         <outlet property="tableView" destination="8Wr-zP-5Wz" id="pAC-h6-Rq3"/>
                     </connections>
                 </viewController>
@@ -87,4 +99,9 @@
             <point key="canvasLocation" x="-609.375" y="107.5"/>
         </scene>
     </scenes>
+    <resources>
+        <namedColor name="Drawer">
+            <color red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
 </document>

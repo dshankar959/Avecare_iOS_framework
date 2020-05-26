@@ -10,18 +10,55 @@ enum PresentationDirection {
 }
 
 class SlideInPresentationManager: NSObject {
-    var direction: PresentationDirection = .left
+    var direction: PresentationDirection = .bottom
     var sizeOfPresentingViewController: CGSize = .zero
 }
 
 extension SlideInPresentationManager: UIViewControllerTransitioningDelegate {
-    func presentationController(forPresented presented: UIViewController,
-                                presenting: UIViewController?,
-                                source: UIViewController) -> UIPresentationController? {
-        let presentationController = SlideInPresentationController(presentedViewController: presented,
+    func presentationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController?,
+        source: UIViewController
+    ) -> UIPresentationController? {
+        return SlideInPresentationController(presentedViewController: presented,
                                                                    presenting: presenting,
                                                                    direction: direction,
                                                                    sizeOfPresentingViewController: sizeOfPresentingViewController)
-        return presentationController
+    }
+
+    func animationController(
+        forPresented presented: UIViewController,
+        presenting: UIViewController,
+        source: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        return SlideInPresentationAnimator(direction: direction, isPresentation: true)
+    }
+
+    func animationController(
+        forDismissed dismissed: UIViewController
+    ) -> UIViewControllerAnimatedTransitioning? {
+        // Put presented view controller here
+        if let subjectListVC = dismissed as? SubjectListViewController {
+            return SlideInPresentationAnimator(direction: direction,
+                                               isPresentation: false,
+                                               interactionController: subjectListVC.panningInterationController)
+        } else if let educatorDetailsVC = dismissed as? EducatorDetailsViewController {
+            return SlideInPresentationAnimator(direction: direction,
+                                               isPresentation: false,
+                                               interactionController: educatorDetailsVC.panningInterationController)
+        } else {
+            return SlideInPresentationAnimator(direction: direction, isPresentation: false)
+        }
+    }
+
+    func interactionControllerForDismissal(
+        using animator: UIViewControllerAnimatedTransitioning
+    ) -> UIViewControllerInteractiveTransitioning? {
+        guard let animator = animator as? SlideInPresentationAnimator,
+            let interactionController = animator.interactionController,
+            interactionController.interactionInProgress else {
+                return nil
+        }
+        return interactionController
     }
 }

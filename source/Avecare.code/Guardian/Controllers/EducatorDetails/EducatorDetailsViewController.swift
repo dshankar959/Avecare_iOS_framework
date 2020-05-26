@@ -5,6 +5,7 @@ import UIKit
 class EducatorDetailsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var drawerView: UIView!
 
     private var dataProvider: EducatorDetailsDataProvider = DefaultEducatorDetailsDataProvider()
 
@@ -14,6 +15,9 @@ class EducatorDetailsViewController: UIViewController {
         }
     }
 
+    var panningInterationController: PanningInteractionController?
+    var direction: PresentationDirection = .bottom
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +25,15 @@ class EducatorDetailsViewController: UIViewController {
             EducatorBioTableViewCellModel.self,
             LogsNoteTableViewCellModel.self
         ])
+
+        // Make drawer view
+        drawerView.layer.cornerRadius = drawerView.frame.height / 2
+        drawerView.clipsToBounds = true
+        view.layer.cornerRadius = 5
+        view.clipsToBounds = true
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+
+        panningInterationController = PanningInteractionController(viewController: self, direction: direction)
     }
 }
 

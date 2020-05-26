@@ -11,7 +11,7 @@ protocol ProfileDataProvider: class {
     var numberOfSections: Int { get }
     func numberOfRows(for section: Int) -> Int
     func model(for indexPath: IndexPath) -> AnyCellViewModel
-    //func details(at indexPath: IndexPath) -> StoriesDetails
+    func details(at indexPath: IndexPath) -> ProfileDetails
 }
 
 class DefaultProfileDataProvider: ProfileDataProvider {
@@ -64,6 +64,14 @@ class DefaultProfileDataProvider: ProfileDataProvider {
             return SupervisorFilterTableViewCellModel(dataProvider: educatorsProvider)
         default:
             return dataSource[indexPath.section - 2].profileMenus[indexPath.row]
+        }
+    }
+
+    func details(at indexPath: IndexPath) -> ProfileDetails {
+        if indexPath.row == 0 {
+            return .mealPlan
+        } else {
+            return .activities
         }
     }
 }

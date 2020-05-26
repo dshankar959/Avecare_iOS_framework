@@ -8,24 +8,13 @@ class RLMInstitution: RLMDefaults {
     @objc dynamic var isActive: Bool = true
     @objc dynamic var organizationId: String = ""
     @objc dynamic var name: String = ""
-    @objc dynamic private var mealPlan: String? = nil
-    @objc dynamic private var activities: String? = nil
-
-    var mealPlanURL: URL? { // PDF
-        return URL(string: mealPlan ?? "")
-    }
-
-    var activitiesURL: URL? { // PDF
-        return URL(string: activities ?? "")
-    }
-
 
     enum CodingKeys: String, CodingKey {
         case isActive
         case organizationId
         case name
         case mealPlan
-        case activities
+        case eventsCalendar
     }
 
     convenience required init(from decoder: Decoder) throws {
@@ -39,8 +28,14 @@ class RLMInstitution: RLMDefaults {
             self.isActive = try values.decode(Bool.self, forKey: .isActive)
             self.organizationId = try values.decode(String.self, forKey: .organizationId)
             self.name = try values.decode(String.self, forKey: .name)
-            self.mealPlan = try values.decodeIfPresent(String.self, forKey: .mealPlan)
-            self.activities = try values.decodeIfPresent(String.self, forKey: .activities)
+            if let mealPlan = try values.decodeIfPresent(String.self, forKey: .mealPlan),
+                let url = URL(string: mealPlan) {
+                _ = try DocumentService().savePDF(url, name: CodingKeys.mealPlan.rawValue)
+            }
+            if let eventsCalendar = try values.decodeIfPresent(String.self, forKey: .eventsCalendar),
+                let url = URL(string: eventsCalendar) {
+                _ = try DocumentService().savePDF(url, name: CodingKeys.eventsCalendar.rawValue)
+            }
 
         } catch {
             DDLogError("JSON Decoding error = \(error)")
@@ -48,6 +43,17 @@ class RLMInstitution: RLMDefaults {
         }
     }
 
+}
+
+
+extension RLMInstitution {
+    func mealPlanURL(using storage: DocumentService) -> URL? {
+        return storage.PDFURL(name: CodingKeys.mealPlan.rawValue)
+    }
+
+    func activityURL(using storage: DocumentService) -> URL? {
+        return storage.PDFURL(name: CodingKeys.eventsCalendar.rawValue)
+    }
 }
 
 

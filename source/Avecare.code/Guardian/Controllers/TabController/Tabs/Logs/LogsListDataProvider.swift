@@ -1,6 +1,5 @@
 import Foundation
 import CocoaLumberjack
-import CocoaLumberjack
 
 
 protocol LogsDataProvider: class {
