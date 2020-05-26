@@ -62,8 +62,9 @@ class ProfileViewController: UIViewController, IndicatorProtocol {
         if segue.identifier == R.segue.profileViewController.educatorDetails.identifier,
             let destination = segue.destination as? EducatorDetailsViewController {
             destination.selectedEducatorId = sender as? String ?? ""
-
+            destination.direction = .bottom
             slideInTransitionDelegate.direction = .bottom
+            slideInTransitionDelegate.sizeOfPresentingViewController = .zero
             destination.transitioningDelegate = slideInTransitionDelegate
             destination.modalPresentationStyle = .custom
         }
@@ -110,7 +111,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 2 {
-            let details = ProfileDetails.menu//dataProvider.details(at: indexPath)
+            let details = dataProvider.details(at: indexPath)
             performSegue(withIdentifier: R.segue.profileViewController.details, sender: details)
         } else if indexPath.section == 3 {
             performSegue(withIdentifier: R.segue.profileViewController.about, sender: nil)

@@ -121,6 +121,19 @@ enum NetworkError {
     }
 }
 
+enum FileError {
+    case FileNotFound
+
+    var message: AppError {
+        switch self {
+        case .FileNotFound:
+            return AppError(title: "File Not Found",
+                            userInfo: "The requested file is not found in the storage.",
+                            code: "FileError", type: self)
+        }
+    }
+}
+
 enum FileTransferError {
     case emptyFileParameter
     case missingFile

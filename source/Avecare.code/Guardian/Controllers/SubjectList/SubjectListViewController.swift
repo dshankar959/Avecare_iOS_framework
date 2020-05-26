@@ -12,15 +12,20 @@ protocol SubjectListViewControllerDelegate: class {
 class SubjectListViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var drawerView: UIView!
 
     weak var delegate: SubjectListViewControllerDelegate?
     lazy var dataProvider: SubjectListDataProvider = DefaultSubjectListDataProvider()
 
     private let cellHeight = CGFloat(57)
+    private let drawerHeight = CGFloat(22)
     var contentHeight: CGFloat {
         // FIXME: should not be greater then screen size -> This is done by SlideInPresentationController
-        return CGFloat(dataProvider.numberOfRows) * cellHeight
+        return CGFloat(dataProvider.numberOfRows) * cellHeight + drawerHeight
     }
+
+    var panningInterationController: PanningInteractionController?
+    var direction: PresentationDirection = .bottom
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +33,15 @@ class SubjectListViewController: UIViewController {
         tableView.register(viewModels: [
             SubjectListAllTableViewCell.self
         ])
+
+        // Make drawer view
+        drawerView.layer.cornerRadius = drawerView.frame.height / 2
+        drawerView.clipsToBounds = true
+        view.layer.cornerRadius = 5
+        view.clipsToBounds = true
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+
+        panningInterationController = PanningInteractionController(viewController: self, direction: direction)
     }
 }
 

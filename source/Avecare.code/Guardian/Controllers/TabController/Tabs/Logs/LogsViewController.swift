@@ -9,7 +9,10 @@ class LogsViewController: UIViewController {
     @IBOutlet weak var calendarView: JTACMonthView!
     @IBOutlet weak var selectedDateLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var noItemView: UIView!
+    @IBOutlet weak var noItemTitleLabel: UILabel!
+    @IBOutlet weak var noItemContentLabel: UILabel!
+    
     let dataProvider = DefaultLogsDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
     let subjectListDataProvider = DefaultSubjectListDataProvider()
@@ -40,6 +43,12 @@ class LogsViewController: UIViewController {
         ])
 
         self.navigationController?.hideHairline()
+        configNoItemView()
+    }
+
+    private func configNoItemView() {
+        noItemTitleLabel.text = "Looking for your child's log?"
+        noItemContentLabel.text = "Your child's log is where you will find information about their meals, sleep, and other activities."
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,6 +64,7 @@ class LogsViewController: UIViewController {
         if let info = R.segue.logsViewController.subjectList(segue: segue) {
             info.destination.delegate = self
             info.destination.dataProvider = subjectListDataProvider
+            info.destination.direction = .bottom
             slideInTransitionDelegate.direction = .bottom
             slideInTransitionDelegate.sizeOfPresentingViewController = CGSize(width: view.frame.size.width,
                                                                               height: info.destination.contentHeight)
@@ -79,6 +89,7 @@ class LogsViewController: UIViewController {
 
         updateSubjectSelectButton(subject: subject)
         dataProvider.fetchLogForm(subject: subject, date: filterDate)
+        noItemView.isHidden = dataProvider.numberOfRows(for: 0) > 0 ? true : false
         tableView.reloadData()
     }
 

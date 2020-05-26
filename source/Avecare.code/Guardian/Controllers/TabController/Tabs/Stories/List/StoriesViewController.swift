@@ -42,6 +42,7 @@ class StoriesListViewController: UIViewController {
             let destination = segue.destination as? SubjectListViewController {
             destination.delegate = self
             destination.dataProvider.allSubjectsIncluded = true
+            destination.direction = .bottom
             slideInTransitionDelegate.direction = .bottom
             slideInTransitionDelegate.sizeOfPresentingViewController = CGSize(width: view.frame.size.width,
                                                                               height: destination.contentHeight)
@@ -52,8 +53,9 @@ class StoriesListViewController: UIViewController {
         if segue.identifier == R.segue.storiesListViewController.educatorDetails.identifier,
             let destination = segue.destination as? EducatorDetailsViewController {
             destination.selectedEducatorId = sender as? String ?? ""
-
+            destination.direction = .bottom
             slideInTransitionDelegate.direction = .bottom
+            slideInTransitionDelegate.sizeOfPresentingViewController = .zero
             destination.transitioningDelegate = slideInTransitionDelegate
             destination.modalPresentationStyle = .custom
         }

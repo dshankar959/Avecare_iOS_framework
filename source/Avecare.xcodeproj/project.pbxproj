@@ -323,6 +323,11 @@
 		75EB5A2D2467A21600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A2C2467A21600E077E5 /* SyncEngine+Operations.swift */; };
 		75EB5A312467A26600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */; };
 		DA3FE2DB8C4BA18334A1EB22 /* Pods_parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */; };
+		DC05B3C2247B5AD70014779D /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
+		DC05B3CE247C45000014779D /* PanningInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3CD247C45000014779D /* PanningInteractionController.swift */; };
+		DC05B3CF247C45000014779D /* PanningInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3CD247C45000014779D /* PanningInteractionController.swift */; };
+		DC05B3D1247D594C0014779D /* DocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3D0247D594C0014779D /* DocumentService.swift */; };
+		DC05B3D2247D594C0014779D /* DocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3D0247D594C0014779D /* DocumentService.swift */; };
 		DC225E38246C68BF00094BB0 /* CheckmarkFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67DF806241BFE6800793A9C /* CheckmarkFormView.swift */; };
 		DC225E3F246C787F00094BB0 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC225E3E246C787F00094BB0 /* DateCell.swift */; };
 		DC3617F324770B4D004C0B83 /* UserAuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3617F224770B4D004C0B83 /* UserAuthenticateService.swift */; };
@@ -644,6 +649,9 @@
 		C56891569470365ADFA64333 /* Pods-educator.release(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(qa).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(qa).xcconfig"; sourceTree = "<group>"; };
 		C6A41FD77BCF4377A08E9406 /* Pods-educator.debug(beta).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.debug(beta).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.debug(beta).xcconfig"; sourceTree = "<group>"; };
 		D48B06C16950ED61770C4604 /* Pods-educator.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(appstore).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(appstore).xcconfig"; sourceTree = "<group>"; };
+		DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
+		DC05B3CD247C45000014779D /* PanningInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanningInteractionController.swift; sourceTree = "<group>"; };
+		DC05B3D0247D594C0014779D /* DocumentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentService.swift; sourceTree = "<group>"; };
 		DC225E3E246C787F00094BB0 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		DC3617F224770B4D004C0B83 /* UserAuthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticateService.swift; sourceTree = "<group>"; };
 		DC4FFA042470B9AE0079A27C /* ProfileMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMenuTableViewCell.xib; sourceTree = "<group>"; };
@@ -1339,6 +1347,7 @@
 			children = (
 				75886D052419327F0079C080 /* UserKeychainService.swift */,
 				75886D062419327F0079C080 /* FileStorageService.swift */,
+				DC05B3D0247D594C0014779D /* DocumentService.swift */,
 				755EAEB6241AC6CC00A6BA4D /* DataAccessLayers(DAL) */,
 				615475787923B39A7F6909BD /* ImageStorageService */,
 			);
@@ -1742,6 +1751,8 @@
 			children = (
 				DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */,
 				DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */,
+				DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */,
+				DC05B3CD247C45000014779D /* PanningInteractionController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -2328,6 +2339,7 @@
 				75E2EBFA246C1DDD00A3D51F /* RLMDefaults.swift in Sources */,
 				75886DEB241932BA0079C080 /* LogsSideViewController.swift in Sources */,
 				75886DFF241932CC0079C080 /* Theme.swift in Sources */,
+				DC05B3CE247C45000014779D /* PanningInteractionController.swift in Sources */,
 				75886DF2241932BA0079C080 /* SupervisorTabBarController.swift in Sources */,
 				75886D0E2419327F0079C080 /* AvecareAPI+sampleData.swift in Sources */,
 				75886DD4241932BA0079C080 /* R.supervisor.generated.swift in Sources */,
@@ -2384,6 +2396,7 @@
 				75EB59C42461858700E077E5 /* FormRowIconProtocol.swift in Sources */,
 				75886DD8241932BA0079C080 /* SettingsDataProvider.swift in Sources */,
 				75886D0C2419327F0079C080 /* AvecareAPI.swift in Sources */,
+				DC05B3D1247D594C0014779D /* DocumentService.swift in Sources */,
 				75886D1A2419327F0079C080 /* Servers.swift in Sources */,
 				75886D622419327F0079C080 /* UserKeychainService.swift in Sources */,
 				75886D482419327F0079C080 /* UIDevice.swift in Sources */,
@@ -2506,6 +2519,7 @@
 				75886D352419327F0079C080 /* DiskHelper.swift in Sources */,
 				75EB5A0D2465D77900E077E5 /* RLMAccountInfo.swift in Sources */,
 				75EB5A242466FE9800E077E5 /* syncOrganizationDetails.swift in Sources */,
+				DC05B3CF247C45000014779D /* PanningInteractionController.swift in Sources */,
 				75EB59D32461858700E077E5 /* RLMLogRow.swift in Sources */,
 				75886D2D2419327F0079C080 /* AppError.swift in Sources */,
 				75886D4D2419327F0079C080 /* Dictionary.swift in Sources */,
@@ -2560,6 +2574,7 @@
 				615473E128966135AC3D2073 /* APIToken.swift in Sources */,
 				6154739FE190C8520C56FE01 /* Closure.swift in Sources */,
 				DC4FFA0B2470B9AE0079A27C /* ProfileMenuTableViewCell.swift in Sources */,
+				DC05B3C2247B5AD70014779D /* SlideInPresentationAnimator.swift in Sources */,
 				615477178CD2A957D0A155BB /* RealmDetachable.swift in Sources */,
 				615478302706516FFFEA01B9 /* StoriesViewController.swift in Sources */,
 				61547F44C319932DE7A455BA /* StoriesDetailsViewController.swift in Sources */,
@@ -2587,6 +2602,7 @@
 				615479361B14E35A2EF7BF66 /* LogsOptionTableViewCell.swift in Sources */,
 				6154717E63802ABDBDFFCA4B /* LogsTimeDetailsTableViewCell.swift in Sources */,
 				75EB5A2A246770B900E077E5 /* SubjectsAPIService.swift in Sources */,
+				DC05B3D2247D594C0014779D /* DocumentService.swift in Sources */,
 				DC4FFA17247483260079A27C /* AboutTableViewController.swift in Sources */,
 				75EB59D52461858700E077E5 /* RLMLogChooseRow.swift in Sources */,
 				75EB59CF2461858700E077E5 /* RLMLogNoteRow.swift in Sources */,
