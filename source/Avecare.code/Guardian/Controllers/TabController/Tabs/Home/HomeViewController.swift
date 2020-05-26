@@ -7,6 +7,9 @@ class HomeViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subjectFilterButton: UIButton!
+    @IBOutlet weak var noItemView: UIView!
+    @IBOutlet weak var noItemTitleLabel: UILabel!
+    @IBOutlet weak var noItemContentLabel: UILabel!
 
     let dataProvider: HomeDataProvider = DefaultHomeDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
@@ -23,6 +26,14 @@ class HomeViewController: UIViewController {
         ])
 
         self.navigationController?.hideHairline()
+        configNoItemView()
+    }
+
+    private func configNoItemView() {
+        noItemTitleLabel.text = "Welcome!"
+        // swiftlint:disable line_length
+        noItemContentLabel.text = "This is your Home screen; items will be added by your child's educator as well as by their centre's administration.\n\nPeriodically information will be added to this screen - stay tuned!"
+        // swiftlint:enable line_length
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -49,6 +60,7 @@ class HomeViewController: UIViewController {
     }
 
     private func updateScreen() {
+        noItemView.isHidden = dataProvider.numberOfSections > 0 ? true : false
         updateSubjectFilterButton()
     }
 

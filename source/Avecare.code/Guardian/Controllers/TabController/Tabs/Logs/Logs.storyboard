@@ -140,6 +140,33 @@
                                     <outlet property="delegate" destination="VN9-Za-7jc" id="M3E-Xz-RdP"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwH-1c-9OY">
+                                <rect key="frame" x="0.0" y="218" width="414" height="124"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bl-3D-UMg">
+                                        <rect key="frame" x="15" y="28" width="384" height="43"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ynm-2G-IXt">
+                                        <rect key="frame" x="15" y="89" width="384" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" name="LightText"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ynm-2G-IXt" secondAttribute="trailing" constant="15" id="1VN-sd-PqT"/>
+                                    <constraint firstAttribute="bottom" secondItem="ynm-2G-IXt" secondAttribute="bottom" constant="18" id="7BQ-fM-OXw"/>
+                                    <constraint firstItem="ynm-2G-IXt" firstAttribute="top" secondItem="5bl-3D-UMg" secondAttribute="bottom" constant="18" id="MYT-iJ-PNW"/>
+                                    <constraint firstAttribute="trailing" secondItem="5bl-3D-UMg" secondAttribute="trailing" constant="15" id="Uz9-LE-WjE"/>
+                                    <constraint firstItem="5bl-3D-UMg" firstAttribute="leading" secondItem="wwH-1c-9OY" secondAttribute="leading" constant="15" id="aiR-Wy-EEF"/>
+                                    <constraint firstItem="ynm-2G-IXt" firstAttribute="leading" secondItem="wwH-1c-9OY" secondAttribute="leading" constant="15" id="eUa-v6-i2f"/>
+                                    <constraint firstItem="5bl-3D-UMg" firstAttribute="top" secondItem="wwH-1c-9OY" secondAttribute="top" constant="28" id="yZA-nw-70t"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="Background"/>
                         <constraints>
@@ -147,12 +174,15 @@
                             <constraint firstItem="JtS-tE-hph" firstAttribute="bottom" secondItem="WvE-pV-HgB" secondAttribute="bottom" id="9Je-iV-NBb"/>
                             <constraint firstItem="mxI-6z-YWJ" firstAttribute="top" secondItem="ZJg-De-a0j" secondAttribute="bottom" id="FwW-Q1-T5W"/>
                             <constraint firstItem="JtS-tE-hph" firstAttribute="trailing" secondItem="mxI-6z-YWJ" secondAttribute="trailing" id="Jgi-qg-VJ9"/>
+                            <constraint firstItem="wwH-1c-9OY" firstAttribute="leading" secondItem="JtS-tE-hph" secondAttribute="leading" id="Jy6-Wb-oxi"/>
                             <constraint firstItem="mxI-6z-YWJ" firstAttribute="leading" secondItem="JtS-tE-hph" secondAttribute="leading" id="Q6d-LR-GHO"/>
                             <constraint firstItem="ZJg-De-a0j" firstAttribute="leading" secondItem="JtS-tE-hph" secondAttribute="leading" id="UqZ-Gt-Ug2"/>
+                            <constraint firstItem="wwH-1c-9OY" firstAttribute="top" secondItem="mxI-6z-YWJ" secondAttribute="bottom" id="Zx6-Ld-kj3"/>
                             <constraint firstItem="ZJg-De-a0j" firstAttribute="top" secondItem="JtS-tE-hph" secondAttribute="top" id="jeq-5u-7Zw"/>
                             <constraint firstItem="WvE-pV-HgB" firstAttribute="top" secondItem="mxI-6z-YWJ" secondAttribute="bottom" constant="1" id="uIj-Dx-hOT"/>
                             <constraint firstItem="JtS-tE-hph" firstAttribute="trailing" secondItem="WvE-pV-HgB" secondAttribute="trailing" id="uhc-dA-3Z9"/>
                             <constraint firstItem="JtS-tE-hph" firstAttribute="trailing" secondItem="ZJg-De-a0j" secondAttribute="trailing" id="vdq-NX-Oxl"/>
+                            <constraint firstItem="JtS-tE-hph" firstAttribute="trailing" secondItem="wwH-1c-9OY" secondAttribute="trailing" id="wFl-n2-X6o"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JtS-tE-hph"/>
                     </view>
@@ -185,6 +215,9 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="calendarView" destination="ZJg-De-a0j" id="EdF-qy-dlq"/>
+                        <outlet property="noItemContentLabel" destination="ynm-2G-IXt" id="vW2-fA-9pp"/>
+                        <outlet property="noItemTitleLabel" destination="5bl-3D-UMg" id="oVw-SR-g4m"/>
+                        <outlet property="noItemView" destination="wwH-1c-9OY" id="uej-Hm-Yuh"/>
                         <outlet property="selectedDateLabel" destination="iaa-Du-qwZ" id="J5h-XI-Qkb"/>
                         <outlet property="subjectSelectButton" destination="7wQ-7R-bFg" id="hod-rC-KCk"/>
                         <outlet property="tableView" destination="WvE-pV-HgB" id="QQP-as-YvX"/>
@@ -233,6 +266,9 @@
         </namedColor>
         <namedColor name="DarkText">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightText">
+            <color red="0.49411764705882355" green="0.52156862745098043" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Main">
             <color red="0.31372549019607843" green="0.62745098039215685" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
