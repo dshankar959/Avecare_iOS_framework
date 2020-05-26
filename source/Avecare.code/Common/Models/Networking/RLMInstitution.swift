@@ -14,7 +14,7 @@ class RLMInstitution: RLMDefaults {
         case organizationId
         case name
         case mealPlan
-        case activities = "eventsCalendar"
+        case eventsCalendar
     }
 
     convenience required init(from decoder: Decoder) throws {
@@ -32,9 +32,9 @@ class RLMInstitution: RLMDefaults {
                 let url = URL(string: mealPlan) {
                 _ = try DocumentService().savePDF(url, name: CodingKeys.mealPlan.rawValue)
             }
-            if let activities = try values.decodeIfPresent(String.self, forKey: .activities),
-                let url = URL(string: activities) {
-                _ = try DocumentService().savePDF(url, name: CodingKeys.activities.rawValue)
+            if let eventsCalendar = try values.decodeIfPresent(String.self, forKey: .eventsCalendar),
+                let url = URL(string: eventsCalendar) {
+                _ = try DocumentService().savePDF(url, name: CodingKeys.eventsCalendar.rawValue)
             }
 
         } catch {
@@ -52,7 +52,7 @@ extension RLMInstitution {
     }
 
     func activityURL(using storage: DocumentService) -> URL? {
-        return storage.PDFURL(name: CodingKeys.activities.rawValue)
+        return storage.PDFURL(name: CodingKeys.eventsCalendar.rawValue)
     }
 }
 
