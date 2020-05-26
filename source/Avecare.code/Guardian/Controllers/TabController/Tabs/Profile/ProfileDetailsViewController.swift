@@ -1,5 +1,6 @@
 import UIKit
 import WebKit
+import CocoaLumberjack
 
 
 enum ProfileDetails {
@@ -28,15 +29,15 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
                 webView.frame = view.frame
                 view.addSubview(webView)
                 webView.navigationDelegate = self
+
+                showActivityIndicator(withStatus: "Loading ...")
                 webView.load(URLRequest(url: fileURL))
+            } else {
+                let error = FileError.FileNotFound.message
+                showErrorAlert(error)
+                DDLogError("\(error)")
             }
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        showActivityIndicator(withStatus: "Loading ...")
     }
 
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
