@@ -35,7 +35,6 @@ class UserAuthenticateService: IndicatorProtocol {
 
                 if appSettings.isFirstLogin() {
                     do {  // some DB defaults.
-                        //RLMLogChooseRow().clean()   // wipe rows
                         let data = try Data(resource: R.file.logFormRowsJson)
                         let log = try JSONDecoder().decode([RLMLogChooseRow].self, from: data)
 

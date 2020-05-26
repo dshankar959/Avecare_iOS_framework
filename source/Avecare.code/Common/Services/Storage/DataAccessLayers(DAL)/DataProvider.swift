@@ -37,11 +37,23 @@ extension DataProvider where Self: Object {
         return []
     }
 
+
     static func find(withSubjectID: String) -> Self? {
         let database = getDatabase()
         return database?.objects(Self.self).filter("subject.id = %@", withSubjectID).first
     }
 
+
+    static func findAll(withSubjectID: String) -> [Self] {
+        let database = getDatabase()
+
+        if let allObjects = database?.objects(Self.self) {
+            let results = allObjects.filter("subject.id = %@", withSubjectID)
+            return Array(results)
+        }
+
+        return []
+    }
 
     static func findAllWith(_ withIDs: [String]) -> [Self] {
         if withIDs.isEmpty {
@@ -227,44 +239,31 @@ extension DataProvider where Self: Object {
     func getAllSortedByName() -> [T] {
         return findAll(sortedBy: "name")
     }
+*/
 
-/*
     // sorted by "******LastUpdated"
-    func sortObjectsByLastUpdated<T: RLMDefaults>(_ objects: [T]) -> [T] {
-
+    static func sortObjectsByLastUpdated<T: RLMDefaults>(_ objects: [T]) -> [T] {
         if objects.isEmpty {
             return []
         }
 
-        let formatter = DateFormatter()
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = TimeZone.autoupdatingCurrent
-        formatter.dateFormat = DALconfig.ISO8601dateFormat
-
         let sortedObjects = objects.sorted(by: {
-            // Convert ISO8601 date string format to Date() object.
-            let serverDate0: Date? = $0.serverLastUpdated != nil ? formatter.date(from: $0.serverLastUpdated!) : nil
-            let serverDate1: Date? = $1.serverLastUpdated != nil ? formatter.date(from: $1.serverLastUpdated!) : nil
-            let clientDate0: Date? = $0.clientLastUpdated != nil ? formatter.date(from: $0.clientLastUpdated!) : nil
-            let clientDate1: Date? = $1.clientLastUpdated != nil ? formatter.date(from: $1.clientLastUpdated!) : nil
-
             // Filter and sort each object separately.
-            let objDate0: Date? = self.filterOptionalsWithLargeNil(lhs: serverDate0, rhs: clientDate0)
-            let objDate1: Date? = self.filterOptionalsWithLargeNil(lhs: serverDate1, rhs: clientDate1)
+            let objDate0: Date? = filterOptionalsWithLargeNil(lhs: $0.serverLastUpdated, rhs: $0.clientLastUpdated)
+            let objDate1: Date? = filterOptionalsWithLargeNil(lhs: $1.serverLastUpdated, rhs: $1.clientLastUpdated)
 
             // Final comparison.
             guard let finalDate0 = objDate0 else { return false }
             guard let finalDate1 = objDate1 else { return false }
 
             return finalDate0.compare(finalDate1) == .orderedDescending
-
         })
 
         return sortedObjects
     }
 
     // fyi ref: @Martin R, https://stackoverflow.com/a/53427282/7599
-    private func filterOptionalsWithLargeNil<T: Comparable>(lhs: T?, rhs: T?) -> T? {
+    private static func filterOptionalsWithLargeNil<T: Comparable>(lhs: T?, rhs: T?) -> T? {
         var result: T?
 
         switch (lhs, rhs) {
@@ -277,6 +276,6 @@ extension DataProvider where Self: Object {
 
         return result
     }
-*/
-*/
+
+
 }

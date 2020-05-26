@@ -3,34 +3,10 @@ struct UserProfile: Codable {
 
     var isLastSignedIn: Bool = false
 
-    var accountType: String? {
-        // FIXME:
-        let accountInfo = RLMAccountInfo.findAll().first
-        return accountInfo?.accountType
-    }
-
-    var accountTypeId: String? {
-        // FIXME: this can lead to issues when app start using previous record from database instead of current
-        let accountInfo = RLMAccountInfo.findAll().first
-        return accountInfo?.id
-    }
-
-    var isSupervisor: Bool {
-        if let type = accountType, type.caseInsensitiveCompare("supervisor") == .orderedSame {
-            return true
-        }
-
-        return false
-    }
-
-    var isGuardian: Bool {
-        return !isSupervisor
-    }
 
     enum CodingKeys: String, CodingKey {
         case userCredentials
     }
-
 
     // MARK: -
 
@@ -50,6 +26,31 @@ struct UserProfile: Codable {
         return email.isEmpty
     }
 
+}
 
+
+extension UserProfile {
+
+    private var accountType: String? {
+        let accountInfo = RLMAccountInfo.findAll().first
+        return accountInfo?.accountType
+    }
+
+    var accountTypeId: String? {
+        let accountInfo = RLMAccountInfo.findAll().first
+        return accountInfo?.id
+    }
+
+    var isSupervisor: Bool {
+        if let type = accountType, type.caseInsensitiveCompare("supervisor") == .orderedSame {
+            return true
+        }
+
+        return false
+    }
+
+    var isGuardian: Bool {
+        return !isSupervisor
+    }
 
 }

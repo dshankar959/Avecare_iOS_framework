@@ -8,43 +8,16 @@ class RLMSubject: RLMDefaults {
     @objc dynamic var firstName: String = ""
     @objc dynamic var middleName: String = ""
     @objc dynamic var lastName: String = ""
+
     var fullName: String {
         return "\(firstName) \(lastName)"
     }
+
     @objc dynamic var birthday = Date()
     @objc dynamic var subjectTypeId: String = ""
     @objc dynamic var photoConsent: Bool = true
 
     var unitIds = List<String>()
-
-    var isFormSubmittedToday: Bool {
-        return todayForm.publishState != .local
-    }
-
-    let logForms = LinkingObjects(fromType: RLMLogForm.self, property: "subject")   // Inverse relationship
-
-    var todayForm: RLMLogForm {
-        // Collect the subjects log forms and sort by date last updated on device.
-        let sortedLogForms = logForms.sorted(by: { $0.clientLastUpdated.compare($1.clientLastUpdated) == .orderedAscending})
-        // Get the most recent form.
-        if let form = sortedLogForms.last, Calendar.current.isDateInToday(form.clientLastUpdated) {
-            return form
-        }
-
-        DDLogDebug("Creating today's form for subject: [\(id)], \(firstName) \(lastName) ")
-        let form = RLMLogForm(id: newUUID)
-        form.subject = self
-
-        if let template = RLMFormTemplate.find(withSubjectType: subjectTypeId) {
-            DDLogDebug("Loading template: \(template.id)")
-            let rows = template.rows.detached()
-            rows.forEach({ $0.prepareForReuse() })
-            form.rows.append(objectsIn: rows)
-        }
-
-        form.create()
-        return form
-    }
 
 
     enum CodingKeys: String, CodingKey {
@@ -98,13 +71,45 @@ class RLMSubject: RLMDefaults {
 
 
 extension RLMSubject {
+
     func photoURL(using storage: ImageStorageService) -> URL? {
         return storage.imageURL(name: id)
     }
+
 }
 
 
 extension RLMSubject: DataProvider {
+
+    var isFormSubmittedToday: Bool {
+        return todayForm.publishState != .local
+    }
+
+    var todayForm: RLMLogForm {
+        // Collect the subjects log forms and sort by last updated.
+        let allLogForms = RLMLogForm.findAll(withSubjectID: self.id)
+        let sortedLogForms = RLMLogForm.sortObjectsByLastUpdated(allLogForms)
+
+        // Use the most recent form.
+        if let form = sortedLogForms.last, Calendar.current.isDateInToday(form.clientLastUpdated) {
+            return form
+        }
+
+        DDLogDebug("🆕 Adding new daily form for subject: [\(id)], \(firstName) \(lastName) ")
+        let form = RLMLogForm(id: newUUID)
+        form.subject = self
+
+        if let template = RLMFormTemplate.find(withSubjectType: subjectTypeId) {
+            DDLogDebug("Loading template: \(template.id)")
+            let rows = template.rows.detached()
+            rows.forEach({ $0.prepareForReuse() })
+            form.rows.append(objectsIn: rows)
+        }
+
+        form.create()
+        return form
+    }
+
 }
 
 

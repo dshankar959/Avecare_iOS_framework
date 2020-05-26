@@ -4,9 +4,8 @@ import RealmSwift
 
 
 class RLMLogForm: RLMDefaults, RLMPublishable {
-    // RLMPublishable
-    @objc dynamic var serverLastUpdated: Date?      // ISO8601 datetime stamp of last server-side change
-    @objc dynamic var clientLastUpdated = Date()    // ISO8601 datetime stamp of last local change
+
+    // RLMPublishable protocol var(s)
     @objc dynamic var rawPublishState: Int = PublishState.local.rawValue
 
     @objc dynamic var subject: RLMSubject?
@@ -24,13 +23,6 @@ class RLMLogForm: RLMDefaults, RLMPublishable {
         try super.encode(to: encoder)
         var container = encoder.container(keyedBy: CodingKeys.self)
 
-        // dates
-        let formatter = ISO8601DateFormatter()
-        try container.encode(formatter.string(from: clientLastUpdated), forKey: .clientLastUpdated)
-        if let date = serverLastUpdated {
-            try container.encodeIfPresent(formatter.string(from: date), forKey: .serverLastUpdated)
-        }
-
         // rows
         var rowsContainer = container.nestedUnkeyedContainer(forKey: .rows)
         for row in self.rows {
@@ -43,18 +35,7 @@ class RLMLogForm: RLMDefaults, RLMPublishable {
             try super.decode(from: decoder)
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
-            // dates
-            let formatter = ISO8601DateFormatter()
-            if let dateString = try values.decodeIfPresent(String.self, forKey: .clientLastUpdated),
-                let date = formatter.date(from: dateString) {
-                clientLastUpdated = date
-            }
-            if let dateString = try values.decodeIfPresent(String.self, forKey: .serverLastUpdated),
-                let date = formatter.date(from: dateString) {
-                serverLastUpdated = date
-            }
-
-            // not sure this needed
+            // TODO: not sure this needed ???
             subject = try values.decodeIfPresent(RLMSubject.self, forKey: .subject)
 
             // rows

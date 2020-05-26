@@ -6,17 +6,17 @@ import RealmSwift
 class RLMDefaults: Object, Codable, RLMReusable {
 
     @objc dynamic var id: String = ""
-//    @objc dynamic var serverLastUpdated: String? = nil
-//    @objc dynamic var clientLastUpdated: String? = nil
+    @objc dynamic var serverLastUpdated: Date?      // ISO8601 datetime stamp of last server-side change
+    @objc dynamic var clientLastUpdated = Date()    // ISO8601 datetime stamp of last local change
+
 //    @objc dynamic var syncToken: String = DALconfig.defaultSyncToken
 //    @objc dynamic var sync: Bool = false
 
 
-
     private enum DefaultCodingKeys: String, CodingKey {
         case id
-//        case serverLastUpdated = "server_last_updated"
-//        case clientLastUpdated = "client_last_updated"
+        case serverLastUpdated
+        case clientLastUpdated
 //        case syncToken = "sync_token"
     }
 
@@ -37,8 +37,16 @@ class RLMDefaults: Object, Codable, RLMReusable {
                 self.id = newUUID
             }
 
-//            self.serverLastUpdated = try values.decodeIfPresent(String.self, forKey: .serverLastUpdated)
-//            self.clientLastUpdated = try values.decodeIfPresent(String.self, forKey: .clientLastUpdated)
+            // dates
+            if let dateString = try values.decodeIfPresent(String.self, forKey: .clientLastUpdated),
+                let date = Date.dateFromISO8601String(dateString) {
+                clientLastUpdated = date
+            }
+            if let dateString = try values.decodeIfPresent(String.self, forKey: .serverLastUpdated),
+                let date = Date.dateFromISO8601String(dateString) {
+                serverLastUpdated = date
+            }
+
 //            self.syncToken = try values.decode(String.self, forKey: .syncToken)
 
         } catch {
@@ -47,10 +55,25 @@ class RLMDefaults: Object, Codable, RLMReusable {
         }
     }
 
+
     func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: DefaultCodingKeys.self)
-        try container.encode(id.lowercased(), forKey: .id)
+        do {
+            var values = encoder.container(keyedBy: DefaultCodingKeys.self)
+            try values.encode(id.lowercased(), forKey: .id)
+
+            // dates
+            try values.encodeIfPresent(Date.ISO8601StringFromDate(clientLastUpdated), forKey: .clientLastUpdated)
+
+            if let date = serverLastUpdated {
+                try values.encodeIfPresent(Date.ISO8601StringFromDate(date), forKey: .serverLastUpdated)
+            }
+        } catch {
+            DDLogError("JSON encoding error = \(error)")
+            fatalError("JSON encoding error = \(error)")
+        }
+
     }
+
 
     override static func primaryKey() -> String {
         return "id"
@@ -64,6 +87,7 @@ class RLMDefaults: Object, Codable, RLMReusable {
     func prepareForReuse() {
         id = newUUID
     }
+
 }
 
 

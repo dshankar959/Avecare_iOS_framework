@@ -8,6 +8,7 @@ class RLMFormTemplate: RLMDefaults {
     @objc dynamic var version: Int = 0
     @objc dynamic var subjectType: String = ""
     @objc dynamic var organization: RLMOrganization?
+
     let rows = List<RLMLogRow>()
 
 

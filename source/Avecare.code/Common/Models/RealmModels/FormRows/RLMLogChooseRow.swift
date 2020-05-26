@@ -2,7 +2,7 @@ import Foundation
 import RealmSwift
 
 
-// Logs -> list of available form rows for + picker
+// Logs -> list of available form rows + picker
 class RLMLogChooseRow: Object, Decodable {
 
     @objc dynamic var name = ""

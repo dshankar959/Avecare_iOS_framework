@@ -97,19 +97,6 @@
                                     <constraint firstAttribute="width" constant="290" id="A6M-8v-zaw"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2G-Ba-lmZ">
-                                <rect key="frame" x="0.0" y="503" width="375" height="80"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="Bij-JU-vBA"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Resend the Code">
-                                    <color key="titleColor" name="WhiteButtonText"/>
-                                </state>
-                                <connections>
-                                    <action selector="requestCodeAgain:" destination="IUv-yB-8nH" eventType="touchUpInside" id="Fo6-BW-l67"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="FZa-0q-pky">
                                 <rect key="frame" x="106.5" y="50" width="162" height="50"/>
                                 <subviews>
@@ -130,16 +117,29 @@
                                     <constraint firstAttribute="height" constant="50" id="Zdk-dI-y1W"/>
                                 </constraints>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E2G-Ba-lmZ">
+                                <rect key="frame" x="107.5" y="331" width="160" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="cq4-BO-N5V"/>
+                                    <constraint firstAttribute="width" constant="160" id="n9y-Xb-Ox6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Resend Code">
+                                    <color key="titleColor" name="WhiteButtonText"/>
+                                </state>
+                                <connections>
+                                    <action selector="requestCodeAgain:" destination="IUv-yB-8nH" eventType="touchUpInside" id="Fo6-BW-l67"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="E2G-Ba-lmZ" firstAttribute="width" secondItem="fER-ME-3h6" secondAttribute="width" id="43q-EM-WTX"/>
+                            <constraint firstItem="E2G-Ba-lmZ" firstAttribute="centerX" secondItem="Sfr-ZL-uS6" secondAttribute="centerX" id="G0l-ub-RWV"/>
                             <constraint firstItem="FZa-0q-pky" firstAttribute="top" secondItem="YR4-i3-J2u" secondAttribute="top" constant="50" id="GGX-on-niZ"/>
-                            <constraint firstItem="E2G-Ba-lmZ" firstAttribute="centerX" secondItem="fER-ME-3h6" secondAttribute="centerX" id="NhS-DP-dn0"/>
+                            <constraint firstItem="E2G-Ba-lmZ" firstAttribute="top" secondItem="Sfr-ZL-uS6" secondAttribute="bottom" constant="19" id="QMs-Ci-r72"/>
                             <constraint firstItem="Sfr-ZL-uS6" firstAttribute="centerX" secondItem="fER-ME-3h6" secondAttribute="centerX" id="SIu-H4-ba8"/>
                             <constraint firstItem="Sfr-ZL-uS6" firstAttribute="centerY" secondItem="fER-ME-3h6" secondAttribute="centerY" constant="-68.25" id="eaW-Ip-JTt"/>
                             <constraint firstItem="FZa-0q-pky" firstAttribute="centerX" secondItem="fER-ME-3h6" secondAttribute="centerX" id="pIa-hn-0Yb"/>
-                            <constraint firstItem="YR4-i3-J2u" firstAttribute="bottom" secondItem="E2G-Ba-lmZ" secondAttribute="bottom" constant="40" id="wRV-iE-pgS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YR4-i3-J2u"/>
                     </view>
@@ -291,14 +291,14 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cwz-R0-qcg">
-                                <rect key="frame" x="107.5" y="350.5" width="160" height="40"/>
+                                <rect key="frame" x="107.5" y="331" width="160" height="40"/>
                                 <rect key="contentStretch" x="0.5" y="0.0" width="1" height="1"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="HyB-lD-NM6"/>
                                     <constraint firstAttribute="height" constant="40" id="pNt-Kn-08U"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                <state key="normal" title="Get Code" backgroundImage="Primary"/>
+                                <state key="normal" title="Send Code" backgroundImage="Primary"/>
                                 <connections>
                                     <action selector="getCodeActionWithSender:" destination="BIB-zt-0Cr" eventType="touchUpInside" id="gRD-4H-UMU"/>
                                 </connections>
@@ -310,7 +310,7 @@
                             <constraint firstItem="Cwz-R0-qcg" firstAttribute="centerX" secondItem="MNd-Nd-n4h" secondAttribute="centerX" id="9xu-Hg-69c"/>
                             <constraint firstItem="Dlx-5E-nzB" firstAttribute="top" secondItem="Icn-Sx-LkI" secondAttribute="top" constant="50" id="Cx2-9Q-ET7"/>
                             <constraint firstItem="ZOJ-Z2-mbG" firstAttribute="centerY" secondItem="MNd-Nd-n4h" secondAttribute="centerY" constant="-80" id="ggJ-jP-NLK"/>
-                            <constraint firstItem="Cwz-R0-qcg" firstAttribute="top" secondItem="ZOJ-Z2-mbG" secondAttribute="bottom" constant="40" id="k4H-ws-a3S"/>
+                            <constraint firstItem="Cwz-R0-qcg" firstAttribute="top" secondItem="ZOJ-Z2-mbG" secondAttribute="bottom" constant="20.5" id="k4H-ws-a3S"/>
                             <constraint firstItem="ZOJ-Z2-mbG" firstAttribute="centerX" secondItem="MNd-Nd-n4h" secondAttribute="centerX" id="rnP-Sc-8yA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Icn-Sx-LkI"/>

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		291012472455907200D0547A /* Form1.json in Resources */ = {isa = PBXBuildFile; fileRef = 615473447E14A2E6B1980520 /* Form1.json */; };
-		291012482455907300D0547A /* Form1.json in Resources */ = {isa = PBXBuildFile; fileRef = 615473447E14A2E6B1980520 /* Form1.json */; };
 		299B3586241F907E00D6F9A5 /* FormSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B357F241F907E00D6F9A5 /* FormSpacerView.swift */; };
 		299B3587241F907E00D6F9A5 /* FormLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B3580241F907E00D6F9A5 /* FormLabelView.swift */; };
 		299B3588241F907E00D6F9A5 /* FormPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B3582241F907E00D6F9A5 /* FormPhotoView.swift */; };
@@ -69,7 +67,6 @@
 		61547716ED0704A1F4601513 /* StoriesDetailsPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547ED5799922B0A2DB9C2C /* StoriesDetailsPhotoView.xib */; };
 		615477178CD2A957D0A155BB /* RealmDetachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547B29E3BDD649F0D85702 /* RealmDetachable.swift */; };
 		6154771965713AD841B786F4 /* LogsNoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 615476341CA9B1B5A2A77173 /* LogsNoteTableViewCell.xib */; };
-		6154774154B2A757866945C1 /* LogFormRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 615475D70448FF06A68D8798 /* LogFormRows.json */; };
 		615477604486F2465810D030 /* UnitActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547CBAC0180C2D2092DD1A /* UnitActivity.swift */; };
 		615477704DE5A548304F7B1F /* syncUnitStories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547E6D4475B73BAAE9DBEE /* syncUnitStories.swift */; };
 		6154779079D0A089A6510394 /* StoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615472A224CB134D0BEA6A29 /* StoriesTableViewCell.swift */; };
@@ -124,6 +121,8 @@
 		61547F44C319932DE7A455BA /* StoriesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154717A69B557EB291B8570 /* StoriesDetailsViewController.swift */; };
 		61547F86427E44844CC9DC71 /* SubjectListDataProvider+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477C6C7DC9B6372B7ACC6 /* SubjectListDataProvider+Common.swift */; };
 		6A216CA06A17B11A8377AD9C /* Pods_educator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */; };
+		7533DB07247958EC00DA211D /* LogFormRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7533DB04247958EC00DA211D /* LogFormRows.json */; };
+		7533DB08247958EC00DA211D /* LogFormRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7533DB04247958EC00DA211D /* LogFormRows.json */; };
 		754E1EA52436505300C8FD30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 754E1EA42436505300C8FD30 /* GoogleService-Info.plist */; };
 		754E1EA72436506900C8FD30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 754E1EA62436506900C8FD30 /* GoogleService-Info.plist */; };
 		755EAEAA241ABB6900A6BA4D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEA9241ABB6900A6BA4D /* Session.swift */; };
@@ -281,8 +280,8 @@
 		75EB59CD2461858700E077E5 /* RLMLogSwitcherRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59B82461858700E077E5 /* RLMLogSwitcherRow.swift */; };
 		75EB59CE2461858700E077E5 /* RLMLogNoteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59B92461858700E077E5 /* RLMLogNoteRow.swift */; };
 		75EB59CF2461858700E077E5 /* RLMLogNoteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59B92461858700E077E5 /* RLMLogNoteRow.swift */; };
-		75EB59D02461858700E077E5 /* RLMForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59BA2461858700E077E5 /* RLMForm.swift */; };
-		75EB59D12461858700E077E5 /* RLMForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59BA2461858700E077E5 /* RLMForm.swift */; };
+		75EB59D02461858700E077E5 /* RLMLogForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59BA2461858700E077E5 /* RLMLogForm.swift */; };
+		75EB59D12461858700E077E5 /* RLMLogForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59BA2461858700E077E5 /* RLMLogForm.swift */; };
 		75EB59D22461858700E077E5 /* RLMLogRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59BB2461858700E077E5 /* RLMLogRow.swift */; };
 		75EB59D32461858700E077E5 /* RLMLogRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59BB2461858700E077E5 /* RLMLogRow.swift */; };
 		75EB59D42461858700E077E5 /* RLMLogChooseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59BC2461858700E077E5 /* RLMLogChooseRow.swift */; };
@@ -393,11 +392,8 @@
 		F67DF822241BFE6800793A9C /* CheckmarkFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F67DF809241BFE6800793A9C /* CheckmarkFormView.xib */; };
 		F67DF823241BFE6800793A9C /* InputTextFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F67DF80A241BFE6800793A9C /* InputTextFormView.xib */; };
 		F67DF824241BFE6800793A9C /* PickerViewFormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F67DF80B241BFE6800793A9C /* PickerViewFormView.xib */; };
-		F67DF82F241C004700793A9C /* Logs.json in Resources */ = {isa = PBXBuildFile; fileRef = F67DF82E241C004700793A9C /* Logs.json */; };
 		F67DF832241C009800793A9C /* ContentSizedTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67DF831241C009700793A9C /* ContentSizedTableView.swift */; };
 		F6A5E13D2444DE8D00FD77B6 /* SingleValuePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615476A733FC27107FD3D4C8 /* SingleValuePickerView.swift */; };
-		F6A5E13F2444DEE700FD77B6 /* LogFormRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 615475D70448FF06A68D8798 /* LogFormRows.json */; };
-		F6A5E1412444DEED00FD77B6 /* Logs.json in Resources */ = {isa = PBXBuildFile; fileRef = F67DF82E241C004700793A9C /* Logs.json */; };
 		F6A5E1552444DF5400FD77B6 /* ImageStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154797C8F550C18F3AB7FBF /* ImageStorageService.swift */; };
 		F6B7F28F24254DBF003E16AE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B7F28E24254DBF003E16AE /* LoginViewController.swift */; };
 		F6B7F29124254EA6003E16AE /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6B7F29024254EA6003E16AE /* Login.storyboard */; };
@@ -430,7 +426,6 @@
 		615472A224CB134D0BEA6A29 /* StoriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesTableViewCell.swift; sourceTree = "<group>"; };
 		615472D6D6682E2D0DF64C29 /* StoriesDetailsTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoriesDetailsTitleView.xib; sourceTree = "<group>"; };
 		615472DEED205F376B08C4D7 /* SubjectListDataProvider+Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Switch.swift"; sourceTree = "<group>"; };
-		615473447E14A2E6B1980520 /* Form1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Form1.json; sourceTree = "<group>"; };
 		615473C479A061F759D2F5FC /* DailyFormRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyFormRequest.swift; sourceTree = "<group>"; };
 		615473EE5A59F3D396DA45E8 /* Injury.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injury.swift; sourceTree = "<group>"; };
 		615473F1CDA70039CD9378AA /* LogsOptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsOptionTableViewCell.swift; sourceTree = "<group>"; };
@@ -444,7 +439,6 @@
 		61547591AC635E1EB090F102 /* StoriesDataProvider+Body.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoriesDataProvider+Body.swift"; sourceTree = "<group>"; };
 		615475A03445475FEEADDF5A /* RLMFormTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMFormTemplate.swift; sourceTree = "<group>"; };
 		615475BA47C2AEFAA9A3F0C9 /* StoriesSideViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesSideViewController.swift; sourceTree = "<group>"; };
-		615475D70448FF06A68D8798 /* LogFormRows.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LogFormRows.json; sourceTree = "<group>"; };
 		615475EEDFB36CEE4040F7EB /* PinField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PinField.swift; sourceTree = "<group>"; };
 		615475FB8B74A0DD8CC54397 /* UserListFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListFlowLayout.swift; sourceTree = "<group>"; };
 		615476341CA9B1B5A2A77173 /* LogsNoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogsNoteTableViewCell.xib; sourceTree = "<group>"; };
@@ -515,6 +509,7 @@
 		61F4A7EF07DB298479023526 /* Pods-educator.release(beta).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(beta).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(beta).xcconfig"; sourceTree = "<group>"; };
 		66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_educator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7533DB04247958EC00DA211D /* LogFormRows.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LogFormRows.json; sourceTree = "<group>"; };
 		754E1EA42436505300C8FD30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		754E1EA62436506900C8FD30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		755EAEA7241AB64200A6BA4D /* parent.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = parent.entitlements; sourceTree = "<group>"; };
@@ -621,7 +616,7 @@
 		75EB59B72461858700E077E5 /* RLMLogPhotoRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMLogPhotoRow.swift; sourceTree = "<group>"; };
 		75EB59B82461858700E077E5 /* RLMLogSwitcherRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMLogSwitcherRow.swift; sourceTree = "<group>"; };
 		75EB59B92461858700E077E5 /* RLMLogNoteRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMLogNoteRow.swift; sourceTree = "<group>"; };
-		75EB59BA2461858700E077E5 /* RLMForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMForm.swift; sourceTree = "<group>"; };
+		75EB59BA2461858700E077E5 /* RLMLogForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMLogForm.swift; sourceTree = "<group>"; };
 		75EB59BB2461858700E077E5 /* RLMLogRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMLogRow.swift; sourceTree = "<group>"; };
 		75EB59BC2461858700E077E5 /* RLMLogChooseRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMLogChooseRow.swift; sourceTree = "<group>"; };
 		75EB59BD2461858700E077E5 /* RLMSubject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSubject.swift; sourceTree = "<group>"; };
@@ -697,7 +692,6 @@
 		F67DF809241BFE6800793A9C /* CheckmarkFormView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CheckmarkFormView.xib; sourceTree = "<group>"; };
 		F67DF80A241BFE6800793A9C /* InputTextFormView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputTextFormView.xib; sourceTree = "<group>"; };
 		F67DF80B241BFE6800793A9C /* PickerViewFormView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PickerViewFormView.xib; sourceTree = "<group>"; };
-		F67DF82E241C004700793A9C /* Logs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Logs.json; sourceTree = "<group>"; };
 		F67DF831241C009700793A9C /* ContentSizedTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentSizedTableView.swift; sourceTree = "<group>"; };
 		F6B7F28E24254DBF003E16AE /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		F6B7F29024254EA6003E16AE /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
@@ -795,22 +789,12 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
-		29A6D53E24544FB100D7DB87 /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				F67DF82E241C004700793A9C /* Logs.json */,
-				615473447E14A2E6B1980520 /* Form1.json */,
-				615475D70448FF06A68D8798 /* LogFormRows.json */,
-			);
-			path = JSON;
-			sourceTree = "<group>";
-		};
 		29A6D53F24544FDA00D7DB87 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				7533DB03247958EC00DA211D /* JSON */,
 				29A6D5402454502D00D7DB87 /* Strings */,
 				29A6D53D24544F0000D7DB87 /* Images */,
-				29A6D53E24544FB100D7DB87 /* JSON */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -858,6 +842,7 @@
 				61547A4597BB6D889FB8F580 /* RLMAccountInfo.swift */,
 				61547267EB7BC5F4558F3B70 /* RLMSupervisor.swift */,
 				75EB5A032463C03300E077E5 /* RLMGuardian.swift */,
+				75EB59BD2461858700E077E5 /* RLMSubject.swift */,
 				615472657DF3223E8A839F22 /* RLMUnit.swift */,
 				75D62234245B14480032F53D /* RLMInstitution.swift */,
 				75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */,
@@ -1106,6 +1091,14 @@
 				61547987775C9B210B22AA84 /* TimeRangePickerView.xib */,
 			);
 			path = TimeRangePicker;
+			sourceTree = "<group>";
+		};
+		7533DB03247958EC00DA211D /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				7533DB04247958EC00DA211D /* LogFormRows.json */,
+			);
+			path = JSON;
 			sourceTree = "<group>";
 		};
 		7538FBFC23DB90B800A330A4 = {
@@ -1640,16 +1633,13 @@
 		75EB59B02461858700E077E5 /* RealmModels */ = {
 			isa = PBXGroup;
 			children = (
+				75EB59B12461858700E077E5 /* FormRows */,
 				75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */,
 				75EB59BE2461858700E077E5 /* RLMCleanable.swift */,
-				75EB59B12461858700E077E5 /* FormRows */,
-				75EB59BA2461858700E077E5 /* RLMForm.swift */,
-				75EB59BB2461858700E077E5 /* RLMLogRow.swift */,
-				75EB59BC2461858700E077E5 /* RLMLogChooseRow.swift */,
-				75EB59BD2461858700E077E5 /* RLMSubject.swift */,
-				615475A03445475FEEADDF5A /* RLMFormTemplate.swift */,
-				615474E20C4A1706A2D294F0 /* RLMStory.swift */,
 				615478BBE87EEEB048C429BF /* RLMReusable.swift */,
+				615475A03445475FEEADDF5A /* RLMFormTemplate.swift */,
+				75EB59BA2461858700E077E5 /* RLMLogForm.swift */,
+				615474E20C4A1706A2D294F0 /* RLMStory.swift */,
 				6154766961FE6617406A657F /* RLMPublishable.swift */,
 			);
 			path = RealmModels;
@@ -1658,14 +1648,16 @@
 		75EB59B12461858700E077E5 /* FormRows */ = {
 			isa = PBXGroup;
 			children = (
-				75EB59B22461858700E077E5 /* RLMLogTimeRow.swift */,
+				75EB59BB2461858700E077E5 /* RLMLogRow.swift */,
+				75EB59BC2461858700E077E5 /* RLMLogChooseRow.swift */,
 				75EB59B32461858700E077E5 /* RLMLogOptionRow.swift */,
-				75EB59B42461858700E077E5 /* FormRowIconProtocol.swift */,
-				75EB59B52461858700E077E5 /* RLMLogInjuryRow.swift */,
-				75EB59B62461858700E077E5 /* RLMOptionValue.swift */,
-				75EB59B72461858700E077E5 /* RLMLogPhotoRow.swift */,
+				75EB59B22461858700E077E5 /* RLMLogTimeRow.swift */,
 				75EB59B82461858700E077E5 /* RLMLogSwitcherRow.swift */,
 				75EB59B92461858700E077E5 /* RLMLogNoteRow.swift */,
+				75EB59B72461858700E077E5 /* RLMLogPhotoRow.swift */,
+				75EB59B52461858700E077E5 /* RLMLogInjuryRow.swift */,
+				75EB59B42461858700E077E5 /* FormRowIconProtocol.swift */,
+				75EB59B62461858700E077E5 /* RLMOptionValue.swift */,
 			);
 			path = FormRows;
 			sourceTree = "<group>";
@@ -1965,13 +1957,11 @@
 				F67DF813241BFE6800793A9C /* SubjectDetailsPickerView.xib in Resources */,
 				75886DF7241932BA0079C080 /* DefaultCellView.xib in Resources */,
 				DC70F062246B436800FFD262 /* Assets.xcassets in Resources */,
-				F67DF82F241C004700793A9C /* Logs.json in Resources */,
 				F65549FA24564F2100574872 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
 				F67DF812241BFE6800793A9C /* SubjectDetailsSegmentView.xib in Resources */,
 				75886D222419327F0079C080 /* LaunchScreen.storyboard in Resources */,
 				754E1EA52436505300C8FD30 /* GoogleService-Info.plist in Resources */,
 				299B358A241F907E00D6F9A5 /* FormTextView.xib in Resources */,
-				291012482455907300D0547A /* Form1.json in Resources */,
 				75886DFA241932BA0079C080 /* LeftSideNavigationBarView.xib in Resources */,
 				75886D242419327F0079C080 /* Samples.xcassets in Resources */,
 				F6B7F29124254EA6003E16AE /* Login.storyboard in Resources */,
@@ -2002,7 +1992,7 @@
 				6154790FF6B50D7AB8BC8DCC /* SubjectAccidentReportView.xib in Resources */,
 				61547C0509099E6F3B183060 /* SubjectPickerViewController.storyboard in Resources */,
 				61547F3E0A42C0F4AAB76F51 /* placeholders.strings in Resources */,
-				6154774154B2A757866945C1 /* LogFormRows.json in Resources */,
+				7533DB07247958EC00DA211D /* LogFormRows.json in Resources */,
 				6154769C2EB5AE3A9AF2AD45 /* TimeRangePickerView.xib in Resources */,
 				615478E332EE63F3AF019CA9 /* StoriesTableViewCell.xib in Resources */,
 			);
@@ -2013,9 +2003,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC5E990A2475557D0088083C /* EducatorDetails.storyboard in Resources */,
+				7533DB08247958EC00DA211D /* LogFormRows.json in Resources */,
 				75886D232419327F0079C080 /* LaunchScreen.storyboard in Resources */,
 				75886D98241932AB0079C080 /* Profile.storyboard in Resources */,
-				F6A5E13F2444DEE700FD77B6 /* LogFormRows.json in Resources */,
 				75886D252419327F0079C080 /* Samples.xcassets in Resources */,
 				F65549F524564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */,
 				F65549FB24564F2100574872 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
@@ -2026,10 +2016,8 @@
 				DC4FFA0A2470B9AE0079A27C /* ProfileMenuTableViewCell.xib in Resources */,
 				754E1EA72436506900C8FD30 /* GoogleService-Info.plist in Resources */,
 				75886D8C241932AB0079C080 /* SubjectList.storyboard in Resources */,
-				291012472455907200D0547A /* Form1.json in Resources */,
 				75886D212419327F0079C080 /* DefaultColorTheme.xcassets in Resources */,
 				F65549FD24564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf in Resources */,
-				F6A5E1412444DEED00FD77B6 /* Logs.json in Resources */,
 				75886D94241932AB0079C080 /* Stories.storyboard in Resources */,
 				F6DBA7F224295A94006C83E7 /* Assets.xcassets in Resources */,
 				75886D92241932AB0079C080 /* Home.storyboard in Resources */,
@@ -2305,7 +2293,7 @@
 				75EB59C82461858700E077E5 /* RLMOptionValue.swift in Sources */,
 				75EB5A1D2466EE1100E077E5 /* syncSubjects.swift in Sources */,
 				75886DD7241932BA0079C080 /* SettingTableViewCellModel.swift in Sources */,
-				75EB59D02461858700E077E5 /* RLMForm.swift in Sources */,
+				75EB59D02461858700E077E5 /* RLMLogForm.swift in Sources */,
 				75886D3C2419327F0079C080 /* UIView.swift in Sources */,
 				75886D682419327F0079C080 /* AppDelegate+Extension.swift in Sources */,
 				75886D4E2419327F0079C080 /* String.swift in Sources */,
@@ -2583,7 +2571,7 @@
 				615479606A02ACE28F0DE2E1 /* LogsListDataProvider.swift in Sources */,
 				75EB5A212466FE4400E077E5 /* RLMOrganization.swift in Sources */,
 				DC4FFA142474786A0079A27C /* ProfileDetailsViewController.swift in Sources */,
-				75EB59D12461858700E077E5 /* RLMForm.swift in Sources */,
+				75EB59D12461858700E077E5 /* RLMLogForm.swift in Sources */,
 				615479361B14E35A2EF7BF66 /* LogsOptionTableViewCell.swift in Sources */,
 				6154717E63802ABDBDFFCA4B /* LogsTimeDetailsTableViewCell.swift in Sources */,
 				75EB5A2A246770B900E077E5 /* SubjectsAPIService.swift in Sources */,

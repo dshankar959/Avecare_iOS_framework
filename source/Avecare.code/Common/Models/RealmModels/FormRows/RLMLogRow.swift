@@ -4,16 +4,7 @@ import RealmSwift
 
 
 class RLMLogRow: Object, Codable {
-    /*
-    switch self {
-    case .option: return RLMLogOptionRow.self
-    case .time: return RLMLogTimeRow.self
-    case .switcher: return RLMLogSwitcherRow.self
-    case .note: return RLMLogNoteRow.self
-    case .photo: return RLMLogPhotoRow.self
-    case .injury: return RLMLogInjuryRow.self
-    }
-    */
+
     enum RowType: Int, CustomStringConvertible {
         case option = 1
         case time = 2
@@ -21,10 +12,6 @@ class RLMLogRow: Object, Codable {
         case note = 4
         case photo = 5
         case injury = 6
-
-        static var all: [RowType] {
-            return [.option, .time, .switcher, .note, .photo, .injury]
-        }
 
         var description: String {
             switch self {

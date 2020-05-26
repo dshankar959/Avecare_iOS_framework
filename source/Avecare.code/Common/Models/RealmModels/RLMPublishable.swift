@@ -10,14 +10,13 @@ enum PublishState: Int, Codable {
 }
 
 protocol RLMPublishable: class {
-    // ISO8601 datetime stamp of last server-side change
-    var serverLastUpdated: Date? { get set }
-    // ISO8601 datetime stamp of last local change
-    var clientLastUpdated: Date { get set }
+//    var serverLastUpdated: Date? { get set }    // ISO8601 datetime stamp of last server-side change
+//    var clientLastUpdated: Date { get set }     // ISO8601 datetime stamp of last local change
     var rawPublishState: Int { get set }
 }
 
 extension RLMPublishable {
+
     var publishState: PublishState {
         get {
             guard let state = PublishState(rawValue: rawPublishState) else {

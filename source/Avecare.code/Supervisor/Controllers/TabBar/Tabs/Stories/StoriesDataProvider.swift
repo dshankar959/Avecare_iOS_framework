@@ -1,7 +1,10 @@
 import Foundation
 import CocoaLumberjack
 
+
+
 extension StoriesTableViewCellModel {
+
     init(story: RLMStory, storage: ImageStorageService) {
         title = story.title
         date = story.clientLastUpdated
@@ -9,13 +12,16 @@ extension StoriesTableViewCellModel {
         photoURL = story.photoURL(using: storage)
         photoCaption = story.photoCaption
     }
+
 }
+
 
 protocol StoriesDataProviderDelegate: UIViewController {
     func didCreateNewStory()
     func didUpdateModel(at indexPath: IndexPath, details: Bool)
     func moveStory(at fromIndexPath: IndexPath, to toIndexPath: IndexPath)
 }
+
 
 protocol StoriesDataProviderIO: class, StoriesDataProviderNavigation {
     var delegate: StoriesDataProviderDelegate? { get set }
@@ -29,6 +35,7 @@ protocol StoriesDataProviderIO: class, StoriesDataProviderNavigation {
 
     func form(at indexPath: IndexPath) -> Form
 }
+
 
 class StoriesDataProvider: StoriesDataProviderIO {
 
