@@ -1,14 +1,18 @@
 import Foundation
 
+
+
 private enum  FormRowIconKeys: String, CodingKey {
     case iconName
     case iconColor
 }
 
+
 protocol FormRowIconProtocol: class {
     var iconName: String { get set }
     var iconColor: Int32 { get set }
 }
+
 
 extension FormRowIconProtocol {
     func decodeIcon(from decoder: Decoder) throws {

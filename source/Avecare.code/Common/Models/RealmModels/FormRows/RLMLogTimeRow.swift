@@ -1,7 +1,9 @@
-import Foundation
 import RealmSwift
 
+
+
 class RLMLogTimeRow: Object, Decodable, FormRowIconProtocol {
+
     enum CodingKeys: String, CodingKey {
         case title
         case startTime

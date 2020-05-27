@@ -16,6 +16,7 @@ class LogsSideViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         didChangeSegmentControl(sortSegmentControl)
 
         // select first row by default
@@ -72,8 +73,10 @@ extension LogsSideViewController: SubjectListDataProviderDelegate {
 
 
 extension LogsSideViewController: CustomResponderProvider {
+
     var customResponder: CustomResponder? {
         guard let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController else { return nil }
         return detailsViewController.detailsView
     }
+
 }

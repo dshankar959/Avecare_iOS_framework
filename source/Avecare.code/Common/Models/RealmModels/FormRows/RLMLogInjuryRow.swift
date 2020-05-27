@@ -1,7 +1,9 @@
-import Foundation
 import RealmSwift
 
+
+
 class RLMLogInjuryRow: Object, Decodable, FormRowIconProtocol {
+
     enum CodingKeys: String, CodingKey {
         case time
     }

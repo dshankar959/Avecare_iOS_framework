@@ -1,8 +1,10 @@
-import Foundation
 import RealmSwift
 import CocoaLumberjack
 
+
+
 class RLMLogSwitcherRow: Object, Decodable, FormRowIconProtocol {
+
     enum CodingKeys: String, CodingKey {
         case title
         case subtitle

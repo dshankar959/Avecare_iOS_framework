@@ -1,9 +1,10 @@
 import Foundation
 import CocoaLumberjack
+import FirebaseCrashlytics
 
 
 
-class UserAuthenticateService: IndicatorProtocol {
+final class UserAuthenticateService: IndicatorProtocol {
 
     static let shared = UserAuthenticateService()
 

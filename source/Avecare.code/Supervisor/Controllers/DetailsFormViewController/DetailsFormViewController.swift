@@ -1,11 +1,14 @@
-import Foundation
 import UIKit
 import SnapKit
 
+
+
 class DetailsFormViewController: UIViewController {
+
     @IBOutlet weak var detailsView: DetailsView!
     @IBOutlet weak var navigationHeaderView: DetailsNavigationView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +23,7 @@ class DetailsFormViewController: UIViewController {
                 name: UIResponder.keyboardWillHideNotification,
                 object: nil)
     }
+
 
     @objc func keyboardWillShow(_ notification: Notification) {
         guard let info = notification.userInfo,
@@ -60,4 +64,5 @@ class DetailsFormViewController: UIViewController {
     @IBAction func endEditingGesture(_ recognizer: UITapGestureRecognizer) {
         detailsView.endEditing(false)
     }
+
 }

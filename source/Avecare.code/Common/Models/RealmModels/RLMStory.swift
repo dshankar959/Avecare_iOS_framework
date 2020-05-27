@@ -6,20 +6,14 @@ import RealmSwift
 class RLMStory: RLMDefaults, RLMPublishable {
 
     @objc dynamic var title: String = ""
-
-    // RLMPublishable protocol var(s)
-    @objc dynamic var rawPublishState: Int = PublishState.local.rawValue
-
+    @objc dynamic var rawPublishState: Int = PublishState.local.rawValue    // RLMPublishable protocol var(s)
     @objc dynamic var body: String = ""
     @objc dynamic var photoCaption: String = ""     // local image files match via @id
-
     @objc dynamic var unit: RLMUnit?
 
 
     private enum CodingKeys: String, CodingKey {
         case title
-        case clientLastUpdated
-        case serverLastUpdated
         case body
         case photoCaption
     }
