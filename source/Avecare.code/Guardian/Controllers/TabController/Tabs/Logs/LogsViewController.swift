@@ -23,8 +23,6 @@ class LogsViewController: UIViewController {
 
     weak var subjectSelection: SubjectSelectionProtocol?
 
-    var startDate: Date?
-    var endDate: Date?
     var datesWithData: Set<Date> = []
 
     override func viewDidLoad() {
@@ -57,9 +55,6 @@ class LogsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())
-        endDate = Date().next(.saturday, includingTheDate: true)
         updateScreen()
     }
 
@@ -167,8 +162,8 @@ extension LogsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension LogsViewController: JTACMonthViewDataSource {
     func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
-        return ConfigurationParameters(startDate: startDate ?? Date(),
-                                       endDate: endDate ?? Date(),
+        return ConfigurationParameters(startDate: Date.startDateForLogsCalendar,
+                                       endDate: Date.endDateForLogsCalendar,
                                        numberOfRows: 1,
                                        generateInDates: .forAllMonths,
                                        generateOutDates: .off,
@@ -186,7 +181,8 @@ extension LogsViewController: JTACMonthViewDelegate {
 
     func calendar(_ calendar: JTACMonthView, willDisplay cell: JTACDayCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         if let cell = cell as? DateCell {
-            if datesWithData.contains(date.startOfDay) {
+            if datesWithData.contains(date.startOfDay),
+                date >= Date.startDateForLogsCalendar.startOfDay {
                 cell.hasData = true
             } else {
                 cell.hasData = false
@@ -226,16 +222,13 @@ extension LogsViewController: JTACMonthViewDelegate {
     func scrollDidEndDecelerating(for calendar: JTACMonthView) {
         let visibleDates = calendarView.visibleDates()
         let scrollBackDateForEndLimit = Date().previous(.sunday, includingTheDate: true)
-        if let startDate = startDate,
-            let endDate = endDate {
-            if visibleDates.monthDates.contains(where: {$0.date <= startDate}) {
-                calendarView.scrollToDate(startDate)
-                return
-            }
-            if visibleDates.monthDates.contains(where: {$0.date >= endDate}) {
-                calendarView.scrollToDate(scrollBackDateForEndLimit)
-                return
-            }
+        if visibleDates.monthDates.contains(where: {$0.date <= Date.startDateForLogsCalendar}) {
+            calendarView.scrollToDate(Date.startDateForLogsCalendar)
+            return
+        }
+        if visibleDates.monthDates.contains(where: {$0.date >= Date.endDateForLogsCalendar}) {
+            calendarView.scrollToDate(scrollBackDateForEndLimit)
+            return
         }
     }
 }

@@ -2,6 +2,8 @@ import UIKit
 import CocoaLumberjack
 import DeviceKit
 
+let AvailableDaysBeforToday = 7
+
 var UIApplicationKeyWindow: UIWindow? {
 
     if #available(iOS 13.0, *) {
