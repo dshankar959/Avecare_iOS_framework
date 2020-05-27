@@ -33,6 +33,13 @@
                                     <outlet property="delegate" destination="enL-6S-EK2" id="hWf-tM-P5S"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oT7-GE-08d">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="Uaj-DX-A4r"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -40,7 +47,10 @@
                             <constraint firstItem="068-lH-gfb" firstAttribute="bottom" secondItem="amM-8u-QkS" secondAttribute="bottom" id="AXT-Nb-Hiz"/>
                             <constraint firstItem="068-lH-gfb" firstAttribute="leading" secondItem="amM-8u-QkS" secondAttribute="leading" id="Ez1-Yl-ga4"/>
                             <constraint firstItem="x07-yT-hxd" firstAttribute="centerX" secondItem="gzb-nk-y6O" secondAttribute="centerX" id="XHW-eK-i13"/>
+                            <constraint firstItem="amM-8u-QkS" firstAttribute="trailing" secondItem="oT7-GE-08d" secondAttribute="trailing" id="nId-cm-3xu"/>
+                            <constraint firstItem="oT7-GE-08d" firstAttribute="leading" secondItem="amM-8u-QkS" secondAttribute="leading" id="nOV-Nb-VWS"/>
                             <constraint firstItem="068-lH-gfb" firstAttribute="top" secondItem="x07-yT-hxd" secondAttribute="bottom" constant="8" id="tx3-wR-q7D"/>
+                            <constraint firstItem="oT7-GE-08d" firstAttribute="top" secondItem="amM-8u-QkS" secondAttribute="top" id="yXp-FP-MZX"/>
                             <constraint firstItem="068-lH-gfb" firstAttribute="trailing" secondItem="amM-8u-QkS" secondAttribute="trailing" id="yop-63-N0r"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="amM-8u-QkS"/>
@@ -61,7 +71,7 @@
     </scenes>
     <resources>
         <namedColor name="Drawer">
-            <color red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
