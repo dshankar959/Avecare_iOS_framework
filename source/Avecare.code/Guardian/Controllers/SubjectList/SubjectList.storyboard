@@ -73,14 +73,24 @@
                                     <outlet property="delegate" destination="pCD-Dy-s2b" id="3F9-an-4JM"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gFG-nx-rax">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="32"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="Ays-7l-sRi"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="vkq-Zf-RRC" firstAttribute="centerX" secondItem="bci-TU-thy" secondAttribute="centerX" id="90s-BH-1FH"/>
+                            <constraint firstItem="gFG-nx-rax" firstAttribute="top" secondItem="Nax-QD-Q7n" secondAttribute="top" id="CaD-lf-whI"/>
                             <constraint firstItem="Nax-QD-Q7n" firstAttribute="bottom" secondItem="8Wr-zP-5Wz" secondAttribute="bottom" id="Lzb-KU-LzX"/>
                             <constraint firstItem="Nax-QD-Q7n" firstAttribute="trailing" secondItem="8Wr-zP-5Wz" secondAttribute="trailing" id="QdG-be-Xmd"/>
+                            <constraint firstItem="Nax-QD-Q7n" firstAttribute="trailing" secondItem="gFG-nx-rax" secondAttribute="trailing" id="TB7-I3-P6l"/>
                             <constraint firstItem="8Wr-zP-5Wz" firstAttribute="leading" secondItem="Nax-QD-Q7n" secondAttribute="leading" id="WMx-Qm-N5m"/>
                             <constraint firstItem="vkq-Zf-RRC" firstAttribute="top" secondItem="Nax-QD-Q7n" secondAttribute="top" constant="6" id="WfD-ko-oc1"/>
+                            <constraint firstItem="gFG-nx-rax" firstAttribute="leading" secondItem="Nax-QD-Q7n" secondAttribute="leading" id="ctd-XH-KK2"/>
                             <constraint firstItem="8Wr-zP-5Wz" firstAttribute="top" secondItem="vkq-Zf-RRC" secondAttribute="bottom" constant="8" id="fMO-gl-zxj"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nax-QD-Q7n"/>
@@ -101,7 +111,7 @@
     </scenes>
     <resources>
         <namedColor name="Drawer">
-            <color red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.56470588235294117" green="0.56470588235294117" blue="0.56470588235294117" alpha="0.60000002384185791" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
