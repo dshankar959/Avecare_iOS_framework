@@ -7,6 +7,7 @@ protocol LogsDataProvider: class {
     func model(for indexPath: IndexPath) -> AnyCellViewModel
 
     func fetchLogForm(subject: RLMSubject, date: Date)
+    func fetchLogForm(subject: RLMSubject) -> [RLMLogForm]
 }
 
 
@@ -29,5 +30,9 @@ class DefaultLogsDataProvider: LogsDataProvider {
 
     func fetchLogForm(subject: RLMSubject, date: Date) {
         logForm = RLMLogForm.find(withSubjectID: subject.id, date: date)
+    }
+
+    func fetchLogForm(subject: RLMSubject) -> [RLMLogForm] {
+       return RLMLogForm.findAll(withSubjectID: subject.id)
     }
 }

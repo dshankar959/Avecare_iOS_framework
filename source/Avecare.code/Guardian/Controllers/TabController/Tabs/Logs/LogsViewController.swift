@@ -12,7 +12,7 @@ class LogsViewController: UIViewController {
     @IBOutlet weak var noItemView: UIView!
     @IBOutlet weak var noItemTitleLabel: UILabel!
     @IBOutlet weak var noItemContentLabel: UILabel!
-    
+
     let dataProvider = DefaultLogsDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
     let subjectListDataProvider = DefaultSubjectListDataProvider()
@@ -22,6 +22,10 @@ class LogsViewController: UIViewController {
     }
 
     weak var subjectSelection: SubjectSelectionProtocol?
+
+    var startDate: Date?
+    var endDate: Date?
+    var datesWithData: Set<Date> = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +57,9 @@ class LogsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())
+        endDate = Date().next(.saturday, includingTheDate: true)
         updateScreen()
     }
 
@@ -74,20 +81,39 @@ class LogsViewController: UIViewController {
     }
 
     private func updateScreen() {
+        if let currentSubject = getCurrentSubject() {
+            updateSubjectSelectButton(subject: currentSubject)
+            updateCalendarView(with: currentSubject)
+            dateDidSelect(with: currentSubject)
+        }
+    }
+
+    private func getCurrentSubject() -> RLMSubject? {
         // subject must be selected
         let subject: RLMSubject
         if let selection = subjectSelection?.subject {
             subject = selection
         } else {
             guard subjectListDataProvider.numberOfRows > 0 else {
-                return
+                return nil
             }
             let indexPath = IndexPath(row: 0, section: 0)
             subject = subjectListDataProvider.model(at: indexPath)
             //subjectSelection?.subject = subject -- Don't ever store it on subjectSelection
         }
 
-        updateSubjectSelectButton(subject: subject)
+        return subject
+    }
+
+    private func updateCalendarView(with subject: RLMSubject) {
+        datesWithData.removeAll()
+        let logFroms = dataProvider.fetchLogForm(subject: subject)
+        logFroms.forEach { logForm in
+            datesWithData.insert(logForm.serverLastUpdated?.startOfDay ?? Date().startOfDay)
+        }
+    }
+
+    private func dateDidSelect(with subject: RLMSubject) {
         dataProvider.fetchLogForm(subject: subject, date: filterDate)
         noItemView.isHidden = dataProvider.numberOfRows(for: 0) > 0 ? true : false
         tableView.reloadData()
@@ -115,11 +141,7 @@ extension LogsViewController: SubjectListViewControllerDelegate {
     }
 
     // not used for this view controller
-    func subjectListDidSelectAll(_ controller: SubjectListViewController) {
-        controller.dismiss(animated: true)
-        subjectSelection?.subject = nil
-        updateScreen()
-    }
+    func subjectListDidSelectAll(_ controller: SubjectListViewController) {}
 }
 
 
@@ -145,12 +167,8 @@ extension LogsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension LogsViewController: JTACMonthViewDataSource {
     func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy MM dd"
-        let endDate = Date()
-        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: endDate)!
-        return ConfigurationParameters(startDate: startDate,
-                                       endDate: endDate,
+        return ConfigurationParameters(startDate: startDate ?? Date(),
+                                       endDate: endDate ?? Date(),
                                        numberOfRows: 1,
                                        generateInDates: .forAllMonths,
                                        generateOutDates: .off,
@@ -168,6 +186,11 @@ extension LogsViewController: JTACMonthViewDelegate {
 
     func calendar(_ calendar: JTACMonthView, willDisplay cell: JTACDayCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         if let cell = cell as? DateCell {
+            if datesWithData.contains(date.startOfDay) {
+                cell.hasData = true
+            } else {
+                cell.hasData = false
+            }
             cell.configureCell(cellState: cellState)
         }
     }
@@ -180,7 +203,10 @@ extension LogsViewController: JTACMonthViewDelegate {
         if let cell = cell as? DateCell {
             cell.configureCell(cellState: cellState)
         }
-        updateScreen()
+
+        if let currentSubject = getCurrentSubject() {
+            dateDidSelect(with: currentSubject)
+        }
     }
 
     func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
@@ -199,16 +225,17 @@ extension LogsViewController: JTACMonthViewDelegate {
 
     func scrollDidEndDecelerating(for calendar: JTACMonthView) {
         let visibleDates = calendarView.visibleDates()
-        let startDate = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
-        let endLimitDate = Date().next(.saturday, includingTheDate: true)
         let scrollBackDateForEndLimit = Date().previous(.sunday, includingTheDate: true)
-        if visibleDates.monthDates.contains(where: {$0.date <= startDate}) {
-            calendarView.scrollToDate(startDate)
-            return
-        }
-        if visibleDates.monthDates.contains(where: {$0.date >= endLimitDate}) {
-            calendarView.scrollToDate(scrollBackDateForEndLimit)
-            return
+        if let startDate = startDate,
+            let endDate = endDate {
+            if visibleDates.monthDates.contains(where: {$0.date <= startDate}) {
+                calendarView.scrollToDate(startDate)
+                return
+            }
+            if visibleDates.monthDates.contains(where: {$0.date >= endDate}) {
+                calendarView.scrollToDate(scrollBackDateForEndLimit)
+                return
+            }
         }
     }
 }
