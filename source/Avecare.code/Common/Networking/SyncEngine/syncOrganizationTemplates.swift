@@ -42,7 +42,7 @@ extension SyncEngine {
                         // FIXME: add error processing if needed
                         fatalError()
                     }
-                    // link with organization  (inverse relationship)
+                    // link with organization  (inverse relationship).  Is this even needed???
                     templates.forEach({ $0.organization = organization })
 */
                     // save downloaded template(s)

@@ -5,6 +5,13 @@ import RealmSwift
 
 class RLMLogRow: Object, Codable {
 
+    @objc dynamic var option: RLMLogOptionRow?
+    @objc dynamic var time: RLMLogTimeRow?
+    @objc dynamic var switcher: RLMLogSwitcherRow?
+    @objc dynamic var note: RLMLogNoteRow?
+    @objc dynamic var photo: RLMLogPhotoRow?
+    @objc dynamic var injury: RLMLogInjuryRow?
+
     enum RowType: Int, CustomStringConvertible {
         case option = 1
         case time = 2
@@ -43,15 +50,15 @@ class RLMLogRow: Object, Codable {
         }
     }
 
-    @objc dynamic var option: RLMLogOptionRow?
-    @objc dynamic var time: RLMLogTimeRow?
-    @objc dynamic var switcher: RLMLogSwitcherRow?
-    @objc dynamic var note: RLMLogNoteRow?
-    @objc dynamic var photo: RLMLogPhotoRow?
-    @objc dynamic var injury: RLMLogInjuryRow?
+    enum CodingKeys: String, CodingKey {
+        case rowType
+        case properties
+    }
 
+    
     convenience init<T: Object>(row: T) throws {
         self.init()
+
         switch type(of: row) {
         case is RLMLogOptionRow.Type:   option = row as? RLMLogOptionRow
         case is RLMLogTimeRow.Type:     time = row as? RLMLogTimeRow
@@ -61,17 +68,15 @@ class RLMLogRow: Object, Codable {
         case is RLMLogInjuryRow.Type:   injury = row as? RLMLogInjuryRow
         default: throw RealmError.invalidRowObject.message
         }
+
     }
 
-    enum CodingKeys: String, CodingKey {
-        case rowType
-        case properties
-    }
 
     convenience required init(from decoder: Decoder) throws {
         self.init()
         try self.decode(from: decoder)
     }
+
 
     func decode(from decoder: Decoder) throws {
         do {
@@ -95,6 +100,7 @@ class RLMLogRow: Object, Codable {
             fatalError("JSON Decoding error = \(error)")
         }
     }
+
 
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
@@ -149,4 +155,5 @@ extension RLMLogRow: DataProvider, RLMCleanable, RLMReusable {
             photo.prepareForReuse()
         }
     }
+
 }

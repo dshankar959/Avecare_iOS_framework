@@ -18,8 +18,6 @@ extension SyncEngine {
             return
         }
 
-//        syncCompletion(nil)
-
         // Dependancy tree of sync operations.
         self.syncDOWNuserAccountDetails() { error in
             DDLogVerbose("syncDOWNuserAccountDetails ♓️ closure")
