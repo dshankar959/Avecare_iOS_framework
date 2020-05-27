@@ -1,12 +1,14 @@
-import Foundation
 import UIKit
 import SnapKit
+
+
 
 extension UIViewController {
     var customSplitController: CustomSplitViewController? {
         return parent as? CustomSplitViewController
     }
 }
+
 
 class CustomSplitViewController: UIViewController {
     @IBInspectable var leftControllerStoryboardName: String?
@@ -73,4 +75,5 @@ class CustomSplitViewController: UIViewController {
 
         rightViewController = controller
     }
+
 }

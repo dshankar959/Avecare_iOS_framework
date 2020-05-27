@@ -1,17 +1,9 @@
-//
-//  DocumentService.swift
-//  Avecare
-//
-//  Created by stephen on 2020-05-26.
-//  Copyright © 2020 Spiria Inc. All rights reserved.
-//
-
 import Foundation
 import CocoaLumberjack
 
 
-struct DocumentService {
 
+struct DocumentService {
     let directory = userAppDirectory
 
 
@@ -47,4 +39,5 @@ struct DocumentService {
 
         return fileURL
     }
+
 }

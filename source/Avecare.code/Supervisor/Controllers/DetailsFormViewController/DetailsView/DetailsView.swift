@@ -4,6 +4,7 @@ import SnapKit
 
 
 @IBDesignable class DetailsView: BaseXibView {
+
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var stackView: UIStackView!

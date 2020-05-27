@@ -16,6 +16,7 @@ class LogsSideViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         didChangeSegmentControl(sortSegmentControl)
 
         // select first row by default
@@ -35,6 +36,7 @@ class LogsSideViewController: UIViewController {
 
 
 extension LogsSideViewController: UITableViewDelegate, UITableViewDataSource {
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataProvider.numberOfRows
     }
@@ -47,6 +49,7 @@ extension LogsSideViewController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataProvider.setSelected(true, at: indexPath)
     }
+
 }
 
 
@@ -72,8 +75,10 @@ extension LogsSideViewController: SubjectListDataProviderDelegate {
 
 
 extension LogsSideViewController: CustomResponderProvider {
+
     var customResponder: CustomResponder? {
         guard let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController else { return nil }
         return detailsViewController.detailsView
     }
+
 }

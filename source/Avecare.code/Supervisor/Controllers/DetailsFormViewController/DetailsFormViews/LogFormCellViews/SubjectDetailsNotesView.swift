@@ -1,5 +1,6 @@
-import Foundation
 import UIKit
+
+
 
 struct SubjectDetailsNotesViewModel: CellViewModel {
     typealias CellType = SubjectDetailsNotesView
@@ -11,7 +12,7 @@ struct SubjectDetailsNotesViewModel: CellViewModel {
     let placeholder: String
     var note: String?
 
-    var didEndEditing: ((CellType) -> Void)? = nil
+    var onTextChange: ((CellType) -> Void)?
 
     let isEditable: Bool
 
@@ -24,7 +25,7 @@ struct SubjectDetailsNotesViewModel: CellViewModel {
         cell.textView.text = note
 
         if isEditable {
-            cell.onEndEditing = didEndEditing
+            cell.onTextChange = onTextChange
             cell.textView.isEditable = true
         } else {
             cell.textView.isEditable = false
@@ -34,7 +35,9 @@ struct SubjectDetailsNotesViewModel: CellViewModel {
     }
 }
 
+
 class SubjectDetailsNotesView: BaseXibView {
+
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var textContainerView: UIView!
@@ -43,7 +46,7 @@ class SubjectDetailsNotesView: BaseXibView {
 
     var characterLimit = 140
 
-    var onEndEditing: ((SubjectDetailsNotesView) -> Void)?
+    var onTextChange: ((SubjectDetailsNotesView) -> Void)?
 
     override func setup() {
         super.setup()
@@ -64,14 +67,19 @@ class SubjectDetailsNotesView: BaseXibView {
     }
 }
 
+
 extension SubjectDetailsNotesView: UITextViewDelegate {
+
     public func textViewDidBeginEditing(_ textView: UITextView) {
         textViewPlaceholder.isHidden = true
     }
 
     public func textViewDidEndEditing(_ textView: UITextView) {
         updatePlaceholderVisibility()
-        onEndEditing?(self)
+    }
+
+    public func textViewDidChange(_ textView: UITextView) {
+        onTextChange?(self)
     }
 
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -80,4 +88,5 @@ extension SubjectDetailsNotesView: UITextViewDelegate {
 
         return (currentLength + addition) <= characterLimit
     }
+
 }

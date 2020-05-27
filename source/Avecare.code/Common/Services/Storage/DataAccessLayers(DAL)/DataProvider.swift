@@ -256,7 +256,7 @@ extension DataProvider where Self: Object {
             guard let finalDate0 = objDate0 else { return false }
             guard let finalDate1 = objDate1 else { return false }
 
-            return finalDate0.compare(finalDate1) == .orderedDescending
+            return finalDate0.compare(finalDate1) == .orderedAscending
         })
 
         return sortedObjects

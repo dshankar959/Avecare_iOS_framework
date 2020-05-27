@@ -1,7 +1,9 @@
-import Foundation
 import UIKit
 
+
+
 extension SubjectDetailsPickerViewModel {
+
     init(row: RLMLogTimeRow, isEditable: Bool) {
         icon = UIImage(named: row.iconName)
         iconColor = UIColor(rgb: row.iconColor)
@@ -10,9 +12,12 @@ extension SubjectDetailsPickerViewModel {
         selectedOption = formatter.string(from: row.startTime) + " - " + formatter.string(from: row.endTime)
         self.isEditable = isEditable
     }
+
 }
 
+
 extension SubjectListDataProvider {
+
     func viewModel(for row: RLMLogTimeRow, editable: Bool, at indexPath: IndexPath, updateCallback: @escaping (Date) -> Void) -> SubjectDetailsPickerViewModel {
         var viewModel = SubjectDetailsPickerViewModel(row: row, isEditable: editable)
         viewModel.action = { [weak self] view in
@@ -20,6 +25,7 @@ extension SubjectListDataProvider {
         }
         return viewModel
     }
+
 
     private func showTimePicker(from view: SubjectDetailsPickerView, row: RLMLogTimeRow, at indexPath: IndexPath,
                                 updateCallback: @escaping (Date) -> Void) {
@@ -43,4 +49,5 @@ extension SubjectListDataProvider {
         })
         responder.becomeFirstResponder(inputView: picker, accessoryView: toolbar)
     }
+
 }

@@ -1,5 +1,6 @@
-import Foundation
 import UIKit
+
+
 
 struct InputTextFormViewModel: CellViewModel {
     typealias CellType = InputTextFormView
@@ -18,6 +19,7 @@ struct InputTextFormViewModel: CellViewModel {
         cell.updatePlaceholderVisibility()
     }
 }
+
 
 class InputTextFormView: BaseXibView {
     @IBOutlet weak var titleLabel: UILabel!
@@ -45,7 +47,9 @@ class InputTextFormView: BaseXibView {
     }
 }
 
+
 extension InputTextFormView: UITextViewDelegate {
+
     public func textViewDidBeginEditing(_ textView: UITextView) {
         textViewPlaceholder.isHidden = true
     }
@@ -64,4 +68,5 @@ extension InputTextFormView: UITextViewDelegate {
 
         return (currentLength + addition) <= characterLimit
     }
+
 }

@@ -1,12 +1,6 @@
-//
-//  SlideInPresentationAnimator.swift
-//  educator
-//
-//  Created by stephen on 2020-05-24.
-//  Copyright © 2020 Spiria Inc. All rights reserved.
-//
-
 import UIKit
+
+
 
 class SlideInPresentationAnimator: NSObject {
     let direction: PresentationDirection
@@ -23,10 +17,13 @@ class SlideInPresentationAnimator: NSObject {
     }
 }
 
+
 extension SlideInPresentationAnimator: UIViewControllerAnimatedTransitioning {
+
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return 0.3
     }
+
 
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         let key: UITransitionContextViewControllerKey = isPresentation ? .to : .from
@@ -57,6 +54,7 @@ extension SlideInPresentationAnimator: UIViewControllerAnimatedTransitioning {
 
         let animationDuration = transitionDuration(using: transitionContext)
         controller.view.frame = initialFrame
+
         UIView.animate(withDuration: animationDuration, animations: {
             controller.view.frame = finalFrame
         }) { _ in
@@ -66,4 +64,5 @@ extension SlideInPresentationAnimator: UIViewControllerAnimatedTransitioning {
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
     }
+
 }

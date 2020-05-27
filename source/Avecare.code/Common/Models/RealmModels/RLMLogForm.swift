@@ -5,16 +5,13 @@ import RealmSwift
 
 class RLMLogForm: RLMDefaults, RLMPublishable {
 
-    // RLMPublishable protocol var(s)
-    @objc dynamic var rawPublishState: Int = PublishState.local.rawValue
-
     @objc dynamic var subject: RLMSubject?
+    @objc dynamic var rawPublishState: Int = PublishState.local.rawValue    // RLMPublishable protocol var(s)
 
     let rows = List<RLMLogRow>()
 
+
     enum CodingKeys: String, CodingKey {
-        case serverLastUpdated
-        case clientLastUpdated
         case subject
         case rows
     }
@@ -35,7 +32,6 @@ class RLMLogForm: RLMDefaults, RLMPublishable {
             try super.decode(from: decoder)
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
-            // TODO: not sure this needed ???
             subject = try values.decodeIfPresent(RLMSubject.self, forKey: .subject)
 
             // rows
@@ -59,9 +55,7 @@ extension RLMLogForm: DataProvider {
 
     static func find(withSubjectID: String, date: Date) -> Self? {
         let database = getDatabase()
-        return database?.objects(Self.self)
-                .filter("subject.id = %@ AND serverLastUpdated = %@", withSubjectID, date)
-                .first
+        return database?.objects(Self.self).filter("subject.id = %@ AND serverLastUpdated = %@", withSubjectID, date).first
     }
 
 }

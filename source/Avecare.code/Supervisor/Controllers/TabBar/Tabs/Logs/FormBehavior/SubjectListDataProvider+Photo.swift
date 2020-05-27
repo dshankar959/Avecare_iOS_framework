@@ -20,8 +20,13 @@ extension SubjectDetailsPhotoViewModel {
 
 extension SubjectListDataProvider {
 
-    func viewModel(for row: RLMLogPhotoRow, editable: Bool, at indexPath: IndexPath, updateCallback: @escaping (Date) -> Void) -> SubjectDetailsPhotoViewModel {
+    func viewModel(for row: RLMLogPhotoRow,
+                   editable: Bool,
+                   at indexPath: IndexPath,
+                   updateCallback: @escaping (Date) -> Void) -> SubjectDetailsPhotoViewModel {
+
         var viewModel = SubjectDetailsPhotoViewModel(row: row, isEditable: editable, storage: imageStorageService)
+
         viewModel.action = .init(onTextChange: { view in
             RLMLogPhotoRow.writeTransaction {
                 if view.textView.text.count > 0 {
@@ -34,6 +39,7 @@ extension SubjectListDataProvider {
         }, onPhotoTap: { [weak self] view in
             self?.showImagePicker(from: view, row: row, at: indexPath, updateCallback: updateCallback)
         })
+
         return viewModel
     }
 

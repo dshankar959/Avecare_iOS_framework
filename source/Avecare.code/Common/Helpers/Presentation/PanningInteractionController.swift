@@ -1,12 +1,6 @@
-//
-//  PanningInteractionController.swift
-//  Avecare
-//
-//  Created by stephen on 2020-05-25.
-//  Copyright © 2020 Spiria Inc. All rights reserved.
-//
-
 import UIKit
+
+
 
 class PanningInteractionController: UIPercentDrivenInteractiveTransition {
     var interactionInProgress = false
@@ -14,6 +8,7 @@ class PanningInteractionController: UIPercentDrivenInteractiveTransition {
 
     private weak var viewController: UIViewController!
     private let direction: PresentationDirection
+
 
     init(viewController: UIViewController, direction: PresentationDirection) {
         self.viewController = viewController
@@ -24,15 +19,18 @@ class PanningInteractionController: UIPercentDrivenInteractiveTransition {
         pregareGesture(in: viewController.view)
     }
 
+
     private func pregareGesture(in view: UIView) {
         let gesture = UIPanGestureRecognizer(target: self,
                                              action: #selector(handleGesture(_:)))
         view.addGestureRecognizer(gesture)
     }
 
+
     @objc func handleGesture(_ gestureRecognizer: UIPanGestureRecognizer) {
         let translation = gestureRecognizer.translation(in: gestureRecognizer.view!.superview!)
         var progress: CGFloat
+
         switch direction {
         case .left:
             progress = (-translation.x / viewController.view.frame.width)
@@ -66,4 +64,5 @@ class PanningInteractionController: UIPercentDrivenInteractiveTransition {
             break
         }
     }
+
 }

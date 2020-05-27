@@ -1,8 +1,9 @@
-import Foundation
 import UIKit
 import BSImagePicker
 import Photos
 import CocoaLumberjack
+
+
 
 extension StoriesDataProvider {
 
@@ -21,6 +22,7 @@ extension StoriesDataProvider {
         return FormPhotoViewModel(photoURL: story.photoURL(using: imageStorageService), caption: story.photoCaption,
                 placeholder: "Photo caption goes here.", isEditable: !isSubmitted, action: photoRowAction)
     }
+
 
     func showImagePicker(from view: FormPhotoView, for story: RLMStory) {
         let imagePicker = ImagePickerController()
@@ -67,4 +69,5 @@ extension StoriesDataProvider {
         })
 
     }
+
 }

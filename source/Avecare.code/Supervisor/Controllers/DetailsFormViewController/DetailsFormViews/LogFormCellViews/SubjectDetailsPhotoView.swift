@@ -1,6 +1,7 @@
-import Foundation
 import UIKit
 import Kingfisher
+
+
 
 struct SubjectDetailsPhotoViewModel: CellViewModel {
     typealias CellType = SubjectDetailsPhotoView
@@ -35,6 +36,7 @@ struct SubjectDetailsPhotoViewModel: CellViewModel {
 
 
 class SubjectDetailsPhotoView: BaseXibView {
+
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var textContainerView: UIView!
     @IBOutlet weak var textView: UITextView!
@@ -79,6 +81,7 @@ class SubjectDetailsPhotoView: BaseXibView {
 }
 
 extension SubjectDetailsPhotoView: UITextViewDelegate {
+
     func updatePlaceholderVisibility() {
         textViewPlaceholder.isHidden = textView.text.count > 0
     }
@@ -98,4 +101,5 @@ extension SubjectDetailsPhotoView: UITextViewDelegate {
 
         return (currentLength + addition) <= characterLimit
     }
+
 }

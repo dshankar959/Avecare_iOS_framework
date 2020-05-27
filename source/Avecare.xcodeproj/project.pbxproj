@@ -732,8 +732,8 @@
 			children = (
 				299B3582241F907E00D6F9A5 /* FormPhotoView.swift */,
 				299B3583241F907E00D6F9A5 /* FormPhotoView.xib */,
-				299B3584241F907E00D6F9A5 /* FormTextView.xib */,
 				299B3585241F907E00D6F9A5 /* FormTextView.swift */,
+				299B3584241F907E00D6F9A5 /* FormTextView.xib */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -1526,10 +1526,10 @@
 		75886DA4241932BA0079C080 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
-				75886DA5241932BA0079C080 /* Settings */,
-				75886DAA241932BA0079C080 /* Stories */,
 				75886DAF241932BA0079C080 /* Logs */,
 				75886DBF241932BA0079C080 /* Notifications */,
+				75886DAA241932BA0079C080 /* Stories */,
+				75886DA5241932BA0079C080 /* Settings */,
 			);
 			path = Tabs;
 			sourceTree = "<group>";
@@ -1786,9 +1786,9 @@
 			children = (
 				F67DF7F5241BFE6800793A9C /* DetailsFormViewController.storyboard */,
 				F67DF7F4241BFE6800793A9C /* DetailsFormViewController.swift */,
-				F67DF7F6241BFE6800793A9C /* DetailsFormViews */,
-				F67DF7F1241BFE6800793A9C /* DetailsView */,
 				F67DF7EE241BFE6800793A9C /* NavigationHeaderView */,
+				F67DF7F1241BFE6800793A9C /* DetailsView */,
+				F67DF7F6241BFE6800793A9C /* DetailsFormViews */,
 			);
 			path = DetailsFormViewController;
 			sourceTree = "<group>";
@@ -1817,43 +1817,43 @@
 			children = (
 				299B3580241F907E00D6F9A5 /* FormLabelView.swift */,
 				299B357F241F907E00D6F9A5 /* FormSpacerView.swift */,
+				F67DF7F7241BFE6800793A9C /* LogFormCellViews */,
 				299B3581241F907E00D6F9A5 /* Stories */,
-				F67DF7F7241BFE6800793A9C /* Logs */,
 				F67DF801241BFE6800793A9C /* Notifications */,
 			);
 			path = DetailsFormViews;
 			sourceTree = "<group>";
 		};
-		F67DF7F7241BFE6800793A9C /* Logs */ = {
+		F67DF7F7241BFE6800793A9C /* LogFormCellViews */ = {
 			isa = PBXGroup;
 			children = (
-				F67DF7F8241BFE6800793A9C /* SubjectDetailsSegmentView.xib */,
+				F67DF7FC241BFE6800793A9C /* SubjectDetailsPickerView.swift */,
 				F67DF7F9241BFE6800793A9C /* SubjectDetailsPickerView.xib */,
 				F67DF7FA241BFE6800793A9C /* SubjectDetailsNotesView.swift */,
 				F67DF7FB241BFE6800793A9C /* SubjectDetailsNotesView.xib */,
-				F67DF7FC241BFE6800793A9C /* SubjectDetailsPickerView.swift */,
+				F67DF7FF241BFE6800793A9C /* SubjectDetailsPhotoView.swift */,
 				F67DF7FD241BFE6800793A9C /* SubjectDetailsPhotoView.xib */,
 				F67DF7FE241BFE6800793A9C /* SubjectDetailsSegmentView.swift */,
-				F67DF7FF241BFE6800793A9C /* SubjectDetailsPhotoView.swift */,
+				F67DF7F8241BFE6800793A9C /* SubjectDetailsSegmentView.xib */,
 				615479F7C3DD7F44D7336517 /* SubjectAccidentReportView.swift */,
 				615479269DCBED93B225DDA3 /* SubjectAccidentReportView.xib */,
 			);
-			path = Logs;
+			path = LogFormCellViews;
 			sourceTree = "<group>";
 		};
 		F67DF801241BFE6800793A9C /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				F67DF802241BFE6800793A9C /* InfoMessageFormView.xib */,
 				F67DF803241BFE6800793A9C /* InfoMessageFormView.swift */,
+				F67DF802241BFE6800793A9C /* InfoMessageFormView.xib */,
 				F67DF804241BFE6800793A9C /* PickerFieldFormView.swift */,
-				F67DF805241BFE6800793A9C /* TagListFormView.swift */,
-				F67DF806241BFE6800793A9C /* CheckmarkFormView.swift */,
-				F67DF807241BFE6800793A9C /* InputTextFormView.swift */,
-				F67DF808241BFE6800793A9C /* TagListFormViewCell.xib */,
-				F67DF809241BFE6800793A9C /* CheckmarkFormView.xib */,
-				F67DF80A241BFE6800793A9C /* InputTextFormView.xib */,
 				F67DF80B241BFE6800793A9C /* PickerViewFormView.xib */,
+				F67DF805241BFE6800793A9C /* TagListFormView.swift */,
+				F67DF808241BFE6800793A9C /* TagListFormViewCell.xib */,
+				F67DF806241BFE6800793A9C /* CheckmarkFormView.swift */,
+				F67DF809241BFE6800793A9C /* CheckmarkFormView.xib */,
+				F67DF807241BFE6800793A9C /* InputTextFormView.swift */,
+				F67DF80A241BFE6800793A9C /* InputTextFormView.xib */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";

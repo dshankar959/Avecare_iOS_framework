@@ -3,14 +3,17 @@ import UIKit
 
 
 class SlideInPresentationController: UIPresentationController {
+
     private var dimmingView: UIView!
     private var direction: PresentationDirection
     private var sizeOfPresentingViewController: CGSize! // default size when its value is .zero
+
 
     init(presentedViewController: UIViewController,
          presenting presentingViewController: UIViewController?,
          direction: PresentationDirection,
          sizeOfPresentingViewController: CGSize = .zero) {
+
         self.direction = direction
         self.sizeOfPresentingViewController = sizeOfPresentingViewController
 
@@ -19,6 +22,7 @@ class SlideInPresentationController: UIPresentationController {
 
         setupDimmingView()
     }
+
 
     override func presentationTransitionWillBegin() {
         guard let dimmingView = dimmingView else {
@@ -44,6 +48,7 @@ class SlideInPresentationController: UIPresentationController {
         })
     }
 
+
     override func dismissalTransitionWillBegin() {
         guard let coordinator = presentedViewController.transitionCoordinator else {
             dimmingView.alpha = 0.0
@@ -55,13 +60,13 @@ class SlideInPresentationController: UIPresentationController {
         })
     }
 
+
     override func containerViewWillLayoutSubviews() {
         presentedView?.frame = frameOfPresentedViewInContainerView
     }
 
-    override func size(forChildContentContainer container: UIContentContainer,
-                       withParentContainerSize parentSize: CGSize
-    ) -> CGSize {
+
+    override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
         switch direction {
         case .left, .right:
             if sizeOfPresentingViewController == .zero {
@@ -80,6 +85,7 @@ class SlideInPresentationController: UIPresentationController {
             }
         }
     }
+
 
     override var frameOfPresentedViewInContainerView: CGRect {
         var frame: CGRect = .zero
@@ -107,9 +113,12 @@ class SlideInPresentationController: UIPresentationController {
 
         return frame
     }
+
 }
 
+
 private extension SlideInPresentationController {
+
     func setupDimmingView() {
         dimmingView = UIView()
         dimmingView.translatesAutoresizingMaskIntoConstraints = false
@@ -123,4 +132,5 @@ private extension SlideInPresentationController {
     @objc func handleTap(recognizer: UITapGestureRecognizer) {
         presentingViewController.dismiss(animated: true)
     }
+
 }
