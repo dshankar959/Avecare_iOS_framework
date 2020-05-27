@@ -1,9 +1,11 @@
-import Foundation
 import UIKit
+
+
 
 protocol DateSubtitleViewModelDelegate: class {
     var subtitleDateLabel: UILabel? { get set }
 }
+
 
 struct DateSubtitleViewModel: CellViewModel {
     typealias CellType = UILabel

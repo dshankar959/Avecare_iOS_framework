@@ -1,11 +1,14 @@
-import Foundation
 import UIKit
 
+
+
 extension SubjectDetailsSegmentViewModel {
+
     init(row: RLMLogSwitcherRow, isEditable: Bool) {
         icon = UIImage(named: row.iconName)
         iconColor = UIColor(rgb: row.iconColor)
         title = row.title
+
         let formatter = Date.timeFormatter
         selectedOption = formatter.string(from: row.startTime) + " - " + formatter.string(from: row.endTime)
 
@@ -18,10 +21,17 @@ extension SubjectDetailsSegmentViewModel {
         }
         self.isEditable = isEditable
     }
+
 }
 
+
 extension SubjectListDataProvider {
-    func viewModel(for row: RLMLogSwitcherRow, editable: Bool, at indexPath: IndexPath, updateCallback: @escaping (Date) -> Void) -> SubjectDetailsSegmentViewModel {
+
+    func viewModel(for row: RLMLogSwitcherRow,
+                   editable: Bool,
+                   at indexPath: IndexPath,
+                   updateCallback: @escaping (Date) -> Void) -> SubjectDetailsSegmentViewModel {
+
         var viewModel = SubjectDetailsSegmentViewModel(row: row, isEditable: editable)
         viewModel.action = .init(onClick: { [weak self] view in
             self?.showTimePicker(from: view, row: row, at: indexPath, updateCallback: updateCallback)
@@ -34,8 +44,10 @@ extension SubjectListDataProvider {
         return viewModel
     }
 
+
     private func showTimePicker(from view: SubjectDetailsSegmentView, row: RLMLogSwitcherRow, at indexPath: IndexPath,
                                 updateCallback: @escaping (Date) -> Void) {
+
         guard let responder = delegate?.customResponder else { return }
 
         let picker = TimeRangePickerView(frame: CGRect(x: 0, y: 0, width: 320, height: 278))
@@ -56,4 +68,5 @@ extension SubjectListDataProvider {
         })
         responder.becomeFirstResponder(inputView: picker, accessoryView: toolbar)
     }
+
 }

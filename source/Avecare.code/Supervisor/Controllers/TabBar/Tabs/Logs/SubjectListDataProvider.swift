@@ -13,7 +13,6 @@ struct Form {
 
 
 protocol SubjectListDataProviderIO: class {
-
     var delegate: SubjectListDataProviderDelegate? { get set }
     var numberOfRows: Int { get }
     func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel
@@ -115,7 +114,10 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
     }
 
 
-    private func viewModel(for row: RLMLogRow, editable: Bool, at indexPath: IndexPath, updateCallback: @escaping (Date) -> Void) -> AnyCellViewModel {
+    private func viewModel(for row: RLMLogRow,
+                           editable: Bool,
+                           at indexPath: IndexPath,
+                           updateCallback: @escaping (Date) -> Void) -> AnyCellViewModel {
         switch row.rowType {
         case .option: return viewModel(for: row.option!, editable: editable, at: indexPath, updateCallback: updateCallback)
         case .time: return viewModel(for: row.time!, editable: editable, at: indexPath, updateCallback: updateCallback)

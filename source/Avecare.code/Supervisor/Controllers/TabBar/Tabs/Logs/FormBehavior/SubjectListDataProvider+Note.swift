@@ -1,7 +1,9 @@
-import Foundation
 import UIKit
 
+
+
 extension SubjectDetailsNotesViewModel {
+
     init(row: RLMLogNoteRow, isEditable: Bool) {
         icon = UIImage(named: row.iconName)
         iconColor = UIColor(rgb: row.iconColor)
@@ -10,12 +12,20 @@ extension SubjectDetailsNotesViewModel {
         note = row.value
         self.isEditable = isEditable
     }
+
 }
 
+
 extension SubjectListDataProvider {
-    func viewModel(for row: RLMLogNoteRow, editable: Bool, at indexPath: IndexPath, updateCallback: @escaping (Date) -> Void) -> SubjectDetailsNotesViewModel {
+
+    func viewModel(for row: RLMLogNoteRow,
+                   editable: Bool,
+                   at indexPath: IndexPath,
+                   updateCallback: @escaping (Date) -> Void) -> SubjectDetailsNotesViewModel {
+
         var viewModel = SubjectDetailsNotesViewModel(row: row, isEditable: editable)
-        viewModel.didEndEditing = { view in
+
+        viewModel.onTextChange = { view in
             RLMLogNoteRow.writeTransaction {
                 if view.textView.text.count > 0 {
                     row.value = view.textView.text
@@ -23,8 +33,11 @@ extension SubjectListDataProvider {
                     row.value = nil
                 }
             }
+
             updateCallback(Date())
         }
+
         return viewModel
     }
+
 }
