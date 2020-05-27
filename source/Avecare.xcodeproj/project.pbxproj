@@ -951,20 +951,20 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
-		615476B19DB5477AF15A91F5 /* List Cells */ = {
+		615476B19DB5477AF15A91F5 /* LogFormCellViews */ = {
 			isa = PBXGroup;
 			children = (
 				615473F1CDA70039CD9378AA /* LogsOptionTableViewCell.swift */,
-				61547637BA1F27AE456E3BAA /* LogsTimeDetailsTableViewCell.swift */,
-				61547DE9A6DB6076BBBF8D86 /* LogsNoteTableViewCell.swift */,
-				61547FC44382C1CD45F599CC /* LogsPhotoTableViewCell.swift */,
 				61547B02FE52C25F016B7986 /* LogsOptionTableViewCell.xib */,
-				615476341CA9B1B5A2A77173 /* LogsNoteTableViewCell.xib */,
+				61547637BA1F27AE456E3BAA /* LogsTimeDetailsTableViewCell.swift */,
 				615476FD4CEE0A15907C0A38 /* LogsTimeDetailsTableViewCell.xib */,
+				61547DE9A6DB6076BBBF8D86 /* LogsNoteTableViewCell.swift */,
+				615476341CA9B1B5A2A77173 /* LogsNoteTableViewCell.xib */,
+				61547FC44382C1CD45F599CC /* LogsPhotoTableViewCell.swift */,
 				615470DDF8B06DE27569E901 /* LogsPhotoTableViewCell.xib */,
 				DC225E3E246C787F00094BB0 /* DateCell.swift */,
 			);
-			path = "List Cells";
+			path = LogFormCellViews;
 			sourceTree = "<group>";
 		};
 		615476E344367A0F236BB4B4 /* SupervisorFilter */ = {
@@ -1448,7 +1448,7 @@
 			children = (
 				75886D82241932AB0079C080 /* LogsViewController.swift */,
 				75886D81241932AB0079C080 /* Logs.storyboard */,
-				615476B19DB5477AF15A91F5 /* List Cells */,
+				615476B19DB5477AF15A91F5 /* LogFormCellViews */,
 				615474F59BD851603066F624 /* LogsListDataProvider.swift */,
 				615479CD9C14B21CB4104304 /* LogsViewModelFactory.swift */,
 			);
