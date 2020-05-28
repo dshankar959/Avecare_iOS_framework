@@ -2,23 +2,7 @@ import UIKit
 import CocoaLumberjack
 import DeviceKit
 
-let AvailableDaysBeforToday = 7
 
-var UIApplicationKeyWindow: UIWindow? {
-
-    if #available(iOS 13.0, *) {
-        // https://stackoverflow.com/a/57169802
-        return UIApplication.shared.connectedScenes
-            .filter({$0.activationState == .foregroundActive})
-            .map({$0 as? UIWindowScene})
-            .compactMap({$0})
-            .first?.windows
-            .filter({$0.isKeyWindow}).first
-    } else {
-        return UIApplication.shared.keyWindow
-    }
-
-}
 
 var appDelegate: AppDelegate {      // 'read-only' property
     // https://stackoverflow.com/questions/45832155/how-do-i-refactor-my-code-to-call-appdelegate-on-the-main-thread/45833540#45833540

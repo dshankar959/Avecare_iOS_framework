@@ -25,13 +25,14 @@ extension SyncEngine {
 
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor {
-            // TODO: load only today's logs
+            DDLogDebug("⬇️ [.isSupervisor], no sync action here.  Total \'\(RLMLogForm.className())\' items in DB: \(RLMLogForm.findAll().count)")
+            syncCompletion(nil)
         } else {
+            // Fetch all subject id's
             let subjectIDs = RLMSubject.findAll().map({ $0.id })
 
-            var apiResult: Result<[DailyFormAPIModel], AppError> = .success([DailyFormAPIModel]())
+            var apiResult: Result<[LogFormAPIModel], AppError> = .success([LogFormAPIModel]())
             let operationQueue = OperationQueue()
-
             let storage = ImageStorageService()
 
             let completionOperation = BlockOperation {
@@ -47,6 +48,8 @@ extension SyncEngine {
                 }
             }
 
+            var operations: [BlockOperation] = []
+
             for (index, subjectId) in subjectIDs.enumerated() {
                 let operation = BlockOperation {
                     if self.syncStates[syncKey] == .complete {  // nothing more to do.
@@ -55,27 +58,26 @@ extension SyncEngine {
 
                     let semaphore = DispatchSemaphore(value: 0) // serialize async API executions in this thread.
                     let request = SubjectsAPIService.SubjectLogsRequest(id: subjectId)
+
                     SubjectsAPIService.getLogs(request: request) { [weak self] result in
                         DDLogDebug("#️⃣ \(index+1) of \(subjectIDs.count)")
-
                         apiResult = result
 
                         switch result {
                         case .success(let apiLogs):
-                            var createOrUpdate = [RLMLogForm]()
+                            var subjectLogForms = [RLMLogForm]()
 
-                            for apiLog in apiLogs {
-                                let files = apiLog.files
-
-                                let logForm = apiLog.log
+                            for log in apiLogs {
+                                let logForm = log.logForm
                                 // link with subject
                                 logForm.subject = RLMSubject.find(withID: subjectId)
                                 // set server date (not really lastUpdated)
-                                logForm.serverLastUpdated = apiLog.date
+                                logForm.serverLastUpdated = log.date    // TODO:  server date?
                                 // mark as published
                                 logForm.publishState = .published
 
-                                // save images
+                                // sync down and save any attached image files
+                                let files = log.files
                                 let photoRows = logForm.rows.compactMap({ $0.photo })
                                 for row in photoRows {
                                     guard let file = files.first(where: { $0.id == row.id }),
@@ -85,15 +87,15 @@ extension SyncEngine {
                                     do {
                                         _ = try storage.saveImage(url, name: row.id)
                                     } catch {
-                                        DDLogError("Failed to save image \(url)")
+                                        DDLogError("Failed to save image: \(url)")
                                     }
                                 }
 
-                                createOrUpdate.append(logForm)
+                                subjectLogForms.append(logForm)
                             }
 
-                            // Update with new data.
-                            RLMLogForm.createOrUpdateAll(with: createOrUpdate)
+                            // Update DB with new data.
+                            RLMLogForm.createOrUpdateAll(with: subjectLogForms)
                         case .failure:
                             self?.syncStates[syncKey] = .complete
                         }
@@ -103,12 +105,21 @@ extension SyncEngine {
                     semaphore.wait()
                 }   // end-of-BlockOperation
 
+                operations.append(operation)
                 completionOperation.addDependency(operation)
-                operationQueue.addOperation(operation)
+            }
 
+            // FIFO
+            for (index, op) in operations.enumerated() {
+                if index == 0 {
+                    continue    // skip first one.
+                }
+                // Depend on previous one.
+                op.addDependency(operations[index-1])
             }
 
             OperationQueue.main.addOperation(completionOperation)
+            operationQueue.addOperations(operations, waitUntilFinished: false)  // trigger!
         }
     }
 

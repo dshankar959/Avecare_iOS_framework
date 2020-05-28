@@ -58,7 +58,7 @@ extension SubjectListDataProvider: IndicatorProtocol {
 
     func publishDailyForm(at indexPath: IndexPath) {
         let form = dataSource[indexPath.row].todayForm
-        let request = DailyFormAPIModel(form: form, storage: imageStorageService)
+        let request = LogFormAPIModel(form: form, storage: imageStorageService)
 
         RLMLogForm.writeTransaction {
             form.clientLastUpdated = Date()

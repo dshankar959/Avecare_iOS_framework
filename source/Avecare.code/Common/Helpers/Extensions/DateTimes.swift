@@ -86,13 +86,6 @@ extension Date {
         return formatter
     }
 
-    static var startDateForLogsCalendar: Date {
-        return Calendar.current.date(byAdding: .day, value: -AvailableDaysBeforToday, to: Date()) ?? Date()
-    }
-
-    static var endDateForLogsCalendar: Date {
-        Date().next(.saturday, includingTheDate: true)
-    }
 }
 
 
