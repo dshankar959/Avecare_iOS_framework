@@ -51,7 +51,7 @@ public extension UITableView {
         return cell
     }
 
-    /// Use AnyCellViewModel, because CellViewModel type can be used only as generic constraint (because it has associatedtype)
+    /// Use `AnyCellViewModel`, because CellViewModel type can be used only as generic constraint (because it has associatedtype)
     func dequeueReusableCell(withAnyModel viewModel: AnyCellViewModel, for indexPath: IndexPath, owner: Any? = nil) -> UITableViewCell {
         let identifier = String(describing: type(of: viewModel).cellType)
 

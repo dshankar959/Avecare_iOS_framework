@@ -5,7 +5,9 @@ import RealmSwift
 
 class RLMLogForm: RLMDefaults, RLMPublishable {
 
+//    @objc dynamic var date: Date?       // "for day"
     @objc dynamic var subject: RLMSubject?
+
     @objc dynamic var rawPublishState: Int = PublishState.local.rawValue    // RLMPublishable protocol var(s)
 
     let rows = List<RLMLogRow>()
@@ -16,20 +18,11 @@ class RLMLogForm: RLMDefaults, RLMPublishable {
         case rows
     }
 
-    override func encode(to encoder: Encoder) throws {
-        try super.encode(to: encoder)
-        var container = encoder.container(keyedBy: CodingKeys.self)
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
 
-        // rows
-        var rowsContainer = container.nestedUnkeyedContainer(forKey: .rows)
-        for row in self.rows {
-            try rowsContainer.encode(row)
-        }
-    }
-
-    override func decode(from decoder: Decoder) throws {
         do {
-            try super.decode(from: decoder)
+            try self.decode(from: decoder)  // call base class for defaults.
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
             subject = try values.decodeIfPresent(RLMSubject.self, forKey: .subject)
@@ -44,10 +37,22 @@ class RLMLogForm: RLMDefaults, RLMPublishable {
         }
     }
 
+    override func encode(to encoder: Encoder) throws {
+        try super.encode(to: encoder)
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        // rows
+        var rowsContainer = container.nestedUnkeyedContainer(forKey: .rows)
+        for row in self.rows {
+            try rowsContainer.encode(row)
+        }
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
         rows.forEach({ $0.prepareForReuse() })
     }
+
 }
 
 

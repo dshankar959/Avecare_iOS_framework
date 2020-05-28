@@ -32,7 +32,7 @@ class DateCell: JTACDayCell {
             dateLabel.textColor = #colorLiteral(red: 0.2, green: 0.2, blue: 0.2, alpha: 1)
         }
 
-        let dateBeforWeek = Date.startDateForLogsCalendar.startOfDay
+        let dateBeforWeek = SubjectsAPIService.startDateOfLogsHistory.startOfDay
         if cellState.date > Date() ||
             cellState.date < dateBeforWeek ||
             dayOfWeekLabel.text == "S" {

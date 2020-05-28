@@ -114,7 +114,6 @@ class LogsViewController: UIViewController {
         tableView.reloadData()
     }
 
-
     private func updateSubjectSelectButton(subject: RLMSubject) {
         let titleText =  "\(subject.firstName) \(subject.lastName)"
         let titleFont = UIFont.systemFont(ofSize: 16)
@@ -161,18 +160,21 @@ extension LogsViewController: UITableViewDelegate, UITableViewDataSource {
 
 
 extension LogsViewController: JTACMonthViewDataSource {
+
     func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
-        return ConfigurationParameters(startDate: Date.startDateForLogsCalendar,
-                                       endDate: Date.endDateForLogsCalendar,
+        return ConfigurationParameters(startDate: SubjectsAPIService.startDateOfLogsHistory,
+                                       endDate: SubjectsAPIService.endDateOfLogsHistory,
                                        numberOfRows: 1,
                                        generateInDates: .forAllMonths,
                                        generateOutDates: .off,
                                        hasStrictBoundaries: false)
     }
+
 }
 
 
 extension LogsViewController: JTACMonthViewDelegate {
+
     func calendar(_ calendar: JTACMonthView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTACDayCell {
         let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: "dateCell", for: indexPath) as! DateCell
         self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
@@ -182,7 +184,7 @@ extension LogsViewController: JTACMonthViewDelegate {
     func calendar(_ calendar: JTACMonthView, willDisplay cell: JTACDayCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         if let cell = cell as? DateCell {
             if datesWithData.contains(date.startOfDay),
-                date >= Date.startDateForLogsCalendar.startOfDay {
+                date >= SubjectsAPIService.startDateOfLogsHistory.startOfDay {
                 cell.hasData = true
             } else {
                 cell.hasData = false
@@ -222,13 +224,14 @@ extension LogsViewController: JTACMonthViewDelegate {
     func scrollDidEndDecelerating(for calendar: JTACMonthView) {
         let visibleDates = calendarView.visibleDates()
         let scrollBackDateForEndLimit = Date().previous(.sunday, includingTheDate: true)
-        if visibleDates.monthDates.contains(where: {$0.date <= Date.startDateForLogsCalendar}) {
-            calendarView.scrollToDate(Date.startDateForLogsCalendar)
+        if visibleDates.monthDates.contains(where: {$0.date <= SubjectsAPIService.startDateOfLogsHistory}) {
+            calendarView.scrollToDate(SubjectsAPIService.startDateOfLogsHistory)
             return
         }
-        if visibleDates.monthDates.contains(where: {$0.date >= Date.endDateForLogsCalendar}) {
+        if visibleDates.monthDates.contains(where: {$0.date >= SubjectsAPIService.endDateOfLogsHistory}) {
             calendarView.scrollToDate(scrollBackDateForEndLimit)
             return
         }
     }
+
 }

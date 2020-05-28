@@ -65,7 +65,7 @@ enum AvecareAPI { // API Services
     case organizationSubjectTypes(id: String)
     // MARK: - SUBJECTS
 //    case subjectInjuries(id: String)
-    case subjectPublishDailyLog(request: DailyFormAPIModel)
+    case subjectPublishDailyLog(request: LogFormAPIModel)
     case subjectGetLogs(request: SubjectsAPIService.SubjectLogsRequest)
     // MARK: - SUPERVISORS
     case supervisorDetails(id: String)
@@ -161,22 +161,26 @@ extension AvecareAPI: TargetType {
         switch self {
         case .login(let credentials):
             return .requestJSONEncodable(credentials)
+
         case .oneTimePassword(let email):
             return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
+
         case .unitCreateActivity(_, let request as Encodable),
              .unitPublishDailyTasks(_, let request as Encodable):
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(Date.yearMonthDayFormatter)
             return .requestCustomJSONEncodable(request, encoder: encoder)
+
         case .subjectGetLogs(let request):
-            if let date = request.formattedDate {
-                return .requestParameters(parameters: ["date": date], encoding: URLEncoding.default)
-            } else {
-                return .requestPlain
-            }
+            return .requestParameters(parameters: [
+                "start_date": request.startDate,
+                "end_date": request.endDate
+            ], encoding: URLEncoding.default)
+
         case .subjectPublishDailyLog(let request as MultipartEncodable),
              .unitPublishStory(let request as MultipartEncodable):
             return .uploadMultipart(request.formData)
+
         default:
             return .requestPlain
         }

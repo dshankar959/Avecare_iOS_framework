@@ -1,10 +1,10 @@
-import Foundation
 import CocoaLumberjack
+
 
 
 struct SubjectsAPIService {
 
-    static func publishDailyLog(log: DailyFormAPIModel, completion: @escaping (Result<FilesResponseModel, AppError>) -> Void) {
+    static func publishDailyLog(log: LogFormAPIModel, completion: @escaping (Result<FilesResponseModel, AppError>) -> Void) {
         apiProvider.request(.subjectPublishDailyLog(request: log)) { result in
             switch result {
             case .success(let response):
@@ -21,29 +21,30 @@ struct SubjectsAPIService {
         }
     }
 
+
     struct SubjectLogsRequest {
         let subjectId: String
-        private let date: Date?
 
-        init(id: String, date: Date? = nil) {
-            self.subjectId = id
-            self.date = date
+        var startDate: String {
+            return Date.yearMonthDayFormatter.string(from: startDateOfLogsHistory)
         }
 
-        var formattedDate: String? {
-            guard let date = date else {
-                return nil
-            }
-            return Date.yearMonthDayFormatter.string(from: date)
+        var endDate: String {
+            return Date.yearMonthDayFormatter.string(from: endDateOfLogsHistory)
+        }
+
+        init(id: String) {
+            self.subjectId = id
         }
     }
 
-    static func getLogs(request: SubjectLogsRequest, completion: @escaping (Result<[DailyFormAPIModel], AppError>) -> Void) {
+
+    static func getLogs(request: SubjectLogsRequest, completion: @escaping (Result<[LogFormAPIModel], AppError>) -> Void) {
         apiProvider.request(.subjectGetLogs(request: request)) { result in
             switch result {
             case .success(let response):
                 do {
-                    let mappedResponse = try response.map(APIPaginatedResponse<DailyFormAPIModel>.self)
+                    let mappedResponse = try response.map(APIPaginatedResponse<LogFormAPIModel>.self)
                     completion(.success(mappedResponse.results))
                 } catch {
                     DDLogError("JSON MAPPING ERROR = \(error)")
@@ -54,4 +55,19 @@ struct SubjectsAPIService {
             }
         }
     }
+
+}
+
+
+extension SubjectsAPIService {
+
+    static var startDateOfLogsHistory: Date {
+        let numberOfDays = 7    // window of time
+        return Calendar.current.date(byAdding: .day, value: -numberOfDays, to: Date()) ?? Date()
+    }
+
+    static var endDateOfLogsHistory: Date {
+        Date().next(.saturday, includingTheDate: true)
+    }
+
 }

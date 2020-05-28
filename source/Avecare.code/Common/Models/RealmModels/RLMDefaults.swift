@@ -7,7 +7,7 @@ class RLMDefaults: Object, Codable, RLMReusable {
 
     @objc dynamic var id: String = ""
     @objc dynamic var serverLastUpdated: Date?      // ISO8601 datetime stamp of last server-side change
-    @objc dynamic var clientLastUpdated = Date()    // ISO8601 datetime stamp of last local change
+    @objc dynamic var clientLastUpdated: Date = Date()    // ISO8601 datetime stamp of last local change
 
 //    @objc dynamic var syncToken: String = DALconfig.defaultSyncToken
 //    @objc dynamic var sync: Bool = false
