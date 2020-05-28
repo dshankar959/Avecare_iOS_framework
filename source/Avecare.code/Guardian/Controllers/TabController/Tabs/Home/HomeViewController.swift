@@ -96,12 +96,14 @@ extension HomeViewController: SubjectListViewControllerDelegate {
     func subjectListDidSelectAll(_ controller: SubjectListViewController) {
         controller.dismiss(animated: true)
         subjectSelection?.subject = nil
+        dataProvider.filterDataSource(with: nil)
         updateScreen()
     }
 
     func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
         controller.dismiss(animated: true)
         subjectSelection?.subject = subject
+        dataProvider.filterDataSource(with: subject.id)
         updateScreen()
     }
 }

@@ -8,6 +8,7 @@ protocol HomeDataProvider: class {
     func headerViewModel(for section: Int) -> HomeTableViewHeaderViewModel?
     func canDismiss(at indexPath: IndexPath) -> Bool
     func fetchFeed(completion: @escaping (AppError?) -> Void)
+    func filterDataSource(with subjectId: String?)
 }
 
 class DefaultHomeDataProvider: HomeDataProvider {
@@ -17,7 +18,9 @@ class DefaultHomeDataProvider: HomeDataProvider {
         let records: [AnyCellViewModel]
     }
 
+    private var fetchedFeed = [RLMGuardianFeed]()
     private var dataSource = [Section]()
+
     /*
         return []   // hide for now until we have integrated with API
         return [
@@ -82,48 +85,8 @@ class DefaultHomeDataProvider: HomeDataProvider {
             GuardiansAPIService.getGuardianFeed(for: guardianId) { result in
                 switch result {
                 case .success(let feeds):
-                    self.dataSource.removeAll()
-                    var importantList = [RLMGuardianFeed]()
-                    var headerSet = Set<String>()
-                    var sectionHeaders = [String]()
-                    var sections = [String: [RLMGuardianFeed]]()
-                    feeds.forEach { feed in
-                        if feed.important {
-                            importantList.append(feed)
-                        } else {
-                            let sectionTitle = feed.date.timeAgo(dayAbove: true)
-                            if !headerSet.contains(sectionTitle) {
-                                sectionHeaders.append(sectionTitle)
-                                sections[sectionTitle]?.append(feed)
-                            }
-                            headerSet.insert(sectionTitle)
-                            sections[sectionTitle] = [feed]
-                        }
-                    }
-                    if importantList.count > 0 {
-                        var importantItems = [HomeTableViewDisclosureCellModel]()
-                        importantList.forEach { feed in
-                            importantItems.append(self.makeCellModel(with: feed))
-                        }
-                        self.dataSource.append(
-                            Section(
-                                header: .init(icon: R.image.pinIcon(), text: "IMPORTANT ITEMS"),
-                                dismiss: true,
-                                records: importantItems)
-                        )
-                    }
-                    sectionHeaders.forEach { sectionHeader in
-                        let elements = sections[sectionHeader]
-                        var sectionItems = [HomeTableViewDisclosureCellModel]()
-                        elements?.forEach({ feed in
-                            sectionItems.append(self.makeCellModel(with: feed))
-                        })
-                        self.dataSource.append(
-                            Section(header: .init(icon: nil, text: sectionHeader.uppercased()),
-                                    dismiss: false,
-                                    records: sectionItems)
-                        )
-                    }
+                    self.fetchedFeed = feeds
+                    self.constructDataSource(with: feeds)
                     completion(nil)
                 case .failure(let error):
                     completion(error)
@@ -132,33 +95,87 @@ class DefaultHomeDataProvider: HomeDataProvider {
         }
     }
 
+    func filterDataSource(with subjectId: String?) {
+        if let subjectId = subjectId {
+            let filteredFeed = fetchedFeed.filter { $0.subjectId == subjectId }
+            constructDataSource(with: filteredFeed)
+        } else {
+            constructDataSource(with: fetchedFeed)
+        }
+    }
+
+    private func constructDataSource(with feeds: [RLMGuardianFeed]) {
+        self.dataSource.removeAll()
+        var importantList = [RLMGuardianFeed]()
+        var headerSet = Set<String>()
+        var sectionHeaders = [String]()
+        var sections = [String: [RLMGuardianFeed]]()
+        feeds.forEach { feed in
+            if feed.important {
+                importantList.append(feed)
+            } else {
+                let sectionTitle = feed.date.timeAgo(dayAbove: true)
+                if !headerSet.contains(sectionTitle) {
+                    sectionHeaders.append(sectionTitle)
+                    sections[sectionTitle]?.append(feed)
+                }
+                headerSet.insert(sectionTitle)
+                sections[sectionTitle] = [feed]
+            }
+        }
+        if importantList.count > 0 {
+            var importantItems = [HomeTableViewDisclosureCellModel]()
+            importantList.forEach { feed in
+                importantItems.append(self.makeCellModel(with: feed))
+            }
+            self.dataSource.append(
+                Section(
+                    header: .init(icon: R.image.pinIcon(), text: "IMPORTANT ITEMS"),
+                    dismiss: true,
+                    records: importantItems)
+            )
+        }
+        sectionHeaders.forEach { sectionHeader in
+            let elements = sections[sectionHeader]
+            var sectionItems = [HomeTableViewDisclosureCellModel]()
+            elements?.forEach({ feed in
+                sectionItems.append(self.makeCellModel(with: feed))
+            })
+            self.dataSource.append(
+                Section(header: .init(icon: nil, text: sectionHeader.uppercased()),
+                        dismiss: false,
+                        records: sectionItems)
+            )
+        }
+    }
+
     private func makeCellModel(with feed: RLMGuardianFeed) -> HomeTableViewDisclosureCellModel {
         let cellModel: HomeTableViewDisclosureCellModel
-        if feed.feedItem?.type == "message" {
+        if feed.feedItemType == "message" {
             cellModel = HomeTableViewDisclosureCellModel(icon: R.image.flagIcon(),
                                                          iconColor: R.color.blueIcon(),
                                                          title: feed.header,
                                                          subtitle: feed.body,
                                                          hasMoreDate: true)
-        } else if feed.feedItem?.type == "subjectdailylog" {
+        } else if feed.feedItemType == "subjectdailylog" {
             cellModel = HomeTableViewDisclosureCellModel(icon: R.image.pencilIcon(),
                                                          iconColor: R.color.blueIcon(),
                                                          title: feed.header,
                                                          subtitle: feed.body,
                                                          hasMoreDate: true)
-        } else if feed.feedItem?.type == "subjectinjury" {
+        } else if feed.feedItemType == "subjectinjury" {
             cellModel = HomeTableViewDisclosureCellModel(icon: R.image.injuryIcon(),
                                                          iconColor: R.color.blueIcon(),
                                                          title: feed.header,
                                                          subtitle: feed.body,
                                                          hasMoreDate: false)
-        } else if feed.feedItem?.type == "subjectreminder" {
+        } else if feed.feedItemType == "subjectreminder" {
             cellModel = HomeTableViewDisclosureCellModel(icon: R.image.heartIcon(),
                                                          iconColor: R.color.blueIcon(),
                                                          title: feed.header,
                                                          subtitle: feed.body,
                                                          hasMoreDate: false)
-        } else if feed.feedItem?.type == "unitactivity" {
+        } else if feed.feedItemType == "unitactivity" {
             cellModel = HomeTableViewDisclosureCellModel(icon: R.image.classActivityIcon(),
                                                          iconColor: R.color.blueIcon(),
                                                          title: feed.header,

@@ -7,10 +7,11 @@ class RLMGuardianFeed: RLMDefaults {
 
     @objc dynamic var body: String = ""
     @objc dynamic var date = Date()
-    @objc dynamic var feedItem: FeedItem?
     @objc dynamic var header: String = ""
     @objc dynamic var important: Bool = false
     @objc dynamic var subjectId: String = ""
+    @objc dynamic var feedItemId: String = ""
+    @objc dynamic var feedItemType: String = ""
 
     var unitIds = List<String>()
 
@@ -18,10 +19,11 @@ class RLMGuardianFeed: RLMDefaults {
     enum CodingKeys: String, CodingKey {
         case body
         case date
-        case feedItem
         case header
         case important
         case subjectId
+        case feedItemId
+        case feedItemType
     }
 
 
@@ -40,9 +42,11 @@ class RLMGuardianFeed: RLMDefaults {
                 fatalError("JSON Decoding error = 'Invalid date format'")
             }
             self.date = date
-            self.feedItem = try values.decode(FeedItem.self, forKey: .feedItem)
+            self.header = try values.decode(String.self, forKey: .header)
             self.important = try values.decode(Bool.self, forKey: .important)
             self.subjectId = try values.decode(String.self, forKey: .subjectId)
+            self.feedItemId = try values.decode(String.self, forKey: .feedItemId)
+            self.feedItemType = try values.decode(String.self, forKey: .feedItemType)
 
         } catch {
             DDLogError("JSON Decoding error = \(error)")
@@ -50,32 +54,6 @@ class RLMGuardianFeed: RLMDefaults {
         }
     }
 
-}
-
-
-class FeedItem: RLMDefaults {
-
-    @objc dynamic var type: String = ""
-
-    enum CodingKeys: String, CodingKey {
-        case type
-    }
-
-    convenience required init(from decoder: Decoder) throws {
-        self.init()
-
-        do {
-            try self.decode(from: decoder)  // call base class for defaults.
-
-            let values = try decoder.container(keyedBy: CodingKeys.self)
-
-            self.type = try values.decode(String.self, forKey: .type)
-
-        } catch {
-            DDLogError("JSON Decoding error = \(error)")
-            fatalError("JSON Decoding error = \(error)")
-        }
-    }
 }
 
 
