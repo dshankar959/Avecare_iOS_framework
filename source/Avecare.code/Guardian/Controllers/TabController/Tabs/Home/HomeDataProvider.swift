@@ -7,6 +7,7 @@ protocol HomeDataProvider: class {
     func model(for indexPath: IndexPath) -> AnyCellViewModel
     func headerViewModel(for section: Int) -> HomeTableViewHeaderViewModel?
     func canDismiss(at indexPath: IndexPath) -> Bool
+    func fetchFeed(completion: @escaping (AppError?) -> Void)
 }
 
 class DefaultHomeDataProvider: HomeDataProvider {
@@ -16,7 +17,8 @@ class DefaultHomeDataProvider: HomeDataProvider {
         let records: [AnyCellViewModel]
     }
 
-    private lazy var dataSource: [Section] = {
+    private var dataSource = [Section]()
+    /*
         return []   // hide for now until we have integrated with API
         return [
             Section(header: .init(icon: R.image.pinIcon(), text: "IMPORTANT ITEMS"),
@@ -53,7 +55,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
                         HomeTableViewDisclosureCellModel(icon: R.image.subject2(), title: "Elise’s daily log is complete!", subtitle: nil)
                     ])
         ]
-    }()
+    }()*/
 
     var numberOfSections: Int {
         return dataSource.count
@@ -73,5 +75,98 @@ class DefaultHomeDataProvider: HomeDataProvider {
 
     func canDismiss(at indexPath: IndexPath) -> Bool {
         return dataSource[indexPath.section].dismiss
+    }
+
+    func fetchFeed(completion: @escaping (AppError?) -> Void) {
+        if let guardianId = appSession.userProfile.accountTypeId {
+            GuardiansAPIService.getGuardianFeed(for: guardianId) { result in
+                switch result {
+                case .success(let feeds):
+                    self.dataSource.removeAll()
+                    var importantList = [RLMGuardianFeed]()
+                    var headerSet = Set<String>()
+                    var sectionHeaders = [String]()
+                    var sections = [String: [RLMGuardianFeed]]()
+                    feeds.forEach { feed in
+                        if feed.important {
+                            importantList.append(feed)
+                        } else {
+                            let sectionTitle = feed.date.timeAgo(dayAbove: true)
+                            if !headerSet.contains(sectionTitle) {
+                                sectionHeaders.append(sectionTitle)
+                                sections[sectionTitle]?.append(feed)
+                            }
+                            headerSet.insert(sectionTitle)
+                            sections[sectionTitle] = [feed]
+                        }
+                    }
+                    if importantList.count > 0 {
+                        var importantItems = [HomeTableViewDisclosureCellModel]()
+                        importantList.forEach { feed in
+                            importantItems.append(self.makeCellModel(with: feed))
+                        }
+                        self.dataSource.append(
+                            Section(
+                                header: .init(icon: R.image.pinIcon(), text: "IMPORTANT ITEMS"),
+                                dismiss: true,
+                                records: importantItems)
+                        )
+                    }
+                    sectionHeaders.forEach { sectionHeader in
+                        let elements = sections[sectionHeader]
+                        var sectionItems = [HomeTableViewDisclosureCellModel]()
+                        elements?.forEach({ feed in
+                            sectionItems.append(self.makeCellModel(with: feed))
+                        })
+                        self.dataSource.append(
+                            Section(header: .init(icon: nil, text: sectionHeader.uppercased()),
+                                    dismiss: false,
+                                    records: sectionItems)
+                        )
+                    }
+                    completion(nil)
+                case .failure(let error):
+                    completion(error)
+                }
+            }
+        }
+    }
+
+    private func makeCellModel(with feed: RLMGuardianFeed) -> HomeTableViewDisclosureCellModel {
+        let cellModel: HomeTableViewDisclosureCellModel
+        if feed.feedItem?.type == "message" {
+            cellModel = HomeTableViewDisclosureCellModel(icon: R.image.flagIcon(),
+                                                         iconColor: R.color.blueIcon(),
+                                                         title: feed.header,
+                                                         subtitle: feed.body,
+                                                         hasMoreDate: true)
+        } else if feed.feedItem?.type == "subjectdailylog" {
+            cellModel = HomeTableViewDisclosureCellModel(icon: R.image.pencilIcon(),
+                                                         iconColor: R.color.blueIcon(),
+                                                         title: feed.header,
+                                                         subtitle: feed.body,
+                                                         hasMoreDate: true)
+        } else if feed.feedItem?.type == "subjectinjury" {
+            cellModel = HomeTableViewDisclosureCellModel(icon: R.image.injuryIcon(),
+                                                         iconColor: R.color.blueIcon(),
+                                                         title: feed.header,
+                                                         subtitle: feed.body,
+                                                         hasMoreDate: false)
+        } else if feed.feedItem?.type == "subjectreminder" {
+            cellModel = HomeTableViewDisclosureCellModel(icon: R.image.heartIcon(),
+                                                         iconColor: R.color.blueIcon(),
+                                                         title: feed.header,
+                                                         subtitle: feed.body,
+                                                         hasMoreDate: false)
+        } else if feed.feedItem?.type == "unitactivity" {
+            cellModel = HomeTableViewDisclosureCellModel(icon: R.image.classActivityIcon(),
+                                                         iconColor: R.color.blueIcon(),
+                                                         title: feed.header,
+                                                         subtitle: feed.body,
+                                                         hasMoreDate: false)
+        } else {
+            cellModel = HomeTableViewDisclosureCellModel(icon: nil, iconColor: nil, title: "", subtitle: nil, hasMoreDate: false)
+        }
+        return cellModel
     }
 }

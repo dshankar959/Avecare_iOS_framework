@@ -3,7 +3,7 @@ import CocoaLumberjack
 
 
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, IndicatorProtocol {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subjectFilterButton: UIButton!
@@ -27,6 +27,7 @@ class HomeViewController: UIViewController {
 
         self.navigationController?.hideHairline()
         configNoItemView()
+        tableView.tableFooterView = UIView() // remove bottom margin of the last cell
     }
 
     private func configNoItemView() {
@@ -38,7 +39,15 @@ class HomeViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateScreen()
+
+        showActivityIndicator(withStatus: "Retrieving Feeds...")
+        dataProvider.fetchFeed { error in
+            self.hideActivityIndicator()
+            if let error = error {
+                self.showErrorAlert(error)
+            }
+            self.updateScreen()
+        }
     }
 
     @IBAction func didClickSubjectPickerButton(_ sender: UIButton) {
@@ -62,6 +71,7 @@ class HomeViewController: UIViewController {
     private func updateScreen() {
         noItemView.isHidden = dataProvider.numberOfSections > 0 ? true : false
         updateSubjectFilterButton()
+        tableView.reloadData()
     }
 
     private func updateSubjectFilterButton() {
@@ -118,6 +128,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return dataProvider.headerViewModel(for: section)?.buildView()
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     // TODO: review technical design on how we should handle dismissing notifications [S.D]

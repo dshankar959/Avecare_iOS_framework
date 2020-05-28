@@ -103,7 +103,6 @@
                             </connections>
                         </button>
                     </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="noItemContentLabel" destination="UaV-pg-3uo" id="7AF-BZ-b21"/>
                         <outlet property="noItemTitleLabel" destination="DBU-QB-Fv9" id="Krq-8E-9xm"/>

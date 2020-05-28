@@ -350,6 +350,8 @@
 		DC5E990C24755B990088083C /* EducatorDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */; };
 		DC70F062246B436800FFD262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
 		DCBE4A56247DA9A600F6D90A /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
+		DCC2DDCE247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */; };
+		DCC2DDCF247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */; };
 		DCFFD6F6246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */; };
 		DCFFD6F7246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */; };
 		DCFFD6F9246DA6FE0080DEA6 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */; };
@@ -667,6 +669,7 @@
 		DC5E9905247555720088083C /* EducatorBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorBioTableViewCell.swift; sourceTree = "<group>"; };
 		DC5E9906247555720088083C /* EducatorBioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EducatorBioTableViewCell.xib; sourceTree = "<group>"; };
 		DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorDetailsDataProvider.swift; sourceTree = "<group>"; };
+		DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMGuardianFeed.swift; sourceTree = "<group>"; };
 		DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
 		DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
 		F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Duotone-Solid-900.otf"; sourceTree = "<group>"; };
@@ -851,6 +854,7 @@
 				61547A4597BB6D889FB8F580 /* RLMAccountInfo.swift */,
 				61547267EB7BC5F4558F3B70 /* RLMSupervisor.swift */,
 				75EB5A032463C03300E077E5 /* RLMGuardian.swift */,
+				DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */,
 				75EB59BD2461858700E077E5 /* RLMSubject.swift */,
 				615472657DF3223E8A839F22 /* RLMUnit.swift */,
 				75D62234245B14480032F53D /* RLMInstitution.swift */,
@@ -2295,6 +2299,7 @@
 			files = (
 				755EAEAA241ABB6900A6BA4D /* Session.swift in Sources */,
 				75886DD6241932BA0079C080 /* CustomSplitViewController.swift in Sources */,
+				DCC2DDCE247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */,
 				75886D5C2419327F0079C080 /* XibView.swift in Sources */,
 				75886D562419327F0079C080 /* IndicatorProtocol.swift in Sources */,
 				F67DF81C241BFE6800793A9C /* InfoMessageFormView.swift in Sources */,
@@ -2509,6 +2514,7 @@
 				75886D352419327F0079C080 /* DiskHelper.swift in Sources */,
 				75EB5A0D2465D77900E077E5 /* RLMAccountInfo.swift in Sources */,
 				75EB5A242466FE9800E077E5 /* syncOrganizationDetails.swift in Sources */,
+				DCC2DDCF247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */,
 				DC05B3CF247C45000014779D /* PanningInteractionController.swift in Sources */,
 				75EB59D32461858700E077E5 /* RLMLogRow.swift in Sources */,
 				75886D2D2419327F0079C080 /* AppError.swift in Sources */,

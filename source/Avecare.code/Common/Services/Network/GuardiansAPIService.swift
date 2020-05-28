@@ -26,6 +26,27 @@ struct GuardiansAPIService {
     }
 
 
+    static func getGuardianFeed(for guardianId: String,
+                                completion: @escaping (Result<[RLMGuardianFeed], AppError>) -> Void) {
+        DDLogDebug("")
+
+        apiProvider.request(.guardianFeed(id: guardianId)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(GuardianFeedResponse.self)
+                    completion(.success(mappedResponse.results))
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    completion(.failure(JSONError.failedToMapData.message))
+                }
+            case .failure(let error):
+                completion(.failure(getAppErrorFromMoya(with: error)))
+            }
+        }
+    }
+
+
     static func getSubjects(for guardianId: String,
                             completion: @escaping (Result<[RLMSubject], AppError>) -> Void) {
         DDLogDebug("")

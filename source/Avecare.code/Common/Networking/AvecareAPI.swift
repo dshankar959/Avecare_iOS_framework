@@ -51,7 +51,7 @@ enum AvecareAPI { // API Services
     case accountInfo
     // MARK: - GUARDIANS
     case guardianDetails(id: String)
-//    case guardianFeed(id: String)
+    case guardianFeed(id: String)
 //    case guardianLogs(id: String)
     case guardianSubjects(id: String)
     // MARK: - INSTITUTIONS
@@ -105,6 +105,7 @@ extension AvecareAPI: TargetType {
         case .accountInfo: return "/accounts"
 
         case .guardianDetails(let id): return "/guardians/\(id)"
+        case .guardianFeed(let id): return "/guardians/\(id)/feed/"
         case .guardianSubjects(let id): return "/guardians/\(id)/subjects"
 
         case .institutionDetails(let id): return "/institutions/\(id)"

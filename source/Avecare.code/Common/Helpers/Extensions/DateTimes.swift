@@ -165,4 +165,43 @@ extension Date {
         components.second = -1
         return Calendar.current.date(byAdding: components, to: startOfMonth)!
     }
+
+    func timeAgo(numericDates: Bool = false, dayAbove: Bool = false) -> String {
+        let calendar = Calendar.current
+        let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfMonth, .month, .year, .second]
+        let components: DateComponents = calendar.dateComponents(unitFlags, from: self)
+        let componentsOfNow: DateComponents = calendar.dateComponents(unitFlags, from: Date())
+
+        let year = (componentsOfNow.year ?? 0) - (components.year ?? 0)
+        let month = (componentsOfNow.month ?? 0) - (components.month ?? 0)
+        let weekOfMonth = (componentsOfNow.weekOfMonth ?? 0) - (components.weekOfMonth ?? 0)
+        let day = (componentsOfNow.day ?? 0) - (components.day ?? 0)
+        let hour = (componentsOfNow.hour ?? 0) - (components.hour ?? 0)
+        let minute = (componentsOfNow.minute ?? 0) - (components.minute ?? 0)
+        let second = (componentsOfNow.second ?? 0) - (components.second ?? 0)
+
+        switch (year, month, weekOfMonth, day, hour, minute, second) {
+        case (let year, _, _, _, _, _, _) where year >= 2: return "\(year) years ago"
+        case (let year, _, _, _, _, _, _) where year == 1 && numericDates: return "1 year ago"
+        case (let year, _, _, _, _, _, _) where year == 1 && !numericDates: return "last year"
+        case (_, let month, _, _, _, _, _) where month >= 2: return "\(month) months ago"
+        case (_, let month, _, _, _, _, _) where month == 1 && numericDates: return "1 month ago"
+        case (_, let month, _, _, _, _, _) where month == 1 && !numericDates: return "last month"
+        case (_, _, let weekOfMonth, _, _, _, _) where weekOfMonth >= 2: return "\(weekOfMonth) weeks ago"
+        case (_, _, let weekOfMonth, _, _, _, _) where weekOfMonth == 1 && numericDates: return "1 week ago"
+        case (_, _, let weekOfMonth, _, _, _, _) where weekOfMonth == 1 && !numericDates: return "last week"
+        case (_, _, _, let day, _, _, _) where day >= 2: return "\(day) days ago"
+        case (_, _, _, let day, _, _, _) where day == 1 && numericDates: return "1 day ago"
+        case (_, _, _, let day, _, _, _) where day == 1 && !numericDates: return "yesterday"
+        case (_, _, _, _, _, _, _) where dayAbove: return "today"
+        case (_, _, _, _, let hour, _, _) where hour >= 2: return "\(hour) hours ago"
+        case (_, _, _, _, let hour, _, _) where hour == 1 && numericDates: return "1 hour ago"
+        case (_, _, _, _, let hour, _, _) where hour == 1 && !numericDates: return "an hour ago"
+        case (_, _, _, _, _, let minute, _) where minute >= 2: return "\(minute) minutes ago"
+        case (_, _, _, _, _, let minute, _) where minute == 1 && numericDates: return "1 minute ago"
+        case (_, _, _, _, _, let minute, _) where minute == 1 && !numericDates: return "a minute ago"
+        case (_, _, _, _, _, _, let second) where second >= 3: return "\(second) seconds ago"
+        default: return "just now"
+        }
+    }
 }
