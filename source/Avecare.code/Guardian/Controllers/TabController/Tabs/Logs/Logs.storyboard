@@ -42,10 +42,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZJg-De-a0j" customClass="JTACMonthView" customModule="JTAppleCalendar">
-                                <rect key="frame" x="0.0" y="88" width="414" height="90"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="92"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="90" id="J3i-ne-4u0"/>
+                                    <constraint firstAttribute="height" constant="92" id="J3i-ne-4u0"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QrU-ip-cnt">
                                     <size key="itemSize" width="50" height="80"/>
@@ -115,7 +115,7 @@
                                 </connections>
                             </collectionView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mxI-6z-YWJ" userLabel="Date container">
-                                <rect key="frame" x="0.0" y="178" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="180" width="414" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iaa-Du-qwZ">
                                         <rect key="frame" x="189.5" y="11.5" width="35.5" height="17"/>
@@ -132,7 +132,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="WvE-pV-HgB">
-                                <rect key="frame" x="0.0" y="219" width="414" height="594"/>
+                                <rect key="frame" x="0.0" y="221" width="414" height="592"/>
                                 <color key="backgroundColor" name="Background"/>
                                 <color key="separatorColor" name="Background"/>
                                 <connections>
@@ -141,7 +141,7 @@
                                 </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwH-1c-9OY">
-                                <rect key="frame" x="0.0" y="218" width="414" height="124"/>
+                                <rect key="frame" x="0.0" y="220" width="414" height="124"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bl-3D-UMg">
                                         <rect key="frame" x="15" y="28" width="384" height="43"/>
