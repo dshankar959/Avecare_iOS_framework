@@ -62,8 +62,14 @@ class StoriesListViewController: UIViewController {
     }
 
     private func updateScreen() {
+        if let selectedSubject = subjectSelection?.subject {
+            dataProvider.unitIds = Array(selectedSubject.unitIds)
+        } else {
+            dataProvider.unitIds = [String]()
+        }
+
         updateSubjectFilterButton()
-        updateEducators()
+        tableView.reloadData()
     }
 
 
@@ -81,15 +87,6 @@ class StoriesListViewController: UIViewController {
         titleAttributedString.append(chevronAttributedString)
 
         subjectFilterButton.setAttributedTitle(titleAttributedString, for: .normal)
-    }
-
-    private func updateEducators() {
-        if let selectedSubject = subjectSelection?.subject {
-            dataProvider.unitIds = Array(selectedSubject.unitIds)
-        } else {
-            dataProvider.unitIds = [String]()
-        }
-        tableView.reloadData()
     }
 }
 

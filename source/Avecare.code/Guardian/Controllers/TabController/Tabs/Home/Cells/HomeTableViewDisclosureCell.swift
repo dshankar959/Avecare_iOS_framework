@@ -8,18 +8,18 @@ struct HomeTableViewDisclosureCellModel: CellViewModel {
     let iconColor: UIColor?
     let title: String
     let subtitle: String?
-    let hasMoreDate: Bool
+    let hasMoreData: Bool
 
     init(icon: UIImage?,
          iconColor: UIColor? = nil,
          title: String,
          subtitle: String?,
-         hasMoreDate: Bool = true) {
+         hasMoreData: Bool = true) {
         self.icon = icon
         self.iconColor = iconColor
         self.title = title
         self.subtitle = subtitle
-        self.hasMoreDate = hasMoreDate
+        self.hasMoreData = hasMoreData
     }
 
     func setup(cell: CellType) {
@@ -29,7 +29,7 @@ struct HomeTableViewDisclosureCellModel: CellViewModel {
         cell.iconImageView.image = icon
         cell.titleLabel.text = title
         cell.subtitleLabel.text = subtitle
-        if hasMoreDate {
+        if hasMoreData {
             cell.accessoryType = .disclosureIndicator
             cell.selectionStyle = .default
         } else {

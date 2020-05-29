@@ -114,7 +114,13 @@ class DefaultHomeDataProvider: HomeDataProvider {
             if feed.important {
                 importantList.append(feed)
             } else {
-                let sectionTitle = feed.date.timeAgo(dayAbove: true)
+                let sectionTitle: String
+                if let feedDate = feed.serverLastUpdated {
+                    sectionTitle = feedDate.timeAgo(dayAbove: true)
+                } else {
+                    sectionTitle = feed.date.timeAgo(dayAbove: true) // Just in case serverLastUpdated is null
+                }
+
                 if !headerSet.contains(sectionTitle) {
                     sectionHeaders.append(sectionTitle)
                     sections[sectionTitle]?.append(feed)
@@ -156,33 +162,33 @@ class DefaultHomeDataProvider: HomeDataProvider {
                                                          iconColor: R.color.blueIcon(),
                                                          title: feed.header,
                                                          subtitle: feed.body,
-                                                         hasMoreDate: true)
+                                                         hasMoreData: true)
         } else if feed.feedItemType == "subjectdailylog" {
             cellModel = HomeTableViewDisclosureCellModel(icon: R.image.pencilIcon(),
                                                          iconColor: R.color.blueIcon(),
                                                          title: feed.header,
                                                          subtitle: feed.body,
-                                                         hasMoreDate: true)
+                                                         hasMoreData: true)
         } else if feed.feedItemType == "subjectinjury" {
             cellModel = HomeTableViewDisclosureCellModel(icon: R.image.injuryIcon(),
                                                          iconColor: R.color.blueIcon(),
                                                          title: feed.header,
                                                          subtitle: feed.body,
-                                                         hasMoreDate: false)
+                                                         hasMoreData: false)
         } else if feed.feedItemType == "subjectreminder" {
             cellModel = HomeTableViewDisclosureCellModel(icon: R.image.heartIcon(),
                                                          iconColor: R.color.blueIcon(),
                                                          title: feed.header,
                                                          subtitle: feed.body,
-                                                         hasMoreDate: false)
+                                                         hasMoreData: false)
         } else if feed.feedItemType == "unitactivity" {
             cellModel = HomeTableViewDisclosureCellModel(icon: R.image.classActivityIcon(),
                                                          iconColor: R.color.blueIcon(),
                                                          title: feed.header,
                                                          subtitle: feed.body,
-                                                         hasMoreDate: false)
+                                                         hasMoreData: false)
         } else {
-            cellModel = HomeTableViewDisclosureCellModel(icon: nil, iconColor: nil, title: "", subtitle: nil, hasMoreDate: false)
+            cellModel = HomeTableViewDisclosureCellModel(icon: nil, iconColor: nil, title: "", subtitle: nil, hasMoreData: false)
         }
         return cellModel
     }
