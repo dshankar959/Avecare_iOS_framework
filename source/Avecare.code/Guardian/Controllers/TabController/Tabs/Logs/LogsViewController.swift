@@ -106,6 +106,7 @@ class LogsViewController: UIViewController {
         logFroms.forEach { logForm in
             datesWithData.insert(logForm.serverLastUpdated?.startOfDay ?? Date().startOfDay)
         }
+        calendarView.reloadData()
     }
 
     private func dateDidSelect(with subject: RLMSubject) {
