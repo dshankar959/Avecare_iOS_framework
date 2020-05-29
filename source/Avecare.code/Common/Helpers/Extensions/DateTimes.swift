@@ -15,6 +15,18 @@ extension Date {
         return dateFormatter.date(from: string)
     }
 
+    // log form API
+    static func logFormStringFromDate(_ date: Date) -> String {
+        let dateFormatter = yearMonthDayFormatter
+        return dateFormatter.string(from: date)
+    }
+
+    // log form API
+    static func dateFromLogFormString(_ string: String) -> Date? {
+        let dateFormatter = yearMonthDayFormatter
+        return dateFormatter.date(from: string)
+    }
+
     // Good for saving file names.
     static func shortISO8601FileStringFromDate(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
@@ -52,7 +64,7 @@ extension Date {
 
     static var yearMonthDayFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.dateFormat = "yyyy-MM-dd"     // eg. 2020-05-27
         return formatter
     }
 

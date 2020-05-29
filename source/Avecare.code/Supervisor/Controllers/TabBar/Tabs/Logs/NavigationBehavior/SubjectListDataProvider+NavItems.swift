@@ -66,7 +66,6 @@ extension SubjectListDataProvider: IndicatorProtocol {
         }
 
         showActivityIndicator(withStatus: "Publishing daily log ...")
-        // TODO: Shows loading indicator.  Is this the best place to call this?
 
         SubjectsAPIService.publishDailyLog(log: request) { [weak self] result in
             switch result {
@@ -75,16 +74,15 @@ extension SubjectListDataProvider: IndicatorProtocol {
                 self?.showSuccessIndicator(withStatus: "Published")
 
                 RLMLogForm.writeTransaction {
-                    let date = Date() // FIXME: should be date from server response?
+                    let date = Date() // FIXME: ideally this should be date from server response
                     form.serverLastUpdated = date
-                    form.clientLastUpdated = date
                     form.publishState = .published
                 }
 
                 self?.delegate?.didUpdateModel(at: indexPath)
             case .failure(let error):
                 DDLogError("\(error)")
-                self?.showErrorAlert(AuthError.emptyCredentials.message)
+                self?.showErrorAlert(error)
             }
         }
     }

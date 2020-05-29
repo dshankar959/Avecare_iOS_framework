@@ -24,6 +24,7 @@ class RLMLogOptionRow: Object, Decodable, FormRowIconProtocol {
         try decodeIcon(from: decoder)
 
         let container = try decoder.container(keyedBy: CodingKeys.self)
+
         title = try container.decode(String.self, forKey: .title)
         placeholder = try container.decode(String.self, forKey: .placeholder)
         selectedValue.value = try container.decodeIfPresent(Int.self, forKey: .selectedValue)
@@ -33,7 +34,9 @@ class RLMLogOptionRow: Object, Decodable, FormRowIconProtocol {
     }
 }
 
+
 extension RLMLogOptionRow: Encodable {
+
     func encode(to encoder: Encoder) throws {
         try encodeIcon(to: encoder)
 
@@ -48,11 +51,15 @@ extension RLMLogOptionRow: Encodable {
             try optionsContainer.encode(option)
         }
     }
+
 }
 
+
 extension RLMLogOptionRow: DataProvider, RLMCleanable {
+
     func clean() {
         RLMOptionValue.deleteAll(objects: Array(options))
         delete()
     }
+
 }

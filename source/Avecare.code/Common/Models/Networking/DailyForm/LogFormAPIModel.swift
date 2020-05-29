@@ -1,6 +1,6 @@
-import Foundation
 import Moya
 import CocoaLumberjack
+
 
 
 protocol MultipartEncodable {
@@ -24,8 +24,9 @@ struct LogFormAPIModel {
         case files
     }
 
+
     init(form: RLMLogForm, storage: ImageStorageService) {
-        self.id = newUUID
+        self.id = form.id
         guard let subjectId = form.subject?.id else {
             fatalError()
         }
@@ -43,21 +44,25 @@ struct LogFormAPIModel {
 extension LogFormAPIModel: Decodable {
 
     public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+        do {
+            let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        id = try container.decode(String.self, forKey: .id)
-        subjectId = try container.decode(String.self, forKey: .subjectId)
+            id = try container.decode(String.self, forKey: .id)
+            subjectId = try container.decode(String.self, forKey: .subjectId)
 
-        // TODO: ????
-        let formatter = Date.yearMonthDayFormatter
-        guard let date = formatter.date(from: try container.decode(String.self, forKey: .date)) else {
-            DDLogError("JSON DECODING ERROR: Invalid date format")
-            fatalError("JSON DECODING ERROR: Invalid date format")
+            let dateString = try container.decode(String.self, forKey: .date)
+            guard let date = Date.dateFromLogFormString(dateString) else {
+                DDLogError("JSON Decoding error: Invalid date format")
+                fatalError("JSON Decoding error: Invalid date format")
+            }
+            self.date = date
+
+            logForm = try container.decode(RLMLogForm.self, forKey: .logForm)
+            files = try container.decode([FilesResponseModel.File].self, forKey: .files)
+        } catch {
+            DDLogError("JSON Decoding error = \(error)")
+            fatalError("JSON Decoding error = \(error)")
         }
-        self.date = date
-
-        logForm = try container.decode(RLMLogForm.self, forKey: .logForm)
-        files = try container.decode([FilesResponseModel.File].self, forKey: .files)
     }
 }
 
@@ -71,16 +76,23 @@ extension LogFormAPIModel: MultipartEncodable {
             data.append(.init(provider: .data(value), name: CodingKeys.id.rawValue))
         }
 
+        if let value = Date.logFormStringFromDate(Date()).data(using: .utf8) {
+            data.append(.init(provider: .data(value), name: CodingKeys.date.rawValue))
+        }
+
         do {
-            let formJson = try JSONEncoder().encode(logForm)
-            data.append(.init(provider: .data(formJson), name: CodingKeys.logForm.rawValue))
+            // Sanitize RLMLogForm object to just the rows for the API.
+            let rows = logForm.rows.detached()
+            let encoder = JSONEncoder()
+            let formRows = try encoder.encode(["rows": rows])   // dict.
+
+            data.append(.init(provider: .data(formRows), name: CodingKeys.logForm.rawValue))
+
+//            let formJSON = try JSONEncoder().encode(logForm)
+//            data.append(.init(provider: .data(formJSON), name: CodingKeys.logForm.rawValue))
         } catch {
             DDLogError("JSON Encoding error = \(error)")
             fatalError("JSON Encoding error = \(error)")
-        }
-
-        if let value = Date.yearMonthDayFormatter.string(from: Date()).data(using: .utf8) {
-            data.append(.init(provider: .data(value), name: CodingKeys.date.rawValue))
         }
 
         let storage = ImageStorageService()

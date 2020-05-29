@@ -2,35 +2,57 @@ import RealmSwift
 
 
 
-class RLMLogPhotoRow: RLMDefaults {
-    // RLMDefaults.id will be used to link with image
+class RLMLogPhotoRow: Object, Codable {
 
+    @objc dynamic var id: String = ""   // .id will be used to link with image file
     @objc dynamic var title = ""
     @objc dynamic var text: String?
 
     private enum CodingKeys: String, CodingKey {
+        case id
         case title
         case text
     }
 
+
     convenience required init(from decoder: Decoder) throws {
         self.init()
-        try super.decode(from: decoder)
 
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        if let title = try container.decodeIfPresent(String.self, forKey: .title) {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+
+        if let id = try values.decodeIfPresent(String.self, forKey: .id)?.lowercased() {
+            self.id = id
+        } else {
+            self.id = newUUID
+        }
+
+
+        if let title = try values.decodeIfPresent(String.self, forKey: .title) {
             self.title = title
         }
-        self.text = try container.decodeIfPresent(String.self, forKey: .text)
+        self.text = try values.decodeIfPresent(String.self, forKey: .text)
     }
 
-    override func encode(to encoder: Encoder) throws {
-        try super.encode(to: encoder)
+    func encode(to encoder: Encoder) throws {
 
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(title, forKey: .title)
-        try container.encodeIfPresent(text, forKey: .text)
+        var values = encoder.container(keyedBy: CodingKeys.self)
+        try values.encode(title, forKey: .title)
+        try values.encodeIfPresent(text, forKey: .text)
     }
+
+    override static func primaryKey() -> String {
+        return "id"
+    }
+
+    convenience init(id: String) {
+        self.init()
+        self.id = id
+    }
+
+    func prepareForReuse() {
+        id = newUUID
+    }
+
 }
 
 extension RLMLogPhotoRow: DataProvider, RLMCleanable {

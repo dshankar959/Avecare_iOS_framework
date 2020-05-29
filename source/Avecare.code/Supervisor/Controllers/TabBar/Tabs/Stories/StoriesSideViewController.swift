@@ -1,7 +1,9 @@
-import Foundation
 import UIKit
 
+
+
 class StoriesSideViewController: UIViewController {
+
     @IBOutlet weak var tableView: UITableView!
 
     lazy var dataProvider: StoriesDataProviderIO = {
@@ -9,6 +11,7 @@ class StoriesSideViewController: UIViewController {
         provider.delegate = self
         return provider
     }()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,9 +27,12 @@ class StoriesSideViewController: UIViewController {
             dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
         }
     }
+
 }
 
+
 extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource {
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataProvider.numberOfRows
     }
@@ -39,9 +45,12 @@ extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataProvider.setSelected(true, at: indexPath)
     }
+
 }
 
+
 extension StoriesSideViewController: StoriesDataProviderDelegate {
+
     func didUpdateModel(at indexPath: IndexPath, details: Bool) {
         let model = dataProvider.model(for: indexPath)
 
@@ -65,4 +74,5 @@ extension StoriesSideViewController: StoriesDataProviderDelegate {
     func moveStory(at fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
         tableView.moveRow(at: fromIndexPath, to: toIndexPath)
     }
+
 }
