@@ -8,7 +8,7 @@ extension StoriesDataProvider {
         let formatter = Date.shortMonthTimeFormatter
 
         let prefix = story.publishState == .local ? "Last saved" : "Published"
-        let time = formatter.string(from: story.clientLastUpdated)
+        let time = formatter.string(from: story.clientLastUpdated!)
         return FormLabelViewModel.subtitle("\(prefix) - \(time)")
     }
 

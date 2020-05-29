@@ -92,7 +92,7 @@ extension RLMSubject: DataProvider {
 //        let sortedLogForms = allLogForms.sorted(by: { $0.clientLastUpdated.compare($1.clientLastUpdated) == .orderedAscending})
 
         // Use the most recent form.
-        if let form = sortedLogForms.last, Calendar.current.isDateInToday(form.clientLastUpdated) {
+        if let form = sortedLogForms.last, Calendar.current.isDateInToday(form.clientLastUpdated!) {
             return form
         }
 

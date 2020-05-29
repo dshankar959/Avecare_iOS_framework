@@ -69,10 +69,11 @@ extension SyncEngine {
 
                             for log in apiLogs {
                                 let logForm = log.logForm
+                                logForm.id = log.id
                                 // link with subject
                                 logForm.subject = RLMSubject.find(withID: subjectId)
-                                // set server date (not really lastUpdated)
-                                logForm.serverLastUpdated = log.date    // TODO:  server date?
+                                // set server "date" title. (note: not really lastUpdated)
+                                logForm.serverLastUpdated = log.date
                                 // mark as published
                                 logForm.publishState = .published
 

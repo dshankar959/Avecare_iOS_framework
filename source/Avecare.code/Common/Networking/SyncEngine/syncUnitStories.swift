@@ -33,8 +33,8 @@ extension SyncEngine {
                         stories.forEach({
                             $0.unit = unit
                             $0.publishState = .published
-                            // TODO: server date
                         })
+
                         // Update with new data.
                         RLMStory.createOrUpdateAll(with: stories)
                         DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMStory.className())\' items in DB: \(RLMStory.findAll().count)")

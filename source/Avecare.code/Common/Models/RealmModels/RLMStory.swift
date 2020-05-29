@@ -1,5 +1,5 @@
-import Foundation
 import RealmSwift
+import CocoaLumberjack
 
 
 
@@ -20,25 +20,37 @@ class RLMStory: RLMDefaults, RLMPublishable {
 
     convenience required init(from decoder: Decoder) throws {
         self.init()
-        try super.decode(from: decoder)
 
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.title = try container.decode(String.self, forKey: .title)
+        do {
+            try super.decode(from: decoder)
 
-        self.body = try container.decode(String.self, forKey: .body)
-        self.photoCaption = try container.decode(String.self, forKey: .photoCaption)
+            let container = try decoder.container(keyedBy: CodingKeys.self)
+            self.title = try container.decode(String.self, forKey: .title)
+
+            self.body = try container.decode(String.self, forKey: .body)
+            self.photoCaption = try container.decode(String.self, forKey: .photoCaption)
+        } catch {
+            DDLogError("JSON Decoding error = \(error)")
+            fatalError("JSON Decoding error = \(error)")
+        }
     }
 
     override func encode(to encoder: Encoder) throws {
-        try super.encode(to: encoder)
+        do {
+            try super.encode(to: encoder)
 
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(title, forKey: .title)
-        try container.encode(body, forKey: .body)
-        try container.encode(photoCaption, forKey: .photoCaption)
+            var container = encoder.container(keyedBy: CodingKeys.self)
+            try container.encode(title, forKey: .title)
+            try container.encode(body, forKey: .body)
+            try container.encode(photoCaption, forKey: .photoCaption)
+        } catch {
+            DDLogError("JSON Encoding error = \(error)")
+            fatalError("JSON Encoding error = \(error)")
+        }
 
     }
 }
+
 
 extension RLMStory {
     /*
@@ -49,10 +61,13 @@ extension RLMStory {
     func photoURL(using storage: ImageStorageService) -> URL? {
         return storage.imageURL(name: id)
     }
+
 }
+
 
 extension RLMStory: RLMCleanable, DataProvider {
     func clean() {
 
     }
+
 }

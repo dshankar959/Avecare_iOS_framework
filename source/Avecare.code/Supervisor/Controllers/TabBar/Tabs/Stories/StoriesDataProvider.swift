@@ -7,10 +7,17 @@ extension StoriesTableViewCellModel {
 
     init(story: RLMStory, storage: ImageStorageService) {
         title = story.title
-        date = story.clientLastUpdated
         details = story.body
         photoURL = story.photoURL(using: storage)
         photoCaption = story.photoCaption
+
+        if let lastUpdated = story.clientLastUpdated {
+            date = lastUpdated
+        } else if let lastUpdated = story.serverLastUpdated {
+            date = lastUpdated
+        } else {
+            fatalError("Story missing dateTime stamp.  :(")
+        }
     }
 
 }
@@ -45,6 +52,7 @@ class StoriesDataProvider: StoriesDataProviderIO {
     var dataSource = [RLMStory]()
     let imageStorageService = ImageStorageService()
 
+
     func fetchAll() {
         dataSource = RLMStory.findAll()
         if dataSource.count == 0 {
@@ -55,11 +63,7 @@ class StoriesDataProvider: StoriesDataProviderIO {
     }
 
     func sort() {
-        dataSource.sort { story1, story2 in
-            let date1 = story1.clientLastUpdated
-            let date2 = story2.clientLastUpdated
-            return date1 > date2
-        }
+        dataSource = RLMLogForm.sortObjectsByLastUpdated(dataSource)
     }
 
     var numberOfRows: Int {

@@ -55,7 +55,7 @@ class RLMLogRow: Object, Codable {
         case properties
     }
 
-    
+
     convenience init<T: Object>(row: T) throws {
         self.init()
 
