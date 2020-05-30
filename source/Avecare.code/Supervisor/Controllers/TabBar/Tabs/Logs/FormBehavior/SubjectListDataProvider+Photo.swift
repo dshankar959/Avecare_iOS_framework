@@ -6,6 +6,7 @@ import CocoaLumberjack
 
 
 extension SubjectDetailsPhotoViewModel {
+
     init(row: RLMLogPhotoRow, isEditable: Bool, storage: ImageStorageService) {
         title = row.title
         note = row.text
@@ -15,6 +16,7 @@ extension SubjectDetailsPhotoViewModel {
         }
         self.isEditable = isEditable
     }
+
 }
 
 

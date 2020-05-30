@@ -92,6 +92,9 @@ extension SubjectDetailsPhotoView: UITextViewDelegate {
 
     public func textViewDidEndEditing(_ textView: UITextView) {
         updatePlaceholderVisibility()
+    }
+
+    public func textViewDidChange(_ textView: UITextView) {
         onTextChange?(self)
     }
 
