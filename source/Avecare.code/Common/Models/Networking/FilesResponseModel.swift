@@ -3,6 +3,7 @@ import Foundation
 
 
 struct FilesResponseModel: Decodable {
+
     struct File: Codable {
         let id: String
         let fileName: String

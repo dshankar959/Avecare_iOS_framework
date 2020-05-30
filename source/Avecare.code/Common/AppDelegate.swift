@@ -136,12 +136,12 @@ import Kingfisher
 
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-
+        DDLogDebug("")
         self.window?.isHidden = false
 
         // Get Available Disk Space  (eg. 96922558464)
         let availableDiskSpace = Double(Device.volumeAvailableCapacityForOpportunisticUsage ?? 0)
-        DDLogVerbose("available disk space = \(formatBytesToSize(bytes: availableDiskSpace))")
+//        DDLogVerbose("available disk space = \(formatBytesToSize(bytes: availableDiskSpace))")
 
         if availableDiskSpace < Double(250_000_000) {  // 250mb
             DDLogVerbose("availableDiskSpace < 250_000_000")

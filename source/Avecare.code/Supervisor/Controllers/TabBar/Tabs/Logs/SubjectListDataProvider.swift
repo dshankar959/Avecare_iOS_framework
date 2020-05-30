@@ -88,6 +88,13 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
         let formLog = subject.todayForm
 
         let isSubmitted = formLog.publishState != .local
+        let title = "\(subject.firstName) \(subject.lastName)'s Log"
+
+        let header: [AnyCellViewModel] = [
+            FormLabelViewModel.title(title),
+            DateSubtitleViewModel(date: formLog.clientLastUpdated!, isSubmitted: isSubmitted, delegate: self)
+                .inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 32, right: 0))
+        ]
 
         let updateClientDate: (Date) -> Void = { [weak self] date in
             let date = Date()
@@ -95,17 +102,9 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
                 formLog.clientLastUpdated = date
             }
             if let uSelf = self, let label = uSelf.subtitleDateLabel {
-                DateSubtitleViewModel(date: date, isSubmitted: isSubmitted,
-                        delegate: uSelf).setup(cell: label)
+                DateSubtitleViewModel(date: date, isSubmitted: isSubmitted, delegate: uSelf).setup(cell: label)
             }
         }
-
-        let title = "\(subject.firstName) \(subject.lastName)'s Log"
-        let header: [AnyCellViewModel] = [
-            FormLabelViewModel.title(title),
-            DateSubtitleViewModel(date: formLog.clientLastUpdated!, isSubmitted: isSubmitted, delegate: self)
-                .inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 32, right: 0))
-        ]
 
         return Form(viewModels: header + formLog.rows.map({
             self.viewModel(for: $0, editable: !isSubmitted, at: indexPath, updateCallback: updateClientDate)

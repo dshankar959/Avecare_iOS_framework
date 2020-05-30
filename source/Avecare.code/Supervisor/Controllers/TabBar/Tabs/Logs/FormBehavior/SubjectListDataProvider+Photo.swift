@@ -44,8 +44,11 @@ extension SubjectListDataProvider {
     }
 
 
-    private func showImagePicker(from view: SubjectDetailsPhotoView, row: RLMLogPhotoRow, at indexPath: IndexPath,
+    private func showImagePicker(from view: SubjectDetailsPhotoView,
+                                 row: RLMLogPhotoRow,
+                                 at indexPath: IndexPath,
                                  updateCallback: @escaping (Date) -> Void) {
+
         let imagePicker = ImagePickerController()
         imagePicker.settings.selection.max = 1
 
@@ -56,8 +59,10 @@ extension SubjectListDataProvider {
 
             // FIXME: setup size if needed
             let size = 375 * UIScreen.main.scale
-            PHImageManager.default().requestImage(for: asset, targetSize: CGSize(width: size, height: size),
-                                                  contentMode: .aspectFit, options: nil) { [weak self] image, info in
+            PHImageManager.default().requestImage(for: asset,
+                                                  targetSize: CGSize(width: size, height: size),
+                                                  contentMode: .aspectFit,
+                                                  options: nil) { [weak self] image, info in
 
                 guard !((info?[PHImageResultIsDegradedKey] as? Bool) ?? false),
                     let image = image, let service = self?.imageStorageService else {

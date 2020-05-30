@@ -14,7 +14,7 @@ struct ImageStorageService {
 
 
     func saveImage(_ image: UIImage, name: String = newUUID) throws -> URL {
-        DDLogVerbose("")
+        DDLogVerbose("saveImage name: \(name)")
 
         if let data = image.jpegData(compressionQuality: 1) {
             let imageURL = directory.appendingPathComponent(name).appendingPathExtension("jpg")

@@ -82,14 +82,11 @@ extension LogFormAPIModel: MultipartEncodable {
 
         do {
             // Sanitize RLMLogForm object to just the rows for the API.
-            let rows = logForm.rows.detached()
+            let logFormRows = logForm.rows.detached()
             let encoder = JSONEncoder()
-            let formRows = try encoder.encode(["rows": rows])   // dict.
+            let formRows = try encoder.encode(["rows": logFormRows])   // dict.
 
             data.append(.init(provider: .data(formRows), name: CodingKeys.logForm.rawValue))
-
-//            let formJSON = try JSONEncoder().encode(logForm)
-//            data.append(.init(provider: .data(formJSON), name: CodingKeys.logForm.rawValue))
         } catch {
             DDLogError("JSON Encoding error = \(error)")
             fatalError("JSON Encoding error = \(error)")
