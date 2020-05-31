@@ -94,6 +94,8 @@ def bundle_identifier(target_selection, build_type)
 
   if build_type == 'production'
     # default
+  elsif build_type == 'qa'
+    name = name + ".qa"
   elsif build_type == 'beta'
     name = name + ".beta"
   else
@@ -113,6 +115,8 @@ def build_scheme(target_selection, build_type)
 
   if build_type == 'production'
     # default
+  elsif build_type == 'qa'
+    release_type = "(QA)"
   elsif build_type == 'beta'
     release_type = "(Beta)"
   else
@@ -127,7 +131,8 @@ end
 # Xcode configs across all targets.
 $configurations = {
   "production" => "Release(AppStore)",
-  "beta" => "Release(Beta)"
+  "beta" => "Release(Beta)",
+  "qa" => "Release(QA)"
 }
 
 $deploy = {
@@ -177,41 +182,43 @@ $slack_channel = "buildbot-mobile"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Action lanes
 
+desc "Builds iOS 'QA' [target 1] and uploads to Testflight"
+lane :educator_qa_ios do
+  prepareBuildAndTestflight('target1', 'qa')
+end
+
 desc "Builds iOS 'Beta' [target 1] and uploads to Testflight"
 lane :educator_beta_ios do
-
-  ENV["TARGET_SELECTION"] = 'target1'   # // educator
-  ENV["BUILD_TYPE"] = 'beta'
-
-  prepare(platform: "ios")
-
-  build4iOS(destination: 'testflight')
-  send_to_TestFlight()
-
+  prepareBuildAndTestflight('target1', 'beta')
 end
 
-
-
-desc "Builds iOS 'Production' [target 1] and uploads to Testflight/AppCenter"
+desc "Builds iOS 'Production' [target 1] and uploads to Testflight"
 lane :educator_production_ios do
-
-  ENV["TARGET_SELECTION"] = 'target1'
-  ENV["BUILD_TYPE"] = 'production'
-
-  prepare(platform: "ios")
-
-  build4iOS(destination: 'testflight')
-  send_to_TestFlight()
-
+  prepareBuildAndTestflight('target1', 'production')
 end
 
 
+desc "Builds iOS 'QA' [target 2] and uploads to Testflight"
+lane :parent_qa_ios do
+  prepareBuildAndTestflight('target2', 'qa')
+end
 
 desc "Builds iOS 'Beta' [target 2] and uploads to Testflight"
 lane :parent_beta_ios do
+  prepareBuildAndTestflight('target2', 'beta')
+end
 
-  ENV["TARGET_SELECTION"] = 'target2'   # // parent
-  ENV["BUILD_TYPE"] = 'beta'
+desc "Builds iOS 'Production' [target 2] and uploads to Testflight"
+lane :parent_production_ios do
+  prepareBuildAndTestflight('target2', 'production')
+end
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+def prepareBuildAndTestflight(target_selection, build_type)
+
+  ENV["TARGET_SELECTION"] = target_selection
+  ENV["BUILD_TYPE"] = build_type
 
   prepare(platform: "ios")
 
@@ -219,3 +226,5 @@ lane :parent_beta_ios do
   send_to_TestFlight()
 
 end
+
+

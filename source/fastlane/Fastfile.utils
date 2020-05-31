@@ -47,9 +47,9 @@ private_lane :prepare do |options|
 
     purge_pods_and_derived_data
 
-    Dir.chdir(ENV["SOURCE_ROOT"]) do
-      sh "pod update"
-    end
+#    Dir.chdir(ENV["SOURCE_ROOT"]) do
+#      sh "pod update"
+#    end
 
   else # android
 
@@ -110,7 +110,11 @@ private_lane :build4iOS do |options|
   puts "ExportMethod: " + myExportMethod
   puts "ipa filename: " + ENV["IPA_FILENAME"]
 
-  enable_automatic_code_signing(path: "./#{$project_name}.xcodeproj")
+  # automatic code signing
+  update_code_signing_settings(
+    use_automatic_signing: true,
+    path: "./#{$project_name}.xcodeproj"
+  )
 
   build_app(
       workspace: "./#{$project_name}.xcworkspace",
