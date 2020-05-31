@@ -47,9 +47,9 @@ private_lane :prepare do |options|
 
     purge_pods_and_derived_data
 
-#    Dir.chdir(ENV["SOURCE_ROOT"]) do
-#      sh "pod update"
-#    end
+    Dir.chdir(ENV["SOURCE_ROOT"]) do
+      sh "pod update"
+    end
 
   else # android
 
@@ -114,7 +114,7 @@ private_lane :build4iOS do |options|
   update_code_signing_settings(
     use_automatic_signing: true,
     path: "./#{$project_name}.xcodeproj"
-  )
+    )
 
   build_app(
       workspace: "./#{$project_name}.xcworkspace",
@@ -343,6 +343,8 @@ end
 error do |lane, exception|
   puts "<ERROR!>"
   sh("env")
+  sh("pwd")
+  sh("gem environment")
 
   # use ENV variable if it exists
   # https://stackoverflow.com/a/7667928/7599
