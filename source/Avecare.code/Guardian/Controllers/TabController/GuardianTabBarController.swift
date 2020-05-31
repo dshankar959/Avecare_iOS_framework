@@ -1,6 +1,8 @@
 import UIKit
 import CocoaLumberjack
 
+
+
 protocol SubjectSelectionProtocol: class {
     var subject: RLMSubject? { get set }
 }

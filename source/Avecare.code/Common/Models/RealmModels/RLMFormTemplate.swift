@@ -7,7 +7,7 @@ class RLMFormTemplate: RLMDefaults {
 
     @objc dynamic var version: Int = 0
     @objc dynamic var subjectType: String = ""
-    @objc dynamic var organization: RLMOrganization?
+//    @objc dynamic var organization: RLMOrganization?
 
     let rows = List<RLMLogRow>()
 
@@ -27,10 +27,13 @@ class RLMFormTemplate: RLMDefaults {
         do {
             try self.decode(from: decoder)
             let values = try decoder.container(keyedBy: CodingKeys.self)
+
             version = try values.decode(Int.self, forKey: .version)
             subjectType = try values.decode(String.self, forKey: .subjectType)
+
             let rows = try values.decode([RLMLogRow].self, forKey: .template)
             self.rows.append(objectsIn: rows)
+
         } catch {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")

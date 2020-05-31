@@ -69,6 +69,7 @@ extension SyncEngine {
 
                             for log in apiLogs {
                                 let logForm = log.logForm
+                                // overwrite id with correct one from API object
                                 logForm.id = log.id
                                 // link with subject
                                 logForm.subject = RLMSubject.find(withID: subjectId)
