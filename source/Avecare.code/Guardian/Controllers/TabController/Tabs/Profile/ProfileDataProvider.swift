@@ -14,6 +14,13 @@ protocol ProfileDataProvider: class {
     func details(at indexPath: IndexPath) -> ProfileDetails
 }
 
+enum ProfileSection: Int {
+    case subjects = 0
+    case educators = 1
+    case details = 2
+    case about = 3
+    case logout = 4
+}
 
 class DefaultProfileDataProvider: ProfileDataProvider {
 

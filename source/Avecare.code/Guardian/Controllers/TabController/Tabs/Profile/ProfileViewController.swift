@@ -110,12 +110,12 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2 {
+        if indexPath.section == ProfileSection.details.rawValue {
             let details = dataProvider.details(at: indexPath)
             performSegue(withIdentifier: R.segue.profileViewController.details, sender: details)
-        } else if indexPath.section == 3 {
+        } else if indexPath.section == ProfileSection.about.rawValue {
             performSegue(withIdentifier: R.segue.profileViewController.about, sender: nil)
-        } else if indexPath.section == 4 {
+        } else if indexPath.section == ProfileSection.logout.rawValue {
             // Sign-out
             UserAuthenticateService.shared.signOut { [weak self] error in
                 if let error = error {
