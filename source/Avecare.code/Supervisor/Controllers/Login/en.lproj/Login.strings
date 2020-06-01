@@ -1,0 +1,33 @@
+
+/* Class = "UILabel"; text = "Sign In"; ObjectID = "0Me-7M-Lz1"; */
+"0Me-7M-Lz1.text" = "Sign In";
+
+/* Class = "UIButton"; normalTitle = "eye-slash"; ObjectID = "2An-WE-km5"; */
+"2An-WE-km5.normalTitle" = "eye-slash";
+
+/* Class = "UIButton"; selectedTitle = "eye"; ObjectID = "2An-WE-km5"; */
+"2An-WE-km5.selectedTitle" = "eye";
+
+/* Class = "UILabel"; text = "Daily Wonders"; ObjectID = "7aV-fj-VBT"; */
+"7aV-fj-VBT.text" = "Daily Wonders";
+
+/* Class = "UILabel"; text = "To reset the password for this room, contact the administrator."; ObjectID = "9fz-de-U4Z"; */
+"9fz-de-U4Z.text" = "To reset the password for this room, contact the administrator.";
+
+/* Class = "UIButton"; normalTitle = "Sign In"; ObjectID = "EwP-BI-Etv"; */
+"EwP-BI-Etv.normalTitle" = "Sign In";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "MbN-k1-uR5"; */
+"MbN-k1-uR5.text" = "Password";
+
+/* Class = "UILabel"; text = "snowflake"; ObjectID = "Ub8-p6-dj9"; */
+"Ub8-p6-dj9.text" = "snowflake";
+
+/* Class = "UITextField"; placeholder = "Enter the classroom password"; ObjectID = "ZRU-T7-FIA"; */
+"ZRU-T7-FIA.placeholder" = "Enter the classroom password";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "u22-6i-DZ8"; */
+"u22-6i-DZ8.text" = "Email";
+
+/* Class = "UITextField"; placeholder = "Enter the classroom email"; ObjectID = "xcu-RN-8QT"; */
+"xcu-RN-8QT.placeholder" = "Enter the classroom email";

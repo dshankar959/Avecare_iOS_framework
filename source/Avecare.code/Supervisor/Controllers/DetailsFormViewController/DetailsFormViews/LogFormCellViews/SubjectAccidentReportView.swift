@@ -26,8 +26,8 @@ struct SubjectAccidentReportViewModel: CellViewModel {
 
     static func pickerViewModel(from date: Date) -> PickerViewFormViewModel {
         let formatter = Date.timeFormatter
-        return PickerViewFormViewModel(title: "Select Time",
-                placeholder: "12:00pm",
+        return PickerViewFormViewModel(title: NSLocalizedString("subject_accident_report_picker_title", comment: ""),
+                placeholder: NSLocalizedString("subject_accident_report_picker_placeholder", comment: ""),
                 accessory: .clock,
                 textValue: formatter.string(from: date),
                 action: nil)
