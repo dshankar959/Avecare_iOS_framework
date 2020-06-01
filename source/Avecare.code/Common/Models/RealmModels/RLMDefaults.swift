@@ -34,7 +34,8 @@ class RLMDefaults: Object, Codable, RLMReusable {
             if let id = try values.decodeIfPresent(String.self, forKey: .id)?.lowercased() {
                 self.id = id
             } else {
-                self.id = ""
+                self.id = newUUID
+                DDLogWarn("🆔 self assigned id [\(self.id)]")
             }
 
             // dates

@@ -110,7 +110,11 @@ private_lane :build4iOS do |options|
   puts "ExportMethod: " + myExportMethod
   puts "ipa filename: " + ENV["IPA_FILENAME"]
 
-  enable_automatic_code_signing(path: "./#{$project_name}.xcodeproj")
+  # automatic code signing
+  update_code_signing_settings(
+    use_automatic_signing: true,
+    path: "./#{$project_name}.xcodeproj"
+    )
 
   build_app(
       workspace: "./#{$project_name}.xcworkspace",
@@ -339,6 +343,8 @@ end
 error do |lane, exception|
   puts "<ERROR!>"
   sh("env")
+  sh("pwd")
+  sh("gem environment")
 
   # use ENV variable if it exists
   # https://stackoverflow.com/a/7667928/7599

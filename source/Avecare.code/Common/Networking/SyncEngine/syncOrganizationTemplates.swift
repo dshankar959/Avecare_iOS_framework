@@ -31,15 +31,15 @@ extension SyncEngine {
             OrganizationsAPIService.getOrganizationLogTemplates(id: institutionDetails.organizationId) { [weak self] result in
                 switch result {
                 case .success(let templates):
-                    // TODO: compare versions, and id's, to preserve old templates.
-                    // for now, delete old templates
+                    // TODO: compare versions, and id's, to preserve old templates?
+                    // for now, delete all existing templates
                     RLMFormTemplate.findAll().forEach({
                         $0.clean()
                         $0.delete()
                     })
-/*
+
+/*                  // Will we ever have more then one org. at a time?
                     guard let organization = RLMOrganization.details(for: institutionDetails.organizationId) else {
-                        // FIXME: add error processing if needed
                         fatalError()
                     }
                     // link with organization  (inverse relationship).  Is this even needed???

@@ -26,23 +26,27 @@ class RLMLogPhotoRow: Object, Codable {
             self.id = newUUID
         }
 
-
         if let title = try values.decodeIfPresent(String.self, forKey: .title) {
             self.title = title
         }
+
         self.text = try values.decodeIfPresent(String.self, forKey: .text)
     }
 
-    func encode(to encoder: Encoder) throws {
 
+    func encode(to encoder: Encoder) throws {
         var values = encoder.container(keyedBy: CodingKeys.self)
+
+        try values.encodeIfPresent(id.lowercased(), forKey: .id)
         try values.encode(title, forKey: .title)
         try values.encodeIfPresent(text, forKey: .text)
     }
 
+
     override static func primaryKey() -> String {
         return "id"
     }
+
 
     convenience init(id: String) {
         self.init()

@@ -5,8 +5,9 @@ import CocoaLumberjack
 
 enum ProfileDetails {
     case mealPlan
-    case activities
+//    case activities
 }
+
 
 class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavigationDelegate {
 
@@ -21,8 +22,8 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
             switch profileDetails {
             case .mealPlan:
                 fileURL = institution.mealPlanURL(using: DocumentService())
-            case .activities:
-                fileURL = institution.activityURL(using: DocumentService())
+//            case .activities:
+//                fileURL = institution.activityURL(using: DocumentService())
             }
 
             if let fileURL = fileURL {
@@ -43,4 +44,5 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         hideActivityIndicator()
     }
+
 }

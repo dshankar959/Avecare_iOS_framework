@@ -14,7 +14,7 @@ class RLMInstitution: RLMDefaults {
         case organizationId
         case name
         case mealPlan
-        case eventsCalendar
+//        case eventsCalendar
     }
 
     convenience required init(from decoder: Decoder) throws {
@@ -28,14 +28,16 @@ class RLMInstitution: RLMDefaults {
             self.isActive = try values.decode(Bool.self, forKey: .isActive)
             self.organizationId = try values.decode(String.self, forKey: .organizationId)
             self.name = try values.decode(String.self, forKey: .name)
+
             if let mealPlan = try values.decodeIfPresent(String.self, forKey: .mealPlan),
                 let url = URL(string: mealPlan) {
                 _ = try DocumentService().savePDF(url, name: CodingKeys.mealPlan.rawValue)
             }
-            if let eventsCalendar = try values.decodeIfPresent(String.self, forKey: .eventsCalendar),
-                let url = URL(string: eventsCalendar) {
-                _ = try DocumentService().savePDF(url, name: CodingKeys.eventsCalendar.rawValue)
-            }
+
+//            if let eventsCalendar = try values.decodeIfPresent(String.self, forKey: .eventsCalendar),
+//                let url = URL(string: eventsCalendar) {
+//                _ = try DocumentService().savePDF(url, name: CodingKeys.eventsCalendar.rawValue)
+//            }
 
         } catch {
             DDLogError("JSON Decoding error = \(error)")
@@ -47,13 +49,15 @@ class RLMInstitution: RLMDefaults {
 
 
 extension RLMInstitution {
+
     func mealPlanURL(using storage: DocumentService) -> URL? {
         return storage.PDFURL(name: CodingKeys.mealPlan.rawValue)
     }
 
-    func activityURL(using storage: DocumentService) -> URL? {
-        return storage.PDFURL(name: CodingKeys.eventsCalendar.rawValue)
-    }
+//    func activityURL(using storage: DocumentService) -> URL? {
+//        return storage.PDFURL(name: CodingKeys.eventsCalendar.rawValue)
+//    }
+
 }
 
 

@@ -1,7 +1,9 @@
-import Foundation
 import UIKit
 
+
+
 private class Closure {
+
     let closure: () -> Void
 
     init(attachTo: AnyObject, closure: @escaping () -> Void) {
@@ -12,16 +14,22 @@ private class Closure {
     @objc func invoke() {
         closure()
     }
+
 }
 
+
 extension UIControl {
-       func addAction(for controlEvents: Event = .primaryActionTriggered, action: @escaping () -> Void) {
+
+    func addAction(for controlEvents: Event = .primaryActionTriggered, action: @escaping () -> Void) {
         let sleeve = Closure(attachTo: self, closure: action)
         addTarget(sleeve, action: #selector(Closure.invoke), for: controlEvents)
     }
+
 }
 
+
 extension UIBarButtonItem {
+
     public convenience init(title: String?, style: UIBarButtonItem.Style, action: (() -> Void)?) {
         self.init()
         self.title = title
@@ -32,4 +40,5 @@ extension UIBarButtonItem {
             self.action = #selector(Closure.invoke)
         }
     }
+
 }

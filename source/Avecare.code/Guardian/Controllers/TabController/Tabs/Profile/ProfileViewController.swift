@@ -1,10 +1,7 @@
-//
-//  ProfileViewController.swift
-//  guardian
-//
-
 import UIKit
 import CocoaLumberjack
+
+
 
 class ProfileViewController: UIViewController, IndicatorProtocol {
 
@@ -69,9 +66,12 @@ class ProfileViewController: UIViewController, IndicatorProtocol {
             destination.modalPresentationStyle = .custom
         }
     }
+
 }
 
+
 extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return dataProvider.numberOfSections
     }
@@ -153,8 +153,11 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+
 extension ProfileViewController: ViewControllerWithSupervisorFilterViewCell {
+
     func educatorDidSelect(selectedEducatorId: String) {
         performSegue(withIdentifier: R.segue.profileViewController.educatorDetails, sender: selectedEducatorId)
     }
+
 }

@@ -69,6 +69,7 @@ extension SyncEngine {
 
                             for log in apiLogs {
                                 let logForm = log.logForm
+                                // overwrite id with correct one from API object
                                 logForm.id = log.id
                                 // link with subject
                                 logForm.subject = RLMSubject.find(withID: subjectId)
@@ -78,17 +79,20 @@ extension SyncEngine {
                                 logForm.publishState = .published
 
                                 // sync down and save any attached image files
-                                let files = log.files
-                                let photoRows = logForm.rows.compactMap({ $0.photo })
-                                for row in photoRows {
-                                    guard let file = files.first(where: { $0.id == row.id }),
-                                        let url = URL(string: file.fileUrl) else {
-                                            continue
-                                    }
-                                    do {
-                                        _ = try storage.saveImage(url, name: row.id)
-                                    } catch {
-                                        DDLogError("Failed to save image: \(url)")
+                                if !log.files.isEmpty {
+                                    let files = log.files
+                                    let photoRows = logForm.rows.compactMap({ $0.photo })
+
+                                    for row in photoRows {
+                                        guard let file = files.first(where: { $0.id == row.id }),
+                                            let url = URL(string: file.fileUrl) else {
+                                                continue
+                                        }
+                                        do {
+                                            _ = try storage.saveImage(url, name: row.id)
+                                        } catch {
+                                            DDLogError("Failed to save image: \(url)")
+                                        }
                                     }
                                 }
 

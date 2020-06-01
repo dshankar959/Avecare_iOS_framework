@@ -1,4 +1,3 @@
-import Foundation
 import UIKit
 
 
@@ -9,12 +8,15 @@ public protocol AnyCellViewModel {
     func buildView() -> UIView
 }
 
+
 public protocol CellViewModel: AnyCellViewModel {
     associatedtype CellType: UIView
     func setup(cell: CellType)
 }
 
+
 public extension CellViewModel {
+
     static var cellType: UIView.Type {
         return CellType.self
     }

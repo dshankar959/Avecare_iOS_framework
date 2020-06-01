@@ -14,6 +14,7 @@ protocol ProfileDataProvider: class {
     func details(at indexPath: IndexPath) -> ProfileDetails
 }
 
+
 class DefaultProfileDataProvider: ProfileDataProvider {
 
     private struct Section {
@@ -32,8 +33,8 @@ class DefaultProfileDataProvider: ProfileDataProvider {
 
     private lazy var dataSource: [Section] = [
         Section(profileMenus: [
-            ProfileMenuTableViewCellModel(menuImage: "utensils", menuTitle: "Menu"),
-            ProfileMenuTableViewCellModel(menuImage: "calendar", menuTitle: "Activity")
+            ProfileMenuTableViewCellModel(menuImage: "utensils", menuTitle: "Menu")
+//            ProfileMenuTableViewCellModel(menuImage: "calendar", menuTitle: "Activity")
         ]),
         Section(profileMenus: [
             ProfileMenuTableViewCellModel(menuImage: "", menuTitle: "About the Application")
@@ -68,10 +69,7 @@ class DefaultProfileDataProvider: ProfileDataProvider {
     }
 
     func details(at indexPath: IndexPath) -> ProfileDetails {
-        if indexPath.row == 0 {
-            return .mealPlan
-        } else {
-            return .activities
-        }
+        return .mealPlan
     }
+
 }
