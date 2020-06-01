@@ -12,7 +12,7 @@ final class UserAuthenticateService: IndicatorProtocol {
     // MARK: - Sign-in
 
     func signIn(userCredentials: UserCredentials, completion:@escaping (AppError?) -> Void) {
-        showActivityIndicator(withStatus: "Signing in ...")
+        showActivityIndicator(withStatus: NSLocalizedString("authenticate_signing_in", comment: ""))
 
         UserAPIService.authenticateUserWith(userCreds: userCredentials) { [weak self] result in
             self?.hideActivityIndicator()
@@ -48,7 +48,7 @@ final class UserAuthenticateService: IndicatorProtocol {
                     }
                 }
 
-                self?.showActivityIndicator(withStatus: "Syncing ...")
+                self?.showActivityIndicator(withStatus: NSLocalizedString("authenticate_syncing", comment: ""))
                 syncEngine.syncAll { error in
                     syncEngine.print_isSyncingStatus_description()
                     if let error = error {
@@ -119,7 +119,7 @@ final class UserAuthenticateService: IndicatorProtocol {
     // MARK: - Sign-out
 
     func signOut(completion:@escaping (AppError?) -> Void) {
-        showActivityIndicator(withStatus: "Signing Out...")
+        showActivityIndicator(withStatus: NSLocalizedString("authenticate_signing_out", comment: ""))
         UserAPIService.logout { [weak self] result in
             switch result {
             case .success(let message):

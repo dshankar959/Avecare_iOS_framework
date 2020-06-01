@@ -40,14 +40,14 @@ class DefaultProfileDataProvider: ProfileDataProvider {
 
     private lazy var dataSource: [Section] = [
         Section(profileMenus: [
-            ProfileMenuTableViewCellModel(menuImage: "utensils", menuTitle: "Menu")
-//            ProfileMenuTableViewCellModel(menuImage: "calendar", menuTitle: "Activity")
+            ProfileMenuTableViewCellModel(menuImage: "utensils", menuTitle: NSLocalizedString("profile_menu_meal_plan", comment: ""))
+//            ProfileMenuTableViewCellModel(menuImage: "calendar", menuTitle: NSLocalizedString("profile_menu_activity", comment: ""))
         ]),
         Section(profileMenus: [
-            ProfileMenuTableViewCellModel(menuImage: "", menuTitle: "About the Application")
+            ProfileMenuTableViewCellModel(menuImage: "", menuTitle: NSLocalizedString("profile_menu_about_application", comment: ""))
         ]),
         Section(profileMenus: [
-            ProfileMenuTableViewCellModel(menuImage: "", menuTitle: "Log Out", disclosable: false)
+            ProfileMenuTableViewCellModel(menuImage: "", menuTitle: NSLocalizedString("profile_menu_logout", comment: ""), disclosable: false)
         ])
     ]
 

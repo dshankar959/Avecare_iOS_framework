@@ -31,16 +31,14 @@ class HomeViewController: UIViewController, IndicatorProtocol {
     }
 
     private func configNoItemView() {
-        noItemTitleLabel.text = "Welcome!"
-        // swiftlint:disable line_length
-        noItemContentLabel.text = "This is your Home screen; items will be added by your child's educator as well as by their centre's administration.\n\nPeriodically information will be added to this screen - stay tuned!"
-        // swiftlint:enable line_length
+        noItemTitleLabel.text = NSLocalizedString("home_no_item_title", comment: "")
+        noItemContentLabel.text = NSLocalizedString("home_no_item_content", comment: "")
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        showActivityIndicator(withStatus: "Retrieving Feeds...")
+        showActivityIndicator(withStatus: NSLocalizedString("home_retriving_feed", comment: ""))
         dataProvider.fetchFeed { error in
             self.hideActivityIndicator()
             if let error = error {
@@ -79,7 +77,7 @@ class HomeViewController: UIViewController, IndicatorProtocol {
         if let selectedSubject = subjectSelection?.subject {
             titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
         } else {
-            titleText = "All"
+            titleText = NSLocalizedString("subjectlist_all", comment: "").capitalized
         }
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])

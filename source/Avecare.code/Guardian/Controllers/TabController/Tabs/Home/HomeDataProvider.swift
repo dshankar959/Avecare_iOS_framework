@@ -136,7 +136,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
             }
             self.dataSource.append(
                 Section(
-                    header: .init(icon: R.image.pinIcon(), text: "IMPORTANT ITEMS"),
+                    header: .init(icon: R.image.pinIcon(), text: NSLocalizedString("home_important_section_title", comment: "").uppercased()),
                     dismiss: true,
                     records: importantItems)
             )

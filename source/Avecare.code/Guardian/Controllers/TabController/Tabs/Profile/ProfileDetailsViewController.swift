@@ -31,7 +31,7 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
                 view.addSubview(webView)
                 webView.navigationDelegate = self
 
-                showActivityIndicator(withStatus: "Loading ...")
+                showActivityIndicator(withStatus: NSLocalizedString("profile_details_loading", comment: ""))
                 webView.load(URLRequest(url: fileURL))
             } else {
                 let error = FileError.FileNotFound.message

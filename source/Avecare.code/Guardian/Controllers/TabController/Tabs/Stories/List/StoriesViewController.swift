@@ -78,7 +78,7 @@ class StoriesListViewController: UIViewController {
         if let selectedSubject = subjectSelection?.subject {
             titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
         } else {
-            titleText = "All"
+            titleText = NSLocalizedString("subjectlist_all", comment: "").capitalized
         }
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])

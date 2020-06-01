@@ -31,7 +31,7 @@ struct SubjectListAllTableViewCell: CellViewModel {
     typealias CellType = UITableViewCell
 
     func setup(cell: CellType) {
-        cell.textLabel?.text = "All"
+        cell.textLabel?.text = NSLocalizedString("subjectlist_all", comment: "").capitalized
         cell.textLabel?.textAlignment = .center
     }
 }

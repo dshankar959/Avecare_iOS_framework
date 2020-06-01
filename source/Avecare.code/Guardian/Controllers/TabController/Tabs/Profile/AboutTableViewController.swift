@@ -11,7 +11,7 @@ class AboutTableViewController: UITableViewController {
 
         tableView.register(nibModels: [AboutTableViewCellModel.self])
 
-        navigationItem.title = "About"
+        navigationItem.title = NSLocalizedString("profile_about_title", comment: "")
     }
 
     // MARK: - Table view data source

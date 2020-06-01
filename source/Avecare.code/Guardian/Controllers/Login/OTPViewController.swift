@@ -82,7 +82,7 @@ extension OTPViewController {
             self.showErrorAlert(AuthError.emptyCredentials.message)
             return
         }
-        showActivityIndicator(withStatus: "Requesting one-time password ...")
+        showActivityIndicator(withStatus: NSLocalizedString("requst_onetime_password", comment: ""))
 
         // otp redo
         UserAPIService.requestOTP(email: email) { [weak self] result in
@@ -91,7 +91,7 @@ extension OTPViewController {
             switch result {
             case .success(let message):
                 DDLogVerbose("Successful re-request of OTP.  ✅  [withMessage = \(message)]")
-                self?.showSuccessIndicator(withStatus: "New one-time password re-sent. 🔢")
+                self?.showSuccessIndicator(withStatus: NSLocalizedString("new_onetime_password_resent", comment: ""))
 
                 let firstCell = self?.otpField?.collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? PinCell
                 firstCell?.pinField.becomeFirstResponder()

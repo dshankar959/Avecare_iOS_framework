@@ -85,8 +85,8 @@ extension LogsNoteTableViewCellModel {
     init(row: RLMLogInjuryRow) {
         icon = UIImage(named: row.iconName)
         iconColor = UIColor(rgb: row.iconColor)
-        title = "Accident Report"
-        text = "Please see your child's educator upon pick-up"
+        title = NSLocalizedString("logs_accident_report_title", comment: "")
+        text = NSLocalizedString("logs_accident_report_subtitle", comment: "")
     }
 
     init(row: RLMLogNoteRow) {

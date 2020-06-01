@@ -56,8 +56,8 @@ class LogsViewController: UIViewController {
     }
 
     private func configNoItemView() {
-        noItemTitleLabel.text = "Looking for your child's log?"
-        noItemContentLabel.text = "Your child's log is where you will find information about their meals, sleep, and other activities."
+        noItemTitleLabel.text = NSLocalizedString("logs_no_item_title", comment: "")
+        noItemContentLabel.text = NSLocalizedString("logs_no_item_content", comment: "")
     }
 
     override func viewWillAppear(_ animated: Bool) {

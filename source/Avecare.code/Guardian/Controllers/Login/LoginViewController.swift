@@ -61,7 +61,7 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
             return
         }
 
-        showActivityIndicator(withStatus: "Requesting one-time password ...")
+        showActivityIndicator(withStatus: NSLocalizedString("requst_onetime_password", comment: ""))
 
         // otp
         UserAPIService.requestOTP(email: email) { [weak self] result in

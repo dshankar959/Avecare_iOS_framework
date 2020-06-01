@@ -50,7 +50,7 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
     func title(for indexPath: IndexPath) -> String {
         if allSubjectsIncluded, indexPath.row == 0 {
-            return "All"
+            return NSLocalizedString("subjectlist_all", comment: "").capitalized
         }
         return model(at: indexPath).firstName
     }
