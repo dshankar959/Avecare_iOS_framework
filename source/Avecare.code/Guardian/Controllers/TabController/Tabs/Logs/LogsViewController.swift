@@ -13,17 +13,26 @@ class LogsViewController: UIViewController {
     @IBOutlet weak var noItemTitleLabel: UILabel!
     @IBOutlet weak var noItemContentLabel: UILabel!
 
-    let dataProvider = DefaultLogsDataProvider()
-    lazy var slideInTransitionDelegate = SlideInPresentationManager()
-    let subjectListDataProvider = DefaultSubjectListDataProvider()
+    private let dataProvider = DefaultLogsDataProvider()
+    private lazy var slideInTransitionDelegate = SlideInPresentationManager()
+    private let subjectListDataProvider = DefaultSubjectListDataProvider()
 
-    var filterDate: Date {
+    private var filterDate: Date {
         calendarView.selectedDates.first?.startOfDay ?? Date().startOfDay
     }
 
-    weak var subjectSelection: SubjectSelectionProtocol?
+    private weak var subjectSelection: SubjectSelectionProtocol?
 
-    var datesWithData: Set<Date> = []
+    var selectedLogId: String? = nil {
+        didSet {
+            if let selectedLogId = selectedLogId {
+                (selectedSubjectIdFromFeed,
+                 selectedDateFromFeed) = dataProvider.fetchDailyLog(with: selectedLogId)
+            }
+        }
+    }
+    private var selectedSubjectIdFromFeed: String? = nil
+    private var selectedDateFromFeed: Date? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +43,6 @@ class LogsViewController: UIViewController {
         calendarView.scrollDirection = .horizontal
         calendarView.scrollingMode = .nonStopToCell(withResistance: 0.5)
         calendarView.showsHorizontalScrollIndicator = false
-        calendarView.scrollToDate(Date().previous(.sunday, includingTheDate: true), animateScroll: false)
-        calendarView.selectDates([Date()])
 
         tableView.register(nibModels: [
             LogsOptionTableViewCellModel.self,
@@ -55,7 +62,27 @@ class LogsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        if selectedLogId == nil {
+            selectedSubjectIdFromFeed = nil
+        }
+
+        if let selectedDateFromFeed = selectedDateFromFeed {
+            calendarView.scrollToDate(selectedDateFromFeed.previous(.sunday, includingTheDate: true),
+                                      animateScroll: false)
+            calendarView.selectDates([selectedDateFromFeed])
+        } else {
+            calendarView.scrollToDate(Date().previous(.sunday, includingTheDate: true),
+                                      animateScroll: false)
+            calendarView.selectDates([Date()])
+        }
+
         updateScreen()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        selectedLogId = nil
+        super.viewDidDisappear(animated)
     }
 
     @IBAction func subjectSelectButtonTouched(_ sender: UIButton) {
@@ -85,9 +112,11 @@ class LogsViewController: UIViewController {
 
     private func getCurrentSubject() -> RLMSubject? {
         // subject must be selected
-        let subject: RLMSubject
-        if let selection = subjectSelection?.subject {
-            subject = selection
+        let subject: RLMSubject?
+        if let selectedSubjectIdFromFeed = selectedSubjectIdFromFeed {
+            subject = subjectListDataProvider.getSubject(with: selectedSubjectIdFromFeed)
+        } else if let selectedSubject = subjectSelection?.subject {
+            subject = selectedSubject
         } else {
             guard subjectListDataProvider.numberOfRows > 0 else {
                 return nil
@@ -101,16 +130,13 @@ class LogsViewController: UIViewController {
     }
 
     private func updateCalendarView(with subject: RLMSubject) {
-        datesWithData.removeAll()
-        let logFroms = dataProvider.fetchLogForm(subject: subject)
-        logFroms.forEach { logForm in
-            datesWithData.insert(logForm.serverLastUpdated?.startOfDay ?? Date().startOfDay)
-        }
+        dataProvider.fetchDailyLogsForChild(with: subject.id)
         calendarView.reloadData()
     }
 
     private func dateDidSelect(with subject: RLMSubject) {
-        dataProvider.fetchLogForm(subject: subject, date: filterDate)
+        selectedDateFromFeed = nil
+        dataProvider.selectedDate = filterDate
         noItemView.isHidden = dataProvider.numberOfRows(for: 0) > 0 ? true : false
         tableView.reloadData()
     }
@@ -130,6 +156,7 @@ class LogsViewController: UIViewController {
 
 extension LogsViewController: SubjectListViewControllerDelegate {
     func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
+        selectedSubjectIdFromFeed = nil
         controller.dismiss(animated: true)
         subjectSelection?.subject = subject
         updateScreen()
@@ -184,7 +211,7 @@ extension LogsViewController: JTACMonthViewDelegate {
 
     func calendar(_ calendar: JTACMonthView, willDisplay cell: JTACDayCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         if let cell = cell as? DateCell {
-            if datesWithData.contains(date.startOfDay),
+            if dataProvider.datesWithData.contains(date.startOfDay),
                 date >= SubjectsAPIService.startDateOfLogsHistory.startOfDay {
                 cell.hasData = true
             } else {

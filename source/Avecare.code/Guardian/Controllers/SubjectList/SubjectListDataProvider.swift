@@ -10,6 +10,7 @@ protocol SubjectListDataProvider: class {
     func listCellViewModel(for indexPath: IndexPath) -> AnyCellViewModel
     func profileCellViewModel(for indexPath: IndexPath) -> ProfileSubjectImageCollectionViewCellModel
     func title(for indexPath: IndexPath) -> String
+    func getSubject(with subjectId: String?) -> RLMSubject?
 }
 
 
@@ -52,6 +53,13 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
             return "All"
         }
         return model(at: indexPath).firstName
+    }
+
+    func getSubject(with subjectId: String?) -> RLMSubject? {
+        for subject in dataSource where subject.id == subjectId {
+            return subject
+        }
+        return nil
     }
 }
 

@@ -134,6 +134,48 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if let model = dataProvider.model(for: indexPath) as? HomeTableViewDisclosureCellModel {
+            gotoDetailsScreen(with: model)
+        }
+    }
+
+    private func gotoDetailsScreen(with model: HomeTableViewDisclosureCellModel) {
+        if model.feedItemType == .subjectDailyLog {
+            gotoLogsScreen(with: model.feedItemId)
+        }
+    }
+
+    private func gotoLogsScreen(with feedItemId: String) {
+        if let navC = tabBarController?.viewControllers?[2] as? UINavigationController {
+            if navC.viewControllers.count > 1 {
+                navC.popToRootViewController(animated: false)
+            }
+            if let logsVC = navC.viewControllers.first as? LogsViewController {
+                logsVC.selectedLogId = feedItemId
+            }
+        }
+
+        // Animated transition
+        guard let fromView = tabBarController?.selectedViewController?.view,
+            let toView = tabBarController?.viewControllers?[2].view else { return }
+
+        fromView.superview?.addSubview(toView)
+        let screenWidth = UIScreen.main.bounds.width
+        toView.center = CGPoint(x: fromView.center.x + screenWidth, y: fromView.center.y)
+
+        view.isUserInteractionEnabled = false
+
+        UIView.animate(withDuration: 0.3, animations: {
+            fromView.center = CGPoint(x: fromView.center.x - screenWidth, y: fromView.center.y)
+            toView.center = CGPoint(x: toView.center.x - screenWidth, y: toView.center.y)
+        }) { finished in
+            if finished {
+                fromView.removeFromSuperview()
+                toView.removeFromSuperview()
+                self.tabBarController?.selectedIndex = 2
+                self.view.isUserInteractionEnabled = true
+            }
+        }
     }
 
     // TODO: review technical design on how we should handle dismissing notifications [S.D]

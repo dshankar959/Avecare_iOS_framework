@@ -1,7 +1,18 @@
 import CocoaLumberjack
 import RealmSwift
 
+enum FeedItemType: String, Codable {
+    case message
+    case subjectDailyLog = "subjectdailylog"
+    case subjectInjury = "subjectinjury"
+    case subjectReminder = "subjectreminder"
+    case unitActivity = "unitactivity"
+    case unKnown
 
+    init(from decoder: Decoder) throws {
+        self = try FeedItemType(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .unKnown
+    }
+}
 
 class RLMGuardianFeed: RLMDefaults {
 
@@ -11,7 +22,7 @@ class RLMGuardianFeed: RLMDefaults {
     @objc dynamic var important: Bool = false
     @objc dynamic var subjectId: String = ""
     @objc dynamic var feedItemId: String = ""
-    @objc dynamic var feedItemType: String = ""
+    dynamic var feedItemType: FeedItemType = .unKnown
 
     var unitIds = List<String>()
 
@@ -46,7 +57,7 @@ class RLMGuardianFeed: RLMDefaults {
             self.important = try values.decode(Bool.self, forKey: .important)
             self.subjectId = try values.decode(String.self, forKey: .subjectId)
             self.feedItemId = try values.decode(String.self, forKey: .feedItemId)
-            self.feedItemType = try values.decode(String.self, forKey: .feedItemType)
+            self.feedItemType = try values.decode(FeedItemType.self, forKey: .feedItemType)
 
         } catch {
             DDLogError("JSON Decoding error = \(error)")

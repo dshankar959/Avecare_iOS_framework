@@ -156,40 +156,33 @@ class DefaultHomeDataProvider: HomeDataProvider {
     }
 
     private func makeCellModel(with feed: RLMGuardianFeed) -> HomeTableViewDisclosureCellModel {
-        let cellModel: HomeTableViewDisclosureCellModel
-        if feed.feedItemType == "message" {
-            cellModel = HomeTableViewDisclosureCellModel(icon: R.image.flagIcon(),
-                                                         iconColor: R.color.blueIcon(),
-                                                         title: feed.header,
-                                                         subtitle: feed.body,
-                                                         hasMoreData: true)
-        } else if feed.feedItemType == "subjectdailylog" {
-            cellModel = HomeTableViewDisclosureCellModel(icon: R.image.pencilIcon(),
-                                                         iconColor: R.color.blueIcon(),
-                                                         title: feed.header,
-                                                         subtitle: feed.body,
-                                                         hasMoreData: true)
-        } else if feed.feedItemType == "subjectinjury" {
-            cellModel = HomeTableViewDisclosureCellModel(icon: R.image.injuryIcon(),
-                                                         iconColor: R.color.blueIcon(),
-                                                         title: feed.header,
-                                                         subtitle: feed.body,
-                                                         hasMoreData: false)
-        } else if feed.feedItemType == "subjectreminder" {
-            cellModel = HomeTableViewDisclosureCellModel(icon: R.image.heartIcon(),
-                                                         iconColor: R.color.blueIcon(),
-                                                         title: feed.header,
-                                                         subtitle: feed.body,
-                                                         hasMoreData: false)
-        } else if feed.feedItemType == "unitactivity" {
-            cellModel = HomeTableViewDisclosureCellModel(icon: R.image.classActivityIcon(),
-                                                         iconColor: R.color.blueIcon(),
-                                                         title: feed.header,
-                                                         subtitle: feed.body,
-                                                         hasMoreData: false)
-        } else {
-            cellModel = HomeTableViewDisclosureCellModel(icon: nil, iconColor: nil, title: "", subtitle: nil, hasMoreData: false)
+        let icon: UIImage?, iconColor: UIColor?
+        switch feed.feedItemType {
+        case .message:
+            icon = R.image.flagIcon()
+            iconColor = R.color.blueIcon()
+        case .subjectDailyLog:
+            icon = R.image.pencilIcon()
+            iconColor = R.color.blueIcon()
+        case .subjectInjury:
+            icon = R.image.injuryIcon()
+            iconColor = R.color.blueIcon()
+        case .subjectReminder:
+            icon = R.image.heartIcon()
+            iconColor = R.color.blueIcon()
+        case .unitActivity:
+            icon = R.image.classActivityIcon()
+            iconColor = R.color.blueIcon()
+        case .unKnown:
+            icon = nil
+            iconColor = nil
         }
-        return cellModel
+
+        return HomeTableViewDisclosureCellModel(icon: icon,
+                                                iconColor: iconColor,
+                                                title: feed.header,
+                                                subtitle: feed.body,
+                                                feedItemId: feed.feedItemId,
+                                                feedItemType: feed.feedItemType)
     }
 }

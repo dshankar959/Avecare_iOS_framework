@@ -8,18 +8,21 @@ struct HomeTableViewDisclosureCellModel: CellViewModel {
     let iconColor: UIColor?
     let title: String
     let subtitle: String?
-    let hasMoreData: Bool
+    let feedItemId: String
+    let feedItemType: FeedItemType
 
     init(icon: UIImage?,
          iconColor: UIColor? = nil,
          title: String,
          subtitle: String?,
-         hasMoreData: Bool = true) {
+         feedItemId: String,
+         feedItemType: FeedItemType) {
         self.icon = icon
         self.iconColor = iconColor
         self.title = title
         self.subtitle = subtitle
-        self.hasMoreData = hasMoreData
+        self.feedItemId = feedItemId
+        self.feedItemType = feedItemType
     }
 
     func setup(cell: CellType) {
@@ -29,13 +32,14 @@ struct HomeTableViewDisclosureCellModel: CellViewModel {
         cell.iconImageView.image = icon
         cell.titleLabel.text = title
         cell.subtitleLabel.text = subtitle
-        if hasMoreData {
-            cell.accessoryType = .disclosureIndicator
+        if feedItemType == .subjectDailyLog {
             cell.selectionStyle = .default
+            cell.titleLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         } else {
-            cell.accessoryType = .none
             cell.selectionStyle = .none
+            cell.titleLabel.textColor = #colorLiteral(red: 0.4941176471, green: 0.5215686275, blue: 0.6235294118, alpha: 1)
         }
+        cell.accessoryType = .none
     }
 }
 
