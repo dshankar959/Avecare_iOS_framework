@@ -193,11 +193,10 @@ extension LogsViewController: JTACMonthViewDataSource {
         return ConfigurationParameters(startDate: SubjectsAPIService.startDateOfLogsHistory,
                                        endDate: SubjectsAPIService.endDateOfLogsHistory,
                                        numberOfRows: 1,
-                                       generateInDates: .forAllMonths,
+                                       generateInDates: .forFirstMonthOnly,
                                        generateOutDates: .off,
                                        hasStrictBoundaries: false)
     }
-
 }
 
 
@@ -261,5 +260,4 @@ extension LogsViewController: JTACMonthViewDelegate {
             return
         }
     }
-
 }
