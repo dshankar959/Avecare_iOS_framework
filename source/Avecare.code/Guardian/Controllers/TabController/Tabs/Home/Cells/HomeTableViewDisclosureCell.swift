@@ -22,16 +22,16 @@ struct HomeTableViewDisclosureCellModel: CellViewModel {
             let icon: UIImage?, iconColor: UIColor?
             switch feedItemType {
             case .message:
-                icon = R.image.flagIcon()
-                iconColor = R.color.blueIcon()
+                icon = R.image.sampleLogoIcon()
+                iconColor = R.color.separator()
             case .subjectDailyLog:
                 icon = R.image.userIcon()
                 iconColor = R.color.blueIcon()
             case .subjectInjury:
-                icon = R.image.injuryIcon()
-                iconColor = R.color.blueIcon()
+                icon = R.image.exclamationIcon()
+                iconColor = R.color.redIcon()
             case .subjectReminder:
-                icon = R.image.heartIcon()
+                icon = R.image.clockIcon()
                 iconColor = R.color.blueIcon()
             case .unitActivity:
                 icon = R.image.classActivityIcon()
@@ -43,14 +43,16 @@ struct HomeTableViewDisclosureCellModel: CellViewModel {
 
             cell.iconImageView.backgroundColor = iconColor?.withAlphaComponent(0.3)
             cell.iconImageView.image = icon
+            cell.iconImageView.tintColor = iconColor
             cell.iconImageView.contentMode = .center
         }
         cell.titleLabel.text = title
         cell.subtitleLabel.text = subtitle
-        if feedItemType == .subjectDailyLog {
+        switch feedItemType {
+        case .subjectDailyLog, .message:
             cell.selectionStyle = .default
             cell.titleLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        } else {
+        default:
             cell.selectionStyle = .none
             cell.titleLabel.textColor = #colorLiteral(red: 0.4941176471, green: 0.5215686275, blue: 0.6235294118, alpha: 1)
         }
