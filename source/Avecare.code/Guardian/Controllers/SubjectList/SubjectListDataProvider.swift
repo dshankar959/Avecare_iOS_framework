@@ -17,7 +17,7 @@ protocol SubjectListDataProvider: class {
 class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
     var allSubjectsIncluded: Bool = false
-    let storage = ImageStorageService()
+    private let storage = ImageStorageService()
 
     init(allSubjectsIncluded: Bool = false) {
         self.allSubjectsIncluded = allSubjectsIncluded

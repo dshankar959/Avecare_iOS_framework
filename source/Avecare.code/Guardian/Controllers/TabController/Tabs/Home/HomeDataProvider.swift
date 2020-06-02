@@ -20,6 +20,15 @@ class DefaultHomeDataProvider: HomeDataProvider {
 
     private var fetchedFeed = [RLMGuardianFeed]()
     private var dataSource = [Section]()
+    private var subjectDict = [String: RLMSubject]()
+    private let storage = ImageStorageService()
+
+    init() {
+        let subjects = RLMSubject.findAll()
+        subjects.forEach { subject in
+            subjectDict[subject.id] = subject
+        }
+    }
 
     /*
         return []   // hide for now until we have integrated with API
@@ -132,7 +141,12 @@ class DefaultHomeDataProvider: HomeDataProvider {
         if importantList.count > 0 {
             var importantItems = [HomeTableViewDisclosureCellModel]()
             importantList.forEach { feed in
-                importantItems.append(self.makeCellModel(with: feed))
+                if let subject = subjectDict[feed.subjectId] {
+                    importantItems.append(HomeTableViewDisclosureCellModel(with: feed,
+                                                                           subject: subject,
+                                                                           storage: storage))
+                }
+
             }
             self.dataSource.append(
                 Section(
@@ -145,7 +159,11 @@ class DefaultHomeDataProvider: HomeDataProvider {
             let elements = sections[sectionHeader]
             var sectionItems = [HomeTableViewDisclosureCellModel]()
             elements?.forEach({ feed in
-                sectionItems.append(self.makeCellModel(with: feed))
+                if let subject = subjectDict[feed.subjectId] {
+                    sectionItems.append(HomeTableViewDisclosureCellModel(with: feed,
+                                                                         subject: subject,
+                                                                         storage: storage))
+                }
             })
             self.dataSource.append(
                 Section(header: .init(icon: nil, text: sectionHeader.uppercased()),
@@ -154,35 +172,20 @@ class DefaultHomeDataProvider: HomeDataProvider {
             )
         }
     }
+}
 
-    private func makeCellModel(with feed: RLMGuardianFeed) -> HomeTableViewDisclosureCellModel {
-        let icon: UIImage?, iconColor: UIColor?
-        switch feed.feedItemType {
-        case .message:
-            icon = R.image.flagIcon()
-            iconColor = R.color.blueIcon()
-        case .subjectDailyLog:
-            icon = R.image.pencilIcon()
-            iconColor = R.color.blueIcon()
-        case .subjectInjury:
-            icon = R.image.injuryIcon()
-            iconColor = R.color.blueIcon()
-        case .subjectReminder:
-            icon = R.image.heartIcon()
-            iconColor = R.color.blueIcon()
-        case .unitActivity:
-            icon = R.image.classActivityIcon()
-            iconColor = R.color.blueIcon()
-        case .unKnown:
-            icon = nil
-            iconColor = nil
+extension HomeTableViewDisclosureCellModel {
+    init(with feed: RLMGuardianFeed, subject: RLMSubject, storage: ImageStorageService) {
+        if feed.feedItemType == .subjectDailyLog {
+            title = subject.firstName + NSLocalizedString("home_feed_title_dailylog", comment: "")
+            subtitle = nil
+            subjectImageURL = subject.photoURL(using: storage)
+        } else {
+            title = feed.header
+            subtitle = feed.body
+            subjectImageURL = nil
         }
-
-        return HomeTableViewDisclosureCellModel(icon: icon,
-                                                iconColor: iconColor,
-                                                title: feed.header,
-                                                subtitle: feed.body,
-                                                feedItemId: feed.feedItemId,
-                                                feedItemType: feed.feedItemType)
+        feedItemId = feed.feedItemId
+        feedItemType = feed.feedItemType
     }
 }
