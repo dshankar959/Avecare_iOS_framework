@@ -54,9 +54,7 @@ class ProfileViewController: UIViewController, IndicatorProtocol {
         if segue.identifier == R.segue.profileViewController.details.identifier,
             let details = R.segue.profileViewController.details(segue: segue) {
             details.destination.profileDetails = sender as! ProfileDetails
-        }
-
-        if segue.identifier == R.segue.profileViewController.educatorDetails.identifier,
+        } else if segue.identifier == R.segue.profileViewController.educatorDetails.identifier,
             let destination = segue.destination as? EducatorDetailsViewController {
             destination.selectedEducatorId = sender as? String ?? ""
             destination.direction = .bottom

@@ -63,6 +63,11 @@ class HomeViewController: UIViewController, IndicatorProtocol {
                                                                               height: destination.contentHeight)
             destination.transitioningDelegate = slideInTransitionDelegate
             destination.modalPresentationStyle = .custom
+        } else if segue.identifier == R.segue.homeViewController.details.identifier,
+            let destination = segue.destination as? FeedDetailsViewController {
+            let tuple = sender as? (FeedItemType, String)
+            destination.feedItemType = tuple?.0
+            destination.feedItemId = tuple?.1
         }
     }
 
@@ -138,8 +143,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     private func gotoDetailsScreen(with model: HomeTableViewDisclosureCellModel) {
-        if model.feedItemType == .subjectDailyLog {
+        switch model.feedItemType {
+        case .subjectDailyLog:
             gotoLogsScreen(with: model.feedItemId)
+        case .message:
+            performSegue(withIdentifier: R.segue.homeViewController.details, sender: (model.feedItemType, model.feedItemId))
+        default:
+            return
         }
     }
 

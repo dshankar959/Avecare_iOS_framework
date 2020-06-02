@@ -36,9 +36,7 @@ class StoriesListViewController: UIViewController {
         if segue.identifier == R.segue.storiesListViewController.details.identifier,
             let details = R.segue.storiesListViewController.details(segue: segue) {
             details.destination.details = sender as? StoriesDetails
-        }
-
-        if segue.identifier == R.segue.storiesListViewController.subjectList.identifier,
+        } else if segue.identifier == R.segue.storiesListViewController.subjectList.identifier,
             let destination = segue.destination as? SubjectListViewController {
             destination.delegate = self
             destination.dataProvider.allSubjectsIncluded = true
@@ -48,9 +46,7 @@ class StoriesListViewController: UIViewController {
                                                                               height: destination.contentHeight)
             destination.transitioningDelegate = slideInTransitionDelegate
             destination.modalPresentationStyle = .custom
-        }
-
-        if segue.identifier == R.segue.storiesListViewController.educatorDetails.identifier,
+        } else if segue.identifier == R.segue.storiesListViewController.educatorDetails.identifier,
             let destination = segue.destination as? EducatorDetailsViewController {
             destination.selectedEducatorId = sender as? String ?? ""
             destination.direction = .bottom

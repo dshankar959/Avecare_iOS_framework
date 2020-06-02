@@ -91,6 +91,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="ciP-Z5-0Ec">
                         <nil key="title"/>
+                        <barButtonItem key="backBarButtonItem" title=" " id="Ujk-zQ-jsd"/>
                         <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2yY-HE-mFm">
                             <rect key="frame" x="107" y="3" width="200" height="38"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -110,11 +111,28 @@
                         <outlet property="subjectFilterButton" destination="2yY-HE-mFm" id="3AY-Bc-CPN"/>
                         <outlet property="tableView" destination="eZz-Rn-lsm" id="saW-QP-029"/>
                         <segue destination="8xn-4J-1QS" kind="presentation" identifier="subjectList" id="DP2-wW-sgC"/>
+                        <segue destination="1D2-mo-LMh" kind="show" identifier="details" id="VSH-fK-9iN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SuL-W4-M3u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="137.68115942028987" y="93.75"/>
+        </scene>
+        <!--Feed Details View Controller-->
+        <scene sceneID="N4i-BL-PxL">
+            <objects>
+                <viewController id="1D2-mo-LMh" customClass="FeedDetailsViewController" customModule="parent" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xPd-aH-UGi">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="vvA-rT-onS"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Qiu-Sq-A4W"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DUB-2v-231" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1029" y="94"/>
         </scene>
         <!--SubjectList-->
         <scene sceneID="ymc-I1-9pY">
