@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 protocol HomeDataProvider: class {
     var numberOfSections: Int { get }
@@ -7,7 +6,7 @@ protocol HomeDataProvider: class {
     func model(for indexPath: IndexPath) -> AnyCellViewModel
     func headerViewModel(for section: Int) -> HomeTableViewHeaderViewModel?
     func canDismiss(at indexPath: IndexPath) -> Bool
-    func fetchFeed(completion: @escaping (AppError?) -> Void)
+    func fetchFeeds(completion: @escaping (AppError?) -> Void)
     func filterDataSource(with subjectId: String?)
 }
 
@@ -89,7 +88,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
         return dataSource[indexPath.section].dismiss
     }
 
-    func fetchFeed(completion: @escaping (AppError?) -> Void) {
+    func fetchFeeds(completion: @escaping (AppError?) -> Void) {
         if let guardianId = appSession.userProfile.accountTypeId {
             GuardiansAPIService.getGuardianFeed(for: guardianId) { result in
                 switch result {

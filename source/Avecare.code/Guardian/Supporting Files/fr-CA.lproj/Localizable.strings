@@ -17,6 +17,7 @@
 "home_retriving_feed" = "Retrieving Feeds...";
 "home_important_section_title" = "important items";
 "home_feed_title_dailylog" = "\'s dailylog is complete!";
+"feed_details_retriving_message" = "Retriving Message...";
 "logs_no_item_title" = "Looking for your child's log?";
 "logs_no_item_content" = "Your child's log is where you will find information about their meals, sleep, and other activities.";
 "logs_accident_report_title" = "Accident Report";

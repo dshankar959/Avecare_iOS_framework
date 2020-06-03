@@ -12,6 +12,7 @@ class LogsViewController: UIViewController {
     @IBOutlet weak var noItemView: UIView!
     @IBOutlet weak var noItemTitleLabel: UILabel!
     @IBOutlet weak var noItemContentLabel: UILabel!
+    @IBOutlet weak var mealPlanButton: UIButton!
 
     private let dataProvider = DefaultLogsDataProvider()
     private lazy var slideInTransitionDelegate = SlideInPresentationManager()
@@ -51,6 +52,7 @@ class LogsViewController: UIViewController {
             LogsPhotoTableViewCellModel.self
         ])
 
+        mealPlanButton.setTitle("utensils", for: .normal)
         self.navigationController?.hideHairline()
         configNoItemView()
     }

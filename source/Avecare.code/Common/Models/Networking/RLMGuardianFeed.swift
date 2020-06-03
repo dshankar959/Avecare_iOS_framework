@@ -1,7 +1,7 @@
 import CocoaLumberjack
 import RealmSwift
 
-enum FeedItemType: String, Codable {
+enum FeedItemType: String, Decodable {
     case message
     case subjectDailyLog = "subjectdailylog"
     case subjectInjury = "subjectinjury"

@@ -209,4 +209,10 @@ extension Date {
         default: return "just now"
         }
     }
+
+    func dateStringFromDate() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM dd, yyyy"
+        return formatter.string(from: self)
+    }
 }

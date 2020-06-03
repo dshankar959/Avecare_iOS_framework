@@ -336,6 +336,11 @@
 		DC3E80D724859D95003983E2 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC3E80D924859D95003983E2 /* Login.storyboard */; };
 		DC3E80DE2485A1B0003983E2 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC3E80E02485A1B0003983E2 /* TabBar.storyboard */; };
 		DC3E80E62486A9D8003983E2 /* FeedDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80E52486A9D8003983E2 /* FeedDetailsViewController.swift */; };
+		DC3E80EA2486BDDE003983E2 /* MessagesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80E92486BDDE003983E2 /* MessagesAPIService.swift */; };
+		DC3E80EE2486BFCF003983E2 /* RLMMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */; };
+		DC3E80F12486C9F6003983E2 /* RLMMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */; };
+		DC3E80F22486C9FB003983E2 /* MessagesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80E92486BDDE003983E2 /* MessagesAPIService.swift */; };
+		DC3E80F32486CA28003983E2 /* FeedDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80EF2486C8B7003983E2 /* FeedDetailsDataProvider.swift */; };
 		DC4FFA0A2470B9AE0079A27C /* ProfileMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC4FFA042470B9AE0079A27C /* ProfileMenuTableViewCell.xib */; };
 		DC4FFA0B2470B9AE0079A27C /* ProfileMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA052470B9AE0079A27C /* ProfileMenuTableViewCell.swift */; };
 		DC4FFA0C2470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA062470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift */; };
@@ -678,6 +683,9 @@
 		DC3E80E22485A1B5003983E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/TabBar.strings; sourceTree = "<group>"; };
 		DC3E80E42485A1B6003983E2 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/TabBar.strings"; sourceTree = "<group>"; };
 		DC3E80E52486A9D8003983E2 /* FeedDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailsViewController.swift; sourceTree = "<group>"; };
+		DC3E80E92486BDDE003983E2 /* MessagesAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesAPIService.swift; sourceTree = "<group>"; };
+		DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMMessage.swift; sourceTree = "<group>"; };
+		DC3E80EF2486C8B7003983E2 /* FeedDetailsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailsDataProvider.swift; sourceTree = "<group>"; };
 		DC4FFA042470B9AE0079A27C /* ProfileMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMenuTableViewCell.xib; sourceTree = "<group>"; };
 		DC4FFA052470B9AE0079A27C /* ProfileMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMenuTableViewCell.swift; sourceTree = "<group>"; };
 		DC4FFA062470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSubjectImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -883,6 +891,7 @@
 				615472657DF3223E8A839F22 /* RLMUnit.swift */,
 				75D62234245B14480032F53D /* RLMInstitution.swift */,
 				75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */,
+				DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */,
 				61547CBAC0180C2D2092DD1A /* UnitActivity.swift */,
 				615473EE5A59F3D396DA45E8 /* Injury.swift */,
 				61547BBC4F5F4748C5E93244 /* UnitReminder.swift */,
@@ -1360,6 +1369,7 @@
 				6154791B455C1EA0E84D309F /* StoriesAPIService.swift */,
 				615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */,
 				61547D73CFED29A678ACDFD5 /* OrganizationsAPIService.swift */,
+				DC3E80E92486BDDE003983E2 /* MessagesAPIService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1457,6 +1467,7 @@
 				75886D7C241932AB0079C080 /* HomeViewController.swift */,
 				75886D7A241932AB0079C080 /* HomeDataProvider.swift */,
 				DC3E80E52486A9D8003983E2 /* FeedDetailsViewController.swift */,
+				DC3E80EF2486C8B7003983E2 /* FeedDetailsDataProvider.swift */,
 				DC3E80B6248593C9003983E2 /* Home.storyboard */,
 				61547D0B8D0292B053F6BF24 /* Cells */,
 			);
@@ -2388,6 +2399,7 @@
 				75886D302419327F0079C080 /* Percentage.swift in Sources */,
 				75EB59C02461858700E077E5 /* RLMLogTimeRow.swift in Sources */,
 				75886D3E2419327F0079C080 /* UIImage+Tint.swift in Sources */,
+				DC3E80F12486C9F6003983E2 /* RLMMessage.swift in Sources */,
 				75886D642419327F0079C080 /* FileStorageService.swift in Sources */,
 				75EB5A2D2467A21600E077E5 /* SyncEngine+Operations.swift in Sources */,
 				75886D2A2419327F0079C080 /* ErrorMessages.swift in Sources */,
@@ -2403,6 +2415,7 @@
 				299B3587241F907E00D6F9A5 /* FormLabelView.swift in Sources */,
 				F67DF832241C009800793A9C /* ContentSizedTableView.swift in Sources */,
 				75886D442419327F0079C080 /* FileManager.swift in Sources */,
+				DC3E80F22486C9FB003983E2 /* MessagesAPIService.swift in Sources */,
 				75EB59C22461858700E077E5 /* RLMLogOptionRow.swift in Sources */,
 				F67DF81E241BFE6800793A9C /* TagListFormView.swift in Sources */,
 				75886DF9241932BA0079C080 /* LeftSideNavigationBarView.swift in Sources */,
@@ -2581,6 +2594,7 @@
 				DC4FFA1F24748FA80079A27C /* AboutDetailsViewController.swift in Sources */,
 				F663BB77243513AC003279B9 /* SubjectListDataProvider.swift in Sources */,
 				DC5E9909247555760088083C /* EducatorDetailsViewController.swift in Sources */,
+				DC3E80F32486CA28003983E2 /* FeedDetailsDataProvider.swift in Sources */,
 				75D7FF5D2470FD0D0002E1F9 /* PublishStoryRequestModel.swift in Sources */,
 				75886D552419327F0079C080 /* CGFloat.swift in Sources */,
 				DC3E80E62486A9D8003983E2 /* FeedDetailsViewController.swift in Sources */,
@@ -2605,6 +2619,7 @@
 				615477178CD2A957D0A155BB /* RealmDetachable.swift in Sources */,
 				615478302706516FFFEA01B9 /* StoriesViewController.swift in Sources */,
 				61547F44C319932DE7A455BA /* StoriesDetailsViewController.swift in Sources */,
+				DC3E80EA2486BDDE003983E2 /* MessagesAPIService.swift in Sources */,
 				615474402057962CDECCDF84 /* TextField.swift in Sources */,
 				6154749EE82ECA275C5FD8F2 /* PinView.swift in Sources */,
 				75865C0624743CE2002E7427 /* syncUnitSupervisors.swift in Sources */,
@@ -2615,6 +2630,7 @@
 				DC4FFA0E2470B9AE0079A27C /* ProfileSubjectTableViewCell.swift in Sources */,
 				615474DD4D6B43A12920A720 /* StoriesDataProvider.swift in Sources */,
 				75EB59CD2461858700E077E5 /* RLMLogSwitcherRow.swift in Sources */,
+				DC3E80EE2486BFCF003983E2 /* RLMMessage.swift in Sources */,
 				61547C05AA5DE58BB809E4C6 /* SupervisorFilterTableViewCell.swift in Sources */,
 				75EB5A122466683300E077E5 /* syncInstitutionDetails.swift in Sources */,
 				6154752751D03A37500C2868 /* SupervisorCollectionViewCell.swift in Sources */,

@@ -57,6 +57,8 @@ enum AvecareAPI { // API Services
     // MARK: - INSTITUTIONS
     case institutionDetails(id: String)
 //    case institutionUnits(id: String)
+    // MARK: - MESSEAGES
+    case messages(id: String)
     // MARK: - ORGANIZATION
 //    case organizationList
     case organizationDetails(id: String)
@@ -111,6 +113,8 @@ extension AvecareAPI: TargetType {
         case .institutionDetails(let id): return "/institutions/\(id)"
 //        case .institutionUnits(let id): return "/institutions/\(id)/units"
 
+        case .messages(let id): return "/messages/\(id)"
+
 //        case .organizationList: return "/organizations"
         case .organizationDetails(let id): return "/organizations/\(id)"
         case .organizationDailyTemplates(let id): return "/organizations/\(id)/daily-subject-log-templates"
@@ -152,7 +156,7 @@ extension AvecareAPI: TargetType {
              .unitCreateInjury,
              .unitCreateReminder,
              .subjectPublishDailyLog,
-            .unitPublishStory:
+             .unitPublishStory:
             return .post
         default: return .get
         }
