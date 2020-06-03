@@ -25,7 +25,7 @@ extension IndicatorProtocol {
             self.popupAlert(inVC: inVC,
                             title: err.title,
                             message: err.localizedDescription,
-                            actionTitles: ["OK"],
+                            actionTitles: [NSLocalizedString("alert_ok", comment: "")],
                             actionStyles: [.default],
                             actions: [nil])
         }
