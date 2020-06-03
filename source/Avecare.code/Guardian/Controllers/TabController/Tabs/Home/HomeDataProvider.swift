@@ -93,8 +93,9 @@ class DefaultHomeDataProvider: HomeDataProvider {
             GuardiansAPIService.getGuardianFeed(for: guardianId) { result in
                 switch result {
                 case .success(let feeds):
-                    self.fetchedFeed = feeds
-                    self.constructDataSource(with: feeds)
+                    let feedsFilteredByDatesWindow = self.filterFeedsForDatesWindow(with: feeds)
+                    self.fetchedFeed = feedsFilteredByDatesWindow
+                    self.constructDataSource(with: feedsFilteredByDatesWindow)
                     completion(nil)
                 case .failure(let error):
                     completion(error)
@@ -180,6 +181,24 @@ class DefaultHomeDataProvider: HomeDataProvider {
             if !feedItemIds.contains(feed.feedItemId) {
                 feedItemIds.insert(feed.feedItemId)
                 resultFeeds.append(feed)
+            }
+        }
+        return resultFeeds
+    }
+
+    private func filterFeedsForDatesWindow(with feeds: [RLMGuardianFeed]) -> [RLMGuardianFeed] {
+        var resultFeeds = [RLMGuardianFeed]()
+        for feed in feeds {
+            let date: Date
+            if feed.serverLastUpdated == nil {
+                date = feed.date
+            } else {
+                date = feed.serverLastUpdated!
+            }
+            if date > SubjectsAPIService.startDateOfLogsHistory.startOfDay {
+                resultFeeds.append(feed)
+            } else {
+                break
             }
         }
         return resultFeeds
