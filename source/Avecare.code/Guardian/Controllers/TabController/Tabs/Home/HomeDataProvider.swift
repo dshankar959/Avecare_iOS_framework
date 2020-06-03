@@ -108,7 +108,8 @@ class DefaultHomeDataProvider: HomeDataProvider {
             let filteredFeed = fetchedFeed.filter { $0.subjectId == subjectId }
             constructDataSource(with: filteredFeed)
         } else {
-            constructDataSource(with: fetchedFeed)
+            let refarctoredFeeds = removeDuplicatedFeeds(from: fetchedFeed)
+            constructDataSource(with: refarctoredFeeds)
         }
     }
 
@@ -170,6 +171,18 @@ class DefaultHomeDataProvider: HomeDataProvider {
                         records: sectionItems)
             )
         }
+    }
+
+    private func removeDuplicatedFeeds(from feeds: [RLMGuardianFeed]) -> [RLMGuardianFeed] {
+        var resultFeeds = [RLMGuardianFeed]()
+        var feedItemIds: Set<String> = []
+        for feed in feeds {
+            if !feedItemIds.contains(feed.feedItemId) {
+                feedItemIds.insert(feed.feedItemId)
+                resultFeeds.append(feed)
+            }
+        }
+        return resultFeeds
     }
 }
 
