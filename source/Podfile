@@ -121,6 +121,10 @@ def common_pods
   # https://github.com/mikaoj/BSImagePicker
   pod 'BSImagePicker'
 
+  # Crop image
+  # https://github.com/pikachu987/CropPickerView
+  pod 'CropPickerView'
+
   # Calendar library
   # https://github.com/patchthecode/JTAppleCalendar
   pod 'JTAppleCalendar'

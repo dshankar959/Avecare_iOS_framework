@@ -1,0 +1,39 @@
+
+/* Class = "UILabel"; text = "snowflake"; ObjectID = "0iU-OW-di5"; */
+"0iU-OW-di5.text" = "snowflake";
+
+/* Class = "UILabel"; text = "Enter Your Code"; ObjectID = "9ZF-dg-Vbn"; */
+"9ZF-dg-Vbn.text" = "Enter Your Code";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Ckb-sb-Xwi"; */
+"Ckb-sb-Xwi.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Send Code"; ObjectID = "Cwz-R0-qcg"; */
+"Cwz-R0-qcg.normalTitle" = "Send Code";
+
+/* Class = "UIButton"; normalTitle = "Resend Code"; ObjectID = "E2G-Ba-lmZ"; */
+"E2G-Ba-lmZ.normalTitle" = "Resend Code";
+
+/* Class = "UITextField"; placeholder = "Required"; ObjectID = "JPY-kC-QBn"; */
+"JPY-kC-QBn.placeholder" = "Required";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "NMH-P6-xCP"; */
+"NMH-P6-xCP.text" = "Label";
+
+/* Class = "UILabel"; text = "Enter your email"; ObjectID = "TbQ-Og-Mb2"; */
+"TbQ-Og-Mb2.text" = "Enter your email";
+
+/* Class = "UILabel"; text = "A 4-digit security code will be sent to this email."; ObjectID = "X8E-4B-etB"; */
+"X8E-4B-etB.text" = "A 4-digit security code will be sent to this email.";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "h16-X3-ro3"; */
+"h16-X3-ro3.text" = "Email";
+
+/* Class = "UILabel"; text = "A 4-digit security code was sent in the email you provided. "; ObjectID = "hQj-Kg-Dcq"; */
+"hQj-Kg-Dcq.text" = "A 4-digit security code was sent in the email you provided. ";
+
+/* Class = "UILabel"; text = "snowflake"; ObjectID = "lqq-e2-dRU"; */
+"lqq-e2-dRU.text" = "snowflake";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "tVi-cv-Cez"; */
+"tVi-cv-Cez.title" = " ";

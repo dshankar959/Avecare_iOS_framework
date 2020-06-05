@@ -202,10 +202,9 @@
                         </button>
                         <barButtonItem key="rightBarButtonItem" id="UuA-yK-hfO">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qUy-FN-xMu">
-                                <rect key="frame" x="325" y="4" width="69" height="36"/>
+                                <rect key="frame" x="358" y="4" width="36" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="FontAwesome5Pro-Regular" family="Font Awesome 5 Pro" pointSize="20"/>
-                                <state key="normal" title="utensils"/>
                                 <connections>
                                     <segue destination="fXF-UT-ccR" kind="show" id="b5Z-Ag-coc"/>
                                 </connections>
@@ -215,6 +214,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="calendarView" destination="ZJg-De-a0j" id="EdF-qy-dlq"/>
+                        <outlet property="mealPlanButton" destination="qUy-FN-xMu" id="n34-6h-bqH"/>
                         <outlet property="noItemContentLabel" destination="ynm-2G-IXt" id="vW2-fA-9pp"/>
                         <outlet property="noItemTitleLabel" destination="5bl-3D-UMg" id="oVw-SR-g4m"/>
                         <outlet property="noItemView" destination="wwH-1c-9OY" id="uej-Hm-Yuh"/>

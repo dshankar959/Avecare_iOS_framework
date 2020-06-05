@@ -1,0 +1,12 @@
+
+/* Class = "UITabBarItem"; title = "Stories"; ObjectID = "DKY-A5-4VQ"; */
+"DKY-A5-4VQ.title" = "Stories";
+
+/* Class = "UITabBarItem"; title = "Logs"; ObjectID = "gGd-Ts-u2a"; */
+"gGd-Ts-u2a.title" = "Logs";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "r8r-XP-SWQ"; */
+"r8r-XP-SWQ.title" = "Settings";
+
+/* Class = "UITabBarItem"; title = "Notifications"; ObjectID = "z5k-db-v0h"; */
+"z5k-db-v0h.title" = "Notifications";

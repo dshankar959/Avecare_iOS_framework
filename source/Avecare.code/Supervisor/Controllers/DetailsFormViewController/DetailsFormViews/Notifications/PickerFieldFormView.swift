@@ -120,9 +120,15 @@ struct PickerViewFormViewModel: CellViewModel {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         toolbar.barStyle = .default
         toolbar.items = [
-            UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelInput)),
+            UIBarButtonItem(title: NSLocalizedString("barbutton_title_cancel", comment: ""),
+                            style: .plain,
+                            target: self,
+                            action: #selector(cancelInput)),
             UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneInput))]
+            UIBarButtonItem(title: NSLocalizedString("barbutton_title_done", comment: ""),
+                            style: .plain,
+                            target: self,
+                            action: #selector(doneInput))]
         return toolbar
     }
 

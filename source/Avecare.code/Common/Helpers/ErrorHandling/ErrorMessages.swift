@@ -9,9 +9,9 @@ struct HTTPerror {
 }
 
 private struct Defaults {
-    static let contactSupport = "Please contact support for further assistance."
-    static let contactAdmin = "Please contact the system administrator."
-    static let tryAgain = "Please try again."
+    static let contactSupport = NSLocalizedString("error_default_contact_support", comment: "")
+    static let contactAdmin = NSLocalizedString("error_default_contact_admin", comment: "")
+    static let tryAgain = NSLocalizedString("error_default_try_again", comment: "")
 }
 
 enum RealmError {
@@ -20,8 +20,8 @@ enum RealmError {
     var message: AppError {
         switch self {
         case .invalidRowObject:
-            return AppError(title: "🆘 Realm object initialization failure ⁉️",
-                    userInfo: "Invalid object class was used in ctor",
+            return AppError(title: NSLocalizedString("error_realm_invalid_row_object_title", comment: ""),
+                    userInfo: NSLocalizedString("error_realm_invalid_row_object_userinfo", comment: ""),
                     code: "RealmError.invalidRowObject",
                     type: self)
         }
@@ -45,26 +45,29 @@ enum AuthError {
     var message: AppError {
         switch self {
         case .emptyCredentials:
-            return AppError(title: "oops!",
-                            userInfo: "Email or Password cannot be empty\n"+Defaults.tryAgain,
+            return AppError(title: NSLocalizedString("error_auth_empty_credentials_title", comment: ""),
+                            userInfo: NSLocalizedString("error_auth_empty_credentials_userinfo", comment: "") +
+                                Defaults.tryAgain,
                             code: "AuthError.emptyCredentials",
                             type: self)
 
         case .expiredSession:
-            return AppError(title: "⚠️ Expired Session",
-                            userInfo: "Sign-in required.\n"+Defaults.tryAgain,
+            return AppError(title: NSLocalizedString("error_auth_expired_session_title", comment: ""),
+                            userInfo: NSLocalizedString("error_auth_expired_session_userinfo", comment: "") +
+                                Defaults.tryAgain,
                             code: "AuthError.expiredSession",
                             type: self)
 
         case .userNotFound:
-            return AppError(title: "⚠️ User not found",
-                            userInfo: "This user has not been registered on this device.\n\n"+Defaults.contactAdmin,
-                            code: "userNotFound",
+            return AppError(title: NSLocalizedString("error_auth_user_not_found_title", comment: ""),
+                            userInfo: NSLocalizedString("error_auth_user_not_found_userinfo", comment: "") +
+                                Defaults.contactAdmin,
+                            code: "AuthError.userNotFound",
                             type: self)
         case .unitNotFound:
-            return AppError(title: "⚠️ Unit details not loaded",
-                    userInfo: "Unit details was not loaded.",
-                    code: "unitNotFound",
+            return AppError(title: NSLocalizedString("error_auth_unit_not_found_title", comment: ""),
+                    userInfo: NSLocalizedString("error_auth_unit_not_found_userinfo", comment: ""),
+                    code: "AuthError.unitNotFound",
                     type: self)
         }
     }
@@ -77,13 +80,14 @@ enum JSONError {
     var message: AppError {
         switch self {
         case .failedToMapData:
-            return AppError(title: "🆘 Critical JSON Error ⁉️",
-                            userInfo: "Terribly sorry about this.\n "+Defaults.contactSupport,
+            return AppError(title: NSLocalizedString("error_json_failed_map_data_title", comment: ""),
+                            userInfo: NSLocalizedString("error_json_failed_map_data_userinfo", comment: "") +
+                                Defaults.contactSupport,
                             code: "JSONError.failedToMapData",
                             type: self)
         case .invalidRowTypeId:
-            return AppError(title: "🆘 Critical JSON Error ⁉️",
-                    userInfo: "Invalid row type id",
+            return AppError(title: NSLocalizedString("error_json_invalid_row_type_id_title", comment: ""),
+                    userInfo: NSLocalizedString("error_json_invalid_row_type_id_userinfo", comment: ""),
                     code: "JSONError.invalidRowTypeId",
                     type: self)
 //        case .details(let info):
@@ -101,7 +105,8 @@ enum NetworkError {
         switch self {
         case .HTTPcode(let statusCode):
             return AppError(title: "⚠️",
-                            userInfo: "Server responded with statusCode: \(statusCode).\n "+Defaults.tryAgain,
+                            userInfo: NSLocalizedString("error_network_http_code_userinfo", comment: "") +
+                                "\(statusCode).\n" + Defaults.tryAgain,
                             code: "\(statusCode)",
                             type: self)
 
@@ -112,8 +117,8 @@ enum NetworkError {
                             type: self)
 
         case .NetworkConnectionLost:
-            return AppError(title: "📶 Network",
-                            userInfo: "No data connection.",
+            return AppError(title: NSLocalizedString("error_network_connection_lost_title", comment: ""),
+                            userInfo: NSLocalizedString("error_network_connection_lost_userinfo", comment: ""),
                             code: "0",  // unreachable
                 type: self)
 
@@ -122,14 +127,14 @@ enum NetworkError {
 }
 
 enum FileError {
-    case FileNotFound
+    case fileNotFound
 
     var message: AppError {
         switch self {
-        case .FileNotFound:
-            return AppError(title: "File Not Found",
-                            userInfo: "The requested file is not found in the storage.",
-                            code: "FileError", type: self)
+        case .fileNotFound:
+            return AppError(title: NSLocalizedString("error_file_not_found_title", comment: ""),
+                            userInfo: NSLocalizedString("error_file_not_found_userinfo", comment: ""),
+                            code: "FileError.fileNotFound", type: self)
         }
     }
 }
@@ -141,14 +146,15 @@ enum FileTransferError {
     var message: AppError {
         switch self {
         case .missingFile:
-            return AppError(title: "🆘 File Error!",
-                            userInfo: "Missing file after transfer completed.\n "+Defaults.contactAdmin,
-                            code: "FileTransferError",
+            return AppError(title: NSLocalizedString("error_file_transfer_missing_title", comment: ""),
+                            userInfo: NSLocalizedString("error_file_transfer_missing_userinfo", comment: "") +
+                                Defaults.contactAdmin,
+                            code: "FileTransferError.missingFile",
                             type: self)
         case .emptyFileParameter:
-            return AppError(title: "File Error",
-                            userInfo: "Empty file parameter.\n Nothing to do.",
-                            code: "emptyFileParameter",
+            return AppError(title: NSLocalizedString("error_file_transfer_empty_file_parameter_title", comment: ""),
+                            userInfo: NSLocalizedString("error_file_transfer_empty_file_parameter_userinfo", comment: ""),
+                            code: "FileTransferError.emptyFileParameter",
                             type: self)
         }
     }

@@ -1,5 +1,4 @@
 import Foundation
-import UIKit
 
 protocol HomeDataProvider: class {
     var numberOfSections: Int { get }
@@ -7,6 +6,8 @@ protocol HomeDataProvider: class {
     func model(for indexPath: IndexPath) -> AnyCellViewModel
     func headerViewModel(for section: Int) -> HomeTableViewHeaderViewModel?
     func canDismiss(at indexPath: IndexPath) -> Bool
+    func fetchFeeds(completion: @escaping (AppError?) -> Void)
+    func filterDataSource(with subjectId: String?)
 }
 
 class DefaultHomeDataProvider: HomeDataProvider {
@@ -16,7 +17,19 @@ class DefaultHomeDataProvider: HomeDataProvider {
         let records: [AnyCellViewModel]
     }
 
-    private lazy var dataSource: [Section] = {
+    private var fetchedFeed = [RLMGuardianFeed]()
+    private var dataSource = [Section]()
+    private var subjectDict = [String: RLMSubject]()
+    private let storage = ImageStorageService()
+
+    init() {
+        let subjects = RLMSubject.findAll()
+        subjects.forEach { subject in
+            subjectDict[subject.id] = subject
+        }
+    }
+
+    /*
         return []   // hide for now until we have integrated with API
         return [
             Section(header: .init(icon: R.image.pinIcon(), text: "IMPORTANT ITEMS"),
@@ -53,7 +66,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
                         HomeTableViewDisclosureCellModel(icon: R.image.subject2(), title: "Elise’s daily log is complete!", subtitle: nil)
                     ])
         ]
-    }()
+    }()*/
 
     var numberOfSections: Int {
         return dataSource.count
@@ -73,5 +86,137 @@ class DefaultHomeDataProvider: HomeDataProvider {
 
     func canDismiss(at indexPath: IndexPath) -> Bool {
         return dataSource[indexPath.section].dismiss
+    }
+
+    func fetchFeeds(completion: @escaping (AppError?) -> Void) {
+        if let guardianId = appSession.userProfile.accountTypeId {
+            GuardiansAPIService.getGuardianFeed(for: guardianId) { result in
+                switch result {
+                case .success(let feeds):
+                    let feedsFilteredByDatesWindow = self.filterFeedsForDatesWindow(with: feeds)
+                    self.fetchedFeed = feedsFilteredByDatesWindow
+                    self.constructDataSource(with: feedsFilteredByDatesWindow)
+                    completion(nil)
+                case .failure(let error):
+                    completion(error)
+                }
+            }
+        }
+    }
+
+    func filterDataSource(with subjectId: String?) {
+        if let subjectId = subjectId {
+            let filteredFeed = fetchedFeed.filter { $0.subjectId == subjectId }
+            constructDataSource(with: filteredFeed)
+        } else {
+            let refarctoredFeeds = removeDuplicatedFeeds(from: fetchedFeed)
+            constructDataSource(with: refarctoredFeeds)
+        }
+    }
+
+    private func constructDataSource(with feeds: [RLMGuardianFeed]) {
+        self.dataSource.removeAll()
+        var importantList = [RLMGuardianFeed]()
+        var headerSet = Set<String>()
+        var sectionHeaders = [String]()
+        var sections = [String: [RLMGuardianFeed]]()
+        feeds.forEach { feed in
+            if feed.important {
+                importantList.append(feed)
+            } else {
+                let sectionTitle: String
+                if let feedDate = feed.serverLastUpdated {
+                    sectionTitle = feedDate.timeAgo(dayAbove: true)
+                } else {
+                    sectionTitle = feed.date.timeAgo(dayAbove: true) // Just in case serverLastUpdated is null
+                }
+
+                if !headerSet.contains(sectionTitle) {
+                    sectionHeaders.append(sectionTitle)
+                    sections[sectionTitle]?.append(feed)
+                }
+                headerSet.insert(sectionTitle)
+                sections[sectionTitle] = [feed]
+            }
+        }
+        if importantList.count > 0 {
+            var importantItems = [HomeTableViewDisclosureCellModel]()
+            importantList.forEach { feed in
+                if let subject = subjectDict[feed.subjectId] {
+                    importantItems.append(HomeTableViewDisclosureCellModel(with: feed,
+                                                                           subject: subject,
+                                                                           storage: storage))
+                }
+
+            }
+            self.dataSource.append(
+                Section(
+                    header: .init(icon: R.image.pinIcon(), text: NSLocalizedString("home_important_section_title", comment: "").uppercased()),
+                    dismiss: true,
+                    records: importantItems)
+            )
+        }
+        sectionHeaders.forEach { sectionHeader in
+            let elements = sections[sectionHeader]
+            var sectionItems = [HomeTableViewDisclosureCellModel]()
+            elements?.forEach({ feed in
+                if let subject = subjectDict[feed.subjectId] {
+                    sectionItems.append(HomeTableViewDisclosureCellModel(with: feed,
+                                                                         subject: subject,
+                                                                         storage: storage))
+                }
+            })
+            self.dataSource.append(
+                Section(header: .init(icon: nil, text: sectionHeader.uppercased()),
+                        dismiss: false,
+                        records: sectionItems)
+            )
+        }
+    }
+
+    private func removeDuplicatedFeeds(from feeds: [RLMGuardianFeed]) -> [RLMGuardianFeed] {
+        var resultFeeds = [RLMGuardianFeed]()
+        var feedItemIds: Set<String> = []
+        for feed in feeds {
+            if !feedItemIds.contains(feed.feedItemId) {
+                feedItemIds.insert(feed.feedItemId)
+                resultFeeds.append(feed)
+            }
+        }
+        return resultFeeds
+    }
+
+    private func filterFeedsForDatesWindow(with feeds: [RLMGuardianFeed]) -> [RLMGuardianFeed] {
+        var resultFeeds = [RLMGuardianFeed]()
+        for feed in feeds {
+            let date: Date
+            if feed.serverLastUpdated == nil {
+                date = feed.date
+            } else {
+                date = feed.serverLastUpdated!
+            }
+            if date > SubjectsAPIService.startDateOfLogsHistory.startOfDay {
+                resultFeeds.append(feed)
+            } else {
+                break
+            }
+        }
+        return resultFeeds
+    }
+}
+
+extension HomeTableViewDisclosureCellModel {
+    init(with feed: RLMGuardianFeed, subject: RLMSubject, storage: ImageStorageService) {
+        if feed.feedItemType == .subjectDailyLog {
+            title = subject.firstName + NSLocalizedString("home_feed_title_dailylog", comment: "")
+            subtitle = nil
+            subjectImageURL = subject.photoURL(using: storage)
+        } else {
+            title = feed.header
+            subtitle = feed.body
+            subjectImageURL = nil
+        }
+        feedItemId = feed.feedItemId
+        feedItemType = feed.feedItemType
     }
 }

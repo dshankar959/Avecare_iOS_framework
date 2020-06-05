@@ -10,13 +10,14 @@ protocol SubjectListDataProvider: class {
     func listCellViewModel(for indexPath: IndexPath) -> AnyCellViewModel
     func profileCellViewModel(for indexPath: IndexPath) -> ProfileSubjectImageCollectionViewCellModel
     func title(for indexPath: IndexPath) -> String
+    func getSubject(with subjectId: String?) -> RLMSubject?
 }
 
 
 class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
     var allSubjectsIncluded: Bool = false
-    let storage = ImageStorageService()
+    private let storage = ImageStorageService()
 
     init(allSubjectsIncluded: Bool = false) {
         self.allSubjectsIncluded = allSubjectsIncluded
@@ -49,9 +50,16 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
     func title(for indexPath: IndexPath) -> String {
         if allSubjectsIncluded, indexPath.row == 0 {
-            return "All"
+            return NSLocalizedString("subjectlist_all", comment: "").capitalized
         }
         return model(at: indexPath).firstName
+    }
+
+    func getSubject(with subjectId: String?) -> RLMSubject? {
+        for subject in dataSource where subject.id == subjectId {
+            return subject
+        }
+        return nil
     }
 }
 

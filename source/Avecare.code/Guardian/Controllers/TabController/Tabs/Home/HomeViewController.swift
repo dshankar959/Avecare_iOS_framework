@@ -3,7 +3,7 @@ import CocoaLumberjack
 
 
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, IndicatorProtocol {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subjectFilterButton: UIButton!
@@ -27,18 +27,26 @@ class HomeViewController: UIViewController {
 
         self.navigationController?.hideHairline()
         configNoItemView()
+        tableView.tableFooterView = UIView() // remove bottom margin of the last cell
     }
 
     private func configNoItemView() {
-        noItemTitleLabel.text = "Welcome!"
-        // swiftlint:disable line_length
-        noItemContentLabel.text = "This is your Home screen; items will be added by your child's educator as well as by their centre's administration.\n\nPeriodically information will be added to this screen - stay tuned!"
-        // swiftlint:enable line_length
+        noItemTitleLabel.text = NSLocalizedString("home_no_item_title", comment: "")
+        noItemContentLabel.text = NSLocalizedString("home_no_item_content", comment: "")
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateScreen()
+
+        showActivityIndicator(withStatus: NSLocalizedString("home_retriving_feed", comment: ""))
+        dataProvider.fetchFeeds { error in
+            self.hideActivityIndicator()
+            if let error = error {
+                self.showErrorAlert(error)
+            }
+            self.dataProvider.filterDataSource(with: self.subjectSelection?.subject?.id)
+            self.updateScreen()
+        }
     }
 
     @IBAction func didClickSubjectPickerButton(_ sender: UIButton) {
@@ -56,12 +64,18 @@ class HomeViewController: UIViewController {
                                                                               height: destination.contentHeight)
             destination.transitioningDelegate = slideInTransitionDelegate
             destination.modalPresentationStyle = .custom
+        } else if segue.identifier == R.segue.homeViewController.details.identifier,
+            let destination = segue.destination as? FeedDetailsViewController {
+            let tuple = sender as? (FeedItemType, String)
+            destination.feedItemType = tuple?.0
+            destination.feedItemId = tuple?.1
         }
     }
 
     private func updateScreen() {
         noItemView.isHidden = dataProvider.numberOfSections > 0 ? true : false
         updateSubjectFilterButton()
+        tableView.reloadData()
     }
 
     private func updateSubjectFilterButton() {
@@ -69,7 +83,7 @@ class HomeViewController: UIViewController {
         if let selectedSubject = subjectSelection?.subject {
             titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
         } else {
-            titleText = "All"
+            titleText = NSLocalizedString("subjectlist_all", comment: "").capitalized
         }
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])
@@ -86,12 +100,14 @@ extension HomeViewController: SubjectListViewControllerDelegate {
     func subjectListDidSelectAll(_ controller: SubjectListViewController) {
         controller.dismiss(animated: true)
         subjectSelection?.subject = nil
+        dataProvider.filterDataSource(with: nil)
         updateScreen()
     }
 
     func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
         controller.dismiss(animated: true)
         subjectSelection?.subject = subject
+        dataProvider.filterDataSource(with: subject.id)
         updateScreen()
     }
 }
@@ -118,6 +134,57 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return dataProvider.headerViewModel(for: section)?.buildView()
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        if let model = dataProvider.model(for: indexPath) as? HomeTableViewDisclosureCellModel {
+            gotoDetailsScreen(with: model)
+        }
+    }
+
+    private func gotoDetailsScreen(with model: HomeTableViewDisclosureCellModel) {
+        switch model.feedItemType {
+        case .subjectDailyLog:
+            gotoLogsScreen(with: model.feedItemId)
+        case .message:
+            performSegue(withIdentifier: R.segue.homeViewController.details, sender: (model.feedItemType, model.feedItemId))
+        default:
+            return
+        }
+    }
+
+    private func gotoLogsScreen(with feedItemId: String) {
+        if let navC = tabBarController?.viewControllers?[2] as? UINavigationController {
+            if navC.viewControllers.count > 1 {
+                navC.popToRootViewController(animated: false)
+            }
+            if let logsVC = navC.viewControllers.first as? LogsViewController {
+                logsVC.selectedLogId = feedItemId
+            }
+        }
+
+        // Animated transition
+        guard let fromView = tabBarController?.selectedViewController?.view,
+            let toView = tabBarController?.viewControllers?[2].view else { return }
+
+        fromView.superview?.addSubview(toView)
+        let screenWidth = UIScreen.main.bounds.width
+        toView.center = CGPoint(x: fromView.center.x + screenWidth, y: fromView.center.y)
+
+        view.isUserInteractionEnabled = false
+
+        UIView.animate(withDuration: 0.3, animations: {
+            fromView.center = CGPoint(x: fromView.center.x - screenWidth, y: fromView.center.y)
+            toView.center = CGPoint(x: toView.center.x - screenWidth, y: toView.center.y)
+        }) { finished in
+            if finished {
+                fromView.removeFromSuperview()
+                toView.removeFromSuperview()
+                self.tabBarController?.selectedIndex = 2
+                self.view.isUserInteractionEnabled = true
+            }
+        }
     }
 
     // TODO: review technical design on how we should handle dismissing notifications [S.D]

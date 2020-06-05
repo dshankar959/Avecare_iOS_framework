@@ -29,7 +29,7 @@ class EducatorBioTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        educationHeaderLabel.text = "Degrees, Certifications, and Training".uppercased()
+        educationHeaderLabel.text = NSLocalizedString("educator_training_header", comment: "").uppercased()
     }
 
 }

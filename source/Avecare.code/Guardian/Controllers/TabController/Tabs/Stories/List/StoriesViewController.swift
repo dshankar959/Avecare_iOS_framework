@@ -36,9 +36,7 @@ class StoriesListViewController: UIViewController {
         if segue.identifier == R.segue.storiesListViewController.details.identifier,
             let details = R.segue.storiesListViewController.details(segue: segue) {
             details.destination.details = sender as? StoriesDetails
-        }
-
-        if segue.identifier == R.segue.storiesListViewController.subjectList.identifier,
+        } else if segue.identifier == R.segue.storiesListViewController.subjectList.identifier,
             let destination = segue.destination as? SubjectListViewController {
             destination.delegate = self
             destination.dataProvider.allSubjectsIncluded = true
@@ -48,9 +46,7 @@ class StoriesListViewController: UIViewController {
                                                                               height: destination.contentHeight)
             destination.transitioningDelegate = slideInTransitionDelegate
             destination.modalPresentationStyle = .custom
-        }
-
-        if segue.identifier == R.segue.storiesListViewController.educatorDetails.identifier,
+        } else if segue.identifier == R.segue.storiesListViewController.educatorDetails.identifier,
             let destination = segue.destination as? EducatorDetailsViewController {
             destination.selectedEducatorId = sender as? String ?? ""
             destination.direction = .bottom
@@ -62,8 +58,14 @@ class StoriesListViewController: UIViewController {
     }
 
     private func updateScreen() {
+        if let selectedSubject = subjectSelection?.subject {
+            dataProvider.unitIds = Array(selectedSubject.unitIds)
+        } else {
+            dataProvider.unitIds = [String]()
+        }
+
         updateSubjectFilterButton()
-        updateEducators()
+        tableView.reloadData()
     }
 
 
@@ -72,7 +74,7 @@ class StoriesListViewController: UIViewController {
         if let selectedSubject = subjectSelection?.subject {
             titleText =  "\(selectedSubject.firstName) \(selectedSubject.lastName)"
         } else {
-            titleText = "All"
+            titleText = NSLocalizedString("subjectlist_all", comment: "").capitalized
         }
         let titleFont = UIFont.systemFont(ofSize: 16)
         let titleAttributedString = NSMutableAttributedString(string: titleText + "  ", attributes: [NSAttributedString.Key.font: titleFont])
@@ -81,15 +83,6 @@ class StoriesListViewController: UIViewController {
         titleAttributedString.append(chevronAttributedString)
 
         subjectFilterButton.setAttributedTitle(titleAttributedString, for: .normal)
-    }
-
-    private func updateEducators() {
-        if let selectedSubject = subjectSelection?.subject {
-            dataProvider.unitIds = Array(selectedSubject.unitIds)
-        } else {
-            dataProvider.unitIds = [String]()
-        }
-        tableView.reloadData()
     }
 }
 

@@ -31,9 +31,9 @@ class DefaultEducatorsDataProvider: EducatorsDataProvider {
 
     private func filter(for supervisors: [RLMSupervisor], with unitIds: [String]) -> [RLMSupervisor] {
         var result = [RLMSupervisor]()
-        unitIds.forEach { (unitId) in
-            let filterdSupervisors = supervisors.filter { $0.primaryUnitId == unitId }
-            result.append(contentsOf: filterdSupervisors)
+        unitIds.forEach { unitId in
+            let filteredSupervisors = supervisors.filter { $0.primaryUnitId == unitId }
+            result.append(contentsOf: filteredSupervisors)
         }
         return result
     }
@@ -58,23 +58,41 @@ extension SupervisorCollectionViewCellModel {
             titleString = "Ms."
         }
         title = titleString
-        
+
         name = educator.lastName
         photo = educator.photoURL(using: storage)
     }
 }
 
 class DefaultStoriesDataProvider: StoriesDataProvider {
+    private let educators = DefaultEducatorsDataProvider()
+    private let stories = RLMStory.findAll()
+    private let storage = ImageStorageService()
 
-    let educators = DefaultEducatorsDataProvider()
+    private var dataSource = [RLMStory]()
 
     var unitIds = [String]() {
         didSet {
             educators.unitIds = unitIds
+
+            if unitIds.count > 0 {
+                dataSource = filter(for: stories, with: unitIds)
+            } else {
+                dataSource = stories
+            }
         }
     }
 
-    var dataSource: [StoriesTableViewCellModel] = [
+    private func filter(for stories: [RLMStory], with unitIds: [String]) -> [RLMStory] {
+        var result = [RLMStory]()
+        unitIds.forEach { unitId in
+            let filteredStories = stories.filter { $0.unit?.id == unitId }
+            result.append(contentsOf: filteredStories)
+        }
+        return result
+    }
+
+//    var dataSource: [StoriesTableViewCellModel] = [
 //        StoriesTableViewCellModel(title: "Colouring and Fine Motors Skills Development", date: Date(),
 //                details: "1" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage1(),
 //                photoCaption: "photo caption 1"),
@@ -98,11 +116,7 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
 //        StoriesTableViewCellModel(title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit", date: Date(),
 //                details: "6" + R.string.placeholders.lorem_large(), photo: R.image.placeholderImage6(),
 //                photoCaption: "photo caption 6")
-    ]
-
-    var numberOfRows: Int {
-        return dataSource.count
-    }
+//    ]
 
     func numberOfRows(for section: Int) -> Int {
         switch section {
@@ -115,7 +129,7 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
     func model(for indexPath: IndexPath) -> AnyCellViewModel {
         switch indexPath.section {
         case 0: return SupervisorFilterTableViewCellModel(dataProvider: educators)
-        case 1: return dataSource[indexPath.row]
+        case 1: return StoriesTableViewCellModel(with: dataSource[indexPath.row], storage: storage)
         default: fatalError()
         }
     }
@@ -123,12 +137,22 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
     func details(at indexPath: IndexPath) -> StoriesDetails {
         guard indexPath.section == 1 else { fatalError() }
         let parent = dataSource[indexPath.row]
-        let photo: StoriesDetails.Photo? = nil
-//        if let img = parent.photo {
-//            photo = .init(image: img, caption: parent.photoCaption)
-//        } else {
-//            photo = nil
-//        }
-        return StoriesDetails(title: parent.title, description: parent.details, photo: photo)
+        let photo: StoriesDetails.Photo?
+        if let imgURL = parent.photoURL(using: storage) {
+            photo = .init(imageURL: imgURL, caption: parent.photoCaption)
+        } else {
+            photo = nil
+        }
+        return StoriesDetails(title: parent.title, description: parent.body, photo: photo, date: parent.serverLastUpdated)
+    }
+}
+
+extension StoriesTableViewCellModel {
+    init(with story: RLMStory, storage: ImageStorageService) {
+        title = story.title
+        date = story.serverLastUpdated ?? Date()
+        details = story.body
+        photoURL = story.photoURL(using: storage)
+        photoCaption = story.photoCaption
     }
 }

@@ -51,12 +51,14 @@ enum AvecareAPI { // API Services
     case accountInfo
     // MARK: - GUARDIANS
     case guardianDetails(id: String)
-//    case guardianFeed(id: String)
+    case guardianFeed(id: String)
 //    case guardianLogs(id: String)
     case guardianSubjects(id: String)
     // MARK: - INSTITUTIONS
     case institutionDetails(id: String)
 //    case institutionUnits(id: String)
+    // MARK: - MESSEAGES
+    case messages(id: String)
     // MARK: - ORGANIZATION
 //    case organizationList
     case organizationDetails(id: String)
@@ -105,10 +107,13 @@ extension AvecareAPI: TargetType {
         case .accountInfo: return "/accounts"
 
         case .guardianDetails(let id): return "/guardians/\(id)"
+        case .guardianFeed(let id): return "/guardians/\(id)/feed/"
         case .guardianSubjects(let id): return "/guardians/\(id)/subjects"
 
         case .institutionDetails(let id): return "/institutions/\(id)"
 //        case .institutionUnits(let id): return "/institutions/\(id)/units"
+
+        case .messages(let id): return "/messages/\(id)"
 
 //        case .organizationList: return "/organizations"
         case .organizationDetails(let id): return "/organizations/\(id)"
@@ -151,7 +156,7 @@ extension AvecareAPI: TargetType {
              .unitCreateInjury,
              .unitCreateReminder,
              .subjectPublishDailyLog,
-            .unitPublishStory:
+             .unitPublishStory:
             return .post
         default: return .get
         }

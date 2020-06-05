@@ -9,22 +9,26 @@ protocol StoriesDetailsDataSource {
 
 struct StoriesDetails: StoriesDetailsDataSource {
     struct Photo {
-        let image: UIImage
-        let caption: String?
+        let imageURL: URL
+        let caption: String
     }
-    let title: String?
-    let description: String?
+    let title: String
+    let description: String
     let photo: Photo?
+    let date: Date?
 
     func viewModels() -> [AnyCellViewModel] {
         var models = [AnyCellViewModel]()
 
-        if let title = title, let description = description {
-            models.append(StoriesDetailsTitleViewModel(title: title, description: description, date: Date()))
-        }
+        models.append(StoriesDetailsTitleViewModel(title: title,
+                                                   description: description,
+                                                   date: date ?? Date()))
 
-        if let photo = photo {
-            models.append(StoriesDetailsPhotoViewModel(image: photo.image, description: photo.caption))
+        if let photo = photo, photo.imageURL.absoluteString.isFilePath {
+            models.append(
+                StoriesDetailsPhotoViewModel(image: UIImage(contentsOfFile: photo.imageURL.path) ?? UIImage(),
+                                             description: photo.caption)
+            )
         }
 
         return models

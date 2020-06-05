@@ -3,9 +3,9 @@ import UIKit
 
 
 enum AboutDetails: String {
-    case termsAndConditions = "Terms & Conditions"
-    case privacyPolicy = "Privacy Policy"
-    case aboutThisApp = "About This App"
+    case termsAndConditions = "profile_about_details_terms_and_conditions"
+    case privacyPolicy = "profile_about_details_privacy_policy"
+    case aboutThisApp = "profile_about_details_about_this_app"
 }
 
 class AboutDetailsViewController: UIViewController {
@@ -18,7 +18,7 @@ class AboutDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        titleLabel.text = aboutDetails.rawValue
+        titleLabel.text = NSLocalizedString(aboutDetails.rawValue, comment: "")
 
         switch aboutDetails {
         case .aboutThisApp:
