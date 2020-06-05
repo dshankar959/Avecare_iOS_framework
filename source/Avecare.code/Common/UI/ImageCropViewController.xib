@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ImageCropViewController" customModule="educator" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelButton" destination="n60-1Q-cen" id="yST-UO-oAn"/>
+                <outlet property="cropPickerView" destination="50C-ga-MDc" id="V4Y-zO-FWq"/>
+                <outlet property="finishButton" destination="BDB-Oj-xs0" id="avN-qL-kOt"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="50C-ga-MDc" customClass="CropPickerView" customModule="CropPickerView">
+                    <rect key="frame" x="0.0" y="0.0" width="1366" height="1004"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n60-1Q-cen">
+                    <rect key="frame" x="10" y="964" width="48" height="30"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelButtonTouched:" destination="-1" eventType="touchUpInside" id="g3B-Dt-8cx"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDB-Oj-xs0">
+                    <rect key="frame" x="1319" y="964" width="37" height="30"/>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="finishButtonTouched:" destination="-1" eventType="touchUpInside" id="jL1-Bd-D0v"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="50C-ga-MDc" secondAttribute="trailing" id="0Ga-Gg-FcH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BDB-Oj-xs0" secondAttribute="trailing" constant="10" id="Adj-16-F4l"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="50C-ga-MDc" secondAttribute="bottom" id="G58-CC-Ot2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="n60-1Q-cen" secondAttribute="bottom" constant="10" id="NBl-Sm-G3Y"/>
+                <constraint firstItem="n60-1Q-cen" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="NeP-z6-Wab"/>
+                <constraint firstItem="50C-ga-MDc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="egL-d1-Wbo"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BDB-Oj-xs0" secondAttribute="bottom" constant="10" id="j54-vV-jcb"/>
+                <constraint firstItem="50C-ga-MDc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kma-OV-Z3N"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="141" y="114"/>
+        </view>
+    </objects>
+</document>

@@ -58,3 +58,5 @@
 "error_file_transfer_missing_userinfo" = "Missing file after transfer completed.\n";
 "error_file_transfer_empty_file_parameter_title" = "File Error";
 "error_file_transfer_empty_file_parameter_userinfo" = "Empty file parameter.\n Nothing to do.";
+"barbutton_title_cancel" = "Cancel";
+"barbutton_title_done" = "Done";

@@ -359,6 +359,11 @@
 		DC5E990A2475557D0088083C /* EducatorDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5E99012475543F0088083C /* EducatorDetails.storyboard */; };
 		DC5E990C24755B990088083C /* EducatorDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */; };
 		DC70F062246B436800FFD262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
+		DC8B7DFE248A72870000414D /* R.supervisor.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886D9E241932BA0079C080 /* R.supervisor.generated.swift */; };
+		DC8B7E02248A80270000414D /* ImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B7E00248A80270000414D /* ImageCropViewController.swift */; };
+		DC8B7E03248A80270000414D /* ImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B7E00248A80270000414D /* ImageCropViewController.swift */; };
+		DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
+		DC8B7E05248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
 		DCBE4A56247DA9A600F6D90A /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
 		DCC2DDCE247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */; };
 		DCC2DDCF247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */; };
@@ -703,6 +708,8 @@
 		DC5E9905247555720088083C /* EducatorBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorBioTableViewCell.swift; sourceTree = "<group>"; };
 		DC5E9906247555720088083C /* EducatorBioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EducatorBioTableViewCell.xib; sourceTree = "<group>"; };
 		DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorDetailsDataProvider.swift; sourceTree = "<group>"; };
+		DC8B7E00248A80270000414D /* ImageCropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropViewController.swift; sourceTree = "<group>"; };
+		DC8B7E01248A80270000414D /* ImageCropViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCropViewController.xib; sourceTree = "<group>"; };
 		DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMGuardianFeed.swift; sourceTree = "<group>"; };
 		DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
 		DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
@@ -1819,6 +1826,8 @@
 			children = (
 				61547D30177593B6CF614FB4 /* Controls */,
 				6154789AAE52AB3559143DE7 /* Cells */,
+				DC8B7E00248A80270000414D /* ImageCropViewController.swift */,
+				DC8B7E01248A80270000414D /* ImageCropViewController.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -2033,6 +2042,7 @@
 				F67DF815241BFE6800793A9C /* SubjectDetailsNotesView.xib in Resources */,
 				75886DEE241932BA0079C080 /* Notifications.storyboard in Resources */,
 				F65549F624564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf in Resources */,
+				DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */,
 				F67DF81B241BFE6800793A9C /* InfoMessageFormView.xib in Resources */,
 				299B3589241F907E00D6F9A5 /* FormPhotoView.xib in Resources */,
 				F67DF824241BFE6800793A9C /* PickerViewFormView.xib in Resources */,
@@ -2096,6 +2106,7 @@
 				61547AC2A51905EE35445079 /* LogsTimeDetailsTableViewCell.xib in Resources */,
 				6154738976620FC1A5542BED /* LogsPhotoTableViewCell.xib in Resources */,
 				DC4FFA1D247488B00079A27C /* AboutTableViewCell.xib in Resources */,
+				DC8B7E05248A80270000414D /* ImageCropViewController.xib in Resources */,
 				61547F33A9EB29594609704E /* HomeTableViewHeaderView.xib in Resources */,
 				615471C64C68B780700660A5 /* HomeTableViewDisclosureCell.xib in Resources */,
 				DC5E9908247555720088083C /* EducatorBioTableViewCell.xib in Resources */,
@@ -2422,6 +2433,7 @@
 				F67DF80D241BFE6800793A9C /* DetailsNavigationView.swift in Sources */,
 				299B358B241F907E00D6F9A5 /* FormTextView.swift in Sources */,
 				75886D262419327F0079C080 /* AppSettings.swift in Sources */,
+				DC8B7E02248A80270000414D /* ImageCropViewController.swift in Sources */,
 				75886DEF241932BA0079C080 /* NotificationTypeTableViewCellModel.swift in Sources */,
 				75886D542419327F0079C080 /* CGFloat.swift in Sources */,
 				75886D4A2419327F0079C080 /* UITableViewCell.swift in Sources */,
@@ -2534,6 +2546,7 @@
 				75886D4F2419327F0079C080 /* String.swift in Sources */,
 				DC3617F424770B4D004C0B83 /* UserAuthenticateService.swift in Sources */,
 				75886D132419327F0079C080 /* UINVC.swift in Sources */,
+				DC8B7DFE248A72870000414D /* R.supervisor.generated.swift in Sources */,
 				75886D172419327F0079C080 /* UserProfile.swift in Sources */,
 				75886D97241932AB0079C080 /* LogsViewController.swift in Sources */,
 				755EAEAB241ABB6900A6BA4D /* Session.swift in Sources */,
@@ -2590,6 +2603,7 @@
 				75886D452419327F0079C080 /* FileManager.swift in Sources */,
 				75886D272419327F0079C080 /* AppSettings.swift in Sources */,
 				F663BB6D24351187003279B9 /* DailyTask.swift in Sources */,
+				DC8B7E03248A80270000414D /* ImageCropViewController.swift in Sources */,
 				F663BB7424351313003279B9 /* SubjectListTableViewCell.swift in Sources */,
 				DC4FFA1F24748FA80079A27C /* AboutDetailsViewController.swift in Sources */,
 				F663BB77243513AC003279B9 /* SubjectListDataProvider.swift in Sources */,
