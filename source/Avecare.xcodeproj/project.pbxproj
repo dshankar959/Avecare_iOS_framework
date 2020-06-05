@@ -359,7 +359,6 @@
 		DC5E990A2475557D0088083C /* EducatorDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5E99012475543F0088083C /* EducatorDetails.storyboard */; };
 		DC5E990C24755B990088083C /* EducatorDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */; };
 		DC70F062246B436800FFD262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
-		DC8B7DFE248A72870000414D /* R.supervisor.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886D9E241932BA0079C080 /* R.supervisor.generated.swift */; };
 		DC8B7E02248A80270000414D /* ImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B7E00248A80270000414D /* ImageCropViewController.swift */; };
 		DC8B7E03248A80270000414D /* ImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B7E00248A80270000414D /* ImageCropViewController.swift */; };
 		DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
@@ -2546,7 +2545,6 @@
 				75886D4F2419327F0079C080 /* String.swift in Sources */,
 				DC3617F424770B4D004C0B83 /* UserAuthenticateService.swift in Sources */,
 				75886D132419327F0079C080 /* UINVC.swift in Sources */,
-				DC8B7DFE248A72870000414D /* R.supervisor.generated.swift in Sources */,
 				75886D172419327F0079C080 /* UserProfile.swift in Sources */,
 				75886D97241932AB0079C080 /* LogsViewController.swift in Sources */,
 				755EAEAB241ABB6900A6BA4D /* Session.swift in Sources */,

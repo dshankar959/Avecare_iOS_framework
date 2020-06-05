@@ -54,7 +54,7 @@
 "error_network_connection_lost_userinfo" = "No data connection.";
 "error_file_not_found_title" = "File Not Found";
 "error_file_not_found_userinfo" = "The requested file is not found.";
-"error_file_transfer_missing_title" = "🆘 File Error!"
+"error_file_transfer_missing_title" = "🆘 File Error!";
 "error_file_transfer_missing_userinfo" = "Missing file after transfer completed.\n";
 "error_file_transfer_empty_file_parameter_title" = "File Error";
 "error_file_transfer_empty_file_parameter_userinfo" = "Empty file parameter.\n Nothing to do.";
