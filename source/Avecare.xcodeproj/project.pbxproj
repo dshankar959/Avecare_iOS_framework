@@ -1787,6 +1787,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		DCF6C685248ABFF200A802BD /* ImageCrop */ = {
+			isa = PBXGroup;
+			children = (
+				DC8B7E00248A80270000414D /* ImageCropViewController.swift */,
+				DC8B7E01248A80270000414D /* ImageCropViewController.xib */,
+			);
+			path = ImageCrop;
+			sourceTree = "<group>";
+		};
 		DCFFD6FB246DA71B0080DEA6 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1823,10 +1832,9 @@
 		F663BB7D243521AC003279B9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DCF6C685248ABFF200A802BD /* ImageCrop */,
 				61547D30177593B6CF614FB4 /* Controls */,
 				6154789AAE52AB3559143DE7 /* Cells */,
-				DC8B7E00248A80270000414D /* ImageCropViewController.swift */,
-				DC8B7E01248A80270000414D /* ImageCropViewController.xib */,
 			);
 			path = UI;
 			sourceTree = "<group>";
