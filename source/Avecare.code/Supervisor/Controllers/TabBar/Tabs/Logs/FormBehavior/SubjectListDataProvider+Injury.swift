@@ -1,17 +1,26 @@
-import Foundation
 import UIKit
 
+
+
 extension SubjectAccidentReportViewModel {
+
     init(row: RLMLogInjuryRow, isEditable: Bool) {
         icon = UIImage(named: row.iconName)
         iconColor = UIColor(rgb: row.iconColor)
         time = row.time
         self.isEditable = isEditable
     }
+
 }
 
+
 extension SubjectListDataProvider {
-    func viewModel(for row: RLMLogInjuryRow, editable: Bool, at indexPath: IndexPath, updateCallback: @escaping (Date) -> Void) -> SubjectAccidentReportViewModel {
+
+    func viewModel(for row: RLMLogInjuryRow,
+                   editable: Bool,
+                   at indexPath: IndexPath,
+                   updateCallback: @escaping (Date) -> Void) -> SubjectAccidentReportViewModel {
+
         var viewModel = SubjectAccidentReportViewModel(row: row, isEditable: editable)
 
         let picker = UIDatePicker()
@@ -26,6 +35,7 @@ extension SubjectListDataProvider {
             RLMLogInjuryRow.writeTransaction {
                 row.time = picker.date
             }
+
             updateCallback(Date())
             var pickerViewModel = SubjectAccidentReportViewModel.pickerViewModel(from: picker.date)
             pickerViewModel.action = viewModel.action
@@ -34,4 +44,5 @@ extension SubjectListDataProvider {
 
         return viewModel
     }
+
 }

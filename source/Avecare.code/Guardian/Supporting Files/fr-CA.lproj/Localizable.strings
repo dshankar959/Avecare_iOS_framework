@@ -1,10 +1,3 @@
-/* 
-  Localizable.strings
-  Avecare
-
-  Created by stephen on 2020-06-01.
-  Copyright © 2020 Spiria Inc. All rights reserved.
-*/
 "authenticate_signing_in" = "Signing in ...";
 "authenticate_syncing" = "Syncing ...";
 "authenticate_signing_out" = "Signing Out...";
@@ -31,3 +24,32 @@
 "profile_about_details_terms_and_conditions" = "Terms & Conditions";
 "profile_about_details_privacy_policy" = "Privacy Policy";
 "profile_about_details_about_this_app" = "About This App";
+"alert_ok" = "OK";
+"error_default_contact_support" = "Please contact support for further assistance.";
+"error_default_contact_admin" = "Please contact the system administrator.";
+"error_default_try_again" = "Please try again.";
+"error_realm_invalid_row_object_title" =  "🆘 Realm object initialization failure ⁉️";
+"error_realm_invalid_row_object_userinfo" = "Invalid object class was used in ctor";
+"error_auth_empty_credentials_title" = "oops!";
+"error_auth_empty_credentials_userinfo" = "Email or Password cannot be empty\n";
+"error_auth_expired_session_title" = "⚠️ Expired Session";
+"error_auth_expired_session_userinfo" = "Sign-in required.\n";
+"error_auth_user_not_found_title" = "⚠️ User not found";
+"error_auth_user_not_found_userinfo" = "This user has not been registered on this device.\n\n";
+"error_auth_unit_not_found_title" = "⚠️ Unit details not loaded";
+"error_auth_unit_not_found_userinfo" = "Unit details was not loaded.";
+"error_json_failed_map_data_title" =  "🆘 Critical JSON Error ⁉️";
+"error_json_failed_map_data_userinfo" = "Terribly sorry about this.\n";
+"error_json_invalid_row_type_id_title" = "🆘 Critical JSON Error ⁉️";
+"error_json_invalid_row_type_id_userinfo" = "Invalid row type id";
+"error_network_http_code_userinfo" = "Server responded with statusCode: ";
+"error_network_connection_lost_title" = "📶 Network";
+"error_network_connection_lost_userinfo" = "No data connection.";
+"error_file_not_found_title" = "File Not Found";
+"error_file_not_found_userinfo" = "The requested file is not found.";
+"error_file_transfer_missing_title" = "🆘 File Error!";
+"error_file_transfer_missing_userinfo" = "Missing file after transfer completed.\n";
+"error_file_transfer_empty_file_parameter_title" = "File Error";
+"error_file_transfer_empty_file_parameter_userinfo" = "Empty file parameter.\n Nothing to do.";
+"barbutton_title_cancel" = "Cancel";
+"barbutton_title_done" = "Done";

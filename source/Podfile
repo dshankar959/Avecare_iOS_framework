@@ -53,8 +53,8 @@ def common_pods
   # https://github.com/realm/SwiftLint
   # dev. tool.  (not mandatory, but nice to have for best practices)
   # .swiftlint.yml file in root folder contains config parameters
-#  pod 'SwiftLint'
-  pod 'SwiftLint', '~> 0.38.2'
+  pod 'SwiftLint'
+#  pod 'SwiftLint', '~> 0.38.2'
 
   # Add the pod for Firebase Crashlytics
   pod 'Firebase/Crashlytics'
@@ -74,10 +74,6 @@ def common_pods
   # https://github.com/Moya/Moya
   pod 'Moya'    # includes 'Alamofire'
 
-  # Use FontAwesome in your Swift projects
-  # https://github.com/thii/FontAwesome.swift
-#  pod 'FontAwesome.swift'
-
   # A clean and lightweight progress HUD based on SVProgressHUD, converted to Swift with the help of Swiftify.
   # https://github.com/Swiftify-Corp/IHProgressHUD
   #pod 'IHProgressHUD'
@@ -86,7 +82,7 @@ def common_pods
   # A Swift Autolayout DSL for iOS & OS X
   # https://github.com/SnapKit/SnapKit
   pod 'SnapKit'
-	
+
   # DeviceKit is a replacement of UIDevice.
   # https://github.com/dennisweissmann/DeviceKit
   pod 'DeviceKit'
@@ -107,15 +103,13 @@ def common_pods
   # https://github.com/onevcat/Kingfisher
   pod 'Kingfisher'
 
-  # Strong typed, autocompleted resources like images, fonts and segues in Swift projects.
+  # Strong typed, autocompleted resources like images, fonts, and segues in Swift projects.
   # https://github.com/mac-cain13/R.swift
   pod 'R.swift'
 
   # With SegueManager it's easy to programatically perform segues and update the destination view controller.
   # https://github.com/tomlokhorst/SegueManager
   pod 'SegueManager/R.swift'
-
-#  pod 'AXPhotoViewer'
 
   # A multiple image picker for iOS
   # https://github.com/mikaoj/BSImagePicker

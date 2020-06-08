@@ -232,7 +232,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="Qiu-Sq-A4W">
                         <barButtonItem key="backBarButtonItem" title=" " id="1lB-eC-NeN"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="7UQ-wp-rIt">
+                        <barButtonItem key="rightBarButtonItem" id="7UQ-wp-rIt">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="gDx-cP-c6X">
                                 <rect key="frame" x="358" y="4" width="36" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

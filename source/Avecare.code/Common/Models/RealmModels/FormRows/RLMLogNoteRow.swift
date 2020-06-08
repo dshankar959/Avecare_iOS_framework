@@ -1,4 +1,5 @@
 import RealmSwift
+import CocoaLumberjack
 
 
 
@@ -11,6 +12,7 @@ class RLMLogNoteRow: Object, Decodable, FormRowIconProtocol {
 
     @objc dynamic var iconName = ""
     @objc dynamic var iconColor: Int32 = 0
+
     @objc dynamic var title = ""
     @objc dynamic var value: String? = nil
 

@@ -1,8 +1,11 @@
 import UIKit
-import CropPickerView
 import CocoaLumberjack
+import CropPickerView
+
+
 
 class ImageCropViewController: UIViewController {
+
     @IBOutlet weak var cropPickerView: CropPickerView!
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var finishButton: UIButton!
@@ -14,11 +17,14 @@ class ImageCropViewController: UIViewController {
             }
         }
     }
+
     private var resultImage: UIImage?
 
     var onCancel: (() -> Void)?
     var onFinish: ((_ image: UIImage?) -> Void)?
 
+
+    // MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,12 +36,14 @@ class ImageCropViewController: UIViewController {
         finishButton.setTitle(NSLocalizedString("barbutton_title_done", comment: ""), for: .normal)
     }
 
+
     @IBAction func cancelButtonTouched(_ sender: UIButton) {
         if let onCancel = onCancel {
             onCancel()
         }
         dismiss(animated: true, completion: nil)
     }
+
 
     @IBAction func finishButtonTouched(_ sender: UIButton) {
         cropPickerView.crop { (error, image) in
@@ -50,11 +58,19 @@ class ImageCropViewController: UIViewController {
     }
 }
 
+
+
 extension UIViewController {
-    func presentCropPicker(_ cropPicker: ImageCropViewController, animated: Bool = true, cancel: (() -> Void)?, finish: ((UIImage?) -> Void)?, completion: (() -> Void)? = nil) {
+
+    func presentCropPicker(_ cropPicker: ImageCropViewController,
+                           animated: Bool = true,
+                           cancel: (() -> Void)?,
+                           finish: ((UIImage?) -> Void)?,
+                           completion: (() -> Void)? = nil) {
         cropPicker.onCancel = cancel
         cropPicker.onFinish = finish
 
         self.present(cropPicker, animated: animated, completion: completion)
     }
+
 }

@@ -1,10 +1,3 @@
-/* 
-  Localizable.strings
-  Avecare
-
-  Created by stephen on 2020-06-01.
-  Copyright © 2020 Spiria Inc. All rights reserved.
-*/
 "authenticate_signing_in" = "Signing in ...";
 "authenticate_syncing" = "Syncing ...";
 "authenticate_signing_out" = "Signing Out...";

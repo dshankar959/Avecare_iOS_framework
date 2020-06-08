@@ -83,7 +83,7 @@ extension RemindersFormProvider: FormProvider {
         case .loading:
             return Form(viewModels: [])
         case .loaded(let reminders):
-            let left = PickerViewFormViewModel(title: "Select Student", placeholder: "Add a student", accessory: .plus, textValue: nil,
+            let left = PickerViewFormViewModel(title: "Select Child", placeholder: "Add a schild", accessory: .plus, textValue: nil,
                     action: .init(onClick: { [weak self] view in
                         self?.showSubjectPicker()
                     }, inputView: nil, onInput: nil))

@@ -128,6 +128,4 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
         }
     }
 
-
-
 }

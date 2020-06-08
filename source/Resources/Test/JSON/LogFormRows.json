@@ -1,50 +1,90 @@
 [
   {
-    "name": "mood",
+    "name": "Child's Emotion",
     "rowType": 1,
     "properties": {
-      "iconName": "heart-icon",
-      "iconColor": "00B0CA",
-      "title": "Average Mood",
-      "placeholder": "Select Mood",
+      "title": "Child's Emotions",
+      "placeholder": "Select Emotion",
       "options": [
         {
-          "value": 1,
-          "text": "Mood 1"
+          "text": "Happy",
+          "value": 1
         },
         {
-          "value": 2,
-          "text": "Mood 2"
+          "text": "Sad",
+          "value": 2
         },
         {
-          "value": 3,
-          "text": "Mood 3"
+          "text": "Excited",
+          "value": 3
+        },
+        {
+          "text": "Anxious",
+          "value": 4
+        },
+        {
+          "text": "Frustrated",
+          "value": 5
+        },
+        {
+          "text": "Shy",
+          "value": 6
         }
-      ]
+      ],
+      "iconName": "heart-icon",
+      "iconColor": "00B0CA"
+    }
+  },
+  {
+    "name": "Bathroom",
+    "rowType": 1,
+    "properties": {
+      "title": "Bathroom",
+      "placeholder": "Select outcome",
+      "options": [
+        {
+          "text": "Wet",
+          "value": 1
+        },
+        {
+          "text": "Dry",
+          "value": 2
+        },
+        {
+          "text": "BM",
+          "value": 3
+        },
+        {
+          "text": "Pee on toilet seat",
+          "value": 4
+        }
+      ],
+      "iconName": "flag-icon",
+      "iconColor": "00B0CA"
     }
   },
   {
     "name": "Snack",
     "rowType": 3,
     "properties": {
-      "iconName": "apple-icon",
-      "iconColor": "FBD476",
       "title": "Snack",
       "subtitle": "Number of servings eaten:",
       "options": [
         {
-          "value": 1,
-          "text": "1-2"
+          "text": "1-2",
+          "value": 1
         },
         {
-          "value": 2,
-          "text": "3-4"
+          "text": "3-4",
+          "value": 2
         },
         {
-          "value": 3,
-          "text": "5-6"
+          "text": "5-6",
+          "value": 3
         }
-      ]
+      ],
+      "iconName": "apple-icon",
+      "iconColor": "FBD476"
     }
   },
   {
@@ -60,8 +100,6 @@
     "name": "Lunch",
     "rowType": 3,
     "properties": {
-      "iconName": "spoon-icon",
-      "iconColor": "FBD476",
       "title": "Lunch",
       "subtitle": "Number of servings eaten:",
       "options": [
@@ -77,15 +115,15 @@
           "value": 3,
           "text": "5-6"
         }
-      ]
+      ],
+      "iconName": "spoon-icon",
+      "iconColor": "FBD476"
     }
   },
   {
     "name": "Rest",
     "rowType": 3,
     "properties": {
-      "iconName": "cloud-icon",
-      "iconColor": "FBD476",
       "title": "Rest",
       "subtitle": "Select amount of sleep:",
       "options": [
@@ -101,7 +139,9 @@
           "value": 3,
           "text": "2h"
         }
-      ]
+      ],
+      "iconName": "cloud-icon",
+      "iconColor": "FBD476"
     }
   },
   {

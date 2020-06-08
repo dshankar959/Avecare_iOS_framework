@@ -1,6 +1,9 @@
 import UIKit
 
+
+
 class FeedDetailsViewController: UIViewController, IndicatorProtocol {
+
     var feedItemType: FeedItemType?
     var feedItemId: String?
 
@@ -14,6 +17,7 @@ class FeedDetailsViewController: UIViewController, IndicatorProtocol {
     @IBOutlet weak var attachmentButton: UIButton!
 
     private var fileURL: String?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,4 +60,5 @@ class FeedDetailsViewController: UIViewController, IndicatorProtocol {
             destination.attachmentURL = fileURL
         }
     }
+
 }

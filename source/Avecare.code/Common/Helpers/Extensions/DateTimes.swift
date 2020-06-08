@@ -86,15 +86,9 @@ extension Date {
           return formatter
       }
 
-//    static var fullFormatter: DateFormatter {
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS"
-//        return formatter
-//    }
-
     static var timeFormatter: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "hh:mma"
+        formatter.dateFormat = "h:mma"
         return formatter
     }
 
