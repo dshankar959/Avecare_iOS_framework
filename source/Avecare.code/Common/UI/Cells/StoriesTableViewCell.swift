@@ -19,7 +19,6 @@ struct StoriesTableViewCellModel: CellViewModel {
         cell.backgroundColor = isSelected ? R.color.background() : .white
         cell.dateLabel.text = Date.fullMonthDayFormatter.string(from: date)
         cell.titleLabel.text = title
-        
         let service = DocumentService()
         let size = 375 * UIScreen.main.scale
         

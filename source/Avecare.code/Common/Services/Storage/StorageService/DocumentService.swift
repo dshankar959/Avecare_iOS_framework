@@ -26,11 +26,10 @@ struct DocumentService {
         throw NSError(domain: "Error saving image!  (no jpeg data? 🤨)", code: -1)
     }
 
-    func savePDF(_ pdf: PDFDocument, name: String = newUUID) -> URL {
+    func savePDF(_ pdf: PDFDocument, name: String = newUUID) {
         DDLogVerbose("savePDF name: \(name)")
         let pdfURL = directory.appendingPathComponent(name).appendingPathExtension("pdf")
         pdf.write(to: pdfURL)
-        return pdfURL
     }
 
 

@@ -33,22 +33,16 @@ extension StoriesDataProvider {
                 DDLogError("\(error)")
             }
         }
-        
         view.photoImageView.image = UIImage.init(named: "no-pdf-placeholder")
         view.removeButton.isHidden = true
         self.updateEditDate(for: story)
         self.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: false)
-        
     }
 
-
-    
     func showDocumentPicker(from view: PDFThumbView, for story: RLMStory) {
         self.delegate?.didTapPDF(story: story, view: view)
     }
-    
 
-    
     func didPickDocumentsAt(urls: [URL], view: PDFThumbView) {
         guard let url = urls.first else {
             return
@@ -58,7 +52,6 @@ extension StoriesDataProvider {
         let service = DocumentService()
         let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url, atPage: 0)
         let pdf = PDFDocument(url: url)
-        
         // remove previous local pdf
         if let story = selectedStory, let image = image {
             if let fileURL = service.fileURL(name: story.id, type: "pdf") {
@@ -69,20 +62,15 @@ extension StoriesDataProvider {
                 }
             }
             if let pdf = pdf {
-                do {
-                    _ = try service.savePDF(pdf, name: story.id)
-                    view.photoImageView.image = image
-                    view.removeButton.isHidden = false
-                    self.updateEditDate(for: story)
-                    self.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: false)
-                } catch {
-                    DDLogError("\(error)")
-                }
+                
+                service.savePDF(pdf, name: story.id)
+                view.photoImageView.image = image
+                view.removeButton.isHidden = false
+                self.updateEditDate(for: story)
+                self.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: false)
             }
         }
     }
 
-    func documentPickerWasCancelled() {
-        print("CAME HERE")
-    }
+    func documentPickerWasCancelled() {    }
 }
