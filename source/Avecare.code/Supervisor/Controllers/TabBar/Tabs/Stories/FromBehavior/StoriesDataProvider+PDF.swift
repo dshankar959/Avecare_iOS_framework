@@ -13,13 +13,11 @@ extension StoriesDataProvider {
         let service = StorageService()
         let isSubmitted = story.publishState != .local
         let photoRowAction = PDFThumbViewModel.Action( onPDFTap: { [weak self] view in
-            
             if let url = service.fileURL(name: story.id, type: "pdf") {
                 self?.delegate?.gotToPDFDetail(fileUrl: url)
-            } else {
+            } else if !isSubmitted {
                 self?.showDocumentPicker(from: view, for: story)
             }
-            
             }, onPDFRemove: { [weak self] view in
                 self?.removePDFForStory(from: view, for: story)
             })

@@ -8,7 +8,7 @@ struct StorageService {
     let directory: URL
 
     init() {
-        directory = userAppDirectory.appendingPathComponent("images")
+        directory = userAppDirectory.appendingPathComponent("documents")
         _ = FileManager.default.createDirectory(directory)
     }
 

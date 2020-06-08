@@ -4,7 +4,7 @@ import UIKit
 
 struct LogsViewModelFactory {
 
-    static func viewModel(for row: RLMLogRow, storage: ImageStorageService) -> AnyCellViewModel {
+    static func viewModel(for row: RLMLogRow, storage: StorageService) -> AnyCellViewModel {
         switch row.rowType {
         case .option: return viewModel(for: row.option!)
         case .time: return viewModel(for: row.time!)
@@ -31,7 +31,7 @@ struct LogsViewModelFactory {
         return .init(row: row)
     }
 
-    static func viewModel(for row: RLMLogPhotoRow, storage: ImageStorageService) -> LogsPhotoTableViewCellModel {
+    static func viewModel(for row: RLMLogPhotoRow, storage: StorageService) -> LogsPhotoTableViewCellModel {
         return .init(row: row, storage: storage)
     }
 
@@ -68,7 +68,7 @@ extension LogsOptionTableViewCellModel {
 
 extension LogsPhotoTableViewCellModel {
 
-    init(row: RLMLogPhotoRow, storage: ImageStorageService) {
+    init(row: RLMLogPhotoRow, storage: StorageService) {
         if let url = storage.fileURL(name: row.id, type: "jpg") {
             image = UIImage(contentsOfFile: url.path)
         } else {

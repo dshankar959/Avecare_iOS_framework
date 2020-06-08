@@ -17,7 +17,7 @@ protocol SubjectListDataProvider: class {
 class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
     var allSubjectsIncluded: Bool = false
-    private let storage = ImageStorageService()
+    private let storage = StorageService()
 
     init(allSubjectsIncluded: Bool = false) {
         self.allSubjectsIncluded = allSubjectsIncluded
@@ -65,14 +65,14 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
 
 extension SubjectListTableViewCellModel {
-    init(with subject: RLMSubject, storage: ImageStorageService) {
+    init(with subject: RLMSubject, storage: StorageService) {
         title = "\(subject.firstName) \(subject.lastName)"
         photo = subject.photoURL(using: storage)
     }
 }
 
 extension ProfileSubjectImageCollectionViewCellModel {
-    init(with subject: RLMSubject, storage: ImageStorageService) {
+    init(with subject: RLMSubject, storage: StorageService) {
         id = subject.id
         fullName = "\(subject.firstName) \(subject.lastName)"
         photo = subject.photoURL(using: storage)

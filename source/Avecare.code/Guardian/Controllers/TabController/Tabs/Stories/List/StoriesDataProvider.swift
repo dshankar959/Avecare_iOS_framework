@@ -15,7 +15,7 @@ protocol EducatorsDataProvider: class {
 
 class DefaultEducatorsDataProvider: EducatorsDataProvider {
     private let supervisors = RLMSupervisor.findAll()
-    private let storage = ImageStorageService()
+    private let storage = StorageService()
 
     private var dataSource = [RLMSupervisor]()
 
@@ -48,7 +48,7 @@ class DefaultEducatorsDataProvider: EducatorsDataProvider {
 }
 
 extension SupervisorCollectionViewCellModel {
-    init(with educator: RLMSupervisor, storage: ImageStorageService) {
+    init(with educator: RLMSupervisor, storage: StorageService) {
         id = educator.id
 
         let titleString: String
@@ -67,7 +67,7 @@ extension SupervisorCollectionViewCellModel {
 class DefaultStoriesDataProvider: StoriesDataProvider {
     private let educators = DefaultEducatorsDataProvider()
     private let stories = RLMStory.findAll()
-    private let storage = ImageStorageService()
+    private let storage = StorageService()
 
     private var dataSource = [RLMStory]()
 
@@ -148,7 +148,7 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
 }
 
 extension StoriesTableViewCellModel {
-    init(with story: RLMStory, storage: ImageStorageService) {
+    init(with story: RLMStory, storage: StorageService) {
         title = story.title
         date = story.serverLastUpdated ?? Date()
         details = story.body
