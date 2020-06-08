@@ -89,7 +89,7 @@ extension SyncEngine {
                                                 continue
                                         }
                                         do {
-                                            _ = try storage.saveImage(url, name: row.id)
+                                            _ = try storage.saveRemoteFile(url, name: row.id, type: "jpg")
                                         } catch {
                                             DDLogError("Failed to save image: \(url)")
                                         }

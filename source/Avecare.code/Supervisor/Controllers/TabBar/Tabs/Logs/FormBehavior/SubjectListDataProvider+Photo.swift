@@ -11,7 +11,7 @@ extension SubjectDetailsPhotoViewModel {
         title = row.title
         note = row.text
 
-        if let localURL = storage.imageURL(name: row.id,  type: "jpg") {
+        if let localURL = storage.fileURL(name: row.id,  type: "jpg") {
             image = localURL
         }
         self.isEditable = isEditable
@@ -71,7 +71,7 @@ extension SubjectListDataProvider {
                         return
                 }
                 // remove previous local image
-                if let fileURL = service.imageURL(name: row.id,  type: "jpg") {
+                if let fileURL = service.fileURL(name: row.id,  type: "jpg") {
                     do {
                         try service.removeFile(at: fileURL)
                     } catch {

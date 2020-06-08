@@ -14,7 +14,7 @@ extension StoriesDataProvider {
         let isSubmitted = story.publishState != .local
         let photoRowAction = PDFThumbViewModel.Action( onPDFTap: { [weak self] view in
             
-            if let url = service.imageURL(name: story.id, type: "pdf") {
+            if let url = service.fileURL(name: story.id, type: "pdf") {
                 self?.delegate?.gotToPDFDetail(fileUrl: url)
             } else {
                 self?.showDocumentPicker(from: view, for: story)
@@ -28,7 +28,7 @@ extension StoriesDataProvider {
 
     func removePDFForStory(from view: PDFThumbView, for story: RLMStory) {
         let service = ImageStorageService()
-        if let fileURL = service.imageURL(name: story.id, type: "pdf") {
+        if let fileURL = service.fileURL(name: story.id, type: "pdf") {
             do {
                 try service.removeFile(at: fileURL)
             } catch {
@@ -63,7 +63,7 @@ extension StoriesDataProvider {
         
         // remove previous local pdf
         if let story = selectedStory, let image = image {
-            if let fileURL = service.imageURL(name: story.id, type: "pdf") {
+            if let fileURL = service.fileURL(name: story.id, type: "pdf") {
                 do {
                     try service.removeFile(at: fileURL)
                 } catch {

@@ -59,11 +59,11 @@ extension RLMStory {
         > to expire in ~1 hour from receiving the link.
     */
     func photoURL(using storage: ImageStorageService) -> URL? {
-        return storage.imageURL(name: id, type: "jpg")
+        return storage.fileURL(name: id, type: "jpg")
     }
     
     func pdfURL(using storage: ImageStorageService) -> URL? {
-        return storage.imageURL(name:id, type: "pdf")
+        return storage.fileURL(name: id, type: "pdf")
     }
 
 }

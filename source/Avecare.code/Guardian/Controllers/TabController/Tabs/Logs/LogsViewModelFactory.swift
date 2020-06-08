@@ -69,7 +69,7 @@ extension LogsOptionTableViewCellModel {
 extension LogsPhotoTableViewCellModel {
 
     init(row: RLMLogPhotoRow, storage: ImageStorageService) {
-        if let url = storage.imageURL(name: row.id,  type: "jpg") {
+        if let url = storage.imageURL(name: row.id, type: "jpg") {
             image = UIImage(contentsOfFile: url.path)
         } else {
             image = nil

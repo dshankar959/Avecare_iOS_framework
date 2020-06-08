@@ -45,7 +45,7 @@ class RLMSupervisor: RLMDefaults {
             // load and save image during json response decoding synchronously
             if let profilePhoto = try values.decodeIfPresent(String.self, forKey: .profilePhoto),
                let url = URL(string: profilePhoto) {
-                _ = try ImageStorageService().saveImage(url, name: id)
+                _ = try ImageStorageService().saveRemoteFile(url, name: id, type: "jpg")
             }
         } catch {
             DDLogError("JSON Decoding error = \(error)")
@@ -56,7 +56,7 @@ class RLMSupervisor: RLMDefaults {
 
 extension RLMSupervisor {
     func photoURL(using storage: ImageStorageService) -> URL? {
-        return storage.imageURL(name: id, type: "jpg")
+        return storage.fileURL(name: id, type: "jpg")
     }
 }
 
