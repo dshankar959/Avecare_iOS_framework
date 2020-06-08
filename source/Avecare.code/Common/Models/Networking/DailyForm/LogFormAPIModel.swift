@@ -25,7 +25,7 @@ struct LogFormAPIModel {
     }
 
 
-    init(form: RLMLogForm, storage: StorageService) {
+    init(form: RLMLogForm, storage: DocumentService) {
         self.id = form.id
         guard let subjectId = form.subject?.id else {
             fatalError()
@@ -92,7 +92,7 @@ extension LogFormAPIModel: MultipartEncodable {
             fatalError("JSON Encoding error = \(error)")
         }
 
-        let storage = StorageService()
+        let storage = DocumentService()
         logForm.rows.compactMap({ $0.photo }).forEach({
             if let url = storage.fileURL(name: $0.id, type: "jpg") {
                 data.append(.init(provider: .file(url), name: $0.id))

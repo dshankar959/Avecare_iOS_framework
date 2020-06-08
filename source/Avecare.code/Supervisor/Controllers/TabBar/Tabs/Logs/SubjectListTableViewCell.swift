@@ -29,7 +29,7 @@ struct SubjectListTableViewCellModel: CellViewModel {
     let isChecked: Bool
 
 
-    init(subject: RLMSubject, storage: StorageService) {
+    init(subject: RLMSubject, storage: DocumentService) {
         firstName = subject.firstName
         lastName = subject.lastName
         profilePhoto = subject.photoURL(using: storage)

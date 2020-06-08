@@ -20,7 +20,7 @@ struct StoriesTableViewCellModel: CellViewModel {
         cell.dateLabel.text = Date.fullMonthDayFormatter.string(from: date)
         cell.titleLabel.text = title
         
-        let service = StorageService()
+        let service = DocumentService()
         let size = 375 * UIScreen.main.scale
         
         if let url = photoURL, url.absoluteString.isFilePath, let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url , atPage: 0) {

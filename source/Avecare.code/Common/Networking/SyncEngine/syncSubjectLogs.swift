@@ -33,7 +33,7 @@ extension SyncEngine {
 
             var apiResult: Result<[LogFormAPIModel], AppError> = .success([LogFormAPIModel]())
             let operationQueue = OperationQueue()
-            let storage = StorageService()
+            let storage = DocumentService()
 
             let completionOperation = BlockOperation {
                 DDLogDebug("sync completion block")

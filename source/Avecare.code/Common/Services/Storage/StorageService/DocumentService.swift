@@ -3,7 +3,7 @@ import CocoaLumberjack
 import PDFKit
 
 
-struct StorageService {
+struct DocumentService {
 
     let directory: URL
 
@@ -25,7 +25,7 @@ struct StorageService {
         DDLogError("⚠️ Error saving image! 🤨")
         throw NSError(domain: "Error saving image!  (no jpeg data? 🤨)", code: -1)
     }
-    
+
     func savePDF(_ pdf: PDFDocument, name: String = newUUID) -> URL {
         DDLogVerbose("savePDF name: \(name)")
         let pdfURL = directory.appendingPathComponent(name).appendingPathExtension("pdf")

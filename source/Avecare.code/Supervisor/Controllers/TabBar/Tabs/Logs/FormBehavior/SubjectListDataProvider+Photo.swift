@@ -7,7 +7,7 @@ import CropPickerView
 
 extension SubjectDetailsPhotoViewModel {
 
-    init(row: RLMLogPhotoRow, isEditable: Bool, storage: StorageService) {
+    init(row: RLMLogPhotoRow, isEditable: Bool, storage: DocumentService) {
         title = row.title
         note = row.text
 

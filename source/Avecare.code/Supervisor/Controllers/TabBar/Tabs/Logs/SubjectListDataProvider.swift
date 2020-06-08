@@ -43,7 +43,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
     weak var subtitleDateLabel: UILabel?
 
     var dataSource = [RLMSubject]()
-    let imageStorageService = StorageService()
+    let imageStorageService = DocumentService()
 
     var numberOfRows: Int {
         return dataSource.count

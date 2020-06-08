@@ -22,11 +22,11 @@ struct PDFThumbViewModel: CellViewModel {
             cell.onPDFRemove = action?.onPDFRemove
         }
         
-        let service = StorageService()
+        let service = DocumentService()
         let size = 375 * UIScreen.main.scale
         
         cell.removeButton.isHidden = true
-    
+        
         if let photoURL = photoURL {
             let pdfThumbnail = service.getImageForPDF(of: CGSize(width: size, height: size), for: photoURL, atPage: 0)
             if let pdfThumbnail = pdfThumbnail {

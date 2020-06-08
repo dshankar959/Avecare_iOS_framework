@@ -10,7 +10,7 @@ import MobileCoreServices
 extension StoriesDataProvider {
 
     func getPDFThumbViewModel(for story: RLMStory) -> PDFThumbViewModel {
-        let service = StorageService()
+        let service = DocumentService()
         let isSubmitted = story.publishState != .local
         let photoRowAction = PDFThumbViewModel.Action( onPDFTap: { [weak self] view in
             if let url = service.fileURL(name: story.id, type: "pdf") {
@@ -25,7 +25,7 @@ extension StoriesDataProvider {
     }
 
     func removePDFForStory(from view: PDFThumbView, for story: RLMStory) {
-        let service = StorageService()
+        let service = DocumentService()
         if let fileURL = service.fileURL(name: story.id, type: "pdf") {
             do {
                 try service.removeFile(at: fileURL)
@@ -55,7 +55,7 @@ extension StoriesDataProvider {
         }
         
         let size = 375 * UIScreen.main.scale
-        let service = StorageService()
+        let service = DocumentService()
         let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url, atPage: 0)
         let pdf = PDFDocument(url: url)
         

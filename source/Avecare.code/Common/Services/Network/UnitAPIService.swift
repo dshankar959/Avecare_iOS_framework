@@ -163,7 +163,7 @@ struct UnitAPIService {
             case .success(let response):
                 do {
                     let mappedResponse = try response.map(APIPaginatedResponse<PublishStoryResponseModel>.self)
-                    let storage = StorageService()
+                    let storage = DocumentService()
                     var stories = [RLMStory]()
                     for model in mappedResponse.results {
                         stories.append(model.story)
