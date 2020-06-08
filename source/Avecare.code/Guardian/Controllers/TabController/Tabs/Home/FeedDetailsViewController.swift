@@ -34,6 +34,8 @@ class FeedDetailsViewController: UIViewController, IndicatorProtocol {
                 if let error = error {
                     self.showErrorAlert(error)
                 } else if let message = message {
+                    self.senderNameLabel.text = message.header
+                    self.senderCategoryLabel.text = nil // Hide this until design is fixed
                     self.titleLabel.text = message.title
 
                     if let serverLastUpdated = message.serverLastUpdated {

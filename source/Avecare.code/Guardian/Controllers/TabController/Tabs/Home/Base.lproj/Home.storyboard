@@ -147,8 +147,8 @@
                                                             <constraint firstAttribute="height" constant="30" id="hWi-ej-NAz"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HAMILTON - WENTWORTH" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIH-4B-fav">
-                                                        <rect key="frame" x="143" y="15" width="233" height="15"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HAMILTON - WENTWORTH" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIH-4B-fav">
+                                                        <rect key="frame" x="143" y="15" width="233" height="14.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" name="LightText4"/>
                                                         <nil key="highlightedColor"/>
