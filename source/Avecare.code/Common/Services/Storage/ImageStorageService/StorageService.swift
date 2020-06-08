@@ -3,7 +3,7 @@ import CocoaLumberjack
 import PDFKit
 
 
-struct ImageStorageService {
+struct StorageService {
 
     let directory: URL
 
