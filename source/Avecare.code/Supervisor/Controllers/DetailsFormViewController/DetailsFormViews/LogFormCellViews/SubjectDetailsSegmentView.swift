@@ -1,5 +1,36 @@
-import Foundation
 import UIKit
+
+
+
+class SubjectDetailsSegmentView: BaseXibView {
+
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var selectedOptionButton: UIButton!
+
+    @IBOutlet weak var segmentDescriptionLabel: UILabel!
+    @IBOutlet weak var segmentControl: UISegmentedControl!
+
+    var onClick: ((SubjectDetailsSegmentView) -> Void)?
+    var onSegmentChange: ((SubjectDetailsSegmentView, Int) -> Void)?
+
+    override func setup() {
+        super.setup()
+
+        iconImageView.layer.masksToBounds = true
+        iconImageView.layer.cornerRadius = 12
+    }
+
+    @IBAction func didChangeSegmentControlValue(_ sender: UISegmentedControl) {
+        onSegmentChange?(self, sender.selectedSegmentIndex)
+    }
+
+    @IBAction func didClickOptionButton(_ sender: UIButton) {
+        onClick?(self)
+    }
+
+}
+
 
 struct SubjectDetailsSegmentViewModel: CellViewModel {
     typealias CellType = SubjectDetailsSegmentView
@@ -44,34 +75,6 @@ struct SubjectDetailsSegmentViewModel: CellViewModel {
         } else {
             cell.segmentControl.isUserInteractionEnabled = false
         }
-
-    }
-}
-
-
-class SubjectDetailsSegmentView: BaseXibView {
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var selectedOptionButton: UIButton!
-
-    @IBOutlet weak var segmentDescriptionLabel: UILabel!
-    @IBOutlet weak var segmentControl: UISegmentedControl!
-
-    var onClick: ((SubjectDetailsSegmentView) -> Void)?
-    var onSegmentChange: ((SubjectDetailsSegmentView, Int) -> Void)?
-
-    override func setup() {
-        super.setup()
-
-        iconImageView.layer.masksToBounds = true
-        iconImageView.layer.cornerRadius = 12
     }
 
-    @IBAction func didChangeSegmentControlValue(_ sender: UISegmentedControl) {
-        onSegmentChange?(self, sender.selectedSegmentIndex)
-    }
-
-    @IBAction func didClickOptionButton(_ sender: UIButton) {
-        onClick?(self)
-    }
 }

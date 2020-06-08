@@ -15,7 +15,7 @@ class LoginViewController: UIViewController, IndicatorProtocol {
         #if DEBUG
         loginField?.text = "supervisor@example.net"
 
-        loginField?.text = "535cc_Room_100@avecare.com" // School Age
+//        loginField?.text = "535cc_Room_100@avecare.com" // School Age
 //        loginField?.text = "535cc_Room_200@avecare.com" // Preschool
 //        loginField?.text = "535cc_Room_300@avecare.com" // Toddler
 //        loginField?.text = "535cc_Room_400@avecare.com" // Kindergarten

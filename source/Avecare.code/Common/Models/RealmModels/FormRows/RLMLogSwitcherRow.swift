@@ -46,6 +46,7 @@ class RLMLogSwitcherRow: Object, Decodable, FormRowIconProtocol {
         if let options = try container.decodeIfPresent([RLMOptionValue].self, forKey: .options) {
             self.options.append(objectsIn: options)
         }
+
         if let value = try container.decodeIfPresent(Int.self, forKey: .selectedValue) {
             selectedValue = value
         } else if let value = options.first?.value {
@@ -58,6 +59,7 @@ class RLMLogSwitcherRow: Object, Decodable, FormRowIconProtocol {
 }
 
 extension RLMLogSwitcherRow: Encodable {
+
     func encode(to encoder: Encoder) throws {
         try encodeIcon(to: encoder)
 
@@ -74,11 +76,14 @@ extension RLMLogSwitcherRow: Encodable {
             try optionsContainer.encode(option)
         }
     }
+
 }
 
 extension RLMLogSwitcherRow: DataProvider, RLMCleanable {
+
     func clean() {
         RLMOptionValue.deleteAll(objects: Array(options))
         delete()
     }
+
 }

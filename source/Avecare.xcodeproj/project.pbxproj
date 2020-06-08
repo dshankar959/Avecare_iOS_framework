@@ -250,8 +250,6 @@
 		75886DF8241932BA0079C080 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DCD241932BA0079C080 /* DefaultTableViewCell.swift */; };
 		75886DF9241932BA0079C080 /* LeftSideNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DCF241932BA0079C080 /* LeftSideNavigationBarView.swift */; };
 		75886DFA241932BA0079C080 /* LeftSideNavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75886DD0241932BA0079C080 /* LeftSideNavigationBarView.xib */; };
-		75886DFF241932CC0079C080 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DFE241932CC0079C080 /* Theme.swift */; };
-		75886E00241932CC0079C080 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DFE241932CC0079C080 /* Theme.swift */; };
 		75D62235245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
 		75D62236245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
 		75D7FF5C2470FC6F0002E1F9 /* LogFormAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615473C479A061F759D2F5FC /* LogFormAPIModel.swift */; };
@@ -363,6 +361,10 @@
 		DC5E990A2475557D0088083C /* EducatorDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5E99012475543F0088083C /* EducatorDetails.storyboard */; };
 		DC5E990C24755B990088083C /* EducatorDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */; };
 		DC70F062246B436800FFD262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
+		DC8B7E02248A80270000414D /* ImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B7E00248A80270000414D /* ImageCropViewController.swift */; };
+		DC8B7E03248A80270000414D /* ImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B7E00248A80270000414D /* ImageCropViewController.swift */; };
+		DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
+		DC8B7E05248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
 		DCBE4A56247DA9A600F6D90A /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
 		DCC2DDCE247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */; };
 		DCC2DDCF247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */; };
@@ -506,12 +508,10 @@
 		61547BF984C577F414B32894 /* TimeRangePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRangePickerView.swift; sourceTree = "<group>"; };
 		61547C17CC0E23426250CCAD /* Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Closure.swift; sourceTree = "<group>"; };
 		61547C3AB951F69EB4C23C1E /* SubjectListDataProvider+Subtitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Subtitle.swift"; sourceTree = "<group>"; };
-		61547C4449BE6B0CE9311214 /* ApplicationCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCore.swift; sourceTree = "<group>"; };
 		61547C4E1BD0B55D3EC3943A /* HomeTableVIewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableVIewHeaderView.swift; sourceTree = "<group>"; };
 		61547C86A6589BD1A80D59D6 /* StoriesDataProvider+Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoriesDataProvider+Title.swift"; sourceTree = "<group>"; };
 		61547CBAC0180C2D2092DD1A /* UnitActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitActivity.swift; sourceTree = "<group>"; };
 		61547CE19B2A59BB3A73A52C /* syncOrganizationTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncOrganizationTemplates.swift; sourceTree = "<group>"; };
-		61547D3A3033436EF791235D /* ApplicationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		61547D432767A42B571EA22F /* StoriesDataProvider+Subtitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoriesDataProvider+Subtitle.swift"; sourceTree = "<group>"; };
 		61547D53A60161097C2E858F /* HomeTableViewDisclosureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewDisclosureCell.xib; sourceTree = "<group>"; };
 		61547D63D76EA934FBC56A06 /* SubjectListDataProvider+Note.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Note.swift"; sourceTree = "<group>"; };
@@ -619,7 +619,6 @@
 		75886DCD241932BA0079C080 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
 		75886DCF241932BA0079C080 /* LeftSideNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideNavigationBarView.swift; sourceTree = "<group>"; };
 		75886DD0241932BA0079C080 /* LeftSideNavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftSideNavigationBarView.xib; sourceTree = "<group>"; };
-		75886DFE241932CC0079C080 /* Theme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		75D62234245B14480032F53D /* RLMInstitution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMInstitution.swift; sourceTree = "<group>"; };
 		75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMDefaults.swift; sourceTree = "<group>"; };
 		75EB59B22461858700E077E5 /* RLMLogTimeRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMLogTimeRow.swift; sourceTree = "<group>"; };
@@ -711,6 +710,8 @@
 		DC5E9905247555720088083C /* EducatorBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorBioTableViewCell.swift; sourceTree = "<group>"; };
 		DC5E9906247555720088083C /* EducatorBioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EducatorBioTableViewCell.xib; sourceTree = "<group>"; };
 		DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorDetailsDataProvider.swift; sourceTree = "<group>"; };
+		DC8B7E00248A80270000414D /* ImageCropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropViewController.swift; sourceTree = "<group>"; };
+		DC8B7E01248A80270000414D /* ImageCropViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCropViewController.xib; sourceTree = "<group>"; };
 		DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMGuardianFeed.swift; sourceTree = "<group>"; };
 		DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
 		DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
@@ -973,15 +974,6 @@
 			path = FormBehavior;
 			sourceTree = "<group>";
 		};
-		615474D5BD62886F48FC9FAE /* AppDelegate */ = {
-			isa = PBXGroup;
-			children = (
-				61547D3A3033436EF791235D /* ApplicationService.swift */,
-				61547C4449BE6B0CE9311214 /* ApplicationCore.swift */,
-			);
-			path = AppDelegate;
-			sourceTree = "<group>";
-		};
 		615475787923B39A7F6909BD /* ImageStorageService */ = {
 			isa = PBXGroup;
 			children = (
@@ -1161,7 +1153,6 @@
 		7538FBFC23DB90B800A330A4 = {
 			isa = PBXGroup;
 			children = (
-				75886DFD241932CC0079C080 /* _Stash */,
 				75886CC62419327F0079C080 /* Common */,
 				75886D9C241932BA0079C080 /* Supervisor */,
 				75886D6A241932AB0079C080 /* Guardian */,
@@ -1666,16 +1657,6 @@
 			path = LeftSideNavigationBar;
 			sourceTree = "<group>";
 		};
-		75886DFD241932CC0079C080 /* _Stash */ = {
-			isa = PBXGroup;
-			children = (
-				75886DFE241932CC0079C080 /* Theme.swift */,
-				615474D5BD62886F48FC9FAE /* AppDelegate */,
-			);
-			name = _Stash;
-			path = Avecare.code/_Stash;
-			sourceTree = "<group>";
-		};
 		75EB59822461839D00E077E5 /* SyncEngine */ = {
 			isa = PBXGroup;
 			children = (
@@ -1793,6 +1774,15 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		DCF6C685248ABFF200A802BD /* ImageCrop */ = {
+			isa = PBXGroup;
+			children = (
+				DC8B7E00248A80270000414D /* ImageCropViewController.swift */,
+				DC8B7E01248A80270000414D /* ImageCropViewController.xib */,
+			);
+			path = ImageCrop;
+			sourceTree = "<group>";
+		};
 		DCFFD6FB246DA71B0080DEA6 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -1829,6 +1819,7 @@
 		F663BB7D243521AC003279B9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				DCF6C685248ABFF200A802BD /* ImageCrop */,
 				61547D30177593B6CF614FB4 /* Controls */,
 				6154789AAE52AB3559143DE7 /* Cells */,
 			);
@@ -2045,6 +2036,7 @@
 				F67DF815241BFE6800793A9C /* SubjectDetailsNotesView.xib in Resources */,
 				75886DEE241932BA0079C080 /* Notifications.storyboard in Resources */,
 				F65549F624564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf in Resources */,
+				DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */,
 				F67DF81B241BFE6800793A9C /* InfoMessageFormView.xib in Resources */,
 				299B3589241F907E00D6F9A5 /* FormPhotoView.xib in Resources */,
 				F67DF824241BFE6800793A9C /* PickerViewFormView.xib in Resources */,
@@ -2109,6 +2101,7 @@
 				61547AC2A51905EE35445079 /* LogsTimeDetailsTableViewCell.xib in Resources */,
 				6154738976620FC1A5542BED /* LogsPhotoTableViewCell.xib in Resources */,
 				DC4FFA1D247488B00079A27C /* AboutTableViewCell.xib in Resources */,
+				DC8B7E05248A80270000414D /* ImageCropViewController.xib in Resources */,
 				61547F33A9EB29594609704E /* HomeTableViewHeaderView.xib in Resources */,
 				615471C64C68B780700660A5 /* HomeTableViewDisclosureCell.xib in Resources */,
 				DC5E9908247555720088083C /* EducatorBioTableViewCell.xib in Resources */,
@@ -2212,7 +2205,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug(Beta)\" ]; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\nfi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug(Beta)\" || \"${CONFIGURATION}\" != \"Debug(QA)\" ]; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\nfi\n";
 		};
 		754E1EA0243648BB00C8FD30 /* Firebase Analytics  (GoogleService-Info.plist) */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2248,7 +2241,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug(Beta)\" ]; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\nfi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" != \"Debug(Beta)\" || \"${CONFIGURATION}\" != \"Debug(QA)\" ]; then\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\nfi\n";
 		};
 		754E1EA3243648CB00C8FD30 /* Firebase Analytics  (GoogleService-Info.plist) */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2388,7 +2381,6 @@
 				DCFFD6F6246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */,
 				75E2EBFA246C1DDD00A3D51F /* RLMDefaults.swift in Sources */,
 				75886DEB241932BA0079C080 /* LogsSideViewController.swift in Sources */,
-				75886DFF241932CC0079C080 /* Theme.swift in Sources */,
 				DC05B3CE247C45000014779D /* PanningInteractionController.swift in Sources */,
 				75886DF2241932BA0079C080 /* SupervisorTabBarController.swift in Sources */,
 				75886D0E2419327F0079C080 /* AvecareAPI+sampleData.swift in Sources */,
@@ -2437,6 +2429,7 @@
 				F67DF80D241BFE6800793A9C /* DetailsNavigationView.swift in Sources */,
 				299B358B241F907E00D6F9A5 /* FormTextView.swift in Sources */,
 				75886D262419327F0079C080 /* AppSettings.swift in Sources */,
+				DC8B7E02248A80270000414D /* ImageCropViewController.swift in Sources */,
 				75886DEF241932BA0079C080 /* NotificationTypeTableViewCellModel.swift in Sources */,
 				75886D542419327F0079C080 /* CGFloat.swift in Sources */,
 				75886D4A2419327F0079C080 /* UITableViewCell.swift in Sources */,
@@ -2606,6 +2599,7 @@
 				75886D452419327F0079C080 /* FileManager.swift in Sources */,
 				75886D272419327F0079C080 /* AppSettings.swift in Sources */,
 				F663BB6D24351187003279B9 /* DailyTask.swift in Sources */,
+				DC8B7E03248A80270000414D /* ImageCropViewController.swift in Sources */,
 				F663BB7424351313003279B9 /* SubjectListTableViewCell.swift in Sources */,
 				DC4FFA1F24748FA80079A27C /* AboutDetailsViewController.swift in Sources */,
 				F663BB77243513AC003279B9 /* SubjectListDataProvider.swift in Sources */,
@@ -2617,7 +2611,6 @@
 				75886D4B2419327F0079C080 /* UITableViewCell.swift in Sources */,
 				75886D512419327F0079C080 /* CGPoint.swift in Sources */,
 				75886D0D2419327F0079C080 /* AvecareAPI.swift in Sources */,
-				75886E00241932CC0079C080 /* Theme.swift in Sources */,
 				F6A5E13D2444DE8D00FD77B6 /* SingleValuePickerView.swift in Sources */,
 				75886D1B2419327F0079C080 /* Servers.swift in Sources */,
 				75716F85246B9F28002B049C /* UINavigationController.swift in Sources */,

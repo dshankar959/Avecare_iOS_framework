@@ -2,7 +2,7 @@ import UIKit
 import BSImagePicker
 import Photos
 import CocoaLumberjack
-
+import CropPickerView
 
 
 extension SubjectDetailsPhotoViewModel {
@@ -59,40 +59,46 @@ extension SubjectListDataProvider {
                 return
             }
 
-            // FIXME: setup size if needed
-            let size = 375 * UIScreen.main.scale
             PHImageManager.default().requestImage(for: asset,
-                                                  targetSize: CGSize(width: size, height: size),
+                                                  targetSize: PHImageManagerMaximumSize,
                                                   contentMode: .aspectFit,
-                                                  options: nil) { [weak self] image, info in
+                                                  options: nil) { [weak self] (image, info) in
 
                 guard !((info?[PHImageResultIsDegradedKey] as? Bool) ?? false),
                     let image = image, let service = self?.imageStorageService else {
                         return
                 }
-                // remove previous local image
-                if let fileURL = service.fileURL(name: row.id,  type: "jpg") {
+
+                let cropPicker = ImageCropViewController()
+                cropPicker.modalPresentationStyle = .currentContext
+                cropPicker.image = image
+
+                self?.delegate?.presentCropPicker(cropPicker, cancel: nil, finish: { image in
+                    guard let image = image else {
+                        return
+                    }
+                    // remove previous local image
+                    if let fileURL = service.fileURL(name: row.id,  type: "jpg") {
+                        do {
+                            try service.removeFile(at: fileURL)
+                        } catch {
+                            DDLogError("\(error)")
+                        }
+                    }
+
                     do {
-                        try service.removeFile(at: fileURL)
+                        // save image locally
+                        let url = try service.saveImage(image, name: row.id)
+                        // update form client date
+                        updateCallback(Date())
+                        // update UI
+                        view.setImage(url)
+
                     } catch {
                         DDLogError("\(error)")
                     }
-                }
-
-                do {
-                    // save image locally
-                    let url = try service.saveImage(image, name: row.id)
-                    // update form client date
-                    updateCallback(Date())
-                    // update UI
-                    view.setImage(url)
-
-                } catch {
-                    DDLogError("\(error)")
-                }
+                })
             }
         })
-
     }
-
 }

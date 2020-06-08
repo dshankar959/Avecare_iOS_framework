@@ -44,6 +44,7 @@ class HomeViewController: UIViewController, IndicatorProtocol {
             if let error = error {
                 self.showErrorAlert(error)
             }
+            self.dataProvider.filterDataSource(with: self.subjectSelection?.subject?.id)
             self.updateScreen()
         }
     }
