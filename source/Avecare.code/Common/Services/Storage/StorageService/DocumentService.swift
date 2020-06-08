@@ -64,11 +64,10 @@ struct DocumentService {
 
         return imageURL
     }
-    
+
     public func getImageForPDF(of thumbnailSize: CGSize, for documentUrl: URL, atPage pageIndex: Int) -> UIImage? {
                let pdfDocument = PDFDocument(url: documentUrl)
                let pdfDocumentPage = pdfDocument?.page(at: pageIndex)
                return pdfDocumentPage?.thumbnail(of: thumbnailSize, for: PDFDisplayBox.trimBox)
-        
     }
 }
