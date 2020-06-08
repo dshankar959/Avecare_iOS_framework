@@ -7,13 +7,13 @@ struct PublishStoryRequestModel {
 
     let unitId: String
     let story: RLMStory
-    let storage: ImageStorageService
+    let storage: StorageService
 
     private enum CodingKeys: String, CodingKey {
         case id, story
     }
 
-    init(unitId: String, story: RLMStory, storage: ImageStorageService) {
+    init(unitId: String, story: RLMStory, storage: StorageService) {
         self.story = story
         self.unitId = unitId
         self.storage = storage

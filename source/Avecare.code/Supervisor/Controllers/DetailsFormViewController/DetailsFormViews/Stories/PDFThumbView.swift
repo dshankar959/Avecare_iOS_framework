@@ -19,7 +19,7 @@ struct PDFThumbViewModel: CellViewModel {
             cell.onPDFTap = action?.onPDFTap
             cell.onPDFRemove = action?.onPDFRemove
         }
-        let service = ImageStorageService()
+        let service = StorageService()
         let size = 375 * UIScreen.main.scale
         cell.removeButton.isHidden = true
         if let photoURL = photoURL {

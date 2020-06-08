@@ -3,7 +3,7 @@ import UIKit
 
 
 extension SubjectPickerTableViewCellModel {
-    init(subject: RLMSubject, storage: ImageStorageService, isSelected: Bool) {
+    init(subject: RLMSubject, storage: StorageService, isSelected: Bool) {
         self.profilePhotoURL = subject.photoURL(using: storage)
         self.isSelected = isSelected
         self.subjectName = "\(subject.firstName), \(subject.lastName)"
@@ -15,7 +15,7 @@ class SubjectPickerViewController: UIViewController {
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
 
-    let storage = ImageStorageService()
+    let storage = StorageService()
 
     var onDone: (([RLMSubject]) -> Void)?
 

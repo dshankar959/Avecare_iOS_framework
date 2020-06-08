@@ -58,11 +58,11 @@ extension RLMStory {
         > we will need to immediately also sync it down locally.  As the url links from the server are set
         > to expire in ~1 hour from receiving the link.
     */
-    func photoURL(using storage: ImageStorageService) -> URL? {
+    func photoURL(using storage: StorageService) -> URL? {
         return storage.fileURL(name: id, type: "jpg")
     }
     
-    func pdfURL(using storage: ImageStorageService) -> URL? {
+    func pdfURL(using storage: StorageService) -> URL? {
         return storage.fileURL(name: id, type: "pdf")
     }
 

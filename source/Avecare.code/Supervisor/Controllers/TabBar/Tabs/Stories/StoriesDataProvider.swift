@@ -5,7 +5,7 @@ import CocoaLumberjack
 
 extension StoriesTableViewCellModel {
 
-    init(story: RLMStory, storage: ImageStorageService) {
+    init(story: RLMStory, storage: StorageService) {
         title = story.title
         details = story.body
         photoURL = story.pdfURL(using: storage)
@@ -55,7 +55,7 @@ class StoriesDataProvider: StoriesDataProviderIO {
     var delegate: StoriesDataProviderDelegate?
 
     var dataSource = [RLMStory]()
-    let imageStorageService = ImageStorageService()
+    let imageStorageService = StorageService()
 
 
     func fetchAll() {
