@@ -19,9 +19,12 @@ struct StoriesTableViewCellModel: CellViewModel {
         cell.backgroundColor = isSelected ? R.color.background() : .white
         cell.dateLabel.text = Date.fullMonthDayFormatter.string(from: date)
         cell.titleLabel.text = title
-
-        if let url = photoURL, url.absoluteString.isFilePath {
-            cell.photoImageView.image = UIImage(contentsOfFile: url.path)
+        
+        let service = ImageStorageService()
+        let size = 375 * UIScreen.main.scale
+        
+        if let url = photoURL, url.absoluteString.isFilePath, let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url , atPage: 0) {
+            cell.photoImageView.image = image
         } else {
             cell.photoImageView.kf.setImage(with: photoURL)
         }

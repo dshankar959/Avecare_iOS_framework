@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6bL-VT-jm1">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="6bL-VT-jm1">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -55,11 +55,68 @@
                     <size key="freeformSize" width="400" height="600"/>
                     <connections>
                         <outlet property="tableView" destination="uWp-Lk-3mS" id="gtW-oT-Nlg"/>
+                        <segue destination="1BJ-xr-72L" kind="presentation" identifier="PDFOpenView" id="ePF-Wg-H6M"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="og0-Qd-gkW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-175.36231884057972" y="-619.41964285714278"/>
+        </scene>
+        <!--Iew Controller-->
+        <scene sceneID="Zpb-3Y-JGa">
+            <objects>
+                <viewController id="1BJ-xr-72L" customClass="PDFVIewController" customModule="educator" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="X6q-Ex-gdR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbB-LC-Xr4">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29H-0u-Anf">
+                                        <rect key="frame" x="0.0" y="44" width="414" height="764"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cQf-HQ-72j">
+                                        <rect key="frame" x="360" y="0.0" width="44" height="44"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="orn-6h-Gvm"/>
+                                            <constraint firstAttribute="width" constant="44" id="otR-lZ-oiq"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <state key="normal" title="Done"/>
+                                        <connections>
+                                            <action selector="goBackWithSender:" destination="1BJ-xr-72L" eventType="touchUpInside" id="qQj-57-U8e"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="cQf-HQ-72j" secondAttribute="trailing" constant="10" id="3tL-Ec-7Dd"/>
+                                    <constraint firstItem="29H-0u-Anf" firstAttribute="top" secondItem="cQf-HQ-72j" secondAttribute="bottom" id="CQ9-9j-ud9"/>
+                                    <constraint firstItem="29H-0u-Anf" firstAttribute="leading" secondItem="dbB-LC-Xr4" secondAttribute="leading" id="EfR-p1-6g0"/>
+                                    <constraint firstAttribute="bottom" secondItem="29H-0u-Anf" secondAttribute="bottom" id="Pm2-23-26C"/>
+                                    <constraint firstAttribute="trailing" secondItem="29H-0u-Anf" secondAttribute="trailing" id="vgH-PL-Ksc"/>
+                                    <constraint firstItem="cQf-HQ-72j" firstAttribute="top" secondItem="dbB-LC-Xr4" secondAttribute="top" id="vwX-Rb-z7s"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="dbB-LC-Xr4" firstAttribute="leading" secondItem="5HS-Ls-3Oi" secondAttribute="leading" id="Dha-pQ-u8u"/>
+                            <constraint firstItem="dbB-LC-Xr4" firstAttribute="top" secondItem="5HS-Ls-3Oi" secondAttribute="top" id="YnU-UC-Tmc"/>
+                            <constraint firstItem="5HS-Ls-3Oi" firstAttribute="bottom" secondItem="dbB-LC-Xr4" secondAttribute="bottom" id="ZlG-Vi-Oet"/>
+                            <constraint firstItem="5HS-Ls-3Oi" firstAttribute="trailing" secondItem="dbB-LC-Xr4" secondAttribute="trailing" id="b9F-wF-Zj2"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="5HS-Ls-3Oi"/>
+                    </view>
+                    <connections>
+                        <outlet property="innerView" destination="29H-0u-Anf" id="V07-Jc-ezL"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fKr-UH-amY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="660.86956521739137" y="-666.29464285714278"/>
         </scene>
     </scenes>
 </document>

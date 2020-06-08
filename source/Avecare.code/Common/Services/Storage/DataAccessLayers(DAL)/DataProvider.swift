@@ -261,6 +261,26 @@ extension DataProvider where Self: Object {
 
         return sortedObjects
     }
+    
+    static func sortObjectsByLastUpdatedDescending<T: RLMDefaults>(_ objects: [T]) -> [T] {
+        if objects.isEmpty {
+            return []
+        }
+
+        let sortedObjects = objects.sorted(by: {
+            // Filter and sort each object separately.
+            let objDate0: Date? = filterOptionalsWithLargeNil(lhs: $0.serverLastUpdated, rhs: $0.clientLastUpdated)
+            let objDate1: Date? = filterOptionalsWithLargeNil(lhs: $1.serverLastUpdated, rhs: $1.clientLastUpdated)
+
+            // Final comparison.
+            guard let finalDate0 = objDate0 else { return false }
+            guard let finalDate1 = objDate1 else { return false }
+
+            return finalDate0.compare(finalDate1) == .orderedDescending
+        })
+
+        return sortedObjects
+    }
 
     // fyi ref: @Martin R, https://stackoverflow.com/a/53427282/7599
     private static func filterOptionalsWithLargeNil<T: Comparable>(lhs: T?, rhs: T?) -> T? {

@@ -73,7 +73,7 @@ class RLMSubject: RLMDefaults {
 extension RLMSubject {
 
     func photoURL(using storage: ImageStorageService) -> URL? {
-        return storage.imageURL(name: id)
+        return storage.imageURL(name: id, type: "jpg")
     }
 
 }

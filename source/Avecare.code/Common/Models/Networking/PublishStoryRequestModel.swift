@@ -34,7 +34,7 @@ extension PublishStoryRequestModel: MultipartEncodable {
             DDLogError("\(error)")
         }
 
-        if let url = story.photoURL(using: storage) {
+        if let url = story.pdfURL(using: storage) {
             data.append(.init(provider: .file(url), name: story.id))
         }
         return data

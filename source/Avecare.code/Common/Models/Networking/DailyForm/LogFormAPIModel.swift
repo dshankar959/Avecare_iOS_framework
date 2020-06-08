@@ -94,7 +94,7 @@ extension LogFormAPIModel: MultipartEncodable {
 
         let storage = ImageStorageService()
         logForm.rows.compactMap({ $0.photo }).forEach({
-            if let url = storage.imageURL(name: $0.id) {
+            if let url = storage.imageURL(name: $0.id, type: "jpg") {
                 data.append(.init(provider: .file(url), name: $0.id))
             }
         })

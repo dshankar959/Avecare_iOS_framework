@@ -315,6 +315,12 @@
 		75EB5A2A246770B900E077E5 /* SubjectsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */; };
 		75EB5A2D2467A21600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A2C2467A21600E077E5 /* SyncEngine+Operations.swift */; };
 		75EB5A312467A26600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */; };
+		D0A64418248AA5C90041A69B /* PDFThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A64417248AA5C90041A69B /* PDFThumbView.swift */; };
+		D0A6441A248AA6E50041A69B /* PDFThumbView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A64419248AA6E50041A69B /* PDFThumbView.xib */; };
+		D0A6441C248AA9000041A69B /* StoriesDataProvider+PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A6441B248AA9000041A69B /* StoriesDataProvider+PDF.swift */; };
+		D0A6441E248AB24B0041A69B /* DocumentPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A6441D248AB24B0041A69B /* DocumentPicker.swift */; };
+		D0A64421248AC8D80041A69B /* PDFStorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A64420248AC8D80041A69B /* PDFStorageService.swift */; };
+		D0A64423248E168A0041A69B /* PDFVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A64422248E168A0041A69B /* PDFVIewController.swift */; };
 		DA3FE2DB8C4BA18334A1EB22 /* Pods_parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */; };
 		DC05B3C2247B5AD70014779D /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
 		DC05B3CE247C45000014779D /* PanningInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3CD247C45000014779D /* PanningInteractionController.swift */; };
@@ -648,6 +654,12 @@
 		BD9B063DD34D2DCB204B671C /* Pods-parent.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent.release(appstore).xcconfig"; path = "Target Support Files/Pods-parent/Pods-parent.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		C56891569470365ADFA64333 /* Pods-educator.release(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(qa).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(qa).xcconfig"; sourceTree = "<group>"; };
 		C6A41FD77BCF4377A08E9406 /* Pods-educator.debug(beta).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.debug(beta).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.debug(beta).xcconfig"; sourceTree = "<group>"; };
+		D0A64417248AA5C90041A69B /* PDFThumbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFThumbView.swift; sourceTree = "<group>"; };
+		D0A64419248AA6E50041A69B /* PDFThumbView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PDFThumbView.xib; sourceTree = "<group>"; };
+		D0A6441B248AA9000041A69B /* StoriesDataProvider+PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoriesDataProvider+PDF.swift"; sourceTree = "<group>"; };
+		D0A6441D248AB24B0041A69B /* DocumentPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentPicker.swift; sourceTree = "<group>"; };
+		D0A64420248AC8D80041A69B /* PDFStorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFStorageService.swift; sourceTree = "<group>"; };
+		D0A64422248E168A0041A69B /* PDFVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFVIewController.swift; sourceTree = "<group>"; };
 		D48B06C16950ED61770C4604 /* Pods-educator.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(appstore).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
 		DC05B3CD247C45000014779D /* PanningInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanningInteractionController.swift; sourceTree = "<group>"; };
@@ -769,6 +781,8 @@
 				299B3583241F907E00D6F9A5 /* FormPhotoView.xib */,
 				299B3585241F907E00D6F9A5 /* FormTextView.swift */,
 				299B3584241F907E00D6F9A5 /* FormTextView.xib */,
+				D0A64417248AA5C90041A69B /* PDFThumbView.swift */,
+				D0A64419248AA6E50041A69B /* PDFThumbView.xib */,
 			);
 			path = Stories;
 			sourceTree = "<group>";
@@ -1023,6 +1037,8 @@
 				61547C86A6589BD1A80D59D6 /* StoriesDataProvider+Title.swift */,
 				61547591AC635E1EB090F102 /* StoriesDataProvider+Body.swift */,
 				61547D432767A42B571EA22F /* StoriesDataProvider+Subtitle.swift */,
+				D0A6441B248AA9000041A69B /* StoriesDataProvider+PDF.swift */,
+				D0A6441D248AB24B0041A69B /* DocumentPicker.swift */,
 			);
 			path = FromBehavior;
 			sourceTree = "<group>";
@@ -1377,6 +1393,7 @@
 		75886D042419327F0079C080 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				D0A6441F248AC8BC0041A69B /* PDFStorageService */,
 				75886D052419327F0079C080 /* UserKeychainService.swift */,
 				75886D062419327F0079C080 /* FileStorageService.swift */,
 				DC05B3D0247D594C0014779D /* DocumentService.swift */,
@@ -1592,6 +1609,7 @@
 			children = (
 				75886DAB241932BA0079C080 /* Stories.storyboard */,
 				75886DAC241932BA0079C080 /* StoriesDataProvider.swift */,
+				D0A64422248E168A0041A69B /* PDFVIewController.swift */,
 				615475BA47C2AEFAA9A3F0C9 /* StoriesSideViewController.swift */,
 				6154774EB7F6E73B056B38C1 /* FromBehavior */,
 			);
@@ -1744,6 +1762,14 @@
 				75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */,
 			);
 			path = SyncEngine;
+			sourceTree = "<group>";
+		};
+		D0A6441F248AC8BC0041A69B /* PDFStorageService */ = {
+			isa = PBXGroup;
+			children = (
+				D0A64420248AC8D80041A69B /* PDFStorageService.swift */,
+			);
+			path = PDFStorageService;
 			sourceTree = "<group>";
 		};
 		DC4FFA032470B9120079A27C /* Cells */ = {
@@ -2036,6 +2062,7 @@
 				F67DF81B241BFE6800793A9C /* InfoMessageFormView.xib in Resources */,
 				299B3589241F907E00D6F9A5 /* FormPhotoView.xib in Resources */,
 				F67DF824241BFE6800793A9C /* PickerViewFormView.xib in Resources */,
+				D0A6441A248AA6E50041A69B /* PDFThumbView.xib in Resources */,
 				75886DF4241932BA0079C080 /* supervisor.storyboard in Resources */,
 				29A6D542245450D100D7DB87 /* SupervisorOnly.xcassets in Resources */,
 				75886DF6241932BA0079C080 /* DefaultTableViewCell.xib in Resources */,
@@ -2342,6 +2369,7 @@
 				75886DD6241932BA0079C080 /* CustomSplitViewController.swift in Sources */,
 				DCC2DDCE247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */,
 				75886D5C2419327F0079C080 /* XibView.swift in Sources */,
+				D0A64423248E168A0041A69B /* PDFVIewController.swift in Sources */,
 				75886D562419327F0079C080 /* IndicatorProtocol.swift in Sources */,
 				F67DF81C241BFE6800793A9C /* InfoMessageFormView.swift in Sources */,
 				75886DF0241932BA0079C080 /* NotificationTypeDataProvider.swift in Sources */,
@@ -2363,6 +2391,7 @@
 				F67DF818241BFE6800793A9C /* SubjectDetailsSegmentView.swift in Sources */,
 				75886D322419327F0079C080 /* Globals.swift in Sources */,
 				75886DF3241932BA0079C080 /* SplashViewController.swift in Sources */,
+				D0A64418248AA5C90041A69B /* PDFThumbView.swift in Sources */,
 				75886D662419327F0079C080 /* ValidateSession.swift in Sources */,
 				75886D142419327F0079C080 /* LocationManager.swift in Sources */,
 				75EB5A232466FE9800E077E5 /* syncOrganizationDetails.swift in Sources */,
@@ -2444,6 +2473,7 @@
 				615477CD524B2F1C20B297C9 /* InstitutionsAPIService.swift in Sources */,
 				75EB59D82461858700E077E5 /* RLMCleanable.swift in Sources */,
 				75EB5A112466683300E077E5 /* syncInstitutionDetails.swift in Sources */,
+				D0A6441C248AA9000041A69B /* StoriesDataProvider+PDF.swift in Sources */,
 				6154728032D3CB5837855C66 /* OrganizationsAPIService.swift in Sources */,
 				61547B7AB691E28FECCD6B86 /* SubjectsAPIService.swift in Sources */,
 				6154797BFC410EDB48D44521 /* SupervisorsAPIService.swift in Sources */,
@@ -2481,6 +2511,7 @@
 				61547D2E2DC865E404CF15C7 /* SubjectListDataProvider+Injury.swift in Sources */,
 				DCBE4A56247DA9A600F6D90A /* SlideInPresentationAnimator.swift in Sources */,
 				6154733B79881FF0F0C4C775 /* SubjectListDataProvider+Note.swift in Sources */,
+				D0A6441E248AB24B0041A69B /* DocumentPicker.swift in Sources */,
 				615472B2CEF57EA92478927F /* SubjectListDataProvider+Option.swift in Sources */,
 				DC3617F324770B4D004C0B83 /* UserAuthenticateService.swift in Sources */,
 				615471C3EAAA9F493D956400 /* SubjectListDataProvider+NavItems.swift in Sources */,
@@ -2497,6 +2528,7 @@
 				615478C6E0C0561E921C0005 /* syncOrganizationTemplates.swift in Sources */,
 				615473506842F07BA5A0A4F2 /* LogFormAPIModel.swift in Sources */,
 				61547A6F9C4837D535BAE270 /* RLMStory.swift in Sources */,
+				D0A64421248AC8D80041A69B /* PDFStorageService.swift in Sources */,
 				6154722D235963E1379CA485 /* StoriesDataProvider+Photo.swift in Sources */,
 				6154723DA561F399DB79A43F /* StoriesDataProvider+Navigation.swift in Sources */,
 				61547C4BE16D9D0A21B03C31 /* StoriesDataProvider+Title.swift in Sources */,

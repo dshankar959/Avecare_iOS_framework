@@ -22,7 +22,6 @@ import Kingfisher
             DDLogError("Reachability error: \(error)")
             fatalError("Reachability error: \(error)")
         }
-
     }()
 
     var _isDataConnection: Bool = false     // treat as #internal.  Use Global: `isDataConnection` instead to read.  Underscore to write.

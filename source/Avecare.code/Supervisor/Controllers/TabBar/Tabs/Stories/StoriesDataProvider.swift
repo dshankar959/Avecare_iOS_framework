@@ -8,7 +8,7 @@ extension StoriesTableViewCellModel {
     init(story: RLMStory, storage: ImageStorageService) {
         title = story.title
         details = story.body
-        photoURL = story.photoURL(using: storage)
+        photoURL = story.pdfURL(using: storage)
         photoCaption = story.photoCaption
 
         if let lastUpdated = story.clientLastUpdated {
@@ -27,6 +27,8 @@ protocol StoriesDataProviderDelegate: UIViewController {
     func didCreateNewStory()
     func didUpdateModel(at indexPath: IndexPath, details: Bool)
     func moveStory(at fromIndexPath: IndexPath, to toIndexPath: IndexPath)
+    func didTapPDF(story: RLMStory, view: PDFThumbView)
+    func gotToPDFDetail(fileUrl: URL)
 }
 
 
@@ -34,19 +36,22 @@ protocol StoriesDataProviderIO: class, StoriesDataProviderNavigation {
     var delegate: StoriesDataProviderDelegate? { get set }
 
     func fetchAll()
-
     var numberOfRows: Int { get }
 
     func model(for indexPath: IndexPath) -> StoriesTableViewCellModel
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath)
 
     func form(at indexPath: IndexPath) -> Form
+    func didPickDocumentsAt(urls: [URL], view: PDFThumbView)
+    
 }
 
 
 class StoriesDataProvider: StoriesDataProviderIO {
 
-    private var selectedStoryId: String?
+    
+
+    var selectedStory: RLMStory?
     var delegate: StoriesDataProviderDelegate?
 
     var dataSource = [RLMStory]()
@@ -63,7 +68,7 @@ class StoriesDataProvider: StoriesDataProviderIO {
     }
 
     func sort() {
-        dataSource = RLMLogForm.sortObjectsByLastUpdated(dataSource)
+        dataSource = RLMLogForm.sortObjectsByLastUpdatedDescending(dataSource)
     }
 
     var numberOfRows: Int {
@@ -73,15 +78,15 @@ class StoriesDataProvider: StoriesDataProviderIO {
     func model(for indexPath: IndexPath) -> StoriesTableViewCellModel {
         let story = dataSource[indexPath.row]
         var viewModel = StoriesTableViewCellModel(story: story, storage: imageStorageService)
-        viewModel.isSelected = story.id == selectedStoryId
+        viewModel.isSelected = story.id == selectedStory?.id
         return viewModel
     }
 
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath) {
         let targetId = dataSource[indexPath.row].id
-        let last = selectedStoryId
+        let last = selectedStory?.id
         // update new selection
-        selectedStoryId = targetId
+        selectedStory = dataSource[indexPath.row]
 
         // update previous selection
         if let last = last, last != targetId,
@@ -96,8 +101,8 @@ class StoriesDataProvider: StoriesDataProviderIO {
         return Form(viewModels: [
             titleViewModel(for: story),
             subtitleViewModel(for: story).inset(by: .init(top: 20, left: 0, bottom: 20, right: 0)),
-            bodyViewModel(for: story),
-            photoViewModel(for: story).inset(by: .init(top: 20, left: 0, bottom: 0, right: 0))
+           // bodyViewModel(for: story),
+            getPDFThumbViewModel(for: story).inset(by: .init(top: 20, left: 0, bottom: 0, right: 0))
         ])
     }
 

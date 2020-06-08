@@ -169,7 +169,7 @@ struct UnitAPIService {
                         stories.append(model.story)
                         if let file = model.files.first, file.id == model.story.id,
                            let url = URL(string: file.fileUrl) {
-                            _ = try storage.saveImage(url, name: model.story.id)
+                            _ = try storage.savePDF(url, name: model.story.id)
                         }
                     }
                     completion(.success(stories))
