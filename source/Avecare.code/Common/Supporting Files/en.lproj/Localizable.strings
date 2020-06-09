@@ -53,3 +53,6 @@
 "error_file_transfer_empty_file_parameter_userinfo" = "Empty file parameter.\n Nothing to do.";
 "barbutton_title_cancel" = "Cancel";
 "barbutton_title_done" = "Done";
+"log_row_delete" = "Delete";
+"subject_accident_report_picker_title" = "Select Time";
+"subject_accident_report_picker_placeholder" = "12:00pm";
