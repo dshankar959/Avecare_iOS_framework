@@ -41,7 +41,7 @@ class FeedDetailsViewController: UIViewController, IndicatorProtocol {
                     if let serverLastUpdated = message.serverLastUpdated {
                         self.dateLabel.text = serverLastUpdated.dateStringFromDate()
                     } else {
-                        self.dateLabel.text = message.createdAt.dateStringFromDate()
+                        self.dateLabel.text = Date().dateStringFromDate()
                     }
 
                     self.bodyLabel.text = message.body

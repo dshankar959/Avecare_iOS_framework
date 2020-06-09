@@ -19,7 +19,6 @@ class RLMMessage: RLMDefaults {
     @objc dynamic var title: String = ""
     @objc dynamic var body: String = ""
     @objc dynamic var fileURL: String?
-    @objc dynamic var createdAt = Date()
     dynamic var contentType: MessageType = .unKnown
 
 
@@ -49,7 +48,7 @@ class RLMMessage: RLMDefaults {
             guard let date = Date.dateFromISO8601String(dateString) else {
                 fatalError("JSON Decoding error = 'Invalid date format'")
             }
-            self.createdAt = date
+            self.serverLastUpdated = date
 
             self.contentType = try values.decode(MessageType.self, forKey: .contentType)
 
