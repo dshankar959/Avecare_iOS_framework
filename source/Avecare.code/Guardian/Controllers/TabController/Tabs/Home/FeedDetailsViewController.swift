@@ -28,7 +28,7 @@ class FeedDetailsViewController: UIViewController, IndicatorProtocol {
 
     private func retrieveDetails() {
         if feedItemType == .message, let messageId = feedItemId {
-            showActivityIndicator(withStatus: NSLocalizedString("feed_details_retriving_message", comment: ""))
+            showActivityIndicator(withStatus: NSLocalizedString("feed_details_retrieving_message", comment: ""))
             dataProvider.fetchMessage(with: messageId) { (message, error) in
                 self.hideActivityIndicator()
                 if let error = error {
