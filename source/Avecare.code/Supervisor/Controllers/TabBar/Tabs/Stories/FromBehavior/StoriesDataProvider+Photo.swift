@@ -44,9 +44,9 @@ extension StoriesDataProvider {
                 }
 
                 // remove previous local image
-                if let fileURL = service.imageURL(name: story.id) {
+                if let fileURL = service.fileURL(name: story.id, type: "jpg") {
                     do {
-                        try service.removeImage(at: fileURL)
+                        try service.removeFile(at: fileURL)
                     } catch {
                         DDLogError("\(error)")
                     }

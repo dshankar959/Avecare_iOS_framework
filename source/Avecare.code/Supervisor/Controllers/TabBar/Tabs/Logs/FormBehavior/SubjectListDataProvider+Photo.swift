@@ -7,11 +7,11 @@ import CropPickerView
 
 extension SubjectDetailsPhotoViewModel {
 
-    init(row: RLMLogPhotoRow, isEditable: Bool, storage: ImageStorageService) {
+    init(row: RLMLogPhotoRow, isEditable: Bool, storage: DocumentService) {
         title = row.title
         note = row.text
 
-        if let localURL = storage.imageURL(name: row.id) {
+        if let localURL = storage.fileURL(name: row.id, type: "jpg") {
             image = localURL
         }
         self.isEditable = isEditable
@@ -78,9 +78,9 @@ extension SubjectListDataProvider {
                         return
                     }
                     // remove previous local image
-                    if let fileURL = service.imageURL(name: row.id) {
+                    if let fileURL = service.fileURL(name: row.id, type: "jpg") {
                         do {
-                            try service.removeImage(at: fileURL)
+                            try service.removeFile(at: fileURL)
                         } catch {
                             DDLogError("\(error)")
                         }

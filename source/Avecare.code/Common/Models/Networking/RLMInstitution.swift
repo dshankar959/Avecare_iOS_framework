@@ -31,7 +31,7 @@ class RLMInstitution: RLMDefaults {
 
             if let mealPlan = try values.decodeIfPresent(String.self, forKey: .mealPlan),
                 let url = URL(string: mealPlan) {
-                _ = try DocumentService().savePDF(url, name: CodingKeys.mealPlan.rawValue)
+                _ = try DocumentService().saveRemoteFile(url, name: CodingKeys.mealPlan.rawValue, type: "pdf")
             }
 
 //            if let eventsCalendar = try values.decodeIfPresent(String.self, forKey: .eventsCalendar),
@@ -51,7 +51,7 @@ class RLMInstitution: RLMDefaults {
 extension RLMInstitution {
 
     func mealPlanURL(using storage: DocumentService) -> URL? {
-        return storage.PDFURL(name: CodingKeys.mealPlan.rawValue)
+        return storage.fileURL(name: CodingKeys.mealPlan.rawValue, type: "pdf")
     }
 
 //    func activityURL(using storage: DocumentService) -> URL? {

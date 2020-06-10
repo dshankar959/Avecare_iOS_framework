@@ -33,7 +33,7 @@ extension SyncEngine {
 
             var apiResult: Result<[LogFormAPIModel], AppError> = .success([LogFormAPIModel]())
             let operationQueue = OperationQueue()
-            let storage = ImageStorageService()
+            let storage = DocumentService()
 
             let completionOperation = BlockOperation {
                 DDLogDebug("sync completion block")
@@ -89,7 +89,7 @@ extension SyncEngine {
                                                 continue
                                         }
                                         do {
-                                            _ = try storage.saveImage(url, name: row.id)
+                                            _ = try storage.saveRemoteFile(url, name: row.id, type: "jpg")
                                         } catch {
                                             DDLogError("Failed to save image: \(url)")
                                         }

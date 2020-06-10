@@ -11,7 +11,6 @@ class RLMStory: RLMDefaults, RLMPublishable {
     @objc dynamic var photoCaption: String = ""     // local image files match via @id
     @objc dynamic var unit: RLMUnit?
 
-
     private enum CodingKeys: String, CodingKey {
         case title
         case body
@@ -58,16 +57,17 @@ extension RLMStory {
         > we will need to immediately also sync it down locally.  As the url links from the server are set
         > to expire in ~1 hour from receiving the link.
     */
-    func photoURL(using storage: ImageStorageService) -> URL? {
-        return storage.imageURL(name: id)
+    func photoURL(using storage: DocumentService) -> URL? {
+        return storage.fileURL(name: id, type: "jpg")
     }
 
+    func pdfURL(using storage: DocumentService) -> URL? {
+        return storage.fileURL(name: id, type: "pdf")
+    }
 }
-
 
 extension RLMStory: RLMCleanable, DataProvider {
     func clean() {
-
     }
 
 }

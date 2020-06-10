@@ -163,13 +163,13 @@ struct UnitAPIService {
             case .success(let response):
                 do {
                     let mappedResponse = try response.map(APIPaginatedResponse<PublishStoryResponseModel>.self)
-                    let storage = ImageStorageService()
+                    let storage = DocumentService()
                     var stories = [RLMStory]()
                     for model in mappedResponse.results {
                         stories.append(model.story)
                         if let file = model.files.first, file.id == model.story.id,
                            let url = URL(string: file.fileUrl) {
-                            _ = try storage.saveImage(url, name: model.story.id)
+                            _ = try storage.saveRemoteFile(url, name: model.story.id, type: "pdf")
                         }
                     }
                     completion(.success(stories))

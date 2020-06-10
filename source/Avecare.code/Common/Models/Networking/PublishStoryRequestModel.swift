@@ -7,13 +7,13 @@ struct PublishStoryRequestModel {
 
     let unitId: String
     let story: RLMStory
-    let storage: ImageStorageService
+    let storage: DocumentService
 
     private enum CodingKeys: String, CodingKey {
         case id, story
     }
 
-    init(unitId: String, story: RLMStory, storage: ImageStorageService) {
+    init(unitId: String, story: RLMStory, storage: DocumentService) {
         self.story = story
         self.unitId = unitId
         self.storage = storage
@@ -34,7 +34,7 @@ extension PublishStoryRequestModel: MultipartEncodable {
             DDLogError("\(error)")
         }
 
-        if let url = story.photoURL(using: storage) {
+        if let url = story.pdfURL(using: storage) {
             data.append(.init(provider: .file(url), name: story.id))
         }
         return data

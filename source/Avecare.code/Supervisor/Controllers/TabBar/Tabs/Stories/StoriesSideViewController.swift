@@ -1,17 +1,16 @@
 import UIKit
-
-
+import PDFKit
+import MobileCoreServices
 
 class StoriesSideViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-
+    var currentThumbview: PDFThumbView?
     lazy var dataProvider: StoriesDataProviderIO = {
         let provider = StoriesDataProvider()
         provider.delegate = self
         return provider
     }()
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,8 +27,32 @@ class StoriesSideViewController: UIViewController {
         }
     }
 
+    public func pickDocuments() {
+    let pickerController = UIDocumentPickerViewController(documentTypes: [kUTTypePDF as String, kUTTypeImage as String], in: .open)
+               pickerController.delegate = self
+           pickerController.allowsMultipleSelection = false
+               pickerController.modalPresentationStyle = .fullScreen
+               self.present(pickerController, animated: true)
+    }
+
 }
 
+extension StoriesSideViewController: UIDocumentPickerDelegate {
+    func generatePdfThumbnail(of thumbnailSize: CGSize, for documentUrl: URL, atPage pageIndex: Int) -> UIImage? {
+        let pdfDocument = PDFDocument(url: documentUrl)
+        let pdfDocumentPage = pdfDocument?.page(at: pageIndex)
+        return pdfDocumentPage?.thumbnail(of: thumbnailSize, for: PDFDisplayBox.trimBox)
+    }
+
+    public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt
+        urls: [URL]) {
+        if let currentThumbview = currentThumbview {
+            dataProvider.didPickDocumentsAt(urls: urls, view: currentThumbview)
+        }
+    }
+
+    public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {}
+}
 
 extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource {
 
@@ -48,8 +71,22 @@ extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource 
 
 }
 
-
 extension StoriesSideViewController: StoriesDataProviderDelegate {
+
+    func gotToPDFDetail(fileUrl: URL) {
+        performSegue(withIdentifier: "PDFOpenView", sender: fileUrl)
+    }
+
+    func didTapPDF(story: RLMStory, view: PDFThumbView) {
+        self.currentThumbview = view
+        pickDocuments()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if let destVC = segue.destination as? PDFVIewController, let url = sender as? URL {
+        destVC.url = url
+        }
+    }
 
     func didUpdateModel(at indexPath: IndexPath, details: Bool) {
         let model = dataProvider.model(for: indexPath)

@@ -14,7 +14,7 @@ extension StoriesDataProvider {
             // side menu row will be moved to 1st position
             self?.updateEditDate(for: story)
             // update title on side list row
-            self?.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: false)
+            self?.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: true)
         })
     }
 }

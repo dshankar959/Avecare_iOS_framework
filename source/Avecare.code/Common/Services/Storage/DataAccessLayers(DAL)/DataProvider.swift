@@ -242,7 +242,7 @@ extension DataProvider where Self: Object {
 */
 
     // sorted by "******LastUpdated"
-    static func sortObjectsByLastUpdated<T: RLMDefaults>(_ objects: [T]) -> [T] {
+    static func sortObjectsByLastUpdated<T: RLMDefaults>(order: ComparisonResult, _ objects: [T]) -> [T] {
         if objects.isEmpty {
             return []
         }
@@ -256,7 +256,7 @@ extension DataProvider where Self: Object {
             guard let finalDate0 = objDate0 else { return false }
             guard let finalDate1 = objDate1 else { return false }
 
-            return finalDate0.compare(finalDate1) == .orderedAscending
+            return finalDate0.compare(finalDate1) == order
         })
 
         return sortedObjects

@@ -14,7 +14,7 @@ protocol LogsDataProvider: class {
 
 class DefaultLogsDataProvider: LogsDataProvider {
 
-    private let imageStorage = ImageStorageService()
+    private let imageStorage = DocumentService()
     private var dailyLogForDate: [Date: RLMLogForm] = [:]
 
     var datesWithData: Set<Date> = []
