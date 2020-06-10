@@ -25,6 +25,7 @@ class PDFVIewController: UIViewController {
         // Adding the thumnails
         let thumbnailView = PDFThumbnailView()
         thumbnailView.translatesAutoresizingMaskIntoConstraints = false
+        thumbnailView.layoutMode = .vertical
         view.addSubview(thumbnailView)
 
         thumbnailView.backgroundColor = UIKit.UIColor(resource: R.color.background, compatibleWith: nil) ?? UIColor.white
