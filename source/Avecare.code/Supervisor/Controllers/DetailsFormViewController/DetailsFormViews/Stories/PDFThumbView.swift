@@ -10,25 +10,25 @@ struct PDFThumbViewModel: CellViewModel {
         let onPDFRemove: ((CellType) -> Void)?
     }
 
-    let photoURL: URL?
+    let pdfURL: URL?
     let isEditable: Bool
     var action: Action?
-    
+
     func setup(cell: CellType) {
-        
+
         cell.onPDFTap = action?.onPDFTap
 
         if isEditable {
             cell.onPDFRemove = action?.onPDFRemove
         }
-        
+
         let service = DocumentService()
         let size = 375 * UIScreen.main.scale
-        
+
         cell.removeButton.isHidden = true
-        
-        if let photoURL = photoURL {
-            let pdfThumbnail = service.getImageForPDF(of: CGSize(width: size, height: size), for: photoURL, atPage: 0)
+
+        if let pdfURL = pdfURL {
+            let pdfThumbnail = service.getImageForPDF(of: CGSize(width: size, height: size), for: pdfURL, atPage: 0)
             if let pdfThumbnail = pdfThumbnail {
                 cell.photoImageView.image = pdfThumbnail
                 if isEditable {
@@ -56,12 +56,12 @@ class PDFThumbView: BaseXibView {
     @IBAction func didTapPDFImageView(_ sender: UITapGestureRecognizer) {
         onPDFTap?(self)
     }
-    
+
     @IBOutlet weak var removeButton: UIButton!
-    
+
     @IBAction func didTapRemoveDocument(_ sender: Any) {
         removeButton.isHidden = true
         onPDFRemove?(self)
     }
-    
+
 }

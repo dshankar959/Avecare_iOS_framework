@@ -1,8 +1,6 @@
 import RealmSwift
 import CocoaLumberjack
 
-
-
 class RLMStory: RLMDefaults, RLMPublishable {
 
     @objc dynamic var title: String = ""
@@ -10,7 +8,6 @@ class RLMStory: RLMDefaults, RLMPublishable {
     @objc dynamic var body: String = ""
     @objc dynamic var photoCaption: String = ""     // local image files match via @id
     @objc dynamic var unit: RLMUnit?
-
 
     private enum CodingKeys: String, CodingKey {
         case title
@@ -51,7 +48,6 @@ class RLMStory: RLMDefaults, RLMPublishable {
     }
 }
 
-
 extension RLMStory {
     /*
         > When we sync down any JSON that contains a url to an image or other binary data from the server,
@@ -61,13 +57,12 @@ extension RLMStory {
     func photoURL(using storage: DocumentService) -> URL? {
         return storage.fileURL(name: id, type: "jpg")
     }
-    
+
     func pdfURL(using storage: DocumentService) -> URL? {
         return storage.fileURL(name: id, type: "pdf")
     }
-    
-}
 
+}
 
 extension RLMStory: RLMCleanable, DataProvider {
     func clean() {
