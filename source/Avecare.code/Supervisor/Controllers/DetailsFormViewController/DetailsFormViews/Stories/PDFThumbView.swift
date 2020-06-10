@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 import Kingfisher
 
+
+
 struct PDFThumbViewModel: CellViewModel {
     typealias CellType = PDFThumbView
 
@@ -32,9 +34,12 @@ struct PDFThumbViewModel: CellViewModel {
             }
         }
     }
+
 }
 
+
 class PDFThumbView: BaseXibView {
+
     @IBOutlet weak var photoImageView: UIImageView!
 
     var onChange: ((PDFThumbView, String?) -> Void)?

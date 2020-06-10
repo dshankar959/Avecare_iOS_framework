@@ -24,7 +24,7 @@ class PDFVIewController: UIViewController {
         pdfView.topAnchor.constraint(equalTo: innerView.safeAreaLayoutGuide.topAnchor).isActive = true
         pdfView.bottomAnchor.constraint(equalTo: innerView.safeAreaLayoutGuide.bottomAnchor).isActive = true
         pdfView.backgroundColor =  UIColor.white
-        
+
         // Adding the thumnails
         let thumbnailView = PDFThumbnailView()
         thumbnailView.translatesAutoresizingMaskIntoConstraints = false

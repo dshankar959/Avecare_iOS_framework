@@ -21,8 +21,8 @@ struct StoriesTableViewCellModel: CellViewModel {
         cell.titleLabel.text = title
         let service = DocumentService()
         let size = 375 * UIScreen.main.scale
-        
-        if let url = photoURL, url.absoluteString.isFilePath, let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url , atPage: 0) {
+
+        if let url = photoURL, url.absoluteString.isFilePath, let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url, atPage: 0) {
             cell.photoImageView.image = image
         } else {
             cell.photoImageView.kf.setImage(with: photoURL)

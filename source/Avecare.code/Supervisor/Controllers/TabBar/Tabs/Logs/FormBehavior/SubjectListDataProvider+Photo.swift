@@ -11,7 +11,7 @@ extension SubjectDetailsPhotoViewModel {
         title = row.title
         note = row.text
 
-        if let localURL = storage.fileURL(name: row.id,  type: "jpg") {
+        if let localURL = storage.fileURL(name: row.id, type: "jpg") {
             image = localURL
         }
         self.isEditable = isEditable

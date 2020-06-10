@@ -43,13 +43,13 @@ protocol StoriesDataProviderIO: class, StoriesDataProviderNavigation {
 
     func form(at indexPath: IndexPath) -> Form
     func didPickDocumentsAt(urls: [URL], view: PDFThumbView)
-    
+
 }
 
 
 class StoriesDataProvider: StoriesDataProviderIO {
 
-    
+
 
     var selectedStory: RLMStory?
     var delegate: StoriesDataProviderDelegate?

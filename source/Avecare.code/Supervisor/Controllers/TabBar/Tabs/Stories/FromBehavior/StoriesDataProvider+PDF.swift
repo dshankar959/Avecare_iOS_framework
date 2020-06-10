@@ -21,7 +21,8 @@ extension StoriesDataProvider {
             }, onPDFRemove: { [weak self] view in
                 self?.removePDFForStory(from: view, for: story)
             })
-        return PDFThumbViewModel(photoURL: story.pdfURL(using: imageStorageService), isEditable: !isSubmitted, action: photoRowAction)
+
+        return PDFThumbViewModel(pdfURL: story.pdfURL(using: imageStorageService), isEditable: !isSubmitted, action: photoRowAction)
     }
 
     func removePDFForStory(from view: PDFThumbView, for story: RLMStory) {
@@ -36,7 +37,7 @@ extension StoriesDataProvider {
         view.photoImageView.image = UIImage.init(named: "no-pdf-placeholder")
         view.removeButton.isHidden = true
         self.updateEditDate(for: story)
-        self.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: true)
+        self.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: false)
     }
 
     func showDocumentPicker(from view: PDFThumbView, for story: RLMStory) {
@@ -47,7 +48,7 @@ extension StoriesDataProvider {
         guard let url = urls.first else {
             return
         }
-        
+
         let size = 375 * UIScreen.main.scale
         let service = DocumentService()
         let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url, atPage: 0)
@@ -62,15 +63,16 @@ extension StoriesDataProvider {
                 }
             }
             if let pdf = pdf {
-                
+
                 service.savePDF(pdf, name: story.id)
                 view.photoImageView.image = image
                 view.removeButton.isHidden = false
                 self.updateEditDate(for: story)
-                self.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: true)
+                self.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: false)
             }
         }
     }
 
     func documentPickerWasCancelled() {    }
+
 }
