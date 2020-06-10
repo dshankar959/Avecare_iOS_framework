@@ -323,8 +323,6 @@
 		DC225E3F246C787F00094BB0 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC225E3E246C787F00094BB0 /* DateCell.swift */; };
 		DC3617F324770B4D004C0B83 /* UserAuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3617F224770B4D004C0B83 /* UserAuthenticateService.swift */; };
 		DC3617F424770B4D004C0B83 /* UserAuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3617F224770B4D004C0B83 /* UserAuthenticateService.swift */; };
-		DC3E80A524859096003983E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC3E80A724859096003983E2 /* Localizable.strings */; };
-		DC3E80AB248590BA003983E2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DC3E80AA248590B6003983E2 /* Localizable.strings */; };
 		DC3E80AC248591B3003983E2 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC3E80AE248591B3003983E2 /* Login.storyboard */; };
 		DC3E80B4248593C9003983E2 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC3E80B6248593C9003983E2 /* Home.storyboard */; };
 		DC3E80BB24859400003983E2 /* Stories.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC3E80BD24859400003983E2 /* Stories.storyboard */; };
@@ -364,6 +362,8 @@
 		DCBE4A56247DA9A600F6D90A /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
 		DCC2DDCE247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */; };
 		DCC2DDCF247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */; };
+		DCF6C69724900B7B00A802BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF6C69A24900B7B00A802BD /* Localizable.strings */; };
+		DCF6C69824900B7B00A802BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF6C69A24900B7B00A802BD /* Localizable.strings */; };
 		DCFFD6F6246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */; };
 		DCFFD6F7246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */; };
 		DCFFD6F9246DA6FE0080DEA6 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */; };
@@ -653,13 +653,9 @@
 		DC05B3D0247D594C0014779D /* DocumentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentService.swift; sourceTree = "<group>"; };
 		DC225E3E246C787F00094BB0 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		DC3617F224770B4D004C0B83 /* UserAuthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticateService.swift; sourceTree = "<group>"; };
-		DC3E80A624859096003983E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		DC3E80A9248590B6003983E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DC3E80AD248591B3003983E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		DC3E80B0248591BE003983E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Login.strings; sourceTree = "<group>"; };
 		DC3E80B1248591D6003983E2 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Login.strings"; sourceTree = "<group>"; };
-		DC3E80B2248591D6003983E2 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		DC3E80B3248591D6003983E2 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DC3E80B5248593C9003983E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		DC3E80B8248593CD003983E2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Home.strings; sourceTree = "<group>"; };
 		DC3E80BA248593CE003983E2 /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Home.strings"; sourceTree = "<group>"; };
@@ -705,6 +701,8 @@
 		DC8B7E00248A80270000414D /* ImageCropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropViewController.swift; sourceTree = "<group>"; };
 		DC8B7E01248A80270000414D /* ImageCropViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCropViewController.xib; sourceTree = "<group>"; };
 		DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMGuardianFeed.swift; sourceTree = "<group>"; };
+		DCF6C69924900B7B00A802BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		DCF6C69B24900B7C00A802BD /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
 		DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
 		F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Duotone-Solid-900.otf"; sourceTree = "<group>"; };
@@ -1243,6 +1241,7 @@
 				75886CD92419327F0079C080 /* LaunchScreen.storyboard */,
 				F65549EE24564F2100574872 /* Font Awesome 5 */,
 				75886CD72419327F0079C080 /* ColorThemes */,
+				DCF6C69A24900B7B00A802BD /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1402,7 +1401,6 @@
 				75886D6C241932AB0079C080 /* guardian-Info.plist */,
 				754E1EA62436506900C8FD30 /* GoogleService-Info.plist */,
 				75886D6D241932AB0079C080 /* R.guardian.generated.swift */,
-				DC3E80AA248590B6003983E2 /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -1520,7 +1518,6 @@
 				75886D9F241932BA0079C080 /* supervisor-Info.plist */,
 				754E1EA42436505300C8FD30 /* GoogleService-Info.plist */,
 				75886D9E241932BA0079C080 /* R.supervisor.generated.swift */,
-				DC3E80A724859096003983E2 /* Localizable.strings */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -2013,6 +2010,7 @@
 				DC3E80D724859D95003983E2 /* Login.storyboard in Resources */,
 				F67DF811241BFE6800793A9C /* DetailsFormViewController.storyboard in Resources */,
 				F67DF823241BFE6800793A9C /* InputTextFormView.xib in Resources */,
+				DCF6C69724900B7B00A802BD /* Localizable.strings in Resources */,
 				75886DE1241932BA0079C080 /* Logs.storyboard in Resources */,
 				75886DD9241932BA0079C080 /* Settings.storyboard in Resources */,
 				75886DDB241932BA0079C080 /* Stories.storyboard in Resources */,
@@ -2032,7 +2030,6 @@
 				29A6D542245450D100D7DB87 /* SupervisorOnly.xcassets in Resources */,
 				75886DF6241932BA0079C080 /* DefaultTableViewCell.xib in Resources */,
 				F65549FC24564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf in Resources */,
-				DC3E80A524859096003983E2 /* Localizable.strings in Resources */,
 				F67DF822241BFE6800793A9C /* CheckmarkFormView.xib in Resources */,
 				F67DF80F241BFE6800793A9C /* DetailsView.xib in Resources */,
 				F65549F824564F2100574872 /* Font Awesome 5 Pro-Light-300.otf in Resources */,
@@ -2058,6 +2055,7 @@
 				F65549F524564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */,
 				F65549FB24564F2100574872 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
 				75886D8F241932AB0079C080 /* guardian.storyboard in Resources */,
+				DCF6C69824900B7B00A802BD /* Localizable.strings in Resources */,
 				29A6D544245450EF00D7DB87 /* GuardianOnly.xcassets in Resources */,
 				75886D9B241932AB0079C080 /* TabBar.storyboard in Resources */,
 				DC3E80C9248595ED003983E2 /* Logs.storyboard in Resources */,
@@ -2082,7 +2080,6 @@
 				615470BB00AC4F9F740FD1D4 /* StoriesDetailsTitleView.xib in Resources */,
 				61547716ED0704A1F4601513 /* StoriesDetailsPhotoView.xib in Resources */,
 				61547079FFE82CF82DB8CA3D /* LogsOptionTableViewCell.xib in Resources */,
-				DC3E80AB248590BA003983E2 /* Localizable.strings in Resources */,
 				6154771965713AD841B786F4 /* LogsNoteTableViewCell.xib in Resources */,
 				DC4FFA0D2470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.xib in Resources */,
 				61547AC2A51905EE35445079 /* LogsTimeDetailsTableViewCell.xib in Resources */,
@@ -2674,24 +2671,6 @@
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
-		DC3E80A724859096003983E2 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DC3E80A624859096003983E2 /* en */,
-				DC3E80B2248591D6003983E2 /* fr-CA */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		DC3E80AA248590B6003983E2 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				DC3E80A9248590B6003983E2 /* en */,
-				DC3E80B3248591D6003983E2 /* fr-CA */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
 		DC3E80AE248591B3003983E2 /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -2770,6 +2749,15 @@
 				DC3E80E42485A1B6003983E2 /* fr-CA */,
 			);
 			name = TabBar.storyboard;
+			sourceTree = "<group>";
+		};
+		DCF6C69A24900B7B00A802BD /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DCF6C69924900B7B00A802BD /* en */,
+				DCF6C69B24900B7C00A802BD /* fr-CA */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

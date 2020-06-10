@@ -60,9 +60,9 @@ class AboutTableViewController: UITableViewController {
 
 class AboutDataProvider {
     private lazy var dataSource: [AboutTableViewCellModel] = [
-        AboutTableViewCellModel(menuTitle: AboutDetails.termsAndConditions.rawValue),
-        AboutTableViewCellModel(menuTitle: AboutDetails.privacyPolicy.rawValue),
-        AboutTableViewCellModel(menuTitle: AboutDetails.aboutThisApp.rawValue)
+        AboutTableViewCellModel(menuTitle: NSLocalizedString(AboutDetails.termsAndConditions.rawValue, comment: "")),
+        AboutTableViewCellModel(menuTitle: NSLocalizedString(AboutDetails.privacyPolicy.rawValue, comment: "")),
+        AboutTableViewCellModel(menuTitle: NSLocalizedString(AboutDetails.aboutThisApp.rawValue, comment: ""))
     ]
 
     func numberOfRows() -> Int {
