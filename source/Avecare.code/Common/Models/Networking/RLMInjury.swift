@@ -35,4 +35,4 @@ extension RLMInjury: DataProvider {
 
 }
 
-typealias InjuriesResponse = APIResponse<[RLMInjury]>
+typealias RLMInjuriesResponse = APIResponse<[RLMInjury]>

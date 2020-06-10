@@ -54,7 +54,7 @@ struct OrganizationsAPIService {
             switch result {
             case .success(let response):
                 do {
-                    let mappedResponse = try response.map(InjuriesResponse.self)
+                    let mappedResponse = try response.map(RLMInjuriesResponse.self)
                     completion(.success(mappedResponse.results))
                 } catch {
                     DDLogError("JSON MAPPING ERROR = \(error)")

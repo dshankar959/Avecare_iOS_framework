@@ -338,6 +338,7 @@
 		DC3E80F22486C9FB003983E2 /* MessagesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80E92486BDDE003983E2 /* MessagesAPIService.swift */; };
 		DC3E80F32486CA28003983E2 /* FeedDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80EF2486C8B7003983E2 /* FeedDetailsDataProvider.swift */; };
 		DC4EA6D3249151F1007A36C0 /* syncOrganizationInjuries.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4EA6D2249151F1007A36C0 /* syncOrganizationInjuries.swift */; };
+		DC4EA6D424916889007A36C0 /* RLMInjury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615473EE5A59F3D396DA45E8 /* RLMInjury.swift */; };
 		DC4FFA0A2470B9AE0079A27C /* ProfileMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC4FFA042470B9AE0079A27C /* ProfileMenuTableViewCell.xib */; };
 		DC4FFA0B2470B9AE0079A27C /* ProfileMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA052470B9AE0079A27C /* ProfileMenuTableViewCell.swift */; };
 		DC4FFA0C2470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA062470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift */; };
@@ -361,8 +362,8 @@
 		DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
 		DC8B7E05248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
 		DCBE4A56247DA9A600F6D90A /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
-		DCC2DDCE247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */; };
-		DCC2DDCF247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */; };
+		DCC2DDCE247EA37D00FAFC35 /* GuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */; };
+		DCC2DDCF247EA37D00FAFC35 /* GuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */; };
 		DCF6C69724900B7B00A802BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF6C69A24900B7B00A802BD /* Localizable.strings */; };
 		DCF6C69824900B7B00A802BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF6C69A24900B7B00A802BD /* Localizable.strings */; };
 		DCFFD6F6246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */; };
@@ -702,7 +703,7 @@
 		DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorDetailsDataProvider.swift; sourceTree = "<group>"; };
 		DC8B7E00248A80270000414D /* ImageCropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropViewController.swift; sourceTree = "<group>"; };
 		DC8B7E01248A80270000414D /* ImageCropViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCropViewController.xib; sourceTree = "<group>"; };
-		DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMGuardianFeed.swift; sourceTree = "<group>"; };
+		DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianFeed.swift; sourceTree = "<group>"; };
 		DCF6C69924900B7B00A802BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DCF6C69B24900B7C00A802BD /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
@@ -887,13 +888,13 @@
 				61547A4597BB6D889FB8F580 /* RLMAccountInfo.swift */,
 				61547267EB7BC5F4558F3B70 /* RLMSupervisor.swift */,
 				75EB5A032463C03300E077E5 /* RLMGuardian.swift */,
-				DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */,
 				75EB59BD2461858700E077E5 /* RLMSubject.swift */,
 				615472657DF3223E8A839F22 /* RLMUnit.swift */,
 				75D62234245B14480032F53D /* RLMInstitution.swift */,
 				75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */,
 				615473EE5A59F3D396DA45E8 /* RLMInjury.swift */,
 				DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */,
+				DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */,
 				61547CBAC0180C2D2092DD1A /* UnitActivity.swift */,
 				61547BBC4F5F4748C5E93244 /* UnitReminder.swift */,
 				61547B3327B0C7C4F06CDC0D /* DailyTask.swift */,
@@ -2333,7 +2334,7 @@
 			files = (
 				755EAEAA241ABB6900A6BA4D /* Session.swift in Sources */,
 				75886DD6241932BA0079C080 /* CustomSplitViewController.swift in Sources */,
-				DCC2DDCE247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */,
+				DCC2DDCE247EA37D00FAFC35 /* GuardianFeed.swift in Sources */,
 				75886D5C2419327F0079C080 /* XibView.swift in Sources */,
 				75886D562419327F0079C080 /* IndicatorProtocol.swift in Sources */,
 				F67DF81C241BFE6800793A9C /* InfoMessageFormView.swift in Sources */,
@@ -2530,6 +2531,7 @@
 				75886D132419327F0079C080 /* UINVC.swift in Sources */,
 				75886D172419327F0079C080 /* UserProfile.swift in Sources */,
 				75886D97241932AB0079C080 /* LogsViewController.swift in Sources */,
+				DC4EA6D424916889007A36C0 /* RLMInjury.swift in Sources */,
 				755EAEAB241ABB6900A6BA4D /* Session.swift in Sources */,
 				75886D93241932AB0079C080 /* HomeViewController.swift in Sources */,
 				75886D332419327F0079C080 /* Globals.swift in Sources */,
@@ -2551,7 +2553,7 @@
 				75886D352419327F0079C080 /* DiskHelper.swift in Sources */,
 				75EB5A0D2465D77900E077E5 /* RLMAccountInfo.swift in Sources */,
 				75EB5A242466FE9800E077E5 /* syncOrganizationDetails.swift in Sources */,
-				DCC2DDCF247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */,
+				DCC2DDCF247EA37D00FAFC35 /* GuardianFeed.swift in Sources */,
 				DC05B3CF247C45000014779D /* PanningInteractionController.swift in Sources */,
 				75EB59D32461858700E077E5 /* RLMLogRow.swift in Sources */,
 				75886D2D2419327F0079C080 /* AppError.swift in Sources */,

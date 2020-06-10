@@ -1,5 +1,6 @@
+import Foundation
 import CocoaLumberjack
-import RealmSwift
+
 
 enum FeedItemType: String, Decodable {
     case message
@@ -14,20 +15,18 @@ enum FeedItemType: String, Decodable {
     }
 }
 
-class RLMGuardianFeed: RLMDefaults {
-
-    @objc dynamic var body: String = ""
-    @objc dynamic var date = Date()
-    @objc dynamic var header: String = ""
-    @objc dynamic var important: Bool = false
-    @objc dynamic var subjectId: String = ""
-    @objc dynamic var feedItemId: String = ""
-    dynamic var feedItemType: FeedItemType = .unKnown
-
-    var unitIds = List<String>()
-
+struct GuardianFeed: Decodable {
+    let id: String
+    let body: String
+    var date: Date
+    let header: String
+    let important: Bool
+    let subjectId: String
+    let feedItemId: String
+    let feedItemType: FeedItemType
 
     enum CodingKeys: String, CodingKey {
+        case id
         case body
         case date
         case header
@@ -37,15 +36,10 @@ class RLMGuardianFeed: RLMDefaults {
         case feedItemType
     }
 
-
-    convenience required init(from decoder: Decoder) throws {
-        self.init()
-
+    init(from decoder: Decoder) {
         do {
-            try self.decode(from: decoder)  // call base class for defaults.
-
             let values = try decoder.container(keyedBy: CodingKeys.self)
-
+            self.id = try values.decode(String.self, forKey: .id)
             self.body = try values.decode(String.self, forKey: .body)
 
             let dateString: String = try values.decode(String.self, forKey: .date)
@@ -58,28 +52,11 @@ class RLMGuardianFeed: RLMDefaults {
             self.subjectId = try values.decode(String.self, forKey: .subjectId)
             self.feedItemId = try values.decode(String.self, forKey: .feedItemId)
             self.feedItemType = try values.decode(FeedItemType.self, forKey: .feedItemType)
-
         } catch {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")
         }
     }
-
 }
 
-
-typealias GuardianFeedResponse = APIResponse<[RLMGuardianFeed]>
-
-/*
-struct Injury: Codable {
-    let id: String
-    let name: String
-    let description: String
-    let isActive: Bool
-}
-
-typealias InjuriesResponse = APIResponse<[Injury]>
-
-struct InjuriesResponse: Codable {
-
-}*/
+typealias GuardianFeedResponse = APIResponse<[GuardianFeed]>
