@@ -34,8 +34,9 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
         super.viewDidAppear(animated)
 
         #if DEBUG
-//        loginField?.text = "sdwornik@spiria.com"
-        loginField?.text = "guardian@example.net"
+        loginField?.text = "sdwornik@spiria.com"
+//        loginField?.text = "guardian@example.net"
+//        loginField?.text = "shankardevika@yahoo.ca"
 
 //        loginField?.text = "parent1@example.net"
 //        loginField?.text = "parent2@example.net"
