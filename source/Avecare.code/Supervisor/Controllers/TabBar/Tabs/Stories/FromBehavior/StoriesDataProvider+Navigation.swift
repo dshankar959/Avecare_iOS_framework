@@ -12,9 +12,10 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
         let story = dataSource[indexPath.row]
         let isSubmitted = story.publishState != .local
 
+        let isStorySubmitable = DocumentService().fileURL(name: story.id, type: "pdf") != nil && !story.title.isEmpty
+        let isEnabled = !isSubmitted && isStorySubmitable
         let publishText = isSubmitted ? "Published" : "Publish"
-        let publishColor = isSubmitted ? R.color.lightText4() : R.color.main()
-
+        let publishColor = isEnabled ? R.color.main() :R.color.lightText4()
         return [
             .imageButton(options: .init(action: { [weak self] view, options, index in
                 self?.createNewStory()
@@ -23,7 +24,7 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
             // Navigation Bar -> Publish selected story
             .button(options: .init(action: { [weak self] view, options, index in
                 self?.publishStory(story)
-            }, isEnabled: !isSubmitted, text: publishText, textColor: R.color.mainInversion(),
+            }, isEnabled: isEnabled, text: publishText, textColor: R.color.mainInversion(),
                     tintColor: publishColor, cornerRadius: 4))
 
         ]
