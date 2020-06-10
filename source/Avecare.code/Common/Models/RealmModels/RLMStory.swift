@@ -68,6 +68,7 @@ extension RLMStory {
 
 extension RLMStory: RLMCleanable, DataProvider {
     func clean() {
+        // TODO Sebasting  ..  add remove story logic
     }
 
 }

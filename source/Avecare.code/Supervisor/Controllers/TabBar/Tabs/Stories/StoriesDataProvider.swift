@@ -80,7 +80,7 @@ class StoriesDataProvider: StoriesDataProviderIO {
         // no need to fetch all stories again.
         dataSource.remove(at: indexPath.row)
     }
-    
+
     func sort() {
         dataSource = RLMLogForm.sortObjectsByLastUpdated(order: .orderedDescending, dataSource)
     }
