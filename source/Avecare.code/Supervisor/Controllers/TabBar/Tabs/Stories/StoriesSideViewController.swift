@@ -38,7 +38,6 @@ class StoriesSideViewController: UIViewController {
 }
 
 extension StoriesSideViewController: UIDocumentPickerDelegate {
-
     func generatePdfThumbnail(of thumbnailSize: CGSize, for documentUrl: URL, atPage pageIndex: Int) -> UIImage? {
         let pdfDocument = PDFDocument(url: documentUrl)
         let pdfDocumentPage = pdfDocument?.page(at: pageIndex)
@@ -52,9 +51,7 @@ extension StoriesSideViewController: UIDocumentPickerDelegate {
         }
     }
 
-    public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {
-
-     }
+    public func documentPickerWasCancelled(_ controller: UIDocumentPickerViewController) {}
 }
 
 extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource {
