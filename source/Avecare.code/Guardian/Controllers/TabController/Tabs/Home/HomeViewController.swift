@@ -38,7 +38,7 @@ class HomeViewController: UIViewController, IndicatorProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        showActivityIndicator(withStatus: NSLocalizedString("home_retriving_feed", comment: ""))
+        showActivityIndicator(withStatus: NSLocalizedString("home_retrieving_feed", comment: ""))
         dataProvider.fetchFeeds { error in
             self.hideActivityIndicator()
             if let error = error {

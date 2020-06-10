@@ -196,6 +196,8 @@ extension SyncEngine {
 
             OperationQueue.main.addOperation(completionOperation)
             operationQueue.addOperations(operations, waitUntilFinished: false)  // trigger!
+        } else {
+            DDLogWarn("No supervisor accounts to sync down.")
         }
     }
 

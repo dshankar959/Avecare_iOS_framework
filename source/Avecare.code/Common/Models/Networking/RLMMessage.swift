@@ -15,14 +15,15 @@ enum MessageType: String, Decodable {
 
 class RLMMessage: RLMDefaults {
 
+    @objc dynamic var header: String = ""
     @objc dynamic var title: String = ""
     @objc dynamic var body: String = ""
     @objc dynamic var fileURL: String?
-    @objc dynamic var createdAt = Date()
     dynamic var contentType: MessageType = .unKnown
 
 
     enum CodingKeys: String, CodingKey {
+        case header
         case title
         case body
         case file
@@ -38,6 +39,7 @@ class RLMMessage: RLMDefaults {
 
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
+            self.header = try values.decode(String.self, forKey: .header)
             self.title = try values.decode(String.self, forKey: .title)
             self.body = try values.decode(String.self, forKey: .body)
             self.fileURL = try? values.decode(String.self, forKey: .file)
@@ -46,7 +48,7 @@ class RLMMessage: RLMDefaults {
             guard let date = Date.dateFromISO8601String(dateString) else {
                 fatalError("JSON Decoding error = 'Invalid date format'")
             }
-            self.createdAt = date
+            self.serverLastUpdated = date
 
             self.contentType = try values.decode(MessageType.self, forKey: .contentType)
 
