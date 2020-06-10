@@ -122,24 +122,10 @@
   },
   {
     "name": "Rest",
-    "rowType": 3,
+    "rowType": 2,
     "properties": {
       "title": "Rest",
       "subtitle": "Select amount of sleep:",
-      "options": [
-        {
-          "value": 1,
-          "text": "30min"
-        },
-        {
-          "value": 2,
-          "text": "1h"
-        },
-        {
-          "value": 3,
-          "text": "2h"
-        }
-      ],
       "iconName": "cloud-icon",
       "iconColor": "FBD476"
     }
