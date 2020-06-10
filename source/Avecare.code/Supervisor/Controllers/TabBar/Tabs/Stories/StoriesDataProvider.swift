@@ -38,9 +38,10 @@ protocol StoriesDataProviderIO: class, StoriesDataProviderNavigation {
 
     func fetchAll()
     var numberOfRows: Int { get }
-
+    func isRowStoryPublished(at indexPath: IndexPath) -> Bool
     func model(for indexPath: IndexPath) -> StoriesTableViewCellModel
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath)
+    func removeStoryAt(at indexPath: IndexPath)
 
     func form(at indexPath: IndexPath) -> Form
     func didPickDocumentsAt(urls: [URL], view: PDFThumbView)
@@ -49,6 +50,11 @@ protocol StoriesDataProviderIO: class, StoriesDataProviderNavigation {
 
 
 class StoriesDataProvider: StoriesDataProviderIO {
+   
+    func isRowStoryPublished(at indexPath: IndexPath) -> Bool {
+        let story = dataSource[indexPath.row]
+        return story.publishState != .local
+    }
 
 
 
@@ -68,6 +74,13 @@ class StoriesDataProvider: StoriesDataProviderIO {
         }
     }
 
+    func removeStoryAt( at indexPath: IndexPath) {
+        let story = dataSource[indexPath.row]
+        story.clean()
+        // no need to fetch all stories again.
+        dataSource.remove(at: indexPath.row)
+    }
+    
     func sort() {
         dataSource = RLMLogForm.sortObjectsByLastUpdated(order: .orderedDescending, dataSource)
     }
