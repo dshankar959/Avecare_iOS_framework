@@ -8,7 +8,7 @@ extension StoriesTableViewCellModel {
     init(story: RLMStory, storage: DocumentService) {
         title = story.title
         details = story.body
-        photoURL = story.pdfURL(using: storage)
+        pdfURL = story.pdfURL(using: storage)
         photoCaption = story.photoCaption
 
         if let lastUpdated = story.clientLastUpdated {
@@ -24,6 +24,7 @@ extension StoriesTableViewCellModel {
 
 
 protocol StoriesDataProviderDelegate: UIViewController {
+    func showError(title: String, message: String)
     func didCreateNewStory()
     func didUpdateModel(at indexPath: IndexPath, details: Bool)
     func moveStory(at fromIndexPath: IndexPath, to toIndexPath: IndexPath)

@@ -71,8 +71,13 @@ extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource 
 
 }
 
-extension StoriesSideViewController: StoriesDataProviderDelegate {
+extension StoriesSideViewController: StoriesDataProviderDelegate, IndicatorProtocol {
 
+    func showError(title: String, message: String) {
+        let error = AppError(title: title, userInfo: message, code: "", type: "")
+        self.showErrorAlert(error)
+    }
+    
     func gotToPDFDetail(fileUrl: URL) {
         performSegue(withIdentifier: "PDFOpenView", sender: fileUrl)
     }

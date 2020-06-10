@@ -21,12 +21,12 @@ struct FormTextViewModel: CellViewModel {
         cell.textViewPlaceholder.font = font
         cell.textViewPlaceholder.text = placeholder
         cell.textView.text = value
+        cell.textViewPlaceholder.adjustsFontSizeToFitWidth = true
 
         cell.updatePlaceholderVisibility()
 
         if let color = textColor {
             cell.textView.textColor = color
-            cell.textViewPlaceholder.textColor = color
         }
 
         cell.textView.isUserInteractionEnabled = isEditable

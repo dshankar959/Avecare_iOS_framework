@@ -106,58 +106,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PJB-CQ-7ak">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Val-WY-DCj" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BhY-ut-wH3">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="0.0"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" priority="100" id="wXh-ab-qff"/>
-                                                </constraints>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" name="Background"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="BhY-ut-wH3" secondAttribute="trailing" id="55v-76-nFv"/>
-                                            <constraint firstItem="BhY-ut-wH3" firstAttribute="top" secondItem="Val-WY-DCj" secondAttribute="top" id="81c-ip-rIG"/>
-                                            <constraint firstItem="BhY-ut-wH3" firstAttribute="leading" secondItem="Val-WY-DCj" secondAttribute="leading" id="Eq2-5d-eRM"/>
-                                            <constraint firstAttribute="bottom" secondItem="BhY-ut-wH3" secondAttribute="bottom" id="YUI-wK-EZV"/>
-                                        </constraints>
-                                    </view>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="Val-WY-DCj" firstAttribute="leading" secondItem="lhO-nE-Pkw" secondAttribute="leading" id="GwO-FF-c8S"/>
-                                    <constraint firstItem="Val-WY-DCj" firstAttribute="bottom" secondItem="lhO-nE-Pkw" secondAttribute="bottom" id="Vnd-zd-rlC"/>
-                                    <constraint firstItem="Val-WY-DCj" firstAttribute="top" secondItem="lhO-nE-Pkw" secondAttribute="top" id="fpa-2n-hOt"/>
-                                    <constraint firstItem="Val-WY-DCj" firstAttribute="width" secondItem="Lp0-BQ-jcU" secondAttribute="width" id="qUe-IF-H7b"/>
-                                    <constraint firstItem="Val-WY-DCj" firstAttribute="trailing" secondItem="lhO-nE-Pkw" secondAttribute="trailing" id="xCo-TR-vDR"/>
-                                </constraints>
-                                <viewLayoutGuide key="contentLayoutGuide" id="lhO-nE-Pkw"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="Lp0-BQ-jcU"/>
-                            </scrollView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nov 23, 2019" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGv-EU-gho">
+                                <rect key="frame" x="0.0" y="155.5" width="414" height="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" name="LightText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paq-Hs-rd8">
+                                <rect key="frame" x="0.0" y="182.5" width="414" height="669.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="600" text="Language Skills in the Classroom and at Home" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsC-6W-chz">
+                                <rect key="frame" x="5" y="88" width="404" height="62.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <color key="textColor" name="DarkText"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="PJB-CQ-7ak" secondAttribute="trailing" id="Af1-kb-yx2"/>
-                            <constraint firstItem="PJB-CQ-7ak" firstAttribute="top" secondItem="Mae-0U-9kP" secondAttribute="top" id="GZy-go-FAd"/>
-                            <constraint firstItem="PJB-CQ-7ak" firstAttribute="leading" secondItem="9AM-UV-iwe" secondAttribute="leading" id="Sb1-82-q0A"/>
-                            <constraint firstItem="Mae-0U-9kP" firstAttribute="bottom" secondItem="PJB-CQ-7ak" secondAttribute="bottom" id="SuO-HA-1O8"/>
+                            <constraint firstItem="JGv-EU-gho" firstAttribute="trailing" secondItem="Mae-0U-9kP" secondAttribute="trailing" id="BpE-qw-xz8"/>
+                            <constraint firstItem="Mae-0U-9kP" firstAttribute="trailing" secondItem="ZsC-6W-chz" secondAttribute="trailing" constant="5" id="G1n-IV-JuL"/>
+                            <constraint firstItem="ZsC-6W-chz" firstAttribute="leading" secondItem="Mae-0U-9kP" secondAttribute="leading" constant="5" id="RVT-Ud-oj8"/>
+                            <constraint firstItem="JGv-EU-gho" firstAttribute="leading" secondItem="Mae-0U-9kP" secondAttribute="leading" id="SHd-j4-902"/>
+                            <constraint firstItem="paq-Hs-rd8" firstAttribute="top" secondItem="JGv-EU-gho" secondAttribute="bottom" constant="10" id="YBF-8v-swa"/>
+                            <constraint firstItem="JGv-EU-gho" firstAttribute="top" secondItem="ZsC-6W-chz" secondAttribute="bottom" constant="5" id="YRO-IV-H41"/>
+                            <constraint firstItem="Mae-0U-9kP" firstAttribute="bottom" secondItem="paq-Hs-rd8" secondAttribute="bottom" constant="10" id="ZRj-5f-Bto"/>
+                            <constraint firstItem="paq-Hs-rd8" firstAttribute="leading" secondItem="Mae-0U-9kP" secondAttribute="leading" id="dl1-vo-eyF"/>
+                            <constraint firstItem="Mae-0U-9kP" firstAttribute="trailing" secondItem="paq-Hs-rd8" secondAttribute="trailing" id="mrZ-tC-Mh5"/>
+                            <constraint firstItem="ZsC-6W-chz" firstAttribute="top" secondItem="Mae-0U-9kP" secondAttribute="top" id="sM4-no-sQf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Mae-0U-9kP"/>
                     </view>
                     <navigationItem key="navigationItem" id="mWy-Kg-aZd"/>
                     <connections>
-                        <outlet property="contentView" destination="Val-WY-DCj" id="NyC-Xn-g2r"/>
-                        <outlet property="scrollView" destination="PJB-CQ-7ak" id="Jan-8T-NEO"/>
-                        <outlet property="stackView" destination="BhY-ut-wH3" id="TGU-vR-pJF"/>
+                        <outlet property="dateTitleLabel" destination="JGv-EU-gho" id="JMy-Wj-BcO"/>
+                        <outlet property="pdfContainer" destination="paq-Hs-rd8" id="uuv-Dz-z1K"/>
+                        <outlet property="storyTitle" destination="ZsC-6W-chz" id="5JP-D1-yE8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ud1-sm-zoI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="991" y="94"/>
+            <point key="canvasLocation" x="989.85507246376824" y="93.75"/>
         </scene>
     </scenes>
     <resources>
@@ -167,6 +157,9 @@
         </namedColor>
         <namedColor name="DarkText">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightText">
+            <color red="0.49411764705882355" green="0.52156862745098043" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
