@@ -83,7 +83,8 @@ extension InjuryReportFormProvider: FormProvider {
         viewModels.append(InfoMessageFormViewModel(title: NSLocalizedString("notification_injury_report_message_description_title", comment: ""),
                                                    message: NSLocalizedString("notification_injury_report_message_description_text", comment: "")))
 
-        let injuryTypePicker = SingleValuePickerView(values: RLMInjury.findAll())
+        let injuryTypes = RLMInjury.findAll().filter { $0.isActive }
+        let injuryTypePicker = SingleValuePickerView(values: injuryTypes)
         injuryTypePicker.backgroundColor = .white
 
         let injuryPickerTitle = NSLocalizedString("notification_injury_report_select_injury_title", comment: "")
