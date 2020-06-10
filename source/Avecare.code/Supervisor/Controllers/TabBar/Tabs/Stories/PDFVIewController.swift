@@ -14,7 +14,7 @@ class PDFVIewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-                let pdfView = PDFView()
+        let pdfView = PDFView()
 
         pdfView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(pdfView)

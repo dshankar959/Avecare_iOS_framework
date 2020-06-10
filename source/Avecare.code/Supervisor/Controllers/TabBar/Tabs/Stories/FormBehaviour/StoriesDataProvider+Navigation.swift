@@ -12,7 +12,7 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
         let story = dataSource[indexPath.row]
         let isSubmitted = story.publishState != .local
 
-        let isStorySubmitable = DocumentService().fileURL(name: story.id, type: "pdf") != nil && !story.title.isEmpty
+        let isStorySubmitable = DocumentService().fileURL(name: story.id, type: "pdf") != nil
         let isEnabled = !isSubmitted && isStorySubmitable
         let publishText = isSubmitted ? "Published" : "Publish"
         let publishColor = isEnabled ? R.color.main() :R.color.lightText4()
@@ -23,6 +23,10 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
             .offset(value: 10),
             // Navigation Bar -> Publish selected story
             .button(options: .init(action: { [weak self] view, options, index in
+                if story.title.isEmpty {
+                self?.delegate?.showError(title: NSLocalizedString("alert_notitle_story_title", comment: ""), message: NSLocalizedString("alert_notitle_story_message", comment: ""))
+                    return
+                }
                 self?.publishStory(story)
             }, isEnabled: isEnabled, text: publishText, textColor: R.color.mainInversion(),
                     tintColor: publishColor, cornerRadius: 4))

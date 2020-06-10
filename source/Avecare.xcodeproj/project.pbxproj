@@ -1015,7 +1015,7 @@
 			path = SupervisorFilter;
 			sourceTree = "<group>";
 		};
-		6154774EB7F6E73B056B38C1 /* FromBehavior */ = {
+		6154774EB7F6E73B056B38C1 /* FormBehaviour */ = {
 			isa = PBXGroup;
 			children = (
 				615478357A55BAA1219DC4B2 /* StoriesDataProvider+Photo.swift */,
@@ -1025,7 +1025,7 @@
 				61547D432767A42B571EA22F /* StoriesDataProvider+Subtitle.swift */,
 				D0A6441B248AA9000041A69B /* StoriesDataProvider+PDF.swift */,
 			);
-			path = FromBehavior;
+			path = FormBehaviour;
 			sourceTree = "<group>";
 		};
 		6154779A129E67EB52A84A8A /* PinField */ = {
@@ -1592,7 +1592,7 @@
 				75886DAC241932BA0079C080 /* StoriesDataProvider.swift */,
 				D0A64422248E168A0041A69B /* PDFVIewController.swift */,
 				615475BA47C2AEFAA9A3F0C9 /* StoriesSideViewController.swift */,
-				6154774EB7F6E73B056B38C1 /* FromBehavior */,
+				6154774EB7F6E73B056B38C1 /* FormBehaviour */,
 			);
 			path = Stories;
 			sourceTree = "<group>";

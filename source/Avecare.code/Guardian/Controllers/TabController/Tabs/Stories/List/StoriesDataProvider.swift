@@ -137,13 +137,8 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
     func details(at indexPath: IndexPath) -> StoriesDetails {
         guard indexPath.section == 1 else { fatalError() }
         let parent = dataSource[indexPath.row]
-        let photo: StoriesDetails.Photo?
-        if let imgURL = parent.photoURL(using: storage) {
-            photo = .init(imageURL: imgURL, caption: parent.photoCaption)
-        } else {
-            photo = nil
-        }
-        return StoriesDetails(title: parent.title, description: parent.body, photo: photo, date: parent.serverLastUpdated)
+        let pdfURL = parent.pdfURL(using: storage)
+        return StoriesDetails(title: parent.title, pdfURL: pdfURL, date: parent.serverLastUpdated)
     }
 }
 
@@ -152,7 +147,7 @@ extension StoriesTableViewCellModel {
         title = story.title
         date = story.serverLastUpdated ?? Date()
         details = story.body
-        photoURL = story.photoURL(using: storage)
+        pdfURL = story.pdfURL(using: storage)
         photoCaption = story.photoCaption
     }
 }

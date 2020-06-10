@@ -30,8 +30,8 @@
                         <outlet property="delegate" destination="-1" id="tEm-TS-DM0"/>
                     </connections>
                 </textView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140 characters maximum." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IxB-ez-Js5">
-                    <rect key="frame" x="16" y="12" width="167" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140 characters maximum." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000000000002" translatesAutoresizingMaskIntoConstraints="NO" id="IxB-ez-Js5">
+                    <rect key="frame" x="16" y="12" width="627" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" name="LightText"/>
                     <nil key="highlightedColor"/>
@@ -44,6 +44,7 @@
                 <constraint firstItem="pIl-Bc-8Yf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="9xm-hj-HpA"/>
                 <constraint firstAttribute="bottom" secondItem="pIl-Bc-8Yf" secondAttribute="bottom" id="MQo-Ca-Hci"/>
                 <constraint firstAttribute="trailing" secondItem="pIl-Bc-8Yf" secondAttribute="trailing" id="hp8-O8-V7B"/>
+                <constraint firstAttribute="trailing" secondItem="IxB-ez-Js5" secondAttribute="trailing" constant="10" id="kyw-lf-k97"/>
                 <constraint firstItem="IxB-ez-Js5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="12" id="yzY-cC-XZW"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
