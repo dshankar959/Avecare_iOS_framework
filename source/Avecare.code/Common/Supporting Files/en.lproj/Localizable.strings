@@ -24,7 +24,8 @@
 "profile_about_details_terms_and_conditions" = "Terms & Conditions";
 "profile_about_details_privacy_policy" = "Privacy Policy";
 "profile_about_details_about_this_app" = "About This App";
-"alert_ok" = "OK";
+"alert_notitle_story_title" = "No title";
+"alert_notitle_story_message" = "Please enter a title.";
 "error_default_contact_support" = "Please contact support for further assistance.";
 "error_default_contact_admin" = "Please contact the system administrator.";
 "error_default_try_again" = "Please try again.";

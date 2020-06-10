@@ -24,7 +24,7 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
             // Navigation Bar -> Publish selected story
             .button(options: .init(action: { [weak self] view, options, index in
                 if story.title.isEmpty {
-                self?.delegate?.showError(title: NSLocalizedString("alert_notitle_story_title", comment: ""), message: NSLocalizedString("alert_notitle_story_message", comment: ""))
+                    self?.delegate?.showError(title: NSLocalizedString("alert_notitle_story_title", comment: ""), message: NSLocalizedString("alert_notitle_story_message", comment: ""))
                     return
                 }
                 self?.publishStory(story)
