@@ -27,7 +27,6 @@ class PDFVIewController: UIViewController {
         thumbnailView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(thumbnailView)
 
-        thumbnailView.widthAnchor.constraint(equalToConstant: 70).isActive = true
         thumbnailView.backgroundColor = UIKit.UIColor(resource: R.color.background, compatibleWith: nil) ?? UIColor.white
         thumbnailView.thumbnailSize = CGSize(width: 70, height: 70)
 
