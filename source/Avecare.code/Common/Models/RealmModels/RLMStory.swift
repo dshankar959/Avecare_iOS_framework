@@ -1,6 +1,8 @@
 import RealmSwift
 import CocoaLumberjack
 
+
+
 class RLMStory: RLMDefaults, RLMPublishable {
 
     @objc dynamic var title: String = ""
@@ -47,6 +49,7 @@ class RLMStory: RLMDefaults, RLMPublishable {
 
     }
 }
+
 
 extension RLMStory {
     /*
