@@ -9,9 +9,9 @@ struct StoriesTableViewCellModel: CellViewModel {
 
     var title: String?
     let date: Date
-    var details: String?
-    var pdfURL: URL?
-    var photoCaption: String?
+//    var details: String?
+    var documentURL: URL?
+//    var photoCaption: String?
 
     var isSelected = false
 
@@ -22,10 +22,8 @@ struct StoriesTableViewCellModel: CellViewModel {
         let service = DocumentService()
         let size = 375 * UIScreen.main.scale
 
-        if let url = pdfURL, url.absoluteString.isFilePath, let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url, atPage: 0) {
+        if let url = documentURL, url.absoluteString.isFilePath, let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url, atPage: 0) {
             cell.photoImageView.image = image
-        } else {
-            cell.photoImageView.kf.setImage(with: pdfURL)
         }
     }
 }

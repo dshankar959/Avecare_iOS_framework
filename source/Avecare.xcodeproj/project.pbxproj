@@ -102,7 +102,6 @@
 		61547C49682CD233270C41A9 /* RLMStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615474E20C4A1706A2D294F0 /* RLMStory.swift */; };
 		61547C4BE16D9D0A21B03C31 /* StoriesDataProvider+Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547C86A6589BD1A80D59D6 /* StoriesDataProvider+Title.swift */; };
 		61547C7098FB4A48FF8B56DC /* RLMSupervisor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547267EB7BC5F4558F3B70 /* RLMSupervisor.swift */; };
-		61547CD7716032C8AB205E6E /* StoriesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154791B455C1EA0E84D309F /* StoriesAPIService.swift */; };
 		61547CF0B53CE8AD81F629CB /* StoriesSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615475BA47C2AEFAA9A3F0C9 /* StoriesSideViewController.swift */; };
 		61547D0BE9189E92DB28BD3E /* FilesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547A001A9E896379830128 /* FilesResponseModel.swift */; };
 		61547D2E2DC865E404CF15C7 /* SubjectListDataProvider+Injury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478D8AB934A1DD5AD4BF9 /* SubjectListDataProvider+Injury.swift */; };
@@ -309,7 +308,6 @@
 		75EB5A26246770B000E077E5 /* SupervisorsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477873D1D818B4B22AC5C /* SupervisorsAPIService.swift */; };
 		75EB5A27246770B900E077E5 /* InstitutionsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615476E15206D0F7BC7080C8 /* InstitutionsAPIService.swift */; };
 		75EB5A28246770B900E077E5 /* GuardiansAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615470B479541EB0ADC83755 /* GuardiansAPIService.swift */; };
-		75EB5A29246770B900E077E5 /* StoriesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154791B455C1EA0E84D309F /* StoriesAPIService.swift */; };
 		75EB5A2A246770B900E077E5 /* SubjectsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */; };
 		75EB5A2D2467A21600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A2C2467A21600E077E5 /* SyncEngine+Operations.swift */; };
 		75EB5A312467A26600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */; };
@@ -488,7 +486,6 @@
 		615478D41647CC7CBA087361 /* syncSubjectLogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncSubjectLogs.swift; sourceTree = "<group>"; };
 		615478D8AB934A1DD5AD4BF9 /* SubjectListDataProvider+Injury.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Injury.swift"; sourceTree = "<group>"; };
 		615479056980C7871D32751E /* UnitAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitAPIService.swift; sourceTree = "<group>"; };
-		6154791B455C1EA0E84D309F /* StoriesAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesAPIService.swift; sourceTree = "<group>"; };
 		615479269DCBED93B225DDA3 /* SubjectAccidentReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubjectAccidentReportView.xib; sourceTree = "<group>"; };
 		6154797C8F550C18F3AB7FBF /* DocumentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentService.swift; sourceTree = "<group>"; };
 		61547987775C9B210B22AA84 /* TimeRangePickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeRangePickerView.xib; sourceTree = "<group>"; };
@@ -1364,7 +1361,6 @@
 				615479056980C7871D32751E /* UnitAPIService.swift */,
 				615476E15206D0F7BC7080C8 /* InstitutionsAPIService.swift */,
 				615470B479541EB0ADC83755 /* GuardiansAPIService.swift */,
-				6154791B455C1EA0E84D309F /* StoriesAPIService.swift */,
 				615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */,
 				61547D73CFED29A678ACDFD5 /* OrganizationsAPIService.swift */,
 				DC3E80E92486BDDE003983E2 /* MessagesAPIService.swift */,
@@ -2449,7 +2445,6 @@
 				61547B7AB691E28FECCD6B86 /* SubjectsAPIService.swift in Sources */,
 				6154797BFC410EDB48D44521 /* SupervisorsAPIService.swift in Sources */,
 				75EB59D62461858700E077E5 /* RLMSubject.swift in Sources */,
-				61547CD7716032C8AB205E6E /* StoriesAPIService.swift in Sources */,
 				615475CA76FACDD26C7D99CF /* DailyTask.swift in Sources */,
 				615477604486F2465810D030 /* UnitActivity.swift in Sources */,
 				61547A6A4DD9A2C0DDF532DE /* Injury.swift in Sources */,
@@ -2612,7 +2607,6 @@
 				75886D492419327F0079C080 /* UIDevice.swift in Sources */,
 				F663BB7924352065003279B9 /* LoginViewController.swift in Sources */,
 				75EB59C92461858700E077E5 /* RLMOptionValue.swift in Sources */,
-				75EB5A29246770B900E077E5 /* StoriesAPIService.swift in Sources */,
 				615473E128966135AC3D2073 /* APIToken.swift in Sources */,
 				6154739FE190C8520C56FE01 /* Closure.swift in Sources */,
 				DC4FFA0B2470B9AE0079A27C /* ProfileMenuTableViewCell.swift in Sources */,

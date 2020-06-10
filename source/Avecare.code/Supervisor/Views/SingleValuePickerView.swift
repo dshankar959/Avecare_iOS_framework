@@ -1,15 +1,19 @@
 import Foundation
 import UIKit
 
+
+
 protocol SingleValuePickerItem {
     var pickerTextValue: String { get }
 }
+
 
 extension SingleValuePickerItem where Self: CustomStringConvertible {
     var pickerTextValue: String {
         return description
     }
 }
+
 
 class SingleValuePickerView<T: SingleValuePickerItem>: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
     let values: [T]
@@ -53,4 +57,5 @@ class SingleValuePickerView<T: SingleValuePickerItem>: UIPickerView, UIPickerVie
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return values[row].pickerTextValue
     }
+
 }

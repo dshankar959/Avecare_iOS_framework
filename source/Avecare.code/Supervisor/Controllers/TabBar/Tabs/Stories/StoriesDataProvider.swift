@@ -7,9 +7,9 @@ extension StoriesTableViewCellModel {
 
     init(story: RLMStory, storage: DocumentService) {
         title = story.title
-        details = story.body
-        pdfURL = story.pdfURL(using: storage)
-        photoCaption = story.photoCaption
+//        details = story.body
+        documentURL = story.pdfURL(using: storage)
+//        photoCaption = story.photoCaption
 
         if let lastUpdated = story.clientLastUpdated {
             date = lastUpdated

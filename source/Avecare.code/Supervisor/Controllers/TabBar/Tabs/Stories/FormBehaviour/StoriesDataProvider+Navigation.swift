@@ -1,9 +1,12 @@
 import Foundation
 import CocoaLumberjack
 
+
+
 protocol StoriesDataProviderNavigation {
     func navigationItems(at indexPath: IndexPath) -> [DetailsNavigationView.Item]
 }
+
 
 extension StoriesDataProvider: StoriesDataProviderNavigation {
 
@@ -51,16 +54,18 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
         guard let unitId = RLMSupervisor.details?.primaryUnitId else {
             return
         }
+
         RLMStory.writeTransaction {
             story.clientLastUpdated = Date()
             story.publishState = .publishing
         }
+
         let model = PublishStoryRequestModel(unitId: unitId, story: story, storage: imageStorageService)
 
         // TODO: show loader
         UnitAPIService.publishStory(model) { [weak self] result in
             switch result {
-            case .success:
+            case .success(let response):
                 // update UI to block editing
                 // story will be moved to 1st position after sort()
                 // because serverDate updated
@@ -72,9 +77,7 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
 
                 //  update serverDate
                 RLMStory.writeTransaction {
-                    let date = Date() // FIXME: should be date from server response?
-                    story.clientLastUpdated = date
-                    story.serverLastUpdated = date
+                    story.serverLastUpdated = response.serverLastUpdated
                     story.publishState = .published
                 }
 
@@ -85,5 +88,7 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
                 DDLogError("\(error)")
             }
         }
+
     }
+
 }

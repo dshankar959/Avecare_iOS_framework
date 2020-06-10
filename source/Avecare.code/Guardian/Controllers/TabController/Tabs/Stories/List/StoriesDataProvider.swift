@@ -1,5 +1,7 @@
 import Foundation
 
+
+
 protocol StoriesDataProvider: class {
     var unitIds: [String] { get set }
     func numberOfRows(for section: Int) -> Int
@@ -7,13 +9,16 @@ protocol StoriesDataProvider: class {
     func details(at indexPath: IndexPath) -> StoriesDetails
 }
 
+
 protocol EducatorsDataProvider: class {
     var unitIds: [String] { get set }
     var numberOfRows: Int { get }
     func model(for indexPath: IndexPath) -> SupervisorCollectionViewCellModel
 }
 
+
 class DefaultEducatorsDataProvider: EducatorsDataProvider {
+
     private let supervisors = RLMSupervisor.findAll()
     private let storage = DocumentService()
 
@@ -29,6 +34,7 @@ class DefaultEducatorsDataProvider: EducatorsDataProvider {
         }
     }
 
+
     private func filter(for supervisors: [RLMSupervisor], with unitIds: [String]) -> [RLMSupervisor] {
         var result = [RLMSupervisor]()
         unitIds.forEach { unitId in
@@ -38,16 +44,22 @@ class DefaultEducatorsDataProvider: EducatorsDataProvider {
         return result
     }
 
+
     var numberOfRows: Int {
         return dataSource.count
     }
 
+
     func model(for indexPath: IndexPath) -> SupervisorCollectionViewCellModel {
         return SupervisorCollectionViewCellModel(with: dataSource[indexPath.row], storage: storage)
     }
+
 }
 
+
+
 extension SupervisorCollectionViewCellModel {
+
     init(with educator: RLMSupervisor, storage: DocumentService) {
         id = educator.id
 
@@ -62,9 +74,12 @@ extension SupervisorCollectionViewCellModel {
         name = educator.lastName
         photo = educator.photoURL(using: storage)
     }
+
 }
 
+
 class DefaultStoriesDataProvider: StoriesDataProvider {
+
     private let educators = DefaultEducatorsDataProvider()
     private let stories = RLMStory.findAll()
     private let storage = DocumentService()
@@ -83,6 +98,7 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
         }
     }
 
+
     private func filter(for stories: [RLMStory], with unitIds: [String]) -> [RLMStory] {
         var result = [RLMStory]()
         unitIds.forEach { unitId in
@@ -91,6 +107,7 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
         }
         return result
     }
+
 
 //    var dataSource: [StoriesTableViewCellModel] = [
 //        StoriesTableViewCellModel(title: "Colouring and Fine Motors Skills Development", date: Date(),
@@ -118,6 +135,7 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
 //                photoCaption: "photo caption 6")
 //    ]
 
+
     func numberOfRows(for section: Int) -> Int {
         switch section {
         case 0: return 1
@@ -125,6 +143,7 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
         default: return 0
         }
     }
+
 
     func model(for indexPath: IndexPath) -> AnyCellViewModel {
         switch indexPath.section {
@@ -134,20 +153,25 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
         }
     }
 
+
     func details(at indexPath: IndexPath) -> StoriesDetails {
         guard indexPath.section == 1 else { fatalError() }
         let parent = dataSource[indexPath.row]
         let pdfURL = parent.pdfURL(using: storage)
         return StoriesDetails(title: parent.title, pdfURL: pdfURL, date: parent.serverLastUpdated)
     }
+
 }
 
+
 extension StoriesTableViewCellModel {
+
     init(with story: RLMStory, storage: DocumentService) {
         title = story.title
         date = story.serverLastUpdated ?? Date()
-        details = story.body
-        pdfURL = story.pdfURL(using: storage)
-        photoCaption = story.photoCaption
+//        details = story.body
+        documentURL = story.pdfURL(using: storage)
+//        photoCaption = story.photoCaption
     }
+
 }
