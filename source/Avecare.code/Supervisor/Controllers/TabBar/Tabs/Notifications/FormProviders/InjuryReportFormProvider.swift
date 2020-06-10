@@ -6,6 +6,7 @@ class InjuryReportFormProvider {
 
     var injurySubjects = [RLMSubject]()
     var injuryDate: Date?
+    var seletctedInjuryType: RLMInjury?
 
     var injuryDateString: String? {
         guard let date = injuryDate else { return nil }
@@ -39,10 +40,6 @@ class InjuryReportFormProvider {
     func deleteSubjectAt(_ index: Int) {
         injurySubjects.remove(at: index)
         delegate?.didUpdateModel(at: indexPath)
-    }
-
-    func showInjuryPicker() {
-        //
     }
 }
 
@@ -82,17 +79,25 @@ extension InjuryReportFormProvider: FormProvider {
         if injurySubjects.count > 0 {
             viewModels.append(TagListFormViewModel(tags: injurySubjects.map({ "\($0.firstName), \($0.lastName)" }), deleteAction: deleteSubjectAt))
         }
+
         viewModels.append(InfoMessageFormViewModel(title: NSLocalizedString("notification_injury_report_message_description_title", comment: ""),
                                                    message: NSLocalizedString("notification_injury_report_message_description_text", comment: "")))
+
+        let injuryTypePicker = SingleValuePickerView(values: RLMInjury.findAll())
+        injuryTypePicker.backgroundColor = .white
 
         let injuryPickerTitle = NSLocalizedString("notification_injury_report_select_injury_title", comment: "")
         let injuryPicker = PickerViewFormViewModel(title: nil,
                                                    placeholder: NSLocalizedString("notification_injury_report_select_injury_placeholder", comment: ""),
                                                    accessory: .dropdown,
-                                                   textValue: nil,
-        action: .init(onClick: { [weak self] view in
-            self?.showInjuryPicker()
-        }, inputView: nil, onInput: nil))
+                                                   textValue: seletctedInjuryType?.name,
+                action: .init(onClick: { [weak self] view in
+                    injuryTypePicker.selectedValue = self?.seletctedInjuryType
+                    view.becomeFirstResponder()
+                }, inputView: injuryTypePicker, onInput: { [weak self] view, _ in
+                    self?.seletctedInjuryType = injuryTypePicker.selectedValue
+                    view.setTextValue(self?.seletctedInjuryType?.name)
+                }))
         viewModels.append(PickerViewWithSideTitleFormViewModel(title: injuryPickerTitle, picker: injuryPicker))
         viewModels.append(InputTextFormViewModel(title: NSLocalizedString("notification_injury_report_additional_message_title", comment: ""),
                                                  placeholder: NSLocalizedString("notification_injury_report_additional_message_placeholder", comment: ""),

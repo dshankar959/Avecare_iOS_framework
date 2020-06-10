@@ -69,3 +69,17 @@ class RLMGuardianFeed: RLMDefaults {
 
 
 typealias GuardianFeedResponse = APIResponse<[RLMGuardianFeed]>
+
+/*
+struct Injury: Codable {
+    let id: String
+    let name: String
+    let description: String
+    let isActive: Bool
+}
+
+typealias InjuriesResponse = APIResponse<[Injury]>
+
+struct InjuriesResponse: Codable {
+
+}*/
