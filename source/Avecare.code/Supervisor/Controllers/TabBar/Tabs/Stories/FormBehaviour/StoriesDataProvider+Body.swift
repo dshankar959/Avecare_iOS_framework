@@ -3,7 +3,7 @@ import UIKit
 
 
 extension StoriesDataProvider {
-
+/*
     func bodyViewModel(for story: RLMStory) -> FormTextViewModel {
         let subtitleFont: UIFont = .systemFont(ofSize: 14)
         let isSubmitted = story.publishState != .local
@@ -17,5 +17,5 @@ extension StoriesDataProvider {
             self?.updateEditDate(for: story)
         })
     }
-
+*/
 }

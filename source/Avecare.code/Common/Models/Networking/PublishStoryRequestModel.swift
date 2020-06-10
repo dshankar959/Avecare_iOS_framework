@@ -1,6 +1,6 @@
-import Foundation
 import Moya
 import CocoaLumberjack
+
 
 
 struct PublishStoryRequestModel {
@@ -10,7 +10,9 @@ struct PublishStoryRequestModel {
     let storage: DocumentService
 
     private enum CodingKeys: String, CodingKey {
-        case id, story
+        case id
+        case title
+        case storyFile
     }
 
     init(unitId: String, story: RLMStory, storage: DocumentService) {
@@ -22,29 +24,36 @@ struct PublishStoryRequestModel {
 
 
 extension PublishStoryRequestModel: MultipartEncodable {
+
     var formData: [Moya.MultipartFormData] {
         var data = [Moya.MultipartFormData]()
+
         if let value = story.id.data(using: .utf8) {
             data.append(.init(provider: .data(value), name: CodingKeys.id.rawValue))
         }
-        do {
-            let value = try JSONEncoder().encode(story)
-            data.append(.init(provider: .data(value), name: CodingKeys.story.rawValue))
-        } catch {
-            DDLogError("\(error)")
+
+        if let value = story.title.data(using: .utf8) {
+            data.append(.init(provider: .data(value), name: CodingKeys.title.rawValue))
         }
 
-        if let url = story.pdfURL(using: storage) {
-            data.append(.init(provider: .file(url), name: story.id))
+        if let url = story.pdfURL(using: storage) { // filename is the same as the object 'id'
+            data.append(.init(provider: .file(url), name: CodingKeys.storyFile.rawValue))
         }
+
         return data
     }
+
 }
 
+/*
 struct PublishStoryResponseModel: Decodable {
+
     let id: String
     let unitId: String
-    let thumbnails: String?
-    let files: [FilesResponseModel.File]
+    let updatedAt: String
+//    let thumbnails: String?
+    let storyFile: FilesResponseModel.File
+
     let story: RLMStory
 }
+*/

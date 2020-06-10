@@ -2,9 +2,12 @@ import Foundation
 import UIKit
 import SnapKit
 
+
+
 private let tabBarHeight: CGFloat = 80
 
 class SupervisorTabBarButton: UIButton {
+
     weak var item: UITabBarItem?
 
     override func titleRect(forContentRect contentRect: CGRect) -> CGRect {
@@ -35,14 +38,18 @@ class SupervisorTabBarButton: UIButton {
     private func centerTitleLabel() {
         self.titleLabel?.textAlignment = .center
     }
+
 }
+
 
 private protocol CustomTabBarViewDelegate: class {
     func tabBar(_ tabBar: CustomTabBarView, didClickItem button: SupervisorTabBarButton)
     var selectedTabBarItem: UITabBarItem? { get }
 }
 
+
 private class CustomTabBarView: UIView {
+
     var buttons = [SupervisorTabBarButton]()
     weak var delegate: CustomTabBarViewDelegate?
 
@@ -181,7 +188,9 @@ class SupervisorTabBarController: UITabBarController {
 
 }
 
+
 extension SupervisorTabBarController: CustomTabBarViewDelegate {
+
     fileprivate func tabBar(_ tabBar: CustomTabBarView, didClickItem button: SupervisorTabBarButton) {
         guard let item = button.item, let index = self.tabBar.items?.firstIndex(of: item),
               selectedIndex != index else {
@@ -193,4 +202,5 @@ extension SupervisorTabBarController: CustomTabBarViewDelegate {
     fileprivate var selectedTabBarItem: UITabBarItem? {
         return tabBar.selectedItem
     }
+
 }

@@ -136,14 +136,15 @@ struct UnitAPIService {
         }
     }
 
-    static func publishStory(_ story: PublishStoryRequestModel, completion: @escaping (Result<FilesResponseModel, AppError>) -> Void) {
+
+    static func publishStory(_ story: PublishStoryRequestModel, completion: @escaping (Result<RLMStory, AppError>) -> Void) {
         DDLogVerbose("")
 
         apiProvider.request(.unitPublishStory(story: story)) { result in
             switch result {
             case .success(let response):
                 do {
-                    let mappedResponse = try response.map(FilesResponseModel.self)
+                    let mappedResponse = try response.map(RLMStory.self)
                     completion(.success(mappedResponse))
                 } catch {
                     DDLogError("JSON MAPPING ERROR = \(error)")
@@ -155,6 +156,7 @@ struct UnitAPIService {
         }
     }
 
+
     static func getPublishedStories(unitId: String, completion: @escaping (Result<[RLMStory], AppError>) -> Void) {
         DDLogVerbose("")
 
@@ -162,17 +164,20 @@ struct UnitAPIService {
             switch result {
             case .success(let response):
                 do {
-                    let mappedResponse = try response.map(APIPaginatedResponse<PublishStoryResponseModel>.self)
+                    let mappedResponse = try response.map(APIPaginatedResponse<RLMStory>.self)
                     let storage = DocumentService()
                     var stories = [RLMStory]()
-                    for model in mappedResponse.results {
-                        stories.append(model.story)
-                        if let file = model.files.first, file.id == model.story.id,
-                           let url = URL(string: file.fileUrl) {
-                            _ = try storage.saveRemoteFile(url, name: model.story.id, type: "pdf")
+
+                    for story in mappedResponse.results {
+                        stories.append(story)
+
+                        if let storyFileURL = story.storyFileURL, let url = URL(string: storyFileURL) {
+                            _ = try storage.saveRemoteFile(url, name: story.id, type: "pdf")
                         }
                     }
+
                     completion(.success(stories))
+
                 } catch {
                     DDLogError("JSON MAPPING ERROR = \(error)")
                     completion(.failure(JSONError.failedToMapData.message))
