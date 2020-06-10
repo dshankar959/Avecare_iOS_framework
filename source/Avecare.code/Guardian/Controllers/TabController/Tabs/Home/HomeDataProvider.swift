@@ -20,7 +20,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
     private var fetchedFeed = [RLMGuardianFeed]()
     private var dataSource = [Section]()
     private var subjectDict = [String: RLMSubject]()
-    private let storage = StorageService()
+    private let storage = DocumentService()
 
     init() {
         let subjects = RLMSubject.findAll()
@@ -206,7 +206,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
 }
 
 extension HomeTableViewDisclosureCellModel {
-    init(with feed: RLMGuardianFeed, subject: RLMSubject, storage: StorageService) {
+    init(with feed: RLMGuardianFeed, subject: RLMSubject, storage: DocumentService) {
         if feed.feedItemType == .subjectDailyLog {
             title = subject.firstName + NSLocalizedString("home_feed_title_dailylog", comment: "")
             subtitle = nil

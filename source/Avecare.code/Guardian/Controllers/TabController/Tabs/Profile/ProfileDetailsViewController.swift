@@ -40,7 +40,7 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
             let fileURL: URL?
             switch profileDetails {
             case .mealPlan:
-                fileURL = institution.mealPlanURL(using: StorageService())
+                fileURL = institution.mealPlanURL(using: DocumentService())
 //            case .activities:
 //                fileURL = institution.activityURL(using: DocumentService())
             }
