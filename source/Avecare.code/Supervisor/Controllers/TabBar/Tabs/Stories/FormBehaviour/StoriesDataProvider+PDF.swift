@@ -37,7 +37,7 @@ extension StoriesDataProvider {
         view.photoImageView.image = UIImage.init(named: "no-pdf-placeholder")
         view.removeButton.isHidden = true
         self.updateEditDate(for: story)
-        self.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: false)
+        self.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: true)
     }
 
     func showDocumentPicker(from view: PDFThumbView, for story: RLMStory) {
@@ -68,7 +68,7 @@ extension StoriesDataProvider {
                 view.photoImageView.image = image
                 view.removeButton.isHidden = false
                 self.updateEditDate(for: story)
-                self.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: false)
+                self.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: true)
             }
         }
     }

@@ -12,7 +12,7 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
         let story = dataSource[indexPath.row]
         let isSubmitted = story.publishState != .local
 
-        let isStorySubmitable = DocumentService().fileURL(name: story.id, type: "pdf") != nil
+        let isStorySubmitable = DocumentService().fileURL(name: story.id, type: "pdf") != nil && !story.title.isEmpty
         let isEnabled = !isSubmitted && isStorySubmitable
         let publishText = isSubmitted ? "Published" : "Publish"
         let publishColor = isEnabled ? R.color.main() :R.color.lightText4()
