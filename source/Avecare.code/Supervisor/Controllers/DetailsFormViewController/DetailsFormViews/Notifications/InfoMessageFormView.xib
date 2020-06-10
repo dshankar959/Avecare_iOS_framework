@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,17 +16,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="751" height="197"/>
+            <rect key="frame" x="0.0" y="0.0" width="751" height="80"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Message Descrription:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sUQ-72-NLy">
-                    <rect key="frame" x="0.0" y="0.0" width="751" height="17"/>
+                    <rect key="frame" x="0.0" y="0.0" width="751" height="21.5"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                     <color key="textColor" name="DarkText"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfX-6K-DQe">
-                    <rect key="frame" x="0.0" y="22" width="751" height="33.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfX-6K-DQe">
+                    <rect key="frame" x="0.0" y="26.5" width="751" height="33.5"/>
                     <string key="text">“Your child may have experienced a mild bump, scrape, or bite. This is NOT an emergency.  Please connect with your child’s educator upon pick up.”</string>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" name="LightText"/>
@@ -39,7 +39,7 @@
                 <constraint firstAttribute="trailing" secondItem="sUQ-72-NLy" secondAttribute="trailing" id="EWY-mB-HYK"/>
                 <constraint firstItem="dfX-6K-DQe" firstAttribute="trailing" secondItem="sUQ-72-NLy" secondAttribute="trailing" id="IeZ-3j-ZZ5"/>
                 <constraint firstItem="sUQ-72-NLy" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ovx-m0-xSK"/>
-                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="dfX-6K-DQe" secondAttribute="bottom" constant="20" id="XbE-xN-TNJ"/>
+                <constraint firstAttribute="bottom" secondItem="dfX-6K-DQe" secondAttribute="bottom" constant="20" id="XbE-xN-TNJ"/>
                 <constraint firstItem="dfX-6K-DQe" firstAttribute="top" secondItem="sUQ-72-NLy" secondAttribute="bottom" constant="5" id="Xja-Fx-RlC"/>
                 <constraint firstItem="dfX-6K-DQe" firstAttribute="leading" secondItem="sUQ-72-NLy" secondAttribute="leading" id="aRG-w7-K54"/>
             </constraints>

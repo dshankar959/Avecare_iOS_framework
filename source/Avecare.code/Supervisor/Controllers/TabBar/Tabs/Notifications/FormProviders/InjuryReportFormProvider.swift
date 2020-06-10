@@ -15,6 +15,8 @@ class InjuryReportFormProvider {
     let indexPath: IndexPath
     weak var delegate: NotificationTypeDataProviderDelegate?
 
+    var additionalMessage: String?
+
     init(indexPath: IndexPath) {
         self.indexPath = indexPath
     }
@@ -39,11 +41,17 @@ class InjuryReportFormProvider {
         delegate?.didUpdateModel(at: indexPath)
     }
 
+    func showInjuryPicker() {
+        //
+    }
 }
 
 extension InjuryReportFormProvider: FormProvider {
     func form() -> Form {
-        let left = PickerViewFormViewModel(title: "Select Child", placeholder: "Add a child", accessory: .plus, textValue: nil,
+        let left = PickerViewFormViewModel(title: NSLocalizedString("notification_injury_report_select_child_title", comment: ""),
+                                           placeholder: NSLocalizedString("notification_injury_report_select_child_placeholder", comment: ""),
+                                           accessory: .plus,
+                                           textValue: nil,
                 action: .init(onClick: { [weak self] view in
                     self?.showSubjectPicker()
                 }, inputView: nil, onInput: nil))
@@ -52,7 +60,10 @@ extension InjuryReportFormProvider: FormProvider {
         datePicker.datePickerMode = .time
         datePicker.backgroundColor = .white
 
-        let right = PickerViewFormViewModel(title: "Select Time", placeholder: "12:00pm", accessory: .clock, textValue: injuryDateString,
+        let right = PickerViewFormViewModel(title: NSLocalizedString("notification_injury_report_select_time_title", comment: ""),
+                                            placeholder: NSLocalizedString("notification_injury_report_select_time_placeholder", comment: ""),
+                                            accessory: .clock,
+                                            textValue: injuryDateString,
                 action: .init(onClick: { [weak self] view in
                     if let date = self?.injuryDate {
                         datePicker.date = date
@@ -66,16 +77,29 @@ extension InjuryReportFormProvider: FormProvider {
                     view.setTextValue(self?.injuryDateString)
                 }))
 
-        // swiftlint:disable line_length
-        let text = "Your child may have experienced a mild bump, scrape, or bite. This is NOT an emergency. Please connect with your child’s educator upon pick up."
-        // swiftlint:enable line_length
-
         var viewModels = [AnyCellViewModel]()
         viewModels.append(DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right))
         if injurySubjects.count > 0 {
             viewModels.append(TagListFormViewModel(tags: injurySubjects.map({ "\($0.firstName), \($0.lastName)" }), deleteAction: deleteSubjectAt))
         }
-        viewModels.append(InfoMessageFormViewModel(title: "Message Description:", message: text))
+        viewModels.append(InfoMessageFormViewModel(title: NSLocalizedString("notification_injury_report_message_description_title", comment: ""),
+                                                   message: NSLocalizedString("notification_injury_report_message_description_text", comment: "")))
+
+        let injuryPickerTitle = NSLocalizedString("notification_injury_report_select_injury_title", comment: "")
+        let injuryPicker = PickerViewFormViewModel(title: nil,
+                                                   placeholder: NSLocalizedString("notification_injury_report_select_injury_placeholder", comment: ""),
+                                                   accessory: .dropdown,
+                                                   textValue: nil,
+        action: .init(onClick: { [weak self] view in
+            self?.showInjuryPicker()
+        }, inputView: nil, onInput: nil))
+        viewModels.append(PickerViewWithSideTitleFormViewModel(title: injuryPickerTitle, picker: injuryPicker))
+        viewModels.append(InputTextFormViewModel(title: NSLocalizedString("notification_injury_report_additional_message_title", comment: ""),
+                                                 placeholder: NSLocalizedString("notification_injury_report_additional_message_placeholder", comment: ""),
+                                                 value: additionalMessage,
+                onChange: { [weak self] (_, textValue) in
+                    self?.additionalMessage = textValue
+        }))
 
         return Form(viewModels: viewModels)
     }
