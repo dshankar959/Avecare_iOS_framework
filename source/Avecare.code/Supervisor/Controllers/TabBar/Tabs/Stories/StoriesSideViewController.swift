@@ -71,7 +71,7 @@ extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource 
     
     public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
-        // Not showing delete option if there is only one story or the story is allready published
+        // Not showing delete option if there is only one story or the story is already published
         if self.dataProvider.numberOfRows < 2 || self.dataProvider.isRowStoryPublished(at: indexPath) {
             return []
         }
