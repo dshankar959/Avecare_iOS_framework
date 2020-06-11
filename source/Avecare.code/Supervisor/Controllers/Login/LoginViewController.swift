@@ -6,12 +6,22 @@ import CocoaLumberjack
 
 class LoginViewController: UIViewController, IndicatorProtocol {
 
+    let keyboardOffset: CGFloat = 190.0
     @IBOutlet var loginField: UITextField?
     @IBOutlet var passwordField: UITextField?
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(LoginViewController.keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(LoginViewController.keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+
         #if DEBUG
 
 //        loginField?.text = "535cc_Room_100@avecare.com" // School Age
@@ -31,6 +41,12 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 
     }
 
+    @objc func keyboardWillShow(notification: NSNotification) {
+        self.view.frame.origin.y = 0 - keyboardOffset
+    }
+    @objc func keyboardWillHide(notification: NSNotification) {
+      self.view.frame.origin.y = 0
+    }
 
     @IBAction func signInAction(sender: UIButton) {
         guard let email = loginField?.text, let password = passwordField?.text else {

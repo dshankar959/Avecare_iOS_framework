@@ -82,6 +82,9 @@ class StoriesDataProvider: StoriesDataProviderIO {
 
     func sort() {
         dataSource = RLMLogForm.sortObjectsByLastUpdated(order: .orderedDescending, dataSource)
+        let unpublished = dataSource.filter { $0.rawPublishState == 0 }
+        let published = dataSource.filter { $0.rawPublishState != 0 }
+        dataSource = unpublished + published
     }
 
     var numberOfRows: Int {
