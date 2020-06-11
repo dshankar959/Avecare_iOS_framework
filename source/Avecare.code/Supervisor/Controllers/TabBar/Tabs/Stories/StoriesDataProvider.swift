@@ -50,18 +50,6 @@ protocol StoriesDataProviderIO: class, StoriesDataProviderNavigation {
 
 
 class StoriesDataProvider: StoriesDataProviderIO {
-   
-    func isRowStoryPublished(at indexPath: IndexPath) -> Bool {
-        let story = dataSource[indexPath.row]
-        return story.publishState != .local
-    }
-
-    func isRowStoryPublished(at indexPath: IndexPath) -> Bool {
-        let story = dataSource[indexPath.row]
-        return story.publishState != .local
-    }
-
-
 
     var selectedStory: RLMStory?
     var delegate: StoriesDataProviderDelegate?
@@ -78,6 +66,12 @@ class StoriesDataProvider: StoriesDataProviderIO {
             sort()
         }
     }
+
+    func isRowStoryPublished(at indexPath: IndexPath) -> Bool {
+        let story = dataSource[indexPath.row]
+        return story.publishState != .local
+    }
+
 
     func removeStoryAt( at indexPath: IndexPath) {
         let story = dataSource[indexPath.row]
