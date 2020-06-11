@@ -6,7 +6,8 @@ import CocoaLumberjack
 
 class LoginViewController: UIViewController, IndicatorProtocol {
 
-    let keyboardOffset: CGFloat = 190.0
+    var keyBoardHidden = false
+    let keyboardOffset: CGFloat = 150.0
     @IBOutlet var loginField: UITextField?
     @IBOutlet var passwordField: UITextField?
 
@@ -17,15 +18,16 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                                                selector: #selector(LoginViewController.keyboardWillShow),
                                                name: UIResponder.keyboardWillShowNotification,
                                                object: nil)
+
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(LoginViewController.keyboardWillHide),
-                                               name: UIResponder.keyboardWillHideNotification,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-        selector: #selector(LoginViewController.keyboardWillHide),
+        selector: #selector(LoginViewController.keyboardDidChangeFrame(notification:)),
         name: UIResponder.keyboardDidChangeFrameNotification,
         object: nil)
         
+        NotificationCenter.default.addObserver(self,
+        selector: #selector(LoginViewController.keyboardWillHide(notification:)),
+        name: UIResponder.keyboardWillHideNotification,
+        object: nil)
 
         #if DEBUG
 
@@ -47,14 +49,33 @@ class LoginViewController: UIViewController, IndicatorProtocol {
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
-        
-        self.view.frame.origin.y = 0 - keyboardOffset
+        updateViewForKeyboard(notification: notification)
+        keyBoardHidden = false
     }
+
     @objc func keyboardWillHide(notification: NSNotification) {
-      self.view.frame.origin.y = 0
+        self.view.frame.origin.y = 0
+        keyBoardHidden = true
     }
+
     @objc func keyboardDidChangeFrame(notification: NSNotification) {
-      self.view.frame.origin.y = 0
+        if !keyBoardHidden {
+            updateViewForKeyboard(notification: notification)
+        }
+    }
+
+    func updateViewForKeyboard(notification: NSNotification) {
+
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+           // if keyboard size is not available for some reason, dont do anything
+            self.view.frame.origin.y = 0
+           return
+        }
+        if keyboardSize.size.height < keyboardOffset {
+            self.view.frame.origin.y = 0 - keyboardSize.size.height
+        } else {
+            self.view.frame.origin.y = 0 - keyboardOffset
+        }
     }
 
     @IBAction func signInAction(sender: UIButton) {
@@ -62,7 +83,7 @@ class LoginViewController: UIViewController, IndicatorProtocol {
             self.showErrorAlert(AuthError.emptyCredentials.message)
             return
         }
-
+        
         let userCredentials = UserCredentials(email: email, password: password)
         UserAuthenticateService.shared.signIn(userCredentials: userCredentials) { [weak self] error in
             if let error = error {
