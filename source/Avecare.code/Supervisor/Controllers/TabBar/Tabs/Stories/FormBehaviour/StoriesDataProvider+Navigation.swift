@@ -8,7 +8,7 @@ protocol StoriesDataProviderNavigation {
 }
 
 
-extension StoriesDataProvider: StoriesDataProviderNavigation {
+extension StoriesDataProvider: StoriesDataProviderNavigation, IndicatorProtocol {
 
     // DO NOT USE INDEX PATH IN BLOCKS AS ORDER MAY CHANGE
     func navigationItems(at indexPath: IndexPath) -> [DetailsNavigationView.Item] {
@@ -63,10 +63,11 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
 
         let model = PublishStoryRequestModel(unitId: unitId, story: story, storage: imageStorageService)
 
-        // TODO: show loader
+        showActivityIndicator(withStatus: NSLocalizedString("publishing_status", comment: ""))
         UnitAPIService.publishStory(model) { [weak self] result in
             switch result {
             case .success(let response):
+                self?.hideActivityIndicator()
                 // update UI to block editing
                 var row = 0
                 if let dSource = self?.dataSource, let firstPublished = self?.dataSource.first(where: { $0.rawPublishState == 2 }) {
@@ -89,6 +90,7 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
                 self?.delegate?.moveStory(at: currentPosition, to: newPosition)
                 self?.sort()
             case .failure(let error):
+                self?.hideActivityIndicator()
                 DDLogError("\(error)")
             }
         }
