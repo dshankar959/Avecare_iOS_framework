@@ -26,6 +26,8 @@ struct StoriesTableViewCellModel: CellViewModel {
             url.absoluteString.isFilePath,
             let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url, atPage: 0) {
             cell.photoImageView.image = image
+        } else {
+            cell.photoImageView.image = nil
         }
     }
 

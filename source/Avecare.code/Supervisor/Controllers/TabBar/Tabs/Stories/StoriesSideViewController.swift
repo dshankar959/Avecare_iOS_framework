@@ -76,11 +76,11 @@ extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource 
             return []
         }
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-            
+        
             // delete story at indexPath and update UI
             self.dataProvider.removeStoryAt(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
-            
+        
             // select the row to one before the deleted row
             if self.dataProvider.numberOfRows > 1 {
                 self.dataProvider.setSelected(true, at: IndexPath(row: indexPath.row-1, section: indexPath.section))
@@ -101,7 +101,7 @@ extension StoriesSideViewController: StoriesDataProviderDelegate, IndicatorProto
         let error = AppError(title: title, userInfo: message, code: "", type: "")
         self.showErrorAlert(error)
     }
-    
+
     func gotToPDFDetail(fileUrl: URL) {
         performSegue(withIdentifier: "PDFOpenView", sender: fileUrl)
     }

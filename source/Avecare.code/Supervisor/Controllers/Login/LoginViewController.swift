@@ -13,9 +13,15 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(LoginViewController.keyboardWillShow),
+                                               name: UIResponder.keyboardWillShowNotification,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(LoginViewController.keyboardWillHide),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
+
         #if DEBUG
 
 //        loginField?.text = "535cc_Room_100@avecare.com" // School Age
@@ -24,9 +30,9 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 //        loginField?.text = "535cc_Room_400@avecare.com" // Kindergarten
 
 //        loginField?.text = "supervisor@example.net"
-//        loginField?.text = "room_13@avecare.com"    // quarantine
-//
-//        passwordField?.text = "123456"
+        loginField?.text = "room_13@avecare.com"    // quarantine
+
+        passwordField?.text = "123456"
 
 //        loginField?.text = " dshankar@spiria.com"
 //        passwordField?.text = "hnpura69"
