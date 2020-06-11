@@ -68,27 +68,30 @@ extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataProvider.setSelected(true, at: indexPath)
     }
-
+    
     public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
 
-        // Not showing delete option if there is only one story or the story is already published
+        // Not showing delete option if there is only one story or the story is allready published
         if self.dataProvider.numberOfRows < 2 || self.dataProvider.isRowStoryPublished(at: indexPath) {
             return []
         }
-
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            if self.dataProvider.numberOfRows > 1 {
+                if indexPath.row > 0 {
+                    self.dataProvider.setSelected(true, at: IndexPath(row: indexPath.row-1, section: indexPath.section))
+                } else {
+                    self.dataProvider.setSelected(true, at: IndexPath(row: 1, section: indexPath.section))
+                }
+            }
             // delete story at indexPath and update UI
             self.dataProvider.removeStoryAt(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
-
+        
             // select the row to one before the deleted row
-            if self.dataProvider.numberOfRows > 1 {
-                self.dataProvider.setSelected(true, at: IndexPath(row: indexPath.row-1, section: indexPath.section))
-            }
+            
         }
 
         delete.backgroundColor = UIColor.red
-
         return [delete]
 
     }
