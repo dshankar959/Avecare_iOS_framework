@@ -34,7 +34,7 @@ extension StoriesDataProvider {
                 DDLogError("\(error)")
             }
         }
-        view.photoImageView.image = UIImage.init(named: "no-pdf-placeholder")
+        view.photoImageView.image = R.image.noPdfPlaceholder()
         view.removeButton.isHidden = true
         self.updateEditDate(for: story)
         self.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: true)
