@@ -1082,8 +1082,8 @@
 			isa = PBXGroup;
 			children = (
 				615471088CC460480F672FCC /* ChecklistFormProvider.swift */,
-				61547FDC9BC37620B5BD9C12 /* InjuryReportFormProvider.swift */,
 				61547D8D23A271D2F0F6D6B9 /* ClassActivityFormProvider.swift */,
+				61547FDC9BC37620B5BD9C12 /* InjuryReportFormProvider.swift */,
 				6154757811D170BB1C541AF3 /* RemindersFormProvider.swift */,
 			);
 			path = FormProviders;
@@ -1543,7 +1543,6 @@
 				75886DC7241932BA0079C080 /* supervisor.storyboard */,
 				F6B7F28D24254D9B003E16AE /* Login */,
 				F67DF7E9241BFD2600793A9C /* DetailsFormViewController */,
-				75886DA1241932BA0079C080 /* SplitContoller */,
 				75886DA3241932BA0079C080 /* TabBar */,
 			);
 			path = Controllers;
@@ -1863,6 +1862,7 @@
 				F67DF7F2241BFE6800793A9C /* DetailsView.swift */,
 				F67DF7F3241BFE6800793A9C /* DetailsView.xib */,
 				615479E39C8D23C05A496E24 /* CustomInput.swift */,
+				75886DA1241932BA0079C080 /* SplitContoller */,
 			);
 			path = DetailsView;
 			sourceTree = "<group>";

@@ -18,7 +18,7 @@ class RLMInjury: RLMDefaults {
 
         do {
             try self.decode(from: decoder)  // call base class for defaults.
-            
+
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
             self.name = try values.decode(String.self, forKey: .name)

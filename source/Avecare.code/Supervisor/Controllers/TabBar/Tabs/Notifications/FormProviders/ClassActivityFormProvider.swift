@@ -28,22 +28,15 @@ class ClassActivityFormProvider {
 }
 
 extension ClassActivityFormProvider: FormProvider {
-    private func inputTextViewModel() -> InputTextFormViewModel {
-        let viewModel = InputTextFormViewModel(title: "Special Instructions (if any)",
-                placeholder: "140 characters maximum.", value: activityInstructions) { [weak self] _, textValue in
-            self?.activityInstructions = textValue
-        }
-
-        return viewModel
-    }
-
     func form() -> Form {
+        var viewModels = [AnyCellViewModel]()
+
         let activityTypes = RLMActivity.findAll().filter { $0.isActive }
         let activityTypePicker = SingleValuePickerView(values: activityTypes)
         activityTypePicker.backgroundColor = .white
 
-        let left = PickerViewFormViewModel(title: "Select Activity",
-                                           placeholder: "No activity selected",
+        let left = PickerViewFormViewModel(title: NSLocalizedString("notification_inspections_and_drills_select_activity_title", comment: ""),
+                                           placeholder: NSLocalizedString("notification_inspections_and_drills_select_activity_placetolder", comment: ""),
                                            accessory: .dropdown,
                                            textValue: selectedActivity?.name,
                 action: .init(onClick: { [weak self] view in
@@ -60,8 +53,8 @@ extension ClassActivityFormProvider: FormProvider {
         datePicker.backgroundColor = .white
         datePicker.datePickerMode = .date
 
-        let right = PickerViewFormViewModel(title: "Select Date",
-                                            placeholder: "19 / 10 / 10",
+        let right = PickerViewFormViewModel(title: NSLocalizedString("notification_inspections_and_drills_select_date_title", comment: ""),
+                                            placeholder: NSLocalizedString("notification_inspections_and_drills_select_date_placeholder", comment: ""),
                                             accessory: .calendar,
                                             textValue: activityDateString,
                 action: .init(onClick: { [weak self] view in
@@ -75,10 +68,16 @@ extension ClassActivityFormProvider: FormProvider {
                     view.setTextValue(self?.activityDateString)
                 }))
 
-        return Form(viewModels: [
-                DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right),
-                inputTextViewModel()
-            ])
+        viewModels.append(DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right))
 
+        // swiftlint:disable line_length
+        viewModels.append(InputTextFormViewModel(title: NSLocalizedString("notification_inspections_and_drills_special_instruction_title", comment: ""),
+                                                 placeholder: NSLocalizedString("notification_inspections_and_drills_special_instruction_placeholder", comment: ""),
+                                                 value: activityInstructions) { [weak self] _, textValue in
+            self?.activityInstructions = textValue
+        })
+        // swiftlint:enable line_length
+
+        return Form(viewModels: viewModels)
     }
 }
