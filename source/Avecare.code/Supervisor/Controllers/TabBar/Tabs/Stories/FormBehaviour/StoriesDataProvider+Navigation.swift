@@ -68,12 +68,11 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
             switch result {
             case .success(let response):
                 // update UI to block editing
-                // story will be moved to 1st position after sort()
-                // because serverDate updated
                 var row = 0
                 if let dSource = self?.dataSource, let firstPublished = self?.dataSource.first(where: { $0.rawPublishState == 2 }) {
                     row = dSource.firstIndex(of: firstPublished) ?? 0
                 }
+                // new position for a subimitted story has to be after all the unpublished ones
                 let newPosition = IndexPath(row: row, section: 0)
                 guard let index = self?.dataSource.firstIndex(of: story) else {
                     return
