@@ -1349,9 +1349,9 @@
 			isa = PBXGroup;
 			children = (
 				75886D012419327F0079C080 /* Network */,
+				DC391B1324926DAB008EFD48 /* Authentication */,
 				75886D042419327F0079C080 /* Storage */,
 				75886D072419327F0079C080 /* Session */,
-				DC3617F224770B4D004C0B83 /* UserAuthenticateService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1730,6 +1730,14 @@
 				75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */,
 			);
 			path = SyncEngine;
+			sourceTree = "<group>";
+		};
+		DC391B1324926DAB008EFD48 /* Authentication */ = {
+			isa = PBXGroup;
+			children = (
+				DC3617F224770B4D004C0B83 /* UserAuthenticateService.swift */,
+			);
+			path = Authentication;
 			sourceTree = "<group>";
 		};
 		DC4FFA032470B9120079A27C /* Cells */ = {

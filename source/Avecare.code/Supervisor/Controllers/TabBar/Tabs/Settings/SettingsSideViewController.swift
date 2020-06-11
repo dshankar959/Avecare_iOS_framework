@@ -2,7 +2,7 @@ import UIKit
 
 
 
-class SettingsSideViewController: UIViewController {
+class SettingsSideViewController: UIViewController, IndicatorProtocol {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var signOutButton: DefaultCellView!
@@ -17,6 +17,14 @@ class SettingsSideViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         tableView.register(nibModels: [SettingTableViewCellModel.self])
+
+        configSignoutButton()
+    }
+
+    private func configSignoutButton() {
+        signOutButton.nameText = NSLocalizedString("settings_menutitle_sign_out", comment: "")
+        signOutButton.iconImage = R.image.signoutIcon()
+        signOutButton.iconColor = R.color.redIcon()
     }
 
 }
@@ -25,7 +33,16 @@ class SettingsSideViewController: UIViewController {
 extension SettingsSideViewController {
 
     @IBAction func didTapSignOut(_ recognizer: UITapGestureRecognizer) {
-
+        // Sign-out
+        UserAuthenticateService.shared.signOut { [weak self] error in
+            if let error = error {
+                self?.showErrorAlert(error)
+            } else {
+                if let tabBarController = self?.tabBarController as? SupervisorTabBarController {
+                    tabBarController.onLogout()
+                }
+            }
+        }
     }
 }
 
