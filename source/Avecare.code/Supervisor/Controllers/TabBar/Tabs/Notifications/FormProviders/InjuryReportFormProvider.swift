@@ -67,9 +67,7 @@ extension InjuryReportFormProvider: FormProvider {
                     }
                     view.becomeFirstResponder()
                 }, inputView: datePicker, onInput: { [weak self] view, datePicker in
-                    guard let datePicker = datePicker as? UIDatePicker else {
-                        return
-                    }
+                    guard let datePicker = datePicker as? UIDatePicker else { return }
                     self?.injuryDate = datePicker.date
                     view.setTextValue(self?.injuryDateString)
                 }))

@@ -67,7 +67,7 @@
 		61547716ED0704A1F4601513 /* StoriesDetailsPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547ED5799922B0A2DB9C2C /* StoriesDetailsPhotoView.xib */; };
 		615477178CD2A957D0A155BB /* RealmDetachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547B29E3BDD649F0D85702 /* RealmDetachable.swift */; };
 		6154771965713AD841B786F4 /* LogsNoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 615476341CA9B1B5A2A77173 /* LogsNoteTableViewCell.xib */; };
-		615477604486F2465810D030 /* UnitActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547CBAC0180C2D2092DD1A /* UnitActivity.swift */; };
+		615477604486F2465810D030 /* CreateUnitActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547CBAC0180C2D2092DD1A /* CreateUnitActivity.swift */; };
 		615477704DE5A548304F7B1F /* syncUnitStories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547E6D4475B73BAAE9DBEE /* syncUnitStories.swift */; };
 		6154779079D0A089A6510394 /* StoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615472A224CB134D0BEA6A29 /* StoriesTableViewCell.swift */; };
 		6154779DD64F75D8B70F59FC /* RLMReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478BBE87EEEB048C429BF /* RLMReusable.swift */; };
@@ -366,6 +366,11 @@
 		DCC2DDCF247EA37D00FAFC35 /* GuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */; };
 		DCF6C69724900B7B00A802BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF6C69A24900B7B00A802BD /* Localizable.strings */; };
 		DCF6C69824900B7B00A802BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF6C69A24900B7B00A802BD /* Localizable.strings */; };
+		DCF9140A2492A8650043123F /* RLMActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914092492A8650043123F /* RLMActivity.swift */; };
+		DCF9140B2492C3900043123F /* syncOrganizationTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547CE19B2A59BB3A73A52C /* syncOrganizationTemplates.swift */; };
+		DCF9140C2492C3940043123F /* syncOrganizationInjuries.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4EA6D2249151F1007A36C0 /* syncOrganizationInjuries.swift */; };
+		DCF9140E2492C3B20043123F /* syncOrganizationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9140D2492C3B20043123F /* syncOrganizationActivities.swift */; };
+		DCF9140F2492C3B20043123F /* syncOrganizationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9140D2492C3B20043123F /* syncOrganizationActivities.swift */; };
 		DCFFD6F6246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */; };
 		DCFFD6F7246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */; };
 		DCFFD6F9246DA6FE0080DEA6 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */; };
@@ -381,7 +386,7 @@
 		F65549FC24564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549F324564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf */; };
 		F65549FD24564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549F324564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf */; };
 		F663BB6B24351123003279B9 /* RLMSupervisor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547267EB7BC5F4558F3B70 /* RLMSupervisor.swift */; };
-		F663BB6C2435112F003279B9 /* UnitActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547CBAC0180C2D2092DD1A /* UnitActivity.swift */; };
+		F663BB6C2435112F003279B9 /* CreateUnitActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547CBAC0180C2D2092DD1A /* CreateUnitActivity.swift */; };
 		F663BB6D24351187003279B9 /* DailyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547B3327B0C7C4F06CDC0D /* DailyTask.swift */; };
 		F663BB6E24351192003279B9 /* RLMUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615472657DF3223E8A839F22 /* RLMUnit.swift */; };
 		F663BB6F2435119C003279B9 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547B55A492A05FAE40E47B /* APIResponse.swift */; };
@@ -507,7 +512,7 @@
 		61547C3AB951F69EB4C23C1E /* SubjectListDataProvider+Subtitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Subtitle.swift"; sourceTree = "<group>"; };
 		61547C4E1BD0B55D3EC3943A /* HomeTableVIewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableVIewHeaderView.swift; sourceTree = "<group>"; };
 		61547C86A6589BD1A80D59D6 /* StoriesDataProvider+Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoriesDataProvider+Title.swift"; sourceTree = "<group>"; };
-		61547CBAC0180C2D2092DD1A /* UnitActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitActivity.swift; sourceTree = "<group>"; };
+		61547CBAC0180C2D2092DD1A /* CreateUnitActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUnitActivity.swift; sourceTree = "<group>"; };
 		61547CE19B2A59BB3A73A52C /* syncOrganizationTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncOrganizationTemplates.swift; sourceTree = "<group>"; };
 		61547D432767A42B571EA22F /* StoriesDataProvider+Subtitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoriesDataProvider+Subtitle.swift"; sourceTree = "<group>"; };
 		61547D53A60161097C2E858F /* HomeTableViewDisclosureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewDisclosureCell.xib; sourceTree = "<group>"; };
@@ -708,6 +713,8 @@
 		DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianFeed.swift; sourceTree = "<group>"; };
 		DCF6C69924900B7B00A802BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DCF6C69B24900B7C00A802BD /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		DCF914092492A8650043123F /* RLMActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMActivity.swift; sourceTree = "<group>"; };
+		DCF9140D2492C3B20043123F /* syncOrganizationActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = syncOrganizationActivities.swift; sourceTree = "<group>"; };
 		DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
 		DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
 		F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Duotone-Solid-900.otf"; sourceTree = "<group>"; };
@@ -897,9 +904,10 @@
 				75D62234245B14480032F53D /* RLMInstitution.swift */,
 				75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */,
 				615473EE5A59F3D396DA45E8 /* RLMInjury.swift */,
+				DCF914092492A8650043123F /* RLMActivity.swift */,
 				DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */,
 				DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */,
-				61547CBAC0180C2D2092DD1A /* UnitActivity.swift */,
+				61547CBAC0180C2D2092DD1A /* CreateUnitActivity.swift */,
 				61547BBC4F5F4748C5E93244 /* UnitReminder.swift */,
 				61547B3327B0C7C4F06CDC0D /* DailyTask.swift */,
 				615470F1BE7FE1A039442EE4 /* DailyForm */,
@@ -1660,6 +1668,7 @@
 				75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */,
 				75EB5A222466FE9800E077E5 /* syncOrganizationDetails.swift */,
 				61547CE19B2A59BB3A73A52C /* syncOrganizationTemplates.swift */,
+				DCF9140D2492C3B20043123F /* syncOrganizationActivities.swift */,
 				DC4EA6D2249151F1007A36C0 /* syncOrganizationInjuries.swift */,
 				75EB5A1C2466EE1100E077E5 /* syncSubjects.swift */,
 				61547E6D4475B73BAAE9DBEE /* syncUnitStories.swift */,
@@ -2364,6 +2373,7 @@
 				75886D682419327F0079C080 /* AppDelegate+Extension.swift in Sources */,
 				75886D4E2419327F0079C080 /* String.swift in Sources */,
 				75EB59CC2461858700E077E5 /* RLMLogSwitcherRow.swift in Sources */,
+				DCF9140A2492A8650043123F /* RLMActivity.swift in Sources */,
 				75886D122419327F0079C080 /* UINVC.swift in Sources */,
 				F67DF820241BFE6800793A9C /* InputTextFormView.swift in Sources */,
 				75886D162419327F0079C080 /* UserProfile.swift in Sources */,
@@ -2459,7 +2469,8 @@
 				6154797BFC410EDB48D44521 /* SupervisorsAPIService.swift in Sources */,
 				75EB59D62461858700E077E5 /* RLMSubject.swift in Sources */,
 				615475CA76FACDD26C7D99CF /* DailyTask.swift in Sources */,
-				615477604486F2465810D030 /* UnitActivity.swift in Sources */,
+				615477604486F2465810D030 /* CreateUnitActivity.swift in Sources */,
+				DCF9140E2492C3B20043123F /* syncOrganizationActivities.swift in Sources */,
 				61547A6A4DD9A2C0DDF532DE /* RLMInjury.swift in Sources */,
 				6154748ECD853CD3BBD4B76B /* APIResponse.swift in Sources */,
 				6154738E944061FE15757FAD /* RLMAccountInfo.swift in Sources */,
@@ -2553,7 +2564,7 @@
 				75EB5A052463C03300E077E5 /* RLMGuardian.swift in Sources */,
 				75886D672419327F0079C080 /* ValidateSession.swift in Sources */,
 				75EB5A28246770B900E077E5 /* GuardiansAPIService.swift in Sources */,
-				F663BB6C2435112F003279B9 /* UnitActivity.swift in Sources */,
+				F663BB6C2435112F003279B9 /* CreateUnitActivity.swift in Sources */,
 				DC4FFA0C2470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift in Sources */,
 				75EB59C12461858700E077E5 /* RLMLogTimeRow.swift in Sources */,
 				75EB5A312467A26600E077E5 /* SyncEngine+Operations.swift in Sources */,
@@ -2566,6 +2577,7 @@
 				756D6A19246DE37500DF17E7 /* RLMFormTemplate.swift in Sources */,
 				75886D352419327F0079C080 /* DiskHelper.swift in Sources */,
 				75EB5A0D2465D77900E077E5 /* RLMAccountInfo.swift in Sources */,
+				DCF9140F2492C3B20043123F /* syncOrganizationActivities.swift in Sources */,
 				75EB5A242466FE9800E077E5 /* syncOrganizationDetails.swift in Sources */,
 				DCC2DDCF247EA37D00FAFC35 /* GuardianFeed.swift in Sources */,
 				DC05B3CF247C45000014779D /* PanningInteractionController.swift in Sources */,
@@ -2589,6 +2601,7 @@
 				75EB5A0E2465D7BD00E077E5 /* UnitReminder.swift in Sources */,
 				75886D3F2419327F0079C080 /* UIImage+Tint.swift in Sources */,
 				75886D652419327F0079C080 /* FileStorageService.swift in Sources */,
+				DCF9140C2492C3940043123F /* syncOrganizationInjuries.swift in Sources */,
 				75886D2B2419327F0079C080 /* ErrorMessages.swift in Sources */,
 				F663BB7F243522C5003279B9 /* OTPViewController.swift in Sources */,
 				75886D392419327F0079C080 /* DDLogNetworkPlugin.swift in Sources */,
@@ -2631,6 +2644,7 @@
 				DC3E80EA2486BDDE003983E2 /* MessagesAPIService.swift in Sources */,
 				615474402057962CDECCDF84 /* TextField.swift in Sources */,
 				6154749EE82ECA275C5FD8F2 /* PinView.swift in Sources */,
+				DCF9140B2492C3900043123F /* syncOrganizationTemplates.swift in Sources */,
 				75865C0624743CE2002E7427 /* syncUnitSupervisors.swift in Sources */,
 				75EB59D92461858700E077E5 /* RLMCleanable.swift in Sources */,
 				61547EFCF73D0FF79FA58C02 /* PinField.swift in Sources */,

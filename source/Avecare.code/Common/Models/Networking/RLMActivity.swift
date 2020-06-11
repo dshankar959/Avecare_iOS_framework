@@ -1,7 +1,7 @@
 import CocoaLumberjack
 import RealmSwift
 
-class RLMInjury: RLMDefaults {
+class RLMActivity: RLMDefaults {
 
     @objc dynamic var name: String = ""
     @objc dynamic var descriptions: String = ""
@@ -18,7 +18,7 @@ class RLMInjury: RLMDefaults {
 
         do {
             try self.decode(from: decoder)  // call base class for defaults.
-            
+
             let values = try decoder.container(keyedBy: CodingKeys.self)
 
             self.name = try values.decode(String.self, forKey: .name)
@@ -31,10 +31,10 @@ class RLMInjury: RLMDefaults {
     }
 }
 
-extension RLMInjury: SingleValuePickerItem, DataProvider {
+extension RLMActivity: SingleValuePickerItem, DataProvider {
     var pickerTextValue: String {
         return name
     }
 }
 
-typealias RLMInjuriesResponse = APIResponse<[RLMInjury]>
+typealias RLMActivitiesResponse = APIResponse<[RLMActivity]>
