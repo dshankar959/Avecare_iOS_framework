@@ -76,19 +76,22 @@ extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource 
             return []
         }
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
-        
+            if self.dataProvider.numberOfRows > 1 {
+                if indexPath.row > 0 {
+                    self.dataProvider.setSelected(true, at: IndexPath(row: indexPath.row-1, section: indexPath.section))
+                } else {
+                    self.dataProvider.setSelected(true, at: IndexPath(row: 1, section: indexPath.section))
+                }
+            }
             // delete story at indexPath and update UI
             self.dataProvider.removeStoryAt(at: indexPath)
             tableView.deleteRows(at: [indexPath], with: .fade)
         
             // select the row to one before the deleted row
-            if self.dataProvider.numberOfRows > 1 {
-                self.dataProvider.setSelected(true, at: IndexPath(row: indexPath.row-1, section: indexPath.section))
-            }
+            
         }
 
         delete.backgroundColor = UIColor.red
-
         return [delete]
 
     }
