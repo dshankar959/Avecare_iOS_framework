@@ -22,14 +22,20 @@ struct StoriesTableViewCellModel: CellViewModel {
         let service = DocumentService()
         let size = 375 * UIScreen.main.scale
 
-        if let url = documentURL, url.absoluteString.isFilePath, let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url, atPage: 0) {
+        if let url = documentURL,
+            url.absoluteString.isFilePath,
+            let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url, atPage: 0) {
             cell.photoImageView.image = image
         }
     }
+
 }
 
+
 class StoriesTableViewCell: UITableViewCell {
+
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+
 }

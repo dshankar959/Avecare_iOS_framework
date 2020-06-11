@@ -50,7 +50,7 @@ protocol StoriesDataProviderIO: class, StoriesDataProviderNavigation {
 
 
 class StoriesDataProvider: StoriesDataProviderIO {
-   
+
     func isRowStoryPublished(at indexPath: IndexPath) -> Bool {
         let story = dataSource[indexPath.row]
         return story.publishState != .local
