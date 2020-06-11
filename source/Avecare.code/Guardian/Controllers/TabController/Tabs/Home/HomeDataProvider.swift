@@ -17,7 +17,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
         let records: [AnyCellViewModel]
     }
 
-    private var fetchedFeed = [RLMGuardianFeed]()
+    private var fetchedFeed = [GuardianFeed]()
     private var dataSource = [Section]()
     private var subjectDict = [String: RLMSubject]()
     private let storage = DocumentService()
@@ -114,22 +114,18 @@ class DefaultHomeDataProvider: HomeDataProvider {
         }
     }
 
-    private func constructDataSource(with feeds: [RLMGuardianFeed]) {
+    private func constructDataSource(with feeds: [GuardianFeed]) {
         self.dataSource.removeAll()
-        var importantList = [RLMGuardianFeed]()
+        var importantList = [GuardianFeed]()
         var headerSet = Set<String>()
         var sectionHeaders = [String]()
-        var sections = [String: [RLMGuardianFeed]]()
+        var sections = [String: [GuardianFeed]]()
         feeds.forEach { feed in
             if feed.important {
                 importantList.append(feed)
             } else {
                 let sectionTitle: String
-                if let feedDate = feed.serverLastUpdated {
-                    sectionTitle = feedDate.timeAgo(dayAbove: true)
-                } else {
-                    sectionTitle = feed.date.timeAgo(dayAbove: true) // Just in case serverLastUpdated is null
-                }
+                sectionTitle = feed.date.timeAgo(dayAbove: true)
 
                 if !headerSet.contains(sectionTitle) {
                     sectionHeaders.append(sectionTitle)
@@ -174,8 +170,8 @@ class DefaultHomeDataProvider: HomeDataProvider {
         }
     }
 
-    private func removeDuplicatedFeeds(from feeds: [RLMGuardianFeed]) -> [RLMGuardianFeed] {
-        var resultFeeds = [RLMGuardianFeed]()
+    private func removeDuplicatedFeeds(from feeds: [GuardianFeed]) -> [GuardianFeed] {
+        var resultFeeds = [GuardianFeed]()
         var feedItemIds: Set<String> = []
         for feed in feeds {
             if !feedItemIds.contains(feed.feedItemId) {
@@ -186,16 +182,10 @@ class DefaultHomeDataProvider: HomeDataProvider {
         return resultFeeds
     }
 
-    private func filterFeedsForDatesWindow(with feeds: [RLMGuardianFeed]) -> [RLMGuardianFeed] {
-        var resultFeeds = [RLMGuardianFeed]()
+    private func filterFeedsForDatesWindow(with feeds: [GuardianFeed]) -> [GuardianFeed] {
+        var resultFeeds = [GuardianFeed]()
         for feed in feeds {
-            let date: Date
-            if feed.serverLastUpdated == nil {
-                date = feed.date
-            } else {
-                date = feed.serverLastUpdated!
-            }
-            if date > SubjectsAPIService.startDateOfLogsHistory.startOfDay {
+            if feed.date > SubjectsAPIService.startDateOfLogsHistory.startOfDay {
                 resultFeeds.append(feed)
             } else {
                 break
@@ -206,7 +196,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
 }
 
 extension HomeTableViewDisclosureCellModel {
-    init(with feed: RLMGuardianFeed, subject: RLMSubject, storage: DocumentService) {
+    init(with feed: GuardianFeed, subject: RLMSubject, storage: DocumentService) {
         if feed.feedItemType == .subjectDailyLog {
             title = subject.firstName + NSLocalizedString("home_feed_title_dailylog", comment: "")
             subtitle = nil

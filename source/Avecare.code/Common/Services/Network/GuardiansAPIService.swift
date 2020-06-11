@@ -27,7 +27,7 @@ struct GuardiansAPIService {
 
 
     static func getGuardianFeed(for guardianId: String,
-                                completion: @escaping (Result<[RLMGuardianFeed], AppError>) -> Void) {
+                                completion: @escaping (Result<[GuardianFeed], AppError>) -> Void) {
         DDLogDebug("")
 
         apiProvider.request(.guardianFeed(id: guardianId)) { result in

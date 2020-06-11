@@ -58,6 +58,61 @@ struct DoublePickerViewFormViewModel: AnyCellViewModel {
     }
 }
 
+struct PickerViewWithSideTitleFormViewModel: AnyCellViewModel {
+    static var cellType = UIView.self
+
+    var title: String?
+    var picker: PickerViewFormViewModel?
+
+    func setup(cell: UIView) {}
+
+    func buildView() -> UIView {
+        let view = UIView()
+
+        view.snp.makeConstraints { maker in
+            maker.height.equalTo(64)
+        }
+
+        let titleLabel = UILabel(frame: .zero)
+        titleLabel.text = title
+        titleLabel.sizeToFit()
+        titleLabel.font = UIFont.systemFont(ofSize: 14)
+        titleLabel.textColor = R.color.lightText()
+
+        // horizontal empty space in middle
+        let middleSpacer = UIView()
+        middleSpacer.snp.makeConstraints { maker in
+            maker.width.equalTo(12)
+        }
+
+        let pickerView: UIView
+
+        if let picker = picker {
+            pickerView = picker.buildView()
+        } else {
+            //dummy
+            pickerView = UIView()
+        }
+
+        // horizontal empty space in tail
+        let tailSpacer = UIView()
+
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, middleSpacer, pickerView, tailSpacer])
+        stackView.axis = .horizontal
+        view.addSubview(stackView)
+        stackView.snp.makeConstraints { maker in
+            let insets = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+            maker.edges.equalToSuperview().inset(insets)
+        }
+
+        pickerView.snp.makeConstraints { maker in
+            maker.width.equalTo(200)
+        }
+
+        return view
+    }
+}
+
 struct PickerViewFormViewModel: CellViewModel {
     typealias CellType = PickerViewFormView
 
@@ -85,7 +140,7 @@ struct PickerViewFormViewModel: CellViewModel {
         }
     }
 
-    let title: String
+    let title: String?
     let placeholder: String
     let accessory: Accessory
     var textValue: String?

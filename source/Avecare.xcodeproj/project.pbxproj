@@ -86,7 +86,7 @@
 		615479606A02ACE28F0DE2E1 /* LogsListDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615474F59BD851603066F624 /* LogsListDataProvider.swift */; };
 		6154797BFC410EDB48D44521 /* SupervisorsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477873D1D818B4B22AC5C /* SupervisorsAPIService.swift */; };
 		61547A0B9B3214E6EF1BF7BE /* GuardiansAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615470B479541EB0ADC83755 /* GuardiansAPIService.swift */; };
-		61547A6A4DD9A2C0DDF532DE /* Injury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615473EE5A59F3D396DA45E8 /* Injury.swift */; };
+		61547A6A4DD9A2C0DDF532DE /* RLMInjury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615473EE5A59F3D396DA45E8 /* RLMInjury.swift */; };
 		61547A6F9C4837D535BAE270 /* RLMStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615474E20C4A1706A2D294F0 /* RLMStory.swift */; };
 		61547A81F0FF342557D57F78 /* InjuryReportFormProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547FDC9BC37620B5BD9C12 /* InjuryReportFormProvider.swift */; };
 		61547AB56925D866968908B6 /* RemindersFormProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154757811D170BB1C541AF3 /* RemindersFormProvider.swift */; };
@@ -337,6 +337,8 @@
 		DC3E80F12486C9F6003983E2 /* RLMMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */; };
 		DC3E80F22486C9FB003983E2 /* MessagesAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80E92486BDDE003983E2 /* MessagesAPIService.swift */; };
 		DC3E80F32486CA28003983E2 /* FeedDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80EF2486C8B7003983E2 /* FeedDetailsDataProvider.swift */; };
+		DC4EA6D3249151F1007A36C0 /* syncOrganizationInjuries.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4EA6D2249151F1007A36C0 /* syncOrganizationInjuries.swift */; };
+		DC4EA6D424916889007A36C0 /* RLMInjury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615473EE5A59F3D396DA45E8 /* RLMInjury.swift */; };
 		DC4FFA0A2470B9AE0079A27C /* ProfileMenuTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC4FFA042470B9AE0079A27C /* ProfileMenuTableViewCell.xib */; };
 		DC4FFA0B2470B9AE0079A27C /* ProfileMenuTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA052470B9AE0079A27C /* ProfileMenuTableViewCell.swift */; };
 		DC4FFA0C2470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA062470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift */; };
@@ -360,8 +362,8 @@
 		DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
 		DC8B7E05248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
 		DCBE4A56247DA9A600F6D90A /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
-		DCC2DDCE247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */; };
-		DCC2DDCF247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */; };
+		DCC2DDCE247EA37D00FAFC35 /* GuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */; };
+		DCC2DDCF247EA37D00FAFC35 /* GuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */; };
 		DCF6C69724900B7B00A802BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF6C69A24900B7B00A802BD /* Localizable.strings */; };
 		DCF6C69824900B7B00A802BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF6C69A24900B7B00A802BD /* Localizable.strings */; };
 		DCFFD6F6246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */; };
@@ -445,7 +447,7 @@
 		615472D6D6682E2D0DF64C29 /* StoriesDetailsTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoriesDetailsTitleView.xib; sourceTree = "<group>"; };
 		615472DEED205F376B08C4D7 /* SubjectListDataProvider+Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Switch.swift"; sourceTree = "<group>"; };
 		615473C479A061F759D2F5FC /* LogFormAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFormAPIModel.swift; sourceTree = "<group>"; };
-		615473EE5A59F3D396DA45E8 /* Injury.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Injury.swift; sourceTree = "<group>"; };
+		615473EE5A59F3D396DA45E8 /* RLMInjury.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMInjury.swift; sourceTree = "<group>"; };
 		615473F1CDA70039CD9378AA /* LogsOptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsOptionTableViewCell.swift; sourceTree = "<group>"; };
 		615474A9174670CCD2249C23 /* SubjectPickerViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SubjectPickerViewController.storyboard; sourceTree = "<group>"; };
 		615474AF12734C5E1CC85DDB /* StoriesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoriesTableViewCell.xib; sourceTree = "<group>"; };
@@ -683,6 +685,7 @@
 		DC3E80E92486BDDE003983E2 /* MessagesAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesAPIService.swift; sourceTree = "<group>"; };
 		DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMMessage.swift; sourceTree = "<group>"; };
 		DC3E80EF2486C8B7003983E2 /* FeedDetailsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailsDataProvider.swift; sourceTree = "<group>"; };
+		DC4EA6D2249151F1007A36C0 /* syncOrganizationInjuries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = syncOrganizationInjuries.swift; sourceTree = "<group>"; };
 		DC4FFA042470B9AE0079A27C /* ProfileMenuTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileMenuTableViewCell.xib; sourceTree = "<group>"; };
 		DC4FFA052470B9AE0079A27C /* ProfileMenuTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileMenuTableViewCell.swift; sourceTree = "<group>"; };
 		DC4FFA062470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSubjectImageCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -702,7 +705,7 @@
 		DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorDetailsDataProvider.swift; sourceTree = "<group>"; };
 		DC8B7E00248A80270000414D /* ImageCropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropViewController.swift; sourceTree = "<group>"; };
 		DC8B7E01248A80270000414D /* ImageCropViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCropViewController.xib; sourceTree = "<group>"; };
-		DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMGuardianFeed.swift; sourceTree = "<group>"; };
+		DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianFeed.swift; sourceTree = "<group>"; };
 		DCF6C69924900B7B00A802BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DCF6C69B24900B7C00A802BD /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
@@ -889,14 +892,14 @@
 				61547A4597BB6D889FB8F580 /* RLMAccountInfo.swift */,
 				61547267EB7BC5F4558F3B70 /* RLMSupervisor.swift */,
 				75EB5A032463C03300E077E5 /* RLMGuardian.swift */,
-				DCC2DDCD247EA37D00FAFC35 /* RLMGuardianFeed.swift */,
 				75EB59BD2461858700E077E5 /* RLMSubject.swift */,
 				615472657DF3223E8A839F22 /* RLMUnit.swift */,
 				75D62234245B14480032F53D /* RLMInstitution.swift */,
 				75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */,
+				615473EE5A59F3D396DA45E8 /* RLMInjury.swift */,
 				DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */,
+				DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */,
 				61547CBAC0180C2D2092DD1A /* UnitActivity.swift */,
-				615473EE5A59F3D396DA45E8 /* Injury.swift */,
 				61547BBC4F5F4748C5E93244 /* UnitReminder.swift */,
 				61547B3327B0C7C4F06CDC0D /* DailyTask.swift */,
 				615470F1BE7FE1A039442EE4 /* DailyForm */,
@@ -1656,8 +1659,9 @@
 				75865C0424743CE1002E7427 /* syncUnitSupervisors.swift */,
 				75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */,
 				75EB5A222466FE9800E077E5 /* syncOrganizationDetails.swift */,
-				75EB5A1C2466EE1100E077E5 /* syncSubjects.swift */,
 				61547CE19B2A59BB3A73A52C /* syncOrganizationTemplates.swift */,
+				DC4EA6D2249151F1007A36C0 /* syncOrganizationInjuries.swift */,
+				75EB5A1C2466EE1100E077E5 /* syncSubjects.swift */,
 				61547E6D4475B73BAAE9DBEE /* syncUnitStories.swift */,
 				615478D41647CC7CBA087361 /* syncSubjectLogs.swift */,
 			);
@@ -2335,7 +2339,7 @@
 			files = (
 				755EAEAA241ABB6900A6BA4D /* Session.swift in Sources */,
 				75886DD6241932BA0079C080 /* CustomSplitViewController.swift in Sources */,
-				DCC2DDCE247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */,
+				DCC2DDCE247EA37D00FAFC35 /* GuardianFeed.swift in Sources */,
 				75886D5C2419327F0079C080 /* XibView.swift in Sources */,
 				D0A64423248E168A0041A69B /* PDFVIewController.swift in Sources */,
 				75886D562419327F0079C080 /* IndicatorProtocol.swift in Sources */,
@@ -2427,6 +2431,7 @@
 				755EAEC3241AC6CC00A6BA4D /* DatabaseLayer.swift in Sources */,
 				75EB59CE2461858700E077E5 /* RLMLogNoteRow.swift in Sources */,
 				75886DDC241932BA0079C080 /* StoriesDataProvider.swift in Sources */,
+				DC4EA6D3249151F1007A36C0 /* syncOrganizationInjuries.swift in Sources */,
 				75EB59C42461858700E077E5 /* FormRowIconProtocol.swift in Sources */,
 				75886DD8241932BA0079C080 /* SettingsDataProvider.swift in Sources */,
 				75886D0C2419327F0079C080 /* AvecareAPI.swift in Sources */,
@@ -2447,7 +2452,7 @@
 				75EB59D62461858700E077E5 /* RLMSubject.swift in Sources */,
 				615475CA76FACDD26C7D99CF /* DailyTask.swift in Sources */,
 				615477604486F2465810D030 /* UnitActivity.swift in Sources */,
-				61547A6A4DD9A2C0DDF532DE /* Injury.swift in Sources */,
+				61547A6A4DD9A2C0DDF532DE /* RLMInjury.swift in Sources */,
 				6154748ECD853CD3BBD4B76B /* APIResponse.swift in Sources */,
 				6154738E944061FE15757FAD /* RLMAccountInfo.swift in Sources */,
 				61547C7098FB4A48FF8B56DC /* RLMSupervisor.swift in Sources */,
@@ -2532,6 +2537,7 @@
 				75886D132419327F0079C080 /* UINVC.swift in Sources */,
 				75886D172419327F0079C080 /* UserProfile.swift in Sources */,
 				75886D97241932AB0079C080 /* LogsViewController.swift in Sources */,
+				DC4EA6D424916889007A36C0 /* RLMInjury.swift in Sources */,
 				755EAEAB241ABB6900A6BA4D /* Session.swift in Sources */,
 				75886D93241932AB0079C080 /* HomeViewController.swift in Sources */,
 				75886D332419327F0079C080 /* Globals.swift in Sources */,
@@ -2553,7 +2559,7 @@
 				75886D352419327F0079C080 /* DiskHelper.swift in Sources */,
 				75EB5A0D2465D77900E077E5 /* RLMAccountInfo.swift in Sources */,
 				75EB5A242466FE9800E077E5 /* syncOrganizationDetails.swift in Sources */,
-				DCC2DDCF247EA37D00FAFC35 /* RLMGuardianFeed.swift in Sources */,
+				DCC2DDCF247EA37D00FAFC35 /* GuardianFeed.swift in Sources */,
 				DC05B3CF247C45000014779D /* PanningInteractionController.swift in Sources */,
 				75EB59D32461858700E077E5 /* RLMLogRow.swift in Sources */,
 				75886D2D2419327F0079C080 /* AppError.swift in Sources */,

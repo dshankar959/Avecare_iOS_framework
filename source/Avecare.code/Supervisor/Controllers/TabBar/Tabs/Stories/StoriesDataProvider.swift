@@ -56,6 +56,11 @@ class StoriesDataProvider: StoriesDataProviderIO {
         return story.publishState != .local
     }
 
+    func isRowStoryPublished(at indexPath: IndexPath) -> Bool {
+        let story = dataSource[indexPath.row]
+        return story.publishState != .local
+    }
+
 
 
     var selectedStory: RLMStory?

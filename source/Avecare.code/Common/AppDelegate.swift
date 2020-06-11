@@ -7,6 +7,7 @@ import Firebase
 import Kingfisher
 
 
+
 @UIApplicationMain class AppDelegate: UIResponder, UIApplicationDelegate, IndicatorProtocol {
     // MARK: - Singleton GLOBALS
 
