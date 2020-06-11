@@ -84,6 +84,10 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
     private let stories = RLMStory.findAll()
     private let storage = DocumentService()
 
+    func sort() {
+        dataSource = RLMLogForm.sortObjectsByLastUpdated(order: .orderedDescending, dataSource)
+    }
+
     private var dataSource = [RLMStory]()
 
     var unitIds = [String]() {
@@ -94,6 +98,7 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
                 dataSource = filter(for: stories, with: unitIds)
             } else {
                 dataSource = stories
+                sort()
             }
         }
     }
