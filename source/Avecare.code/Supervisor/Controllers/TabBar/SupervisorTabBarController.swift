@@ -61,9 +61,11 @@ private class CustomTabBarView: UIView {
 
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        snp.makeConstraints { maker in
-            maker.leading.trailing.bottom.equalToSuperview()
-            maker.top.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-tabBarHeight)
+        if superview != nil {
+            snp.makeConstraints { maker in
+                maker.leading.trailing.bottom.equalToSuperview()
+                maker.top.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-tabBarHeight)
+            }
         }
     }
 
@@ -168,6 +170,10 @@ class SupervisorTabBarController: UITabBarController {
         super.viewWillAppear(animated)
         customBar.sync()
         selectedViewController?.additionalSafeAreaInsets = UIEdgeInsets(top: 0, left: 0, bottom: tabBarHeight, right: 0)
+    }
+
+    func onLogout() {
+        dismiss(animated: true, completion: nil)
     }
 
     deinit {

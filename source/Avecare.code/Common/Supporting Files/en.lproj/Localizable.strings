@@ -67,3 +67,7 @@
 "notification_injury_report_select_injury_placeholder" = "Select injury type";
 "notification_injury_report_additional_message_title" = "Additional Message (if any)";
 "notification_injury_report_additional_message_placeholder" = "140 characters maximum.";
+"settings_menutitle_about_the_app" = "About the App";
+"settings_menutitle_privacy_policy" = "Privacy Policy";
+"settings_menutitle_classroom_rule" = "Classroom Rules";
+"settings_menutitle_sign_out" = "Sign Out";
