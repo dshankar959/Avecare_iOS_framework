@@ -21,6 +21,11 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                                                selector: #selector(LoginViewController.keyboardWillHide),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+        selector: #selector(LoginViewController.keyboardWillHide),
+        name: UIResponder.keyboardDidChangeFrameNotification,
+        object: nil)
+        
 
         #if DEBUG
 
@@ -30,9 +35,9 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 //        loginField?.text = "535cc_Room_400@avecare.com" // Kindergarten
 
 //        loginField?.text = "supervisor@example.net"
-        loginField?.text = "room_13@avecare.com"    // quarantine
-
-        passwordField?.text = "123456"
+//        loginField?.text = "room_13@avecare.com"    // quarantine
+//
+//        passwordField?.text = "123456"
 
 //        loginField?.text = " dshankar@spiria.com"
 //        passwordField?.text = "hnpura69"
@@ -42,9 +47,13 @@ class LoginViewController: UIViewController, IndicatorProtocol {
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
+        
         self.view.frame.origin.y = 0 - keyboardOffset
     }
     @objc func keyboardWillHide(notification: NSNotification) {
+      self.view.frame.origin.y = 0
+    }
+    @objc func keyboardDidChangeFrame(notification: NSNotification) {
       self.view.frame.origin.y = 0
     }
 
