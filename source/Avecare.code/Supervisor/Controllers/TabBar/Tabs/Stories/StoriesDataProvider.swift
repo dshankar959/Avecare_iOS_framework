@@ -77,7 +77,6 @@ class StoriesDataProvider: StoriesDataProviderIO {
         let story = dataSource[indexPath.row]
         story.clean()
         // no need to fetch all stories again.
-//        fetchAll()
         dataSource.remove(at: indexPath.row)
     }
 
