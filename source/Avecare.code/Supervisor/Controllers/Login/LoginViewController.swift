@@ -42,7 +42,15 @@ class LoginViewController: UIViewController, IndicatorProtocol {
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
-        self.view.frame.origin.y = 0 - keyboardOffset
+        guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
+           // if keyboard size is not available for some reason, dont do anything
+           return
+        }
+        if keyboardSize.size.height < keyboardOffset {
+            self.view.frame.origin.y = 0 - keyboardSize.size.height
+        } else {
+            self.view.frame.origin.y = 0 - keyboardOffset
+        }
     }
     @objc func keyboardWillHide(notification: NSNotification) {
       self.view.frame.origin.y = 0
