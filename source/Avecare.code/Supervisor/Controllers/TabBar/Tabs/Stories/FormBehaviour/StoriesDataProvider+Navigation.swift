@@ -15,7 +15,7 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
         let story = dataSource[indexPath.row]
         let isSubmitted = story.publishState != .local
 
-        let isStorySubmitable = DocumentService().fileURL(name: story.id, type: "pdf") != nil && !story.title.isEmpty
+        let isStorySubmitable = DocumentService().fileURL(name: story.id, type: "pdf") != nil
         let isEnabled = !isSubmitted && isStorySubmitable
         let publishText = isSubmitted ? "Published" : "Publish"
         let publishColor = isEnabled ? R.color.main() :R.color.lightText4()
@@ -70,7 +70,11 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
                 // update UI to block editing
                 // story will be moved to 1st position after sort()
                 // because serverDate updated
-                let newPosition = IndexPath(row: 0, section: 0)
+                var row = 0
+                if let dSource = self?.dataSource, let firstPublished = self?.dataSource.first(where: { $0.rawPublishState == 2 }) {
+                    row = dSource.firstIndex(of: firstPublished) ?? 0
+                }
+                let newPosition = IndexPath(row: row, section: 0)
                 guard let index = self?.dataSource.firstIndex(of: story) else {
                     return
                 }
@@ -82,9 +86,9 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
                     story.publishState = .published
                 }
 
-                self?.sort()
+                self?.delegate?.didUpdateModel(at: currentPosition, details: true)
                 self?.delegate?.moveStory(at: currentPosition, to: newPosition)
-                self?.delegate?.didUpdateModel(at: newPosition, details: true)
+                self?.sort()
             case .failure(let error):
                 DDLogError("\(error)")
             }
