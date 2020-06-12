@@ -34,7 +34,10 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 
         passwordField?.text = "123456"
 
-//        loginField?.text = " dshankar@spiria.com"
+//        loginField?.text = "room_crybabies@avecare.com"
+//        passwordField?.text = "crybaby123"
+
+//        loginField?.text = "roomg3@spiria.com"
 //        passwordField?.text = "hnpura69"
 
         #endif

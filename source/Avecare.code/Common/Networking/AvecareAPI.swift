@@ -184,10 +184,9 @@ extension AvecareAPI: TargetType {
             ], encoding: URLEncoding.default)
 
         case .unitPublishedStories(let request):
-            DDLogDebug(".unitPublishedStories parameters: .serverLastUpdated = \(request.serverLastUpdated)")
+            DDLogDebug(".unitPublishedStories parameters: .serverLastUpdated = \(request.serverLastUpdated), resultsLimit = \(request.resultsLimit)")
             return .requestParameters(parameters: [
-//                "limit": request.resultsLimit,
-//                "offset": request.resultsOffset,
+                "limit": request.resultsLimit,
                 "lastUpdatedAt": request.serverLastUpdated
             ], encoding: URLEncoding.default)
 
