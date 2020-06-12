@@ -93,7 +93,7 @@ def common_pods
 
   # An easy way to implement pull-to-refresh feature based on UIScrollView extension, written in Swift 4.
   # https://github.com/WXGBridgeQ/SwiftPullToRefresh
-#  pod 'SwiftPullToRefresh'
+  pod 'SwiftPullToRefresh'
 
   # Effortless ZIP Handling in Swift
   # https://github.com/weichsel/ZIPFoundation
