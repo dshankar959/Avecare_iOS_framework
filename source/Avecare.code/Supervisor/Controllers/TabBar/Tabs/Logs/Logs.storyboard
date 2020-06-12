@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pJl-Hx-umD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pJl-Hx-umD">
     <device id="retina3_5" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -54,7 +54,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 5, 2014" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x73-qQ-x5e">
-                                                    <rect key="frame" x="71" y="36" width="74" height="17"/>
+                                                    <rect key="frame" x="71" y="39" width="74" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>
                                                     <color key="textColor" name="LightText"/>
                                                     <nil key="highlightedColor"/>
@@ -63,7 +63,7 @@
                                             <constraints>
                                                 <constraint firstItem="x73-qQ-x5e" firstAttribute="leading" secondItem="ld3-9f-JH5" secondAttribute="trailing" constant="16" id="12K-Ec-ACK"/>
                                                 <constraint firstItem="L0f-0H-pkT" firstAttribute="leading" secondItem="ld3-9f-JH5" secondAttribute="trailing" constant="16" id="1ah-XE-PdH"/>
-                                                <constraint firstItem="x73-qQ-x5e" firstAttribute="top" secondItem="P7q-WO-Ec8" secondAttribute="centerY" id="VnX-37-94U"/>
+                                                <constraint firstItem="x73-qQ-x5e" firstAttribute="top" secondItem="P7q-WO-Ec8" secondAttribute="centerY" constant="3" id="VnX-37-94U"/>
                                                 <constraint firstItem="ld3-9f-JH5" firstAttribute="leading" secondItem="P7q-WO-Ec8" secondAttribute="leadingMargin" id="bk2-jk-6Uy"/>
                                                 <constraint firstItem="L0f-0H-pkT" firstAttribute="bottom" secondItem="P7q-WO-Ec8" secondAttribute="centerY" id="xPV-uw-Sql"/>
                                                 <constraint firstItem="ld3-9f-JH5" firstAttribute="centerY" secondItem="P7q-WO-Ec8" secondAttribute="centerY" id="zrL-1X-ceQ"/>

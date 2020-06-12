@@ -57,9 +57,17 @@ class ProfileSubjectTableViewCell: UITableViewCell {
             return
         }
         selectedSubjectNameLabel.text = model.fullName
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, yyyy"
-        selectedSubjectDOBLabel.text = formatter.string(from: model.birthday)
+
+        if let fontAwesomeFont = UIFont(name: "FontAwesome5Pro-Light", size: 15) {
+            let birthDateAttributedString = NSAttributedString(string: Date.fullMonthDayYearFormatter.string(from: model.birthday) + "  \u{f1fd}",
+                                                               attributes: [NSAttributedString.Key.font: fontAwesomeFont])
+            selectedSubjectDOBLabel.attributedText = birthDateAttributedString
+
+        } else {
+            selectedSubjectDOBLabel.text = Date.fullMonthDayYearFormatter.string(from: model.birthday)
+        }
+
+
     }
 }
 
