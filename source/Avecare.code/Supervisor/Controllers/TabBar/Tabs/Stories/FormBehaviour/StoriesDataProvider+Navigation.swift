@@ -70,7 +70,7 @@ extension StoriesDataProvider: StoriesDataProviderNavigation, IndicatorProtocol 
                 self?.hideActivityIndicator()
                 // update UI to block editing
                 var row = (self?.dataSource.count ?? 1) - 1
-                if let dSource = self?.dataSource, let firstPublished = self?.dataSource.first(where: { $0.rawPublishState == 2 }) {
+                if let dSource = self?.dataSource, let firstPublished = self?.dataSource.first(where: { $0.rawPublishState != 0 }) {
                     row = (dSource.firstIndex(of: firstPublished)  ?? 1) - 1
                 }
                 // new position for a subimitted story has to be after all the unpublished ones
