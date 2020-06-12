@@ -88,6 +88,8 @@ extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource 
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
 
+        // select the row to one before the deleted row
+
         delete.backgroundColor = UIColor.red
         return [delete]
 
