@@ -83,7 +83,10 @@ extension RemindersFormProvider: FormProvider {
         case .loading:
             return Form(viewModels: [])
         case .loaded(let reminders):
-            let left = PickerViewFormViewModel(title: "Select Child", placeholder: "Add a schild", accessory: .plus, textValue: nil,
+            let left = PickerViewFormViewModel(title: NSLocalizedString("notification_reminder_select_child_title", comment: ""),
+                                               placeholder: NSLocalizedString("notification_reminder_select_child_placeholder", comment: ""),
+                                               accessory: .plus,
+                                               textValue: nil,
                     action: .init(onClick: { [weak self] view in
                         self?.showSubjectPicker()
                     }, inputView: nil, onInput: nil))
@@ -91,15 +94,18 @@ extension RemindersFormProvider: FormProvider {
             let pickerView = SingleValuePickerView(values: reminders)
             pickerView.backgroundColor = .white
 
-            let right = PickerViewFormViewModel(title: "Select Reminder", placeholder: "No reminder selected", accessory: .dropdown,
-                    textValue: selectedReminder?.description, action: .init(onClick: { [weak self] view in
-                pickerView.selectedValue = self?.selectedReminder
-                view.becomeFirstResponder()
-            }, inputView: pickerView, onInput: { [weak self] view, _ in
-                let selectedValue = pickerView.selectedValue
-                self?.selectedReminder = selectedValue
-                view.setTextValue(selectedValue?.description)
-            }))
+            let right = PickerViewFormViewModel(title: NSLocalizedString("notification_reminder_select_reminder_title", comment: ""),
+                                                placeholder: NSLocalizedString("notification_reminder_select_reminder_placeholder", comment: ""),
+                                                accessory: .dropdown,
+                                                textValue: selectedReminder?.description,
+                    action: .init(onClick: { [weak self] view in
+                        pickerView.selectedValue = self?.selectedReminder
+                        view.becomeFirstResponder()
+                    }, inputView: pickerView, onInput: { [weak self] view, _ in
+                        let selectedValue = pickerView.selectedValue
+                        self?.selectedReminder = selectedValue
+                        view.setTextValue(selectedValue?.description)
+                    }))
 
             var viewModels: [AnyCellViewModel] = [DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right)]
             if subjects.count > 0 {

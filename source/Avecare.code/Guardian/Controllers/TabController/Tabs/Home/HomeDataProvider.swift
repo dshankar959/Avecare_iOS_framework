@@ -128,11 +128,12 @@ class DefaultHomeDataProvider: HomeDataProvider {
                 sectionTitle = feed.date.timeAgo(dayAbove: true)
 
                 if !headerSet.contains(sectionTitle) {
+                    headerSet.insert(sectionTitle)
                     sectionHeaders.append(sectionTitle)
+                    sections[sectionTitle] = [feed]
+                } else {
                     sections[sectionTitle]?.append(feed)
                 }
-                headerSet.insert(sectionTitle)
-                sections[sectionTitle] = [feed]
             }
         }
         if importantList.count > 0 {

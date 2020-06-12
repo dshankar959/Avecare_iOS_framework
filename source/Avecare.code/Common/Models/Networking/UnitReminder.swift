@@ -2,5 +2,5 @@ import Foundation
 
 
 
-typealias UnitReminder = UnitActivity
+typealias UnitReminder = RLMActivity
 typealias UnitReminderResponse = APIResponse<[UnitReminder]>

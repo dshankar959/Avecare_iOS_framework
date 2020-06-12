@@ -36,6 +36,9 @@ struct HomeTableViewDisclosureCellModel: CellViewModel {
             case .unitActivity:
                 icon = R.image.classActivityIcon()
                 iconColor = R.color.blueIcon()
+            case .unitStory:
+                icon = R.image.tabBarStoriesIcon()
+                iconColor = R.color.blueIcon()
             default:
                 icon = nil
                 iconColor = nil
@@ -49,7 +52,7 @@ struct HomeTableViewDisclosureCellModel: CellViewModel {
         cell.titleLabel.text = title
         cell.subtitleLabel.text = subtitle
         switch feedItemType {
-        case .subjectDailyLog, .message:
+        case .subjectDailyLog, .message, .unitStory:
             cell.selectionStyle = .default
             cell.titleLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         default:

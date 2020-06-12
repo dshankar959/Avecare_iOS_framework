@@ -3,18 +3,10 @@ import UIKit
 
 class ClassActivityFormProvider {
 
-    enum State {
-        case new
-        case error(err: Error)
-        case loading
-        case loaded(activities: [UnitActivity])
-    }
-    var state = State.new
-
     let indexPath: IndexPath
     weak var delegate: NotificationTypeDataProviderDelegate?
 
-    var selectedActivity: UnitActivity?
+    var selectedActivity: RLMActivity?
     var activityDate: Date?
 
     var activityDateString: String? {
@@ -36,42 +28,35 @@ class ClassActivityFormProvider {
 }
 
 extension ClassActivityFormProvider: FormProvider {
-    private func inputTextViewModel() -> InputTextFormViewModel {
-        let viewModel = InputTextFormViewModel(title: "Special Instructions (if any)",
-                placeholder: "140 characters maximum.", value: activityInstructions) { [weak self] _, textValue in
-            self?.activityInstructions = textValue
-        }
+    func form() -> Form {
+        var viewModels = [AnyCellViewModel]()
 
-        return viewModel
-    }
+        let activityTypes = RLMActivity.findAll().filter { $0.isActive }
+        let activityTypePicker = SingleValuePickerView(values: activityTypes)
+        activityTypePicker.backgroundColor = .white
 
-    private func selectActivityViewModel(values: [UnitActivity]?) -> PickerViewFormViewModel {
-        var viewModel = PickerViewFormViewModel(title: "Select Activity", placeholder: "No activity selected",
-                accessory: .dropdown, textValue: selectedActivity?.description, action: nil)
+        let left = PickerViewFormViewModel(title: NSLocalizedString("notification_inspections_and_drills_select_activity_title", comment: ""),
+                                           placeholder: NSLocalizedString("notification_inspections_and_drills_select_activity_placetolder", comment: ""),
+                                           accessory: .dropdown,
+                                           textValue: selectedActivity?.name,
+                action: .init(onClick: { [weak self] view in
+                    activityTypePicker.selectedValue = self?.selectedActivity
+                    view.becomeFirstResponder()
+                }, inputView: activityTypePicker, onInput: { [weak self] view, pickerView in
+                    guard let pickerView = pickerView as? SingleValuePickerView<RLMActivity>? else { return }
+                    let selectedValue = pickerView?.selectedValue
+                    self?.selectedActivity = selectedValue
+                    view.setTextValue(selectedValue?.description)
+                }))
 
-        if let values = values {
-            let picker = SingleValuePickerView(values: values)
-            picker.backgroundColor = .white
-
-            viewModel.action = PickerViewFormViewModel.Action(onClick: { [weak self] view in
-                picker.selectedValue = self?.selectedActivity
-                view.becomeFirstResponder()
-            }, inputView: picker, onInput: { [weak self] view, pickerView in
-                guard let pickerView = pickerView as? SingleValuePickerView<UnitActivity>? else { return }
-                let selectedValue = pickerView?.selectedValue
-                self?.selectedActivity = selectedValue
-                view.setTextValue(selectedValue?.description)
-            })
-        }
-        return viewModel
-    }
-
-    private func selectDateViewModel() -> PickerViewFormViewModel {
         let datePicker = UIDatePicker()
         datePicker.backgroundColor = .white
         datePicker.datePickerMode = .date
 
-        let right = PickerViewFormViewModel(title: "Select Date", placeholder: "19 / 10 / 10", accessory: .calendar, textValue: activityDateString,
+        let right = PickerViewFormViewModel(title: NSLocalizedString("notification_inspections_and_drills_select_date_title", comment: ""),
+                                            placeholder: NSLocalizedString("notification_inspections_and_drills_select_date_placeholder", comment: ""),
+                                            accessory: .calendar,
+                                            textValue: activityDateString,
                 action: .init(onClick: { [weak self] view in
                     if let date = self?.activityDate {
                         datePicker.date = date
@@ -82,48 +67,17 @@ extension ClassActivityFormProvider: FormProvider {
                     self?.activityDate = datePicker.date
                     view.setTextValue(self?.activityDateString)
                 }))
-        return right
-    }
 
-    func form() -> Form {
-        switch state {
-        case .new:
-            guard let unitId = RLMSupervisor.details?.primaryUnitId else {
-                state = .error(err: AuthError.unitNotFound.message)
-                return form()
-            }
+        viewModels.append(DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right))
 
-            guard let id = RLMUnit.details(for: unitId)?.id else {
-                state = .error(err: AuthError.unitNotFound.message)
-                return form()
-            }
+        // swiftlint:disable line_length
+        viewModels.append(InputTextFormViewModel(title: NSLocalizedString("notification_inspections_and_drills_special_instruction_title", comment: ""),
+                                                 placeholder: NSLocalizedString("notification_inspections_and_drills_special_instruction_placeholder", comment: ""),
+                                                 value: activityInstructions) { [weak self] _, textValue in
+            self?.activityInstructions = textValue
+        })
+        // swiftlint:enable line_length
 
-            UnitAPIService.getActivities(unitId: id) { [weak self] result in
-                switch result {
-                case .success(let activities):
-                    self?.state = .loaded(activities: activities.filter({ $0.isActive }))
-                case .failure(let error):
-                    self?.state = .error(err: error)
-                }
-
-                if let indexPath = self?.indexPath {
-                    self?.delegate?.didUpdateModel(at: indexPath)
-                }
-            }
-
-            state = .loading
-            return form()
-        case .error(let error):
-            //TODO: error
-            return Form(viewModels: [])
-        case .loading:
-            return Form(viewModels: [])
-        case .loaded(let activities):
-            return Form(viewModels: [
-                DoublePickerViewFormViewModel(leftPicker: selectActivityViewModel(values: activities), rightPicker: selectDateViewModel()),
-                inputTextViewModel()
-            ])
-        }
-
+        return Form(viewModels: viewModels)
     }
 }

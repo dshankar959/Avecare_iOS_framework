@@ -149,6 +149,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             gotoLogsScreen(with: model.feedItemId)
         case .message:
             performSegue(withIdentifier: R.segue.homeViewController.details, sender: (model.feedItemType, model.feedItemId))
+        case .unitStory:
+            gotoStoryDetailScreen(with: model.feedItemId)
         default:
             return
         }
@@ -184,6 +186,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 self.tabBarController?.selectedIndex = 2
                 self.view.isUserInteractionEnabled = true
             }
+        }
+    }
+
+    private func gotoStoryDetailScreen(with feedItemId: String) {
+        if let story = RLMStory.find(withID: feedItemId),
+            let detailsVC = UIStoryboard(name: R.storyboard.stories.name, bundle: .main)
+                .instantiateViewController(withIdentifier: "StoriesDetailsViewController") as? StoriesDetailsViewController {
+            detailsVC.details = StoriesDetails(title: story.title, pdfURL: story.pdfURL(using: DocumentService()), date: story.serverLastUpdated)
+            navigationController?.pushViewController(detailsVC, animated: true)
         }
     }
 
