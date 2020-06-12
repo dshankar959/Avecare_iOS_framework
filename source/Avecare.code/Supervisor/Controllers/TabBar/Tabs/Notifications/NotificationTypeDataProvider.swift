@@ -21,10 +21,22 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
     weak var presentationController: UIViewController?
 
     var dataSource = [
-        NotificationTypeTableViewCellModel(icon: R.image.checklistIcon(), color: R.color.blueIcon(), title: "Daily Checklist", type: .dailyCheckList),
-        NotificationTypeTableViewCellModel(icon: R.image.classActivityIcon(), color: R.color.blueIcon(), title: "Inspections and Drills", type: .classActivity),
-        NotificationTypeTableViewCellModel(icon: R.image.exclamationIcon(), color: R.color.redIcon(), title: "Injury Report", type: .injuryReport),
-        NotificationTypeTableViewCellModel(icon: R.image.clockIcon(), color: R.color.blueIcon(), title: "Reminders", type: .reminders)
+        NotificationTypeTableViewCellModel(icon: R.image.checklistIcon(),
+                                           color: R.color.blueIcon(),
+                                           title: NSLocalizedString("notification_menu_title_daily_checklist", comment: ""),
+                                           type: .dailyCheckList),
+        NotificationTypeTableViewCellModel(icon: R.image.classActivityIcon(),
+                                           color: R.color.blueIcon(),
+                                           title: NSLocalizedString("notification_menu_title_inspections_and_drills", comment: ""),
+                                           type: .classActivity),
+        NotificationTypeTableViewCellModel(icon: R.image.exclamationIcon(),
+                                           color: R.color.redIcon(),
+                                           title: NSLocalizedString("notification_menu_title_injury_report", comment: ""),
+                                           type: .injuryReport),
+        NotificationTypeTableViewCellModel(icon: R.image.clockIcon(),
+                                           color: R.color.blueIcon(),
+                                           title: NSLocalizedString("notification_menu_title_reminder", comment: ""),
+                                           type: .reminders)
     ]
 
     //0
