@@ -1,6 +1,10 @@
 import Foundation
 
 
+struct UnitReminder: Codable, CustomStringConvertible, SingleValuePickerItem {
+    let id: String
+    let description: String
+    let isActive: Bool
+}
 
-typealias UnitReminder = RLMActivity
 typealias UnitReminderResponse = APIResponse<[UnitReminder]>
