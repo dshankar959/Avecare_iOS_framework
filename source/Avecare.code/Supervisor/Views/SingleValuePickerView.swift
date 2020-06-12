@@ -7,12 +7,6 @@ protocol SingleValuePickerItem {
     var pickerTextValue: String { get }
 }
 
-extension SingleValuePickerItem where Self: RLMInjury {
-    var pickerTextValue: String {
-        return name
-    }
-}
-
 extension SingleValuePickerItem where Self: CustomStringConvertible {
     var pickerTextValue: String {
         return description

@@ -47,6 +47,28 @@ struct OrganizationsAPIService {
     }
 
 
+    static func getAvailableActivities(for organizationId: String, completion: @escaping (Result<[RLMActivity], AppError>) -> Void) {
+            DDLogVerbose("")
+
+            apiProvider.request(.organizationActivities(id: organizationId)) { result in
+    //                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(RLMActivitiesResponse.self)
+                    completion(.success(mappedResponse.results))
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    completion(.failure(JSONError.failedToMapData.message))
+                }
+            case .failure(let error):
+                completion(.failure(getAppErrorFromMoya(with: error)))
+            }
+        }
+    }
+
+
+
     static func getAvailableInjuries(for organizationId: String, completion: @escaping (Result<[RLMInjury], AppError>) -> Void) {
         DDLogDebug("")
 

@@ -45,6 +45,8 @@ class InjuryReportFormProvider {
 
 extension InjuryReportFormProvider: FormProvider {
     func form() -> Form {
+        var viewModels = [AnyCellViewModel]()
+
         let left = PickerViewFormViewModel(title: NSLocalizedString("notification_injury_report_select_child_title", comment: ""),
                                            placeholder: NSLocalizedString("notification_injury_report_select_child_placeholder", comment: ""),
                                            accessory: .plus,
@@ -67,15 +69,13 @@ extension InjuryReportFormProvider: FormProvider {
                     }
                     view.becomeFirstResponder()
                 }, inputView: datePicker, onInput: { [weak self] view, datePicker in
-                    guard let datePicker = datePicker as? UIDatePicker else {
-                        return
-                    }
+                    guard let datePicker = datePicker as? UIDatePicker else { return }
                     self?.injuryDate = datePicker.date
                     view.setTextValue(self?.injuryDateString)
                 }))
 
-        var viewModels = [AnyCellViewModel]()
         viewModels.append(DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right))
+
         if injurySubjects.count > 0 {
             viewModels.append(TagListFormViewModel(tags: injurySubjects.map({ "\($0.firstName), \($0.lastName)" }), deleteAction: deleteSubjectAt))
         }
@@ -99,7 +99,9 @@ extension InjuryReportFormProvider: FormProvider {
                     self?.seletctedInjuryType = injuryTypePicker.selectedValue
                     view.setTextValue(self?.seletctedInjuryType?.name)
                 }))
+
         viewModels.append(PickerViewWithSideTitleFormViewModel(title: injuryPickerTitle, picker: injuryPicker))
+
         viewModels.append(InputTextFormViewModel(title: NSLocalizedString("notification_injury_report_additional_message_title", comment: ""),
                                                  placeholder: NSLocalizedString("notification_injury_report_additional_message_placeholder", comment: ""),
                                                  value: additionalMessage,

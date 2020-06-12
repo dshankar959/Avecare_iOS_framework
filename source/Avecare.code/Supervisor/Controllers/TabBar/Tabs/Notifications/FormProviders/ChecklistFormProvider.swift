@@ -23,6 +23,8 @@ class ChecklistFormProvider {
     let indexPath: IndexPath
     weak var delegate: NotificationTypeDataProviderDelegate?
 
+    private let SavedDateKey = "{saved_date}"
+
     init(indexPath: IndexPath) {
         self.indexPath = indexPath
     }
@@ -74,9 +76,11 @@ extension ChecklistFormProvider: FormProvider {
             //TODO: loading form view
             return Form(viewModels: [])
         case .loaded(let tasks):
+            var subtitleString = NSLocalizedString("notification_daily_checklist_saved_date", comment: "")
+            subtitleString = subtitleString.replacingOccurrences(of: SavedDateKey, with: "June 15, 3:16 PM")
             var models: [AnyCellViewModel] = [
-                FormLabelViewModel.title("Today's Checklist"),
-                FormLabelViewModel.subtitle("Last saved - Jan 5, 7:16 AM")
+                FormLabelViewModel.title(NSLocalizedString("notification_daily_checklist_title", comment: "")),
+                FormLabelViewModel.subtitle(subtitleString)
                         .inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0))
             ]
 
