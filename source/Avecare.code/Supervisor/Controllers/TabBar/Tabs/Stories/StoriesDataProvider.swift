@@ -7,6 +7,7 @@ extension StoriesTableViewCellModel {
 
     init(story: RLMStory, storage: DocumentService) {
         title = story.title
+        isPublished =  story.rawPublishState != 0
 //        details = story.body
         documentURL = story.pdfURL(using: storage)
 //        photoCaption = story.photoCaption

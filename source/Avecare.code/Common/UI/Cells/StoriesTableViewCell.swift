@@ -9,10 +9,8 @@ struct StoriesTableViewCellModel: CellViewModel {
 
     var title: String?
     let date: Date
-//    var details: String?
     var documentURL: URL?
-//    var photoCaption: String?
-
+    var isPublished: Bool = false
     var isSelected = false
 
     func setup(cell: CellType) {
@@ -21,6 +19,12 @@ struct StoriesTableViewCellModel: CellViewModel {
         cell.titleLabel.text = title
         let service = DocumentService()
         let size = 375 * UIScreen.main.scale
+        cell.status.isHidden = true
+
+        if !isPublished {
+            cell.status.isHidden = false
+            cell.status.text = NSLocalizedString("draft_status", comment: "")
+        }
 
         if let url = documentURL,
             url.absoluteString.isFilePath,
@@ -39,5 +43,6 @@ class StoriesTableViewCell: UITableViewCell {
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-
+    @IBOutlet weak var status: UILabel!
+    
 }
