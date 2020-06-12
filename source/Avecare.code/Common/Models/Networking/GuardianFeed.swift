@@ -8,6 +8,7 @@ enum FeedItemType: String, Decodable {
     case subjectInjury = "subjectinjury"
     case subjectReminder = "subjectreminder"
     case unitActivity = "unitactivity"
+    case unitStory = "unitstory"
     case unKnown
 
     init(from decoder: Decoder) throws {
