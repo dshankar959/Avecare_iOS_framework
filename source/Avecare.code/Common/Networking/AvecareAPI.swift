@@ -87,7 +87,8 @@ enum AvecareAPI { // API Services
     case unitSubjects(id: String)
     case unitSupervisors(id: String)
     case unitPublishStory(story: PublishStoryRequestModel)
-    case unitPublishedStories(unitId: String)
+//    case unitPublishedStories(unitId: String)
+    case unitPublishedStories(request: PublishedStoriesRequestModel)
 
 }
 
@@ -136,7 +137,7 @@ extension AvecareAPI: TargetType {
         case .unitSubjects(let id): return "/units/\(id)/subjects"
         case .unitSupervisors(let id): return "/units/\(id)/supervisors"
         case .unitPublishStory(let story): return "/units/\(story.unitId)/stories/"
-        case .unitPublishedStories(let unitId): return "/units/\(unitId)/stories"
+        case .unitPublishedStories(let request): return "/units/\(request.unitId)/stories"
 
         case .unitStories(let id): return "/units/\(id)/stories"
         case .storyDetails(let id): return "/stories/\(id)"
@@ -182,6 +183,14 @@ extension AvecareAPI: TargetType {
                 "end_date": request.endDate
             ], encoding: URLEncoding.default)
 
+        case .unitPublishedStories(let request):
+            DDLogDebug(".unitPublishedStories parameters: .serverLastUpdated = \(request.serverLastUpdated)")
+            return .requestParameters(parameters: [
+//                "limit": request.resultsLimit,
+//                "offset": request.resultsOffset,
+                "lastUpdatedAt": request.serverLastUpdated
+            ], encoding: URLEncoding.default)
+
         case .subjectPublishDailyLog(let request as MultipartEncodable),
              .unitPublishStory(let request as MultipartEncodable):
             return .uploadMultipart(request.formData)
@@ -212,12 +221,14 @@ extension AvecareAPI: TargetType {
 
 // Set timeout for requests using Moya.  (https://stackoverflow.com/a/41428250/7599)
 class DefaultAlamofireManager: Alamofire.Session {
+
     static let sharedManager: DefaultAlamofireManager = {
         let configuration = URLSessionConfiguration.default
         configuration.httpAdditionalHeaders = HTTPHeaders.default.dictionary
         configuration.timeoutIntervalForRequest = APIConfig.timeoutInterval   // as seconds, you can set your request timeout
         configuration.timeoutIntervalForResource = APIConfig.timeoutInterval  // as seconds, you can set your resource timeout
         configuration.requestCachePolicy = .useProtocolCachePolicy
+
         let manager = DefaultAlamofireManager(configuration: configuration,
                 redirectHandler: Redirector(behavior: .modify { task, request, _ in
                     // handle redirects
@@ -230,6 +241,8 @@ class DefaultAlamofireManager: Alamofire.Session {
                     }
                     return request
                 }))
+
         return manager
     }()
+
 }

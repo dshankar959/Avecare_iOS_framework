@@ -15,7 +15,7 @@ struct DateSubtitleViewModel: CellViewModel {
     let delegate: DateSubtitleViewModelDelegate?
 
     func setup(cell: CellType) {
-        let formatter = Date.shortMonthTimeFormatter
+        let formatter = Date.fullMonthTimeFormatter
         let prefix = isSubmitted ? "Published" : "Last saved"
         let time = formatter.string(from: date)
 

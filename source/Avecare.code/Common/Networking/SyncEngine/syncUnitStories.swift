@@ -46,7 +46,7 @@ extension SyncEngine {
                     }
                 }
             }
-        } else {
+        } else { // Guardian
             let allSubjects = RLMSubject.findAll()
             if !allSubjects.isEmpty {
 

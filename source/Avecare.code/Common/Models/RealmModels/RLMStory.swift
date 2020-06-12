@@ -64,6 +64,7 @@ extension RLMStory {
     func pdfURL(using storage: DocumentService) -> URL? {
         return storage.fileURL(name: id, type: "pdf")
     }
+
 }
 
 
@@ -71,6 +72,33 @@ extension RLMStory: RLMCleanable, DataProvider {
 
     func clean() {
         delete()
+    }
+
+}
+
+
+// MARK: - API -
+
+struct PublishedStoriesRequestModel: Codable {
+
+    let unitId: String
+    let resultsOffset: Int = 0
+    let resultsLimit: Int = 5
+    let startDate: String = ""
+    let endDate: String = ""
+    var serverLastUpdated: String = ""
+
+
+    init(id: String) {
+        self.unitId = id
+
+        let allStories = RLMStory.findAll()
+        let sortedStories = RLMStory.sortObjectsByLastUpdated(order: .orderedDescending, allStories)
+        let publishedStories = sortedStories.filter { $0.rawPublishState == PublishState.published.rawValue }
+
+        if let lastUpdated = publishedStories.first?.serverLastUpdated {
+            serverLastUpdated = Date.ISO8601StringFromDate(lastUpdated)
+        }
     }
 
 }

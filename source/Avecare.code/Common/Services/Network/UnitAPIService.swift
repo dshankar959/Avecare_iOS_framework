@@ -138,7 +138,9 @@ struct UnitAPIService {
     static func getPublishedStories(unitId: String, completion: @escaping (Result<[RLMStory], AppError>) -> Void) {
         DDLogVerbose("")
 
-        apiProvider.request(.unitPublishedStories(unitId: unitId)) { result in
+        let request = PublishedStoriesRequestModel(id: unitId)
+
+        apiProvider.request(.unitPublishedStories(request: request)) { result in
             switch result {
             case .success(let response):
                 do {

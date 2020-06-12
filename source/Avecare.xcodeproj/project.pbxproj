@@ -1368,13 +1368,13 @@
 		75886D012419327F0079C080 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				75886D032419327F0079C080 /* UserAPIService.swift */,
 				615477873D1D818B4B22AC5C /* SupervisorsAPIService.swift */,
-				615479056980C7871D32751E /* UnitAPIService.swift */,
-				615476E15206D0F7BC7080C8 /* InstitutionsAPIService.swift */,
 				615470B479541EB0ADC83755 /* GuardiansAPIService.swift */,
-				615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */,
+				75886D032419327F0079C080 /* UserAPIService.swift */,
 				61547D73CFED29A678ACDFD5 /* OrganizationsAPIService.swift */,
+				615476E15206D0F7BC7080C8 /* InstitutionsAPIService.swift */,
+				615479056980C7871D32751E /* UnitAPIService.swift */,
+				615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */,
 				DC3E80E92486BDDE003983E2 /* MessagesAPIService.swift */,
 			);
 			path = Network;
