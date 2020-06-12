@@ -8,14 +8,14 @@ protocol StoriesDataProviderNavigation {
 }
 
 
-extension StoriesDataProvider: StoriesDataProviderNavigation {
+extension StoriesDataProvider: StoriesDataProviderNavigation, IndicatorProtocol {
 
     // DO NOT USE INDEX PATH IN BLOCKS AS ORDER MAY CHANGE
     func navigationItems(at indexPath: IndexPath) -> [DetailsNavigationView.Item] {
         let story = dataSource[indexPath.row]
         let isSubmitted = story.publishState != .local
 
-        let isStorySubmitable = DocumentService().fileURL(name: story.id, type: "pdf") != nil && !story.title.isEmpty
+        let isStorySubmitable = DocumentService().fileURL(name: story.id, type: "pdf") != nil
         let isEnabled = !isSubmitted && isStorySubmitable
         let publishText = isSubmitted ? "Published" : "Publish"
         let publishColor = isEnabled ? R.color.main() :R.color.lightText4()
@@ -63,14 +63,19 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
 
         let model = PublishStoryRequestModel(unitId: unitId, story: story, storage: imageStorageService)
 
-        // TODO: show loader
+        showActivityIndicator(withStatus: NSLocalizedString("publishing_status", comment: ""))
         UnitAPIService.publishStory(model) { [weak self] result in
             switch result {
             case .success(let response):
+                self?.hideActivityIndicator()
                 // update UI to block editing
-                // story will be moved to 1st position after sort()
-                // because serverDate updated
-                let newPosition = IndexPath(row: 0, section: 0)
+                var row = (self?.dataSource.count ?? 0) - 1
+                if let dSource = self?.dataSource, let firstPublished = self?.dataSource.first(where: { $0.rawPublishState == 2 }) {
+                    row = (dSource.firstIndex(of: firstPublished)  ?? 0) - 1
+                }
+                row = (row < 0) ? 0 : row
+                // new position for a subimitted story has to be after all the unpublished ones
+                let newPosition = IndexPath(row: row, section: 0)
                 guard let index = self?.dataSource.firstIndex(of: story) else {
                     return
                 }
@@ -82,10 +87,11 @@ extension StoriesDataProvider: StoriesDataProviderNavigation {
                     story.publishState = .published
                 }
 
-                self?.sort()
+                self?.delegate?.didUpdateModel(at: currentPosition, details: true)
                 self?.delegate?.moveStory(at: currentPosition, to: newPosition)
-                self?.delegate?.didUpdateModel(at: newPosition, details: true)
+                self?.sort()
             case .failure(let error):
+                self?.hideActivityIndicator()
                 DDLogError("\(error)")
             }
         }

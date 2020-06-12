@@ -36,12 +36,20 @@
                             <constraint firstAttribute="width" constant="60" id="ue3-jD-mf0"/>
                         </constraints>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Draft)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aPP-3M-pSH">
+                        <rect key="frame" x="101" y="57" width="44" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" name="red-icon"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="npB-SG-SkH" firstAttribute="centerY" secondItem="rUt-Ck-ECA" secondAttribute="centerY" id="44U-1J-Cox"/>
                     <constraint firstItem="gw9-1y-QZU" firstAttribute="top" secondItem="rUt-Ck-ECA" secondAttribute="top" constant="15" id="AII-pO-8nR"/>
+                    <constraint firstAttribute="bottom" secondItem="aPP-3M-pSH" secondAttribute="bottom" constant="16" id="Auo-KU-AXM"/>
                     <constraint firstItem="WWD-MQ-mM6" firstAttribute="top" secondItem="gw9-1y-QZU" secondAttribute="bottom" constant="2" id="DE7-oB-GNu"/>
                     <constraint firstItem="WWD-MQ-mM6" firstAttribute="leading" secondItem="rUt-Ck-ECA" secondAttribute="leading" constant="16" id="UpJ-mZ-DUd"/>
+                    <constraint firstItem="aPP-3M-pSH" firstAttribute="leading" secondItem="WWD-MQ-mM6" secondAttribute="trailing" constant="8" id="W0A-Qa-NDE"/>
                     <constraint firstItem="gw9-1y-QZU" firstAttribute="leading" secondItem="rUt-Ck-ECA" secondAttribute="leading" constant="16" id="ZUU-KB-VB1"/>
                     <constraint firstAttribute="bottom" secondItem="WWD-MQ-mM6" secondAttribute="bottom" constant="15" id="eIR-SR-hea"/>
                     <constraint firstAttribute="trailing" secondItem="npB-SG-SkH" secondAttribute="trailing" constant="16" id="t8A-zc-twJ"/>
@@ -51,6 +59,7 @@
             <connections>
                 <outlet property="dateLabel" destination="WWD-MQ-mM6" id="ZJo-s9-OpG"/>
                 <outlet property="photoImageView" destination="npB-SG-SkH" id="nh2-aS-Yp8"/>
+                <outlet property="status" destination="aPP-3M-pSH" id="E2P-ds-Y34"/>
                 <outlet property="titleLabel" destination="gw9-1y-QZU" id="WCs-OQ-pzY"/>
             </connections>
             <point key="canvasLocation" x="141" y="154"/>
@@ -63,6 +72,9 @@
         </namedColor>
         <namedColor name="LightText">
             <color red="0.49411764705882355" green="0.52156862745098043" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="red-icon">
+            <color red="0.85490196078431369" green="0.28235294117647058" blue="0.49411764705882355" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
