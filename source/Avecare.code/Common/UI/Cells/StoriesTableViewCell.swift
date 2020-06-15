@@ -44,5 +44,5 @@ class StoriesTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var status: UILabel!
-    
+
 }

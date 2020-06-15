@@ -23,7 +23,7 @@ class LoginViewController: UIViewController, IndicatorProtocol {
         selector: #selector(LoginViewController.keyboardDidChangeFrame(notification:)),
         name: UIResponder.keyboardDidChangeFrameNotification,
         object: nil)
-        
+
         NotificationCenter.default.addObserver(self,
         selector: #selector(LoginViewController.keyboardWillHide(notification:)),
         name: UIResponder.keyboardWillHideNotification,
@@ -86,7 +86,7 @@ class LoginViewController: UIViewController, IndicatorProtocol {
             self.showErrorAlert(AuthError.emptyCredentials.message)
             return
         }
-        
+
         let userCredentials = UserCredentials(email: email, password: password)
         UserAuthenticateService.shared.signIn(userCredentials: userCredentials) { [weak self] error in
             if let error = error {
