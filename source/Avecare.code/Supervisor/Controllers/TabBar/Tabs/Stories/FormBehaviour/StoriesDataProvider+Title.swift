@@ -1,7 +1,10 @@
 import Foundation
 import UIKit
 
+
+
 extension StoriesDataProvider {
+
     func titleViewModel(for story: RLMStory) -> FormTextViewModel {
         let titleFont: UIFont = .systemFont(ofSize: 36)
 
@@ -18,4 +21,6 @@ extension StoriesDataProvider {
             self?.delegate?.didUpdateModel(at: IndexPath(row: 0, section: 0), details: false)
         })
     }
+
+
 }

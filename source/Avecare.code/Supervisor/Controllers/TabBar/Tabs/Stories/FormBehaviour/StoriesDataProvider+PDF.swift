@@ -45,16 +45,22 @@ extension StoriesDataProvider {
     }
 
     func didPickDocumentsAt(urls: [URL], view: PDFThumbView) {
+        DDLogVerbose("")
+
         guard let url = urls.first else {
             return
         }
+//        url = URL(fileURLWithPath: url.path)   // handle white spaces
+        DDLogVerbose("document url: \(url)")
 
         let size = 375 * UIScreen.main.scale
         let service = DocumentService()
         let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url, atPage: 0)
+
         let pdf = PDFDocument(url: url)
         // remove previous local pdf
         if let story = selectedStory, let image = image {
+            // Check if we already have a file with this id name?
             if let fileURL = service.fileURL(name: story.id, type: "pdf") {
                 do {
                     try service.removeFile(at: fileURL)
@@ -62,8 +68,8 @@ extension StoriesDataProvider {
                     DDLogError("\(error)")
                 }
             }
-            if let pdf = pdf {
 
+            if let pdf = pdf {
                 service.savePDF(pdf, name: story.id)
                 view.photoImageView.image = image
                 view.removeButton.isHidden = false

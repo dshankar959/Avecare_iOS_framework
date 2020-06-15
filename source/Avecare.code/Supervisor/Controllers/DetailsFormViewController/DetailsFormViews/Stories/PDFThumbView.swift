@@ -16,12 +16,15 @@ struct PDFThumbViewModel: CellViewModel {
 
     func setup(cell: CellType) {
         cell.onPDFTap = action?.onPDFTap
+
         if isEditable {
             cell.onPDFRemove = action?.onPDFRemove
         }
+
         let service = DocumentService()
         let size = 375 * UIScreen.main.scale
         cell.removeButton.isHidden = true
+
         if let pdfURL = pdfURL {
             let pdfThumbnail = service.getImageForPDF(of: CGSize(width: size, height: size), for: pdfURL, atPage: 0)
             if let pdfThumbnail = pdfThumbnail {
@@ -31,6 +34,7 @@ struct PDFThumbViewModel: CellViewModel {
                 }
             }
         }
+
     }
 
 }
