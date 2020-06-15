@@ -142,10 +142,9 @@ extension StoriesSideViewController: StoriesDataProviderDelegate, IndicatorProto
             if indexes.contains(fromIndexPath) {
                 tableView.moveRow(at: fromIndexPath, to: toIndexPath)
             } else if indexes.contains(toIndexPath) {
-                tableView.reloadRows(at: [toIndexPath], with: .automatic)
+                tableView.reloadRows(at: indexes, with: .automatic)
             }
         }
-        
     }
 
 }
