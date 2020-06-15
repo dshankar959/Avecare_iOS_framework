@@ -40,12 +40,17 @@ extension SyncEngine {
                                                         self.syncOrganizationInjuries { error in
                                                             DDLogVerbose("syncOrganizationInjuries ♓️ closure")
                                                             if let error = error { syncCompletion(error) } else {
-                                                                self.syncDOWNsubjects() { error in
-                                                                    DDLogVerbose("syncDOWNsubjects ♓️ closure")
+                                                                DDLogVerbose("syncOrganizationReminders ♓️ closure")
+                                                                self.syncOrganizationReminders { error in
                                                                     if let error = error { syncCompletion(error) } else {
-                                                                        self.syncDOWNUnitStories { error in
-                                                                            DDLogVerbose("syncDOWNUnitStories ♓️ closure")
-                                                                            syncCompletion(error)
+                                                                        self.syncDOWNsubjects() { error in
+                                                                            DDLogVerbose("syncDOWNsubjects ♓️ closure")
+                                                                            if let error = error { syncCompletion(error) } else {
+                                                                                self.syncDOWNUnitStories { error in
+                                                                                    DDLogVerbose("syncDOWNUnitStories ♓️ closure")
+                                                                                    syncCompletion(error)
+                                                                                }
+                                                                            }
                                                                         }
                                                                     }
                                                                 }

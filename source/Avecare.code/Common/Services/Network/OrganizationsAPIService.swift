@@ -68,7 +68,6 @@ struct OrganizationsAPIService {
     }
 
 
-
     static func getAvailableInjuries(for organizationId: String, completion: @escaping (Result<[RLMInjury], AppError>) -> Void) {
         DDLogDebug("")
 
@@ -77,6 +76,28 @@ struct OrganizationsAPIService {
             case .success(let response):
                 do {
                     let mappedResponse = try response.map(RLMInjuriesResponse.self)
+                    completion(.success(mappedResponse.results))
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    completion(.failure(JSONError.failedToMapData.message))
+                }
+            case .failure(let error):
+                completion(.failure(getAppErrorFromMoya(with: error)))
+            }
+        }
+    }
+
+
+    static func getAvailableReminders(organizationId: String,
+                                      completion: @escaping (Result<[RLMReminder], AppError>) -> Void) {
+        DDLogVerbose("")
+
+        apiProvider.request(.organizationReminders(id: organizationId)) { result in
+//            callbackQueue: DispatchQueue.global(qos: .default)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(RLMRemindersResponse.self)
                     completion(.success(mappedResponse.results))
                 } catch {
                     DDLogError("JSON MAPPING ERROR = \(error)")

@@ -4,7 +4,7 @@ import CocoaLumberjack
 
 extension SyncEngine {
 
-    func syncOrganizationActivities(_ syncCompletion: @escaping (_ error: AppError?) -> Void) {
+    func syncOrganizationReminders(_ syncCompletion: @escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
 
         // Use function name as key.
@@ -21,19 +21,19 @@ extension SyncEngine {
         }
 
         syncStates[syncKey] = .syncing
-        notifySyncStateChanged(message: "Syncing down 🔻 organization activities")
+        notifySyncStateChanged(message: "Syncing down 🔻 organization reminders")
 
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor,
            let unitId = RLMSupervisor.details?.primaryUnitId,
             let unitDetails = RLMUnit.details(for: unitId),
             let institutionDetails = RLMInstitution.details(for: unitDetails.institutionId) {
-            OrganizationsAPIService.getAvailableActivities(for: institutionDetails.organizationId) { [weak self] result in
+            OrganizationsAPIService.getAvailableReminders(organizationId: institutionDetails.organizationId) { [weak self] result in
                 switch result {
-                case .success(let activities):
+                case .success(let reminders):
                     // Update with new data.
-                    RLMActivity.createOrUpdateAll(with: activities)
-                    DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMActivity.className())\' items in DB: \(RLMActivity.findAll().count)")
+                    RLMReminder.createOrUpdateAll(with: reminders)
+                    DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMReminder.className())\' items in DB: \(RLMReminder.findAll().count)")
                     self?.syncStates[syncKey] = .complete
                     syncCompletion(nil)
                 case .failure(let error):

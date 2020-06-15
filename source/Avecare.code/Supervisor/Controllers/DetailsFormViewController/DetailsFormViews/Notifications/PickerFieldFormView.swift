@@ -16,7 +16,7 @@ struct DoublePickerViewFormViewModel: AnyCellViewModel {
         let view = UIView()
 
         view.snp.makeConstraints { maker in
-            maker.height.equalTo(80)
+            maker.height.equalTo(60)
         }
 
         // horizontal empty space in middle
@@ -46,7 +46,7 @@ struct DoublePickerViewFormViewModel: AnyCellViewModel {
         stackView.axis = .horizontal
         view.addSubview(stackView)
         stackView.snp.makeConstraints { maker in
-            let insets = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+            let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             maker.edges.equalToSuperview().inset(insets)
         }
 
@@ -70,7 +70,7 @@ struct PickerViewWithSideTitleFormViewModel: AnyCellViewModel {
         let view = UIView()
 
         view.snp.makeConstraints { maker in
-            maker.height.equalTo(64)
+            maker.height.equalTo(44)
         }
 
         let titleLabel = UILabel(frame: .zero)
@@ -101,7 +101,7 @@ struct PickerViewWithSideTitleFormViewModel: AnyCellViewModel {
         stackView.axis = .horizontal
         view.addSubview(stackView)
         stackView.snp.makeConstraints { maker in
-            let insets = UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0)
+            let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             maker.edges.equalToSuperview().inset(insets)
         }
 

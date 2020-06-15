@@ -21,7 +21,7 @@ extension SyncEngine {
         }
 
         syncStates[syncKey] = .syncing
-        notifySyncStateChanged(message: "Syncing down 🔻 organization templates")
+        notifySyncStateChanged(message: "Syncing down 🔻 organization injuries")
 
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor,

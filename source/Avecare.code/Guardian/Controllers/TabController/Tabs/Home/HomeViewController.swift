@@ -1,6 +1,6 @@
 import UIKit
 import CocoaLumberjack
-
+import SwiftPullToRefresh
 
 
 class HomeViewController: UIViewController, IndicatorProtocol {
@@ -28,25 +28,44 @@ class HomeViewController: UIViewController, IndicatorProtocol {
         self.navigationController?.hideHairline()
         configNoItemView()
         tableView.tableFooterView = UIView() // remove bottom margin of the last cell
+
+        // Retrieve data
+        showActivityIndicator(withStatus: NSLocalizedString("home_retrieving_feed", comment: ""))
+        fetchFeeds { [weak self] error in
+            self?.hideActivityIndicator()
+            if let error = error {
+                self?.showErrorAlert(error)
+            }
+            self?.dataProvider.filterDataSource(with: self?.subjectSelection?.subject?.id)
+            self?.updateScreen()
+        }
+
+        // Set pull to refresh
+        tableView.spr_setIndicatorHeader { [weak self] in
+            self?.fetchFeeds { error in
+                if let error = error {
+                    self?.showErrorAlert(error)
+                }
+                self?.updateScreen()
+                self?.tableView.spr_endRefreshing()
+            }
+        }
+    }
+
+    private func fetchFeeds(completion: @escaping (AppError?) -> Void) {
+        dataProvider.fetchFeeds { error in
+            if let error = error {
+                completion(error)
+            }
+            self.dataProvider.filterDataSource(with: self.subjectSelection?.subject?.id)
+            completion(nil)
+        }
     }
 
     private func configNoItemView() {
         noItemTitleLabel.text = NSLocalizedString("home_no_item_title", comment: "")
         noItemContentLabel.text = NSLocalizedString("home_no_item_content", comment: "")
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        showActivityIndicator(withStatus: NSLocalizedString("home_retrieving_feed", comment: ""))
-        dataProvider.fetchFeeds { error in
-            self.hideActivityIndicator()
-            if let error = error {
-                self.showErrorAlert(error)
-            }
-            self.dataProvider.filterDataSource(with: self.subjectSelection?.subject?.id)
-            self.updateScreen()
-        }
+        noItemView.isHidden = true // hide initially
     }
 
     @IBAction func didClickSubjectPickerButton(_ sender: UIButton) {
