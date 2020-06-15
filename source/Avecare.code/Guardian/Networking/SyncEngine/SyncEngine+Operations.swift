@@ -31,16 +31,16 @@ extension SyncEngine {
                                 self.syncDOWNinstitutionDetails() { error in
                                     DDLogVerbose("syncDOWNinstitutionDetails ♓️ closure")
                                     if let error = error { syncCompletion(error) } else {
-                                        self.syncOrganizationDetails() { error in
-                                            DDLogVerbose("syncOrganizationDetails ♓️ closure")
+                                        self.syncDOWNorganizationDetails() { error in
+                                            DDLogVerbose("syncDOWNorganizationDetails ♓️ closure")
                                             if let error = error { syncCompletion(error) } else {
-                                                self.syncUnitSupervisors() { error in
-                                                    DDLogVerbose("syncUnitSupervisors ♓️ closure")
+                                                self.syncDOWNunitSupervisors() { error in
+                                                    DDLogVerbose("syncDOWNunitSupervisors ♓️ closure")
                                                     if let error = error { syncCompletion(error) } else {
-                                                        self.syncDOWNUnitStories { error in
-                                                            DDLogVerbose("syncDOWNUnitStories ♓️ closure")
-                                                            self.syncDOWNSubjectLogs { error in
-                                                                DDLogVerbose("syncDOWNSubjectLogs ♓️ closure")
+                                                        self.syncDOWNunitStories { error in
+                                                            DDLogVerbose("syncDOWNunitStories ♓️ closure")
+                                                            self.syncDOWNsubjectLogs { error in
+                                                                DDLogVerbose("syncDOWNsubjectLogs ♓️ closure")
                                                                 syncCompletion(error)
                                                             }
                                                         }

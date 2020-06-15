@@ -29,7 +29,7 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
     }
 
     func loadPDFWithLink(url: URL) {
-        
+
         let pdfView = PdfView()
         self.view.addSubview(pdfView)
         pdfView.snp.makeConstraints { (make) in
@@ -39,7 +39,7 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
     }
 
     private func loadContentforAttachment(attachmentURL: String) {
-        
+
         let webView: WKWebView = WKWebView(frame: CGRect.zero)
         webView.frame = view.frame
         view.addSubview(webView)
@@ -53,7 +53,7 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
             DDLogError("\(error)")
         }
     }
-    
+
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         hideActivityIndicator()
     }

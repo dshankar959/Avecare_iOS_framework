@@ -8,22 +8,22 @@ class PdfView: UIView {
     init() {
         super.init(frame: CGRect.zero)
     }
-    
+
     func loadPDFat(url: URL) {
-        
+
         let pdfView = PDFView()
         pdfView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(pdfView)
         pdfView.autoScales = true
         pdfView.backgroundColor =  UIColor.white
         pdfView.autoScales = true
-        
+
         let thumbnailView = PDFThumbnailView()
         thumbnailView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(thumbnailView)
-        
+
         thumbnailView.backgroundColor = UIKit.UIColor(resource: R.color.background, compatibleWith: nil) ?? UIColor.white
-        
+
         // check if ipad or iphone
         if hardwareDevice.isPad {
             thumbnailView.thumbnailSize = CGSize(width: 70, height: 70)
@@ -56,9 +56,9 @@ class PdfView: UIView {
                 make.trailing.equalTo(self.snp.trailing).offset(0)
             }
         }
-        
+
         thumbnailView.pdfView = pdfView
-        
+
         if let document = PDFDocument(url: url) {
             pdfView.document = document
         }

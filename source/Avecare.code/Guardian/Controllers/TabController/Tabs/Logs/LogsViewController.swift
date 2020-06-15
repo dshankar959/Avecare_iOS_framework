@@ -17,7 +17,7 @@ class LogsViewController: UIViewController {
     @IBAction func showMenu(_ sender: Any) {
         performSegue(withIdentifier: R.segue.logsViewController.showMenuFromLogs, sender: nil)
     }
-    
+
     private let dataProvider = DefaultLogsDataProvider()
     private lazy var slideInTransitionDelegate = SlideInPresentationManager()
     private let subjectListDataProvider = DefaultSubjectListDataProvider()

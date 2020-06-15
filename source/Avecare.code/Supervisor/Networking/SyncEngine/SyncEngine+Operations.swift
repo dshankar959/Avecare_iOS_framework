@@ -28,20 +28,20 @@ extension SyncEngine {
                         self.syncDOWNinstitutionDetails() { error in
                             DDLogVerbose("syncDOWNinstitutionDetails ♓️ closure")
                             if let error = error { syncCompletion(error) } else {
-                                self.syncOrganizationDetails() { error in
-                                    DDLogVerbose("syncOrganizationDetails ♓️ closure")
+                                self.syncDOWNorganizationDetails() { error in
+                                    DDLogVerbose("syncDOWNorganizationDetails ♓️ closure")
                                     if let error = error { syncCompletion(error) } else {
-                                        self.syncOrganizationTemplates() { error in
-                                            DDLogVerbose("syncOrganizationTemplates ♓️ closure")
+                                        self.syncDOWNorganizationTemplates() { error in
+                                            DDLogVerbose("syncDOWNorganizationTemplates ♓️ closure")
                                             if let error = error { syncCompletion(error) } else {
-                                                self.syncOrganizationActivities { error in
-                                                    DDLogVerbose("syncOrganizationActivities ♓️ closure")
+                                                self.syncDOWNorganizationActivities { error in
+                                                    DDLogVerbose("syncDOWNorganizationActivities ♓️ closure")
                                                     if let error = error { syncCompletion(error) } else {
-                                                        self.syncOrganizationInjuries { error in
-                                                            DDLogVerbose("syncOrganizationInjuries ♓️ closure")
+                                                        self.syncDOWNorganizationInjuries { error in
+                                                            DDLogVerbose("syncDOWNorganizationInjuries ♓️ closure")
                                                             if let error = error { syncCompletion(error) } else {
-                                                                DDLogVerbose("syncOrganizationReminders ♓️ closure")
-                                                                self.syncOrganizationReminders { error in
+                                                                self.syncDOWNorganizationReminders { error in
+                                                                    DDLogVerbose("syncDOWNorganizationReminders ♓️ closure")
                                                                     if let error = error { syncCompletion(error) } else {
                                                                         self.syncDOWNsubjects() { error in
                                                                             DDLogVerbose("syncDOWNsubjects ♓️ closure")
