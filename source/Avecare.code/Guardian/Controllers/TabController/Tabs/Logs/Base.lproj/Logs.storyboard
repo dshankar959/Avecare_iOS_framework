@@ -206,7 +206,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="FontAwesome5Pro-Regular" family="Font Awesome 5 Pro" pointSize="20"/>
                                 <connections>
-                                    <segue destination="fXF-UT-ccR" kind="show" id="b5Z-Ag-coc"/>
+                                    <action selector="showMenu:" destination="VN9-Za-7jc" eventType="touchUpInside" id="DtQ-Zu-Z4h"/>
                                 </connections>
                             </button>
                         </barButtonItem>
@@ -222,6 +222,7 @@
                         <outlet property="subjectSelectButton" destination="7wQ-7R-bFg" id="hod-rC-KCk"/>
                         <outlet property="tableView" destination="WvE-pV-HgB" id="QQP-as-YvX"/>
                         <segue destination="9aY-7i-pAY" kind="presentation" identifier="subjectList" id="pHs-2N-d3n"/>
+                        <segue destination="fXF-UT-ccR" kind="show" identifier="showMenuFromLogs" id="BSK-hY-ets"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tlg-wW-i9I" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -239,7 +240,7 @@
         <!--Profile Details View Controller-->
         <scene sceneID="VNk-0o-lRT">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="fXF-UT-ccR" customClass="ProfileDetailsViewController" customModule="parent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="fXF-UT-ccR" customClass="ProfileDetailsViewController" customModule="parent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="FjN-WZ-882">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -247,6 +248,7 @@
                         <viewLayoutGuide key="safeArea" id="RYE-nL-CLk"/>
                     </view>
                     <navigationItem key="navigationItem" id="9dC-JN-gNE"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKH-zV-Nka" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

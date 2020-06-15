@@ -14,6 +14,10 @@ class LogsViewController: UIViewController {
     @IBOutlet weak var noItemContentLabel: UILabel!
     @IBOutlet weak var mealPlanButton: UIButton!
 
+    @IBAction func showMenu(_ sender: Any) {
+        performSegue(withIdentifier: R.segue.logsViewController.showMenuFromLogs, sender: nil)
+    }
+    
     private let dataProvider = DefaultLogsDataProvider()
     private lazy var slideInTransitionDelegate = SlideInPresentationManager()
     private let subjectListDataProvider = DefaultSubjectListDataProvider()

@@ -69,7 +69,6 @@
                         <viewLayoutGuide key="safeArea" id="MuR-aV-uOB"/>
                     </view>
                     <navigationItem key="navigationItem" id="qXJ-Op-WAH"/>
-                    <nil key="simulatedBottomBarMetrics"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oCP-Fc-tvH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
