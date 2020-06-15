@@ -88,8 +88,9 @@ extension StoriesDataProvider: StoriesDataProviderNavigation, IndicatorProtocol 
                 }
 
                 self?.delegate?.didUpdateModel(at: currentPosition, details: true)
-                self?.delegate?.moveStory(at: currentPosition, to: newPosition)
                 self?.sort()
+                self?.delegate?.moveStory(at: currentPosition, to: newPosition)
+                
             case .failure(let error):
                 self?.hideActivityIndicator()
                 DDLogError("\(error)")

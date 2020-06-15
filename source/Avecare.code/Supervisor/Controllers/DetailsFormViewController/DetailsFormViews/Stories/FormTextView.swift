@@ -15,6 +15,16 @@ struct FormTextViewModel: CellViewModel {
     func setup(cell: CellType) {
         if isEditable {
             cell.onChange = onChange
+        } else {
+            cell.layer.borderWidth = 0
+            cell.layer.cornerRadius = 0
+            cell.layer.masksToBounds = true
+            cell.layer.borderColor = UIColor.clear.cgColor
+            
+            let edges = cell.textView.textContainerInset
+            cell.textView.backgroundColor = R.color.background()
+            cell.textView.textContainerInset = UIEdgeInsets(top: edges.top, left: 0, bottom: edges.bottom, right: 0)
+            cell.textView.textContainer.lineFragmentPadding = 0
         }
 
         cell.textView.font = font
