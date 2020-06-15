@@ -15,8 +15,6 @@ class LogsViewController: UIViewController {
     @IBOutlet weak var mealPlanButton: UIButton!
 
     @IBAction func showMenu(_ sender: Any) {
-//        performSegue(withIdentifier: R.segue.profileViewController.details, sender: details)
-
         performSegue(withIdentifier: R.segue.logsViewController.showMenuFromLogs, sender: nil)
     }
     
