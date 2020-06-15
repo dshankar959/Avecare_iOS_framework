@@ -73,7 +73,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dbB-LC-Xr4">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29H-0u-Anf">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29H-0u-Anf" customClass="PdfView" customModule="educator" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44" width="414" height="764"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     </view>
@@ -111,7 +111,7 @@
                         <viewLayoutGuide key="safeArea" id="5HS-Ls-3Oi"/>
                     </view>
                     <connections>
-                        <outlet property="innerView" destination="29H-0u-Anf" id="V07-Jc-ezL"/>
+                        <outlet property="pdfView" destination="29H-0u-Anf" id="wGb-PG-hCH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKr-UH-amY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

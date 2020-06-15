@@ -112,7 +112,7 @@
                                 <color key="textColor" name="LightText"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paq-Hs-rd8">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paq-Hs-rd8" customClass="PdfView" customModule="parent" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="182.5" width="414" height="669.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>

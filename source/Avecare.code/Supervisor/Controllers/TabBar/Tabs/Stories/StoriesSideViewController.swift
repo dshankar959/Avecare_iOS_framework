@@ -147,7 +147,13 @@ extension StoriesSideViewController: StoriesDataProviderDelegate, IndicatorProto
     }
 
     func moveStory(at fromIndexPath: IndexPath, to toIndexPath: IndexPath) {
-        tableView.moveRow(at: fromIndexPath, to: toIndexPath)
+        if let indexes = tableView.indexPathsForVisibleRows {
+            if indexes.contains(fromIndexPath) {
+                tableView.moveRow(at: fromIndexPath, to: toIndexPath)
+            } else if indexes.contains(toIndexPath) {
+                tableView.reloadRows(at: indexes, with: .automatic)
+            }
+        }
     }
 
 }
