@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		299B3586241F907E00D6F9A5 /* FormSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B357F241F907E00D6F9A5 /* FormSpacerView.swift */; };
 		299B3587241F907E00D6F9A5 /* LabelFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B3580241F907E00D6F9A5 /* LabelFormView.swift */; };
-		299B3588241F907E00D6F9A5 /* FormPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B3582241F907E00D6F9A5 /* FormPhotoView.swift */; };
-		299B3589241F907E00D6F9A5 /* FormPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299B3583241F907E00D6F9A5 /* FormPhotoView.xib */; };
 		299B358A241F907E00D6F9A5 /* FormTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299B3584241F907E00D6F9A5 /* FormTextView.xib */; };
 		299B358B241F907E00D6F9A5 /* FormTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B3585241F907E00D6F9A5 /* FormTextView.swift */; };
 		29A6D542245450D100D7DB87 /* SupervisorOnly.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29A6D541245450D100D7DB87 /* SupervisorOnly.xcassets */; };
@@ -26,7 +24,6 @@
 		615471AAF5F6CA37ECCB646D /* StoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 615474AF12734C5E1CC85DDB /* StoriesTableViewCell.xib */; };
 		615471C3EAAA9F493D956400 /* SubjectListDataProvider+NavItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477E9EA0A24EDE13EAC17 /* SubjectListDataProvider+NavItems.swift */; };
 		615471C64C68B780700660A5 /* HomeTableViewDisclosureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547D53A60161097C2E858F /* HomeTableViewDisclosureCell.xib */; };
-		6154722D235963E1379CA485 /* StoriesDataProvider+Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478357A55BAA1219DC4B2 /* StoriesDataProvider+Photo.swift */; };
 		6154723DA561F399DB79A43F /* StoriesDataProvider+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615470BE18F6A432EBB1931A /* StoriesDataProvider+Navigation.swift */; };
 		6154724046F3B4B42269D31C /* RLMUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615472657DF3223E8A839F22 /* RLMUnit.swift */; };
 		6154726061B2E96DC4B60087 /* TimeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547BF984C577F414B32894 /* TimeRangePickerView.swift */; };
@@ -435,8 +432,6 @@
 		157875C1D9D7D1695100E0A0 /* Pods-parent.debug(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent.debug(qa).xcconfig"; path = "Target Support Files/Pods-parent/Pods-parent.debug(qa).xcconfig"; sourceTree = "<group>"; };
 		299B357F241F907E00D6F9A5 /* FormSpacerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormSpacerView.swift; sourceTree = "<group>"; };
 		299B3580241F907E00D6F9A5 /* LabelFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelFormView.swift; sourceTree = "<group>"; };
-		299B3582241F907E00D6F9A5 /* FormPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormPhotoView.swift; sourceTree = "<group>"; };
-		299B3583241F907E00D6F9A5 /* FormPhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormPhotoView.xib; sourceTree = "<group>"; };
 		299B3584241F907E00D6F9A5 /* FormTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormTextView.xib; sourceTree = "<group>"; };
 		299B3585241F907E00D6F9A5 /* FormTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextView.swift; sourceTree = "<group>"; };
 		29A6D541245450D100D7DB87 /* SupervisorOnly.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SupervisorOnly.xcassets; sourceTree = "<group>"; };
@@ -491,7 +486,6 @@
 		615477F063DA43A44307926F /* StoriesDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesDataProvider.swift; sourceTree = "<group>"; };
 		615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectsAPIService.swift; sourceTree = "<group>"; };
 		6154782C95BCF97A3312C8C7 /* PinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinView.xib; sourceTree = "<group>"; };
-		615478357A55BAA1219DC4B2 /* StoriesDataProvider+Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoriesDataProvider+Photo.swift"; sourceTree = "<group>"; };
 		6154786288CE3337831B8CEB /* HomeTableViewDisclosureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewDisclosureCell.swift; sourceTree = "<group>"; };
 		615478BBE87EEEB048C429BF /* RLMReusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMReusable.swift; sourceTree = "<group>"; };
 		615478C7FFEB976D5EBE27D8 /* SubjectPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectPickerViewController.swift; sourceTree = "<group>"; };
@@ -784,8 +778,6 @@
 		299B3581241F907E00D6F9A5 /* Stories */ = {
 			isa = PBXGroup;
 			children = (
-				299B3582241F907E00D6F9A5 /* FormPhotoView.swift */,
-				299B3583241F907E00D6F9A5 /* FormPhotoView.xib */,
 				299B3585241F907E00D6F9A5 /* FormTextView.swift */,
 				299B3584241F907E00D6F9A5 /* FormTextView.xib */,
 				D0A64417248AA5C90041A69B /* PDFThumbView.swift */,
@@ -1031,7 +1023,6 @@
 		6154774EB7F6E73B056B38C1 /* FormBehaviour */ = {
 			isa = PBXGroup;
 			children = (
-				615478357A55BAA1219DC4B2 /* StoriesDataProvider+Photo.swift */,
 				615470BE18F6A432EBB1931A /* StoriesDataProvider+Navigation.swift */,
 				61547C86A6589BD1A80D59D6 /* StoriesDataProvider+Title.swift */,
 				61547591AC635E1EB090F102 /* StoriesDataProvider+Body.swift */,
@@ -2068,7 +2059,6 @@
 				F65549F624564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf in Resources */,
 				DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */,
 				F67DF81B241BFE6800793A9C /* InfoMessageFormView.xib in Resources */,
-				299B3589241F907E00D6F9A5 /* FormPhotoView.xib in Resources */,
 				F67DF824241BFE6800793A9C /* PickerViewFormView.xib in Resources */,
 				D0A6441A248AA6E50041A69B /* PDFThumbView.xib in Resources */,
 				75886DF4241932BA0079C080 /* supervisor.storyboard in Resources */,
@@ -2423,7 +2413,6 @@
 				75EB59D42461858700E077E5 /* RLMLogChooseRow.swift in Sources */,
 				F67DF80E241BFE6800793A9C /* DetailsView.swift in Sources */,
 				75EB59FB24632D1F00E077E5 /* syncUnitDetails.swift in Sources */,
-				299B3588241F907E00D6F9A5 /* FormPhotoView.swift in Sources */,
 				F6B7F28F24254DBF003E16AE /* LoginViewController.swift in Sources */,
 				DCF9141A2497E44C0043123F /* syncOrganizationReminders.swift in Sources */,
 				75886DDF241932BA0079C080 /* SubjectListTableViewCell.swift in Sources */,
@@ -2539,7 +2528,6 @@
 				615478C6E0C0561E921C0005 /* syncOrganizationTemplates.swift in Sources */,
 				615473506842F07BA5A0A4F2 /* LogFormAPIModel.swift in Sources */,
 				61547A6F9C4837D535BAE270 /* RLMStory.swift in Sources */,
-				6154722D235963E1379CA485 /* StoriesDataProvider+Photo.swift in Sources */,
 				6154723DA561F399DB79A43F /* StoriesDataProvider+Navigation.swift in Sources */,
 				61547C4BE16D9D0A21B03C31 /* StoriesDataProvider+Title.swift in Sources */,
 				6154781CC1E9D4B79428BC3B /* StoriesDataProvider+Body.swift in Sources */,
