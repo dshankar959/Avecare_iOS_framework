@@ -115,6 +115,7 @@ class StoriesDataProvider: StoriesDataProviderIO {
 
     func form(at indexPath: IndexPath) -> Form {
         let story = dataSource[indexPath.row]
+
         return Form(viewModels: [
             titleViewModel(for: story),
             subtitleViewModel(for: story).inset(by: .init(top: 20, left: 0, bottom: 20, right: 0)),
@@ -138,6 +139,7 @@ class StoriesDataProvider: StoriesDataProviderIO {
         }
 
         delegate?.moveStory(at: IndexPath(row: startIndex, section: 0),
-                to: IndexPath(row: endIndex, section: 0))
+                            to: IndexPath(row: endIndex, section: 0))
     }
+
 }

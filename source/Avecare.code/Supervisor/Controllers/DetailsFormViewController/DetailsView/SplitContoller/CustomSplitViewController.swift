@@ -4,9 +4,11 @@ import SnapKit
 
 
 extension UIViewController {
+
     var customSplitController: CustomSplitViewController? {
         return parent as? CustomSplitViewController
     }
+
 }
 
 

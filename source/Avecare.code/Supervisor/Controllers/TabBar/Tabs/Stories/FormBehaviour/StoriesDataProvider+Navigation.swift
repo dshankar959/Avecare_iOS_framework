@@ -19,6 +19,7 @@ extension StoriesDataProvider: StoriesDataProviderNavigation, IndicatorProtocol 
         let isEnabled = !isSubmitted && isStorySubmitable
         let publishText = isSubmitted ? "Published" : "Publish"
         let publishColor = isEnabled ? R.color.main() :R.color.lightText4()
+
         return [
             .imageButton(options: .init(action: { [weak self] view, options, index in
                 self?.createNewStory()
