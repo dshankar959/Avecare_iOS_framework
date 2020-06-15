@@ -32,10 +32,9 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
         
         let pdfView = PdfView()
         self.view.addSubview(pdfView)
-        
-            pdfView.snp.makeConstraints { (make) in
-                make.top.left.right.bottom.equalTo(self.view.safeAreaLayoutGuide)
-            }
+        pdfView.snp.makeConstraints { (make) in
+            make.top.left.right.bottom.equalTo(self.view.safeAreaLayoutGuide)
+        }
         pdfView.loadPDFat(url: url)
     }
 
