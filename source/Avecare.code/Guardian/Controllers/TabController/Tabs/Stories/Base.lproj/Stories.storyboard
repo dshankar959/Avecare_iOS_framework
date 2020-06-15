@@ -101,7 +101,7 @@
         <!--Stories Details View Controller-->
         <scene sceneID="onb-nq-lkB">
             <objects>
-                <viewController storyboardIdentifier="StoriesDetailsViewController" hidesBottomBarWhenPushed="YES" id="Gcb-Ez-APF" customClass="StoriesDetailsViewController" customModule="parent" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StoriesDetailsViewController" id="Gcb-Ez-APF" customClass="StoriesDetailsViewController" customModule="parent" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9AM-UV-iwe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -113,7 +113,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="paq-Hs-rd8" customClass="PdfView" customModule="parent" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="182.5" width="414" height="669.5"/>
+                                <rect key="frame" x="0.0" y="182.5" width="414" height="630.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="600" text="Language Skills in the Classroom and at Home" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZsC-6W-chz">
@@ -131,7 +131,7 @@
                             <constraint firstItem="JGv-EU-gho" firstAttribute="leading" secondItem="Mae-0U-9kP" secondAttribute="leading" id="SHd-j4-902"/>
                             <constraint firstItem="paq-Hs-rd8" firstAttribute="top" secondItem="JGv-EU-gho" secondAttribute="bottom" constant="10" id="YBF-8v-swa"/>
                             <constraint firstItem="JGv-EU-gho" firstAttribute="top" secondItem="ZsC-6W-chz" secondAttribute="bottom" constant="5" id="YRO-IV-H41"/>
-                            <constraint firstItem="Mae-0U-9kP" firstAttribute="bottom" secondItem="paq-Hs-rd8" secondAttribute="bottom" constant="10" id="ZRj-5f-Bto"/>
+                            <constraint firstItem="Mae-0U-9kP" firstAttribute="bottom" secondItem="paq-Hs-rd8" secondAttribute="bottom" id="ZRj-5f-Bto"/>
                             <constraint firstItem="paq-Hs-rd8" firstAttribute="leading" secondItem="Mae-0U-9kP" secondAttribute="leading" id="dl1-vo-eyF"/>
                             <constraint firstItem="Mae-0U-9kP" firstAttribute="trailing" secondItem="paq-Hs-rd8" secondAttribute="trailing" id="mrZ-tC-Mh5"/>
                             <constraint firstItem="ZsC-6W-chz" firstAttribute="top" secondItem="Mae-0U-9kP" secondAttribute="top" id="sM4-no-sQf"/>

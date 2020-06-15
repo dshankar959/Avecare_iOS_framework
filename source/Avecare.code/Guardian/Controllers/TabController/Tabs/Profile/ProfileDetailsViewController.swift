@@ -17,6 +17,7 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
     var attachmentURL: String? // From feed details
 
     override func viewDidLoad() {
+
         super.viewDidLoad()
         if let attachmentURL = attachmentURL {
             loadContentforAttachment(attachmentURL: attachmentURL )
@@ -31,9 +32,10 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
         
         let pdfView = PdfView()
         self.view.addSubview(pdfView)
-        pdfView.snp.makeConstraints { (make) in
-            make.top.bottom.left.right.equalTo(self.view)
-        }
+        
+            pdfView.snp.makeConstraints { (make) in
+                make.top.left.right.bottom.equalTo(self.view.safeAreaLayoutGuide)
+            }
         pdfView.loadPDFat(url: url)
     }
 
