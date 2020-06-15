@@ -67,6 +67,7 @@ enum AvecareAPI { // API Services
     case organizationSubjectTypes(id: String)
     case organizationInjuries(id: String)
     case organizationActivities(id: String)
+    case organizationReminders(id: String)
     // MARK: - SUBJECTS
 //    case subjectInjuries(id: String)
     case subjectPublishDailyLog(request: LogFormAPIModel)
@@ -82,7 +83,6 @@ enum AvecareAPI { // API Services
     case unitDailyTasks(id: String)
     case unitPublishDailyTasks(id: String, request: DailyTaskRequest)
     case unitCreateInjury(id: String)
-    case unitReminders(id: String)
     case unitCreateReminder(id: String)
     case unitSubjects(id: String)
     case unitSupervisors(id: String)
@@ -123,6 +123,7 @@ extension AvecareAPI: TargetType {
         case .organizationSubjectTypes(let id): return "/organizations/\(id)/subject-types"     // might not be required
         case .organizationInjuries(let id): return "/organizations/\(id)/available-injuries"
         case .organizationActivities(let id): return "/organizations/\(id)/available-activities"
+        case .organizationReminders(let id): return "/organizations/\(id)/available-reminders"
 
         case .subjectPublishDailyLog(let request): return "/subjects/\(request.subjectId)/daily-logs/"
         case .subjectGetLogs(let request): return "/subjects/\(request.subjectId)/daily-logs/"
@@ -132,7 +133,6 @@ extension AvecareAPI: TargetType {
         case .unitDailyTasks(let id): return "/units/\(id)/available-daily-tasks"
         case .unitPublishDailyTasks(let id, _): return "/units/\(id)/daily-tasks/"
         case .unitCreateInjury(let id): return "/units/\(id)/injuries/"
-        case .unitReminders(let id): return "/units/\(id)/available-reminders"
         case .unitCreateReminder(let id): return "/units/\(id)/reminders/"
         case .unitSubjects(let id): return "/units/\(id)/subjects"
         case .unitSupervisors(let id): return "/units/\(id)/supervisors"

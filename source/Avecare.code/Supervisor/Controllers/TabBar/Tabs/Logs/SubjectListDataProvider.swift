@@ -92,7 +92,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
         let title = "\(subject.firstName) \(subject.lastName)'s Log"
 
         let header: [AnyCellViewModel] = [
-            FormLabelViewModel.title(title),
+            LabelFormViewModel.title(title),
             DateSubtitleViewModel(date: formLog.clientLastUpdated!, isSubmitted: isSubmitted, delegate: self)
                 .inset(by: UIEdgeInsets(top: 5, left: 0, bottom: 32, right: 0))
         ]

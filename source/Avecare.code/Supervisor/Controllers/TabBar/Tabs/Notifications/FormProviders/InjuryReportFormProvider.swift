@@ -77,8 +77,12 @@ extension InjuryReportFormProvider: FormProvider {
         viewModels.append(DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right))
 
         if injurySubjects.count > 0 {
+            viewModels.append(MarginFormViewModel(height: 20))
+
             viewModels.append(TagListFormViewModel(tags: injurySubjects.map({ "\($0.firstName), \($0.lastName)" }), deleteAction: deleteSubjectAt))
         }
+
+        viewModels.append(MarginFormViewModel(height: 20))
 
         viewModels.append(InfoMessageFormViewModel(title: NSLocalizedString("notification_injury_report_message_description_title", comment: ""),
                                                    message: NSLocalizedString("notification_injury_report_message_description_text", comment: "")))
@@ -101,6 +105,8 @@ extension InjuryReportFormProvider: FormProvider {
                 }))
 
         viewModels.append(PickerViewWithSideTitleFormViewModel(title: injuryPickerTitle, picker: injuryPicker))
+
+        viewModels.append(MarginFormViewModel(height: 20))
 
         viewModels.append(InputTextFormViewModel(title: NSLocalizedString("notification_injury_report_additional_message_title", comment: ""),
                                                  placeholder: NSLocalizedString("notification_injury_report_additional_message_placeholder", comment: ""),

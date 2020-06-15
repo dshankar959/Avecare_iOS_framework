@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 
-struct FormLabelViewModel: CellViewModel {
+struct LabelFormViewModel: CellViewModel {
     typealias CellType = UILabel
 
     let font: UIFont

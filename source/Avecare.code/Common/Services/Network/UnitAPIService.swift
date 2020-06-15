@@ -93,28 +93,6 @@ struct UnitAPIService {
     }
 
 
-    static func getReminders(unitId: String,
-                             completion: @escaping (Result<[UnitReminder], AppError>) -> Void) {
-        DDLogVerbose("")
-
-        apiProvider.request(.unitReminders(id: unitId)) { result in
-//                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let mappedResponse = try response.map(UnitReminderResponse.self)
-                    completion(.success(mappedResponse.results))
-                } catch {
-                    DDLogError("JSON MAPPING ERROR = \(error)")
-                    completion(.failure(JSONError.failedToMapData.message))
-                }
-            case .failure(let error):
-                completion(.failure(getAppErrorFromMoya(with: error)))
-            }
-        }
-    }
-
-
     static func publishStory(_ story: PublishStoryRequestModel, completion: @escaping (Result<RLMStory, AppError>) -> Void) {
         DDLogVerbose("")
 

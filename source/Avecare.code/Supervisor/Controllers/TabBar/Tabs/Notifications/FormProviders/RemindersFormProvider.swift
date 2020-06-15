@@ -4,20 +4,13 @@ import UIKit
 
 class RemindersFormProvider {
 
-    enum State {
-        case new
-        case error(err: Error)
-        case loading
-        case loaded(reminders: [UnitReminder])
-    }
-
-    var state = State.new
     var subjects = [RLMSubject]()
-    var selectedReminder: UnitReminder?
+    var selectedReminder: RLMReminder?
 
     let indexPath: IndexPath
     weak var delegate: NotificationTypeDataProviderDelegate?
 
+    var additionalMessage: String?
 
     init(indexPath: IndexPath) {
         self.indexPath = indexPath
@@ -50,69 +43,48 @@ class RemindersFormProvider {
 extension RemindersFormProvider: FormProvider {
 
     func form() -> Form {
-        switch state {
-        case .new:
-            guard let unitId = RLMSupervisor.details?.primaryUnitId else {
-                state = .error(err: AuthError.unitNotFound.message)
-                return form()
-            }
+        let left = PickerViewFormViewModel(title: NSLocalizedString("notification_reminder_select_child_title", comment: ""),
+                                           placeholder: NSLocalizedString("notification_reminder_select_child_placeholder", comment: ""),
+                                           accessory: .plus,
+                                           textValue: nil,
+                action: .init(onClick: { [weak self] view in
+                    self?.showSubjectPicker()
+                }, inputView: nil, onInput: nil))
 
-            guard let id = RLMUnit.details(for: unitId)?.id else {
-                state = .error(err: AuthError.unitNotFound.message)
-                return form()
-            }
+        let reminderTypes = RLMReminder.findAll().filter { $0.isActive }
+        let reminderTypePickerView = SingleValuePickerView(values: reminderTypes)
+        reminderTypePickerView.backgroundColor = .white
 
-            UnitAPIService.getReminders(unitId: id) { [weak self] result in
-                switch result {
-                case .success(let reminders):
-                    self?.state = .loaded(reminders: reminders.filter({ $0.isActive }))
-                case .failure(let error):
-                    self?.state = .error(err: error)
-                }
+        let right = PickerViewFormViewModel(title: NSLocalizedString("notification_reminder_select_reminder_title", comment: ""),
+                                            placeholder: NSLocalizedString("notification_reminder_select_reminder_placeholder", comment: ""),
+                                            accessory: .dropdown,
+                                            textValue: selectedReminder?.description,
+                action: .init(onClick: { [weak self] view in
+                    reminderTypePickerView.selectedValue = self?.selectedReminder
+                    view.becomeFirstResponder()
+                }, inputView: reminderTypePickerView, onInput: { [weak self] view, _ in
+                    let selectedValue = reminderTypePickerView.selectedValue
+                    self?.selectedReminder = selectedValue
+                    view.setTextValue(selectedValue?.description)
+                }))
 
-                if let indexPath = self?.indexPath {
-                    self?.delegate?.didUpdateModel(at: indexPath)
-                }
-            }
+        var viewModels: [AnyCellViewModel] = [DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right)]
 
-            state = .loading
-            return form()
-        case .error(let error):
-            //TODO: error
-            return Form(viewModels: [])
-        case .loading:
-            return Form(viewModels: [])
-        case .loaded(let reminders):
-            let left = PickerViewFormViewModel(title: NSLocalizedString("notification_reminder_select_child_title", comment: ""),
-                                               placeholder: NSLocalizedString("notification_reminder_select_child_placeholder", comment: ""),
-                                               accessory: .plus,
-                                               textValue: nil,
-                    action: .init(onClick: { [weak self] view in
-                        self?.showSubjectPicker()
-                    }, inputView: nil, onInput: nil))
-
-            let pickerView = SingleValuePickerView(values: reminders)
-            pickerView.backgroundColor = .white
-
-            let right = PickerViewFormViewModel(title: NSLocalizedString("notification_reminder_select_reminder_title", comment: ""),
-                                                placeholder: NSLocalizedString("notification_reminder_select_reminder_placeholder", comment: ""),
-                                                accessory: .dropdown,
-                                                textValue: selectedReminder?.description,
-                    action: .init(onClick: { [weak self] view in
-                        pickerView.selectedValue = self?.selectedReminder
-                        view.becomeFirstResponder()
-                    }, inputView: pickerView, onInput: { [weak self] view, _ in
-                        let selectedValue = pickerView.selectedValue
-                        self?.selectedReminder = selectedValue
-                        view.setTextValue(selectedValue?.description)
-                    }))
-
-            var viewModels: [AnyCellViewModel] = [DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right)]
-            if subjects.count > 0 {
-                viewModels.append(TagListFormViewModel(tags: subjects.map({ "\($0.firstName), \($0.lastName)" }), deleteAction: deleteSubjectAt))
-            }
-
-            return Form(viewModels: viewModels)
+        if subjects.count > 0 {
+            viewModels.append(MarginFormViewModel(height: 20))
+            
+            viewModels.append(TagListFormViewModel(tags: subjects.map({ "\($0.firstName), \($0.lastName)" }), deleteAction: deleteSubjectAt))
         }
+
+        viewModels.append(MarginFormViewModel(height: 20))
+
+        viewModels.append(InputTextFormViewModel(title: NSLocalizedString("notification_injury_report_additional_message_title", comment: ""),
+                                                 placeholder: NSLocalizedString("notification_injury_report_additional_message_placeholder", comment: ""),
+                                                 value: additionalMessage,
+                onChange: { [weak self] (_, textValue) in
+                    self?.additionalMessage = textValue
+        }))
+
+        return Form(viewModels: viewModels)
     }
 }
