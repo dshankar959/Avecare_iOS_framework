@@ -1,6 +1,6 @@
 import UIKit
 
-struct BlankFormViewModel: AnyCellViewModel {
+struct MarginFormViewModel: AnyCellViewModel {
     private(set) static var cellType = UIView.self
 
     let height: CGFloat

@@ -79,8 +79,8 @@ extension ChecklistFormProvider: FormProvider {
             var subtitleString = NSLocalizedString("notification_daily_checklist_saved_date", comment: "")
             subtitleString = subtitleString.replacingOccurrences(of: SavedDateKey, with: "June 15, 3:16 PM")
             var models: [AnyCellViewModel] = [
-                FormLabelViewModel.title(NSLocalizedString("notification_daily_checklist_title", comment: "")),
-                FormLabelViewModel.subtitle(subtitleString)
+                LabelFormViewModel.title(NSLocalizedString("notification_daily_checklist_title", comment: "")),
+                LabelFormViewModel.subtitle(subtitleString)
                         .inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0))
             ]
 

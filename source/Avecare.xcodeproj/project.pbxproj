@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		299B3586241F907E00D6F9A5 /* FormSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B357F241F907E00D6F9A5 /* FormSpacerView.swift */; };
-		299B3587241F907E00D6F9A5 /* FormLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B3580241F907E00D6F9A5 /* FormLabelView.swift */; };
+		299B3587241F907E00D6F9A5 /* LabelFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B3580241F907E00D6F9A5 /* LabelFormView.swift */; };
 		299B3588241F907E00D6F9A5 /* FormPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B3582241F907E00D6F9A5 /* FormPhotoView.swift */; };
 		299B3589241F907E00D6F9A5 /* FormPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299B3583241F907E00D6F9A5 /* FormPhotoView.xib */; };
 		299B358A241F907E00D6F9A5 /* FormTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299B3584241F907E00D6F9A5 /* FormTextView.xib */; };
@@ -372,7 +372,7 @@
 		DCF9140E2492C3B20043123F /* syncOrganizationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9140D2492C3B20043123F /* syncOrganizationActivities.swift */; };
 		DCF9140F2492C3B20043123F /* syncOrganizationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9140D2492C3B20043123F /* syncOrganizationActivities.swift */; };
 		DCF914102493BAAD0043123F /* RLMActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914092492A8650043123F /* RLMActivity.swift */; };
-		DCF914162497B7DC0043123F /* BlankFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914152497B7DC0043123F /* BlankFormView.swift */; };
+		DCF914162497B7DC0043123F /* MarginFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914152497B7DC0043123F /* MarginFormView.swift */; };
 		DCFFD6F6246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */; };
 		DCFFD6F7246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */; };
 		DCFFD6F9246DA6FE0080DEA6 /* SlideInPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */; };
@@ -431,7 +431,7 @@
 		0862B23F6E3485F34684DC09 /* Pods-educator.debug(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.debug(qa).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.debug(qa).xcconfig"; sourceTree = "<group>"; };
 		157875C1D9D7D1695100E0A0 /* Pods-parent.debug(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent.debug(qa).xcconfig"; path = "Target Support Files/Pods-parent/Pods-parent.debug(qa).xcconfig"; sourceTree = "<group>"; };
 		299B357F241F907E00D6F9A5 /* FormSpacerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormSpacerView.swift; sourceTree = "<group>"; };
-		299B3580241F907E00D6F9A5 /* FormLabelView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormLabelView.swift; sourceTree = "<group>"; };
+		299B3580241F907E00D6F9A5 /* LabelFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelFormView.swift; sourceTree = "<group>"; };
 		299B3582241F907E00D6F9A5 /* FormPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormPhotoView.swift; sourceTree = "<group>"; };
 		299B3583241F907E00D6F9A5 /* FormPhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormPhotoView.xib; sourceTree = "<group>"; };
 		299B3584241F907E00D6F9A5 /* FormTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormTextView.xib; sourceTree = "<group>"; };
@@ -717,7 +717,7 @@
 		DCF6C69B24900B7C00A802BD /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		DCF914092492A8650043123F /* RLMActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMActivity.swift; sourceTree = "<group>"; };
 		DCF9140D2492C3B20043123F /* syncOrganizationActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = syncOrganizationActivities.swift; sourceTree = "<group>"; };
-		DCF914152497B7DC0043123F /* BlankFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankFormView.swift; sourceTree = "<group>"; };
+		DCF914152497B7DC0043123F /* MarginFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarginFormView.swift; sourceTree = "<group>"; };
 		DCFFD6F5246DA4E10080DEA6 /* SlideInPresentationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationManager.swift; sourceTree = "<group>"; };
 		DCFFD6F8246DA6FE0080DEA6 /* SlideInPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationController.swift; sourceTree = "<group>"; };
 		F65549EF24564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Font Awesome 5 Duotone-Solid-900.otf"; sourceTree = "<group>"; };
@@ -1873,7 +1873,8 @@
 		F67DF7F6241BFE6800793A9C /* DetailsFormViews */ = {
 			isa = PBXGroup;
 			children = (
-				299B3580241F907E00D6F9A5 /* FormLabelView.swift */,
+				299B3580241F907E00D6F9A5 /* LabelFormView.swift */,
+				DCF914152497B7DC0043123F /* MarginFormView.swift */,
 				299B357F241F907E00D6F9A5 /* FormSpacerView.swift */,
 				F67DF7F7241BFE6800793A9C /* LogFormCellViews */,
 				299B3581241F907E00D6F9A5 /* Stories */,
@@ -1902,7 +1903,6 @@
 		F67DF801241BFE6800793A9C /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				DCF914152497B7DC0043123F /* BlankFormView.swift */,
 				F67DF803241BFE6800793A9C /* InfoMessageFormView.swift */,
 				F67DF802241BFE6800793A9C /* InfoMessageFormView.xib */,
 				F67DF804241BFE6800793A9C /* PickerFieldFormView.swift */,
@@ -2375,7 +2375,7 @@
 				75EB59D02461858700E077E5 /* RLMLogForm.swift in Sources */,
 				75886D3C2419327F0079C080 /* UIView.swift in Sources */,
 				75886D682419327F0079C080 /* AppDelegate+Extension.swift in Sources */,
-				DCF914162497B7DC0043123F /* BlankFormView.swift in Sources */,
+				DCF914162497B7DC0043123F /* MarginFormView.swift in Sources */,
 				75886D4E2419327F0079C080 /* String.swift in Sources */,
 				75EB59CC2461858700E077E5 /* RLMLogSwitcherRow.swift in Sources */,
 				DCF9140A2492A8650043123F /* RLMActivity.swift in Sources */,
@@ -2435,7 +2435,7 @@
 				75886D602419327F0079C080 /* UserAPIService.swift in Sources */,
 				75886D2E2419327F0079C080 /* CellViewModels.swift in Sources */,
 				75EB5A1A2466E7A700E077E5 /* syncUserAccountDetails.swift in Sources */,
-				299B3587241F907E00D6F9A5 /* FormLabelView.swift in Sources */,
+				299B3587241F907E00D6F9A5 /* LabelFormView.swift in Sources */,
 				F67DF832241C009800793A9C /* ContentSizedTableView.swift in Sources */,
 				75886D442419327F0079C080 /* FileManager.swift in Sources */,
 				DC3E80F22486C9FB003983E2 /* MessagesAPIService.swift in Sources */,
