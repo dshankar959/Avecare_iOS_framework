@@ -28,38 +28,13 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
     }
 
     func loadPDFWithLink(url: URL) {
-        let pdfView = PDFView()
-        pdfView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(pdfView)
-        pdfView.backgroundColor =  UIColor.white
-        pdfView.autoScales = true
-
-        // Adding the thumnails
-        let thumbnailView = PDFThumbnailView()
-        thumbnailView.translatesAutoresizingMaskIntoConstraints = false
-        thumbnailView.layoutMode = .vertical
-        view.addSubview(thumbnailView)
         
-        thumbnailView.backgroundColor = UIKit.UIColor(resource: R.color.background, compatibleWith: nil) ?? UIColor.white
-        thumbnailView.thumbnailSize = CGSize(width: 70, height: 70)
-        
+        let pdfView = PdfView()
+        self.view.addSubview(pdfView)
         pdfView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.snp.top).offset(0)
-            make.bottom.equalTo(self.view.snp.bottom).offset(0)
-            make.leading.equalTo(self.view.snp.leading).offset(90)
-            make.trailing.equalTo(self.view.snp.trailing).offset(0)
+            make.top.bottom.left.right.equalTo(self.view)
         }
-        
-        thumbnailView.snp.makeConstraints { (make) in
-            make.top.equalTo(self.view.snp.top).offset(0)
-            make.bottom.equalTo(self.view.snp.bottom).offset(0)
-            make.leading.equalTo(self.view.snp.leading).offset(0)
-            make.trailing.equalTo(pdfView.snp.leading).offset(0)
-        }
-        thumbnailView.pdfView = pdfView
-        if let document = PDFDocument(url: url) {
-            pdfView.document = document
-        }
+        pdfView.loadPDFat(url: url)
     }
 
     private func loadContentforAttachment(attachmentURL: String) {
@@ -68,7 +43,6 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
         webView.frame = view.frame
         view.addSubview(webView)
         webView.navigationDelegate = self
-        
         showActivityIndicator(withStatus: NSLocalizedString("profile_details_loading", comment: ""))
         if let contentURL = URL(string: attachmentURL) {
             webView.load(URLRequest(url: contentURL))

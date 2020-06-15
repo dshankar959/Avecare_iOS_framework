@@ -315,6 +315,8 @@
 		D0A6441A248AA6E50041A69B /* PDFThumbView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A64419248AA6E50041A69B /* PDFThumbView.xib */; };
 		D0A6441C248AA9000041A69B /* StoriesDataProvider+PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A6441B248AA9000041A69B /* StoriesDataProvider+PDF.swift */; };
 		D0A64423248E168A0041A69B /* PDFVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A64422248E168A0041A69B /* PDFVIewController.swift */; };
+		D0C4C7F32497F11400E16023 /* PdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C7F22497F11400E16023 /* PdfView.swift */; };
+		D0C4C7F52497F15800E16023 /* PdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C7F22497F11400E16023 /* PdfView.swift */; };
 		DA3FE2DB8C4BA18334A1EB22 /* Pods_parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */; };
 		DC05B3C2247B5AD70014779D /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
 		DC05B3CE247C45000014779D /* PanningInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3CD247C45000014779D /* PanningInteractionController.swift */; };
@@ -658,6 +660,7 @@
 		D0A64419248AA6E50041A69B /* PDFThumbView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PDFThumbView.xib; sourceTree = "<group>"; };
 		D0A6441B248AA9000041A69B /* StoriesDataProvider+PDF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StoriesDataProvider+PDF.swift"; sourceTree = "<group>"; };
 		D0A64422248E168A0041A69B /* PDFVIewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFVIewController.swift; sourceTree = "<group>"; };
+		D0C4C7F22497F11400E16023 /* PdfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfView.swift; sourceTree = "<group>"; };
 		D48B06C16950ED61770C4604 /* Pods-educator.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(appstore).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
 		DC05B3CD247C45000014779D /* PanningInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanningInteractionController.swift; sourceTree = "<group>"; };
@@ -1741,6 +1744,14 @@
 			path = SyncEngine;
 			sourceTree = "<group>";
 		};
+		D0C4C7F42497F12900E16023 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D0C4C7F22497F11400E16023 /* PdfView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		DC391B1324926DAB008EFD48 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -1829,6 +1840,7 @@
 		F663BB7D243521AC003279B9 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				D0C4C7F42497F12900E16023 /* Views */,
 				DCF6C685248ABFF200A802BD /* ImageCrop */,
 				61547D30177593B6CF614FB4 /* Controls */,
 				6154789AAE52AB3559143DE7 /* Cells */,
@@ -2418,6 +2430,7 @@
 				75886D302419327F0079C080 /* Percentage.swift in Sources */,
 				75EB59C02461858700E077E5 /* RLMLogTimeRow.swift in Sources */,
 				75886D3E2419327F0079C080 /* UIImage+Tint.swift in Sources */,
+				D0C4C7F32497F11400E16023 /* PdfView.swift in Sources */,
 				DC3E80F12486C9F6003983E2 /* RLMMessage.swift in Sources */,
 				75886D642419327F0079C080 /* FileStorageService.swift in Sources */,
 				75EB5A2D2467A21600E077E5 /* SyncEngine+Operations.swift in Sources */,
@@ -2629,6 +2642,7 @@
 				75886D0D2419327F0079C080 /* AvecareAPI.swift in Sources */,
 				F6A5E13D2444DE8D00FD77B6 /* SingleValuePickerView.swift in Sources */,
 				75886D1B2419327F0079C080 /* Servers.swift in Sources */,
+				D0C4C7F52497F15800E16023 /* PdfView.swift in Sources */,
 				75716F85246B9F28002B049C /* UINavigationController.swift in Sources */,
 				75886D632419327F0079C080 /* UserKeychainService.swift in Sources */,
 				75886D8B241932AB0079C080 /* SubjectListViewController.swift in Sources */,
