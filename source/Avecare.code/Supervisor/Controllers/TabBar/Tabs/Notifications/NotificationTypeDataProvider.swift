@@ -125,13 +125,39 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
         
         return [
             .button(options: .init(action: { [weak self] view, options, index in
-                self?.publishNotification()
+                self?.publishNotification(type: type)
             }, isEnabled: isEnabled, text: publishText, textColor: R.color.mainInversion(),
                     tintColor: publishColor, cornerRadius: 4))
         ]
     }
 
-    func publishNotification() {
+    func publishNotification(type: NotificationType) {
+        switch type {
+        case .reminders:
+            createReminderandPublish()
+            break
+        default:
+            // TODO add logic for publishing other notif types
+            break
+        }
     }
-
+    
+    func createReminderandPublish() {
+        var dataSource = [RLMReminder]()
+        for subject in reminderFormProvider.subjects {
+            let reminder = RLMReminder(id: newUUID)
+            reminder.message = reminderFormProvider.additionalMessage
+            reminder.rawPublishState = 1
+            reminder.subject = subject
+            reminder.reminderOption = reminderFormProvider.selectedReminder
+            dataSource.insert(reminder, at: 0)
+            RLMReminder.createOrUpdateAll(with: dataSource, update: false)
+        }
+    }
+    
+    func publishReminders(reminders: [RLMReminder]) {
+//        for reminder in reminders {
+//            let JSON = reminder.enc
+//        }
+    }
 }

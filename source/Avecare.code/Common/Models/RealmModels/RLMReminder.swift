@@ -1,16 +1,17 @@
 import RealmSwift
 import CocoaLumberjack
 
-class RLMReminder: RLMDefaults, RLMPublishable {
+class RLMReminder: RLMDefaults, RLMPublishable, DataProvider {
 
     @objc dynamic var subject: RLMSubject?
     @objc dynamic var rawPublishState: Int = PublishState.local.rawValue
     @objc dynamic var message: String?
     @objc dynamic var reminderOption: RLMReminderOption?
 
-    private enum CodingKeys: String, CodingKey {
-        case title
-        case storyFile
+    enum CodingKeys: String, CodingKey {
+        case id
+        case reminderId
+        case subjectId
     }
 
     convenience required init(from decoder: Decoder) throws {
@@ -18,10 +19,13 @@ class RLMReminder: RLMDefaults, RLMPublishable {
 
         do {
             try super.decode(from: decoder)
-
             let container = try decoder.container(keyedBy: CodingKeys.self)
-            self.title = try container.decode(String.self, forKey: .title)
-            self.storyFileURL = try container.decodeIfPresent(String.self, forKey: .storyFile)
+            let subId = try container.decode(String.self, forKey: .subjectId)
+            self.subject = RLMSubject.find(withID: subId)
+            
+            let remOptionId = try container.decode(String.self, forKey: .reminderId)
+            self.reminderOption = RLMReminderOption.find(withID: remOptionId)
+            
         } catch {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")
@@ -31,9 +35,10 @@ class RLMReminder: RLMDefaults, RLMPublishable {
     override func encode(to encoder: Encoder) throws {
         do {
             try super.encode(to: encoder)
-
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(title, forKey: .title)
+            try container.encode(reminderOption?.id, forKey: .reminderId)
+            try container.encode(subject?.id, forKey: .subjectId)
+
         } catch {
             DDLogError("JSON Encoding error = \(error)")
             fatalError("JSON Encoding error = \(error)")
@@ -43,46 +48,3 @@ class RLMReminder: RLMDefaults, RLMPublishable {
 }
 
 
-extension RLMReminder {
-
-    func pdfURL(using storage: DocumentService) -> URL? {
-        return storage.fileURL(name: id, type: "pdf")
-    }
-
-}
-
-
-extension RLMReminder: RLMCleanable, DataProvider {
-
-    func clean() {
-        delete()
-    }
-
-}
-
-
-// MARK: - API -
-
-struct PublishedReminderRequestModel: Codable {
-
-    let unitId: String
-    let resultsOffset: Int = 0
-    let resultsLimit: Int = 15
-    let startDate: String = ""
-    let endDate: String = ""
-    var serverLastUpdated: String = ""
-
-
-    init(id: String) {
-        self.unitId = id
-
-        let allStories = RLMStory.findAll()
-        let sortedStories = RLMStory.sortObjectsByLastUpdated(order: .orderedDescending, allStories)
-        let publishedStories = sortedStories.filter { $0.rawPublishState == PublishState.published.rawValue }
-
-        if let lastUpdated = publishedStories.first?.serverLastUpdated {
-            serverLastUpdated = Date.ISO8601StringFromDate(lastUpdated)
-        }
-    }
-
-}
