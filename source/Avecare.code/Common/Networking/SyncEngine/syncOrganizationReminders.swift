@@ -32,8 +32,8 @@ extension SyncEngine {
                 switch result {
                 case .success(let reminders):
                     // Update with new data.
-                    RLMReminder.createOrUpdateAll(with: reminders)
-                    DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMReminder.className())\' items in DB: \(RLMReminder.findAll().count)")
+                    RLMReminderOption.createOrUpdateAll(with: reminders)
+                    DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMReminderOption.className())\' items in DB: \(RLMReminderOption.findAll().count)")
                     self?.syncStates[syncKey] = .complete
                     syncCompletion(nil)
                 case .failure(let error):

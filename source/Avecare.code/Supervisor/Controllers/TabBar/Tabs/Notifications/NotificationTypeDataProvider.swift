@@ -8,6 +8,7 @@ protocol NotificationTypeDataProvider: class {
     func model(for indexPath: IndexPath) -> NotificationTypeTableViewCellModel
     func loadForm(at indexPath: IndexPath) -> Form
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath)
+    func navigationItems(at indexPath: IndexPath, type: NotificationType) -> [DetailsNavigationView.Item]
 }
 
 protocol NotificationTypeDataProviderDelegate: UIViewController {
@@ -15,6 +16,7 @@ protocol NotificationTypeDataProviderDelegate: UIViewController {
 }
 
 class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
+    
     private var lastSelectedIndexPath: IndexPath?
     weak var delegate: NotificationTypeDataProviderDelegate?
 
@@ -108,4 +110,28 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
         default: return Form(viewModels: [])
         }
     }
+    
+    func navigationItems(at indexPath: IndexPath, type: NotificationType) -> [DetailsNavigationView.Item] {
+        var isEnabled = false
+        switch type {
+        case .reminders:
+            isEnabled = reminderFormProvider.isPublishable()
+            break
+        default: break
+        }
+        
+        let publishText = "Publish"
+        let publishColor = isEnabled ? R.color.main() :R.color.lightText4()
+        
+        return [
+            .button(options: .init(action: { [weak self] view, options, index in
+                self?.publishNotification()
+            }, isEnabled: isEnabled, text: publishText, textColor: R.color.mainInversion(),
+                    tintColor: publishColor, cornerRadius: 4))
+        ]
+    }
+
+    func publishNotification() {
+    }
+
 }

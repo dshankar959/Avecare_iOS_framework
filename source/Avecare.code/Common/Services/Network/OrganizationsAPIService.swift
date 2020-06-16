@@ -89,7 +89,7 @@ struct OrganizationsAPIService {
 
 
     static func getAvailableReminders(organizationId: String,
-                                      completion: @escaping (Result<[RLMReminder], AppError>) -> Void) {
+                                      completion: @escaping (Result<[RLMReminderOption], AppError>) -> Void) {
         DDLogVerbose("")
 
         apiProvider.request(.organizationReminders(id: organizationId)) { result in

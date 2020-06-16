@@ -5,6 +5,7 @@ import UIKit
 
 protocol FormProvider {
     func form() -> Form
+    func isPublishable() -> Bool
 }
 
 
@@ -41,6 +42,12 @@ class ChecklistFormProvider {
 
 
 extension ChecklistFormProvider: FormProvider {
+    
+    func isPublishable() -> Bool {
+        // TODO Add completeness check logic when syncing is implemented
+        return false
+    }
+    
     func form() -> Form {
         switch state {
         case .new:

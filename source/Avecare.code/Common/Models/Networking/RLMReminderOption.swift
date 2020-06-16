@@ -1,7 +1,7 @@
 import CocoaLumberjack
 import RealmSwift
 
-class RLMReminder: RLMDefaults {
+class RLMReminderOption: RLMDefaults {
 
     @objc dynamic var name: String = ""
     @objc dynamic var descriptions: String = ""
@@ -31,10 +31,10 @@ class RLMReminder: RLMDefaults {
     }
 }
 
-extension RLMReminder: SingleValuePickerItem, DataProvider {
+extension RLMReminderOption: SingleValuePickerItem, DataProvider {
     var pickerTextValue: String {
         return name
     }
 }
 
-typealias RLMRemindersResponse = APIResponse<[RLMReminder]>
+typealias RLMRemindersResponse = APIResponse<[RLMReminderOption]>

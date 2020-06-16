@@ -44,6 +44,12 @@ class InjuryReportFormProvider {
 }
 
 extension InjuryReportFormProvider: FormProvider {
+
+    func isPublishable() -> Bool {
+        // TODO Add completeness check logic when syncing is implemented
+        return false
+    }
+
     func form() -> Form {
         var viewModels = [AnyCellViewModel]()
 
