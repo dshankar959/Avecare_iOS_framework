@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		299B3586241F907E00D6F9A5 /* FormSpacerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B357F241F907E00D6F9A5 /* FormSpacerView.swift */; };
 		299B3587241F907E00D6F9A5 /* LabelFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B3580241F907E00D6F9A5 /* LabelFormView.swift */; };
-		299B3588241F907E00D6F9A5 /* FormPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B3582241F907E00D6F9A5 /* FormPhotoView.swift */; };
-		299B3589241F907E00D6F9A5 /* FormPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299B3583241F907E00D6F9A5 /* FormPhotoView.xib */; };
 		299B358A241F907E00D6F9A5 /* FormTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 299B3584241F907E00D6F9A5 /* FormTextView.xib */; };
 		299B358B241F907E00D6F9A5 /* FormTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B3585241F907E00D6F9A5 /* FormTextView.swift */; };
 		29A6D542245450D100D7DB87 /* SupervisorOnly.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29A6D541245450D100D7DB87 /* SupervisorOnly.xcassets */; };
@@ -19,14 +17,12 @@
 		6154703AE0070C0AD17E57F2 /* SubjectPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615476F3191AFD0E4E91F043 /* SubjectPickerTableViewCell.swift */; };
 		61547079FFE82CF82DB8CA3D /* LogsOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547B02FE52C25F016B7986 /* LogsOptionTableViewCell.xib */; };
 		61547083A234F7DE9A8C4E4D /* syncSubjectLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478D41647CC7CBA087361 /* syncSubjectLogs.swift */; };
-		615470BB00AC4F9F740FD1D4 /* StoriesDetailsTitleView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 615472D6D6682E2D0DF64C29 /* StoriesDetailsTitleView.xib */; };
 		615470CD0BE320D452F569D3 /* Closure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547C17CC0E23426250CCAD /* Closure.swift */; };
 		6154717E63802ABDBDFFCA4B /* LogsTimeDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547637BA1F27AE456E3BAA /* LogsTimeDetailsTableViewCell.swift */; };
 		61547181EE77EC951C1F78A1 /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6154782C95BCF97A3312C8C7 /* PinView.xib */; };
 		615471AAF5F6CA37ECCB646D /* StoriesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 615474AF12734C5E1CC85DDB /* StoriesTableViewCell.xib */; };
 		615471C3EAAA9F493D956400 /* SubjectListDataProvider+NavItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477E9EA0A24EDE13EAC17 /* SubjectListDataProvider+NavItems.swift */; };
 		615471C64C68B780700660A5 /* HomeTableViewDisclosureCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547D53A60161097C2E858F /* HomeTableViewDisclosureCell.xib */; };
-		6154722D235963E1379CA485 /* StoriesDataProvider+Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478357A55BAA1219DC4B2 /* StoriesDataProvider+Photo.swift */; };
 		6154723DA561F399DB79A43F /* StoriesDataProvider+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615470BE18F6A432EBB1931A /* StoriesDataProvider+Navigation.swift */; };
 		6154724046F3B4B42269D31C /* RLMUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615472657DF3223E8A839F22 /* RLMUnit.swift */; };
 		6154726061B2E96DC4B60087 /* TimeRangePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547BF984C577F414B32894 /* TimeRangePickerView.swift */; };
@@ -104,7 +100,6 @@
 		61547CF0B53CE8AD81F629CB /* StoriesSideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615475BA47C2AEFAA9A3F0C9 /* StoriesSideViewController.swift */; };
 		61547D0BE9189E92DB28BD3E /* FilesResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547A001A9E896379830128 /* FilesResponseModel.swift */; };
 		61547D2E2DC865E404CF15C7 /* SubjectListDataProvider+Injury.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478D8AB934A1DD5AD4BF9 /* SubjectListDataProvider+Injury.swift */; };
-		61547D8404445AD43860D77E /* StoriesDetailsTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154771145515FB9CB8E446D /* StoriesDetailsTitleView.swift */; };
 		61547D87D8BB1C3CC4D8FC14 /* LogsPhotoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547FC44382C1CD45F599CC /* LogsPhotoTableViewCell.swift */; };
 		61547DC92C618D6FC9A81227 /* syncUnitStories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547E6D4475B73BAAE9DBEE /* syncUnitStories.swift */; };
 		61547E52DF293A83AFAA7AEE /* SingleValuePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615476A733FC27107FD3D4C8 /* SingleValuePickerView.swift */; };
@@ -435,8 +430,6 @@
 		157875C1D9D7D1695100E0A0 /* Pods-parent.debug(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent.debug(qa).xcconfig"; path = "Target Support Files/Pods-parent/Pods-parent.debug(qa).xcconfig"; sourceTree = "<group>"; };
 		299B357F241F907E00D6F9A5 /* FormSpacerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormSpacerView.swift; sourceTree = "<group>"; };
 		299B3580241F907E00D6F9A5 /* LabelFormView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LabelFormView.swift; sourceTree = "<group>"; };
-		299B3582241F907E00D6F9A5 /* FormPhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormPhotoView.swift; sourceTree = "<group>"; };
-		299B3583241F907E00D6F9A5 /* FormPhotoView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormPhotoView.xib; sourceTree = "<group>"; };
 		299B3584241F907E00D6F9A5 /* FormTextView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FormTextView.xib; sourceTree = "<group>"; };
 		299B3585241F907E00D6F9A5 /* FormTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormTextView.swift; sourceTree = "<group>"; };
 		29A6D541245450D100D7DB87 /* SupervisorOnly.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SupervisorOnly.xcassets; sourceTree = "<group>"; };
@@ -454,7 +447,6 @@
 		615472657DF3223E8A839F22 /* RLMUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMUnit.swift; sourceTree = "<group>"; };
 		61547267EB7BC5F4558F3B70 /* RLMSupervisor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMSupervisor.swift; sourceTree = "<group>"; };
 		615472A224CB134D0BEA6A29 /* StoriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesTableViewCell.swift; sourceTree = "<group>"; };
-		615472D6D6682E2D0DF64C29 /* StoriesDetailsTitleView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StoriesDetailsTitleView.xib; sourceTree = "<group>"; };
 		615472DEED205F376B08C4D7 /* SubjectListDataProvider+Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Switch.swift"; sourceTree = "<group>"; };
 		615473C479A061F759D2F5FC /* LogFormAPIModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogFormAPIModel.swift; sourceTree = "<group>"; };
 		615473EE5A59F3D396DA45E8 /* RLMInjury.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMInjury.swift; sourceTree = "<group>"; };
@@ -481,7 +473,6 @@
 		615476E15206D0F7BC7080C8 /* InstitutionsAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionsAPIService.swift; sourceTree = "<group>"; };
 		615476F3191AFD0E4E91F043 /* SubjectPickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectPickerTableViewCell.swift; sourceTree = "<group>"; };
 		615476FD4CEE0A15907C0A38 /* LogsTimeDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogsTimeDetailsTableViewCell.xib; sourceTree = "<group>"; };
-		6154771145515FB9CB8E446D /* StoriesDetailsTitleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesDetailsTitleView.swift; sourceTree = "<group>"; };
 		6154776EEBDD5F8468C41A59 /* APIToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIToken.swift; sourceTree = "<group>"; };
 		615477873D1D818B4B22AC5C /* SupervisorsAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisorsAPIService.swift; sourceTree = "<group>"; };
 		615477A05C137912CDD2DABD /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
@@ -491,7 +482,6 @@
 		615477F063DA43A44307926F /* StoriesDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesDataProvider.swift; sourceTree = "<group>"; };
 		615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectsAPIService.swift; sourceTree = "<group>"; };
 		6154782C95BCF97A3312C8C7 /* PinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinView.xib; sourceTree = "<group>"; };
-		615478357A55BAA1219DC4B2 /* StoriesDataProvider+Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoriesDataProvider+Photo.swift"; sourceTree = "<group>"; };
 		6154786288CE3337831B8CEB /* HomeTableViewDisclosureCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableViewDisclosureCell.swift; sourceTree = "<group>"; };
 		615478BBE87EEEB048C429BF /* RLMReusable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMReusable.swift; sourceTree = "<group>"; };
 		615478C7FFEB976D5EBE27D8 /* SubjectPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectPickerViewController.swift; sourceTree = "<group>"; };
@@ -784,8 +774,6 @@
 		299B3581241F907E00D6F9A5 /* Stories */ = {
 			isa = PBXGroup;
 			children = (
-				299B3582241F907E00D6F9A5 /* FormPhotoView.swift */,
-				299B3583241F907E00D6F9A5 /* FormPhotoView.xib */,
 				299B3585241F907E00D6F9A5 /* FormTextView.swift */,
 				299B3584241F907E00D6F9A5 /* FormTextView.xib */,
 				D0A64417248AA5C90041A69B /* PDFThumbView.swift */,
@@ -1031,7 +1019,6 @@
 		6154774EB7F6E73B056B38C1 /* FormBehaviour */ = {
 			isa = PBXGroup;
 			children = (
-				615478357A55BAA1219DC4B2 /* StoriesDataProvider+Photo.swift */,
 				615470BE18F6A432EBB1931A /* StoriesDataProvider+Navigation.swift */,
 				61547C86A6589BD1A80D59D6 /* StoriesDataProvider+Title.swift */,
 				61547591AC635E1EB090F102 /* StoriesDataProvider+Body.swift */,
@@ -1136,9 +1123,7 @@
 		61547E7CC89362C24B9425BD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6154771145515FB9CB8E446D /* StoriesDetailsTitleView.swift */,
 				61547F5D136602CBA9656D82 /* StoriesDetailsPhotoView.swift */,
-				615472D6D6682E2D0DF64C29 /* StoriesDetailsTitleView.xib */,
 				61547ED5799922B0A2DB9C2C /* StoriesDetailsPhotoView.xib */,
 			);
 			path = Views;
@@ -2068,7 +2053,6 @@
 				F65549F624564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf in Resources */,
 				DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */,
 				F67DF81B241BFE6800793A9C /* InfoMessageFormView.xib in Resources */,
-				299B3589241F907E00D6F9A5 /* FormPhotoView.xib in Resources */,
 				F67DF824241BFE6800793A9C /* PickerViewFormView.xib in Resources */,
 				D0A6441A248AA6E50041A69B /* PDFThumbView.xib in Resources */,
 				75886DF4241932BA0079C080 /* supervisor.storyboard in Resources */,
@@ -2122,7 +2106,6 @@
 				615471AAF5F6CA37ECCB646D /* StoriesTableViewCell.xib in Resources */,
 				DC3E80C2248594C0003983E2 /* SupervisorFilterTableViewCell.xib in Resources */,
 				615472CBDE78C09CE3F64F4F /* SupervisorCollectionViewCell.xib in Resources */,
-				615470BB00AC4F9F740FD1D4 /* StoriesDetailsTitleView.xib in Resources */,
 				61547716ED0704A1F4601513 /* StoriesDetailsPhotoView.xib in Resources */,
 				61547079FFE82CF82DB8CA3D /* LogsOptionTableViewCell.xib in Resources */,
 				6154771965713AD841B786F4 /* LogsNoteTableViewCell.xib in Resources */,
@@ -2423,7 +2406,6 @@
 				75EB59D42461858700E077E5 /* RLMLogChooseRow.swift in Sources */,
 				F67DF80E241BFE6800793A9C /* DetailsView.swift in Sources */,
 				75EB59FB24632D1F00E077E5 /* syncUnitDetails.swift in Sources */,
-				299B3588241F907E00D6F9A5 /* FormPhotoView.swift in Sources */,
 				F6B7F28F24254DBF003E16AE /* LoginViewController.swift in Sources */,
 				DCF9141A2497E44C0043123F /* syncOrganizationReminders.swift in Sources */,
 				75886DDF241932BA0079C080 /* SubjectListTableViewCell.swift in Sources */,
@@ -2539,7 +2521,6 @@
 				615478C6E0C0561E921C0005 /* syncOrganizationTemplates.swift in Sources */,
 				615473506842F07BA5A0A4F2 /* LogFormAPIModel.swift in Sources */,
 				61547A6F9C4837D535BAE270 /* RLMStory.swift in Sources */,
-				6154722D235963E1379CA485 /* StoriesDataProvider+Photo.swift in Sources */,
 				6154723DA561F399DB79A43F /* StoriesDataProvider+Navigation.swift in Sources */,
 				61547C4BE16D9D0A21B03C31 /* StoriesDataProvider+Title.swift in Sources */,
 				6154781CC1E9D4B79428BC3B /* StoriesDataProvider+Body.swift in Sources */,
@@ -2683,7 +2664,6 @@
 				6154752751D03A37500C2868 /* SupervisorCollectionViewCell.swift in Sources */,
 				75EB59C32461858700E077E5 /* RLMLogOptionRow.swift in Sources */,
 				61547B5F3DA78E231495AA48 /* UserListFlowLayout.swift in Sources */,
-				61547D8404445AD43860D77E /* StoriesDetailsTitleView.swift in Sources */,
 				615478F10F8C6F036392CDC2 /* StoriesDetailsPhotoView.swift in Sources */,
 				615479606A02ACE28F0DE2E1 /* LogsListDataProvider.swift in Sources */,
 				75EB5A212466FE4400E077E5 /* RLMOrganization.swift in Sources */,
