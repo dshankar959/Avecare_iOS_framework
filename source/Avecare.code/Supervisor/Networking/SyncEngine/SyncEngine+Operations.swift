@@ -46,8 +46,8 @@ extension SyncEngine {
                                                                         self.syncDOWNsubjects() { error in
                                                                             DDLogVerbose("syncDOWNsubjects ♓️ closure")
                                                                             if let error = error { syncCompletion(error) } else {
-                                                                                self.syncDOWNUnitStories { error in
-                                                                                    DDLogVerbose("syncDOWNUnitStories ♓️ closure")
+                                                                                self.syncDOWNunitStories { error in
+                                                                                    DDLogVerbose("syncDOWNunitStories ♓️ closure")
                                                                                     syncCompletion(error)
                                                                                 }
                                                                             }

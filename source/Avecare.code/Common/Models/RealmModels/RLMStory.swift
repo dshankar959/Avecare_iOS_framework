@@ -83,7 +83,7 @@ struct PublishedStoriesRequestModel: Codable {
 
     let unitId: String
     let resultsOffset: Int = 0
-    let resultsLimit: Int = 15
+    let resultsLimit: Int = 0
     let startDate: String = ""
     let endDate: String = ""
     var serverLastUpdated: String = ""

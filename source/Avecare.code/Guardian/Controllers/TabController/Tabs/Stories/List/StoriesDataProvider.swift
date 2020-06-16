@@ -10,14 +10,14 @@ protocol StoriesDataProvider: class {
 }
 
 
-protocol EducatorsDataProvider: class {
+protocol SupervisorsDataProvider: class {
     var unitIds: [String] { get set }
     var numberOfRows: Int { get }
     func model(for indexPath: IndexPath) -> SupervisorCollectionViewCellModel
 }
 
 
-class DefaultEducatorsDataProvider: EducatorsDataProvider {
+class DefaultSupervisorsDataProvider: SupervisorsDataProvider {
 
     private let supervisors = RLMSupervisor.findAll()
     private let storage = DocumentService()
@@ -80,7 +80,7 @@ extension SupervisorCollectionViewCellModel {
 
 class DefaultStoriesDataProvider: StoriesDataProvider {
 
-    private let educators = DefaultEducatorsDataProvider()
+    private let supervisors = DefaultSupervisorsDataProvider()
     private let stories = RLMStory.findAll()
     private let storage = DocumentService()
 
@@ -92,7 +92,7 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
 
     var unitIds = [String]() {
         didSet {
-            educators.unitIds = unitIds
+            supervisors.unitIds = unitIds
 
             if unitIds.count > 0 {
                 dataSource = filter(for: stories, with: unitIds)
@@ -124,7 +124,7 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
 
     func model(for indexPath: IndexPath) -> AnyCellViewModel {
         switch indexPath.section {
-        case 0: return SupervisorFilterTableViewCellModel(dataProvider: educators)
+        case 0: return SupervisorFilterTableViewCellModel(dataProvider: supervisors)
         case 1: return StoriesTableViewCellModel(with: dataSource[indexPath.row], storage: storage)
         default: fatalError()
         }

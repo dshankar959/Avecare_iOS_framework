@@ -24,6 +24,7 @@ struct SubjectsAPIService {
 
     struct SubjectLogsRequest {
         let subjectId: String
+        var serverLastUpdated: String = ""
 
         var startDate: String {
             return Date.yearMonthDayFormatter.string(from: startDateOfLogsHistory)
@@ -35,7 +36,16 @@ struct SubjectsAPIService {
 
         init(id: String) {
             self.subjectId = id
+
+            let allDailyLogForms = RLMLogForm.findAll(withSubjectID: id)
+            let sortedDailyLogForms = RLMLogForm.sortObjectsByLastUpdated(order: .orderedDescending, allDailyLogForms)
+            let publishedDailyLogForms = sortedDailyLogForms.filter { $0.rawPublishState == PublishState.published.rawValue }
+
+            if let lastUpdated = publishedDailyLogForms.first?.serverLastUpdated {
+                serverLastUpdated = Date.ISO8601StringFromDate(lastUpdated)
+            }
         }
+
     }
 
 

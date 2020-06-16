@@ -111,7 +111,7 @@ extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionV
         }
         setLabels(forModelAt: indexPath)
         parentVC?.subjectSelection?.subject = selectedModel
-        parentVC?.updateEducators()
+        parentVC?.updateSupervisors()
     }
 
     // Scroll snapping

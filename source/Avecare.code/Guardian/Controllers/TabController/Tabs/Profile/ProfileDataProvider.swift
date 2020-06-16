@@ -4,7 +4,7 @@ import Foundation
 
 protocol ProfileDataProvider: class {
     var subjectsProvider: SubjectListDataProvider { get }
-    var educatorsProvider: EducatorsDataProvider { get }
+    var supervisorsProvider: SupervisorsDataProvider { get }
     var subjectSelection: SubjectSelectionProtocol? { get set }
 
     var unitIds: [String] { get set }
@@ -14,13 +14,15 @@ protocol ProfileDataProvider: class {
     func details(at indexPath: IndexPath) -> ProfileDetails
 }
 
+
 enum ProfileSection: Int {
     case subjects = 0
-    case educators = 1
+    case supervisors = 1
     case details = 2
     case about = 3
     case logout = 4
 }
+
 
 class DefaultProfileDataProvider: ProfileDataProvider {
 
@@ -29,12 +31,12 @@ class DefaultProfileDataProvider: ProfileDataProvider {
     }
 
     let subjectsProvider: SubjectListDataProvider = DefaultSubjectListDataProvider()
-    let educatorsProvider: EducatorsDataProvider = DefaultEducatorsDataProvider()
+    let supervisorsProvider: SupervisorsDataProvider = DefaultSupervisorsDataProvider()
     weak var subjectSelection: SubjectSelectionProtocol?
 
     var unitIds = [String]() {
         didSet {
-            educatorsProvider.unitIds = unitIds
+            supervisorsProvider.unitIds = unitIds
         }
     }
 
@@ -69,7 +71,7 @@ class DefaultProfileDataProvider: ProfileDataProvider {
         case 0:
             return ProfileSubjectTableViewCellModel(dataProvider: subjectsProvider)
         case 1:
-            return SupervisorFilterTableViewCellModel(dataProvider: educatorsProvider)
+            return SupervisorFilterTableViewCellModel(dataProvider: supervisorsProvider)
         default:
             return dataSource[indexPath.section - 2].profileMenus[indexPath.row]
         }

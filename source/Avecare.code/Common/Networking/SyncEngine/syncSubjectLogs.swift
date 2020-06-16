@@ -25,7 +25,9 @@ extension SyncEngine {
 
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor {
-            DDLogDebug("⬇️ [.isSupervisor], no sync action here.  Total \'\(RLMLogForm.className())\' items in DB: \(RLMLogForm.findAll().count)")
+            // TODO: modify .SubjectLogsRequest(..) for supervisor to sync down just today's date
+            //       This should cover the case of app getting deleted with an incomplete daily logs list for all subjects.
+            DDLogDebug("⬇️ [.isSupervisor], no sync action here. (yet...)  Total \'\(RLMLogForm.className())\' items in DB: \(RLMLogForm.findAll().count)")
             syncCompletion(nil)
         } else {
             // Fetch all subject id's

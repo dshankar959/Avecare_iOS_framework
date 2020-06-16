@@ -3,6 +3,7 @@ import CocoaLumberjack
 import SwiftPullToRefresh
 
 
+
 class HomeViewController: UIViewController, IndicatorProtocol {
 
     @IBOutlet weak var tableView: UITableView!
@@ -40,7 +41,7 @@ class HomeViewController: UIViewController, IndicatorProtocol {
             self?.updateScreen()
         }
 
-        // Set pull to refresh
+        // Set pull-to-refresh
         tableView.spr_setIndicatorHeader { [weak self] in
             self?.fetchFeeds { error in
                 if let error = error {
@@ -57,8 +58,17 @@ class HomeViewController: UIViewController, IndicatorProtocol {
             if let error = error {
                 completion(error)
             }
-            self.dataProvider.filterDataSource(with: self.subjectSelection?.subject?.id)
-            completion(nil)
+
+            syncEngine.syncAll { error in
+                syncEngine.print_isSyncingStatus_description()
+                if let error = error {
+                    completion(error)
+                } else {
+                    self.dataProvider.filterDataSource(with: self.subjectSelection?.subject?.id)
+                    completion(nil)
+                }
+            }
+
         }
     }
 
