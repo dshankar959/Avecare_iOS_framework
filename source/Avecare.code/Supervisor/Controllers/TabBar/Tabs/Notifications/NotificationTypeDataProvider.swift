@@ -1,4 +1,5 @@
 import Foundation
+import CocoaLumberjack
 import UIKit
 
 
@@ -12,6 +13,7 @@ protocol NotificationTypeDataProvider: class {
 }
 
 protocol NotificationTypeDataProviderDelegate: UIViewController {
+    func showAlert(title: String, message: String)
     func didUpdateModel(at indexPath: IndexPath)
 }
 
@@ -119,7 +121,7 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
         default: break
         }
 
-        let publishText = "Publish"
+        let publishText = NSLocalizedString("send_button_title", comment: "")
         let publishColor = isEnabled ? R.color.main() :R.color.lightText4()
 
         return [
@@ -144,7 +146,7 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
     }
 
     func createInjuryReport() {
-        var dataSource = [RLMInjury]()
+        var dSource = [RLMInjury]()
         for subject in injuryFormProvider.injurySubjects {
             let injury = RLMInjury(id: newUUID)
             injury.message = injuryFormProvider.additionalMessage
@@ -152,28 +154,59 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
             injury.subject = subject
             injury.timeOfInjury = injuryFormProvider.injuryDate
             injury.injuryOption = injuryFormProvider.seletctedInjuryType
-            dataSource.insert(injury, at: 0)
-            RLMInjury.createOrUpdateAll(with: dataSource, update: false)
+            dSource.insert(injury, at: 0)
+            RLMInjury.createOrUpdateAll(with: dSource, update: false)
         }
+        publishInjuries(injuries: dSource)
+        self.injuryFormProvider.clearAll()
+        self.delegate?.showAlert(title: NSLocalizedString("notification_sent_title", comment: ""),
+                                                          message: NSLocalizedString("injury_notification_sent_message", comment: ""))
     }
 
-    func publishInjuries(reminders: [RLMReminder]) {}
+    func publishInjuries(injuries: [RLMInjury]) {
+        UnitAPIService.publishInjuries(data: injuries, completion: { result in
+            switch result {
+            case .success(let publishedInjuries):
+                for injury in publishedInjuries {
+                    injury.publishState = .published
+                }
+                RLMInjury.createOrUpdateAll(with: publishedInjuries, update: true)
+            case .failure(let error):
+                DDLogError("\(error)")
+            }
+        })
+    }
 
 
     func createReminderandPublish() {
-        var dataSource = [RLMReminder]()
+        var dSource = [RLMReminder]()
         for subject in reminderFormProvider.subjects {
             let reminder = RLMReminder(id: newUUID)
             reminder.message = reminderFormProvider.additionalMessage
             reminder.rawPublishState = 1
             reminder.subject = subject
             reminder.reminderOption = reminderFormProvider.selectedReminder
-            dataSource.insert(reminder, at: 0)
-            RLMReminder.createOrUpdateAll(with: dataSource, update: false)
+            dSource.insert(reminder, at: 0)
+            RLMReminder.createOrUpdateAll(with: dSource, update: false)
         }
+        publishReminders(reminders: dSource)
+        self.reminderFormProvider.clearAll()
+        self.delegate?.showAlert(title: NSLocalizedString("notification_sent_title", comment: ""),
+                                                          message: NSLocalizedString("reminder_notification_sent_message", comment: ""))
     }
 
     func publishReminders(reminders: [RLMReminder]) {
 
+        UnitAPIService.publishReminders(data: reminders, completion: { result in
+            switch result {
+            case .success(let publishedReminders):
+                for reminder in publishedReminders {
+                    reminder.publishState = .published
+                }
+                RLMReminder.createOrUpdateAll(with: publishedReminders, update: true)
+            case .failure(let error):
+                DDLogError("\(error)")
+            }
+        })
     }
 }

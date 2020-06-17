@@ -146,4 +146,47 @@ struct UnitAPIService {
         }
     }
 
+    static func publishReminders(data: [RLMReminder], completion: @escaping (Result<[RLMReminder], AppError>) -> Void) {
+        DDLogVerbose("")
+
+        apiProvider.request(.unitCreateReminder(payLoad: data), completion: { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(APIPaginatedResponse<RLMReminder>.self)
+                    var reminders = [RLMReminder]()
+
+                    for reminder in mappedResponse.results {
+                        reminders.append(reminder)
+                    }
+                    completion(.success(reminders))
+
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    completion(.failure(JSONError.failedToMapData.message))
+                }
+            case .failure(let error):
+                completion(.failure(getAppErrorFromMoya(with: error)))
+            }
+        })
+    }
+
+    static func publishInjuries(data: [RLMInjury], completion: @escaping (Result<[RLMInjury], AppError>) -> Void) {
+        DDLogVerbose("")
+
+        apiProvider.request(.unitCreateInjury(payLoad: data), completion: { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let injuries = try JSONDecoder().decode([RLMInjury].self, from: response.data)
+                    completion(.success(injuries))
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    completion(.failure(JSONError.failedToMapData.message))
+                }
+            case .failure(let error):
+                completion(.failure(getAppErrorFromMoya(with: error)))
+            }
+        })
+    }
 }

@@ -90,3 +90,8 @@
 "settings_menutitle_sign_out" = "Sign Out";
 "publishing_status" = "Publishing ...";
 "draft_status" = "(Draft)";
+"notification_sent_title" = "Notification Sent";
+"injury_notification_sent_message" = "Injury report notification has been sent";
+"reminder_notification_sent_message" = "Reminder notification has been sent";
+"send_button_title" = "Send";
+

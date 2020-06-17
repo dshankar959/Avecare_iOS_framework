@@ -20,7 +20,7 @@ class InjuryReportFormProvider {
     let indexPath: IndexPath
     weak var delegate: NotificationTypeDataProviderDelegate?
 
-    var additionalMessage: String?
+    var additionalMessage: String = ""
 
     init(indexPath: IndexPath) {
         self.indexPath = indexPath
@@ -121,9 +121,17 @@ extension InjuryReportFormProvider: FormProvider {
                                                  placeholder: NSLocalizedString("notification_injury_report_additional_message_placeholder", comment: ""),
                                                  value: additionalMessage,
                 onChange: { [weak self] (_, textValue) in
-                    self?.additionalMessage = textValue
+                    self?.additionalMessage = textValue ?? ""
         }))
 
         return Form(viewModels: viewModels)
+    }
+
+    func clearAll() {
+        injurySubjects.removeAll()
+        injuryDate = nil
+        additionalMessage = ""
+        seletctedInjuryType = nil
+        updatePublishableState()
     }
 }

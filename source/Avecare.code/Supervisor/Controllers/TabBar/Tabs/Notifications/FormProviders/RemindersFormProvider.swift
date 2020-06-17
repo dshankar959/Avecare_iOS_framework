@@ -95,4 +95,11 @@ extension RemindersFormProvider: FormProvider {
 
         return Form(viewModels: viewModels)
     }
+
+    func clearAll() {
+        subjects.removeAll()
+        additionalMessage = ""
+        selectedReminder = nil
+        updatePublishableState()
+    }
 }

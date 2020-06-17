@@ -82,8 +82,8 @@ enum AvecareAPI { // API Services
     case unitCreateActivity(id: String, request: CreateUnitActivityRequest)
     case unitDailyTasks(id: String)
     case unitPublishDailyTasks(id: String, request: DailyTaskRequest)
-    case unitCreateInjury(id: String)
-    case unitCreateReminder(id: String)
+    case unitCreateInjury(payLoad: [RLMInjury])
+    case unitCreateReminder(payLoad: [RLMReminder])
     case unitSubjects(id: String)
     case unitSupervisors(id: String)
     case unitPublishStory(story: PublishStoryRequestModel)
@@ -127,13 +127,13 @@ extension AvecareAPI: TargetType {
 
         case .subjectPublishDailyLog(let request): return "/subjects/\(request.subjectId)/daily-logs/"
         case .subjectGetLogs(let request): return "/subjects/\(request.subjectId)/daily-logs/"
+        case .unitCreateInjury( _): return "/subject-injuries/"
+        case .unitCreateReminder( _): return "/subject-reminders/"
 
         case .unitDetails(let id): return "/units/\(id)"
         case .unitCreateActivity(let id, _): return "/units/\(id)/activities/"
         case .unitDailyTasks(let id): return "/units/\(id)/available-daily-tasks"
         case .unitPublishDailyTasks(let id, _): return "/units/\(id)/daily-tasks/"
-        case .unitCreateInjury(let id): return "/units/\(id)/injuries/"
-        case .unitCreateReminder(let id): return "/units/\(id)/reminders/"
         case .unitSubjects(let id): return "/units/\(id)/subjects"
         case .unitSupervisors(let id): return "/units/\(id)/supervisors"
         case .unitPublishStory(let story): return "/units/\(story.unitId)/stories/"
@@ -172,7 +172,9 @@ extension AvecareAPI: TargetType {
             return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
 
         case .unitCreateActivity(_, let request as Encodable),
-             .unitPublishDailyTasks(_, let request as Encodable):
+             .unitPublishDailyTasks(_, let request as Encodable),
+             .unitCreateInjury(let request as Encodable),
+             .unitCreateReminder(let request as Encodable):
             let encoder = JSONEncoder()
             encoder.dateEncodingStrategy = .formatted(Date.yearMonthDayFormatter)
             return .requestCustomJSONEncodable(request, encoder: encoder)
@@ -193,7 +195,7 @@ extension AvecareAPI: TargetType {
         case .subjectPublishDailyLog(let request as MultipartEncodable),
              .unitPublishStory(let request as MultipartEncodable):
             return .uploadMultipart(request.formData)
-
+            
         default:
             return .requestPlain
         }

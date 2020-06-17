@@ -312,6 +312,9 @@
 		D0C4C7F52497F15800E16023 /* PdfView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C7F22497F11400E16023 /* PdfView.swift */; };
 		D0C4C7FB2499386F00E16023 /* RLMReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C7FA2499386F00E16023 /* RLMReminder.swift */; };
 		D0C4C7FE249A548200E16023 /* RLMInjury.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C7FD249A548200E16023 /* RLMInjury.swift */; };
+		D0C4C7FF249AB0E100E16023 /* RLMInjury.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C7FD249A548200E16023 /* RLMInjury.swift */; };
+		D0C4C800249AB0F500E16023 /* RLMReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C7FA2499386F00E16023 /* RLMReminder.swift */; };
+		D0C4C802249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C801249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift */; };
 		DA3FE2DB8C4BA18334A1EB22 /* Pods_parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */; };
 		DC05B3C2247B5AD70014779D /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
 		DC05B3CE247C45000014779D /* PanningInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3CD247C45000014779D /* PanningInteractionController.swift */; };
@@ -656,6 +659,7 @@
 		D0C4C7F22497F11400E16023 /* PdfView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfView.swift; sourceTree = "<group>"; };
 		D0C4C7FA2499386F00E16023 /* RLMReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMReminder.swift; sourceTree = "<group>"; };
 		D0C4C7FD249A548200E16023 /* RLMInjury.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMInjury.swift; sourceTree = "<group>"; };
+		D0C4C801249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationTypeDataProvider+publishing.swift"; sourceTree = "<group>"; };
 		D48B06C16950ED61770C4604 /* Pods-educator.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(appstore).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
 		DC05B3CD247C45000014779D /* PanningInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanningInteractionController.swift; sourceTree = "<group>"; };
@@ -1617,6 +1621,7 @@
 				75886DC1241932BA0079C080 /* Notifications.storyboard */,
 				75886DC2241932BA0079C080 /* NotificationTypeTableViewCellModel.swift */,
 				75886DC3241932BA0079C080 /* NotificationTypeDataProvider.swift */,
+				D0C4C801249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift */,
 				61547AB4C9DBCE180148001E /* FormProviders */,
 			);
 			path = Notifications;
@@ -2404,6 +2409,7 @@
 				DC05B3CE247C45000014779D /* PanningInteractionController.swift in Sources */,
 				75886DF2241932BA0079C080 /* SupervisorTabBarController.swift in Sources */,
 				75886D0E2419327F0079C080 /* AvecareAPI+sampleData.swift in Sources */,
+				D0C4C802249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift in Sources */,
 				75886DD4241932BA0079C080 /* R.supervisor.generated.swift in Sources */,
 				F663BB7624351327003279B9 /* SubjectListDataProvider.swift in Sources */,
 				75886D522419327F0079C080 /* UIViewController.swift in Sources */,
@@ -2565,6 +2571,7 @@
 				75EB59FC24632D1F00E077E5 /* syncUnitDetails.swift in Sources */,
 				75886D692419327F0079C080 /* AppDelegate+Extension.swift in Sources */,
 				75886D4F2419327F0079C080 /* String.swift in Sources */,
+				D0C4C800249AB0F500E16023 /* RLMReminder.swift in Sources */,
 				DC3617F424770B4D004C0B83 /* UserAuthenticateService.swift in Sources */,
 				75886D132419327F0079C080 /* UINVC.swift in Sources */,
 				75886D172419327F0079C080 /* UserProfile.swift in Sources */,
@@ -2696,6 +2703,7 @@
 				615474F1719D19B2A4E58928 /* HomeTableVIewHeaderView.swift in Sources */,
 				61547527266DD8DB51B90A5A /* HomeTableViewDisclosureCell.swift in Sources */,
 				61547C49682CD233270C41A9 /* RLMStory.swift in Sources */,
+				D0C4C7FF249AB0E100E16023 /* RLMInjury.swift in Sources */,
 				6154779DD64F75D8B70F59FC /* RLMReusable.swift in Sources */,
 				61547DC92C618D6FC9A81227 /* syncUnitStories.swift in Sources */,
 				61547D0BE9189E92DB28BD3E /* FilesResponseModel.swift in Sources */,

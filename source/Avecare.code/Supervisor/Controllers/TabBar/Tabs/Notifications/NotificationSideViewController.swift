@@ -34,7 +34,13 @@ extension NotificationSideViewController: UITableViewDelegate, UITableViewDataSo
     }
 }
 
-extension NotificationSideViewController: NotificationTypeDataProviderDelegate {
+extension NotificationSideViewController: NotificationTypeDataProviderDelegate, IndicatorProtocol {
+
+    func showAlert(title: String, message: String) {
+        let error = AppError(title: title, userInfo: message, code: "", type: "")
+        self.showErrorAlert(error)
+    }
+
     func didUpdateModel(at indexPath: IndexPath) {
         let model = dataProvider.model(for: indexPath)
 

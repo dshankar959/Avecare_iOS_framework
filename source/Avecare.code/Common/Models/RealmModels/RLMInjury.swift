@@ -24,13 +24,13 @@ class RLMInjury: RLMDefaults, RLMPublishable, DataProvider {
             try super.decode(from: decoder)
             let container = try decoder.container(keyedBy: CodingKeys.self)
             let subId = try container.decode(String.self, forKey: .subjectId)
+            self.message = try container.decode(String?.self, forKey: .details)
             self.subject = RLMSubject.find(withID: subId)
 
             let injuryId = try container.decode(String.self, forKey: .injuryId)
             self.injuryOption = RLMInjuryOption.find(withID: injuryId)
-            let formatter = Date.timeFormatter
             if let timeString = try container.decodeIfPresent(String.self, forKey: .timeOfInjury),
-               let time = formatter.date(from: timeString) {
+               let time = Date.dateFromISO8601String(timeString) {
                 timeOfInjury = time
             }
 
@@ -42,13 +42,17 @@ class RLMInjury: RLMDefaults, RLMPublishable, DataProvider {
 
     override func encode(to encoder: Encoder) throws {
         do {
-            let formatter = Date.timeFormatter
             try super.encode(to: encoder)
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(injuryOption?.id, forKey: .injuryId)
             try container.encode(subject?.id, forKey: .subjectId)
-            try container.encode(formatter.string(from: timeOfInjury ?? Date()), forKey: .timeOfInjury)
-            try container.encode(message, forKey: .details)
+            try container.encode(Date.ISO8601StringFromDate(timeOfInjury ?? Date()), forKey: .timeOfInjury)
+
+            if let message = message {
+                if !message.isEmpty {
+                try container.encode(message, forKey: .details)
+                }
+            }
 
         } catch {
             DDLogError("JSON Encoding error = \(error)")
@@ -57,5 +61,4 @@ class RLMInjury: RLMDefaults, RLMPublishable, DataProvider {
 
     }
 }
-
 
