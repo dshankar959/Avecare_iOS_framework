@@ -153,14 +153,8 @@ struct UnitAPIService {
             switch result {
             case .success(let response):
                 do {
-                    let mappedResponse = try response.map(APIPaginatedResponse<RLMReminder>.self)
-                    var reminders = [RLMReminder]()
-
-                    for reminder in mappedResponse.results {
-                        reminders.append(reminder)
-                    }
+                    let reminders = try JSONDecoder().decode([RLMReminder].self, from: response.data)
                     completion(.success(reminders))
-
                 } catch {
                     DDLogError("JSON MAPPING ERROR = \(error)")
                     completion(.failure(JSONError.failedToMapData.message))
