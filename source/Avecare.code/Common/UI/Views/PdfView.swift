@@ -1,7 +1,8 @@
-import Foundation
 import UIKit
 import SnapKit
 import PDFKit
+
+
 
 class PdfView: UIView {
 
@@ -69,4 +70,5 @@ class PdfView: UIView {
         super.init(coder: aDecoder)
 //        fatalError("NSCoding not supported")
     }
+
 }

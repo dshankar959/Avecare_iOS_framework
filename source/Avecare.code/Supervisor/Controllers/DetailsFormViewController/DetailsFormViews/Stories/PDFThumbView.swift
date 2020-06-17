@@ -50,6 +50,7 @@ class PDFThumbView: BaseXibView {
 
     override func setup() {
         super.setup()
+        photoImageView.set(cornerRadius: 12.0)
     }
 
     func updatePlaceholderVisibility() {

@@ -53,6 +53,7 @@ class RLMLogSwitcherRow: Object, Decodable, FormRowIconProtocol {
             selectedValue = value
         } else {
             DDLogError("JSON Decoding error: No selected value")
+            fatalError("JSON Decoding error: No selected value")
         }
 
     }

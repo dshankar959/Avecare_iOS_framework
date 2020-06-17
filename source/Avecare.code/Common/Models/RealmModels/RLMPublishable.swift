@@ -9,9 +9,11 @@ enum PublishState: Int, Codable {
     case published = 2      // sent to the server and received response
 }
 
+
 protocol RLMPublishable: class {
     var rawPublishState: Int { get set }
 }
+
 
 extension RLMPublishable {
 
