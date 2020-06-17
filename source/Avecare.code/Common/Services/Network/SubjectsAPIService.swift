@@ -27,7 +27,13 @@ struct SubjectsAPIService {
         var serverLastUpdated: String = ""
 
         var startDate: String {
-            return Date.yearMonthDayFormatter.string(from: startDateOfLogsHistory)
+            let startDate: Date
+            if appSession.userProfile.isSupervisor {
+                startDate = Date()  // for supervisor to sync down just today's date
+            } else {
+                startDate = startDateOfLogsHistory
+            }
+            return Date.yearMonthDayFormatter.string(from: startDate)
         }
 
         var endDate: String {
@@ -41,11 +47,11 @@ struct SubjectsAPIService {
             let sortedDailyLogForms = RLMLogForm.sortObjectsByLastUpdated(order: .orderedDescending, allDailyLogForms)
             let publishedDailyLogForms = sortedDailyLogForms.filter { $0.rawPublishState == PublishState.published.rawValue }
 
-            if let lastUpdated = publishedDailyLogForms.first?.serverLastUpdated {
+            if appSession.userProfile.isGuardian,
+                let lastUpdated = publishedDailyLogForms.first?.serverLastUpdated {
                 serverLastUpdated = Date.ISO8601StringFromDate(lastUpdated)
             }
         }
-
     }
 
 

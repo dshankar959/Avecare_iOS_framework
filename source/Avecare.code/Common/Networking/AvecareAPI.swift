@@ -180,8 +180,8 @@ extension AvecareAPI: TargetType {
         case .subjectGetLogs(let request):
             DDLogDebug(".subjectGetLogs parameters: .serverLastUpdated = \(request.serverLastUpdated)")
             return .requestParameters(parameters: [
-                "start_date": request.startDate,
-                "end_date": request.endDate,
+                "startDate": request.startDate,
+                "endDate": request.endDate,
                 "lastUpdatedAt": request.serverLastUpdated
             ], encoding: URLEncoding.default)
 
