@@ -1,7 +1,7 @@
 import CocoaLumberjack
 import RealmSwift
 
-class RLMInjury: RLMDefaults {
+class RLMInjuryOption: RLMDefaults {
 
     @objc dynamic var name: String = ""
     @objc dynamic var descriptions: String = ""
@@ -31,10 +31,10 @@ class RLMInjury: RLMDefaults {
     }
 }
 
-extension RLMInjury: SingleValuePickerItem, DataProvider {
+extension RLMInjuryOption: SingleValuePickerItem, DataProvider {
     var pickerTextValue: String {
         return name
     }
 }
 
-typealias RLMInjuriesResponse = APIResponse<[RLMInjury]>
+typealias RLMInjuriesResponse = APIResponse<[RLMInjuryOption]>

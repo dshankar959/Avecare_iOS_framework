@@ -110,19 +110,18 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
         default: return Form(viewModels: [])
         }
     }
-    
+
     func navigationItems(at indexPath: IndexPath, type: NotificationType) -> [DetailsNavigationView.Item] {
         var isEnabled = false
         switch type {
-        case .reminders:
-            isEnabled = reminderFormProvider.isPublishable()
-            break
+        case .reminders: isEnabled = reminderFormProvider.isPublishable()
+        case .injuryReport: isEnabled = injuryFormProvider.isPublishable()
         default: break
         }
-        
+
         let publishText = "Publish"
         let publishColor = isEnabled ? R.color.main() :R.color.lightText4()
-        
+
         return [
             .button(options: .init(action: { [weak self] view, options, index in
                 self?.publishNotification(type: type)
@@ -135,13 +134,32 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
         switch type {
         case .reminders:
             createReminderandPublish()
-            break
+        case .injuryReport:
+            createInjuryReport()
+
         default:
             // TODO add logic for publishing other notif types
             break
         }
     }
-    
+
+    func createInjuryReport() {
+        var dataSource = [RLMInjury]()
+        for subject in injuryFormProvider.injurySubjects {
+            let injury = RLMInjury(id: newUUID)
+            injury.message = injuryFormProvider.additionalMessage
+            injury.rawPublishState = 1
+            injury.subject = subject
+            injury.timeOfInjury = injuryFormProvider.injuryDate
+            injury.injuryOption = injuryFormProvider.seletctedInjuryType
+            dataSource.insert(injury, at: 0)
+            RLMInjury.createOrUpdateAll(with: dataSource, update: false)
+        }
+    }
+
+    func publishInjuries(reminders: [RLMReminder]) {}
+
+
     func createReminderandPublish() {
         var dataSource = [RLMReminder]()
         for subject in reminderFormProvider.subjects {
@@ -154,10 +172,8 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
             RLMReminder.createOrUpdateAll(with: dataSource, update: false)
         }
     }
-    
+
     func publishReminders(reminders: [RLMReminder]) {
-//        for reminder in reminders {
-//            let JSON = reminder.enc
-//        }
+
     }
 }

@@ -73,7 +73,7 @@
 "notification_injury_report_select_child_title" = "Select Child";
 "notification_injury_report_select_child_placeholder" = "Add a child";
 "notification_injury_report_select_time_title" = "Select Time";
-"notification_injury_report_select_time_placeholder" = "12:00pm";
+"notification_injury_report_select_time_placeholder" = "Select";
 "notification_injury_report_message_description_title" = "Message Description:";
 "notification_injury_report_message_description_text" = "There is an accident report for your child at the centre. This is NOT an emergency. Please connect with an educator upon pick up to sign.";
 "notification_injury_report_select_injury_title" = "Your child suffered a";

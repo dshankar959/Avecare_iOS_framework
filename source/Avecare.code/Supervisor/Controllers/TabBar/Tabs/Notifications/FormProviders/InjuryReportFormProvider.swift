@@ -6,11 +6,15 @@ class InjuryReportFormProvider {
 
     var injurySubjects = [RLMSubject]()
     var injuryDate: Date?
-    var seletctedInjuryType: RLMInjury?
+    var seletctedInjuryType: RLMInjuryOption?
 
     var injuryDateString: String? {
         guard let date = injuryDate else { return nil }
         return Date.timeFormatter.string(from: date)
+    }
+
+    func updatePublishableState() {
+        self.delegate?.didUpdateModel(at: self.indexPath)
     }
 
     let indexPath: IndexPath
@@ -30,24 +34,21 @@ class InjuryReportFormProvider {
         controller.selectedIds = Set(injurySubjects.map({ $0.id }))
         controller.onDone = { [weak self] details in
             self?.injurySubjects = Array(details)
-            if let indexPath = self?.indexPath {
-                self?.delegate?.didUpdateModel(at: indexPath)
-            }
+            self?.updatePublishableState()
         }
         delegate?.present(controller, animated: true)
     }
 
     func deleteSubjectAt(_ index: Int) {
         injurySubjects.remove(at: index)
-        delegate?.didUpdateModel(at: indexPath)
+        self.updatePublishableState()
     }
 }
 
 extension InjuryReportFormProvider: FormProvider {
 
     func isPublishable() -> Bool {
-        // TODO Add completeness check logic when syncing is implemented
-        return false
+        return !(injurySubjects.count == 0 || injuryDate == nil || seletctedInjuryType == nil)
     }
 
     func form() -> Form {
@@ -78,6 +79,7 @@ extension InjuryReportFormProvider: FormProvider {
                     guard let datePicker = datePicker as? UIDatePicker else { return }
                     self?.injuryDate = datePicker.date
                     view.setTextValue(self?.injuryDateString)
+                    self?.updatePublishableState()
                 }))
 
         viewModels.append(DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right))
@@ -93,7 +95,7 @@ extension InjuryReportFormProvider: FormProvider {
         viewModels.append(InfoMessageFormViewModel(title: NSLocalizedString("notification_injury_report_message_description_title", comment: ""),
                                                    message: NSLocalizedString("notification_injury_report_message_description_text", comment: "")))
 
-        let injuryTypes = RLMInjury.findAll().filter { $0.isActive }
+        let injuryTypes = RLMInjuryOption.findAll().filter { $0.isActive }
         let injuryTypePicker = SingleValuePickerView(values: injuryTypes)
         injuryTypePicker.backgroundColor = .white
 
@@ -108,6 +110,7 @@ extension InjuryReportFormProvider: FormProvider {
                 }, inputView: injuryTypePicker, onInput: { [weak self] view, _ in
                     self?.seletctedInjuryType = injuryTypePicker.selectedValue
                     view.setTextValue(self?.seletctedInjuryType?.name)
+                    self?.updatePublishableState()
                 }))
 
         viewModels.append(PickerViewWithSideTitleFormViewModel(title: injuryPickerTitle, picker: injuryPicker))

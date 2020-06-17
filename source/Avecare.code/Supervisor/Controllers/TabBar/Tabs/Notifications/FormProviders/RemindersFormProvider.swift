@@ -14,7 +14,7 @@ class RemindersFormProvider {
     init(indexPath: IndexPath) {
         self.indexPath = indexPath
     }
-    
+
     func updatePublishableState() {
         self.delegate?.didUpdateModel(at: self.indexPath)
     }

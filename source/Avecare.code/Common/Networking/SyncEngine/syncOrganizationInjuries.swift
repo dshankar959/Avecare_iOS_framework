@@ -32,8 +32,8 @@ extension SyncEngine {
                 switch result {
                 case .success(let injuries):
                     // Update with new data.
-                    RLMInjury.createOrUpdateAll(with: injuries)
-                    DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMInjury.className())\' items in DB: \(RLMInjury.findAll().count)")
+                    RLMInjuryOption.createOrUpdateAll(with: injuries)
+                    DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMInjuryOption.className())\' items in DB: \(RLMInjuryOption.findAll().count)")
                     self?.syncStates[syncKey] = .complete
                     syncCompletion(nil)
                 case .failure(let error):

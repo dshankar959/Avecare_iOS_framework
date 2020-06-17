@@ -68,7 +68,7 @@ struct OrganizationsAPIService {
     }
 
 
-    static func getAvailableInjuries(for organizationId: String, completion: @escaping (Result<[RLMInjury], AppError>) -> Void) {
+    static func getAvailableInjuries(for organizationId: String, completion: @escaping (Result<[RLMInjuryOption], AppError>) -> Void) {
         DDLogDebug("")
 
         apiProvider.request(.organizationInjuries(id: organizationId)) { result in
