@@ -46,7 +46,7 @@ extension ClassActivityFormProvider: FormProvider {
                     guard let pickerView = pickerView as? SingleValuePickerView<RLMActivity>? else { return }
                     let selectedValue = pickerView?.selectedValue
                     self?.selectedActivity = selectedValue
-                    view.setTextValue(selectedValue?.description)
+                    view.setTextValue(selectedValue?.name)
                 }))
 
         let datePicker = UIDatePicker()

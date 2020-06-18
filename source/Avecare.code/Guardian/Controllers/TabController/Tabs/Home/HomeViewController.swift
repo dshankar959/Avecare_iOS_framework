@@ -68,7 +68,6 @@ class HomeViewController: UIViewController, IndicatorProtocol {
                     completion(nil)
                 }
             }
-
         }
     }
 

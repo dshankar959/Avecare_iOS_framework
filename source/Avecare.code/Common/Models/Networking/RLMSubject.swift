@@ -92,8 +92,18 @@ extension RLMSubject: DataProvider {
 //        let sortedLogForms = allLogForms.sorted(by: { $0.clientLastUpdated.compare($1.clientLastUpdated) == .orderedAscending})
 
         // Use the most recent form.
-        if let form = sortedLogForms.last, Calendar.current.isDateInToday(form.clientLastUpdated!) {
-            return form
+        if let form = sortedLogForms.last {
+            if let clientLastUpdated = form.clientLastUpdated {
+                if Calendar.current.isDateInToday(clientLastUpdated) {
+                    return form
+                }
+            } else if let serverLastUpdated = form.serverLastUpdated,
+                Calendar.current.isDateInToday(serverLastUpdated) {
+                RLMLogForm.writeTransaction {
+                    form.clientLastUpdated = Date()
+                }
+                return form
+            }
         }
 
         DDLogDebug("🆕 Adding new daily form for subject: [\(id)], \(firstName) \(lastName) ")

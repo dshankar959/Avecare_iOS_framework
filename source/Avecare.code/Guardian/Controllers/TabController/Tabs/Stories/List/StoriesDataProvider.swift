@@ -3,7 +3,7 @@ import Foundation
 
 
 protocol StoriesDataProvider: class {
-    var unitIds: [String] { get set }
+    func refreshData(with unitIds: [String])
     func numberOfRows(for section: Int) -> Int
     func model(for indexPath: IndexPath) -> AnyCellViewModel
     func details(at indexPath: IndexPath) -> StoriesDetails
@@ -81,28 +81,30 @@ extension SupervisorCollectionViewCellModel {
 class DefaultStoriesDataProvider: StoriesDataProvider {
 
     private let supervisors = DefaultSupervisorsDataProvider()
-    private let stories = RLMStory.findAll()
     private let storage = DocumentService()
 
     func sort() {
         dataSource = RLMLogForm.sortObjectsByLastUpdated(order: .orderedDescending, dataSource)
     }
 
+    private var stories = RLMStory.findAll()
     private var dataSource = [RLMStory]()
+    private var unitIds = [String]()
 
-    var unitIds = [String]() {
-        didSet {
-            supervisors.unitIds = unitIds
-
-            if unitIds.count > 0 {
-                dataSource = filter(for: stories, with: unitIds)
-            } else {
-                dataSource = stories
-                sort()
-            }
-        }
+    func refreshData(with unitIds: [String]) {
+        stories = RLMStory.findAll()
+        supervisors.unitIds = unitIds
+        constructDataSource(with: unitIds)
     }
 
+    private func constructDataSource(with unitIds: [String]) {
+        if unitIds.count > 0 {
+            dataSource = filter(for: stories, with: unitIds)
+        } else {
+            dataSource = stories
+            sort()
+        }
+    }
 
     private func filter(for stories: [RLMStory], with unitIds: [String]) -> [RLMStory] {
         var result = [RLMStory]()
