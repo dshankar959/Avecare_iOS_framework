@@ -4,7 +4,7 @@ import CocoaLumberjack
 
 extension SyncEngine {
 
-    func syncOrganizationActivities(_ syncCompletion: @escaping (_ error: AppError?) -> Void) {
+    func syncDOWNorganizationActivities(_ syncCompletion: @escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
 
         // Use function name as key.

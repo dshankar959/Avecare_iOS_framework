@@ -1,5 +1,7 @@
 import Foundation
 
+
+
 protocol HomeDataProvider: class {
     var numberOfSections: Int { get }
     func numberOfRows(section: Int) -> Int
@@ -9,6 +11,7 @@ protocol HomeDataProvider: class {
     func fetchFeeds(completion: @escaping (AppError?) -> Void)
     func filterDataSource(with subjectId: String?)
 }
+
 
 class DefaultHomeDataProvider: HomeDataProvider {
     private struct Section {
@@ -136,6 +139,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
                 }
             }
         }
+
         if importantList.count > 0 {
             var importantItems = [HomeTableViewDisclosureCellModel]()
             importantList.forEach { feed in
@@ -153,6 +157,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
                     records: importantItems)
             )
         }
+
         sectionHeaders.forEach { sectionHeader in
             let elements = sections[sectionHeader]
             var sectionItems = [HomeTableViewDisclosureCellModel]()
@@ -163,13 +168,16 @@ class DefaultHomeDataProvider: HomeDataProvider {
                                                                          storage: storage))
                 }
             })
+
             self.dataSource.append(
                 Section(header: .init(icon: nil, text: sectionHeader.uppercased()),
                         dismiss: false,
                         records: sectionItems)
             )
         }
+
     }
+
 
     private func removeDuplicatedFeeds(from feeds: [GuardianFeed]) -> [GuardianFeed] {
         var resultFeeds = [GuardianFeed]()
@@ -183,6 +191,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
         return resultFeeds
     }
 
+
     private func filterFeedsForDatesWindow(with feeds: [GuardianFeed]) -> [GuardianFeed] {
         var resultFeeds = [GuardianFeed]()
         for feed in feeds {
@@ -194,9 +203,12 @@ class DefaultHomeDataProvider: HomeDataProvider {
         }
         return resultFeeds
     }
+
 }
 
+
 extension HomeTableViewDisclosureCellModel {
+
     init(with feed: GuardianFeed, subject: RLMSubject, storage: DocumentService) {
         if feed.feedItemType == .subjectDailyLog {
             title = subject.firstName + NSLocalizedString("home_feed_title_dailylog", comment: "")
@@ -210,4 +222,5 @@ extension HomeTableViewDisclosureCellModel {
         feedItemId = feed.feedItemId
         feedItemType = feed.feedItemType
     }
+
 }

@@ -20,7 +20,7 @@ struct FormTextViewModel: CellViewModel {
             cell.layer.cornerRadius = 0
             cell.layer.masksToBounds = true
             cell.layer.borderColor = UIColor.clear.cgColor
-            
+
             let edges = cell.textView.textContainerInset
             cell.textView.backgroundColor = R.color.background()
             cell.textView.textContainerInset = UIEdgeInsets(top: edges.top, left: 0, bottom: edges.bottom, right: 0)

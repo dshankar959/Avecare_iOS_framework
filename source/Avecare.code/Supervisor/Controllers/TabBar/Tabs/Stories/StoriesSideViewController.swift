@@ -37,6 +37,11 @@ class StoriesSideViewController: UIViewController {
         let pickerController = UIDocumentPickerViewController(documentTypes: [kUTTypePDF as String, kUTTypeImage as String], in: .import)
         pickerController.delegate = self
         pickerController.allowsMultipleSelection = false
+
+        if #available(iOS 13.0, *) {
+            pickerController.shouldShowFileExtensions = true
+        }
+
         pickerController.modalPresentationStyle = .fullScreen
         self.present(pickerController, animated: true)
     }
@@ -84,6 +89,7 @@ extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource 
         if self.dataProvider.numberOfRows < 2 || self.dataProvider.isRowStoryPublished(at: indexPath) {
             return []
         }
+
         let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
             if self.dataProvider.numberOfRows > 1 {
                 if indexPath.row > 0 {

@@ -4,7 +4,7 @@ import UIKit
 struct SupervisorFilterTableViewCellModel: CellViewModel {
     typealias CellType = SupervisorFilterTableViewCell
 
-    weak var dataProvider: EducatorsDataProvider?
+    weak var dataProvider: SupervisorsDataProvider?
 
     func setup(cell: CellType) {
         cell.dataProvider = dataProvider
@@ -13,7 +13,7 @@ struct SupervisorFilterTableViewCellModel: CellViewModel {
 
 class SupervisorFilterTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
-    weak var dataProvider: EducatorsDataProvider?
+    weak var dataProvider: SupervisorsDataProvider?
     weak var parentVC: UIViewController?
 
     override func awakeFromNib() {

@@ -80,7 +80,7 @@ extension RemindersFormProvider: FormProvider {
 
         if subjects.count > 0 {
             viewModels.append(MarginFormViewModel(height: 20))
-    
+
             viewModels.append(TagListFormViewModel(tags: subjects.map({ "\($0.firstName), \($0.lastName)" }), deleteAction: deleteSubjectAt))
         }
 

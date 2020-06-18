@@ -303,7 +303,7 @@ extension PinView: UICollectionViewDataSource, UICollectionViewDelegate, UIColle
         textField.textColor = self.textColor
         textField.tintColor = textColor
         textField.font = self.font
-        if #available(iOS 12.0, *), indexPath.row == 0, isContentTypeOneTimeCode {
+        if indexPath.row == 0, isContentTypeOneTimeCode {
             textField.textContentType = .oneTimeCode
         }
         textField.keyboardType = self.keyboardType

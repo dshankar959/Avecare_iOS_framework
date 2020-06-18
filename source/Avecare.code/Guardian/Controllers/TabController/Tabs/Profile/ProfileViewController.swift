@@ -29,10 +29,10 @@ class ProfileViewController: UIViewController, IndicatorProtocol {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        updateEducators()
+        updateSupervisors()
     }
 
-    func updateEducators() {
+    func updateSupervisors() {
         // if subject not selected, select 1st by default
         if let selectedSubject = subjectSelection?.subject {
             dataProvider.unitIds = Array(selectedSubject.unitIds)

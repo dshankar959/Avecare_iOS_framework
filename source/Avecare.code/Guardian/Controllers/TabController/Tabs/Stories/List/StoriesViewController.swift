@@ -1,5 +1,7 @@
 import UIKit
 
+
+
 class StoriesListViewController: UIViewController {
 
     @IBOutlet weak var subjectFilterButton: UIButton!
@@ -9,6 +11,7 @@ class StoriesListViewController: UIViewController {
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
     weak var subjectSelection: SubjectSelectionProtocol?
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,14 +26,17 @@ class StoriesListViewController: UIViewController {
         self.navigationController?.hideHairline()
     }
 
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateScreen()
     }
 
+
     @IBAction func subjectFilterButtonTouched(_ sender: UIButton) {
         performSegue(withIdentifier: R.segue.storiesListViewController.subjectList.identifier, sender: nil)
     }
+
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == R.segue.storiesListViewController.details.identifier,
@@ -56,6 +62,7 @@ class StoriesListViewController: UIViewController {
             destination.modalPresentationStyle = .custom
         }
     }
+
 
     private func updateScreen() {
         if let selectedSubject = subjectSelection?.subject {
@@ -86,7 +93,9 @@ class StoriesListViewController: UIViewController {
     }
 }
 
+
 extension StoriesListViewController: SubjectListViewControllerDelegate {
+
     func subjectListDidSelectAll(_ controller: SubjectListViewController) {
         controller.dismiss(animated: true)
         subjectSelection?.subject = nil
@@ -98,9 +107,12 @@ extension StoriesListViewController: SubjectListViewControllerDelegate {
         subjectSelection?.subject = subject
         updateScreen()
     }
+
 }
 
+
 extension StoriesListViewController: UITableViewDelegate, UITableViewDataSource {
+
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -148,10 +160,14 @@ extension StoriesListViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return .leastNormalMagnitude
     }
+
 }
 
+
 extension StoriesListViewController: ViewControllerWithSupervisorFilterViewCell {
+
     func educatorDidSelect(selectedEducatorId: String) {
         performSegue(withIdentifier: R.segue.storiesListViewController.educatorDetails, sender: selectedEducatorId)
     }
+
 }

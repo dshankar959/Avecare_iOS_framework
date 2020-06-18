@@ -5,7 +5,7 @@ import CocoaLumberjack
 extension SyncEngine {
 
     // Sync down supervisor profile details across all available units.
-    func syncUnitSupervisors(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+    func syncDOWNunitSupervisors(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogDebug("")
 
         // Use function name as key.

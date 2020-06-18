@@ -180,15 +180,17 @@ extension AvecareAPI: TargetType {
             return .requestCustomJSONEncodable(request, encoder: encoder)
 
         case .subjectGetLogs(let request):
+            DDLogDebug(".subjectGetLogs parameters: .serverLastUpdated = \(request.serverLastUpdated)")
             return .requestParameters(parameters: [
                 "start_date": request.startDate,
-                "end_date": request.endDate
+                "end_date": request.endDate,
+                "lastUpdatedAt": request.serverLastUpdated
             ], encoding: URLEncoding.default)
 
         case .unitPublishedStories(let request):
-            DDLogDebug(".unitPublishedStories parameters: .serverLastUpdated = \(request.serverLastUpdated), resultsLimit = \(request.resultsLimit)")
+            DDLogDebug(".unitPublishedStories parameters: .serverLastUpdated = \(request.serverLastUpdated)")
             return .requestParameters(parameters: [
-                "limit": request.resultsLimit,
+//                "limit": request.resultsLimit,
                 "lastUpdatedAt": request.serverLastUpdated
             ], encoding: URLEncoding.default)
 

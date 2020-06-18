@@ -13,10 +13,13 @@ struct StoriesTableViewCellModel: CellViewModel {
     var isPublished: Bool = false
     var isSelected = false
 
+
     func setup(cell: CellType) {
         cell.backgroundColor = isSelected ? R.color.background() : .white
         cell.dateLabel.text = Date.fullMonthDayFormatter.string(from: date)
         cell.titleLabel.text = title
+        cell.photoImageView.set(cornerRadius: 12.0)
+
         let service = DocumentService()
         let size = 375 * UIScreen.main.scale
         cell.status.isHidden = true

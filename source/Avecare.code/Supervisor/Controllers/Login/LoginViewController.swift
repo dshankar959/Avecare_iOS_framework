@@ -20,14 +20,14 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                                                object: nil)
 
         NotificationCenter.default.addObserver(self,
-        selector: #selector(LoginViewController.keyboardDidChangeFrame(notification:)),
-        name: UIResponder.keyboardDidChangeFrameNotification,
-        object: nil)
+                                               selector: #selector(LoginViewController.keyboardDidChangeFrame(notification:)),
+                                               name: UIResponder.keyboardDidChangeFrameNotification,
+                                               object: nil)
 
         NotificationCenter.default.addObserver(self,
-        selector: #selector(LoginViewController.keyboardWillHide(notification:)),
-        name: UIResponder.keyboardWillHideNotification,
-        object: nil)
+                                               selector: #selector(LoginViewController.keyboardWillHide(notification:)),
+                                               name: UIResponder.keyboardWillHideNotification,
+                                               object: nil)
 
         #if DEBUG
 

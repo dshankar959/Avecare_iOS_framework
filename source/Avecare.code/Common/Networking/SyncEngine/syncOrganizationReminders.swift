@@ -4,7 +4,7 @@ import CocoaLumberjack
 
 extension SyncEngine {
 
-    func syncOrganizationReminders(_ syncCompletion: @escaping (_ error: AppError?) -> Void) {
+    func syncDOWNorganizationReminders(_ syncCompletion: @escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
 
         // Use function name as key.
