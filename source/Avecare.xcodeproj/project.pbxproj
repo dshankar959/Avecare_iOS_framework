@@ -352,6 +352,10 @@
 		DC5E990A2475557D0088083C /* EducatorDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5E99012475543F0088083C /* EducatorDetails.storyboard */; };
 		DC5E990C24755B990088083C /* EducatorDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */; };
 		DC70F062246B436800FFD262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
+		DC71E1A9249BC4E200CB3D10 /* RLMDailyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1A8249BC4E200CB3D10 /* RLMDailyTask.swift */; };
+		DC71E1AA249BC63700CB3D10 /* RLMDailyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1A8249BC4E200CB3D10 /* RLMDailyTask.swift */; };
+		DC71E1AC249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1AB249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift */; };
+		DC71E1AD249BC7D000CB3D10 /* syncOrganizationDailyTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1AB249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift */; };
 		DC8B7E02248A80270000414D /* ImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B7E00248A80270000414D /* ImageCropViewController.swift */; };
 		DC8B7E03248A80270000414D /* ImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B7E00248A80270000414D /* ImageCropViewController.swift */; };
 		DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
@@ -703,6 +707,8 @@
 		DC5E9905247555720088083C /* EducatorBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorBioTableViewCell.swift; sourceTree = "<group>"; };
 		DC5E9906247555720088083C /* EducatorBioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EducatorBioTableViewCell.xib; sourceTree = "<group>"; };
 		DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorDetailsDataProvider.swift; sourceTree = "<group>"; };
+		DC71E1A8249BC4E200CB3D10 /* RLMDailyTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMDailyTask.swift; sourceTree = "<group>"; };
+		DC71E1AB249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = syncOrganizationDailyTasks.swift; sourceTree = "<group>"; };
 		DC8B7E00248A80270000414D /* ImageCropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropViewController.swift; sourceTree = "<group>"; };
 		DC8B7E01248A80270000414D /* ImageCropViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCropViewController.xib; sourceTree = "<group>"; };
 		DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianFeed.swift; sourceTree = "<group>"; };
@@ -899,8 +905,9 @@
 				615472657DF3223E8A839F22 /* RLMUnit.swift */,
 				75D62234245B14480032F53D /* RLMInstitution.swift */,
 				75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */,
-				615473EE5A59F3D396DA45E8 /* RLMInjury.swift */,
+				DC71E1A8249BC4E200CB3D10 /* RLMDailyTask.swift */,
 				DCF914092492A8650043123F /* RLMActivity.swift */,
+				615473EE5A59F3D396DA45E8 /* RLMInjury.swift */,
 				DCF914172497E28E0043123F /* RLMReminder.swift */,
 				DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */,
 				DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */,
@@ -1660,6 +1667,7 @@
 				75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */,
 				75EB5A222466FE9800E077E5 /* syncOrganizationDetails.swift */,
 				61547CE19B2A59BB3A73A52C /* syncOrganizationTemplates.swift */,
+				DC71E1AB249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift */,
 				DCF9140D2492C3B20043123F /* syncOrganizationActivities.swift */,
 				DC4EA6D2249151F1007A36C0 /* syncOrganizationInjuries.swift */,
 				DCF914192497E44C0043123F /* syncOrganizationReminders.swift */,
@@ -2402,6 +2410,7 @@
 				F663BB7624351327003279B9 /* SubjectListDataProvider.swift in Sources */,
 				75886D522419327F0079C080 /* UIViewController.swift in Sources */,
 				F67DF81D241BFE6800793A9C /* PickerFieldFormView.swift in Sources */,
+				DC71E1A9249BC4E200CB3D10 /* RLMDailyTask.swift in Sources */,
 				75EB5A202466FE4400E077E5 /* RLMOrganization.swift in Sources */,
 				75EB59D42461858700E077E5 /* RLMLogChooseRow.swift in Sources */,
 				F67DF80E241BFE6800793A9C /* DetailsView.swift in Sources */,
@@ -2486,6 +2495,7 @@
 				6154726CA276E2707083B329 /* APIToken.swift in Sources */,
 				615474453FDE920B0B2ABA52 /* SubjectAccidentReportView.swift in Sources */,
 				75EB59E524618EF600E077E5 /* SyncEngine+Timer.swift in Sources */,
+				DC71E1AC249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift in Sources */,
 				DCFFD6F9246DA6FE0080DEA6 /* SlideInPresentationController.swift in Sources */,
 				61547B417F71D10BC3AE1170 /* SubjectPickerViewController.swift in Sources */,
 				6154703AE0070C0AD17E57F2 /* SubjectPickerTableViewCell.swift in Sources */,
@@ -2656,10 +2666,12 @@
 				DC5E9907247555720088083C /* EducatorBioTableViewCell.swift in Sources */,
 				61547BBDB5DA4D4A37131C56 /* StoriesTableViewCell.swift in Sources */,
 				DC4FFA0E2470B9AE0079A27C /* ProfileSubjectTableViewCell.swift in Sources */,
+				DC71E1AD249BC7D000CB3D10 /* syncOrganizationDailyTasks.swift in Sources */,
 				615474DD4D6B43A12920A720 /* StoriesDataProvider.swift in Sources */,
 				75EB59CD2461858700E077E5 /* RLMLogSwitcherRow.swift in Sources */,
 				DC3E80EE2486BFCF003983E2 /* RLMMessage.swift in Sources */,
 				61547C05AA5DE58BB809E4C6 /* SupervisorFilterTableViewCell.swift in Sources */,
+				DC71E1AA249BC63700CB3D10 /* RLMDailyTask.swift in Sources */,
 				75EB5A122466683300E077E5 /* syncInstitutionDetails.swift in Sources */,
 				6154752751D03A37500C2868 /* SupervisorCollectionViewCell.swift in Sources */,
 				75EB59C32461858700E077E5 /* RLMLogOptionRow.swift in Sources */,

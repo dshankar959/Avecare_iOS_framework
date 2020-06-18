@@ -65,8 +65,9 @@ enum AvecareAPI { // API Services
     case organizationDailyTemplates(id: String)
 //    case organizationInstitutions(id: String)
     case organizationSubjectTypes(id: String)
-    case organizationInjuries(id: String)
+    case organizationDailyTasks(id: String)
     case organizationActivities(id: String)
+    case organizationInjuries(id: String)
     case organizationReminders(id: String)
     // MARK: - SUBJECTS
 //    case subjectInjuries(id: String)
@@ -80,7 +81,6 @@ enum AvecareAPI { // API Services
     // MARK: - UNITS
     case unitDetails(id: String)
     case unitCreateActivity(id: String, request: CreateUnitActivityRequest)
-    case unitDailyTasks(id: String)
     case unitPublishDailyTasks(id: String, request: DailyTaskRequest)
     case unitCreateInjury(id: String)
     case unitCreateReminder(id: String)
@@ -121,8 +121,9 @@ extension AvecareAPI: TargetType {
         case .organizationDailyTemplates(let id): return "/organizations/\(id)/daily-subject-log-templates"
 //        case .organizationInstitutions(let id): return "/organizations/\(id)/institutions"
         case .organizationSubjectTypes(let id): return "/organizations/\(id)/subject-types"     // might not be required
-        case .organizationInjuries(let id): return "/organizations/\(id)/available-injuries"
+        case .organizationDailyTasks(let id): return "/organizations/\(id)/available-daily-tasks"
         case .organizationActivities(let id): return "/organizations/\(id)/available-activities"
+        case .organizationInjuries(let id): return "/organizations/\(id)/available-injuries"
         case .organizationReminders(let id): return "/organizations/\(id)/available-reminders"
 
         case .subjectPublishDailyLog(let request): return "/subjects/\(request.subjectId)/daily-logs/"
@@ -130,7 +131,6 @@ extension AvecareAPI: TargetType {
 
         case .unitDetails(let id): return "/units/\(id)"
         case .unitCreateActivity(let id, _): return "/units/\(id)/activities/"
-        case .unitDailyTasks(let id): return "/units/\(id)/available-daily-tasks"
         case .unitPublishDailyTasks(let id, _): return "/units/\(id)/daily-tasks/"
         case .unitCreateInjury(let id): return "/units/\(id)/injuries/"
         case .unitCreateReminder(let id): return "/units/\(id)/reminders/"

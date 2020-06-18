@@ -28,27 +28,6 @@ struct UnitAPIService {
     }
 
 
-    static func getDailyTasks(unitId: String,
-                              completion: @escaping (Result<[DailyTask], AppError>) -> Void) {
-        DDLogVerbose("")
-
-        apiProvider.request(.unitDailyTasks(id: unitId)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let mappedResponse = try response.map(APIResponse<[DailyTask]>.self)
-                    completion(.success(mappedResponse.results))
-                } catch {
-                    DDLogError("JSON MAPPING ERROR = \(error)")
-                    completion(.failure(JSONError.failedToMapData.message))
-                }
-            case .failure(let error):
-                completion(.failure(getAppErrorFromMoya(with: error)))
-            }
-        }
-    }
-
-
     static func getSubjects(unitId: String,
                             completion: @escaping (Result<[RLMSubject], AppError>) -> Void) {
         DDLogVerbose("")
