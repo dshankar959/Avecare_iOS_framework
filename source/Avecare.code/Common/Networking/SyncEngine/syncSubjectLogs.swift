@@ -54,12 +54,16 @@ extension SyncEngine {
                 }
 
                 // Check if today's log is in db in supervisor app, don't download
-                if appSession.userProfile.isSupervisor,
-                    let savedLog = RLMLogForm.findAll(withSubjectID: subjectId).first,
-                    let clientLastUpdated = savedLog.clientLastUpdated,
-                    Calendar.current.isDateInToday(clientLastUpdated) {
-                    return
+                if appSession.userProfile.isSupervisor {
+                    let savedLogs = RLMLogForm.findAll(withSubjectID: subjectId)
+                    let sortedLogs = RLMLogForm.sortObjectsByLastUpdated(order: .orderedAscending, savedLogs)
+                    if let lastSavedLog = sortedLogs.last,
+                        let clientLastUpdated = lastSavedLog.clientLastUpdated,
+                        Calendar.current.isDateInToday(clientLastUpdated) {
+                        return
+                    }
                 }
+
 
                 let semaphore = DispatchSemaphore(value: 0) // serialize async API executions in this thread.
                 let request = SubjectsAPIService.SubjectLogsRequest(id: subjectId)
