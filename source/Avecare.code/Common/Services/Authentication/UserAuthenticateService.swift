@@ -48,16 +48,7 @@ final class UserAuthenticateService: IndicatorProtocol {
                     }
                 }
 
-                self?.showActivityIndicator(withStatus: NSLocalizedString("authenticate_syncing", comment: ""))
-                syncEngine.syncAll { error in
-                    syncEngine.print_isSyncingStatus_description()
-                    if let error = error {
-                        completion(error)
-                    } else {
-                        self?.hideActivityIndicator()
-                        completion(nil)
-                    }
-                }
+                completion(nil)
 
             case .failure(let error):
                 completion(error)
