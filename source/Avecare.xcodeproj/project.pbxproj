@@ -315,6 +315,8 @@
 		D0C4C7FF249AB0E100E16023 /* RLMInjury.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C7FD249A548200E16023 /* RLMInjury.swift */; };
 		D0C4C800249AB0F500E16023 /* RLMReminder.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C7FA2499386F00E16023 /* RLMReminder.swift */; };
 		D0C4C802249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C801249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift */; };
+		D0C4C804249BFBB000E16023 /* RLMActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C803249BFBB000E16023 /* RLMActivity.swift */; };
+		D0C4C805249BFBB500E16023 /* RLMActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C803249BFBB000E16023 /* RLMActivity.swift */; };
 		DA3FE2DB8C4BA18334A1EB22 /* Pods_parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */; };
 		DC05B3C2247B5AD70014779D /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
 		DC05B3CE247C45000014779D /* PanningInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3CD247C45000014779D /* PanningInteractionController.swift */; };
@@ -366,12 +368,12 @@
 		DCC2DDCF247EA37D00FAFC35 /* GuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */; };
 		DCF6C69724900B7B00A802BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF6C69A24900B7B00A802BD /* Localizable.strings */; };
 		DCF6C69824900B7B00A802BD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = DCF6C69A24900B7B00A802BD /* Localizable.strings */; };
-		DCF9140A2492A8650043123F /* RLMActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914092492A8650043123F /* RLMActivity.swift */; };
+		DCF9140A2492A8650043123F /* RLMActivityOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914092492A8650043123F /* RLMActivityOption.swift */; };
 		DCF9140B2492C3900043123F /* syncOrganizationTemplates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547CE19B2A59BB3A73A52C /* syncOrganizationTemplates.swift */; };
 		DCF9140C2492C3940043123F /* syncOrganizationInjuries.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4EA6D2249151F1007A36C0 /* syncOrganizationInjuries.swift */; };
 		DCF9140E2492C3B20043123F /* syncOrganizationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9140D2492C3B20043123F /* syncOrganizationActivities.swift */; };
 		DCF9140F2492C3B20043123F /* syncOrganizationActivities.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9140D2492C3B20043123F /* syncOrganizationActivities.swift */; };
-		DCF914102493BAAD0043123F /* RLMActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914092492A8650043123F /* RLMActivity.swift */; };
+		DCF914102493BAAD0043123F /* RLMActivityOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914092492A8650043123F /* RLMActivityOption.swift */; };
 		DCF914162497B7DC0043123F /* MarginFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914152497B7DC0043123F /* MarginFormView.swift */; };
 		DCF914182497E28E0043123F /* RLMReminderOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914172497E28E0043123F /* RLMReminderOption.swift */; };
 		DCF9141A2497E44C0043123F /* syncOrganizationReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914192497E44C0043123F /* syncOrganizationReminders.swift */; };
@@ -660,6 +662,7 @@
 		D0C4C7FA2499386F00E16023 /* RLMReminder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMReminder.swift; sourceTree = "<group>"; };
 		D0C4C7FD249A548200E16023 /* RLMInjury.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMInjury.swift; sourceTree = "<group>"; };
 		D0C4C801249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationTypeDataProvider+publishing.swift"; sourceTree = "<group>"; };
+		D0C4C803249BFBB000E16023 /* RLMActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMActivity.swift; sourceTree = "<group>"; };
 		D48B06C16950ED61770C4604 /* Pods-educator.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(appstore).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
 		DC05B3CD247C45000014779D /* PanningInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanningInteractionController.swift; sourceTree = "<group>"; };
@@ -716,7 +719,7 @@
 		DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianFeed.swift; sourceTree = "<group>"; };
 		DCF6C69924900B7B00A802BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DCF6C69B24900B7C00A802BD /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		DCF914092492A8650043123F /* RLMActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMActivity.swift; sourceTree = "<group>"; };
+		DCF914092492A8650043123F /* RLMActivityOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMActivityOption.swift; sourceTree = "<group>"; };
 		DCF9140D2492C3B20043123F /* syncOrganizationActivities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = syncOrganizationActivities.swift; sourceTree = "<group>"; };
 		DCF914152497B7DC0043123F /* MarginFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarginFormView.swift; sourceTree = "<group>"; };
 		DCF914172497E28E0043123F /* RLMReminderOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMReminderOption.swift; sourceTree = "<group>"; };
@@ -908,7 +911,7 @@
 				75D62234245B14480032F53D /* RLMInstitution.swift */,
 				75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */,
 				615473EE5A59F3D396DA45E8 /* RLMInjuryOption.swift */,
-				DCF914092492A8650043123F /* RLMActivity.swift */,
+				DCF914092492A8650043123F /* RLMActivityOption.swift */,
 				DCF914172497E28E0043123F /* RLMReminderOption.swift */,
 				DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */,
 				DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */,
@@ -1687,6 +1690,7 @@
 				75EB59BE2461858700E077E5 /* RLMCleanable.swift */,
 				D0C4C7FD249A548200E16023 /* RLMInjury.swift */,
 				D0C4C7FA2499386F00E16023 /* RLMReminder.swift */,
+				D0C4C803249BFBB000E16023 /* RLMActivity.swift */,
 				615478BBE87EEEB048C429BF /* RLMReusable.swift */,
 				615475A03445475FEEADDF5A /* RLMFormTemplate.swift */,
 				75EB59BA2461858700E077E5 /* RLMLogForm.swift */,
@@ -2387,7 +2391,7 @@
 				DCF914162497B7DC0043123F /* MarginFormView.swift in Sources */,
 				75886D4E2419327F0079C080 /* String.swift in Sources */,
 				75EB59CC2461858700E077E5 /* RLMLogSwitcherRow.swift in Sources */,
-				DCF9140A2492A8650043123F /* RLMActivity.swift in Sources */,
+				DCF9140A2492A8650043123F /* RLMActivityOption.swift in Sources */,
 				75886D122419327F0079C080 /* UINVC.swift in Sources */,
 				F67DF820241BFE6800793A9C /* InputTextFormView.swift in Sources */,
 				75886D162419327F0079C080 /* UserProfile.swift in Sources */,
@@ -2537,6 +2541,7 @@
 				61547A6F9C4837D535BAE270 /* RLMStory.swift in Sources */,
 				6154723DA561F399DB79A43F /* StoriesDataProvider+Navigation.swift in Sources */,
 				61547C4BE16D9D0A21B03C31 /* StoriesDataProvider+Title.swift in Sources */,
+				D0C4C804249BFBB000E16023 /* RLMActivity.swift in Sources */,
 				6154781CC1E9D4B79428BC3B /* StoriesDataProvider+Body.swift in Sources */,
 				615478C8AD790AD3861A97B7 /* StoriesDataProvider+Subtitle.swift in Sources */,
 				61547BABEC92F6B130E775CD /* PublishStoryRequestModel.swift in Sources */,
@@ -2554,7 +2559,7 @@
 			files = (
 				75EB59E424618EF600E077E5 /* SyncEngine.swift in Sources */,
 				755EAEC2241AC6CC00A6BA4D /* DataProvider.swift in Sources */,
-				DCF914102493BAAD0043123F /* RLMActivity.swift in Sources */,
+				DCF914102493BAAD0043123F /* RLMActivityOption.swift in Sources */,
 				DCF9141B2497EDCB0043123F /* RLMReminderOption.swift in Sources */,
 				75886D5D2419327F0079C080 /* XibView.swift in Sources */,
 				75886D572419327F0079C080 /* IndicatorProtocol.swift in Sources */,
@@ -2696,6 +2701,7 @@
 				75EB59E624618EF600E077E5 /* SyncEngine+Timer.swift in Sources */,
 				615473AD125A732468C1EFEF /* LogsNoteTableViewCell.swift in Sources */,
 				61547D87D8BB1C3CC4D8FC14 /* LogsPhotoTableViewCell.swift in Sources */,
+				D0C4C805249BFBB500E16023 /* RLMActivity.swift in Sources */,
 				75EB5A25246770A200E077E5 /* OrganizationsAPIService.swift in Sources */,
 				75EB59CB2461858700E077E5 /* RLMLogPhotoRow.swift in Sources */,
 				615472FD03343E8BBC254253 /* LogsViewModelFactory.swift in Sources */,

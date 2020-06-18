@@ -1,7 +1,7 @@
 import CocoaLumberjack
 import RealmSwift
 
-class RLMActivity: RLMDefaults {
+class RLMActivityOption: RLMDefaults {
 
     @objc dynamic var name: String = ""
     @objc dynamic var descriptions: String = ""
@@ -31,10 +31,10 @@ class RLMActivity: RLMDefaults {
     }
 }
 
-extension RLMActivity: SingleValuePickerItem, DataProvider {
+extension RLMActivityOption: SingleValuePickerItem, DataProvider {
     var pickerTextValue: String {
         return name
     }
 }
 
-typealias RLMActivitiesResponse = APIResponse<[RLMActivity]>
+typealias RLMActivitiesResponse = APIResponse<[RLMActivityOption]>

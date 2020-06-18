@@ -26,7 +26,7 @@ class RLMReminder: RLMDefaults, RLMPublishable, DataProvider {
 
             let remOptionId = try container.decode(String.self, forKey: .reminderId)
             self.reminderOption = RLMReminderOption.find(withID: remOptionId)
-            self.message = try container.decode(String.self, forKey: .details)
+            self.message = try container.decode(String?.self, forKey: .details)
 
         } catch {
             DDLogError("JSON Decoding error = \(error)")
@@ -42,7 +42,7 @@ class RLMReminder: RLMDefaults, RLMPublishable, DataProvider {
             try container.encode(subject?.id, forKey: .subjectId)
             if let message = message {
                 if !message.isEmpty {
-                try container.encode(message, forKey: .details)
+                    try container.encode(message, forKey: .details)
                 }
             }
         } catch {

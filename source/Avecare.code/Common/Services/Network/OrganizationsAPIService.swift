@@ -47,7 +47,7 @@ struct OrganizationsAPIService {
     }
 
 
-    static func getAvailableActivities(for organizationId: String, completion: @escaping (Result<[RLMActivity], AppError>) -> Void) {
+    static func getAvailableActivities(for organizationId: String, completion: @escaping (Result<[RLMActivityOption], AppError>) -> Void) {
             DDLogVerbose("")
 
             apiProvider.request(.organizationActivities(id: organizationId)) { result in

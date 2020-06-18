@@ -79,7 +79,7 @@ enum AvecareAPI { // API Services
     case storyDetails(id: String)
     // MARK: - UNITS
     case unitDetails(id: String)
-    case unitCreateActivity(id: String, request: CreateUnitActivityRequest)
+    case unitCreateActivity(id: String, request: RLMActivity)
     case unitDailyTasks(id: String)
     case unitPublishDailyTasks(id: String, request: DailyTaskRequest)
     case unitCreateInjury(payLoad: [RLMInjury])

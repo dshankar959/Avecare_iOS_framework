@@ -68,8 +68,8 @@
 "notification_inspections_and_drills_select_activity_placetolder" = "No activity selected";
 "notification_inspections_and_drills_select_date_title" = "Select Date";
 "notification_inspections_and_drills_select_date_placeholder" = "YY / MM / DD";
-"notification_inspections_and_drills_special_instruction_title" = "Special Instructions (if any)";
-"notification_inspections_and_drills_special_instruction_placeholder" = "140 characters maximum.";
+"activity_instruction_title" = "Special Instructions (if any)";
+"activity_instruction_placeholder" = "140 characters maximum.";
 "notification_injury_report_select_child_title" = "Select Child";
 "notification_injury_report_select_child_placeholder" = "Add a child";
 "notification_injury_report_select_time_title" = "Select Time";
@@ -93,5 +93,7 @@
 "notification_sent_title" = "Notification Sent";
 "injury_notification_sent_message" = "Injury report notification has been sent";
 "reminder_notification_sent_message" = "Reminder notification has been sent";
+"activity_notification_sent_message" = "Class Activity notification has been sent";
 "send_button_title" = "Send";
+"publish_button_title" = "Publish";
 

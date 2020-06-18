@@ -114,14 +114,21 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
     }
 
     func navigationItems(at indexPath: IndexPath, type: NotificationType) -> [DetailsNavigationView.Item] {
+
         var isEnabled = false
+        var publishText = NSLocalizedString("send_button_title", comment: "")
+
         switch type {
+
         case .reminders: isEnabled = reminderFormProvider.isPublishable()
         case .injuryReport: isEnabled = injuryFormProvider.isPublishable()
-        default: break
+        case .classActivity: isEnabled = classActivityFormProvider.isPublishable()
+        case .dailyCheckList:
+            isEnabled = checklistDataProvider.isPublishable()
+            publishText = NSLocalizedString("publish_button_title", comment: "")
+
         }
 
-        let publishText = NSLocalizedString("send_button_title", comment: "")
         let publishColor = isEnabled ? R.color.main() :R.color.lightText4()
 
         return [

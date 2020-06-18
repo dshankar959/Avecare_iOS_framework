@@ -9,11 +9,44 @@ extension DefaultNotificationTypeDataProvider {
             createReminderandPublish()
         case .injuryReport:
             createInjuryReport()
-
-        default:
-            // TODO add logic for publishing other notif types
-            break
+        case .classActivity:
+            createClassActivity()
+        case .dailyCheckList:
+            createCreateDailyChecklist()
         }
+    }
+
+    func createCreateDailyChecklist() {
+        // TODO STEPHEN ... fill in the body here to create realm record and publish to server.
+    }
+
+    func createClassActivity() {
+        let activity = RLMActivity(id: newUUID)
+        activity.activityDate = classActivityFormProvider.activityDate
+        activity.activityOption = classActivityFormProvider.selectedActivity
+        activity.unit = classActivityFormProvider.unit
+        activity.instructions = classActivityFormProvider.activityInstructions
+        RLMActivity.createOrUpdateAll(with: [activity], update: false)
+        classActivityFormProvider.clearAll()
+
+        publsihActivity(activity: activity)
+        self.delegate?.showAlert(title: NSLocalizedString("notification_sent_title", comment: ""),
+        message: NSLocalizedString("activity_notification_sent_message", comment: ""))
+    }
+
+    func publsihActivity(activity: RLMActivity) {
+        if let unitId = RLMSupervisor.details?.primaryUnitId {
+            UnitAPIService.publishActivity(uintId: unitId, data: activity, completion: { result in
+                switch result {
+                case .success(let publishedActivity):
+                    publishedActivity.publishState = .published
+                    RLMActivity.createOrUpdateAll(with: [publishedActivity], update: true)
+                case .failure(let error):
+                    DDLogError("\(error)")
+                }
+            })
+        }
+
     }
 
     func createInjuryReport() {

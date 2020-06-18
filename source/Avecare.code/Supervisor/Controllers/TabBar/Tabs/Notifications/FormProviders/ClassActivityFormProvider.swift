@@ -6,15 +6,16 @@ class ClassActivityFormProvider {
     let indexPath: IndexPath
     weak var delegate: NotificationTypeDataProviderDelegate?
 
-    var selectedActivity: RLMActivity?
+    var selectedActivity: RLMActivityOption?
     var activityDate: Date?
+    var unit: RLMUnit?
 
     var activityDateString: String? {
         guard let date = activityDate else { return nil }
         return dateFormatter.string(from: date)
     }
 
-    var activityInstructions: String?
+    var activityInstructions: String = ""
 
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -25,19 +26,22 @@ class ClassActivityFormProvider {
     init(indexPath: IndexPath) {
         self.indexPath = indexPath
     }
+
+    func updatePublishableState() {
+        self.delegate?.didUpdateModel(at: self.indexPath)
+    }
 }
 
 extension ClassActivityFormProvider: FormProvider {
-    
+
     func isPublishable() -> Bool {
-        // TODO Add completeness check logic when syncing is implemented
-        return false
+        return !(activityDate == nil || selectedActivity == nil)
     }
-    
+
     func form() -> Form {
         var viewModels = [AnyCellViewModel]()
 
-        let activityTypes = RLMActivity.findAll().filter { $0.isActive }
+        let activityTypes = RLMActivityOption.findAll().filter { $0.isActive }
         let activityTypePicker = SingleValuePickerView(values: activityTypes)
         activityTypePicker.backgroundColor = .white
 
@@ -49,10 +53,12 @@ extension ClassActivityFormProvider: FormProvider {
                     activityTypePicker.selectedValue = self?.selectedActivity
                     view.becomeFirstResponder()
                 }, inputView: activityTypePicker, onInput: { [weak self] view, pickerView in
-                    guard let pickerView = pickerView as? SingleValuePickerView<RLMActivity>? else { return }
+                    guard let pickerView = pickerView as? SingleValuePickerView<RLMActivityOption>? else { return }
                     let selectedValue = pickerView?.selectedValue
                     self?.selectedActivity = selectedValue
                     view.setTextValue(selectedValue?.description)
+                    self?.updatePublishableState()
+
                 }))
 
         let datePicker = UIDatePicker()
@@ -72,20 +78,28 @@ extension ClassActivityFormProvider: FormProvider {
                     guard let datePicker = datePicker as? UIDatePicker else { return }
                     self?.activityDate = datePicker.date
                     view.setTextValue(self?.activityDateString)
+                    self?.updatePublishableState()
                 }))
 
         viewModels.append(DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right))
-
         viewModels.append(MarginFormViewModel(height: 20))
 
-        // swiftlint:disable line_length
-        viewModels.append(InputTextFormViewModel(title: NSLocalizedString("notification_inspections_and_drills_special_instruction_title", comment: ""),
-                                                 placeholder: NSLocalizedString("notification_inspections_and_drills_special_instruction_placeholder", comment: ""),
-                                                 value: activityInstructions) { [weak self] _, textValue in
-            self?.activityInstructions = textValue
-        })
-        // swiftlint:enable line_length
+        viewModels.append(InputTextFormViewModel(title: NSLocalizedString("activity_instruction_title",
+                                                                          comment: ""),placeholder: NSLocalizedString("activity_instruction_placeholder", comment: ""),
+                                         value: activityInstructions,
+        onChange: { [weak self] (_, textValue) in
+            self?.activityInstructions = textValue ?? ""
+            }))
 
         return Form(viewModels: viewModels)
     }
+
+    func clearAll() {
+        selectedActivity = nil
+        activityDate = nil
+        unit = nil
+        activityInstructions = ""
+        updatePublishableState()
+    }
 }
+
