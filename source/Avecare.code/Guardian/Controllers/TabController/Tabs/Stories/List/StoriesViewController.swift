@@ -1,8 +1,8 @@
 import UIKit
-import SwiftPullToRefresh
 
 
-class StoriesListViewController: UIViewController, IndicatorProtocol {
+
+class StoriesListViewController: UIViewController, IndicatorProtocol, PullToRefreshProtocol {
 
     @IBOutlet weak var subjectFilterButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -11,6 +11,8 @@ class StoriesListViewController: UIViewController, IndicatorProtocol {
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
     weak var subjectSelection: SubjectSelectionProtocol?
+
+    var pullToRefreshHeaderView: PullToRefreshHeaderView!
 
 
     override func viewDidLoad() {
@@ -25,16 +27,19 @@ class StoriesListViewController: UIViewController, IndicatorProtocol {
 
         self.navigationController?.hideHairline()
 
-        // Set pull-to-refresh
-        tableView.spr_setIndicatorHeader { [weak self] in
+        setupPullToRefresh(for: self.tableView) { [weak self] in
+            // Retrieve data
             self?.syncDown { error in
+                if let uiTableView = self?.tableView {
+                    self?.endPullToRefresh(for: uiTableView)
+                }
                 if let error = error {
                     self?.showErrorAlert(error)
                 }
                 self?.updateScreen()
-                self?.tableView.spr_endRefreshing()
             }
         }
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
