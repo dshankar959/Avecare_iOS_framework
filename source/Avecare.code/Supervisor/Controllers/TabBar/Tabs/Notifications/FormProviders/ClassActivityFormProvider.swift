@@ -56,7 +56,7 @@ extension ClassActivityFormProvider: FormProvider {
                     guard let pickerView = pickerView as? SingleValuePickerView<RLMActivityOption>? else { return }
                     let selectedValue = pickerView?.selectedValue
                     self?.selectedActivity = selectedValue
-                    view.setTextValue(selectedValue?.description)
+                    view.setTextValue(selectedValue?.name)
                     self?.updatePublishableState()
 
                 }))

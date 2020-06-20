@@ -1,8 +1,8 @@
 import UIKit
+import SwiftPullToRefresh
 
 
-
-class StoriesListViewController: UIViewController {
+class StoriesListViewController: UIViewController, IndicatorProtocol {
 
     @IBOutlet weak var subjectFilterButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -24,12 +24,33 @@ class StoriesListViewController: UIViewController {
         ])
 
         self.navigationController?.hideHairline()
-    }
 
+        // Set pull-to-refresh
+        tableView.spr_setIndicatorHeader { [weak self] in
+            self?.syncDown { error in
+                if let error = error {
+                    self?.showErrorAlert(error)
+                }
+                self?.updateScreen()
+                self?.tableView.spr_endRefreshing()
+            }
+        }
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateScreen()
+    }
+
+    private func syncDown(completion: @escaping (AppError?) -> Void) {
+        syncEngine.syncAll { error in
+            syncEngine.print_isSyncingStatus_description()
+            if let error = error {
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
     }
 
 
@@ -66,9 +87,9 @@ class StoriesListViewController: UIViewController {
 
     private func updateScreen() {
         if let selectedSubject = subjectSelection?.subject {
-            dataProvider.unitIds = Array(selectedSubject.unitIds)
+            dataProvider.refreshData(with: Array(selectedSubject.unitIds))
         } else {
-            dataProvider.unitIds = [String]()
+            dataProvider.refreshData(with: [String]())
         }
 
         updateSubjectFilterButton()

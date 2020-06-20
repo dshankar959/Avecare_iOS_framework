@@ -47,6 +47,27 @@ struct OrganizationsAPIService {
     }
 
 
+    static func getAvailableDailyTasks(for organizationId: String, completion: @escaping (Result<[RLMDailyTask], AppError>) -> Void) {
+            DDLogVerbose("")
+
+            apiProvider.request(.organizationDailyTasks(id: organizationId)) { result in
+    //                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(RLMDailyTasksResponse.self)
+                    completion(.success(mappedResponse.results))
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    completion(.failure(JSONError.failedToMapData.message))
+                }
+            case .failure(let error):
+                completion(.failure(getAppErrorFromMoya(with: error)))
+            }
+        }
+    }
+
+
     static func getAvailableActivities(for organizationId: String, completion: @escaping (Result<[RLMActivityOption], AppError>) -> Void) {
             DDLogVerbose("")
 
