@@ -1094,12 +1094,12 @@
 			path = FormProviders;
 			sourceTree = "<group>";
 		};
-		61547AD82550C7909011E04B /* NavigationBehavior */ = {
+		61547AD82550C7909011E04B /* NavigationBehaviour */ = {
 			isa = PBXGroup;
 			children = (
 				615477E9EA0A24EDE13EAC17 /* SubjectListDataProvider+NavItems.swift */,
 			);
-			path = NavigationBehavior;
+			path = NavigationBehaviour;
 			sourceTree = "<group>";
 		};
 		61547D0B8D0292B053F6BF24 /* Cells */ = {
@@ -1612,7 +1612,7 @@
 				75886DB0241932BA0079C080 /* SubjectListTableViewCell.swift */,
 				75886DB2241932BA0079C080 /* Logs.storyboard */,
 				615474CE5DC3A3CCACAAD0D6 /* FormBehavior */,
-				61547AD82550C7909011E04B /* NavigationBehavior */,
+				61547AD82550C7909011E04B /* NavigationBehaviour */,
 			);
 			path = Logs;
 			sourceTree = "<group>";
