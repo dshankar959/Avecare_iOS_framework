@@ -69,13 +69,12 @@ extension SubjectListDataProvider: IndicatorProtocol {
 
         SubjectsAPIService.publishDailyLog(log: request) { [weak self] result in
             switch result {
-            case .success:
+            case .success(let response):
                 DDLogVerbose("success")
                 self?.showSuccessIndicator(withStatus: "Published")
 
                 RLMLogForm.writeTransaction {
-                    let date = Date() // FIXME: ideally this should be date from server response
-                    form.serverLastUpdated = date
+                    form.serverLastUpdated = response.logForm.serverLastUpdated
                     form.publishState = .published
                 }
 

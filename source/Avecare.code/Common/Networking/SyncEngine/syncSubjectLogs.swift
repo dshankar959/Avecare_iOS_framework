@@ -53,8 +53,8 @@ extension SyncEngine {
                     return
                 }
 
-                // Check if today's log is in db in supervisor app, don't download
                 if appSession.userProfile.isSupervisor {
+                    // Check if today's subject log is already in our database.
                     let savedLogs = RLMLogForm.findAll(withSubjectID: subjectId)
                     let sortedLogs = RLMLogForm.sortObjectsByLastUpdated(order: .orderedAscending, savedLogs)
                     if let lastSavedLog = sortedLogs.last,
@@ -63,7 +63,6 @@ extension SyncEngine {
                         return
                     }
                 }
-
 
                 let semaphore = DispatchSemaphore(value: 0) // serialize async API executions in this thread.
                 let request = SubjectsAPIService.SubjectLogsRequest(id: subjectId)
@@ -82,7 +81,7 @@ extension SyncEngine {
                             logForm.id = log.id
                             // link with subject
                             logForm.subject = RLMSubject.find(withID: subjectId)
-                            // set server "date" title. (note: not really lastUpdated)
+                            // set server "date" title. (note: not really lastUpdated, but it's all we got)
                             logForm.serverLastUpdated = log.date
                             // mark as published
                             logForm.publishState = .published
@@ -108,16 +107,9 @@ extension SyncEngine {
                             subjectLogForms.append(logForm)
                         }
 
-                        // for supervisor to sync down just today's date
-                        if appSession.userProfile.isSupervisor {
-                            RLMLogForm.findAll(withSubjectID: subjectId).forEach({
-                                $0.clean()
-                                $0.delete()
-                            })
-                        }
-
                         // Update DB with new data.
                         RLMLogForm.createOrUpdateAll(with: subjectLogForms)
+
                     case .failure:
                         self?.syncStates[syncKey] = .complete
                     }
@@ -143,4 +135,5 @@ extension SyncEngine {
         OperationQueue.main.addOperation(completionOperation)
         operationQueue.addOperations(operations, waitUntilFinished: false)  // trigger!
     }
+
 }

@@ -51,7 +51,6 @@ struct OrganizationsAPIService {
             DDLogVerbose("")
 
             apiProvider.request(.organizationDailyTasks(id: organizationId)) { result in
-    //                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
             switch result {
             case .success(let response):
                 do {
@@ -72,7 +71,6 @@ struct OrganizationsAPIService {
             DDLogVerbose("")
 
             apiProvider.request(.organizationActivities(id: organizationId)) { result in
-    //                            callbackQueue: DispatchQueue.global(qos: .default)) { result in
             switch result {
             case .success(let response):
                 do {
@@ -114,7 +112,6 @@ struct OrganizationsAPIService {
         DDLogVerbose("")
 
         apiProvider.request(.organizationReminders(id: organizationId)) { result in
-//            callbackQueue: DispatchQueue.global(qos: .default)) { result in
             switch result {
             case .success(let response):
                 do {
@@ -129,4 +126,5 @@ struct OrganizationsAPIService {
             }
         }
     }
+
 }

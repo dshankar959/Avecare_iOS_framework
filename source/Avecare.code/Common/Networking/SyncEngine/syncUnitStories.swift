@@ -59,7 +59,7 @@ extension SyncEngine {
 
                 let completionOperation = BlockOperation {
                     guard let apiResult = apiResult else {
-                        // TODO: msg
+                        DDLogWarn("??? 🤔")
                         syncCompletion(nil)
                         return
                     }
@@ -94,7 +94,6 @@ extension SyncEngine {
                                 stories.forEach({
                                     $0.unit = unit
                                     $0.publishState = .published
-                                    // TODO: server date
                                 })
                                 // Update with new data.
                                 RLMStory.createOrUpdateAll(with: stories)
