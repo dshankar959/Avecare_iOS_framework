@@ -244,7 +244,6 @@
 		75886DF9241932BA0079C080 /* LeftSideNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DCF241932BA0079C080 /* LeftSideNavigationBarView.swift */; };
 		75886DFA241932BA0079C080 /* LeftSideNavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75886DD0241932BA0079C080 /* LeftSideNavigationBarView.xib */; };
 		75D0ACF7249C28E2007562D0 /* PullToRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */; };
-		75D0ACF8249C28E2007562D0 /* PullToRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */; };
 		75D62235245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
 		75D62236245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
 		75D7FF5C2470FC6F0002E1F9 /* LogFormAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615473C479A061F759D2F5FC /* LogFormAPIModel.swift */; };
@@ -365,6 +364,7 @@
 		DC71E1AA249BC63700CB3D10 /* RLMDailyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1A8249BC4E200CB3D10 /* RLMDailyTask.swift */; };
 		DC71E1AC249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1AB249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift */; };
 		DC71E1AD249BC7D000CB3D10 /* syncOrganizationDailyTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1AB249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift */; };
+		DC71E1AE249FAA9C00CB3D10 /* PullToRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */; };
 		DC8B7E02248A80270000414D /* ImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B7E00248A80270000414D /* ImageCropViewController.swift */; };
 		DC8B7E03248A80270000414D /* ImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B7E00248A80270000414D /* ImageCropViewController.swift */; };
 		DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
@@ -919,13 +919,10 @@
 				615472657DF3223E8A839F22 /* RLMUnit.swift */,
 				75D62234245B14480032F53D /* RLMInstitution.swift */,
 				75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */,
-				615473EE5A59F3D396DA45E8 /* RLMInjuryOption.swift */,
-				DCF914092492A8650043123F /* RLMActivityOption.swift */,
-				DCF914172497E28E0043123F /* RLMReminderOption.swift */,
 				DC71E1A8249BC4E200CB3D10 /* RLMDailyTask.swift */,
-				DCF914092492A8650043123F /* RLMActivity.swift */,
-				615473EE5A59F3D396DA45E8 /* RLMInjury.swift */,
-				DCF914172497E28E0043123F /* RLMReminder.swift */,
+				DCF914092492A8650043123F /* RLMActivityOption.swift */,
+				615473EE5A59F3D396DA45E8 /* RLMInjuryOption.swift */,
+				DCF914172497E28E0043123F /* RLMReminderOption.swift */,
 				DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */,
 				DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */,
 				61547CBAC0180C2D2092DD1A /* CreateUnitActivity.swift */,
@@ -2620,6 +2617,7 @@
 				75886D152419327F0079C080 /* LocationManager.swift in Sources */,
 				DC225E3F246C787F00094BB0 /* DateCell.swift in Sources */,
 				75D62236245B14490032F53D /* RLMInstitution.swift in Sources */,
+				DC71E1AE249FAA9C00CB3D10 /* PullToRefreshProtocol.swift in Sources */,
 				DC5E990C24755B990088083C /* EducatorDetailsDataProvider.swift in Sources */,
 				756D6A19246DE37500DF17E7 /* RLMFormTemplate.swift in Sources */,
 				75886D352419327F0079C080 /* DiskHelper.swift in Sources */,
