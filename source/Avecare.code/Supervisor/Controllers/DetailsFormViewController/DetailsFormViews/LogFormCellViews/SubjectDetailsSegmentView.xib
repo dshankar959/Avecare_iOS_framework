@@ -61,7 +61,10 @@
                             </connections>
                         </segmentedControl>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6EB-YO-wsO">
-                            <rect key="frame" x="569.5" y="16" width="76" height="29"/>
+                            <rect key="frame" x="569.5" y="3" width="76" height="55"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="55" id="T2t-zn-xnm"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="7am - 10am">
                                 <color key="titleColor" name="LightText"/>
@@ -79,12 +82,13 @@
                     </subviews>
                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="6EB-YO-wsO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="0iq-EH-5x2"/>
+                        <constraint firstItem="6EB-YO-wsO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="3" id="0iq-EH-5x2"/>
                         <constraint firstItem="qe1-ql-SUf" firstAttribute="leading" secondItem="wnl-kc-wgp" secondAttribute="leading" constant="20" id="68Z-ZX-TlS"/>
                         <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="qe1-ql-SUf" secondAttribute="bottom" constant="16" id="J5w-sO-DEj"/>
                         <constraint firstItem="w9k-pw-jav" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="Lcq-JP-xaf"/>
                         <constraint firstItem="wnl-kc-wgp" firstAttribute="leading" secondItem="BL3-JW-Msd" secondAttribute="leading" id="NBz-6N-rA9"/>
                         <constraint firstItem="w9k-pw-jav" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="Rni-GE-sDn"/>
+                        <constraint firstItem="qe1-ql-SUf" firstAttribute="top" secondItem="6EB-YO-wsO" secondAttribute="bottom" constant="6" id="Sfn-MA-WMK"/>
                         <constraint firstItem="BL3-JW-Msd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="16" id="aqH-k4-zu0"/>
                         <constraint firstItem="BL3-JW-Msd" firstAttribute="leading" secondItem="w9k-pw-jav" secondAttribute="trailing" constant="12" id="eEt-Pl-Bf3"/>
                         <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6EB-YO-wsO" secondAttribute="trailing" constant="16" id="hgk-oq-fqd"/>
