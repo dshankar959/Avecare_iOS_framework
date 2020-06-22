@@ -1,7 +1,7 @@
 import CocoaLumberjack
 import RealmSwift
 
-class RLMDailyTask: RLMDefaults {
+class RLMDailyTaskOption: RLMDefaults {
 
     @objc dynamic var name: String = ""
     @objc dynamic var descriptions: String = ""
@@ -34,10 +34,10 @@ class RLMDailyTask: RLMDefaults {
     }
 }
 
-extension RLMDailyTask: SingleValuePickerItem, DataProvider {
+extension RLMDailyTaskOption: SingleValuePickerItem, DataProvider {
     var pickerTextValue: String {
         return name
     }
 }
 
-typealias RLMDailyTasksResponse = APIResponse<[RLMDailyTask]>
+typealias RLMDailyTasksResponse = APIResponse<[RLMDailyTaskOption]>

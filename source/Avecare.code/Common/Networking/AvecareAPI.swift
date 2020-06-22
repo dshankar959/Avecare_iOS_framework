@@ -80,8 +80,8 @@ enum AvecareAPI { // API Services
     case storyDetails(id: String)
     // MARK: - UNITS
     case unitDetails(id: String)
+    case unitPublishDailyTaskForm(id: String, request: RLMDailyTaskForm)
     case unitCreateActivity(id: String, request: RLMActivity)
-    case unitPublishDailyTasks(id: String, request: DailyTaskRequest)
     case unitCreateInjury(payLoad: [RLMInjury])
     case unitCreateReminder(payLoad: [RLMReminder])
     case unitSubjects(id: String)
@@ -133,7 +133,7 @@ extension AvecareAPI: TargetType {
 
         case .unitDetails(let id): return "/units/\(id)"
         case .unitCreateActivity(let id, _): return "/units/\(id)/activities/"
-        case .unitPublishDailyTasks(let id, _): return "/units/\(id)/daily-tasks/"
+        case .unitPublishDailyTaskForm(let id, _): return "/units/\(id)/daily-tasks/"
         case .unitSubjects(let id): return "/units/\(id)/subjects"
         case .unitSupervisors(let id): return "/units/\(id)/supervisors"
         case .unitPublishStory(let story): return "/units/\(story.unitId)/stories/"
@@ -153,7 +153,7 @@ extension AvecareAPI: TargetType {
              .oneTimePassword,
              .logout,
              .unitCreateActivity,
-             .unitPublishDailyTasks,
+             .unitPublishDailyTaskForm,
              .unitCreateInjury,
              .unitCreateReminder,
              .subjectPublishDailyLog,
@@ -172,7 +172,7 @@ extension AvecareAPI: TargetType {
             return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
 
         case .unitCreateActivity(_, let request as Encodable),
-             .unitPublishDailyTasks(_, let request as Encodable),
+             .unitPublishDailyTaskForm(_, let request as Encodable),
              .unitCreateInjury(let request as Encodable),
              .unitCreateReminder(let request as Encodable):
             let encoder = JSONEncoder()
@@ -197,7 +197,7 @@ extension AvecareAPI: TargetType {
         case .subjectPublishDailyLog(let request as MultipartEncodable),
              .unitPublishStory(let request as MultipartEncodable):
             return .uploadMultipart(request.formData)
-            
+
         default:
             return .requestPlain
         }

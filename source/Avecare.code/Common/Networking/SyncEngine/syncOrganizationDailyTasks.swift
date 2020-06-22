@@ -32,8 +32,8 @@ extension SyncEngine {
                 switch result {
                 case .success(let dailyTasks):
                     // Update with new data.
-                    RLMDailyTask.createOrUpdateAll(with: dailyTasks)
-                    DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMDailyTask.className())\' items in DB: \(RLMDailyTask.findAll().count)")
+                    RLMDailyTaskOption.createOrUpdateAll(with: dailyTasks)
+                    DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMDailyTaskOption.className())\' items in DB: \(RLMDailyTaskOption.findAll().count)")
                     self?.syncStates[syncKey] = .complete
                     syncCompletion(nil)
                 case .failure(let error):

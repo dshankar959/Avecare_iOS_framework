@@ -61,5 +61,3 @@ class RLMActivity: RLMDefaults, RLMPublishable, DataProvider {
 
     }
 }
-
-

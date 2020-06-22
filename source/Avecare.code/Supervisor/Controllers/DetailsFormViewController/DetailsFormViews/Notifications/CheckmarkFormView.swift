@@ -4,6 +4,7 @@ import UIKit
 struct CheckmarkFormViewModel: CellViewModel {
     typealias CellType = CheckmarkFormView
 
+    let isEditable: Bool
     let title: String
     let isChecked: Bool
     let onClick: (() -> Void)?
@@ -11,7 +12,9 @@ struct CheckmarkFormViewModel: CellViewModel {
     func setup(cell: CellType) {
         cell.checkmarkButton.isSelected = isChecked
         cell.checkmarkButton.setTitle(title, for: .normal)
-        cell.onClick = onClick
+        if isEditable {
+            cell.onClick = onClick
+        }
     }
 }
 

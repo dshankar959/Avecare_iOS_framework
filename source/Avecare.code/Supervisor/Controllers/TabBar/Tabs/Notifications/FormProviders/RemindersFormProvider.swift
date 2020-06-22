@@ -44,7 +44,7 @@ class RemindersFormProvider {
 
 
 extension RemindersFormProvider: FormProvider {
-    
+
     func isPublishable() -> Bool {
         return !(subjects.count == 0 || selectedReminder == nil)
     }

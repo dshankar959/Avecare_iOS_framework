@@ -47,7 +47,7 @@ struct OrganizationsAPIService {
     }
 
 
-    static func getAvailableDailyTasks(for organizationId: String, completion: @escaping (Result<[RLMDailyTask], AppError>) -> Void) {
+    static func getAvailableDailyTasks(for organizationId: String, completion: @escaping (Result<[RLMDailyTaskOption], AppError>) -> Void) {
             DDLogVerbose("")
 
             apiProvider.request(.organizationDailyTasks(id: organizationId)) { result in
