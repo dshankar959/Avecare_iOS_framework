@@ -38,7 +38,13 @@ class DefaultSupervisorsDataProvider: SupervisorsDataProvider {
     private func filter(for supervisors: [RLMSupervisor], with unitIds: [String]) -> [RLMSupervisor] {
         var result = [RLMSupervisor]()
         unitIds.forEach { unitId in
-            let filteredSupervisors = supervisors.filter { $0.primaryUnitId == unitId }
+            var filteredSupervisors = [RLMSupervisor]()
+            for supervisor in supervisors {
+                for supervisorUnitId in supervisor.unitIds where unitId == supervisorUnitId {
+                    filteredSupervisors.append(supervisor)
+                    break
+                }
+            }
             result.append(contentsOf: filteredSupervisors)
         }
         return result

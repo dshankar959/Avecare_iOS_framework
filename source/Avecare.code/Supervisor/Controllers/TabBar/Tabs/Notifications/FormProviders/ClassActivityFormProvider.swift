@@ -84,12 +84,14 @@ extension ClassActivityFormProvider: FormProvider {
         viewModels.append(DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right))
         viewModels.append(MarginFormViewModel(height: 20))
 
+        // swiftlint:disable line_length
         viewModels.append(InputTextFormViewModel(title: NSLocalizedString("notification_inspections_and_drills_special_instruction_title", comment: ""),
                                                  placeholder: NSLocalizedString("notification_inspections_and_drills_special_instruction_placeholder", comment: ""),
                                                  value: activityInstructions,
         onChange: { [weak self] (_, textValue) in
             self?.activityInstructions = textValue ?? ""
             }))
+        // swiftlint: enable line_length
 
         return Form(viewModels: viewModels)
     }
