@@ -47,11 +47,12 @@ class StoriesListViewController: UIViewController, IndicatorProtocol, PullToRefr
     }
 
     private func refreshData(completion: @escaping (AppError?) -> Void) {
-        if let navController = tabBarController?.viewControllers?.first as? UINavigationController,
-            let homeVC = navController.viewControllers.first as? HomeViewController {
-            homeVC.refreshData { error in
+        if let tabBarController = tabBarController as? GuardianTabBarController {
+            tabBarController.refreshData { error in
                 completion(error)
             }
+        } else {
+            fatalError("Cannot find GuardianTabBarController")
         }
     }
 

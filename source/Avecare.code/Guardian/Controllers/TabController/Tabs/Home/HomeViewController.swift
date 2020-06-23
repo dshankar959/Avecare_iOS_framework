@@ -21,7 +21,11 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        subjectSelection = tabBarController as? GuardianTabBarController
+
+        if let tabBarController = tabBarController as? GuardianTabBarController {
+            subjectSelection = tabBarController
+            tabBarController.homeViewController = self
+        }
 
         tableView.register(nibModels: [
             LogsNoteTableViewCellModel.self,
