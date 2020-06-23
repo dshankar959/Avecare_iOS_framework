@@ -49,23 +49,22 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
             DDLogInfo("ℹ️ sync/refresh")
             self.triggerPullToRefresh(for: self.tableView)
         })
-
     }
 
 
     private func fetchFeeds(completion: @escaping (AppError?) -> Void) {
-        dataProvider.fetchFeeds { error in
+        // sync syncengine, then fetch feeds
+        syncEngine.syncAll { error in
+            syncEngine.print_isSyncingStatus_description()
             if let error = error {
                 completion(error)
-            }
-
-            syncEngine.syncAll { error in
-                syncEngine.print_isSyncingStatus_description()
-                if let error = error {
-                    completion(error)
-                } else {
-                    self.dataProvider.filterDataSource(with: self.subjectSelection?.subject?.id)
-                    completion(nil)
+            } else {
+                self.dataProvider.fetchFeeds { error in
+                    if let error = error {
+                        completion(error)
+                    } else {
+                        completion(nil)
+                    }
                 }
             }
         }

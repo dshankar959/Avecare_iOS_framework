@@ -19,7 +19,7 @@ protocol SupervisorsDataProvider: class {
 
 class DefaultSupervisorsDataProvider: SupervisorsDataProvider {
 
-    private let supervisors = RLMSupervisor.findAll()
+    private lazy var supervisors = RLMSupervisor.findAll()
     private let storage = DocumentService()
 
     private var dataSource = [RLMSupervisor]()
@@ -33,7 +33,6 @@ class DefaultSupervisorsDataProvider: SupervisorsDataProvider {
             }
         }
     }
-
 
     private func filter(for supervisors: [RLMSupervisor], with unitIds: [String]) -> [RLMSupervisor] {
         var result = [RLMSupervisor]()

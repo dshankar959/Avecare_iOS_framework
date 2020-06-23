@@ -25,13 +25,6 @@ class DefaultHomeDataProvider: HomeDataProvider {
     private var subjectDict = [String: RLMSubject]()
     private let storage = DocumentService()
 
-    init() {
-        let subjects = RLMSubject.findAll()
-        subjects.forEach { subject in
-            subjectDict[subject.id] = subject
-        }
-    }
-
     /*
         return []   // hide for now until we have integrated with API
         return [
@@ -92,6 +85,13 @@ class DefaultHomeDataProvider: HomeDataProvider {
     }
 
     func fetchFeeds(completion: @escaping (AppError?) -> Void) {
+        // construct subjectDict
+        let subjects = RLMSubject.findAll()
+        subjects.forEach { subject in
+            subjectDict[subject.id] = subject
+        }
+
+        // fetch feeds
         if let guardianId = appSession.userProfile.accountTypeId {
             GuardiansAPIService.getGuardianFeed(for: guardianId) { result in
                 switch result {
@@ -112,8 +112,8 @@ class DefaultHomeDataProvider: HomeDataProvider {
             let filteredFeed = fetchedFeed.filter { $0.subjectId == subjectId }
             constructDataSource(with: filteredFeed)
         } else {
-            let refarctoredFeeds = removeDuplicatedFeeds(from: fetchedFeed)
-            constructDataSource(with: refarctoredFeeds)
+            let refactoredFeeds = removeDuplicatedFeeds(from: fetchedFeed)
+            constructDataSource(with: refactoredFeeds)
         }
     }
 
@@ -175,7 +175,6 @@ class DefaultHomeDataProvider: HomeDataProvider {
                         records: sectionItems)
             )
         }
-
     }
 
 
