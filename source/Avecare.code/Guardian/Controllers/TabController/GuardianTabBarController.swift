@@ -12,6 +12,7 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
     // shared subject selection
     var subject: RLMSubject?
     var loginFlowNavigation: UINavigationController?
+    var homeViewController: HomeViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,9 +20,13 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
     }
 
     func onLogout() {
-        if let loginFlowNavigation = loginFlowNavigation {
-            loginFlowNavigation.popToRootViewController(animated: false)
-        }
+        loginFlowNavigation?.popToRootViewController(animated: false)
         dismiss(animated: true, completion: nil)
+    }
+
+    func refreshData(completion: @escaping (AppError?) -> Void) {
+        homeViewController?.refreshData(completion: { (error) in
+            completion(error)
+        })
     }
 }

@@ -21,7 +21,11 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        subjectSelection = tabBarController as? GuardianTabBarController
+
+        if let tabBarController = tabBarController as? GuardianTabBarController {
+            subjectSelection = tabBarController
+            tabBarController.homeViewController = self
+        }
 
         tableView.register(nibModels: [
             LogsNoteTableViewCellModel.self,
@@ -34,7 +38,7 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
 
         setupPullToRefresh(for: self.tableView) { [weak self] in
             // Retrieve data
-            self?.fetchFeeds { error in
+            self?.refreshData { error in
                 if let uiTableView = self?.tableView {
                     self?.endPullToRefresh(for: uiTableView)
                 }
@@ -49,23 +53,25 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
             DDLogInfo("ℹ️ sync/refresh")
             self.triggerPullToRefresh(for: self.tableView)
         })
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if pullToRefreshHeaderView.isHidden {
+            updateScreen()
+        }
     }
 
 
-    private func fetchFeeds(completion: @escaping (AppError?) -> Void) {
-        dataProvider.fetchFeeds { error in
+    func refreshData(completion: @escaping (AppError?) -> Void) {
+        // sync syncengine, then fetch feeds
+        syncEngine.syncAll { error in
+            syncEngine.print_isSyncingStatus_description()
             if let error = error {
                 completion(error)
-            }
-
-            syncEngine.syncAll { error in
-                syncEngine.print_isSyncingStatus_description()
-                if let error = error {
+            } else {
+                self.dataProvider.fetchFeeds { error in
                     completion(error)
-                } else {
-                    self.dataProvider.filterDataSource(with: self.subjectSelection?.subject?.id)
-                    completion(nil)
                 }
             }
         }
