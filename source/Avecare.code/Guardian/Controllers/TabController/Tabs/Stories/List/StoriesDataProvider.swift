@@ -105,6 +105,7 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
     private func constructDataSource(with unitIds: [String]) {
         if unitIds.count > 0 {
             dataSource = filter(for: stories, with: unitIds)
+            sort()
         } else {
             dataSource = stories
             sort()
