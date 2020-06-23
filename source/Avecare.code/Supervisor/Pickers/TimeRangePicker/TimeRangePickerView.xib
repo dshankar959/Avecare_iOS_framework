@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TimeRangePickerView" customModule="educator" customModuleProvider="target">
             <connections>
                 <outlet property="endTimePicker" destination="pgp-lE-bPS" id="zj6-Ks-Nea"/>
+                <outlet property="pickerTitlesView" destination="Na0-EH-J0s" id="eBE-OD-ejv"/>
                 <outlet property="startTimePicker" destination="bCL-TA-6XA" id="QiH-Of-iYn"/>
             </connections>
         </placeholder>
@@ -19,45 +20,52 @@
             <rect key="frame" x="0.0" y="0.0" width="442" height="270"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="FROM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYd-yb-lZj">
-                    <rect key="frame" x="90" y="8" width="41" height="17"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="TO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sor-s2-bEe">
-                    <rect key="frame" x="322" y="8" width="19.5" height="17"/>
-                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bCL-TA-6XA">
-                    <rect key="frame" x="0.0" y="35" width="221" height="235"/>
-                    <connections>
-                        <action selector="pickerValueDidChange:" destination="-1" eventType="valueChanged" id="orP-F8-vEs"/>
-                    </connections>
-                </datePicker>
-                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="pgp-lE-bPS">
-                    <rect key="frame" x="221" y="35" width="221" height="235"/>
-                    <connections>
-                        <action selector="pickerValueDidChange:" destination="-1" eventType="valueChanged" id="5N5-fL-xPn"/>
-                    </connections>
-                </datePicker>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="PzV-Sj-87m">
+                    <rect key="frame" x="0.0" y="0.0" width="442" height="270"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Na0-EH-J0s">
+                            <rect key="frame" x="0.0" y="0.0" width="442" height="17"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="FROM" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SYd-yb-lZj">
+                                    <rect key="frame" x="0.0" y="0.0" width="221" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="TO" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sor-s2-bEe">
+                                    <rect key="frame" x="221" y="0.0" width="221" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="rtm-Ao-EjG">
+                            <rect key="frame" x="0.0" y="17" width="442" height="253"/>
+                            <subviews>
+                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bCL-TA-6XA">
+                                    <rect key="frame" x="0.0" y="0.0" width="221" height="253"/>
+                                    <connections>
+                                        <action selector="pickerValueDidChange:" destination="-1" eventType="valueChanged" id="orP-F8-vEs"/>
+                                    </connections>
+                                </datePicker>
+                                <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="pgp-lE-bPS">
+                                    <rect key="frame" x="221" y="0.0" width="221" height="253"/>
+                                    <connections>
+                                        <action selector="pickerValueDidChange:" destination="-1" eventType="valueChanged" id="5N5-fL-xPn"/>
+                                    </connections>
+                                </datePicker>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="sor-s2-bEe" firstAttribute="centerX" secondItem="pgp-lE-bPS" secondAttribute="centerX" id="2KP-uT-BWF"/>
-                <constraint firstItem="bCL-TA-6XA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="BPJ-Yk-aVy"/>
-                <constraint firstItem="SYd-yb-lZj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="Bjl-Md-Jox"/>
-                <constraint firstItem="pgp-lE-bPS" firstAttribute="leading" secondItem="bCL-TA-6XA" secondAttribute="trailing" id="FqM-ou-AY8"/>
-                <constraint firstItem="bCL-TA-6XA" firstAttribute="top" secondItem="SYd-yb-lZj" secondAttribute="bottom" constant="10" id="MQb-XI-ut3"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pgp-lE-bPS" secondAttribute="trailing" id="UL1-BN-MLC"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="pgp-lE-bPS" secondAttribute="bottom" id="gYR-eH-AQM"/>
-                <constraint firstItem="SYd-yb-lZj" firstAttribute="centerX" secondItem="bCL-TA-6XA" secondAttribute="centerX" id="lhS-5o-Un5"/>
-                <constraint firstItem="pgp-lE-bPS" firstAttribute="top" secondItem="sor-s2-bEe" secondAttribute="bottom" constant="10" id="mnW-Lb-KBu"/>
-                <constraint firstItem="sor-s2-bEe" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="qge-7M-m44"/>
-                <constraint firstItem="pgp-lE-bPS" firstAttribute="width" secondItem="bCL-TA-6XA" secondAttribute="width" id="uuv-nG-YXE"/>
-                <constraint firstItem="bCL-TA-6XA" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="vl8-1g-UmL"/>
+                <constraint firstItem="PzV-Sj-87m" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="KBc-kC-nxx"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="PzV-Sj-87m" secondAttribute="bottom" id="ahY-NA-hAy"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="PzV-Sj-87m" secondAttribute="trailing" id="qzL-gk-nON"/>
+                <constraint firstItem="PzV-Sj-87m" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ybV-aZ-mUR"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

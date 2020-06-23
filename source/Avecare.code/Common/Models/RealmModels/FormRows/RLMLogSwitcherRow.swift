@@ -20,7 +20,7 @@ class RLMLogSwitcherRow: Object, Decodable, FormRowIconProtocol {
     @objc dynamic var title = ""
     @objc dynamic var subtitle = ""
     @objc dynamic var startTime = Date()
-    @objc dynamic var endTime = Date(timeIntervalSinceNow: 30 * 60)
+    @objc dynamic var endTime: Date? // = Date(timeIntervalSinceNow: 30 * 60)
 
     @objc dynamic var selectedValue: Int = 0
     let options = List<RLMOptionValue>()
@@ -69,7 +69,9 @@ extension RLMLogSwitcherRow: Encodable {
         try container.encode(title, forKey: .title)
         try container.encode(subtitle, forKey: .subtitle)
         try container.encode(formatter.string(from: startTime), forKey: .startTime)
-        try container.encode(formatter.string(from: endTime), forKey: .endTime)
+        if let endTime = endTime {
+            try container.encode(formatter.string(from: endTime), forKey: .endTime)
+        }
         try container.encodeIfPresent(selectedValue, forKey: .selectedValue)
 
         var optionsContainer = container.nestedUnkeyedContainer(forKey: .options)

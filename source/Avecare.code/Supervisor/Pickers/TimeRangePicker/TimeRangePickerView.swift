@@ -2,8 +2,16 @@ import Foundation
 import UIKit
 
 class TimeRangePickerView: BaseXibView {
+    @IBOutlet weak var pickerTitlesView: UIStackView!
     @IBOutlet weak var startTimePicker: UIDatePicker!
     @IBOutlet weak var endTimePicker: UIDatePicker!
+
+    var isDoublePicker: Bool = true {
+        didSet {
+            pickerTitlesView.isHidden = !isDoublePicker
+            endTimePicker.isHidden = !isDoublePicker
+        }
+    }
 
     func updateMinMaxRange() {
         endTimePicker.minimumDate = startTimePicker.date

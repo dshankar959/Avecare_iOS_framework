@@ -38,7 +38,6 @@ struct LogsViewModelFactory {
     static func viewModel(for row: RLMLogInjuryRow) -> LogsNoteTableViewCellModel {
         return .init(row: row)
     }
-
 }
 
 
@@ -60,9 +59,11 @@ extension LogsOptionTableViewCellModel {
         title = row.title
 
         let formatter = Date.timeFormatter
-        selectedOption = formatter.string(from: row.startTime) + " - " + formatter.string(from: row.endTime)
+        selectedOption = formatter.string(from: row.startTime)
+        if let endTime = row.endTime {
+            selectedOption! += " - " + formatter.string(from: endTime)
+        }
     }
-
 }
 
 
@@ -76,7 +77,6 @@ extension LogsPhotoTableViewCellModel {
         }
         caption = row.text
     }
-
 }
 
 
@@ -95,7 +95,6 @@ extension LogsNoteTableViewCellModel {
         title = row.title
         text = row.value
     }
-
 }
 
 
@@ -106,11 +105,13 @@ extension LogsTimeDetailsTableViewCellModel {
         iconColor = UIColor(rgb: row.iconColor)
         title = row.title
         let formatter = Date.timeFormatter
-        selectedOption1 = formatter.string(from: row.startTime) + " - " + formatter.string(from: row.endTime)
+        selectedOption1 = formatter.string(from: row.startTime)
+        if let endTime = row.endTime {
+            selectedOption1! += " - " + formatter.string(from: endTime)
+        }
 
         if let selectedText = row.options.first(where: { $0.value == row.selectedValue })?.text {
             selectedOption2 = selectedText
         }
     }
-
 }

@@ -15,7 +15,7 @@ class RLMLogTimeRow: Object, Decodable, FormRowIconProtocol {
 
     @objc dynamic var title = ""
     @objc dynamic var startTime = Date()
-    @objc dynamic var endTime = Date(timeIntervalSinceNow: 30 * 60)
+    @objc dynamic var endTime: Date? // = Date(timeIntervalSinceNow: 30 * 60)
 
     required convenience init(from decoder: Decoder) throws {
         self.init()
@@ -44,7 +44,9 @@ extension RLMLogTimeRow: Encodable {
         let formatter = Date.timeFormatter
         try container.encode(title, forKey: .title)
         try container.encode(formatter.string(from: startTime), forKey: .startTime)
-        try container.encode(formatter.string(from: endTime), forKey: .endTime)
+        if let endTime = endTime {
+            try container.encode(formatter.string(from: endTime), forKey: .endTime)
+        }
     }
 }
 
