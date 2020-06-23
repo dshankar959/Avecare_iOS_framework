@@ -29,7 +29,7 @@ class StoriesListViewController: UIViewController, IndicatorProtocol, PullToRefr
 
         setupPullToRefresh(for: self.tableView) { [weak self] in
             // Retrieve data
-            self?.syncDown { error in
+            self?.refreshData { error in
                 if let uiTableView = self?.tableView {
                     self?.endPullToRefresh(for: uiTableView)
                 }
@@ -39,7 +39,6 @@ class StoriesListViewController: UIViewController, IndicatorProtocol, PullToRefr
                 self?.updateScreen()
             }
         }
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,13 +46,11 @@ class StoriesListViewController: UIViewController, IndicatorProtocol, PullToRefr
         updateScreen()
     }
 
-    private func syncDown(completion: @escaping (AppError?) -> Void) {
-        syncEngine.syncAll { error in
-            syncEngine.print_isSyncingStatus_description()
-            if let error = error {
+    private func refreshData(completion: @escaping (AppError?) -> Void) {
+        if let navController = tabBarController?.viewControllers?.first as? UINavigationController,
+            let homeVC = navController.viewControllers.first as? HomeViewController {
+            homeVC.refreshData { error in
                 completion(error)
-            } else {
-                completion(nil)
             }
         }
     }

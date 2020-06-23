@@ -34,7 +34,7 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
 
         setupPullToRefresh(for: self.tableView) { [weak self] in
             // Retrieve data
-            self?.fetchFeeds { error in
+            self?.refreshData { error in
                 if let uiTableView = self?.tableView {
                     self?.endPullToRefresh(for: uiTableView)
                 }
@@ -51,8 +51,15 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
         })
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if pullToRefreshHeaderView.isHidden {
+            updateScreen()
+        }
+    }
 
-    private func fetchFeeds(completion: @escaping (AppError?) -> Void) {
+
+    func refreshData(completion: @escaping (AppError?) -> Void) {
         // sync syncengine, then fetch feeds
         syncEngine.syncAll { error in
             syncEngine.print_isSyncingStatus_description()
@@ -60,11 +67,7 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
                 completion(error)
             } else {
                 self.dataProvider.fetchFeeds { error in
-                    if let error = error {
-                        completion(error)
-                    } else {
-                        completion(nil)
-                    }
+                    completion(error)
                 }
             }
         }
