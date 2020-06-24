@@ -44,10 +44,12 @@ struct GuardianFeed: Decodable {
             self.body = try values.decode(String.self, forKey: .body)
 
             let dateString: String = try values.decode(String.self, forKey: .date)
-            guard let date = Date.dateFromISO8601String(dateString) else {
-                fatalError("JSON Decoding error = 'Invalid date format'")
+            if dateString.contains("T00:00:00") { // In case date only
+                let dateOnlyString = dateString.components(separatedBy: "T").first ?? Date.logFormStringFromDate(Date())
+                self.date = Date.dateFromLogFormString(dateOnlyString) ?? Date()
+            } else {
+                self.date = Date.dateFromISO8601String(dateString) ?? Date()
             }
-            self.date = date
             self.header = try values.decode(String.self, forKey: .header)
             self.important = try values.decode(Bool.self, forKey: .important)
             self.subjectId = try values.decode(String.self, forKey: .subjectId)
