@@ -8,8 +8,13 @@ struct LogsPhotoTableViewCellModel: CellViewModel {
     let caption: String?
 
     func setup(cell: CellType) {
-        cell.detailsPhotoView.photoImageView.image = image
-        cell.detailsPhotoView.captionTextLabel.text = caption
+        if image == nil {
+            cell.isHidden = true
+        } else {
+            cell.isHidden = false
+            cell.detailsPhotoView.photoImageView.image = image
+            cell.detailsPhotoView.captionTextLabel.text = caption
+        }
     }
 }
 
