@@ -1,4 +1,6 @@
 import Foundation
+import UIKit
+import CoreGraphics
 
 
 
@@ -83,5 +85,29 @@ extension String {
         return strCopy
     }
 
+
+}
+
+
+
+extension NSAttributedString {
+
+    func withLineSpacing(_ spacing: CGFloat, centered: Bool = false) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(attributedString: self)
+        let paragraphStyle = NSMutableParagraphStyle()
+
+        paragraphStyle.lineBreakMode = .byTruncatingTail
+        paragraphStyle.lineSpacing = spacing
+
+        if centered {
+            paragraphStyle.alignment = .center
+        }
+
+        attributedString.addAttribute(.paragraphStyle,
+                                      value: paragraphStyle,
+                                      range: NSRange(location: 0, length: string.count))
+
+        return NSAttributedString(attributedString: attributedString)
+    }
 
 }

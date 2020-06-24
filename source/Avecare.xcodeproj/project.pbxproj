@@ -304,6 +304,8 @@
 		75EB5A2A246770B900E077E5 /* SubjectsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */; };
 		75EB5A2D2467A21600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A2C2467A21600E077E5 /* SyncEngine+Operations.swift */; };
 		75EB5A312467A26600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */; };
+		75EDAD0624A3CEE600FF3E8A /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EDAD0524A3CEE600FF3E8A /* AppInfoView.swift */; };
+		75EDAD0824A3FDA100FF3E8A /* AboutDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EDAD0724A3FDA100FF3E8A /* AboutDetailsViewController.swift */; };
 		D0A64418248AA5C90041A69B /* PDFThumbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A64417248AA5C90041A69B /* PDFThumbView.swift */; };
 		D0A6441A248AA6E50041A69B /* PDFThumbView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A64419248AA6E50041A69B /* PDFThumbView.xib */; };
 		D0A6441C248AA9000041A69B /* StoriesDataProvider+PDF.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A6441B248AA9000041A69B /* StoriesDataProvider+PDF.swift */; };
@@ -352,7 +354,6 @@
 		DC4FFA17247483260079A27C /* AboutTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA152474830D0079A27C /* AboutTableViewController.swift */; };
 		DC4FFA1C247488A90079A27C /* AboutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA18247488A40079A27C /* AboutTableViewCell.swift */; };
 		DC4FFA1D247488B00079A27C /* AboutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC4FFA19247488A40079A27C /* AboutTableViewCell.xib */; };
-		DC4FFA1F24748FA80079A27C /* AboutDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4FFA1E24748FA70079A27C /* AboutDetailsViewController.swift */; };
 		DC5E9907247555720088083C /* EducatorBioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E9905247555720088083C /* EducatorBioTableViewCell.swift */; };
 		DC5E9908247555720088083C /* EducatorBioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC5E9906247555720088083C /* EducatorBioTableViewCell.xib */; };
 		DC5E9909247555760088083C /* EducatorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E99032475551C0088083C /* EducatorDetailsViewController.swift */; };
@@ -654,6 +655,8 @@
 		75EB5A2C2467A21600E077E5 /* SyncEngine+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncEngine+Operations.swift"; sourceTree = "<group>"; };
 		75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncEngine+Operations.swift"; sourceTree = "<group>"; };
 		75EB875223DB93B00068A3A7 /* parent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parent.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75EDAD0524A3CEE600FF3E8A /* AppInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
+		75EDAD0724A3FDA100FF3E8A /* AboutDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutDetailsViewController.swift; sourceTree = "<group>"; };
 		8D907A25403C3C2B03771D87 /* Pods-parent.release(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent.release(qa).xcconfig"; path = "Target Support Files/Pods-parent/Pods-parent.release(qa).xcconfig"; sourceTree = "<group>"; };
 		BD9B063DD34D2DCB204B671C /* Pods-parent.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent.release(appstore).xcconfig"; path = "Target Support Files/Pods-parent/Pods-parent.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		C56891569470365ADFA64333 /* Pods-educator.release(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(qa).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(qa).xcconfig"; sourceTree = "<group>"; };
@@ -712,7 +715,6 @@
 		DC4FFA152474830D0079A27C /* AboutTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewController.swift; sourceTree = "<group>"; };
 		DC4FFA18247488A40079A27C /* AboutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutTableViewCell.swift; sourceTree = "<group>"; };
 		DC4FFA19247488A40079A27C /* AboutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutTableViewCell.xib; sourceTree = "<group>"; };
-		DC4FFA1E24748FA70079A27C /* AboutDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutDetailsViewController.swift; sourceTree = "<group>"; };
 		DC5E99012475543F0088083C /* EducatorDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EducatorDetails.storyboard; sourceTree = "<group>"; };
 		DC5E99032475551C0088083C /* EducatorDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorDetailsViewController.swift; sourceTree = "<group>"; };
 		DC5E9905247555720088083C /* EducatorBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorBioTableViewCell.swift; sourceTree = "<group>"; };
@@ -1512,13 +1514,14 @@
 		75886D83241932AB0079C080 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				75EDAD0424A3CEE600FF3E8A /* Views */,
 				DC3E80D2248596FC003983E2 /* Profile.storyboard */,
 				DC4FFA032470B9120079A27C /* Cells */,
 				75886D85241932AB0079C080 /* ProfileViewController.swift */,
 				DC4FFA102470B9DC0079A27C /* ProfileDataProvider.swift */,
 				DC4FFA12247476DE0079A27C /* ProfileDetailsViewController.swift */,
 				DC4FFA152474830D0079A27C /* AboutTableViewController.swift */,
-				DC4FFA1E24748FA70079A27C /* AboutDetailsViewController.swift */,
+				75EDAD0724A3FDA100FF3E8A /* AboutDetailsViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -1755,6 +1758,14 @@
 				75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */,
 			);
 			path = SyncEngine;
+			sourceTree = "<group>";
+		};
+		75EDAD0424A3CEE600FF3E8A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				75EDAD0524A3CEE600FF3E8A /* AppInfoView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D0C4C7F42497F12900E16023 /* Views */ = {
@@ -2573,7 +2584,9 @@
 			files = (
 				75EB59E424618EF600E077E5 /* SyncEngine.swift in Sources */,
 				755EAEC2241AC6CC00A6BA4D /* DataProvider.swift in Sources */,
+				75EDAD0624A3CEE600FF3E8A /* AppInfoView.swift in Sources */,
 				DCF914102493BAAD0043123F /* RLMActivityOption.swift in Sources */,
+				75EDAD0824A3FDA100FF3E8A /* AboutDetailsViewController.swift in Sources */,
 				DCF9141B2497EDCB0043123F /* RLMReminderOption.swift in Sources */,
 				75886D5D2419327F0079C080 /* XibView.swift in Sources */,
 				75886D572419327F0079C080 /* IndicatorProtocol.swift in Sources */,
@@ -2653,7 +2666,6 @@
 				F663BB6D24351187003279B9 /* RLMDailyTask.swift in Sources */,
 				DC8B7E03248A80270000414D /* ImageCropViewController.swift in Sources */,
 				F663BB7424351313003279B9 /* SubjectListTableViewCell.swift in Sources */,
-				DC4FFA1F24748FA80079A27C /* AboutDetailsViewController.swift in Sources */,
 				F663BB77243513AC003279B9 /* SubjectListDataProvider.swift in Sources */,
 				DC5E9909247555760088083C /* EducatorDetailsViewController.swift in Sources */,
 				DC3E80F32486CA28003983E2 /* FeedDetailsDataProvider.swift in Sources */,

@@ -11,11 +11,12 @@ class ProfileViewController: UIViewController, IndicatorProtocol {
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
     weak var subjectSelection: SubjectSelectionProtocol?
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        subjectSelection = tabBarController as? GuardianTabBarController
-        (dataProvider as? DefaultProfileDataProvider)?.subjectSelection = subjectSelection
+        subjectSelection = tabBarController as? GuardianTabBarController    // SubjectSelectionProtocol
+        dataProvider.subjectSelection = subjectSelection
 
         profileTableView.register(nibModels: [
             ProfileSubjectTableViewCellModel.self,
@@ -98,7 +99,7 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
             cell.selectionStyle = .blue
         }
 
-        if indexPath.section == 4 {
+        if indexPath.section == ProfileSection.logout.rawValue {
             cell.contentView.alpha = 0.54
         } else {
             cell.contentView.alpha = 1

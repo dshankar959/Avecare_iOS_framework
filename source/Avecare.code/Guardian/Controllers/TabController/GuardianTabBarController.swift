@@ -9,8 +9,10 @@ protocol SubjectSelectionProtocol: class {
 
 
 class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
+
     // shared subject selection
     var subject: RLMSubject?
+
     var loginFlowNavigation: UINavigationController?
     var homeViewController: HomeViewController?
 
