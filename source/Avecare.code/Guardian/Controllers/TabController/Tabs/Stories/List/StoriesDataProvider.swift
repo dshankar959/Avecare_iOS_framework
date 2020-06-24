@@ -105,11 +105,10 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
     private func constructDataSource(with unitIds: [String]) {
         if unitIds.count > 0 {
             dataSource = filter(for: stories, with: unitIds)
-            sort()
         } else {
             dataSource = stories
-            sort()
         }
+        sort()
     }
 
     private func filter(for stories: [RLMStory], with unitIds: [String]) -> [RLMStory] {
