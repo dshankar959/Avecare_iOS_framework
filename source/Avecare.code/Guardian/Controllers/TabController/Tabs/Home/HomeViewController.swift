@@ -57,6 +57,13 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        // Update selected subject id
+        if dataProvider.selectedSubjectId != subjectSelection?.subject?.id {
+            dataProvider.selectedSubjectId = subjectSelection?.subject?.id
+        }
+
+        // Update screen in case feeds are updated from stories screen
         if pullToRefreshHeaderView.isHidden {
             updateScreen()
         }
@@ -141,14 +148,14 @@ extension HomeViewController: SubjectListViewControllerDelegate {
     func subjectListDidSelectAll(_ controller: SubjectListViewController) {
         controller.dismiss(animated: true)
         subjectSelection?.subject = nil
-        dataProvider.filterDataSource(with: nil)
+        dataProvider.selectedSubjectId = nil
         updateScreen()
     }
 
     func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
         controller.dismiss(animated: true)
         subjectSelection?.subject = subject
-        dataProvider.filterDataSource(with: subject.id)
+        dataProvider.selectedSubjectId = subject.id
         updateScreen()
     }
 }

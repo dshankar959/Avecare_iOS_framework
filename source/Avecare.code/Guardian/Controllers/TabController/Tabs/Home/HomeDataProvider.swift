@@ -3,13 +3,13 @@ import Foundation
 
 
 protocol HomeDataProvider: class {
+    var selectedSubjectId: String? { get set }
     var numberOfSections: Int { get }
     func numberOfRows(section: Int) -> Int
     func model(for indexPath: IndexPath) -> AnyCellViewModel
     func headerViewModel(for section: Int) -> HomeTableViewHeaderViewModel?
     func canDismiss(at indexPath: IndexPath) -> Bool
     func fetchFeeds(completion: @escaping (AppError?) -> Void)
-    func filterDataSource(with subjectId: String?)
 }
 
 
@@ -64,6 +64,12 @@ class DefaultHomeDataProvider: HomeDataProvider {
         ]
     }()*/
 
+    var selectedSubjectId: String? {
+        didSet {
+            filterDataSource(with: selectedSubjectId)
+        }
+    }
+
     var numberOfSections: Int {
         return dataSource.count
     }
@@ -98,7 +104,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
                 case .success(let feeds):
                     let feedsFilteredByDatesWindow = self.filterFeedsForDatesWindow(with: feeds)
                     self.fetchedFeed = feedsFilteredByDatesWindow
-                    self.constructDataSource(with: feedsFilteredByDatesWindow)
+                    self.filterDataSource(with: self.selectedSubjectId)
                     completion(nil)
                 case .failure(let error):
                     completion(error)
@@ -107,7 +113,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
         }
     }
 
-    func filterDataSource(with subjectId: String?) {
+    private func filterDataSource(with subjectId: String?) {
         if let subjectId = subjectId {
             let filteredFeed = fetchedFeed.filter { $0.subjectId == subjectId }
             constructDataSource(with: filteredFeed)
@@ -128,7 +134,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
                 importantList.append(feed)
             } else {
                 let sectionTitle: String
-                sectionTitle = feed.date.timeAgo(dayAbove: true)
+                sectionTitle = feed.date.timeAgo()
 
                 if !headerSet.contains(sectionTitle) {
                     headerSet.insert(sectionTitle)
