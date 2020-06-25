@@ -1,8 +1,11 @@
-import Foundation
 import UIKit
 
+
+
 class NotificationSideViewController: UIViewController {
+
     @IBOutlet weak var tableView: UITableView!
+
     lazy var dataProvider: NotificationTypeDataProvider = {
         let provider = DefaultNotificationTypeDataProvider()
         provider.delegate = self
@@ -10,16 +13,22 @@ class NotificationSideViewController: UIViewController {
         return provider
     }()
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
         tableView.register(nibModels: [NotificationTypeTableViewCellModel.self])
+
         if dataProvider.numberOfRows > 0 {
             dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
         }
     }
+
 }
 
+
 extension NotificationSideViewController: UITableViewDelegate, UITableViewDataSource {
+
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataProvider.numberOfRows
     }
@@ -32,7 +41,9 @@ extension NotificationSideViewController: UITableViewDelegate, UITableViewDataSo
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         dataProvider.setSelected(true, at: indexPath)
     }
+
 }
+
 
 extension NotificationSideViewController: NotificationTypeDataProviderDelegate, IndicatorProtocol {
 
@@ -52,7 +63,7 @@ extension NotificationSideViewController: NotificationTypeDataProviderDelegate, 
             let form = dataProvider.loadForm(at: indexPath)
             detailsViewController.detailsView.setFormViews(form.viewModels)
             detailsViewController.navigationHeaderView.items = dataProvider.navigationItems(at: indexPath, type: model.type)
-
         }
     }
+
 }

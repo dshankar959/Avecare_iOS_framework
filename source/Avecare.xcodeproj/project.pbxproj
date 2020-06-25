@@ -112,6 +112,7 @@
 		61547F86427E44844CC9DC71 /* SubjectListDataProvider+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477C6C7DC9B6372B7ACC6 /* SubjectListDataProvider+Common.swift */; };
 		6A216CA06A17B11A8377AD9C /* Pods_educator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */; };
 		751B4C5C247EF9B6001B8035 /* syncSubjectLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478D41647CC7CBA087361 /* syncSubjectLogs.swift */; };
+		7523497524A477E8000C873E /* AboutFormProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7523497424A477E8000C873E /* AboutFormProvider.swift */; };
 		7533DB07247958EC00DA211D /* LogFormRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7533DB04247958EC00DA211D /* LogFormRows.json */; };
 		7533DB08247958EC00DA211D /* LogFormRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7533DB04247958EC00DA211D /* LogFormRows.json */; };
 		754E1EA52436505300C8FD30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 754E1EA42436505300C8FD30 /* GoogleService-Info.plist */; };
@@ -535,6 +536,7 @@
 		61F4A7EF07DB298479023526 /* Pods-educator.release(beta).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(beta).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(beta).xcconfig"; sourceTree = "<group>"; };
 		66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_educator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7523497424A477E8000C873E /* AboutFormProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutFormProvider.swift; sourceTree = "<group>"; };
 		7533DB04247958EC00DA211D /* LogFormRows.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LogFormRows.json; sourceTree = "<group>"; };
 		754E1EA42436505300C8FD30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		754E1EA62436506900C8FD30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -1156,6 +1158,14 @@
 			path = TimeRangePicker;
 			sourceTree = "<group>";
 		};
+		7523497324A477E8000C873E /* FormProviders */ = {
+			isa = PBXGroup;
+			children = (
+				7523497424A477E8000C873E /* AboutFormProvider.swift */,
+			);
+			path = FormProviders;
+			sourceTree = "<group>";
+		};
 		7533DB03247958EC00DA211D /* JSON */ = {
 			isa = PBXGroup;
 			children = (
@@ -1593,10 +1603,11 @@
 		75886DA5241932BA0079C080 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				75886DA6241932BA0079C080 /* SettingTableViewCellModel.swift */,
+				75886DA9241932BA0079C080 /* SettingsSideViewController.swift */,
 				75886DA7241932BA0079C080 /* SettingsDataProvider.swift */,
 				75886DA8241932BA0079C080 /* Settings.storyboard */,
-				75886DA9241932BA0079C080 /* SettingsSideViewController.swift */,
+				75886DA6241932BA0079C080 /* SettingTableViewCellModel.swift */,
+				7523497324A477E8000C873E /* FormProviders */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -1604,10 +1615,10 @@
 		75886DAA241932BA0079C080 /* Stories */ = {
 			isa = PBXGroup;
 			children = (
-				75886DAB241932BA0079C080 /* Stories.storyboard */,
-				75886DAC241932BA0079C080 /* StoriesDataProvider.swift */,
-				D0A64422248E168A0041A69B /* PDFVIewController.swift */,
 				615475BA47C2AEFAA9A3F0C9 /* StoriesSideViewController.swift */,
+				75886DAC241932BA0079C080 /* StoriesDataProvider.swift */,
+				75886DAB241932BA0079C080 /* Stories.storyboard */,
+				D0A64422248E168A0041A69B /* PDFVIewController.swift */,
 				6154774EB7F6E73B056B38C1 /* FormBehaviour */,
 			);
 			path = Stories;
@@ -1630,9 +1641,9 @@
 			isa = PBXGroup;
 			children = (
 				75886DC0241932BA0079C080 /* NotificationSideViewController.swift */,
+				75886DC3241932BA0079C080 /* NotificationTypeDataProvider.swift */,
 				75886DC1241932BA0079C080 /* Notifications.storyboard */,
 				75886DC2241932BA0079C080 /* NotificationTypeTableViewCellModel.swift */,
-				75886DC3241932BA0079C080 /* NotificationTypeDataProvider.swift */,
 				D0C4C801249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift */,
 				61547AB4C9DBCE180148001E /* FormProviders */,
 			);
@@ -2558,6 +2569,7 @@
 				75EB5A042463C03300E077E5 /* RLMGuardian.swift in Sources */,
 				615474FBE2BC3129D99399BF /* TextField.swift in Sources */,
 				6154779079D0A089A6510394 /* StoriesTableViewCell.swift in Sources */,
+				7523497524A477E8000C873E /* AboutFormProvider.swift in Sources */,
 				61547CF0B53CE8AD81F629CB /* StoriesSideViewController.swift in Sources */,
 				615474DAAA3E35A68B99292F /* UserListFlowLayout.swift in Sources */,
 				6154728813E2250C4A11F814 /* RLMFormTemplate.swift in Sources */,
