@@ -27,8 +27,13 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         DDLogInfo("")
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
         configureTabBar()
     }
+
 
     private func configureTabBar() {
         if let tabBarItems = tabBar.items {
