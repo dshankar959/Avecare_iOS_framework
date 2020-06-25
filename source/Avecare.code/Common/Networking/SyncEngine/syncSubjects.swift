@@ -31,6 +31,11 @@ extension SyncEngine {
                 UnitAPIService.getSubjects(unitId: unitId) { [weak self] result in
                     switch result {
                     case .success(let details):
+                        let existingSubjects = RLMSubject.findAll()
+                        existingSubjects.forEach { subject in
+                            subject.delete() // note: safely remove because it doesn't have linked object
+                        }
+
                         // Update with new data.
                         RLMSubject.createOrUpdateAll(with: details)
                         DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSubject.className())\' items in DB: \(RLMSubject.findAll().count)")
