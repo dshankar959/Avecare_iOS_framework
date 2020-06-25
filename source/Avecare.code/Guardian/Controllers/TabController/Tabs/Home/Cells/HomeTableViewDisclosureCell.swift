@@ -51,14 +51,8 @@ struct HomeTableViewDisclosureCellModel: CellViewModel {
         }
         cell.titleLabel.text = title
         cell.subtitleLabel.text = subtitle
-        switch feedItemType {
-        case .subjectDailyLog, .message, .unitStory:
-            cell.selectionStyle = .default
-            cell.titleLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        default:
-            cell.selectionStyle = .none
-            cell.titleLabel.textColor = #colorLiteral(red: 0.4941176471, green: 0.5215686275, blue: 0.6235294118, alpha: 1)
-        }
+        cell.selectionStyle = .default
+        cell.titleLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         cell.accessoryType = .none
     }
 }

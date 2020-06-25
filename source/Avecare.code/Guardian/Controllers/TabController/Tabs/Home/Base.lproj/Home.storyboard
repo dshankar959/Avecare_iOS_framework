@@ -59,7 +59,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="125"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DBU-QB-Fv9">
-                                        <rect key="frame" x="15" y="32" width="85" height="43"/>
+                                        <rect key="frame" x="15" y="32" width="384" height="43"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -74,6 +74,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="DBU-QB-Fv9" firstAttribute="leading" secondItem="su8-7d-qOj" secondAttribute="leading" constant="15" id="AJ7-dB-zU3"/>
+                                    <constraint firstAttribute="trailing" secondItem="DBU-QB-Fv9" secondAttribute="trailing" constant="15" id="FGB-iY-4wL"/>
                                     <constraint firstItem="UaV-pg-3uo" firstAttribute="leading" secondItem="su8-7d-qOj" secondAttribute="leading" constant="15" id="Lo6-Cl-Lrn"/>
                                     <constraint firstItem="UaV-pg-3uo" firstAttribute="top" secondItem="DBU-QB-Fv9" secondAttribute="bottom" constant="13" id="f3o-VT-3cc"/>
                                     <constraint firstAttribute="bottom" secondItem="UaV-pg-3uo" secondAttribute="bottom" constant="20" id="mXf-Fg-Rmh"/>
@@ -140,36 +141,41 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8c-fM-Bea">
                                                 <rect key="frame" x="15" y="25" width="384" height="60"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-logo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="g38-5y-j2c">
-                                                        <rect key="frame" x="15" y="15" width="120" height="30"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="120" id="czY-k6-BZZ"/>
-                                                            <constraint firstAttribute="height" constant="30" id="hWi-ej-NAz"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HAMILTON - WENTWORTH" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIH-4B-fav">
-                                                        <rect key="frame" x="143" y="15" width="233" height="14.5"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                        <color key="textColor" name="LightText4"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catholic Child Care Centre" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7g4-uC-Aa0">
-                                                        <rect key="frame" x="143" y="30" width="233" height="15"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
-                                                        <color key="textColor" name="blue-icon"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="c1B-Ki-UEn">
+                                                        <rect key="frame" x="0.0" y="15" width="384" height="30"/>
+                                                        <subviews>
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-logo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="g38-5y-j2c">
+                                                                <rect key="frame" x="0.0" y="0.0" width="115" height="30"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="30" id="hWi-ej-NAz"/>
+                                                                    <constraint firstAttribute="width" constant="115" id="jD9-M9-vqH"/>
+                                                                </constraints>
+                                                            </imageView>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Fkj-5j-Xgi">
+                                                                <rect key="frame" x="130" y="0.0" width="254" height="30"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="HAMILTON - WENTWORTH" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oIH-4B-fav">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="254" height="15.5"/>
+                                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                                        <color key="textColor" name="DarkText"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Catholic Child Care Centre" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7g4-uC-Aa0">
+                                                                        <rect key="frame" x="0.0" y="15.5" width="254" height="14.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                                                        <color key="textColor" name="blue-icon"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                    </stackView>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="oIH-4B-fav" secondAttribute="trailing" constant="8" id="1nA-LT-232"/>
-                                                    <constraint firstItem="g38-5y-j2c" firstAttribute="centerY" secondItem="a8c-fM-Bea" secondAttribute="centerY" id="Dl1-RN-asn"/>
-                                                    <constraint firstItem="oIH-4B-fav" firstAttribute="leading" secondItem="g38-5y-j2c" secondAttribute="trailing" constant="8" id="Jyc-xM-16A"/>
-                                                    <constraint firstAttribute="trailing" secondItem="7g4-uC-Aa0" secondAttribute="trailing" constant="8" id="Kwn-1d-3DX"/>
-                                                    <constraint firstItem="oIH-4B-fav" firstAttribute="top" secondItem="g38-5y-j2c" secondAttribute="top" id="NmQ-x0-YEA"/>
-                                                    <constraint firstItem="7g4-uC-Aa0" firstAttribute="leading" secondItem="g38-5y-j2c" secondAttribute="trailing" constant="8" id="XXp-Ui-eLa"/>
-                                                    <constraint firstItem="g38-5y-j2c" firstAttribute="leading" secondItem="a8c-fM-Bea" secondAttribute="leading" constant="15" id="ojd-Gf-AeY"/>
-                                                    <constraint firstItem="7g4-uC-Aa0" firstAttribute="bottom" secondItem="g38-5y-j2c" secondAttribute="bottom" id="tgW-f0-1zc"/>
+                                                    <constraint firstItem="c1B-Ki-UEn" firstAttribute="leading" secondItem="a8c-fM-Bea" secondAttribute="leading" id="EXP-Nz-o1E"/>
+                                                    <constraint firstAttribute="trailing" secondItem="c1B-Ki-UEn" secondAttribute="trailing" id="SOc-jy-1Ht"/>
+                                                    <constraint firstItem="c1B-Ki-UEn" firstAttribute="centerY" secondItem="a8c-fM-Bea" secondAttribute="centerY" id="XSI-wa-nOr"/>
                                                     <constraint firstAttribute="height" constant="60" id="yfU-aC-qho"/>
                                                 </constraints>
                                             </view>
@@ -247,6 +253,9 @@
                         <outlet property="attachmentButton" destination="gDx-cP-c6X" id="2Rl-sb-Flu"/>
                         <outlet property="bodyLabel" destination="lJV-fM-nhQ" id="akP-i5-iyU"/>
                         <outlet property="dateLabel" destination="jrj-56-jlR" id="xdr-kg-Adp"/>
+                        <outlet property="iconImage" destination="g38-5y-j2c" id="YR2-nC-OGo"/>
+                        <outlet property="iconImageHeight" destination="hWi-ej-NAz" id="y6D-gB-5Ua"/>
+                        <outlet property="iconImageWidth" destination="jD9-M9-vqH" id="qzS-2g-ya6"/>
                         <outlet property="senderCategoryLabel" destination="7g4-uC-Aa0" id="MFO-Iu-nRH"/>
                         <outlet property="senderNameLabel" destination="oIH-4B-fav" id="Ean-0Y-kqr"/>
                         <outlet property="titleLabel" destination="HZL-jO-u3x" id="GIv-7d-xz3"/>
@@ -289,11 +298,11 @@
         <namedColor name="Background">
             <color red="0.94509803921568625" green="0.95294117647058818" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="DarkText">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="LightText">
             <color red="0.49411764705882355" green="0.52156862745098043" blue="0.62352941176470589" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="LightText4">
-            <color red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="blue-icon">
             <color red="0.0" green="0.69019607843137254" blue="0.792156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

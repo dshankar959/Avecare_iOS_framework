@@ -5,7 +5,7 @@ class RLMInjury: RLMDefaults, RLMPublishable, DataProvider {
 
     @objc dynamic var subject: RLMSubject?
     @objc dynamic var rawPublishState: Int = PublishState.local.rawValue
-     @objc dynamic var message: String?
+    @objc dynamic var message: String?
     @objc dynamic var injuryOption: RLMInjuryOption?
     @objc dynamic var timeOfInjury: Date?
 
@@ -61,3 +61,5 @@ class RLMInjury: RLMDefaults, RLMPublishable, DataProvider {
 
     }
 }
+
+typealias RLMInjuryResponse = RLMInjury

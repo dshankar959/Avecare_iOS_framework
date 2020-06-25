@@ -110,9 +110,10 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
             destination.modalPresentationStyle = .custom
         } else if segue.identifier == R.segue.homeViewController.details.identifier,
             let destination = segue.destination as? FeedDetailsViewController {
-            let tuple = sender as? (FeedItemType, String)
-            destination.feedItemType = tuple?.0
-            destination.feedItemId = tuple?.1
+            let tuple = sender as? (String, FeedItemType, String)
+            destination.feedTitle = tuple?.0
+            destination.feedItemType = tuple?.1
+            destination.feedItemId = tuple?.2
         }
     }
 
@@ -196,8 +197,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch model.feedItemType {
         case .subjectDailyLog:
             gotoLogsScreen(with: model.feedItemId)
-        case .message:
-            performSegue(withIdentifier: R.segue.homeViewController.details, sender: (model.feedItemType, model.feedItemId))
+        case .message, .unitActivity, .subjectInjury, .subjectReminder:
+            performSegue(withIdentifier: R.segue.homeViewController.details, sender: (model.title, model.feedItemType, model.feedItemId))
         case .unitStory:
             gotoStoryDetailScreen(with: model.feedItemId)
         default:

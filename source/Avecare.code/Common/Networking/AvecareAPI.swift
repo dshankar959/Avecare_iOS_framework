@@ -58,7 +58,7 @@ enum AvecareAPI { // API Services
     case institutionDetails(id: String)
 //    case institutionUnits(id: String)
     // MARK: - MESSEAGES
-    case messages(id: String)
+    case message(id: String)
     // MARK: - ORGANIZATION
 //    case organizationList
     case organizationDetails(id: String)
@@ -69,6 +69,10 @@ enum AvecareAPI { // API Services
     case organizationActivities(id: String)
     case organizationInjuries(id: String)
     case organizationReminders(id: String)
+    // MARK: - FEEDS
+    case unitActivity(id: String)
+    case subjectInjury(id: String)
+    case subjectReminder(id: String)
     // MARK: - SUBJECTS
 //    case subjectInjuries(id: String)
     case subjectPublishDailyLog(request: LogFormAPIModel)
@@ -78,12 +82,13 @@ enum AvecareAPI { // API Services
     // MARK: - STORIES
     case unitStories(id: String)
     case storyDetails(id: String)
-    // MARK: - UNITS
-    case unitDetails(id: String)
-    case unitPublishDailyTaskForm(id: String, request: RLMDailyTaskForm)
+    // MARK: - NOTIFICATIONS
     case unitCreateActivity(id: String, request: RLMActivity)
     case unitCreateInjury(payLoad: [RLMInjury])
     case unitCreateReminder(payLoad: [RLMReminder])
+    // MARK: - UNITS
+    case unitDetails(id: String)
+    case unitPublishDailyTaskForm(id: String, request: RLMDailyTaskForm)
     case unitSubjects(id: String)
     case unitSupervisors(id: String)
     case unitPublishStory(story: PublishStoryRequestModel)
@@ -114,7 +119,7 @@ extension AvecareAPI: TargetType {
         case .institutionDetails(let id): return "/institutions/\(id)"
 //        case .institutionUnits(let id): return "/institutions/\(id)/units"
 
-        case .messages(let id): return "/messages/\(id)"
+        case .message(let id): return "/messages/\(id)"
 
 //        case .organizationList: return "/organizations"
         case .organizationDetails(let id): return "/organizations/\(id)"
@@ -126,23 +131,28 @@ extension AvecareAPI: TargetType {
         case .organizationInjuries(let id): return "/organizations/\(id)/available-injuries"
         case .organizationReminders(let id): return "/organizations/\(id)/available-reminders"
 
+        case .subjectInjury(let id): return "/subject-injuries/\(id)/"
+        case .subjectReminder(let id): return "/subject-reminders/\(id)/"
+        case .unitActivity(let id): return "/unit-activities/\(id)"
+
         case .subjectPublishDailyLog(let request): return "/subjects/\(request.subjectId)/daily-logs/"
         case .subjectGetLogs(let request): return "/subjects/\(request.subjectId)/daily-logs/"
+
+        case .supervisorDetails(let id): return "/supervisors/\(id)"
+
+        case .unitStories(let id): return "/units/\(id)/stories"
+        case .storyDetails(let id): return "/stories/\(id)"
+
+        case .unitCreateActivity(let id, _): return "/units/\(id)/activities/"
         case .unitCreateInjury( _): return "/subject-injuries/"
         case .unitCreateReminder( _): return "/subject-reminders/"
 
         case .unitDetails(let id): return "/units/\(id)"
-        case .unitCreateActivity(let id, _): return "/units/\(id)/activities/"
         case .unitPublishDailyTaskForm(let id, _): return "/units/\(id)/daily-tasks/"
         case .unitSubjects(let id): return "/units/\(id)/subjects"
         case .unitSupervisors(let id): return "/units/\(id)/supervisors"
         case .unitPublishStory(let story): return "/units/\(story.unitId)/stories/"
         case .unitPublishedStories(let request): return "/units/\(request.unitId)/stories"
-
-        case .unitStories(let id): return "/units/\(id)/stories"
-        case .storyDetails(let id): return "/stories/\(id)"
-
-        case .supervisorDetails(let id): return "/supervisors/\(id)"
 
         }
     }
