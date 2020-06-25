@@ -81,22 +81,22 @@ extension Date {
     }
 
     static var shortMonthTimeFormatter: DateFormatter {
-          let formatter = DateFormatter()
-          formatter.dateFormat = "MMM d, hh:mm a"
-          return formatter
-      }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d, hh:mm a"
+        return formatter
+    }
 
     static var fullMonthTimeFormatter: DateFormatter {
-          let formatter = DateFormatter()
-          formatter.dateFormat = "MMMM d, hh:mm a"
-          return formatter
-      }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM d, hh:mm a"
+        return formatter
+    }
 
-      static var fullMonthDayFormatter: DateFormatter {
-          let formatter = DateFormatter()
-          formatter.dateFormat = "MMMM d"
-          return formatter
-      }
+    static var fullMonthDayFormatter: DateFormatter {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM d"
+        return formatter
+    }
 
     static var timeFormatter: DateFormatter {
         let formatter = DateFormatter()
@@ -279,14 +279,18 @@ extension Date {
     }
 
     var dateStringHumanFriendly: String {
+        return Date.fullMonthDayYearFormatter.string(from: self)
+    }
+
+    var dateStringWithDayOfWeekHumanFriendly: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM dd, yyyy"
+        formatter.dateFormat = "EEEE, MMMM d, yyyy"
         return formatter.string(from: self)
     }
 
     var dateTimeStringHumanFriendly: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "h:mm a, MMM dd, yyyy"
+        formatter.dateFormat = "h:mm a, MMMM d, yyyy"
         return formatter.string(from: self)
     }
 }
