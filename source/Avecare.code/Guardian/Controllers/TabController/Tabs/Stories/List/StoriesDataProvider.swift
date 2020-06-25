@@ -19,7 +19,6 @@ protocol SupervisorsDataProvider: class {
 
 class DefaultSupervisorsDataProvider: SupervisorsDataProvider {
 
-    private lazy var supervisors = RLMSupervisor.findAll()
     private let storage = DocumentService()
 
     private var dataSource = [RLMSupervisor]()
@@ -27,9 +26,9 @@ class DefaultSupervisorsDataProvider: SupervisorsDataProvider {
     var unitIds: [String] = [] {
         didSet {
             if unitIds.count > 0 {
-                dataSource = filter(for: supervisors, with: unitIds)
+                dataSource = filter(for: RLMSupervisor.findAll(), with: unitIds)
             } else {
-                dataSource = supervisors
+                dataSource = RLMSupervisor.findAll()
             }
         }
     }

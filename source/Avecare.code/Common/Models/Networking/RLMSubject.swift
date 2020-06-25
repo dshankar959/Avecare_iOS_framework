@@ -120,7 +120,6 @@ extension RLMSubject: DataProvider {
         form.create()
         return form
     }
-
 }
 
 
