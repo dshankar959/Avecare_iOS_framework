@@ -64,6 +64,7 @@ extension ClassActivityFormProvider: FormProvider {
         let datePicker = UIDatePicker()
         datePicker.backgroundColor = .white
         datePicker.datePickerMode = .date
+        datePicker.minimumDate = Date()
 
         let right = PickerViewFormViewModel(title: NSLocalizedString("notification_inspections_and_drills_select_date_title", comment: ""),
                                             placeholder: NSLocalizedString("notification_inspections_and_drills_select_date_placeholder", comment: ""),
