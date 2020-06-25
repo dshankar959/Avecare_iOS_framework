@@ -3,6 +3,14 @@ import CocoaLumberjack
 
 
 
+private enum TabBarItems: String, CaseIterable {
+    case home = "Home"
+    case stories = "Documentation"
+    case logs = "Logs"
+    case profile = "Profile"
+}
+
+
 protocol SubjectSelectionProtocol: class {
     var subject: RLMSubject? { get set }
 }
@@ -19,6 +27,15 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         DDLogInfo("")
+        configureTabBar()
+    }
+
+    private func configureTabBar() {
+        if let tabBarItems = tabBar.items {
+            for (index, item) in tabBarItems.enumerated() {
+                item.title = TabBarItems.allCases[index].rawValue
+            }
+        }
     }
 
     func onLogout() {
