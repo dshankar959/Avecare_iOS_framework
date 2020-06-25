@@ -243,6 +243,8 @@
 		75886DF8241932BA0079C080 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DCD241932BA0079C080 /* DefaultTableViewCell.swift */; };
 		75886DF9241932BA0079C080 /* LeftSideNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DCF241932BA0079C080 /* LeftSideNavigationBarView.swift */; };
 		75886DFA241932BA0079C080 /* LeftSideNavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75886DD0241932BA0079C080 /* LeftSideNavigationBarView.xib */; };
+		75BFA30D24A4F13300E7D01A /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BFA30B24A4F13300E7D01A /* CustomTabBarView.swift */; };
+		75BFA30E24A4F13300E7D01A /* SupervisorTabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BFA30C24A4F13300E7D01A /* SupervisorTabBarButton.swift */; };
 		75D0ACF7249C28E2007562D0 /* PullToRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */; };
 		75D62235245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
 		75D62236245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
@@ -633,6 +635,8 @@
 		75886DCD241932BA0079C080 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
 		75886DCF241932BA0079C080 /* LeftSideNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideNavigationBarView.swift; sourceTree = "<group>"; };
 		75886DD0241932BA0079C080 /* LeftSideNavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftSideNavigationBarView.xib; sourceTree = "<group>"; };
+		75BFA30B24A4F13300E7D01A /* CustomTabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
+		75BFA30C24A4F13300E7D01A /* SupervisorTabBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisorTabBarButton.swift; sourceTree = "<group>"; };
 		75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshProtocol.swift; sourceTree = "<group>"; };
 		75D62234245B14480032F53D /* RLMInstitution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMInstitution.swift; sourceTree = "<group>"; };
 		75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMDefaults.swift; sourceTree = "<group>"; };
@@ -1593,8 +1597,10 @@
 		75886DA3241932BA0079C080 /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
-				75886DA4241932BA0079C080 /* Tabs */,
 				75886DC5241932BA0079C080 /* SupervisorTabBarController.swift */,
+				75BFA30B24A4F13300E7D01A /* CustomTabBarView.swift */,
+				75BFA30C24A4F13300E7D01A /* SupervisorTabBarButton.swift */,
+				75886DA4241932BA0079C080 /* Tabs */,
 				DC3E80E02485A1B0003983E2 /* TabBar.storyboard */,
 			);
 			path = TabBar;
@@ -2492,6 +2498,7 @@
 				75886D2A2419327F0079C080 /* ErrorMessages.swift in Sources */,
 				75886D382419327F0079C080 /* DDLogNetworkPlugin.swift in Sources */,
 				75886DF8241932BA0079C080 /* DefaultTableViewCell.swift in Sources */,
+				75BFA30D24A4F13300E7D01A /* CustomTabBarView.swift in Sources */,
 				75EB59CA2461858700E077E5 /* RLMLogPhotoRow.swift in Sources */,
 				75886DED241932BA0079C080 /* NotificationSideViewController.swift in Sources */,
 				F67DF810241BFE6800793A9C /* DetailsFormViewController.swift in Sources */,
@@ -2504,6 +2511,7 @@
 				75886D442419327F0079C080 /* FileManager.swift in Sources */,
 				DC3E80F22486C9FB003983E2 /* FeedsAPIService.swift in Sources */,
 				75EB59C22461858700E077E5 /* RLMLogOptionRow.swift in Sources */,
+				75BFA30E24A4F13300E7D01A /* SupervisorTabBarButton.swift in Sources */,
 				F67DF81E241BFE6800793A9C /* TagListFormView.swift in Sources */,
 				75886DF9241932BA0079C080 /* LeftSideNavigationBarView.swift in Sources */,
 				F67DF80D241BFE6800793A9C /* DetailsNavigationView.swift in Sources */,
