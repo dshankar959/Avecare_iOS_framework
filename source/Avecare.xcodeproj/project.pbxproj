@@ -373,6 +373,8 @@
 		DCB33D4D24A3C7A200C5AC0E /* NotificationsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D4C24A3C7A200C5AC0E /* NotificationsAPIService.swift */; };
 		DCB33D5524A3DD0900C5AC0E /* NotificationsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D4C24A3C7A200C5AC0E /* NotificationsAPIService.swift */; };
 		DCB33D5624A3EE0B00C5AC0E /* syncOrganizationReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914192497E44C0043123F /* syncOrganizationReminders.swift */; };
+		DCB33D5F24A4EE8300C5AC0E /* NoItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D5B24A4E8EB00C5AC0E /* NoItemTableViewCell.swift */; };
+		DCB33D6024A4EE8B00C5AC0E /* NoItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCB33D5C24A4E8EB00C5AC0E /* NoItemTableViewCell.xib */; };
 		DCBE4A56247DA9A600F6D90A /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
 		DCC2DDCE247EA37D00FAFC35 /* GuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */; };
 		DCC2DDCF247EA37D00FAFC35 /* GuardianFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */; };
@@ -730,6 +732,8 @@
 		DC8B7E00248A80270000414D /* ImageCropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropViewController.swift; sourceTree = "<group>"; };
 		DC8B7E01248A80270000414D /* ImageCropViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCropViewController.xib; sourceTree = "<group>"; };
 		DCB33D4C24A3C7A200C5AC0E /* NotificationsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAPIService.swift; sourceTree = "<group>"; };
+		DCB33D5B24A4E8EB00C5AC0E /* NoItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemTableViewCell.swift; sourceTree = "<group>"; };
+		DCB33D5C24A4E8EB00C5AC0E /* NoItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoItemTableViewCell.xib; sourceTree = "<group>"; };
 		DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianFeed.swift; sourceTree = "<group>"; };
 		DCF6C69924900B7B00A802BD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		DCF6C69B24900B7C00A802BD /* fr-CA */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fr-CA"; path = "fr-CA.lproj/Localizable.strings"; sourceTree = "<group>"; };
@@ -1121,8 +1125,10 @@
 			children = (
 				61547C4E1BD0B55D3EC3943A /* HomeTableVIewHeaderView.swift */,
 				6154786288CE3337831B8CEB /* HomeTableViewDisclosureCell.swift */,
+				DCB33D5B24A4E8EB00C5AC0E /* NoItemTableViewCell.swift */,
 				61547160F43F25A27CE46875 /* HomeTableViewHeaderView.xib */,
 				61547D53A60161097C2E858F /* HomeTableViewDisclosureCell.xib */,
+				DCB33D5C24A4E8EB00C5AC0E /* NoItemTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -2149,6 +2155,7 @@
 				F65549F724564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf in Resources */,
 				DC3E80AC248591B3003983E2 /* Login.storyboard in Resources */,
 				DC4FFA0F2470B9AE0079A27C /* ProfileSubjectTableViewCell.xib in Resources */,
+				DCB33D6024A4EE8B00C5AC0E /* NoItemTableViewCell.xib in Resources */,
 				61547181EE77EC951C1F78A1 /* PinView.xib in Resources */,
 				29BA8AD824545D8700DAEB75 /* placeholders.strings in Resources */,
 				61547E8B27EB4246046B1174 /* PinCell.xib in Resources */,
@@ -2751,6 +2758,7 @@
 				61547D87D8BB1C3CC4D8FC14 /* LogsPhotoTableViewCell.swift in Sources */,
 				D0C4C805249BFBB500E16023 /* RLMActivity.swift in Sources */,
 				75EB5A25246770A200E077E5 /* OrganizationsAPIService.swift in Sources */,
+				DCB33D5F24A4EE8300C5AC0E /* NoItemTableViewCell.swift in Sources */,
 				75EB59CB2461858700E077E5 /* RLMLogPhotoRow.swift in Sources */,
 				615472FD03343E8BBC254253 /* LogsViewModelFactory.swift in Sources */,
 				DCFFD6F7246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */,

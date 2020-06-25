@@ -42,7 +42,7 @@ class FeedDetailsViewController: UIViewController, IndicatorProtocol {
                     self?.iconImage.image = R.image.navLogoIcon()
                     self?.senderCategoryLabel.text = message?.header
                     self?.titleLabel.text = message?.title
-                    self?.dateLabel.text = message?.serverLastUpdated?.dateString
+                    self?.dateLabel.text = message?.serverLastUpdated?.dateStringHumanFriendly
                     self?.bodyLabel.text = message?.body
 
                     if let fileURL =  message?.fileURL {
@@ -66,7 +66,7 @@ class FeedDetailsViewController: UIViewController, IndicatorProtocol {
                     self?.bodyLabel.text = bodyText
                     self?.setTexts(withSender: activity?.unit?.name,
                                    title: activity?.activityOption?.name,
-                                   date: activity?.activityDate?.dateString,
+                                   date: activity?.activityDate?.dateStringHumanFriendly,
                                    andBody: bodyText)
 
                     self?.attachmentButton.isHidden = true
@@ -86,7 +86,7 @@ class FeedDetailsViewController: UIViewController, IndicatorProtocol {
                     self?.bodyLabel.text = bodyText
                     self?.setTexts(withSender: injury?.subject?.fullName,
                                    title: injury?.injuryOption?.name,
-                                   date: injury?.timeOfInjury?.dateTimeString,
+                                   date: injury?.timeOfInjury?.dateTimeStringHumanFriendly,
                                    andBody: bodyText)
 
                     self?.attachmentButton.isHidden = true
@@ -106,7 +106,7 @@ class FeedDetailsViewController: UIViewController, IndicatorProtocol {
 
                     self?.setTexts(withSender: reminder?.subject?.fullName,
                                    title: reminder?.reminderOption?.name,
-                                   date: reminder?.serverLastUpdated?.dateString,
+                                   date: reminder?.serverLastUpdated?.dateStringHumanFriendly,
                                    andBody: bodyText)
 
                     self?.attachmentButton.isHidden = true

@@ -83,7 +83,11 @@ class DefaultHomeDataProvider: HomeDataProvider {
     }
 
     func headerViewModel(for section: Int) -> HomeTableViewHeaderViewModel? {
-        return dataSource[section].header
+        if numberOfSections > 0 {
+            return dataSource[section].header
+        } else {
+            return HomeTableViewHeaderViewModel(icon: nil, text: "")
+        }
     }
 
     func canDismiss(at indexPath: IndexPath) -> Bool {
@@ -115,11 +119,10 @@ class DefaultHomeDataProvider: HomeDataProvider {
 
     private func filterDataSource(with subjectId: String?) {
         if let subjectId = subjectId {
-            let filteredFeed = fetchedFeed.filter { $0.subjectId == subjectId }
+            let filteredFeed = fetchedFeed.filter { $0.subjectIds.contains(subjectId) }
             constructDataSource(with: filteredFeed)
         } else {
-            let refactoredFeeds = removeDuplicatedFeeds(from: fetchedFeed)
-            constructDataSource(with: refactoredFeeds)
+            constructDataSource(with: fetchedFeed)
         }
     }
 
@@ -149,13 +152,15 @@ class DefaultHomeDataProvider: HomeDataProvider {
         if importantList.count > 0 {
             var importantItems = [HomeTableViewDisclosureCellModel]()
             importantList.forEach { feed in
-                if let subject = subjectDict[feed.subjectId] {
+                if feed.feedItemType == .subjectDailyLog {
                     importantItems.append(HomeTableViewDisclosureCellModel(with: feed,
-                                                                           subject: subject,
+                                                                           subject: subjectDict[feed.subjectIds.first!],
                                                                            storage: storage))
+                } else {
+                    importantItems.append(HomeTableViewDisclosureCellModel(with: feed))
                 }
-
             }
+
             self.dataSource.append(
                 Section(
                     header: .init(icon: R.image.pinIcon(), text: NSLocalizedString("home_important_section_title", comment: "").uppercased()),
@@ -168,10 +173,12 @@ class DefaultHomeDataProvider: HomeDataProvider {
             let elements = sections[sectionHeader]
             var sectionItems = [HomeTableViewDisclosureCellModel]()
             elements?.forEach({ feed in
-                if let subject = subjectDict[feed.subjectId] {
+                if feed.feedItemType == .subjectDailyLog {
                     sectionItems.append(HomeTableViewDisclosureCellModel(with: feed,
-                                                                         subject: subject,
+                                                                         subject: subjectDict[feed.subjectIds.first!],
                                                                          storage: storage))
+                } else {
+                    sectionItems.append(HomeTableViewDisclosureCellModel(with: feed))
                 }
             })
 
@@ -183,7 +190,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
         }
     }
 
-
+/*
     private func removeDuplicatedFeeds(from feeds: [GuardianFeed]) -> [GuardianFeed] {
         var resultFeeds = [GuardianFeed]()
         var feedItemIds: Set<String> = []
@@ -194,7 +201,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
             }
         }
         return resultFeeds
-    }
+    }*/
 
 
     private func filterFeedsForDatesWindow(with feeds: [GuardianFeed]) -> [GuardianFeed] {
@@ -214,11 +221,13 @@ class DefaultHomeDataProvider: HomeDataProvider {
 
 extension HomeTableViewDisclosureCellModel {
 
-    init(with feed: GuardianFeed, subject: RLMSubject, storage: DocumentService) {
-        if feed.feedItemType == .subjectDailyLog {
-            title = subject.firstName + NSLocalizedString("home_feed_title_dailylog", comment: "")
+    init(with feed: GuardianFeed, subject: RLMSubject? = nil, storage: DocumentService? = nil) {
+        if feed.feedItemType == .subjectDailyLog,
+            let subjectForLog = subject,
+            let documentStorage = storage {
+            title = subjectForLog.firstName + NSLocalizedString("home_feed_title_dailylog", comment: "")
             subtitle = nil
-            subjectImageURL = subject.photoURL(using: storage)
+            subjectImageURL = subjectForLog.photoURL(using: documentStorage)
         } else {
             title = feed.header
             subtitle = feed.body
@@ -227,5 +236,4 @@ extension HomeTableViewDisclosureCellModel {
         feedItemId = feed.feedItemId
         feedItemType = feed.feedItemType
     }
-
 }

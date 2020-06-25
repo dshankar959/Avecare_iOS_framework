@@ -22,7 +22,7 @@ struct GuardianFeed: Decodable {
     var date: Date
     let header: String
     let important: Bool
-    let subjectId: String
+    let subjectIds: [String]
     let feedItemId: String
     let feedItemType: FeedItemType
 
@@ -32,7 +32,7 @@ struct GuardianFeed: Decodable {
         case date
         case header
         case important
-        case subjectId
+        case subjectIds
         case feedItemId
         case feedItemType
     }
@@ -52,7 +52,7 @@ struct GuardianFeed: Decodable {
             }
             self.header = try values.decode(String.self, forKey: .header)
             self.important = try values.decode(Bool.self, forKey: .important)
-            self.subjectId = try values.decode(String.self, forKey: .subjectId)
+            self.subjectIds = try values.decode([String].self, forKey: .subjectIds)
             self.feedItemId = try values.decode(String.self, forKey: .feedItemId)
             self.feedItemType = try values.decode(FeedItemType.self, forKey: .feedItemType)
         } catch {

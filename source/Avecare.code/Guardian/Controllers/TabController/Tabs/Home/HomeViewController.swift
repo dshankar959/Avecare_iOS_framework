@@ -7,9 +7,6 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subjectFilterButton: UIButton!
-    @IBOutlet weak var noItemView: UIView!
-    @IBOutlet weak var noItemTitleLabel: UILabel!
-    @IBOutlet weak var noItemContentLabel: UILabel!
 
     let dataProvider: HomeDataProvider = DefaultHomeDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
@@ -17,6 +14,9 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
     weak var subjectSelection: SubjectSelectionProtocol?
 
     var pullToRefreshHeaderView: PullToRefreshHeaderView!
+
+    private let noItemCellIdntifier = "noItemCell"
+    private var isRefreshing = true // Prevent to show no item cell when screen is loaded
 
 
     override func viewDidLoad() {
@@ -33,10 +33,13 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
         ])
 
         self.navigationController?.hideHairline()
-        configNoItemView()
         tableView.tableFooterView = UIView() // remove bottom margin of the last cell
+        tableView.register(UINib(nibName: "NoItemTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: noItemCellIdntifier)
 
         setupPullToRefresh(for: self.tableView) { [weak self] in
+            self?.isRefreshing = true
+            self?.tableView.reloadData()
             // Retrieve data
             self?.refreshData { error in
                 if let uiTableView = self?.tableView {
@@ -45,6 +48,7 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
                 if let error = error {
                     self?.showErrorAlert(error)
                 }
+                self?.isRefreshing = false
                 self?.updateScreen()
             }
         }
@@ -85,13 +89,6 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
     }
 
 
-    private func configNoItemView() {
-        noItemTitleLabel.text = NSLocalizedString("home_no_item_title", comment: "")
-        noItemContentLabel.text = NSLocalizedString("home_no_item_content", comment: "")
-        noItemView.isHidden = true // hide initially
-    }
-
-
     @IBAction func didClickSubjectPickerButton(_ sender: UIButton) {
         performSegue(withIdentifier: R.segue.homeViewController.subjectList.identifier, sender: nil)
     }
@@ -119,7 +116,6 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
 
 
     private func updateScreen() {
-        noItemView.isHidden = dataProvider.numberOfSections > 0 ? true : false
         updateSubjectFilterButton()
         tableView.reloadData()
     }
@@ -165,17 +161,34 @@ extension HomeViewController: SubjectListViewControllerDelegate {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return dataProvider.numberOfSections
+        let numberOfSections = dataProvider.numberOfSections
+        if numberOfSections > 0 || isRefreshing {
+            return numberOfSections
+        } else {
+            return 1
+        }
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataProvider.numberOfRows(section: section)
+        let numberOfSections = dataProvider.numberOfSections
+        if numberOfSections > 0 || isRefreshing {
+            return dataProvider.numberOfRows(section: section)
+        } else {
+            return 1
+        }
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = dataProvider.model(for: indexPath)
-        let cell = tableView.dequeueReusableCell(withAnyModel: model, for: indexPath)
-        return cell
+        let numberOfSections = dataProvider.numberOfSections
+        if numberOfSections > 0 || isRefreshing {
+            let model = dataProvider.model(for: indexPath)
+            let cell = tableView.dequeueReusableCell(withAnyModel: model, for: indexPath)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: noItemCellIdntifier,
+                                                     for: indexPath)
+            return cell
+        }
     }
 
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

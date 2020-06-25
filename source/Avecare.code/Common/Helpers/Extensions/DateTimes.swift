@@ -278,13 +278,13 @@ extension Date {
         }
     }
 
-    var dateString: String {
+    var dateStringHumanFriendly: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd, yyyy"
         return formatter.string(from: self)
     }
 
-    var dateTimeString: String {
+    var dateTimeStringHumanFriendly: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "h:mm a, MMM dd, yyyy"
         return formatter.string(from: self)
