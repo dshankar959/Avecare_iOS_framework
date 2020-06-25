@@ -34,14 +34,29 @@ extension SyncEngine {
                                         self.syncDOWNorganizationDetails() { error in
                                             DDLogVerbose("syncDOWNorganizationDetails ♓️ closure")
                                             if let error = error { syncCompletion(error) } else {
-                                                self.syncDOWNunitSupervisors() { error in
-                                                    DDLogVerbose("syncDOWNunitSupervisors ♓️ closure")
+                                                self.syncDOWNorganizationActivities { error in
+                                                    DDLogVerbose("syncDOWNorganizationActivities ♓️ closure")
                                                     if let error = error { syncCompletion(error) } else {
-                                                        self.syncDOWNunitStories { error in
-                                                            DDLogVerbose("syncDOWNunitStories ♓️ closure")
-                                                            self.syncDOWNsubjectLogs { error in
-                                                                DDLogVerbose("syncDOWNsubjectLogs ♓️ closure")
-                                                                syncCompletion(error)
+                                                        self.syncDOWNorganizationInjuries { error in
+                                                            DDLogVerbose("syncDOWNorganizationInjuries ♓️ closure")
+                                                            if let error = error { syncCompletion(error) } else {
+                                                                self.syncDOWNorganizationReminders { error in
+                                                                    DDLogVerbose("syncDOWNorganizationReminders ♓️ closure")
+                                                                    if let error = error { syncCompletion(error) } else {
+                                                                        self.syncDOWNunitSupervisors() { error in
+                                                                            DDLogVerbose("syncDOWNunitSupervisors ♓️ closure")
+                                                                            if let error = error { syncCompletion(error) } else {
+                                                                                self.syncDOWNunitStories { error in
+                                                                                    DDLogVerbose("syncDOWNunitStories ♓️ closure")
+                                                                                    self.syncDOWNsubjectLogs { error in
+                                                                                        DDLogVerbose("syncDOWNsubjectLogs ♓️ closure")
+                                                                                        syncCompletion(error)
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }

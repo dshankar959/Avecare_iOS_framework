@@ -278,9 +278,15 @@ extension Date {
         }
     }
 
-    func dateStringFromDate() -> String {
+    var dateString: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "MMM dd, yyyy"
+        return formatter.string(from: self)
+    }
+
+    var dateTimeString: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "h:mm a, MMM dd, yyyy"
         return formatter.string(from: self)
     }
 }

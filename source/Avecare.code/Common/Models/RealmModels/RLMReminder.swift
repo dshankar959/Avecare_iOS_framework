@@ -52,3 +52,5 @@ class RLMReminder: RLMDefaults, RLMPublishable, DataProvider {
 
     }
 }
+
+typealias RLMReminderResponse = RLMReminder

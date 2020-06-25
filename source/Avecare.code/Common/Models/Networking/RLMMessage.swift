@@ -60,4 +60,4 @@ class RLMMessage: RLMDefaults {
 
 }
 
-typealias MessageResponse = RLMMessage
+typealias RLMMessageResponse = RLMMessage

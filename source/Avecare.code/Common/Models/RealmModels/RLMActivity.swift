@@ -61,3 +61,5 @@ class RLMActivity: RLMDefaults, RLMPublishable, DataProvider {
 
     }
 }
+
+typealias RLMActivityResponse = RLMActivity
