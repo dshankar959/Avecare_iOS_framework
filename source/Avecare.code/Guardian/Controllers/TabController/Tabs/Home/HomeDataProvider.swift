@@ -226,7 +226,7 @@ extension HomeTableViewDisclosureCellModel {
             let subjectForLog = subject,
             let documentStorage = storage {
             title = subjectForLog.firstName + NSLocalizedString("home_feed_title_dailylog", comment: "")
-            subtitle = nil
+            subtitle = feed.date.dateStringWithDayOfWeekHumanFriendly
             subjectImageURL = subjectForLog.photoURL(using: documentStorage)
         } else {
             title = feed.header
