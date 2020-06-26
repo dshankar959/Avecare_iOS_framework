@@ -17,7 +17,7 @@ struct ProfileSubjectImageCollectionViewCellModel: CellViewModel {
         cell.subjectSelectView.layer.cornerRadius = cell.subjectSelectView.frame.width / 2
         cell.subjectSelectView.clipsToBounds = true
         if cell.isSelected {
-            cell.subjectSelectView.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+            cell.subjectSelectView.backgroundColor = #colorLiteral(red: 0.3137254902, green: 0.6274509804, blue: 1, alpha: 1)
         } else {
             cell.subjectSelectView.backgroundColor = .white
         }
@@ -38,7 +38,7 @@ class ProfileSubjectImageCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                subjectSelectView.backgroundColor = #colorLiteral(red: 0.8470588235, green: 0.8470588235, blue: 0.8470588235, alpha: 1)
+                subjectSelectView.backgroundColor = #colorLiteral(red: 0.3137254902, green: 0.6274509804, blue: 1, alpha: 1)
             } else {
                 subjectSelectView.backgroundColor = .white
             }
