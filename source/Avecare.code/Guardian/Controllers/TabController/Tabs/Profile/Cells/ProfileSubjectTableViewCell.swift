@@ -67,7 +67,7 @@ class ProfileSubjectTableViewCell: UITableViewCell {
             selectedSubjectDOBLabel.text = Date.fullMonthDayYearFormatter.string(from: model.birthday)
         }
 
-
+        selectedSubjectDOBLabel.textColor = selectedSubjectNameLabel.textColor
     }
 }
 
