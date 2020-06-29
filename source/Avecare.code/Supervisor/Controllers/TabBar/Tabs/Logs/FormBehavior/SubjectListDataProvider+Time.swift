@@ -21,7 +21,11 @@ extension SubjectDetailsPickerViewModel {
 
 extension SubjectListDataProvider {
 
-    func viewModel(for row: RLMLogTimeRow, editable: Bool, at indexPath: IndexPath, updateCallback: @escaping (Date) -> Void) -> SubjectDetailsPickerViewModel {
+    func viewModel(for row: RLMLogTimeRow,
+                   editable: Bool,
+                   at indexPath: IndexPath,
+                   updateCallback: @escaping (Date) -> Void) -> SubjectDetailsPickerViewModel {
+
         var viewModel = SubjectDetailsPickerViewModel(row: row, isEditable: editable)
         viewModel.action = { [weak self] view in
             self?.showTimePicker(from: view, row: row, at: indexPath, updateCallback: updateCallback)
@@ -30,7 +34,9 @@ extension SubjectListDataProvider {
     }
 
 
-    private func showTimePicker(from view: SubjectDetailsPickerView, row: RLMLogTimeRow, at indexPath: IndexPath,
+    private func showTimePicker(from view: SubjectDetailsPickerView,
+                                row: RLMLogTimeRow,
+                                at indexPath: IndexPath,
                                 updateCallback: @escaping (Date) -> Void) {
         guard let responder = delegate?.customResponder else { return }
 

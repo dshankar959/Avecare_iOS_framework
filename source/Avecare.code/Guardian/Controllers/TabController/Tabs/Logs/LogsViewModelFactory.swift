@@ -12,6 +12,7 @@ struct LogsViewModelFactory {
         case .note: return viewModel(for: row.note!)
         case .photo: return viewModel(for: row.photo!, storage: storage)
         case .injury: return viewModel(for: row.injury!)
+        case .tags: return viewModel(for: row.option!) //viewModel(for: row.tags!)
         }
     }
 
@@ -38,6 +39,10 @@ struct LogsViewModelFactory {
     static func viewModel(for row: RLMLogInjuryRow) -> LogsNoteTableViewCellModel {
         return .init(row: row)
     }
+/*
+    static func viewModel(for row: RLMLogTagsRow) -> LogsOptionTableViewCellModel {
+        return .init(row: row)
+    }*/
 }
 
 

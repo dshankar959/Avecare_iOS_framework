@@ -37,6 +37,7 @@ class RLMLogChooseRow: Object, Decodable {
         case .note: row = try RLMLogRow(row: try container.decode(RLMLogNoteRow.self, forKey: .properties))
         case .photo: row = try RLMLogRow(row: try container.decode(RLMLogPhotoRow.self, forKey: .properties))
         case .injury: row = try RLMLogRow(row: try container.decode(RLMLogInjuryRow.self, forKey: .properties))
+        case .tags: row = try RLMLogRow(row: try container.decode(RLMLogTagsRow.self, forKey: .properties))
         }
     }
 

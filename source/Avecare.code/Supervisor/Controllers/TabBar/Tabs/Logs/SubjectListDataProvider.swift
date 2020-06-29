@@ -110,7 +110,6 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
         return Form(viewModels: header + formLog.rows.map({
             self.viewModel(for: $0, editable: !isSubmitted, at: indexPath, updateCallback: updateClientDate)
         }))
-
     }
 
 
@@ -125,7 +124,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
         case .note: return viewModel(for: row.note!, editable: editable, at: indexPath, updateCallback: updateCallback)
         case .photo: return viewModel(for: row.photo!, editable: editable, at: indexPath, updateCallback: updateCallback)
         case .injury: return viewModel(for: row.injury!, editable: editable, at: indexPath, updateCallback: updateCallback)
+        case .tags: return viewModel(for: row.tags!, editable: editable, at: indexPath, updateCallback: updateCallback)
         }
     }
-
 }
