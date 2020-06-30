@@ -68,7 +68,7 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
         }
 
         // Update screen in case feeds are updated from stories screen
-        if pullToRefreshHeaderView.isHidden {
+        if !isRefreshing { // Update screen only when data is not refreshing
             updateScreen()
         }
     }
