@@ -9,7 +9,10 @@ extension SubjectDetailsPickerViewModel {
         iconColor = UIColor(rgb: row.iconColor)
         title = row.title
         let formatter = Date.timeFormatter
-        selectedOption = formatter.string(from: row.startTime) + " - " + formatter.string(from: row.endTime)
+        selectedOption = formatter.string(from: row.startTime)
+        if let endTime = row.endTime {
+            selectedOption += " - " + formatter.string(from: endTime)
+        }
         self.isEditable = isEditable
     }
 
@@ -33,13 +36,19 @@ extension SubjectListDataProvider {
 
         let picker = TimeRangePickerView(frame: CGRect(x: 0, y: 0, width: 320, height: 278))
         picker.startTimePicker.date = row.startTime
-        picker.endTimePicker.date = row.endTime
+        if let endTime = row.endTime {
+            picker.endTimePicker.date = endTime
+        } else {
+            picker.isDoublePicker = false
+        }
         picker.updateMinMaxRange()
 
         let toolbar = defaultToolbarView(onDone: { [weak self] in
             RLMLogTimeRow.writeTransaction {
                 row.startTime = picker.startTimePicker.date
-                row.endTime = picker.endTimePicker.date
+                if picker.isDoublePicker {
+                    row.endTime = picker.endTimePicker.date
+                }
             }
             updateCallback(Date())
             self?.viewModel(for: row, editable: true, at: indexPath, updateCallback: updateCallback).setup(cell: view)

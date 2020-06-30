@@ -36,7 +36,7 @@ final class PullToRefreshHeaderView: RefreshView {
     private let indicator = UIActivityIndicatorView(style: .gray)
     private let isHeader: Bool
 
-    private var loadingText = "Syncing/refreshing ..."
+    private var loadingText = "Syncing / refreshing ..."
     private var pullingText = "Pull to refresh"
     private var releaseText = "Release to refresh"
 
@@ -51,7 +51,7 @@ final class PullToRefreshHeaderView: RefreshView {
 
         let layer = CAShapeLayer()
         layer.path = path.cgPath
-        layer.strokeColor = UIColor.red.withAlphaComponent(0.8).cgColor
+        layer.strokeColor = R.color.themeText()?.cgColor
         layer.lineWidth = 2
         layer.lineCap = .round
         return layer
@@ -60,7 +60,7 @@ final class PullToRefreshHeaderView: RefreshView {
     private lazy var label: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 16)
-        label.textColor = UIColor.red.withAlphaComponent(0.8)
+        label.textColor = R.color.themeText()
         return label
     }()
 /*
@@ -93,7 +93,7 @@ final class PullToRefreshHeaderView: RefreshView {
         self.cancelAction = cancelAction
         super.init(style: isHeader ? .header : .footer, height: height, action: action)
 
-        indicator.color = .red
+        indicator.color = R.color.themeText()
 
         layer.addSublayer(arrowLayer)
         addSubview(indicator)

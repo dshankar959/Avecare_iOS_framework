@@ -19,7 +19,6 @@ protocol SupervisorsDataProvider: class {
 
 class DefaultSupervisorsDataProvider: SupervisorsDataProvider {
 
-    private let supervisors = RLMSupervisor.findAll()
     private let storage = DocumentService()
 
     private var dataSource = [RLMSupervisor]()
@@ -27,18 +26,23 @@ class DefaultSupervisorsDataProvider: SupervisorsDataProvider {
     var unitIds: [String] = [] {
         didSet {
             if unitIds.count > 0 {
-                dataSource = filter(for: supervisors, with: unitIds)
+                dataSource = filter(for: RLMSupervisor.findAll(), with: unitIds)
             } else {
-                dataSource = supervisors
+                dataSource = RLMSupervisor.findAll()
             }
         }
     }
 
-
     private func filter(for supervisors: [RLMSupervisor], with unitIds: [String]) -> [RLMSupervisor] {
         var result = [RLMSupervisor]()
         unitIds.forEach { unitId in
-            let filteredSupervisors = supervisors.filter { $0.primaryUnitId == unitId }
+            var filteredSupervisors = [RLMSupervisor]()
+            for supervisor in supervisors {
+                for supervisorUnitId in supervisor.unitIds where unitId == supervisorUnitId {
+                    filteredSupervisors.append(supervisor)
+                    break
+                }
+            }
             result.append(contentsOf: filteredSupervisors)
         }
         return result
@@ -102,8 +106,8 @@ class DefaultStoriesDataProvider: StoriesDataProvider {
             dataSource = filter(for: stories, with: unitIds)
         } else {
             dataSource = stories
-            sort()
         }
+        sort()
     }
 
     private func filter(for stories: [RLMStory], with unitIds: [String]) -> [RLMStory] {

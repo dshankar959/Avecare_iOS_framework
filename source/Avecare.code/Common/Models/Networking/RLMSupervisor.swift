@@ -11,6 +11,7 @@ class RLMSupervisor: RLMDefaults {
     @objc dynamic var lastName: String = ""
     @objc dynamic var bio: String = ""
     @objc dynamic var primaryUnitId: String = ""
+    var unitIds = List<String>()
 
     var educationalBackground = List<RLMEducation>()
 
@@ -24,6 +25,7 @@ class RLMSupervisor: RLMDefaults {
         case educationalBackground
         case primaryUnitId
         case profilePhoto
+        case unitIds
     }
 
     convenience required init(from decoder: Decoder) throws {
@@ -41,6 +43,7 @@ class RLMSupervisor: RLMDefaults {
             self.bio = try values.decode(String.self, forKey: .bio)
             self.educationalBackground = try values.decode(List<RLMEducation>.self, forKey: .educationalBackground)
             self.primaryUnitId = try values.decode(String.self, forKey: .primaryUnitId)
+            self.unitIds = try values.decode(List<String>.self, forKey: .unitIds)
 
             // load and save image during json response decoding synchronously
             if let profilePhoto = try values.decodeIfPresent(String.self, forKey: .profilePhoto),

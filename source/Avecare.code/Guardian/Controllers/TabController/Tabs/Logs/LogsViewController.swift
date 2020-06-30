@@ -190,6 +190,15 @@ extension LogsViewController: UITableViewDelegate, UITableViewDataSource {
         cell.separatorInset = .zero
         cell.layoutMargins = .zero
     }
+
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let model = dataProvider.model(for: indexPath)
+        if let model = model as? LogsPhotoTableViewCellModel, model.image == nil {
+            return 0.0
+        } else {
+            return UITableView.automaticDimension
+        }
+    }
 }
 
 

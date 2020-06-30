@@ -27,7 +27,7 @@ class RemindersFormProvider {
         controller.selectedIds = Set(subjects.map({ $0.id }))
         controller.onDone = { [weak self] details in
             self?.subjects = Array(details)
-            if let indexPath = self?.indexPath {
+            if self?.indexPath != nil {
                 self?.updatePublishableState()
             }
         }

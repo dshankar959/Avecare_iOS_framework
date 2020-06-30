@@ -12,10 +12,12 @@ protocol NotificationTypeDataProvider: class {
     func navigationItems(at indexPath: IndexPath, type: NotificationType) -> [DetailsNavigationView.Item]
 }
 
+
 protocol NotificationTypeDataProviderDelegate: UIViewController {
     func showAlert(title: String, message: String)
     func didUpdateModel(at indexPath: IndexPath)
 }
+
 
 class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
 

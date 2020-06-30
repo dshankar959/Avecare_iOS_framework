@@ -9,7 +9,7 @@ extension StoriesDataProvider {
         let titleFont: UIFont = .systemFont(ofSize: 36)
 
         let isSubmitted = story.publishState != .local
-        return FormTextViewModel(font: titleFont, placeholder: "Type Your Story Title Here",
+        return FormTextViewModel(font: titleFont, placeholder: "Type Your Title Here",
                 value: story.title, isEditable: !isSubmitted, onChange: { [weak self] _, textValue in
             RLMStory.writeTransaction {
                 story.title = textValue ?? ""

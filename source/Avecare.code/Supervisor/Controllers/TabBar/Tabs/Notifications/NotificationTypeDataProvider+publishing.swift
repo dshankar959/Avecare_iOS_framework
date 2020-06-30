@@ -24,7 +24,7 @@ extension DefaultNotificationTypeDataProvider {
                 dailyTasks.publishState = .publishing
             }
 
-            UnitAPIService.publishDailyTaskForm(unitId: unitId, data: dailyTasks) { [weak self] result in
+            NotificationsAPIService.publishDailyTaskForm(unitId: unitId, data: dailyTasks) { [weak self] result in
                 switch result {
                 case .success(let publishedDailyTasks):
                     self?.delegate?.showAlert(title: NSLocalizedString("notification_daily_checklist_published_title", comment: ""),
@@ -67,7 +67,7 @@ extension DefaultNotificationTypeDataProvider {
 
     func publsihActivity(activity: RLMActivity) {
         if let unitId = RLMSupervisor.details?.primaryUnitId {
-            UnitAPIService.publishActivity(uintId: unitId, data: activity, completion: { result in
+            NotificationsAPIService.publishActivity(uintId: unitId, data: activity, completion: { result in
                 switch result {
                 case .success(let publishedActivity):
                     publishedActivity.publishState = .published
@@ -98,7 +98,7 @@ extension DefaultNotificationTypeDataProvider {
     }
 
     func publishInjuries(injuries: [RLMInjury]) {
-        UnitAPIService.publishInjuries(data: injuries, completion: { result in
+        NotificationsAPIService.publishInjuries(data: injuries, completion: { result in
             switch result {
             case .success(let publishedInjuries):
                 for injury in publishedInjuries {
@@ -131,7 +131,7 @@ extension DefaultNotificationTypeDataProvider {
 
     func publishReminders(reminders: [RLMReminder]) {
 
-        UnitAPIService.publishReminders(data: reminders, completion: { result in
+        NotificationsAPIService.publishReminders(data: reminders, completion: { result in
             switch result {
             case .success(let publishedReminders):
                 for reminder in publishedReminders {

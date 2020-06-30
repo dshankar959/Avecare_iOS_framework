@@ -5,6 +5,7 @@ import CocoaLumberjack
 
 struct Form {
     let viewModels: [AnyCellViewModel]
+
     init(viewModels: [AnyCellViewModel]) {
         self.viewModels = viewModels
     }

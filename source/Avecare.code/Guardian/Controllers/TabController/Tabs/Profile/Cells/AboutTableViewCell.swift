@@ -13,6 +13,7 @@ struct AboutTableViewCellModel: CellViewModel {
 
 }
 
+
 class AboutTableViewCell: UITableViewCell {
 
     @IBOutlet weak var menuTitleLabel: UILabel!

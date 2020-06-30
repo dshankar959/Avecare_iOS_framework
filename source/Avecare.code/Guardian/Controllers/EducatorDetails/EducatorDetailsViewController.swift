@@ -37,7 +37,9 @@ class EducatorDetailsViewController: UIViewController {
     }
 }
 
+
 extension EducatorDetailsViewController: UITableViewDelegate, UITableViewDataSource {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return dataProvider.numberOfSections
     }
@@ -58,4 +60,5 @@ extension EducatorDetailsViewController: UITableViewDelegate, UITableViewDataSou
             return 80
         }
     }
+
 }

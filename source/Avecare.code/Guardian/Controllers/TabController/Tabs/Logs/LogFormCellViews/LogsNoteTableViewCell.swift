@@ -1,6 +1,8 @@
 import Foundation
 import UIKit
 
+
+
 struct LogsNoteTableViewCellModel: CellViewModel {
     typealias CellType = LogsNoteTableViewCell
 
@@ -19,7 +21,9 @@ struct LogsNoteTableViewCellModel: CellViewModel {
     }
 }
 
+
 class LogsNoteTableViewCell: UITableViewCell {
+
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!
@@ -30,4 +34,5 @@ class LogsNoteTableViewCell: UITableViewCell {
         iconImageView.layer.masksToBounds = true
         iconImageView.layer.cornerRadius = 12
     }
+
 }

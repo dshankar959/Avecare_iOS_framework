@@ -70,13 +70,16 @@ extension ChecklistFormProvider: FormProvider {
 
     func form() -> Form {
         var subtitleString: String
+
         if dailyTaskForm.publishState == .local {
             subtitleString = NSLocalizedString("notification_daily_checklist_saved_date", comment: "")
         } else {
             subtitleString = NSLocalizedString("notification_daily_checklist_published_date", comment: "")
         }
+
         let dateString = Date.fullMonthTimeFormatter.string(from: dailyTaskForm.clientLastUpdated ?? Date())
         subtitleString = subtitleString.replacingOccurrences(of: SavedDateKey, with: dateString)
+
         var models: [AnyCellViewModel] = [
             LabelFormViewModel.title(NSLocalizedString("notification_daily_checklist_title", comment: "")),
             LabelFormViewModel.subtitle(subtitleString)

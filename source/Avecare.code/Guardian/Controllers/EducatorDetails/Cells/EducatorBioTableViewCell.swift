@@ -20,6 +20,7 @@ struct EducatorBioTableViewCellModel: CellViewModel {
     }
 }
 
+
 class EducatorBioTableViewCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
@@ -30,6 +31,8 @@ class EducatorBioTableViewCell: UITableViewCell {
         super.awakeFromNib()
 
         educationHeaderLabel.text = NSLocalizedString("educator_training_header", comment: "").uppercased()
+
+        educationHeaderLabel.isHidden = true    // Feedback from HWCCCC:  not required  [S.D. - June 24, 2020]
     }
 
 }

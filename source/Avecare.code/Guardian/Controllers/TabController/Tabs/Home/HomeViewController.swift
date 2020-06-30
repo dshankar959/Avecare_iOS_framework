@@ -7,9 +7,6 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subjectFilterButton: UIButton!
-    @IBOutlet weak var noItemView: UIView!
-    @IBOutlet weak var noItemTitleLabel: UILabel!
-    @IBOutlet weak var noItemContentLabel: UILabel!
 
     let dataProvider: HomeDataProvider = DefaultHomeDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
@@ -18,10 +15,17 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
 
     var pullToRefreshHeaderView: PullToRefreshHeaderView!
 
+    private let noItemCellIdntifier = "noItemCell"
+    private var isRefreshing = true // Prevent to show no item cell when screen is loaded
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        subjectSelection = tabBarController as? GuardianTabBarController
+
+        if let tabBarController = tabBarController as? GuardianTabBarController {
+            subjectSelection = tabBarController
+            tabBarController.homeViewController = self
+        }
 
         tableView.register(nibModels: [
             LogsNoteTableViewCellModel.self,
@@ -29,18 +33,22 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
         ])
 
         self.navigationController?.hideHairline()
-        configNoItemView()
         tableView.tableFooterView = UIView() // remove bottom margin of the last cell
+        tableView.register(UINib(nibName: "NoItemTableViewCell", bundle: nil),
+                           forCellReuseIdentifier: noItemCellIdntifier)
 
         setupPullToRefresh(for: self.tableView) { [weak self] in
+            self?.isRefreshing = true
+            self?.tableView.reloadData()
             // Retrieve data
-            self?.fetchFeeds { error in
+            self?.refreshData { error in
                 if let uiTableView = self?.tableView {
                     self?.endPullToRefresh(for: uiTableView)
                 }
                 if let error = error {
                     self?.showErrorAlert(error)
                 }
+                self?.isRefreshing = false
                 self?.updateScreen()
             }
         }
@@ -49,33 +57,35 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
             DDLogInfo("ℹ️ sync/refresh")
             self.triggerPullToRefresh(for: self.tableView)
         })
-
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 
-    private func fetchFeeds(completion: @escaping (AppError?) -> Void) {
-        dataProvider.fetchFeeds { error in
-            if let error = error {
-                completion(error)
-            }
+        // Update selected subject id
+        if dataProvider.selectedSubjectId != subjectSelection?.subject?.id {
+            dataProvider.selectedSubjectId = subjectSelection?.subject?.id
+        }
 
-            syncEngine.syncAll { error in
-                syncEngine.print_isSyncingStatus_description()
-                if let error = error {
-                    completion(error)
-                } else {
-                    self.dataProvider.filterDataSource(with: self.subjectSelection?.subject?.id)
-                    completion(nil)
-                }
-            }
+        // Update screen in case feeds are updated from stories screen
+        if !isRefreshing { // Update screen only when data is not refreshing
+            updateScreen()
         }
     }
 
 
-    private func configNoItemView() {
-        noItemTitleLabel.text = NSLocalizedString("home_no_item_title", comment: "")
-        noItemContentLabel.text = NSLocalizedString("home_no_item_content", comment: "")
-        noItemView.isHidden = true // hide initially
+    func refreshData(completion: @escaping (AppError?) -> Void) {
+        // sync syncengine, then fetch feeds
+        syncEngine.syncAll { error in
+            syncEngine.print_isSyncingStatus_description()
+            if let error = error {
+                completion(error)
+            } else {
+                self.dataProvider.fetchFeeds { error in
+                    completion(error)
+                }
+            }
+        }
     }
 
 
@@ -97,15 +107,15 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
             destination.modalPresentationStyle = .custom
         } else if segue.identifier == R.segue.homeViewController.details.identifier,
             let destination = segue.destination as? FeedDetailsViewController {
-            let tuple = sender as? (FeedItemType, String)
-            destination.feedItemType = tuple?.0
-            destination.feedItemId = tuple?.1
+            let tuple = sender as? (String, FeedItemType, String)
+            destination.feedTitle = tuple?.0
+            destination.feedItemType = tuple?.1
+            destination.feedItemId = tuple?.2
         }
     }
 
 
     private func updateScreen() {
-        noItemView.isHidden = dataProvider.numberOfSections > 0 ? true : false
         updateSubjectFilterButton()
         tableView.reloadData()
     }
@@ -135,14 +145,14 @@ extension HomeViewController: SubjectListViewControllerDelegate {
     func subjectListDidSelectAll(_ controller: SubjectListViewController) {
         controller.dismiss(animated: true)
         subjectSelection?.subject = nil
-        dataProvider.filterDataSource(with: nil)
+        dataProvider.selectedSubjectId = nil
         updateScreen()
     }
 
     func subjectList(_ controller: SubjectListViewController, didSelect subject: RLMSubject) {
         controller.dismiss(animated: true)
         subjectSelection?.subject = subject
-        dataProvider.filterDataSource(with: subject.id)
+        dataProvider.selectedSubjectId = subject.id
         updateScreen()
     }
 }
@@ -151,17 +161,34 @@ extension HomeViewController: SubjectListViewControllerDelegate {
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return dataProvider.numberOfSections
+        let numberOfSections = dataProvider.numberOfSections
+        if numberOfSections > 0 || isRefreshing {
+            return numberOfSections
+        } else {
+            return 1
+        }
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataProvider.numberOfRows(section: section)
+        let numberOfSections = dataProvider.numberOfSections
+        if numberOfSections > 0 || isRefreshing {
+            return dataProvider.numberOfRows(section: section)
+        } else {
+            return 1
+        }
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let model = dataProvider.model(for: indexPath)
-        let cell = tableView.dequeueReusableCell(withAnyModel: model, for: indexPath)
-        return cell
+        let numberOfSections = dataProvider.numberOfSections
+        if numberOfSections > 0 || isRefreshing {
+            let model = dataProvider.model(for: indexPath)
+            let cell = tableView.dequeueReusableCell(withAnyModel: model, for: indexPath)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: noItemCellIdntifier,
+                                                     for: indexPath)
+            return cell
+        }
     }
 
     public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -183,8 +210,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         switch model.feedItemType {
         case .subjectDailyLog:
             gotoLogsScreen(with: model.feedItemId)
-        case .message:
-            performSegue(withIdentifier: R.segue.homeViewController.details, sender: (model.feedItemType, model.feedItemId))
+        case .message, .unitActivity, .subjectInjury, .subjectReminder:
+            performSegue(withIdentifier: R.segue.homeViewController.details, sender: (model.title, model.feedItemType, model.feedItemId))
         case .unitStory:
             gotoStoryDetailScreen(with: model.feedItemId)
         default:

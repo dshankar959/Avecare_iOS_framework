@@ -1,5 +1,6 @@
 import Foundation
 
+
 extension Bundle {
 
     var appName: String {
@@ -20,6 +21,11 @@ extension Bundle {
 
 }
 
+
 func appNameVersionAndBuildDateString() -> String {
     return "\(Bundle.main.appName), v\(Bundle.main.versionNumber) (Build: \(Bundle.main.buildNumber))"
+}
+
+func appVersionAndBuildDateString() -> String {
+    return "v\(Bundle.main.versionNumber) (Build: \(Bundle.main.buildNumber))"
 }

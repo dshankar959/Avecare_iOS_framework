@@ -15,7 +15,7 @@ protocol ProfileDataProvider: class {
 }
 
 
-enum ProfileSection: Int {
+enum ProfileSection: Int, CaseIterable {
     case subjects = 0
     case supervisors = 1
     case details = 2
@@ -43,7 +43,6 @@ class DefaultProfileDataProvider: ProfileDataProvider {
     private lazy var dataSource: [Section] = [
         Section(profileMenus: [
             ProfileMenuTableViewCellModel(menuImage: "utensils", menuTitle: NSLocalizedString("profile_menu_meal_plan", comment: ""))
-//            ProfileMenuTableViewCellModel(menuImage: "calendar", menuTitle: NSLocalizedString("profile_menu_activity", comment: ""))
         ]),
         Section(profileMenus: [
             ProfileMenuTableViewCellModel(menuImage: "", menuTitle: NSLocalizedString("profile_menu_about_application", comment: ""))
@@ -54,12 +53,13 @@ class DefaultProfileDataProvider: ProfileDataProvider {
     ]
 
     var numberOfSections: Int {
-        return dataSource.count + 2
+        return ProfileSection.allCases.count
     }
 
     func numberOfRows(for section: Int) -> Int {
         switch section {
-        case 0, 1:
+        case ProfileSection.subjects.rawValue,
+             ProfileSection.supervisors.rawValue:
             return 1
         default:
             return dataSource[section - 2].profileMenus.count
@@ -68,9 +68,9 @@ class DefaultProfileDataProvider: ProfileDataProvider {
 
     func model(for indexPath: IndexPath) -> AnyCellViewModel {
         switch indexPath.section {
-        case 0:
+        case ProfileSection.subjects.rawValue:
             return ProfileSubjectTableViewCellModel(dataProvider: subjectsProvider)
-        case 1:
+        case ProfileSection.supervisors.rawValue:
             return SupervisorFilterTableViewCellModel(dataProvider: supervisorsProvider)
         default:
             return dataSource[indexPath.section - 2].profileMenus[indexPath.row]
