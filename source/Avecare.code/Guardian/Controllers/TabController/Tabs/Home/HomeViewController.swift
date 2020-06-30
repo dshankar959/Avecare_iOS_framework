@@ -1,10 +1,9 @@
 import UIKit
 import CocoaLumberjack
-import SwiftPullToRefresh
 
 
 
-class HomeViewController: UIViewController, IndicatorProtocol {
+class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProtocol {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subjectFilterButton: UIButton!
@@ -16,6 +15,9 @@ class HomeViewController: UIViewController, IndicatorProtocol {
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
     weak var subjectSelection: SubjectSelectionProtocol?
+
+    var pullToRefreshHeaderView: PullToRefreshHeaderView!
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,28 +32,26 @@ class HomeViewController: UIViewController, IndicatorProtocol {
         configNoItemView()
         tableView.tableFooterView = UIView() // remove bottom margin of the last cell
 
-        // Retrieve data
-        showActivityIndicator(withStatus: NSLocalizedString("home_retrieving_feed", comment: ""))
-        fetchFeeds { [weak self] error in
-            self?.hideActivityIndicator()
-            if let error = error {
-                self?.showErrorAlert(error)
-            }
-            self?.dataProvider.filterDataSource(with: self?.subjectSelection?.subject?.id)
-            self?.updateScreen()
-        }
-
-        // Set pull-to-refresh
-        tableView.spr_setIndicatorHeader { [weak self] in
+        setupPullToRefresh(for: self.tableView) { [weak self] in
+            // Retrieve data
             self?.fetchFeeds { error in
+                if let uiTableView = self?.tableView {
+                    self?.endPullToRefresh(for: uiTableView)
+                }
                 if let error = error {
                     self?.showErrorAlert(error)
                 }
                 self?.updateScreen()
-                self?.tableView.spr_endRefreshing()
             }
         }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.35, execute: {  // let the animations settle delay.
+            DDLogInfo("ℹ️ sync/refresh")
+            self.triggerPullToRefresh(for: self.tableView)
+        })
+
     }
+
 
     private func fetchFeeds(completion: @escaping (AppError?) -> Void) {
         dataProvider.fetchFeeds { error in
@@ -68,9 +68,9 @@ class HomeViewController: UIViewController, IndicatorProtocol {
                     completion(nil)
                 }
             }
-
         }
     }
+
 
     private func configNoItemView() {
         noItemTitleLabel.text = NSLocalizedString("home_no_item_title", comment: "")
@@ -78,9 +78,11 @@ class HomeViewController: UIViewController, IndicatorProtocol {
         noItemView.isHidden = true // hide initially
     }
 
+
     @IBAction func didClickSubjectPickerButton(_ sender: UIButton) {
         performSegue(withIdentifier: R.segue.homeViewController.subjectList.identifier, sender: nil)
     }
+
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == R.segue.homeViewController.subjectList.identifier,
@@ -101,11 +103,13 @@ class HomeViewController: UIViewController, IndicatorProtocol {
         }
     }
 
+
     private func updateScreen() {
         noItemView.isHidden = dataProvider.numberOfSections > 0 ? true : false
         updateSubjectFilterButton()
         tableView.reloadData()
     }
+
 
     private func updateSubjectFilterButton() {
         let titleText: String
@@ -125,7 +129,9 @@ class HomeViewController: UIViewController, IndicatorProtocol {
     }
 }
 
+
 extension HomeViewController: SubjectListViewControllerDelegate {
+
     func subjectListDidSelectAll(_ controller: SubjectListViewController) {
         controller.dismiss(animated: true)
         subjectSelection?.subject = nil
@@ -140,6 +146,7 @@ extension HomeViewController: SubjectListViewControllerDelegate {
         updateScreen()
     }
 }
+
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 

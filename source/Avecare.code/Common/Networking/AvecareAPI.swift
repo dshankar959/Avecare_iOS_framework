@@ -65,8 +65,9 @@ enum AvecareAPI { // API Services
     case organizationDailyTemplates(id: String)
 //    case organizationInstitutions(id: String)
     case organizationSubjectTypes(id: String)
-    case organizationInjuries(id: String)
+    case organizationDailyTasks(id: String)
     case organizationActivities(id: String)
+    case organizationInjuries(id: String)
     case organizationReminders(id: String)
     // MARK: - SUBJECTS
 //    case subjectInjuries(id: String)
@@ -79,9 +80,8 @@ enum AvecareAPI { // API Services
     case storyDetails(id: String)
     // MARK: - UNITS
     case unitDetails(id: String)
+    case unitPublishDailyTaskForm(id: String, request: RLMDailyTaskForm)
     case unitCreateActivity(id: String, request: RLMActivity)
-    case unitDailyTasks(id: String)
-    case unitPublishDailyTasks(id: String, request: DailyTaskRequest)
     case unitCreateInjury(payLoad: [RLMInjury])
     case unitCreateReminder(payLoad: [RLMReminder])
     case unitSubjects(id: String)
@@ -121,8 +121,9 @@ extension AvecareAPI: TargetType {
         case .organizationDailyTemplates(let id): return "/organizations/\(id)/daily-subject-log-templates"
 //        case .organizationInstitutions(let id): return "/organizations/\(id)/institutions"
         case .organizationSubjectTypes(let id): return "/organizations/\(id)/subject-types"     // might not be required
-        case .organizationInjuries(let id): return "/organizations/\(id)/available-injuries"
+        case .organizationDailyTasks(let id): return "/organizations/\(id)/available-daily-tasks"
         case .organizationActivities(let id): return "/organizations/\(id)/available-activities"
+        case .organizationInjuries(let id): return "/organizations/\(id)/available-injuries"
         case .organizationReminders(let id): return "/organizations/\(id)/available-reminders"
 
         case .subjectPublishDailyLog(let request): return "/subjects/\(request.subjectId)/daily-logs/"
@@ -132,8 +133,7 @@ extension AvecareAPI: TargetType {
 
         case .unitDetails(let id): return "/units/\(id)"
         case .unitCreateActivity(let id, _): return "/units/\(id)/activities/"
-        case .unitDailyTasks(let id): return "/units/\(id)/available-daily-tasks"
-        case .unitPublishDailyTasks(let id, _): return "/units/\(id)/daily-tasks/"
+        case .unitPublishDailyTaskForm(let id, _): return "/units/\(id)/daily-tasks/"
         case .unitSubjects(let id): return "/units/\(id)/subjects"
         case .unitSupervisors(let id): return "/units/\(id)/supervisors"
         case .unitPublishStory(let story): return "/units/\(story.unitId)/stories/"
@@ -153,7 +153,7 @@ extension AvecareAPI: TargetType {
              .oneTimePassword,
              .logout,
              .unitCreateActivity,
-             .unitPublishDailyTasks,
+             .unitPublishDailyTaskForm,
              .unitCreateInjury,
              .unitCreateReminder,
              .subjectPublishDailyLog,
@@ -172,7 +172,7 @@ extension AvecareAPI: TargetType {
             return .requestParameters(parameters: ["email": email], encoding: JSONEncoding.default)
 
         case .unitCreateActivity(_, let request as Encodable),
-             .unitPublishDailyTasks(_, let request as Encodable),
+             .unitPublishDailyTaskForm(_, let request as Encodable),
              .unitCreateInjury(let request as Encodable),
              .unitCreateReminder(let request as Encodable):
             let encoder = JSONEncoder()
@@ -182,8 +182,8 @@ extension AvecareAPI: TargetType {
         case .subjectGetLogs(let request):
             DDLogDebug(".subjectGetLogs parameters: .serverLastUpdated = \(request.serverLastUpdated)")
             return .requestParameters(parameters: [
-                "start_date": request.startDate,
-                "end_date": request.endDate,
+                "startDate": request.startDate,
+                "endDate": request.endDate,
                 "lastUpdatedAt": request.serverLastUpdated
             ], encoding: URLEncoding.default)
 
@@ -197,7 +197,7 @@ extension AvecareAPI: TargetType {
         case .subjectPublishDailyLog(let request as MultipartEncodable),
              .unitPublishStory(let request as MultipartEncodable):
             return .uploadMultipart(request.formData)
-            
+
         default:
             return .requestPlain
         }

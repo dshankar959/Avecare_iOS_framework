@@ -16,7 +16,9 @@ struct DateSubtitleViewModel: CellViewModel {
 
     func setup(cell: CellType) {
         let formatter = Date.fullMonthTimeFormatter
-        let prefix = isSubmitted ? "Published" : "Last saved"
+        let prefix = isSubmitted ?
+            NSLocalizedString("logs_subtitle_published", comment: "") :
+            NSLocalizedString("logs_subtitle_last_saved", comment: "")
         let time = formatter.string(from: date)
 
         cell.text = "\(prefix) - \(time)"

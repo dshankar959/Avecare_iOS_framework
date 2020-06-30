@@ -56,7 +56,7 @@ extension ClassActivityFormProvider: FormProvider {
                     guard let pickerView = pickerView as? SingleValuePickerView<RLMActivityOption>? else { return }
                     let selectedValue = pickerView?.selectedValue
                     self?.selectedActivity = selectedValue
-                    view.setTextValue(selectedValue?.description)
+                    view.setTextValue(selectedValue?.name)
                     self?.updatePublishableState()
 
                 }))
@@ -84,9 +84,9 @@ extension ClassActivityFormProvider: FormProvider {
         viewModels.append(DoublePickerViewFormViewModel(leftPicker: left, rightPicker: right))
         viewModels.append(MarginFormViewModel(height: 20))
 
-        viewModels.append(InputTextFormViewModel(title: NSLocalizedString("activity_instruction_title",
-                                                                          comment: ""),placeholder: NSLocalizedString("activity_instruction_placeholder", comment: ""),
-                                         value: activityInstructions,
+        viewModels.append(InputTextFormViewModel(title: NSLocalizedString("notification_inspections_and_drills_special_instruction_title", comment: ""),
+                                                 placeholder: NSLocalizedString("notification_inspections_and_drills_special_instruction_placeholder", comment: ""),
+                                                 value: activityInstructions,
         onChange: { [weak self] (_, textValue) in
             self?.activityInstructions = textValue ?? ""
             }))
@@ -102,4 +102,3 @@ extension ClassActivityFormProvider: FormProvider {
         updatePublishableState()
     }
 }
-

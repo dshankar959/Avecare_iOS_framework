@@ -18,7 +18,7 @@ protocol NotificationTypeDataProviderDelegate: UIViewController {
 }
 
 class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
-    
+
     private var lastSelectedIndexPath: IndexPath?
     weak var delegate: NotificationTypeDataProviderDelegate?
 
@@ -116,7 +116,7 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
     func navigationItems(at indexPath: IndexPath, type: NotificationType) -> [DetailsNavigationView.Item] {
 
         var isEnabled = false
-        var publishText = NSLocalizedString("send_button_title", comment: "")
+        var publishText = NSLocalizedString("notification_send_button_title", comment: "")
 
         switch type {
 
@@ -125,8 +125,7 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
         case .classActivity: isEnabled = classActivityFormProvider.isPublishable()
         case .dailyCheckList:
             isEnabled = checklistDataProvider.isPublishable()
-            publishText = NSLocalizedString("publish_button_title", comment: "")
-
+            publishText = NSLocalizedString("notification_complete_button_title", comment: "")
         }
 
         let publishColor = isEnabled ? R.color.main() :R.color.lightText4()

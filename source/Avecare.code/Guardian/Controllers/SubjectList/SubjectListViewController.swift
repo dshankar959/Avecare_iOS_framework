@@ -20,7 +20,7 @@ class SubjectListViewController: UIViewController {
     private let cellHeight = CGFloat(57)
     private let drawerHeight = CGFloat(22)
     var contentHeight: CGFloat {
-        // FIXME: should not be greater then screen size -> This is done by SlideInPresentationController
+        // should not be greater then screen size -> This is done by SlideInPresentationController
         return CGFloat(dataProvider.numberOfRows) * cellHeight + drawerHeight
     }
 

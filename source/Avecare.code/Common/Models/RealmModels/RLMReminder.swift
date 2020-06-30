@@ -52,5 +52,3 @@ class RLMReminder: RLMDefaults, RLMPublishable, DataProvider {
 
     }
 }
-
-

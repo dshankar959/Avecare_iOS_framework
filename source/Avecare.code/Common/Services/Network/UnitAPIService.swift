@@ -28,27 +28,6 @@ struct UnitAPIService {
     }
 
 
-    static func getDailyTasks(unitId: String,
-                              completion: @escaping (Result<[DailyTask], AppError>) -> Void) {
-        DDLogVerbose("")
-
-        apiProvider.request(.unitDailyTasks(id: unitId)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let mappedResponse = try response.map(APIResponse<[DailyTask]>.self)
-                    completion(.success(mappedResponse.results))
-                } catch {
-                    DDLogError("JSON MAPPING ERROR = \(error)")
-                    completion(.failure(JSONError.failedToMapData.message))
-                }
-            case .failure(let error):
-                completion(.failure(getAppErrorFromMoya(with: error)))
-            }
-        }
-    }
-
-
     static func getSubjects(unitId: String,
                             completion: @escaping (Result<[RLMSubject], AppError>) -> Void) {
         DDLogVerbose("")
@@ -146,6 +125,25 @@ struct UnitAPIService {
         }
     }
 
+    static func publishDailyTaskForm(unitId: String, data: RLMDailyTaskForm, completion: @escaping (Result<RLMDailyTaskForm, AppError>) -> Void) {
+        DDLogVerbose("")
+
+        apiProvider.request(.unitPublishDailyTaskForm(id: unitId, request: data), completion: { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let dailyTaskForm = try JSONDecoder().decode(RLMDailyTaskForm.self, from: response.data)
+                    completion(.success(dailyTaskForm))
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    completion(.failure(JSONError.failedToMapData.message))
+                }
+            case .failure(let error):
+                completion(.failure(getAppErrorFromMoya(with: error)))
+            }
+        })
+    }
+
     static func publishReminders(data: [RLMReminder], completion: @escaping (Result<[RLMReminder], AppError>) -> Void) {
         DDLogVerbose("")
 
@@ -168,7 +166,7 @@ struct UnitAPIService {
     static func publishActivity(uintId: String, data: RLMActivity, completion: @escaping (Result<RLMActivity, AppError>) -> Void) {
         DDLogVerbose("")
 
-        apiProvider.request(.unitCreateActivity(id: uintId,request: data), completion: { result in
+        apiProvider.request(.unitCreateActivity(id: uintId, request: data), completion: { result in
             switch result {
             case .success(let response):
                 do {

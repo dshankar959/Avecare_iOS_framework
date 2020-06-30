@@ -2,7 +2,7 @@ import UIKit
 
 
 
-class StoriesListViewController: UIViewController {
+class StoriesListViewController: UIViewController, IndicatorProtocol, PullToRefreshProtocol {
 
     @IBOutlet weak var subjectFilterButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -11,6 +11,8 @@ class StoriesListViewController: UIViewController {
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
 
     weak var subjectSelection: SubjectSelectionProtocol?
+
+    var pullToRefreshHeaderView: PullToRefreshHeaderView!
 
 
     override func viewDidLoad() {
@@ -24,12 +26,36 @@ class StoriesListViewController: UIViewController {
         ])
 
         self.navigationController?.hideHairline()
-    }
 
+        setupPullToRefresh(for: self.tableView) { [weak self] in
+            // Retrieve data
+            self?.syncDown { error in
+                if let uiTableView = self?.tableView {
+                    self?.endPullToRefresh(for: uiTableView)
+                }
+                if let error = error {
+                    self?.showErrorAlert(error)
+                }
+                self?.updateScreen()
+            }
+        }
+
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateScreen()
+    }
+
+    private func syncDown(completion: @escaping (AppError?) -> Void) {
+        syncEngine.syncAll { error in
+            syncEngine.print_isSyncingStatus_description()
+            if let error = error {
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
     }
 
 
@@ -66,9 +92,9 @@ class StoriesListViewController: UIViewController {
 
     private func updateScreen() {
         if let selectedSubject = subjectSelection?.subject {
-            dataProvider.unitIds = Array(selectedSubject.unitIds)
+            dataProvider.refreshData(with: Array(selectedSubject.unitIds))
         } else {
-            dataProvider.unitIds = [String]()
+            dataProvider.refreshData(with: [String]())
         }
 
         updateSubjectFilterButton()

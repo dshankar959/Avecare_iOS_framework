@@ -55,14 +55,13 @@
 		615474FBE2BC3129D99399BF /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477A05C137912CDD2DABD /* TextField.swift */; };
 		61547527266DD8DB51B90A5A /* HomeTableViewDisclosureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154786288CE3337831B8CEB /* HomeTableViewDisclosureCell.swift */; };
 		6154752751D03A37500C2868 /* SupervisorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477A2F255F1B2F5FE6614 /* SupervisorCollectionViewCell.swift */; };
-		615475CA76FACDD26C7D99CF /* DailyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547B3327B0C7C4F06CDC0D /* DailyTask.swift */; };
+		615475CA76FACDD26C7D99CF /* RLMDailyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547B3327B0C7C4F06CDC0D /* RLMDailyTask.swift */; };
 		615475EBD951B074817F96F2 /* UnitAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615479056980C7871D32751E /* UnitAPIService.swift */; };
 		61547626B3CD3ABAA074B6A9 /* SubjectListDataProvider+Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615472DEED205F376B08C4D7 /* SubjectListDataProvider+Switch.swift */; };
 		6154769C2EB5AE3A9AF2AD45 /* TimeRangePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547987775C9B210B22AA84 /* TimeRangePickerView.xib */; };
 		61547716ED0704A1F4601513 /* StoriesDetailsPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547ED5799922B0A2DB9C2C /* StoriesDetailsPhotoView.xib */; };
 		615477178CD2A957D0A155BB /* RealmDetachable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547B29E3BDD649F0D85702 /* RealmDetachable.swift */; };
 		6154771965713AD841B786F4 /* LogsNoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 615476341CA9B1B5A2A77173 /* LogsNoteTableViewCell.xib */; };
-		615477604486F2465810D030 /* CreateUnitActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547CBAC0180C2D2092DD1A /* CreateUnitActivity.swift */; };
 		615477704DE5A548304F7B1F /* syncUnitStories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547E6D4475B73BAAE9DBEE /* syncUnitStories.swift */; };
 		6154779079D0A089A6510394 /* StoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615472A224CB134D0BEA6A29 /* StoriesTableViewCell.swift */; };
 		6154779DD64F75D8B70F59FC /* RLMReusable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478BBE87EEEB048C429BF /* RLMReusable.swift */; };
@@ -243,6 +242,7 @@
 		75886DF8241932BA0079C080 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DCD241932BA0079C080 /* DefaultTableViewCell.swift */; };
 		75886DF9241932BA0079C080 /* LeftSideNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DCF241932BA0079C080 /* LeftSideNavigationBarView.swift */; };
 		75886DFA241932BA0079C080 /* LeftSideNavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75886DD0241932BA0079C080 /* LeftSideNavigationBarView.xib */; };
+		75D0ACF7249C28E2007562D0 /* PullToRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */; };
 		75D62235245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
 		75D62236245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
 		75D7FF5C2470FC6F0002E1F9 /* LogFormAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615473C479A061F759D2F5FC /* LogFormAPIModel.swift */; };
@@ -359,6 +359,11 @@
 		DC5E990A2475557D0088083C /* EducatorDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5E99012475543F0088083C /* EducatorDetails.storyboard */; };
 		DC5E990C24755B990088083C /* EducatorDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */; };
 		DC70F062246B436800FFD262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
+		DC71E1A9249BC4E200CB3D10 /* RLMDailyTaskOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1A8249BC4E200CB3D10 /* RLMDailyTaskOption.swift */; };
+		DC71E1AA249BC63700CB3D10 /* RLMDailyTaskOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1A8249BC4E200CB3D10 /* RLMDailyTaskOption.swift */; };
+		DC71E1AC249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1AB249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift */; };
+		DC71E1AD249BC7D000CB3D10 /* syncOrganizationDailyTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1AB249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift */; };
+		DC71E1AE249FAA9C00CB3D10 /* PullToRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */; };
 		DC8B7E02248A80270000414D /* ImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B7E00248A80270000414D /* ImageCropViewController.swift */; };
 		DC8B7E03248A80270000414D /* ImageCropViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC8B7E00248A80270000414D /* ImageCropViewController.swift */; };
 		DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
@@ -393,8 +398,7 @@
 		F65549FC24564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549F324564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf */; };
 		F65549FD24564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf in Resources */ = {isa = PBXBuildFile; fileRef = F65549F324564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf */; };
 		F663BB6B24351123003279B9 /* RLMSupervisor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547267EB7BC5F4558F3B70 /* RLMSupervisor.swift */; };
-		F663BB6C2435112F003279B9 /* CreateUnitActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547CBAC0180C2D2092DD1A /* CreateUnitActivity.swift */; };
-		F663BB6D24351187003279B9 /* DailyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547B3327B0C7C4F06CDC0D /* DailyTask.swift */; };
+		F663BB6D24351187003279B9 /* RLMDailyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547B3327B0C7C4F06CDC0D /* RLMDailyTask.swift */; };
 		F663BB6E24351192003279B9 /* RLMUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615472657DF3223E8A839F22 /* RLMUnit.swift */; };
 		F663BB6F2435119C003279B9 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547B55A492A05FAE40E47B /* APIResponse.swift */; };
 		F663BB7424351313003279B9 /* SubjectListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886D70241932AB0079C080 /* SubjectListTableViewCell.swift */; };
@@ -506,14 +510,13 @@
 		61547A4597BB6D889FB8F580 /* RLMAccountInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMAccountInfo.swift; sourceTree = "<group>"; };
 		61547B02FE52C25F016B7986 /* LogsOptionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogsOptionTableViewCell.xib; sourceTree = "<group>"; };
 		61547B29E3BDD649F0D85702 /* RealmDetachable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmDetachable.swift; sourceTree = "<group>"; };
-		61547B3327B0C7C4F06CDC0D /* DailyTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyTask.swift; sourceTree = "<group>"; };
+		61547B3327B0C7C4F06CDC0D /* RLMDailyTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMDailyTask.swift; sourceTree = "<group>"; };
 		61547B55A492A05FAE40E47B /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		61547BF984C577F414B32894 /* TimeRangePickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRangePickerView.swift; sourceTree = "<group>"; };
 		61547C17CC0E23426250CCAD /* Closure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Closure.swift; sourceTree = "<group>"; };
 		61547C3AB951F69EB4C23C1E /* SubjectListDataProvider+Subtitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Subtitle.swift"; sourceTree = "<group>"; };
 		61547C4E1BD0B55D3EC3943A /* HomeTableVIewHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTableVIewHeaderView.swift; sourceTree = "<group>"; };
 		61547C86A6589BD1A80D59D6 /* StoriesDataProvider+Title.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoriesDataProvider+Title.swift"; sourceTree = "<group>"; };
-		61547CBAC0180C2D2092DD1A /* CreateUnitActivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateUnitActivity.swift; sourceTree = "<group>"; };
 		61547CE19B2A59BB3A73A52C /* syncOrganizationTemplates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncOrganizationTemplates.swift; sourceTree = "<group>"; };
 		61547D432767A42B571EA22F /* StoriesDataProvider+Subtitle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "StoriesDataProvider+Subtitle.swift"; sourceTree = "<group>"; };
 		61547D53A60161097C2E858F /* HomeTableViewDisclosureCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableViewDisclosureCell.xib; sourceTree = "<group>"; };
@@ -622,6 +625,7 @@
 		75886DCD241932BA0079C080 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
 		75886DCF241932BA0079C080 /* LeftSideNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideNavigationBarView.swift; sourceTree = "<group>"; };
 		75886DD0241932BA0079C080 /* LeftSideNavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftSideNavigationBarView.xib; sourceTree = "<group>"; };
+		75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshProtocol.swift; sourceTree = "<group>"; };
 		75D62234245B14480032F53D /* RLMInstitution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMInstitution.swift; sourceTree = "<group>"; };
 		75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMDefaults.swift; sourceTree = "<group>"; };
 		75EB59B22461858700E077E5 /* RLMLogTimeRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMLogTimeRow.swift; sourceTree = "<group>"; };
@@ -714,6 +718,8 @@
 		DC5E9905247555720088083C /* EducatorBioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorBioTableViewCell.swift; sourceTree = "<group>"; };
 		DC5E9906247555720088083C /* EducatorBioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EducatorBioTableViewCell.xib; sourceTree = "<group>"; };
 		DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EducatorDetailsDataProvider.swift; sourceTree = "<group>"; };
+		DC71E1A8249BC4E200CB3D10 /* RLMDailyTaskOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMDailyTaskOption.swift; sourceTree = "<group>"; };
+		DC71E1AB249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = syncOrganizationDailyTasks.swift; sourceTree = "<group>"; };
 		DC8B7E00248A80270000414D /* ImageCropViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropViewController.swift; sourceTree = "<group>"; };
 		DC8B7E01248A80270000414D /* ImageCropViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCropViewController.xib; sourceTree = "<group>"; };
 		DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuardianFeed.swift; sourceTree = "<group>"; };
@@ -910,13 +916,12 @@
 				615472657DF3223E8A839F22 /* RLMUnit.swift */,
 				75D62234245B14480032F53D /* RLMInstitution.swift */,
 				75EB5A1F2466FE4400E077E5 /* RLMOrganization.swift */,
-				615473EE5A59F3D396DA45E8 /* RLMInjuryOption.swift */,
+				DC71E1A8249BC4E200CB3D10 /* RLMDailyTaskOption.swift */,
 				DCF914092492A8650043123F /* RLMActivityOption.swift */,
+				615473EE5A59F3D396DA45E8 /* RLMInjuryOption.swift */,
 				DCF914172497E28E0043123F /* RLMReminderOption.swift */,
 				DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */,
 				DCC2DDCD247EA37D00FAFC35 /* GuardianFeed.swift */,
-				61547CBAC0180C2D2092DD1A /* CreateUnitActivity.swift */,
-				61547B3327B0C7C4F06CDC0D /* DailyTask.swift */,
 				615470F1BE7FE1A039442EE4 /* DailyForm */,
 				61547FB6B8CD619FC8942D63 /* PublishStoryRequestModel.swift */,
 				61547A001A9E896379830128 /* FilesResponseModel.swift */,
@@ -1095,12 +1100,12 @@
 			path = FormProviders;
 			sourceTree = "<group>";
 		};
-		61547AD82550C7909011E04B /* NavigationBehavior */ = {
+		61547AD82550C7909011E04B /* NavigationBehaviour */ = {
 			isa = PBXGroup;
 			children = (
 				615477E9EA0A24EDE13EAC17 /* SubjectListDataProvider+NavItems.swift */,
 			);
-			path = NavigationBehavior;
+			path = NavigationBehaviour;
 			sourceTree = "<group>";
 		};
 		61547D0B8D0292B053F6BF24 /* Cells */ = {
@@ -1337,6 +1342,7 @@
 				75886CF52419327F0079C080 /* Dictionary.swift */,
 				75886CF12419327F0079C080 /* FileManager.swift */,
 				75886CFA2419327F0079C080 /* IndicatorProtocol.swift */,
+				75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */,
 				75886CF62419327F0079C080 /* String.swift */,
 				75886CF02419327F0079C080 /* UIColor.swift */,
 				75886CF32419327F0079C080 /* UIDevice.swift */,
@@ -1612,7 +1618,7 @@
 				75886DB0241932BA0079C080 /* SubjectListTableViewCell.swift */,
 				75886DB2241932BA0079C080 /* Logs.storyboard */,
 				615474CE5DC3A3CCACAAD0D6 /* FormBehavior */,
-				61547AD82550C7909011E04B /* NavigationBehavior */,
+				61547AD82550C7909011E04B /* NavigationBehaviour */,
 			);
 			path = Logs;
 			sourceTree = "<group>";
@@ -1672,6 +1678,7 @@
 				75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */,
 				75EB5A222466FE9800E077E5 /* syncOrganizationDetails.swift */,
 				61547CE19B2A59BB3A73A52C /* syncOrganizationTemplates.swift */,
+				DC71E1AB249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift */,
 				DCF9140D2492C3B20043123F /* syncOrganizationActivities.swift */,
 				DC4EA6D2249151F1007A36C0 /* syncOrganizationInjuries.swift */,
 				DCF914192497E44C0043123F /* syncOrganizationReminders.swift */,
@@ -1688,9 +1695,10 @@
 				75EB59B12461858700E077E5 /* FormRows */,
 				75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */,
 				75EB59BE2461858700E077E5 /* RLMCleanable.swift */,
+				61547B3327B0C7C4F06CDC0D /* RLMDailyTask.swift */,
+				D0C4C803249BFBB000E16023 /* RLMActivity.swift */,
 				D0C4C7FD249A548200E16023 /* RLMInjury.swift */,
 				D0C4C7FA2499386F00E16023 /* RLMReminder.swift */,
-				D0C4C803249BFBB000E16023 /* RLMActivity.swift */,
 				615478BBE87EEEB048C429BF /* RLMReusable.swift */,
 				615475A03445475FEEADDF5A /* RLMFormTemplate.swift */,
 				75EB59BA2461858700E077E5 /* RLMLogForm.swift */,
@@ -2402,6 +2410,7 @@
 				299B3586241F907E00D6F9A5 /* FormSpacerView.swift in Sources */,
 				F67DF818241BFE6800793A9C /* SubjectDetailsSegmentView.swift in Sources */,
 				75886D322419327F0079C080 /* Globals.swift in Sources */,
+				75D0ACF7249C28E2007562D0 /* PullToRefreshProtocol.swift in Sources */,
 				75886DF3241932BA0079C080 /* SplashViewController.swift in Sources */,
 				D0A64418248AA5C90041A69B /* PDFThumbView.swift in Sources */,
 				75886D662419327F0079C080 /* ValidateSession.swift in Sources */,
@@ -2422,6 +2431,7 @@
 				F663BB7624351327003279B9 /* SubjectListDataProvider.swift in Sources */,
 				75886D522419327F0079C080 /* UIViewController.swift in Sources */,
 				F67DF81D241BFE6800793A9C /* PickerFieldFormView.swift in Sources */,
+				DC71E1A9249BC4E200CB3D10 /* RLMDailyTaskOption.swift in Sources */,
 				75EB5A202466FE4400E077E5 /* RLMOrganization.swift in Sources */,
 				75EB59D42461858700E077E5 /* RLMLogChooseRow.swift in Sources */,
 				F67DF80E241BFE6800793A9C /* DetailsView.swift in Sources */,
@@ -2492,8 +2502,7 @@
 				61547B7AB691E28FECCD6B86 /* SubjectsAPIService.swift in Sources */,
 				6154797BFC410EDB48D44521 /* SupervisorsAPIService.swift in Sources */,
 				75EB59D62461858700E077E5 /* RLMSubject.swift in Sources */,
-				615475CA76FACDD26C7D99CF /* DailyTask.swift in Sources */,
-				615477604486F2465810D030 /* CreateUnitActivity.swift in Sources */,
+				615475CA76FACDD26C7D99CF /* RLMDailyTask.swift in Sources */,
 				DCF9140E2492C3B20043123F /* syncOrganizationActivities.swift in Sources */,
 				61547A6A4DD9A2C0DDF532DE /* RLMInjuryOption.swift in Sources */,
 				D0C4C7FB2499386F00E16023 /* RLMReminder.swift in Sources */,
@@ -2507,6 +2516,7 @@
 				6154726CA276E2707083B329 /* APIToken.swift in Sources */,
 				615474453FDE920B0B2ABA52 /* SubjectAccidentReportView.swift in Sources */,
 				75EB59E524618EF600E077E5 /* SyncEngine+Timer.swift in Sources */,
+				DC71E1AC249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift in Sources */,
 				DCFFD6F9246DA6FE0080DEA6 /* SlideInPresentationController.swift in Sources */,
 				61547B417F71D10BC3AE1170 /* SubjectPickerViewController.swift in Sources */,
 				6154703AE0070C0AD17E57F2 /* SubjectPickerTableViewCell.swift in Sources */,
@@ -2593,7 +2603,6 @@
 				75EB5A052463C03300E077E5 /* RLMGuardian.swift in Sources */,
 				75886D672419327F0079C080 /* ValidateSession.swift in Sources */,
 				75EB5A28246770B900E077E5 /* GuardiansAPIService.swift in Sources */,
-				F663BB6C2435112F003279B9 /* CreateUnitActivity.swift in Sources */,
 				DC4FFA0C2470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.swift in Sources */,
 				75EB59C12461858700E077E5 /* RLMLogTimeRow.swift in Sources */,
 				75EB5A312467A26600E077E5 /* SyncEngine+Operations.swift in Sources */,
@@ -2602,6 +2611,7 @@
 				75886D152419327F0079C080 /* LocationManager.swift in Sources */,
 				DC225E3F246C787F00094BB0 /* DateCell.swift in Sources */,
 				75D62236245B14490032F53D /* RLMInstitution.swift in Sources */,
+				DC71E1AE249FAA9C00CB3D10 /* PullToRefreshProtocol.swift in Sources */,
 				DC5E990C24755B990088083C /* EducatorDetailsDataProvider.swift in Sources */,
 				756D6A19246DE37500DF17E7 /* RLMFormTemplate.swift in Sources */,
 				75886D352419327F0079C080 /* DiskHelper.swift in Sources */,
@@ -2640,7 +2650,7 @@
 				75D7FF5C2470FC6F0002E1F9 /* LogFormAPIModel.swift in Sources */,
 				75886D452419327F0079C080 /* FileManager.swift in Sources */,
 				75886D272419327F0079C080 /* AppSettings.swift in Sources */,
-				F663BB6D24351187003279B9 /* DailyTask.swift in Sources */,
+				F663BB6D24351187003279B9 /* RLMDailyTask.swift in Sources */,
 				DC8B7E03248A80270000414D /* ImageCropViewController.swift in Sources */,
 				F663BB7424351313003279B9 /* SubjectListTableViewCell.swift in Sources */,
 				DC4FFA1F24748FA80079A27C /* AboutDetailsViewController.swift in Sources */,
@@ -2680,10 +2690,12 @@
 				DC5E9907247555720088083C /* EducatorBioTableViewCell.swift in Sources */,
 				61547BBDB5DA4D4A37131C56 /* StoriesTableViewCell.swift in Sources */,
 				DC4FFA0E2470B9AE0079A27C /* ProfileSubjectTableViewCell.swift in Sources */,
+				DC71E1AD249BC7D000CB3D10 /* syncOrganizationDailyTasks.swift in Sources */,
 				615474DD4D6B43A12920A720 /* StoriesDataProvider.swift in Sources */,
 				75EB59CD2461858700E077E5 /* RLMLogSwitcherRow.swift in Sources */,
 				DC3E80EE2486BFCF003983E2 /* RLMMessage.swift in Sources */,
 				61547C05AA5DE58BB809E4C6 /* SupervisorFilterTableViewCell.swift in Sources */,
+				DC71E1AA249BC63700CB3D10 /* RLMDailyTaskOption.swift in Sources */,
 				75EB5A122466683300E077E5 /* syncInstitutionDetails.swift in Sources */,
 				6154752751D03A37500C2868 /* SupervisorCollectionViewCell.swift in Sources */,
 				75EB59C32461858700E077E5 /* RLMLogOptionRow.swift in Sources */,

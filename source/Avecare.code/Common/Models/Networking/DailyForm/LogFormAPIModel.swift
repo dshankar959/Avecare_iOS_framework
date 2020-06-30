@@ -22,6 +22,7 @@ struct LogFormAPIModel {
         case date
         case logForm = "log"
         case files
+        case serverLastUpdated = "updatedAt"
     }
 
 
@@ -59,6 +60,12 @@ extension LogFormAPIModel: Decodable {
 
             logForm = try container.decode(RLMLogForm.self, forKey: .logForm)
             files = try container.decode([FilesResponseModel.File].self, forKey: .files)
+
+            if let dateString = try container.decodeIfPresent(String.self, forKey: .serverLastUpdated),
+                let date = Date.dateFromISO8601String(dateString) {
+                logForm.serverLastUpdated = date
+            }
+
         } catch {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")

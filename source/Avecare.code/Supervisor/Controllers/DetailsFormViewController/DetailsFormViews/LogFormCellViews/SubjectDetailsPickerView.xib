@@ -47,7 +47,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ce-Pe-FDI">
-                            <rect key="frame" x="633" y="21.5" width="82" height="29"/>
+                            <rect key="frame" x="633" y="6" width="82" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="60" id="gbT-6H-yha"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <state key="normal" title="Select Mood">
                                 <color key="titleColor" name="LightText"/>

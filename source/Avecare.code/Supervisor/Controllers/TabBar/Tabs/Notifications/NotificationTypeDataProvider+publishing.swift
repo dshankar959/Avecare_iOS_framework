@@ -12,12 +12,43 @@ extension DefaultNotificationTypeDataProvider {
         case .classActivity:
             createClassActivity()
         case .dailyCheckList:
-            createCreateDailyChecklist()
+            completeDailyChecklist()
         }
     }
 
-    func createCreateDailyChecklist() {
-        // TODO STEPHEN ... fill in the body here to create realm record and publish to server.
+    func completeDailyChecklist() {
+        if let unitId = RLMSupervisor.details?.primaryUnitId {
+            let dailyTasks = checklistDataProvider.dailyTaskForm
+
+            RLMDailyTaskForm.writeTransaction {
+                dailyTasks.publishState = .publishing
+            }
+
+            UnitAPIService.publishDailyTaskForm(unitId: unitId, data: dailyTasks) { [weak self] result in
+                switch result {
+                case .success(let publishedDailyTasks):
+                    self?.delegate?.showAlert(title: NSLocalizedString("notification_daily_checklist_published_title", comment: ""),
+                                             message: NSLocalizedString("notification_daily_checklist_published_message", comment: ""))
+                    RLMDailyTaskForm.writeTransaction {
+                        dailyTasks.serverLastUpdated = publishedDailyTasks.serverLastUpdated
+                        dailyTasks.publishState = .published
+                    }
+                    self?.checklistDataProvider.didUpdateModel()
+                case .failure(let error):
+                    DDLogError("\(error)")
+
+                    if error.userInfo.contains("already exist") {
+                        RLMDailyTaskForm.writeTransaction {
+                            dailyTasks.publishState = .published
+                        }
+
+                        self?.checklistDataProvider.didUpdateModel()
+                        self?.delegate?.showAlert(title: NSLocalizedString("notification_daily_checklist_already_published_title", comment: ""),
+                                                  message: NSLocalizedString("notification_daily_checklist_already_published_message", comment: ""))
+                    }
+                }
+            }
+        }
     }
 
     func createClassActivity() {
@@ -31,7 +62,7 @@ extension DefaultNotificationTypeDataProvider {
 
         publsihActivity(activity: activity)
         self.delegate?.showAlert(title: NSLocalizedString("notification_sent_title", comment: ""),
-        message: NSLocalizedString("activity_notification_sent_message", comment: ""))
+                                 message: NSLocalizedString("notification_activity_sent_message", comment: ""))
     }
 
     func publsihActivity(activity: RLMActivity) {
@@ -46,7 +77,6 @@ extension DefaultNotificationTypeDataProvider {
                 }
             })
         }
-
     }
 
     func createInjuryReport() {
@@ -64,7 +94,7 @@ extension DefaultNotificationTypeDataProvider {
         publishInjuries(injuries: dSource)
         self.injuryFormProvider.clearAll()
         self.delegate?.showAlert(title: NSLocalizedString("notification_sent_title", comment: ""),
-                                                          message: NSLocalizedString("injury_notification_sent_message", comment: ""))
+                                 message: NSLocalizedString("notification_injury_sent_message", comment: ""))
     }
 
     func publishInjuries(injuries: [RLMInjury]) {
@@ -96,7 +126,7 @@ extension DefaultNotificationTypeDataProvider {
         publishReminders(reminders: dSource)
         self.reminderFormProvider.clearAll()
         self.delegate?.showAlert(title: NSLocalizedString("notification_sent_title", comment: ""),
-                                                          message: NSLocalizedString("reminder_notification_sent_message", comment: ""))
+                                 message: NSLocalizedString("notification_reminder_sent_message", comment: ""))
     }
 
     func publishReminders(reminders: [RLMReminder]) {

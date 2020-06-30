@@ -4,12 +4,12 @@ import CocoaLumberjack
 
 struct SubjectsAPIService {
 
-    static func publishDailyLog(log: LogFormAPIModel, completion: @escaping (Result<FilesResponseModel, AppError>) -> Void) {
+    static func publishDailyLog(log: LogFormAPIModel, completion: @escaping (Result<LogFormAPIModel, AppError>) -> Void) {
         apiProvider.request(.subjectPublishDailyLog(request: log)) { result in
             switch result {
             case .success(let response):
                 do {
-                    let mappedResponse = try response.map(FilesResponseModel.self)
+                    let mappedResponse = try response.map(LogFormAPIModel.self)
                     completion(.success(mappedResponse))
                 } catch {
                     DDLogError("JSON MAPPING ERROR = \(error)")
@@ -27,12 +27,21 @@ struct SubjectsAPIService {
         var serverLastUpdated: String = ""
 
         var startDate: String {
-            return Date.yearMonthDayFormatter.string(from: startDateOfLogsHistory)
+            let startDate: Date
+
+            if appSession.userProfile.isSupervisor {
+                startDate = Date()  // for supervisor to sync down just today's date
+            } else {
+                startDate = startDateOfLogsHistory
+            }
+
+            return Date.yearMonthDayFormatter.string(from: startDate)
         }
 
         var endDate: String {
             return Date.yearMonthDayFormatter.string(from: endDateOfLogsHistory)
         }
+
 
         init(id: String) {
             self.subjectId = id
@@ -41,7 +50,8 @@ struct SubjectsAPIService {
             let sortedDailyLogForms = RLMLogForm.sortObjectsByLastUpdated(order: .orderedDescending, allDailyLogForms)
             let publishedDailyLogForms = sortedDailyLogForms.filter { $0.rawPublishState == PublishState.published.rawValue }
 
-            if let lastUpdated = publishedDailyLogForms.first?.serverLastUpdated {
+            if appSession.userProfile.isGuardian,
+                let lastUpdated = publishedDailyLogForms.first?.serverLastUpdated {
                 serverLastUpdated = Date.ISO8601StringFromDate(lastUpdated)
             }
         }

@@ -56,7 +56,7 @@ extension SyncEngine {
                 }
             }
         } else {
-            // TODO: ???
+            DDLogWarn("Nothing to sync down here for Guardian")
         }
     }
 }
