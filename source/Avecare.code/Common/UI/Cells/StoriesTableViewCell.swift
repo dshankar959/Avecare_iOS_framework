@@ -28,6 +28,7 @@ struct StoriesTableViewCellModel: CellViewModel {
             cell.status.isHidden = false
             cell.status.text = NSLocalizedString("draft_status", comment: "")
         }
+        cell.photoImageView.image = nil
 
         DispatchQueue.global(qos: .background).async {
             var image: UIImage? = nil
