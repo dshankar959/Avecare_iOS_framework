@@ -378,6 +378,8 @@
 		DC9D130A24AA89BE00DEBA61 /* SubjectDetailsTagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9D130924AA89BE00DEBA61 /* SubjectDetailsTagsView.xib */; };
 		DC9D130D24AA917C00DEBA61 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D130B24AA917C00DEBA61 /* TagCollectionViewCell.swift */; };
 		DC9D130E24AA917C00DEBA61 /* TagCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9D130C24AA917C00DEBA61 /* TagCollectionViewCell.xib */; };
+		DC9D131324AB5DB700DEBA61 /* LogsTagsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9D131024AB5D6100DEBA61 /* LogsTagsTableViewCell.xib */; };
+		DC9D131424AB5DBB00DEBA61 /* LogsTagsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D130F24AB5D6100DEBA61 /* LogsTagsTableViewCell.swift */; };
 		DCB33D4D24A3C7A200C5AC0E /* NotificationsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D4C24A3C7A200C5AC0E /* NotificationsAPIService.swift */; };
 		DCB33D5524A3DD0900C5AC0E /* NotificationsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D4C24A3C7A200C5AC0E /* NotificationsAPIService.swift */; };
 		DCB33D5624A3EE0B00C5AC0E /* syncOrganizationReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914192497E44C0043123F /* syncOrganizationReminders.swift */; };
@@ -749,6 +751,8 @@
 		DC9D130924AA89BE00DEBA61 /* SubjectDetailsTagsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubjectDetailsTagsView.xib; sourceTree = "<group>"; };
 		DC9D130B24AA917C00DEBA61 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
 		DC9D130C24AA917C00DEBA61 /* TagCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TagCollectionViewCell.xib; sourceTree = "<group>"; };
+		DC9D130F24AB5D6100DEBA61 /* LogsTagsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsTagsTableViewCell.swift; sourceTree = "<group>"; };
+		DC9D131024AB5D6100DEBA61 /* LogsTagsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogsTagsTableViewCell.xib; sourceTree = "<group>"; };
 		DCB33D4C24A3C7A200C5AC0E /* NotificationsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAPIService.swift; sourceTree = "<group>"; };
 		DCB33D5B24A4E8EB00C5AC0E /* NoItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemTableViewCell.swift; sourceTree = "<group>"; };
 		DCB33D5C24A4E8EB00C5AC0E /* NoItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoItemTableViewCell.xib; sourceTree = "<group>"; };
@@ -1053,6 +1057,8 @@
 				615476341CA9B1B5A2A77173 /* LogsNoteTableViewCell.xib */,
 				61547FC44382C1CD45F599CC /* LogsPhotoTableViewCell.swift */,
 				615470DDF8B06DE27569E901 /* LogsPhotoTableViewCell.xib */,
+				DC9D130F24AB5D6100DEBA61 /* LogsTagsTableViewCell.swift */,
+				DC9D131024AB5D6100DEBA61 /* LogsTagsTableViewCell.xib */,
 				DC225E3E246C787F00094BB0 /* DateCell.swift */,
 			);
 			path = LogFormCellViews;
@@ -2208,6 +2214,7 @@
 				615471AAF5F6CA37ECCB646D /* StoriesTableViewCell.xib in Resources */,
 				DC3E80C2248594C0003983E2 /* SupervisorFilterTableViewCell.xib in Resources */,
 				615472CBDE78C09CE3F64F4F /* SupervisorCollectionViewCell.xib in Resources */,
+				DC9D131324AB5DB700DEBA61 /* LogsTagsTableViewCell.xib in Resources */,
 				61547716ED0704A1F4601513 /* StoriesDetailsPhotoView.xib in Resources */,
 				61547079FFE82CF82DB8CA3D /* LogsOptionTableViewCell.xib in Resources */,
 				6154771965713AD841B786F4 /* LogsNoteTableViewCell.xib in Resources */,
@@ -2685,6 +2692,7 @@
 				DC3617F424770B4D004C0B83 /* UserAuthenticateService.swift in Sources */,
 				75886D132419327F0079C080 /* UINVC.swift in Sources */,
 				75886D172419327F0079C080 /* UserProfile.swift in Sources */,
+				DC9D131424AB5DBB00DEBA61 /* LogsTagsTableViewCell.swift in Sources */,
 				75886D97241932AB0079C080 /* LogsViewController.swift in Sources */,
 				DC4EA6D424916889007A36C0 /* RLMInjuryOption.swift in Sources */,
 				755EAEAB241ABB6900A6BA4D /* Session.swift in Sources */,

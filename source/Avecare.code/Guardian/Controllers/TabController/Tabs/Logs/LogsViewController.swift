@@ -53,7 +53,8 @@ class LogsViewController: UIViewController {
             LogsOptionTableViewCellModel.self,
             LogsTimeDetailsTableViewCellModel.self,
             LogsNoteTableViewCellModel.self,
-            LogsPhotoTableViewCellModel.self
+            LogsPhotoTableViewCellModel.self,
+            LogsTagsTableViewCellModel.self
         ])
 
         mealPlanButton.setTitle("utensils", for: .normal)

@@ -36,6 +36,8 @@ class SubjectDetailsTagsView: BaseXibView {
     @IBOutlet weak var tagsCollectionView: UICollectionView!
     @IBOutlet weak var tagsCollectionViewHeight: NSLayoutConstraint!
 
+    let tagCollectionViewCellIdentifier = "TagCollectionViewCell"
+
     var selectedOptions = [RLMOptionValue]()
     var onClick: ((SubjectDetailsTagsView) -> Void)?
     var onDelete: ((Int) -> Void)?
@@ -43,7 +45,8 @@ class SubjectDetailsTagsView: BaseXibView {
     override func setup() {
         super.setup()
 
-        tagsCollectionView.register(UINib.init(nibName: "TagCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TagCollectionViewCell")
+        tagsCollectionView.register(UINib.init(nibName: "TagCollectionViewCell", bundle: nil),
+                                    forCellWithReuseIdentifier: tagCollectionViewCellIdentifier)
 
         iconImageView.layer.masksToBounds = true
         iconImageView.layer.cornerRadius = 12
@@ -71,7 +74,7 @@ extension SubjectDetailsTagsView: UICollectionViewDataSource, UICollectionViewDe
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TagCollectionViewCell", for: indexPath) as! TagCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagCollectionViewCellIdentifier, for: indexPath) as! TagCollectionViewCell
         cell.titleLabel.text = selectedOptions[indexPath.row].text
         cell.delegate = self
         return cell

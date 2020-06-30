@@ -12,7 +12,7 @@ struct LogsViewModelFactory {
         case .note: return viewModel(for: row.note!)
         case .photo: return viewModel(for: row.photo!, storage: storage)
         case .injury: return viewModel(for: row.injury!)
-        case .tags: return viewModel(for: row.option!) //viewModel(for: row.tags!)
+        case .tags: return viewModel(for: row.tags!)
         }
     }
 
@@ -39,10 +39,10 @@ struct LogsViewModelFactory {
     static func viewModel(for row: RLMLogInjuryRow) -> LogsNoteTableViewCellModel {
         return .init(row: row)
     }
-/*
-    static func viewModel(for row: RLMLogTagsRow) -> LogsOptionTableViewCellModel {
+
+    static func viewModel(for row: RLMLogTagsRow) -> LogsTagsTableViewCellModel {
         return .init(row: row)
-    }*/
+    }
 }
 
 
@@ -118,5 +118,24 @@ extension LogsTimeDetailsTableViewCellModel {
         if let selectedText = row.options.first(where: { $0.value == row.selectedValue })?.text {
             selectedOption2 = selectedText
         }
+    }
+}
+
+
+extension LogsTagsTableViewCellModel {
+
+    init(row: RLMLogTagsRow) {
+        icon = UIImage(named: row.iconName)
+        iconColor = UIColor(rgb: row.iconColor)
+        title = row.title
+
+        let options = Array(row.options)
+        var selectedOptions = [RLMOptionValue]()
+        for option in options {
+            if row.selectedValues.contains(option.value) {
+                selectedOptions.append(option)
+            }
+        }
+        self.selectedOptions = selectedOptions
     }
 }
