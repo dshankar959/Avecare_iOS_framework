@@ -11,6 +11,7 @@ class RLMLogRow: Object, Codable {
     @objc dynamic var note: RLMLogNoteRow?
     @objc dynamic var photo: RLMLogPhotoRow?
     @objc dynamic var injury: RLMLogInjuryRow?
+    @objc dynamic var tags: RLMLogTagsRow?
 
     enum RowType: Int, CustomStringConvertible {
         case option = 1
@@ -19,6 +20,7 @@ class RLMLogRow: Object, Codable {
         case note = 4
         case photo = 5
         case injury = 6
+        case tags = 7
 
         var description: String {
             switch self {
@@ -28,6 +30,7 @@ class RLMLogRow: Object, Codable {
             case .note: return "Note"
             case .photo: return "Photo with Caption"
             case .injury: return "Injury"
+            case .tags: return "Tags"
             }
         }
     }
@@ -45,6 +48,8 @@ class RLMLogRow: Object, Codable {
             return .photo
         } else if injury != nil {
             return .injury
+        } else if tags != nil {
+            return .tags
         } else {
             fatalError()
         }
@@ -66,6 +71,7 @@ class RLMLogRow: Object, Codable {
         case is RLMLogNoteRow.Type:     note = row as? RLMLogNoteRow
         case is RLMLogPhotoRow.Type:    photo = row as? RLMLogPhotoRow
         case is RLMLogInjuryRow.Type:   injury = row as? RLMLogInjuryRow
+        case is RLMLogTagsRow.Type:     tags = row as? RLMLogTagsRow
         default: throw RealmError.invalidRowObject.message
         }
 
@@ -93,6 +99,7 @@ class RLMLogRow: Object, Codable {
             case .note: note = try values.decode(RLMLogNoteRow.self, forKey: .properties)
             case .photo: photo = try values.decode(RLMLogPhotoRow.self, forKey: .properties)
             case .injury: injury = try values.decode(RLMLogInjuryRow.self, forKey: .properties)
+            case .tags: tags = try values.decode(RLMLogTagsRow.self, forKey: .properties)
             }
 
         } catch {
@@ -123,6 +130,9 @@ class RLMLogRow: Object, Codable {
         } else if let injury = injury {
             try container.encode(RowType.injury.rawValue, forKey: .rowType)
             try container.encode(injury, forKey: .properties)
+        } else if let tags = tags {
+            try container.encode(RowType.tags.rawValue, forKey: .rowType)
+            try container.encode(tags, forKey: .properties)
         } else {
             fatalError()
         }
@@ -145,6 +155,8 @@ extension RLMLogRow: DataProvider, RLMCleanable, RLMReusable {
             photo.clean()
         } else if let injury = injury {
             injury.delete()
+        } else if let tags = tags {
+            tags.delete()
         }
 
         delete()

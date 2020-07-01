@@ -37,9 +37,9 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 //        loginField?.text = "535cc_Room_400@avecare.com" // Kindergarten
 
 //        loginField?.text = "supervisor@example.net"
-        loginField?.text = "room_13@avecare.com"    // quarantine
+//        loginField?.text = "room_13@avecare.com"    // quarantine
 
-        passwordField?.text = "123456"
+//        passwordField?.text = "123456"
 
 //        loginField?.text = "room_littlemonkey100@gmail.com"    // Devika
 //        passwordField?.text = "Spiria123"
@@ -49,6 +49,9 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 
 //        loginField?.text = "roomg3@spiria.com"
 //        passwordField?.text = "hnpura69"
+
+        loginField?.text = "room_test@spiria.com"
+        passwordField?.text = "Test123t"
 
         #endif
 

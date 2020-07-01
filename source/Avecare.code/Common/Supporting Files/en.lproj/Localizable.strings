@@ -58,8 +58,11 @@
 "log_row_delete" = "Delete";
 "subject_accident_report_picker_title" = "Select Time";
 "subject_accident_report_picker_placeholder" = "12:00pm";
+"logs_publish_button_title" = "Publish";
 "logs_subtitle_last_saved" = "Last saved";
 "logs_subtitle_published" = "Published";
+"logs_activity_indicator_publishing_status" = "Publishing daily log ...";
+"logs_activity_indicator_published_status" = "Published";
 "notification_menu_title_daily_checklist" = "Daily Checklist";
 "notification_menu_title_inspections_and_drills" = "Inspections and Drills";
 "notification_menu_title_injury_report" = "Injury Report";

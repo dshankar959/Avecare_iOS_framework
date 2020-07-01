@@ -10,29 +10,29 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LogsNoteTableViewCell" rowHeight="177" id="Jfs-te-svb" customClass="LogsNoteTableViewCell" customModule="parent" customModuleProvider="target">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LogsTagsTableViewCell" rowHeight="177" id="poX-br-tvE" customClass="LogsTagsTableViewCell" customModule="parent" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="462" height="177"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Jfs-te-svb" id="JQX-5L-lm6">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="poX-br-tvE" id="55g-8u-cXS">
                 <rect key="frame" x="0.0" y="0.0" width="462" height="177"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil-icon" translatesAutoresizingMaskIntoConstraints="NO" id="aZK-0Q-M81">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil-icon" translatesAutoresizingMaskIntoConstraints="NO" id="r2t-ZJ-Bgv">
                         <rect key="frame" x="16" y="16" width="40" height="40"/>
                         <color key="backgroundColor" name="yellow-icon"/>
                         <color key="tintColor" name="blue-icon"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="40" id="UmW-EB-aIO"/>
-                            <constraint firstAttribute="height" constant="40" id="g8J-oE-fwj"/>
+                            <constraint firstAttribute="width" constant="40" id="Cn5-pe-gZE"/>
+                            <constraint firstAttribute="height" constant="40" id="VKe-65-Hcl"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Educator’s Note:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W0h-Vb-06C">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Educator’s Note:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l7e-XC-KAM">
                         <rect key="frame" x="68" y="16" width="378" height="17"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                         <color key="textColor" name="DarkText"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9nk-Ow-O4H">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gUm-Xh-L1T">
                         <rect key="frame" x="68" y="39" width="378" height="67"/>
                         <string key="text">Brendan has been very tired the last couple of days falling asleep under the tables upon arrival and leading to some aggressive behaviour towards the other children.  Perhaps an earlier bedtime may be helpful.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -41,22 +41,22 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="9nk-Ow-O4H" firstAttribute="leading" secondItem="W0h-Vb-06C" secondAttribute="leading" id="5Im-kM-M4l"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aZK-0Q-M81" secondAttribute="bottom" constant="16" id="5Wx-gd-kfU"/>
-                    <constraint firstAttribute="trailing" secondItem="W0h-Vb-06C" secondAttribute="trailing" constant="16" id="Ki3-sR-Cf0"/>
-                    <constraint firstItem="W0h-Vb-06C" firstAttribute="top" secondItem="JQX-5L-lm6" secondAttribute="top" constant="16" id="Ltl-rV-JbE"/>
-                    <constraint firstAttribute="bottom" secondItem="9nk-Ow-O4H" secondAttribute="bottom" priority="250" constant="16" id="M2U-7h-7py"/>
-                    <constraint firstItem="9nk-Ow-O4H" firstAttribute="trailing" secondItem="W0h-Vb-06C" secondAttribute="trailing" id="QqA-Bn-G63"/>
-                    <constraint firstItem="aZK-0Q-M81" firstAttribute="leading" secondItem="JQX-5L-lm6" secondAttribute="leading" constant="16" id="WZw-Gx-MUG"/>
-                    <constraint firstItem="aZK-0Q-M81" firstAttribute="top" secondItem="JQX-5L-lm6" secondAttribute="top" constant="16" id="c2K-UA-7wR"/>
-                    <constraint firstItem="9nk-Ow-O4H" firstAttribute="top" secondItem="W0h-Vb-06C" secondAttribute="bottom" constant="6" id="jxQ-iA-7JF"/>
-                    <constraint firstItem="W0h-Vb-06C" firstAttribute="leading" secondItem="aZK-0Q-M81" secondAttribute="trailing" constant="12" id="lJe-PU-UTW"/>
+                    <constraint firstItem="r2t-ZJ-Bgv" firstAttribute="top" secondItem="55g-8u-cXS" secondAttribute="top" constant="16" id="HuT-QH-NiX"/>
+                    <constraint firstItem="l7e-XC-KAM" firstAttribute="top" secondItem="55g-8u-cXS" secondAttribute="top" constant="16" id="J8A-Xv-1YV"/>
+                    <constraint firstAttribute="trailing" secondItem="l7e-XC-KAM" secondAttribute="trailing" constant="16" id="JqJ-Mu-Fsu"/>
+                    <constraint firstItem="gUm-Xh-L1T" firstAttribute="top" secondItem="l7e-XC-KAM" secondAttribute="bottom" constant="6" id="ZDb-xy-ByN"/>
+                    <constraint firstItem="gUm-Xh-L1T" firstAttribute="trailing" secondItem="l7e-XC-KAM" secondAttribute="trailing" id="boV-Cr-Yps"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="r2t-ZJ-Bgv" secondAttribute="bottom" constant="16" id="ehy-io-CY3"/>
+                    <constraint firstItem="gUm-Xh-L1T" firstAttribute="leading" secondItem="l7e-XC-KAM" secondAttribute="leading" id="g38-IA-Igg"/>
+                    <constraint firstItem="r2t-ZJ-Bgv" firstAttribute="leading" secondItem="55g-8u-cXS" secondAttribute="leading" constant="16" id="iaG-yn-fAX"/>
+                    <constraint firstItem="l7e-XC-KAM" firstAttribute="leading" secondItem="r2t-ZJ-Bgv" secondAttribute="trailing" constant="12" id="jFq-Er-VE0"/>
+                    <constraint firstAttribute="bottom" secondItem="gUm-Xh-L1T" secondAttribute="bottom" priority="250" constant="16" id="qGE-KU-IDq"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="detailsLabel" destination="9nk-Ow-O4H" id="aJB-33-h1C"/>
-                <outlet property="iconImageView" destination="aZK-0Q-M81" id="gPd-RK-bFE"/>
-                <outlet property="titleLabel" destination="W0h-Vb-06C" id="1yW-AN-yDp"/>
+                <outlet property="iconImageView" destination="r2t-ZJ-Bgv" id="Yfk-gI-G0Z"/>
+                <outlet property="selectedOptionsLabel" destination="gUm-Xh-L1T" id="HZO-9q-esi"/>
+                <outlet property="titleLabel" destination="l7e-XC-KAM" id="LGG-SB-82z"/>
             </connections>
             <point key="canvasLocation" x="119" y="-28"/>
         </tableViewCell>
