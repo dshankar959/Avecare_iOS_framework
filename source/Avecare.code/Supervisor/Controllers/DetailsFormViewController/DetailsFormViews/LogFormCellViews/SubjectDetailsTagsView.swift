@@ -20,6 +20,7 @@ struct SubjectDetailsTagsViewModel: CellViewModel {
         cell.titleLabel.text = title
         cell.selectOptionButton.setTitle(selectOptionTitle, for: .normal)
         cell.selectedOptions = selectedOptions
+        cell.isEditable = isEditable
 
         if isEditable {
             cell.onClick = action
@@ -42,6 +43,8 @@ class SubjectDetailsTagsView: BaseXibView {
     var onClick: ((SubjectDetailsTagsView) -> Void)?
     var onDelete: ((Int) -> Void)?
 
+    var isEditable = false
+
     override func setup() {
         super.setup()
 
@@ -54,6 +57,8 @@ class SubjectDetailsTagsView: BaseXibView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+
+        tagsCollectionView.layoutIfNeeded()
 
         let contentHeight = tagsCollectionView.collectionViewLayout.collectionViewContentSize.height
         if contentHeight > 0 {
@@ -76,6 +81,7 @@ extension SubjectDetailsTagsView: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: tagCollectionViewCellIdentifier, for: indexPath) as! TagCollectionViewCell
         cell.titleLabel.text = selectedOptions[indexPath.row].text
+        cell.isEditable = self.isEditable
         cell.delegate = self
         return cell
     }

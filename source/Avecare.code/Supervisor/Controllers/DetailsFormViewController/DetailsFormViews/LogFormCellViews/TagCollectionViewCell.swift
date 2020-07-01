@@ -11,6 +11,16 @@ class TagCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var removeButton: UIButton!
 
     weak var delegate: TagCollectionViewCellDelegate?
+    var isEditable = false {
+        didSet {
+            if isEditable {
+                tagView.backgroundColor = R.color.main()
+            } else {
+                tagView.backgroundColor = R.color.lightText4()
+            }
+            removeButton.isHidden = !isEditable
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

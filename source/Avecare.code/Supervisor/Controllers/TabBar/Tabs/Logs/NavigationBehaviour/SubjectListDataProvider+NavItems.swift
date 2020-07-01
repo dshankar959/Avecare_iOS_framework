@@ -49,8 +49,10 @@ extension SubjectListDataProvider: IndicatorProtocol {
             // Navigation Publish for selected subject
             .button(options: .init(action: { [weak self] view, options, index in
                 self?.publishDailyForm(at: indexPath)
-            }, isEnabled: !isSubmitted, text: "Publish", textColor: R.color.mainInversion(),
-                    tintColor: publishColor, cornerRadius: 4))
+            }, isEnabled: !isSubmitted,
+               text: NSLocalizedString("logs_publish_button_title", comment: ""),
+               textColor: R.color.mainInversion(),
+               tintColor: publishColor, cornerRadius: 4))
         ]
 
     }
@@ -65,13 +67,13 @@ extension SubjectListDataProvider: IndicatorProtocol {
             form.publishState = .publishing
         }
 
-        showActivityIndicator(withStatus: "Publishing daily log ...")
+        showActivityIndicator(withStatus: NSLocalizedString("logs_activity_indicator_publishing_status", comment: ""))
 
         SubjectsAPIService.publishDailyLog(log: request) { [weak self] result in
             switch result {
             case .success(let response):
                 DDLogVerbose("success")
-                self?.showSuccessIndicator(withStatus: "Published")
+                self?.showSuccessIndicator(withStatus: NSLocalizedString("logs_activity_indicator_published_status", comment: ""))
 
                 RLMLogForm.writeTransaction {
                     form.serverLastUpdated = response.logForm.serverLastUpdated

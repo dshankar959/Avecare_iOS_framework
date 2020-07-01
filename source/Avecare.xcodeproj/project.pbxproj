@@ -373,7 +373,7 @@
 		DC8B7E04248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
 		DC8B7E05248A80270000414D /* ImageCropViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC8B7E01248A80270000414D /* ImageCropViewController.xib */; };
 		DC9D130524AA1B7400DEBA61 /* TagPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D6524AA121300C5AC0E /* TagPickerViewController.swift */; };
-		DC9D130624AA59A600DEBA61 /* RLMLogTagsLow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D6124A63CC500C5AC0E /* RLMLogTagsLow.swift */; };
+		DC9D130624AA59A600DEBA61 /* RLMLogTagsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D6124A63CC500C5AC0E /* RLMLogTagsRow.swift */; };
 		DC9D130824AA899900DEBA61 /* SubjectDetailsTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D130724AA899900DEBA61 /* SubjectDetailsTagsView.swift */; };
 		DC9D130A24AA89BE00DEBA61 /* SubjectDetailsTagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC9D130924AA89BE00DEBA61 /* SubjectDetailsTagsView.xib */; };
 		DC9D130D24AA917C00DEBA61 /* TagCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D130B24AA917C00DEBA61 /* TagCollectionViewCell.swift */; };
@@ -385,7 +385,7 @@
 		DCB33D5624A3EE0B00C5AC0E /* syncOrganizationReminders.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF914192497E44C0043123F /* syncOrganizationReminders.swift */; };
 		DCB33D5F24A4EE8300C5AC0E /* NoItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D5B24A4E8EB00C5AC0E /* NoItemTableViewCell.swift */; };
 		DCB33D6024A4EE8B00C5AC0E /* NoItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DCB33D5C24A4E8EB00C5AC0E /* NoItemTableViewCell.xib */; };
-		DCB33D6224A63CC500C5AC0E /* RLMLogTagsLow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D6124A63CC500C5AC0E /* RLMLogTagsLow.swift */; };
+		DCB33D6224A63CC500C5AC0E /* RLMLogTagsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D6124A63CC500C5AC0E /* RLMLogTagsRow.swift */; };
 		DCB33D6424A63E4C00C5AC0E /* SubjectListDataProvider+Tags.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D6324A63E4C00C5AC0E /* SubjectListDataProvider+Tags.swift */; };
 		DCB33D6924AA125100C5AC0E /* TagPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D6824AA125100C5AC0E /* TagPickerTableViewCell.swift */; };
 		DCB33D6B24AA126900C5AC0E /* TagPickerViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DCB33D6A24AA126900C5AC0E /* TagPickerViewController.storyboard */; };
@@ -756,7 +756,7 @@
 		DCB33D4C24A3C7A200C5AC0E /* NotificationsAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsAPIService.swift; sourceTree = "<group>"; };
 		DCB33D5B24A4E8EB00C5AC0E /* NoItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoItemTableViewCell.swift; sourceTree = "<group>"; };
 		DCB33D5C24A4E8EB00C5AC0E /* NoItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoItemTableViewCell.xib; sourceTree = "<group>"; };
-		DCB33D6124A63CC500C5AC0E /* RLMLogTagsLow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMLogTagsLow.swift; sourceTree = "<group>"; };
+		DCB33D6124A63CC500C5AC0E /* RLMLogTagsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMLogTagsRow.swift; sourceTree = "<group>"; };
 		DCB33D6324A63E4C00C5AC0E /* SubjectListDataProvider+Tags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Tags.swift"; sourceTree = "<group>"; };
 		DCB33D6524AA121300C5AC0E /* TagPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPickerViewController.swift; sourceTree = "<group>"; };
 		DCB33D6824AA125100C5AC0E /* TagPickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPickerTableViewCell.swift; sourceTree = "<group>"; };
@@ -1777,7 +1777,7 @@
 				75EB59B92461858700E077E5 /* RLMLogNoteRow.swift */,
 				75EB59B72461858700E077E5 /* RLMLogPhotoRow.swift */,
 				75EB59B52461858700E077E5 /* RLMLogInjuryRow.swift */,
-				DCB33D6124A63CC500C5AC0E /* RLMLogTagsLow.swift */,
+				DCB33D6124A63CC500C5AC0E /* RLMLogTagsRow.swift */,
 				75EB59B42461858700E077E5 /* FormRowIconProtocol.swift */,
 				75EB59B62461858700E077E5 /* RLMOptionValue.swift */,
 			);
@@ -2515,7 +2515,7 @@
 				75886D0E2419327F0079C080 /* AvecareAPI+sampleData.swift in Sources */,
 				D0C4C802249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift in Sources */,
 				75886DD4241932BA0079C080 /* R.supervisor.generated.swift in Sources */,
-				DCB33D6224A63CC500C5AC0E /* RLMLogTagsLow.swift in Sources */,
+				DCB33D6224A63CC500C5AC0E /* RLMLogTagsRow.swift in Sources */,
 				F663BB7624351327003279B9 /* SubjectListDataProvider.swift in Sources */,
 				75886D522419327F0079C080 /* UIViewController.swift in Sources */,
 				F67DF81D241BFE6800793A9C /* PickerFieldFormView.swift in Sources */,
@@ -2792,7 +2792,7 @@
 				DC71E1AD249BC7D000CB3D10 /* syncOrganizationDailyTasks.swift in Sources */,
 				615474DD4D6B43A12920A720 /* StoriesDataProvider.swift in Sources */,
 				75EB59CD2461858700E077E5 /* RLMLogSwitcherRow.swift in Sources */,
-				DC9D130624AA59A600DEBA61 /* RLMLogTagsLow.swift in Sources */,
+				DC9D130624AA59A600DEBA61 /* RLMLogTagsRow.swift in Sources */,
 				DC3E80EE2486BFCF003983E2 /* RLMMessage.swift in Sources */,
 				61547C05AA5DE58BB809E4C6 /* SupervisorFilterTableViewCell.swift in Sources */,
 				DC71E1AA249BC63700CB3D10 /* RLMDailyTaskOption.swift in Sources */,
