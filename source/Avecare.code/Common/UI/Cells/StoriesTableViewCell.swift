@@ -28,18 +28,24 @@ struct StoriesTableViewCellModel: CellViewModel {
             cell.status.isHidden = false
             cell.status.text = NSLocalizedString("draft_status", comment: "")
         }
+        cell.photoImageView.image = nil
 
-        if let url = documentURL,
-            url.absoluteString.isFilePath,
-            let image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url, atPage: 0) {
-            cell.photoImageView.image = image
-        } else {
-            cell.photoImageView.image = R.image.noPdfPlaceholder()
+        DispatchQueue.global(qos: .background).async {
+            var image: UIImage? = nil
+            if let url = self.documentURL,
+                url.absoluteString.isFilePath {
+                image = service.getImageForPDF(of: CGSize(width: size, height: size), for: url, atPage: 0)
+            }
+            DispatchQueue.main.async {
+                if let image = image {
+                    cell.photoImageView.image = image
+                } else {
+                    cell.photoImageView.image = R.image.noPdfPlaceholder()
+                }
+            }
         }
     }
-
 }
-
 
 class StoriesTableViewCell: UITableViewCell {
 
