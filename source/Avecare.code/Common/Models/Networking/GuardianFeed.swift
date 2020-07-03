@@ -2,7 +2,7 @@ import Foundation
 import CocoaLumberjack
 
 
-enum FeedItemType: String, Decodable {
+enum FeedItemType: String, Codable {
     case message
     case subjectDailyLog = "subjectdailylog"
     case subjectInjury = "subjectinjury"
@@ -16,7 +16,7 @@ enum FeedItemType: String, Decodable {
     }
 }
 
-struct GuardianFeed: Decodable {
+struct GuardianFeed: Codable {
     let id: String
     let body: String
     var date: Date
@@ -58,6 +58,26 @@ struct GuardianFeed: Decodable {
         } catch {
             DDLogError("JSON Decoding error = \(error)")
             fatalError("JSON Decoding error = \(error)")
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+
+        do {
+            try container.encode(id, forKey: .id)
+            try container.encode(body, forKey: .body)
+
+            let dateString: String = Date.logFormStringFromDate(date) + "T00:00:00"
+            try container.encode(dateString, forKey: .date)
+            try container.encode(header, forKey: .header)
+            try container.encode(important, forKey: .important)
+            try container.encode(subjectIds, forKey: .subjectIds)
+            try container.encode(feedItemId, forKey: .feedItemId)
+            try container.encode(feedItemType, forKey: .feedItemType)
+        } catch {
+            DDLogError("JSON Encoding error = \(error)")
+            fatalError("JSON Encoding error = \(error)")
         }
     }
 }

@@ -206,14 +206,29 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if dataProvider.hasImportantItems, indexPath.section == 0 {
+            return true // only important item can be removed
+        } else {
+            return false
+        }
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            dataProvider.removeData(at: indexPath)
+            tableView.reloadData()
+        }
+    }
+
     private func gotoDetailsScreen(with model: HomeTableViewDisclosureCellModel) {
-        switch model.feedItemType {
+        switch model.feed.feedItemType {
         case .subjectDailyLog:
-            gotoLogsScreen(with: model.feedItemId)
+            gotoLogsScreen(with: model.feed.feedItemId)
         case .message, .unitActivity, .subjectInjury, .subjectReminder:
-            performSegue(withIdentifier: R.segue.homeViewController.details, sender: (model.title, model.feedItemType, model.feedItemId))
+            performSegue(withIdentifier: R.segue.homeViewController.details, sender: (model.title, model.feed.feedItemType, model.feed.feedItemId))
         case .unitStory:
-            gotoStoryDetailScreen(with: model.feedItemId)
+            gotoStoryDetailScreen(with: model.feed.feedItemId)
         default:
             return
         }

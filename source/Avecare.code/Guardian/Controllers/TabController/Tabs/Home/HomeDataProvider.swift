@@ -1,8 +1,9 @@
 import Foundation
-
+import CocoaLumberjack
 
 
 protocol HomeDataProvider: class {
+    var hasImportantItems: Bool { get }
     var selectedSubjectId: String? { get set }
     var numberOfSections: Int { get }
     func numberOfRows(section: Int) -> Int
@@ -10,6 +11,7 @@ protocol HomeDataProvider: class {
     func headerViewModel(for section: Int) -> HomeTableViewHeaderViewModel?
     func canDismiss(at indexPath: IndexPath) -> Bool
     func fetchFeeds(completion: @escaping (AppError?) -> Void)
+    func removeData(at indexPath: IndexPath)
 }
 
 
@@ -17,13 +19,15 @@ class DefaultHomeDataProvider: HomeDataProvider {
     private struct Section {
         let header: HomeTableViewHeaderViewModel?
         let dismiss: Bool
-        let records: [AnyCellViewModel]
+        var records: [AnyCellViewModel]
     }
 
     private var fetchedFeed = [GuardianFeed]()
     private var dataSource = [Section]()
     private var subjectDict = [String: RLMSubject]()
     private let storage = DocumentService()
+    private lazy var removedFeeds = readRemovedFeed()
+    private let removedFeedFile = "removed_feed"
 
     /*
         return []   // hide for now until we have integrated with API
@@ -63,6 +67,15 @@ class DefaultHomeDataProvider: HomeDataProvider {
                     ])
         ]
     }()*/
+
+    var hasImportantItems: Bool {
+        if dataSource[0].header?.text == NSLocalizedString("home_important_section_title", comment: "").uppercased(),
+            dataSource[0].records.count > 0 {
+            return true
+        } else {
+            return false
+        }
+    }
 
     var selectedSubjectId: String? {
         didSet {
@@ -117,12 +130,49 @@ class DefaultHomeDataProvider: HomeDataProvider {
         }
     }
 
+    func removeData(at indexPath: IndexPath) {
+        if let viewModel = dataSource[indexPath.section].records[indexPath.row] as? HomeTableViewDisclosureCellModel {
+            updateRemovedFeed(with: viewModel.feed)
+        }
+        filterDataSource(with: selectedSubjectId)
+    }
+
+    private func updateRemovedFeed(with feed: GuardianFeed) {
+        removedFeeds.append(feed)
+        saveRemovedFeeds()
+    }
+
+    private func saveRemovedFeeds() {
+        let savingRemovedFeeds = filterFeedsForDatesWindow(with: removedFeeds)
+        let data = try? JSONEncoder().encode(savingRemovedFeeds)
+        let fileUrl = userAppDirectory.appendingPathComponent(removedFeedFile)
+        do {
+            try data?.write(to: fileUrl)
+        } catch {
+            DDLogError("!!! Cannot write removed feeds !!!")
+        }
+    }
+
+    private func readRemovedFeed() -> [GuardianFeed] {
+        let fileUrl = userAppDirectory.appendingPathComponent(removedFeedFile)
+        do {
+            let data = try Data(contentsOf: fileUrl)
+            let feeds = try JSONDecoder().decode([GuardianFeed].self, from: data)
+            return feeds
+        } catch {
+            DDLogError("!!! Cannot read removed feed !!!")
+            return [GuardianFeed]()
+        }
+    }
+
     private func filterDataSource(with subjectId: String?) {
+        let removedFeedIds = removedFeeds.map { $0.id }
+        let feedsWithoutRemovedFeeds = fetchedFeed.filter { !removedFeedIds.contains($0.id) }
         if let subjectId = subjectId {
-            let filteredFeed = fetchedFeed.filter { $0.subjectIds.contains(subjectId) }
+            let filteredFeed = feedsWithoutRemovedFeeds.filter { $0.subjectIds.contains(subjectId) }
             constructDataSource(with: filteredFeed)
         } else {
-            constructDataSource(with: fetchedFeed)
+            constructDataSource(with: feedsWithoutRemovedFeeds)
         }
     }
 
@@ -222,18 +272,15 @@ class DefaultHomeDataProvider: HomeDataProvider {
 extension HomeTableViewDisclosureCellModel {
 
     init(with feed: GuardianFeed, subject: RLMSubject? = nil, storage: DocumentService? = nil) {
+        self.feed = feed
         if feed.feedItemType == .subjectDailyLog,
             let subjectForLog = subject,
             let documentStorage = storage {
             title = subjectForLog.firstName + NSLocalizedString("home_feed_title_dailylog", comment: "")
-            subtitle = feed.date.dateStringWithDayOfWeekHumanFriendly
             subjectImageURL = subjectForLog.photoURL(using: documentStorage)
         } else {
             title = feed.header
-            subtitle = feed.body
             subjectImageURL = nil
         }
-        feedItemId = feed.feedItemId
-        feedItemType = feed.feedItemType
     }
 }
