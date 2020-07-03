@@ -42,6 +42,7 @@ extension SubjectListDataProvider: IndicatorProtocol {
                     return
                 }
 
+                self?.delegate?.customResponder?.resignFirstResponder()
                 self?.delegate?.customResponder?.becomeFirstResponder(inputView: picker, accessoryView: toolbar)
 
             }, isEnabled: !isSubmitted, image: R.image.plusIcon())),

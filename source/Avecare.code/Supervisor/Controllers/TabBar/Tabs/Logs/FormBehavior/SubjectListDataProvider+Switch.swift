@@ -75,6 +75,7 @@ extension SubjectListDataProvider {
         }, onCancel: {
             responder.resignFirstResponder()
         })
+        responder.resignFirstResponder()
         responder.becomeFirstResponder(inputView: picker, accessoryView: toolbar)
     }
 

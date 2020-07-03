@@ -44,5 +44,4 @@ extension SubjectListDataProvider {
 
         return viewModel
     }
-
 }

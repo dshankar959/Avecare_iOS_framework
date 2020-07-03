@@ -16,7 +16,6 @@ extension SubjectDetailsPhotoViewModel {
         }
         self.isEditable = isEditable
     }
-
 }
 
 
