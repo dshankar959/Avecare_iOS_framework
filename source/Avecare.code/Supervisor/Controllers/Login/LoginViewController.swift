@@ -53,6 +53,10 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 //        loginField?.text = "room_test@spiria.com"
 //        passwordField?.text = "Test123t"
 
+        #else
+
+        loginField?.text = appSettings.lastUsername
+
         #endif
 
     }
@@ -105,6 +109,7 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                         self?.handleError(error)
                     } else {
                         self?.hideActivityIndicator()
+                        appSettings.lastUsername = self?.loginField?.text
                         self?.performSegue(withIdentifier: R.segue.loginViewController.tabbar, sender: nil)
                     }
                 }
