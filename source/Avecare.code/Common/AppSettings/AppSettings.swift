@@ -73,7 +73,7 @@ class AppSettings {
             DDLogDebug("new lastUsername: \(newValue ?? "<nil>")")
 
             let defaults = userDefaults(for: nil)
-            defaults.set(appSession.userProfile.email, forKey: kLastUsernameKey)
+            defaults.set(newValue, forKey: kLastUsernameKey)
 
         }
     }

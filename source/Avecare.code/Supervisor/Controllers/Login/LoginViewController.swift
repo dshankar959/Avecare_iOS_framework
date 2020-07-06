@@ -109,7 +109,6 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                         self?.handleError(error)
                     } else {
                         self?.hideActivityIndicator()
-                        appSettings.lastUsername = self?.loginField?.text
                         self?.performSegue(withIdentifier: R.segue.loginViewController.tabbar, sender: nil)
                     }
                 }

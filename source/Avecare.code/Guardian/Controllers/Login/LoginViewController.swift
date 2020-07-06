@@ -48,6 +48,10 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
         // auto-sign-in, to speed up local testing.
         getCodeAction(sender: UIButton())
 
+        #else
+
+        loginField?.text = appSettings.lastUsername
+
         #endif
     }
 

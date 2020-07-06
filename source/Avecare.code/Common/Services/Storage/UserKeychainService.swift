@@ -7,6 +7,7 @@ import KeychainAccess
 struct UserKeychainService {
     private static let myKeychain = Keychain(service: Bundle.main.bundleId)
     private static let kUsersKey = "allUsers"
+    private static let kTokenKey = "apitoken"
 
     // Add/update user profiles list in keychain
     static func saveUserProfile(_ user: UserProfile) {
@@ -84,6 +85,46 @@ struct UserKeychainService {
         let userProfiles = UserKeychainService.getAllUserProfiles()
 //        DDLogVerbose("App user count = \(userProfiles.count)")
         return userProfiles.count
+    }
+
+    static func saveCurrentToken(token: APIToken?) {
+        do {
+            if let token = token {
+                // Encode dictionary as JSON `Data`
+                guard let encodedJSONdata = try? JSONEncoder().encode(token) else {
+                    DDLogError("Failed to encode '\(kTokenKey)' object into 'Data'")
+                    DDLogError("token = \(token)")
+                    return
+                }
+
+                // Save encodedJSONdata into Keychain
+                try UserKeychainService.myKeychain.set(encodedJSONdata, key: UserKeychainService.kTokenKey)
+            } else {
+                try myKeychain.remove(kTokenKey)
+            }
+        } catch let error {
+            DDLogError("An error occured: \(error)")
+        }
+    }
+
+    static func getCurrentToken() -> APIToken? {
+        do {
+            guard let encodedJSONdata = try myKeychain.getData(kTokenKey) else {
+                DDLogError("Failed to read '\(kTokenKey)' object from keychain")
+                return nil
+            }
+
+            // Convert JSON Data back to Dictionary
+            guard let token = try? JSONDecoder().decode(APIToken.self, from: encodedJSONdata) as APIToken else {
+                DDLogError("Failed to decode '\(kTokenKey)' object")
+                return nil
+            }
+
+            return token
+        } catch let error {
+            DDLogError("An error occured: \(error)")
+            return nil
+        }
     }
 
     // MARK: - #debugging

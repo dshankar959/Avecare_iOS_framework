@@ -2,7 +2,7 @@ import CocoaLumberjack
 
 
 
-struct APIToken: Decodable {
+struct APIToken: Codable {
 
     let accountType: String
     let accountTypeId: String
