@@ -5,9 +5,11 @@ import KeychainAccess
 
 
 struct UserKeychainService {
+
     private static let myKeychain = Keychain(service: Bundle.main.bundleId)
     private static let kUsersKey = "allUsers"
-    private static let kTokenKey = "apitoken"
+    private static let kTokenKey = "apiToken"
+
 
     // Add/update user profiles list in keychain
     static func saveUserProfile(_ user: UserProfile) {
@@ -38,6 +40,7 @@ struct UserKeychainService {
         }
     }
 
+
     // Get full user profiles list from keychain
     static func getAllUserProfiles() -> [String: UserProfile] {
         do {
@@ -60,6 +63,7 @@ struct UserKeychainService {
         }
     }
 
+
     static func getUserProfile(with email: String) -> UserProfile? {
         let userProfiles = UserKeychainService.getAllUserProfiles()
 
@@ -69,6 +73,7 @@ struct UserKeychainService {
             return nil
         }
     }
+
 
     static func getSingleUserProfileIfPresent() -> UserProfile? {
         let userProfiles = UserKeychainService.getAllUserProfiles()
@@ -80,12 +85,14 @@ struct UserKeychainService {
         }
     }
 
+
     // Since this is possibly a shared iOS device, return the user count that the app has collected.
     static func totalUsers() -> Int {
         let userProfiles = UserKeychainService.getAllUserProfiles()
 //        DDLogVerbose("App user count = \(userProfiles.count)")
         return userProfiles.count
     }
+
 
     static func saveCurrentToken(token: APIToken?) {
         do {
@@ -107,6 +114,7 @@ struct UserKeychainService {
         }
     }
 
+
     static func getCurrentToken() -> APIToken? {
         do {
             guard let encodedJSONdata = try myKeychain.getData(kTokenKey) else {
@@ -126,6 +134,7 @@ struct UserKeychainService {
             return nil
         }
     }
+
 
     // MARK: - #debugging
 

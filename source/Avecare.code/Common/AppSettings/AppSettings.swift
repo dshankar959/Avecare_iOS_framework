@@ -74,7 +74,6 @@ class AppSettings {
 
             let defaults = userDefaults(for: nil)
             defaults.set(newValue, forKey: kLastUsernameKey)
-
         }
     }
 

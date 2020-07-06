@@ -5,8 +5,7 @@ import SegueManager
 
 class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 
-    @IBOutlet weak var snowflakeIconLabel: UILabel!
-    @IBOutlet weak var snowflakeTitleLabel: UILabel!
+    @IBOutlet weak var appTitleLabel: UILabel!
     @IBOutlet var loginField: UITextField?
 
     lazy var segueManager: SegueManager = {
@@ -18,9 +17,7 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        snowflakeIconLabel.font = UIFont(name: "FontAwesome5Pro-Light", size: 24)
-//        snowflakeIconLabel.text = "\u{f2dc}"
-        snowflakeTitleLabel.text = "Daily Wonders"
+        appTitleLabel.text = "Daily Wonders"
     }
 
 
@@ -35,7 +32,7 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 
         #if DEBUG
 //        loginField?.text = "sdwornik@spiria.com"
-        loginField?.text = "guardian@example.net"
+//        loginField?.text = "guardian@example.net"
 //        loginField?.text = "shankardevika@yahoo.ca"
 //        loginField?.text = "dshankar@spiria.com"
 //        loginField?.text = "smoon@spiria.com"
@@ -46,7 +43,7 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 //        loginField?.text = "parent4@example.net"
 
         // auto-sign-in, to speed up local testing.
-        getCodeAction(sender: UIButton())
+//        getCodeAction(sender: UIButton())
 
         #else
 

@@ -27,7 +27,7 @@ final class UserAuthenticateService: IndicatorProtocol {
                 Crashlytics.crashlytics().setUserID(userProfile.email)
                 #endif
 
-                // Update data to construc valid session
+                // Update data to construct valid session
                 appSettings.lastUsername = userCredentials.username
                 UserKeychainService.saveUserProfile(userProfile)
                 UserKeychainService.saveCurrentToken(token: token)

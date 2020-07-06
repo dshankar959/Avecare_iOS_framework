@@ -299,8 +299,8 @@
                         <barButtonItem key="backBarButtonItem" title=" " id="tVi-cv-Cez"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="appTitleLabel" destination="NMH-P6-xCP" id="GVW-Pb-l9n"/>
                         <outlet property="loginField" destination="JPY-kC-QBn" id="Rpu-Xi-jlT"/>
-                        <outlet property="snowflakeTitleLabel" destination="NMH-P6-xCP" id="GVW-Pb-l9n"/>
                         <segue destination="IUv-yB-8nH" kind="show" identifier="otp" id="V9u-Xt-ts8"/>
                     </connections>
                 </viewController>

@@ -35,7 +35,7 @@ struct APIToken: Codable {
             DDLogDebug("accessToken.isEmpty = \(accessToken.isEmpty ? "YES" : "NO")")
             return false
         }
-
+/*
         // Check if expired perhaps.
         // In this arbitrary case, we just check if it's still `today`.
         let calendar = Calendar.current
@@ -43,7 +43,7 @@ struct APIToken: Codable {
             DDLogDebug("issueDateTime = expired")
             return false
         }
-
+*/
         return true
     }
 
