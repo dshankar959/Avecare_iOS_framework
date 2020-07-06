@@ -27,8 +27,10 @@ final class UserAuthenticateService: IndicatorProtocol {
                 Crashlytics.crashlytics().setUserID(userProfile.email)
                 #endif
 
-                // Update any previous session, with new token.
-                appDelegate._session = Session(token: token, userProfile: userProfile)
+                // Update data to construc valid session
+                appSettings.lastUsername = userCredentials.username
+                UserKeychainService.saveUserProfile(userProfile)
+                UserKeychainService.saveCurrentToken(token: token)
 
                 self?.onSignInLaunchCheck()
 
@@ -115,6 +117,7 @@ final class UserAuthenticateService: IndicatorProtocol {
             switch result {
             case .success(let message):
                 DDLogVerbose("Logged out from the serve successfully.✅  [with status code = \(message)]")
+                UserKeychainService.saveCurrentToken(token: nil)
                 self?.resetSyncEngine {
                     completion(nil)
                 }
@@ -152,7 +155,6 @@ final class UserAuthenticateService: IndicatorProtocol {
         DDLogInfo("Resetting app.")
         appDelegate._syncEngine = SyncEngine()
         appDelegate._appSettings = AppSettings()
-        appDelegate._session = Session()
 
         // give extra time for animations and 'writes' to settle.
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in

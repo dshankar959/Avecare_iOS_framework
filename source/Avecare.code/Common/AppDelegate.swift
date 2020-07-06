@@ -31,7 +31,6 @@ import Kingfisher
         return Device.current
     }()
 
-    var _session: Session = Session()       // treat as #internal.  Use Global: `appSession` instead to read.  Underscore to write.
     var _syncEngine = SyncEngine()          // treat as #internal.  Use Global: `syncEngine` instead to read.  Underscore to write.
 
     var _loggerDirectory: URL = URL(fileURLWithPath: "")    // location of all log files.

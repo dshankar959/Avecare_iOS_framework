@@ -9,8 +9,15 @@ var appDelegate: AppDelegate {      // 'read-only' property
     return ._applicationDelegate
 }
 
-var appSession: Session {           // 'read-only' property
-    return appDelegate._session
+// read only variable based on saved user profile & current token
+var appSession: Session {
+    if let lastUsername = appSettings.lastUsername,
+        let userProfile = UserKeychainService.getUserProfile(with: lastUsername),
+        let currentToken = UserKeychainService.getCurrentToken() {
+        return Session(token: currentToken, userProfile: userProfile)
+    } else {
+        return Session()
+    }
 }
 
 var isDataConnection: Bool {        // 'read-only' property
