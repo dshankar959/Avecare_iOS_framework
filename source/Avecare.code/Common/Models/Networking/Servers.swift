@@ -8,7 +8,7 @@ enum ServerURLs: String, CaseIterable {
     var description: String {
         switch self {
         case .production:
-            return "https://"
+            return "https://avecare.ca"
         case .beta:
             return "https://avecare-beta.herokuapp.com"
         case .qa:

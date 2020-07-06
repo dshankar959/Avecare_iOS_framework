@@ -39,7 +39,7 @@ class FeedDetailsViewController: UIViewController, IndicatorProtocol {
                 if let error = error {
                     self?.showErrorAlert(error)
                 } else {
-                    self?.iconImage.image = R.image.navLogoIcon()
+                    self?.iconImage.image = R.image.hwccccLogoIcon()
                     self?.senderCategoryLabel.text = message?.header
                     self?.titleLabel.text = message?.title
                     self?.dateLabel.text = message?.serverLastUpdated?.dateStringHumanFriendly

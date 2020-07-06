@@ -13,7 +13,6 @@
 		299B358B241F907E00D6F9A5 /* FormTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299B3585241F907E00D6F9A5 /* FormTextView.swift */; };
 		29A6D542245450D100D7DB87 /* SupervisorOnly.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29A6D541245450D100D7DB87 /* SupervisorOnly.xcassets */; };
 		29A6D544245450EF00D7DB87 /* GuardianOnly.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 29A6D543245450EF00D7DB87 /* GuardianOnly.xcassets */; };
-		29BA8AD824545D8700DAEB75 /* placeholders.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6154764E6D3C3E9178996C56 /* placeholders.strings */; };
 		6154703AE0070C0AD17E57F2 /* SubjectPickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615476F3191AFD0E4E91F043 /* SubjectPickerTableViewCell.swift */; };
 		61547079FFE82CF82DB8CA3D /* LogsOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547B02FE52C25F016B7986 /* LogsOptionTableViewCell.xib */; };
 		61547083A234F7DE9A8C4E4D /* syncSubjectLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478D41647CC7CBA087361 /* syncSubjectLogs.swift */; };
@@ -107,14 +106,15 @@
 		61547E94A113A96589BB4C99 /* DocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154797C8F550C18F3AB7FBF /* DocumentService.swift */; };
 		61547EFCF73D0FF79FA58C02 /* PinField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615475EEDFB36CEE4040F7EB /* PinField.swift */; };
 		61547F33A9EB29594609704E /* HomeTableViewHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547160F43F25A27CE46875 /* HomeTableViewHeaderView.xib */; };
-		61547F3E0A42C0F4AAB76F51 /* placeholders.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6154764E6D3C3E9178996C56 /* placeholders.strings */; };
 		61547F44C319932DE7A455BA /* StoriesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154717A69B557EB291B8570 /* StoriesDetailsViewController.swift */; };
 		61547F86427E44844CC9DC71 /* SubjectListDataProvider+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477C6C7DC9B6372B7ACC6 /* SubjectListDataProvider+Common.swift */; };
 		6A216CA06A17B11A8377AD9C /* Pods_educator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */; };
 		751B4C5C247EF9B6001B8035 /* syncSubjectLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478D41647CC7CBA087361 /* syncSubjectLogs.swift */; };
 		7523497524A477E8000C873E /* AboutFormProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7523497424A477E8000C873E /* AboutFormProvider.swift */; };
-		7533DB07247958EC00DA211D /* LogFormRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7533DB04247958EC00DA211D /* LogFormRows.json */; };
-		7533DB08247958EC00DA211D /* LogFormRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7533DB04247958EC00DA211D /* LogFormRows.json */; };
+		7541BC6924B3BD140026CCA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
+		7541BC6A24B3BD160026CCA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
+		7541BC6D24B3D15B0026CCA1 /* FormTemplateRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */; };
+		7541BC6E24B3D15B0026CCA1 /* FormTemplateRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */; };
 		754E1EA52436505300C8FD30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 754E1EA42436505300C8FD30 /* GoogleService-Info.plist */; };
 		754E1EA72436506900C8FD30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 754E1EA62436506900C8FD30 /* GoogleService-Info.plist */; };
 		755EAEAA241ABB6900A6BA4D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEA9241ABB6900A6BA4D /* Session.swift */; };
@@ -144,8 +144,6 @@
 		75886D212419327F0079C080 /* DefaultColorTheme.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75886CD82419327F0079C080 /* DefaultColorTheme.xcassets */; };
 		75886D222419327F0079C080 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75886CD92419327F0079C080 /* LaunchScreen.storyboard */; };
 		75886D232419327F0079C080 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75886CD92419327F0079C080 /* LaunchScreen.storyboard */; };
-		75886D242419327F0079C080 /* Samples.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75886CDB2419327F0079C080 /* Samples.xcassets */; };
-		75886D252419327F0079C080 /* Samples.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75886CDB2419327F0079C080 /* Samples.xcassets */; };
 		75886D262419327F0079C080 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886CDD2419327F0079C080 /* AppSettings.swift */; };
 		75886D272419327F0079C080 /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886CDD2419327F0079C080 /* AppSettings.swift */; };
 		75886D282419327F0079C080 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886CDE2419327F0079C080 /* AppDelegate.swift */; };
@@ -363,7 +361,6 @@
 		DC5E9909247555760088083C /* EducatorDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E99032475551C0088083C /* EducatorDetailsViewController.swift */; };
 		DC5E990A2475557D0088083C /* EducatorDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC5E99012475543F0088083C /* EducatorDetails.storyboard */; };
 		DC5E990C24755B990088083C /* EducatorDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5E990B24755B990088083C /* EducatorDetailsDataProvider.swift */; };
-		DC70F062246B436800FFD262 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
 		DC71E1A9249BC4E200CB3D10 /* RLMDailyTaskOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1A8249BC4E200CB3D10 /* RLMDailyTaskOption.swift */; };
 		DC71E1AA249BC63700CB3D10 /* RLMDailyTaskOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1A8249BC4E200CB3D10 /* RLMDailyTaskOption.swift */; };
 		DC71E1AC249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC71E1AB249BC6BA00CB3D10 /* syncOrganizationDailyTasks.swift */; };
@@ -455,7 +452,6 @@
 		F6A5E13D2444DE8D00FD77B6 /* SingleValuePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615476A733FC27107FD3D4C8 /* SingleValuePickerView.swift */; };
 		F6A5E1552444DF5400FD77B6 /* DocumentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154797C8F550C18F3AB7FBF /* DocumentService.swift */; };
 		F6B7F28F24254DBF003E16AE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6B7F28E24254DBF003E16AE /* LoginViewController.swift */; };
-		F6DBA7F224295A94006C83E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -498,7 +494,6 @@
 		615475FB8B74A0DD8CC54397 /* UserListFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListFlowLayout.swift; sourceTree = "<group>"; };
 		615476341CA9B1B5A2A77173 /* LogsNoteTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogsNoteTableViewCell.xib; sourceTree = "<group>"; };
 		61547637BA1F27AE456E3BAA /* LogsTimeDetailsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTimeDetailsTableViewCell.swift; sourceTree = "<group>"; };
-		6154764E6D3C3E9178996C56 /* placeholders.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = placeholders.strings; sourceTree = "<group>"; };
 		6154766961FE6617406A657F /* RLMPublishable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMPublishable.swift; sourceTree = "<group>"; };
 		6154767E71E8092BD4B8C466 /* SubjectListDataProvider+Option.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Option.swift"; sourceTree = "<group>"; };
 		615476A0791F88C1DF8DC29A /* StoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoriesViewController.swift; sourceTree = "<group>"; };
@@ -557,7 +552,7 @@
 		66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_educator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7523497424A477E8000C873E /* AboutFormProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutFormProvider.swift; sourceTree = "<group>"; };
-		7533DB04247958EC00DA211D /* LogFormRows.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LogFormRows.json; sourceTree = "<group>"; };
+		7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FormTemplateRows.json; sourceTree = "<group>"; };
 		754E1EA42436505300C8FD30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		754E1EA62436506900C8FD30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		755EAEA7241AB64200A6BA4D /* parent.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = parent.entitlements; sourceTree = "<group>"; };
@@ -576,7 +571,6 @@
 		75886CD32419327F0079C080 /* Servers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Servers.swift; sourceTree = "<group>"; };
 		75886CD82419327F0079C080 /* DefaultColorTheme.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = DefaultColorTheme.xcassets; sourceTree = "<group>"; };
 		75886CDA2419327F0079C080 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		75886CDB2419327F0079C080 /* Samples.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Samples.xcassets; sourceTree = "<group>"; };
 		75886CDD2419327F0079C080 /* AppSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
 		75886CDE2419327F0079C080 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75886CE12419327F0079C080 /* ErrorMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorMessages.swift; sourceTree = "<group>"; };
@@ -843,7 +837,7 @@
 		29A6D53724544EBE00D7DB87 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				29A6D53F24544FDA00D7DB87 /* Test */,
+				7541BC6B24B3D15B0026CCA1 /* FormTemplateRows */,
 				29A6D53924544ED200D7DB87 /* Images */,
 				29A6D53824544EC800D7DB87 /* Themes */,
 			);
@@ -890,32 +884,6 @@
 				29A6D541245450D100D7DB87 /* SupervisorOnly.xcassets */,
 			);
 			path = Supervisor;
-			sourceTree = "<group>";
-		};
-		29A6D53D24544F0000D7DB87 /* Images */ = {
-			isa = PBXGroup;
-			children = (
-				75886CDB2419327F0079C080 /* Samples.xcassets */,
-			);
-			path = Images;
-			sourceTree = "<group>";
-		};
-		29A6D53F24544FDA00D7DB87 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				7533DB03247958EC00DA211D /* JSON */,
-				29A6D5402454502D00D7DB87 /* Strings */,
-				29A6D53D24544F0000D7DB87 /* Images */,
-			);
-			path = Test;
-			sourceTree = "<group>";
-		};
-		29A6D5402454502D00D7DB87 /* Strings */ = {
-			isa = PBXGroup;
-			children = (
-				6154764E6D3C3E9178996C56 /* placeholders.strings */,
-			);
-			path = Strings;
 			sourceTree = "<group>";
 		};
 		5FEA32664892B819730A01BC /* Pods */ = {
@@ -1209,14 +1177,6 @@
 			path = FormProviders;
 			sourceTree = "<group>";
 		};
-		7533DB03247958EC00DA211D /* JSON */ = {
-			isa = PBXGroup;
-			children = (
-				7533DB04247958EC00DA211D /* LogFormRows.json */,
-			);
-			path = JSON;
-			sourceTree = "<group>";
-		};
 		7538FBFC23DB90B800A330A4 = {
 			isa = PBXGroup;
 			children = (
@@ -1238,6 +1198,14 @@
 				75EB875223DB93B00068A3A7 /* parent.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		7541BC6B24B3D15B0026CCA1 /* FormTemplateRows */ = {
+			isa = PBXGroup;
+			children = (
+				7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */,
+			);
+			path = FormTemplateRows;
 			sourceTree = "<group>";
 		};
 		755EAEA6241AB64200A6BA4D /* entitlements */ = {
@@ -2135,14 +2103,13 @@
 			files = (
 				F67DF813241BFE6800793A9C /* SubjectDetailsPickerView.xib in Resources */,
 				75886DF7241932BA0079C080 /* DefaultCellView.xib in Resources */,
-				DC70F062246B436800FFD262 /* Assets.xcassets in Resources */,
+				7541BC6924B3BD140026CCA1 /* Assets.xcassets in Resources */,
 				F65549FA24564F2100574872 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
 				F67DF812241BFE6800793A9C /* SubjectDetailsSegmentView.xib in Resources */,
 				75886D222419327F0079C080 /* LaunchScreen.storyboard in Resources */,
 				754E1EA52436505300C8FD30 /* GoogleService-Info.plist in Resources */,
 				299B358A241F907E00D6F9A5 /* FormTextView.xib in Resources */,
 				75886DFA241932BA0079C080 /* LeftSideNavigationBarView.xib in Resources */,
-				75886D242419327F0079C080 /* Samples.xcassets in Resources */,
 				DC3E80D724859D95003983E2 /* Login.storyboard in Resources */,
 				F67DF811241BFE6800793A9C /* DetailsFormViewController.storyboard in Resources */,
 				F67DF823241BFE6800793A9C /* InputTextFormView.xib in Resources */,
@@ -2164,6 +2131,7 @@
 				D0A6441A248AA6E50041A69B /* PDFThumbView.xib in Resources */,
 				75886DF4241932BA0079C080 /* supervisor.storyboard in Resources */,
 				29A6D542245450D100D7DB87 /* SupervisorOnly.xcassets in Resources */,
+				7541BC6D24B3D15B0026CCA1 /* FormTemplateRows.json in Resources */,
 				75886DF6241932BA0079C080 /* DefaultTableViewCell.xib in Resources */,
 				F65549FC24564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf in Resources */,
 				F67DF822241BFE6800793A9C /* CheckmarkFormView.xib in Resources */,
@@ -2175,8 +2143,6 @@
 				F65549F424564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */,
 				6154790FF6B50D7AB8BC8DCC /* SubjectAccidentReportView.xib in Resources */,
 				61547C0509099E6F3B183060 /* SubjectPickerViewController.storyboard in Resources */,
-				61547F3E0A42C0F4AAB76F51 /* placeholders.strings in Resources */,
-				7533DB07247958EC00DA211D /* LogFormRows.json in Resources */,
 				6154769C2EB5AE3A9AF2AD45 /* TimeRangePickerView.xib in Resources */,
 				615478E332EE63F3AF019CA9 /* StoriesTableViewCell.xib in Resources */,
 			);
@@ -2187,12 +2153,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC5E990A2475557D0088083C /* EducatorDetails.storyboard in Resources */,
-				7533DB08247958EC00DA211D /* LogFormRows.json in Resources */,
 				75886D232419327F0079C080 /* LaunchScreen.storyboard in Resources */,
 				DC3E80D0248596FC003983E2 /* Profile.storyboard in Resources */,
-				75886D252419327F0079C080 /* Samples.xcassets in Resources */,
 				F65549F524564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */,
 				F65549FB24564F2100574872 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
+				7541BC6E24B3D15B0026CCA1 /* FormTemplateRows.json in Resources */,
 				75886D8F241932AB0079C080 /* guardian.storyboard in Resources */,
 				DCF6C69824900B7B00A802BD /* Localizable.strings in Resources */,
 				29A6D544245450EF00D7DB87 /* GuardianOnly.xcassets in Resources */,
@@ -2204,16 +2169,15 @@
 				75886D212419327F0079C080 /* DefaultColorTheme.xcassets in Resources */,
 				F65549FD24564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf in Resources */,
 				DC3E80BB24859400003983E2 /* Stories.storyboard in Resources */,
-				F6DBA7F224295A94006C83E7 /* Assets.xcassets in Resources */,
 				DC3E80B4248593C9003983E2 /* Home.storyboard in Resources */,
 				F65549F724564F2100574872 /* Font Awesome 5 Pro-Regular-400.otf in Resources */,
 				DC3E80AC248591B3003983E2 /* Login.storyboard in Resources */,
 				DC4FFA0F2470B9AE0079A27C /* ProfileSubjectTableViewCell.xib in Resources */,
 				DCB33D6024A4EE8B00C5AC0E /* NoItemTableViewCell.xib in Resources */,
 				61547181EE77EC951C1F78A1 /* PinView.xib in Resources */,
-				29BA8AD824545D8700DAEB75 /* placeholders.strings in Resources */,
 				61547E8B27EB4246046B1174 /* PinCell.xib in Resources */,
 				F65549F924564F2100574872 /* Font Awesome 5 Pro-Light-300.otf in Resources */,
+				7541BC6A24B3BD160026CCA1 /* Assets.xcassets in Resources */,
 				615471AAF5F6CA37ECCB646D /* StoriesTableViewCell.xib in Resources */,
 				DC3E80C2248594C0003983E2 /* SupervisorFilterTableViewCell.xib in Resources */,
 				615472CBDE78C09CE3F64F4F /* SupervisorCollectionViewCell.xib in Resources */,
@@ -2349,7 +2313,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "TARGET_CATEGORY=\"Supervisor\"\n\n# Name of the resource we're selectively copying\nGOOGLESERVICE_INFO_PLIST=\"GoogleService-Info.plist\"\n\nGOOGLESERVICE_INFO_QA=\"${PROJECT_DIR}/FirebaseAnalytics/${PRODUCT_NAME}/qa/${GOOGLESERVICE_INFO_PLIST}\"\nGOOGLESERVICE_INFO_BETA=\"${PROJECT_DIR}/FirebaseAnalytics/${PRODUCT_NAME}/beta/${GOOGLESERVICE_INFO_PLIST}\"\nGOOGLESERVICE_INFO_PROD=\"${PROJECT_DIR}/FirebaseAnalytics/${PRODUCT_NAME}/prod/${GOOGLESERVICE_INFO_PLIST}\"\n\n# Make sure the qa version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_QA}\"\nif [ ! -f $GOOGLESERVICE_INFO_QA ]\nthen\n    echo \"No QA GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the beta version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_BETA}\"\nif [ ! -f $GOOGLESERVICE_INFO_BETA ]\nthen\n    echo \"No Beta GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the prod version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\n    echo \"No Production GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\n#PLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\nPLIST_DESTINATION=\"${PROJECT_DIR}/Avecare.code/${TARGET_CATEGORY}/Supporting Files/${GOOGLESERVICE_INFO_PLIST}\"\n\nif [ \"${CONFIGURATION}\" == \"Release(QA)\" ]; then\n    echo \"using ...qa/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_QA}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Release(Beta)\" ]; then\n    echo \"using ...beta/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_BETA}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Release(AppStore)\" ]; then\n    echo \"using ...prod/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nelse\n    echo \"${CONFIGURATION}\"\n    echo \"ignoring GoogleService-Info.plist replacement\"\nfi\n";
+			shellScript = "TARGET_CATEGORY=\"Supervisor\"\n\n# Name of the resource we're selectively copying\nGOOGLESERVICE_INFO_PLIST=\"GoogleService-Info.plist\"\n\nGOOGLESERVICE_INFO_QA=\"${PROJECT_DIR}/FirebaseAnalytics/${TARGET_NAME}/qa/${GOOGLESERVICE_INFO_PLIST}\"\nGOOGLESERVICE_INFO_BETA=\"${PROJECT_DIR}/FirebaseAnalytics/${TARGET_NAME}/beta/${GOOGLESERVICE_INFO_PLIST}\"\nGOOGLESERVICE_INFO_PROD=\"${PROJECT_DIR}/FirebaseAnalytics/${TARGET_NAME}/prod/${GOOGLESERVICE_INFO_PLIST}\"\n\n# Make sure the qa version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_QA}\"\nif [ ! -f $GOOGLESERVICE_INFO_QA ]\nthen\n    echo \"No QA GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the beta version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_BETA}\"\nif [ ! -f $GOOGLESERVICE_INFO_BETA ]\nthen\n    echo \"No Beta GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the prod version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\n    echo \"No Production GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\n#PLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\nPLIST_DESTINATION=\"${PROJECT_DIR}/Avecare.code/${TARGET_CATEGORY}/Supporting Files/${GOOGLESERVICE_INFO_PLIST}\"\n\nif [ \"${CONFIGURATION}\" == \"Release(QA)\" ]; then\n    echo \"using ...qa/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_QA}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Release(Beta)\" ]; then\n    echo \"using ...beta/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_BETA}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Release(AppStore)\" ]; then\n    echo \"using ...prod/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nelse\n    echo \"${CONFIGURATION}\"\n    echo \"ignoring GoogleService-Info.plist replacement\"\nfi\n";
 		};
 		754E1EA2243648C900C8FD30 /* Firebase Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2387,7 +2351,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "TARGET_CATEGORY=\"Guardian\"\n\n# Name of the resource we're selectively copying\nGOOGLESERVICE_INFO_PLIST=\"GoogleService-Info.plist\"\n\nGOOGLESERVICE_INFO_QA=\"${PROJECT_DIR}/FirebaseAnalytics/${PRODUCT_NAME}/qa/${GOOGLESERVICE_INFO_PLIST}\"\nGOOGLESERVICE_INFO_BETA=\"${PROJECT_DIR}/FirebaseAnalytics/${PRODUCT_NAME}/beta/${GOOGLESERVICE_INFO_PLIST}\"\nGOOGLESERVICE_INFO_PROD=\"${PROJECT_DIR}/FirebaseAnalytics/${PRODUCT_NAME}/prod/${GOOGLESERVICE_INFO_PLIST}\"\n\n# Make sure the qa version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_QA}\"\nif [ ! -f $GOOGLESERVICE_INFO_QA ]\nthen\n    echo \"No QA GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the beta version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_BETA}\"\nif [ ! -f $GOOGLESERVICE_INFO_BETA ]\nthen\n    echo \"No Beta GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the prod version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\n    echo \"No Production GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\n#PLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\nPLIST_DESTINATION=\"${PROJECT_DIR}/Avecare.code/${TARGET_CATEGORY}/Supporting Files/${GOOGLESERVICE_INFO_PLIST}\"\n\nif [ \"${CONFIGURATION}\" == \"Release(QA)\" ]; then\n    echo \"using ...qa/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_QA}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Release(Beta)\" ]; then\n    echo \"using ...beta/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_BETA}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Release(AppStore)\" ]; then\n    echo \"using ...prod/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nelse\n    echo \"${CONFIGURATION}\"\n    echo \"ignoring GoogleService-Info.plist replacement\"\nfi\n";
+			shellScript = "TARGET_CATEGORY=\"Guardian\"\n\n# Name of the resource we're selectively copying\nGOOGLESERVICE_INFO_PLIST=\"GoogleService-Info.plist\"\n\nGOOGLESERVICE_INFO_QA=\"${PROJECT_DIR}/FirebaseAnalytics/${TARGET_NAME}/qa/${GOOGLESERVICE_INFO_PLIST}\"\nGOOGLESERVICE_INFO_BETA=\"${PROJECT_DIR}/FirebaseAnalytics/${TARGET_NAME}/beta/${GOOGLESERVICE_INFO_PLIST}\"\nGOOGLESERVICE_INFO_PROD=\"${PROJECT_DIR}/FirebaseAnalytics/${TARGET_NAME}/prod/${GOOGLESERVICE_INFO_PLIST}\"\n\n# Make sure the qa version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_QA}\"\nif [ ! -f $GOOGLESERVICE_INFO_QA ]\nthen\n    echo \"No QA GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the beta version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_BETA}\"\nif [ ! -f $GOOGLESERVICE_INFO_BETA ]\nthen\n    echo \"No Beta GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the prod version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\n    echo \"No Production GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\n#PLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\nPLIST_DESTINATION=\"${PROJECT_DIR}/Avecare.code/${TARGET_CATEGORY}/Supporting Files/${GOOGLESERVICE_INFO_PLIST}\"\n\nif [ \"${CONFIGURATION}\" == \"Release(QA)\" ]; then\n    echo \"using ...qa/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_QA}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Release(Beta)\" ]; then\n    echo \"using ...beta/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_BETA}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Release(AppStore)\" ]; then\n    echo \"using ...prod/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nelse\n    echo \"${CONFIGURATION}\"\n    echo \"ignoring GoogleService-Info.plist replacement\"\nfi\n";
 		};
 		75886E01241933680079C080 /* Run Script: SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3137,6 +3101,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor.qa";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG QA SUPERVISOR";
 				SWIFT_VERSION = 5.0;
@@ -3161,6 +3126,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-guardian.qa";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG QA GUARDIAN";
 				SWIFT_VERSION = 5.0;
@@ -3240,6 +3206,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor.qa";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "QA SUPERVISOR";
 				SWIFT_VERSION = 5.0;
@@ -3264,6 +3231,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-guardian.qa";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "QA GUARDIAN";
 				SWIFT_VERSION = 5.0;
@@ -3288,6 +3256,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor.beta";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG BETA SUPERVISOR";
 				SWIFT_VERSION = 5.0;
@@ -3312,6 +3281,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor.beta";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BETA SUPERVISOR";
 				SWIFT_VERSION = 5.0;
@@ -3391,6 +3361,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "APPSTORE SUPERVISOR";
 				SWIFT_VERSION = 5.0;
@@ -3415,6 +3386,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-guardian";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "APPSTORE GUARDIAN";
 				SWIFT_VERSION = 5.0;
@@ -3439,6 +3411,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-guardian.beta";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG BETA GUARDIAN";
 				SWIFT_VERSION = 5.0;
@@ -3463,6 +3436,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-guardian.beta";
+				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BETA GUARDIAN";
 				SWIFT_VERSION = 5.0;

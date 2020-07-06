@@ -18,8 +18,8 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        snowflakeIconLabel.font = UIFont(name: "FontAwesome5Pro-Light", size: 24)
-        snowflakeIconLabel.text = "\u{f2dc}"
+//        snowflakeIconLabel.font = UIFont(name: "FontAwesome5Pro-Light", size: 24)
+//        snowflakeIconLabel.text = "\u{f2dc}"
         snowflakeTitleLabel.text = "Daily Wonders"
     }
 

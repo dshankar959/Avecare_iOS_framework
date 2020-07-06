@@ -111,7 +111,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="c1B-Ki-UEn">
                                                         <rect key="frame" x="0.0" y="15" width="384" height="30"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="nav-logo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="g38-5y-j2c">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hwcccc-logo-icon" translatesAutoresizingMaskIntoConstraints="NO" id="g38-5y-j2c">
                                                                 <rect key="frame" x="0.0" y="0.0" width="115" height="30"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="hWi-ej-NAz"/>
@@ -260,7 +260,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="nav-logo-icon" width="96" height="25"/>
+        <image name="hwcccc-logo-icon" width="96" height="25"/>
         <image name="tab-bar-home-icon" width="18" height="17"/>
         <namedColor name="Background">
             <color red="0.94509803921568625" green="0.95294117647058818" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

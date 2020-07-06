@@ -21,7 +21,7 @@ struct HomeTableViewDisclosureCellModel: CellViewModel {
             let icon: UIImage?, iconColor: UIColor?
             switch feed.feedItemType {
             case .message:
-                icon = R.image.sampleLogoIcon()
+                icon = R.image.hwccccLogoIcon()
                 iconColor = R.color.separator()
             case .subjectDailyLog:
                 icon = R.image.userIcon()

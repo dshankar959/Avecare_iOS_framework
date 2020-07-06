@@ -1,0 +1,165 @@
+[
+  {
+    "name": "Child's Emotions",
+    "rowType": 7,
+    "properties": {
+      "title": "Child's Emotions",
+      "options": [
+        {
+          "text": "Happy",
+          "value": 1
+        },
+        {
+          "text": "Sad",
+          "value": 2
+        },
+        {
+          "text": "Excited",
+          "value": 3
+        },
+        {
+          "text": "Anxious",
+          "value": 4
+        },
+        {
+          "text": "Frustrated",
+          "value": 5
+        },
+        {
+          "text": "Shy",
+          "value": 6
+        }
+      ],
+      "iconName": "heart-icon",
+      "iconColor": "00B0CA",
+      "placeholder": "Select Emotion"
+    }
+  },
+  {
+    "name": "Bathroom",
+    "rowType": 3,
+    "properties": {
+      "title": "Bathroom",
+      "options": [
+        {
+          "text": "Wet",
+          "value": 1
+        },
+        {
+          "text": "Dry",
+          "value": 2
+        },
+        {
+          "text": "BM",
+          "value": 3
+        },
+        {
+          "text": "Toilet",
+          "value": 4
+        }
+      ],
+      "iconName": "flag-icon",
+      "subtitle": "",
+      "iconColor": "00B0CA",
+      "startTime": "7:30am",
+      "placeholder": "Select outcome"
+    }
+  },
+  {
+    "name": "Snack",
+    "rowType": 3,
+    "properties": {
+      "title": "Snack",
+      "endTime": "",
+      "options": [
+        {
+          "text": "1-2",
+          "value": 1
+        },
+        {
+          "text": "3-4",
+          "value": 2
+        },
+        {
+          "text": "5-6",
+          "value": 3
+        }
+      ],
+      "iconName": "apple-icon",
+      "subtitle": "Number of servings eaten:",
+      "iconColor": "FBD476",
+      "startTime": "7:30am"
+    }
+  },
+  {
+    "name": "Free Play",
+    "rowType": 2,
+    "properties": {
+      "iconName": "run-icon",
+      "iconColor": "FBD476",
+      "title": "Free Play"
+    }
+  },
+  {
+    "name": "Lunch",
+    "rowType": 3,
+    "properties": {
+      "title": "Lunch",
+      "endTime": "1:00pm",
+      "options": [
+        {
+          "text": "1-2",
+          "value": 1
+        },
+        {
+          "text": "3-4",
+          "value": 2
+        },
+        {
+          "text": "5-6",
+          "value": 3
+        }
+      ],
+      "iconName": "spoon-icon",
+      "subtitle": "Number of servings eaten:",
+      "iconColor": "FBD476",
+      "startTime": "12:00pm"
+    }
+  },
+  {
+    "name": "Rest",
+    "rowType": 2,
+    "properties": {
+      "title": "Rest",
+      "endTime": "1:00pm",
+      "iconName": "cloud-icon",
+      "subtitle": "Select amount of sleep:",
+      "iconColor": "FBD476",
+      "startTime": "12:00pm"
+    }
+  },
+  {
+    "name": "Note",
+    "rowType": 4,
+    "properties": {
+      "title": "Educator's Note",
+      "iconName": "pencil-icon",
+      "iconColor": "00B0CA"
+    }
+  },
+  {
+    "name": "Photo",
+    "rowType": 5,
+    "properties": {
+      "title": "Caption"
+    }
+  },
+  {
+    "name": "Accident Report",
+    "rowType": 6,
+    "properties": {
+      "iconName": "exclamation-icon",
+      "iconColor": "DA487E"
+    }
+  }
+]

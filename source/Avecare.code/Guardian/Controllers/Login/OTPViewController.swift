@@ -7,8 +7,7 @@ import FirebaseCrashlytics
 
 class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
 
-    @IBOutlet weak var snowflakeIconLabel: UILabel!
-    @IBOutlet weak var snowflakeTitleLabel: UILabel!
+    @IBOutlet weak var appTitleLabel: UILabel!
     @IBOutlet var otpField: PinView?
 
     var email: String?
@@ -18,9 +17,7 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
         otpField?.style = .box
         otpField?.delegate = self
 
-        snowflakeIconLabel.font = UIFont(name: "FontAwesome5Pro-Light", size: 24)
-        snowflakeIconLabel.text = "\u{f2dc}"
-        snowflakeTitleLabel.text = "Daily Wonders"  // TODO: app name should be taken from theme package
+        appTitleLabel.text = "Daily Wonders"  // TODO: app name should be taken from theme package
 
         self.navigationController?.hideHairline()
     }

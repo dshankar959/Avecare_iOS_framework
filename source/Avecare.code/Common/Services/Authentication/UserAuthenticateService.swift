@@ -36,7 +36,7 @@ final class UserAuthenticateService: IndicatorProtocol {
 
                 if appSettings.isFirstLogin() {
                     do {  // some DB defaults.
-                        let data = try Data(resource: R.file.logFormRowsJson)
+                        let data = try Data(resource: R.file.formTemplateRowsJson)
                         let log = try JSONDecoder().decode([RLMLogChooseRow].self, from: data)
 
                         // Add default rows, et al.
