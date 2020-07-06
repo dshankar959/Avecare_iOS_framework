@@ -49,6 +49,8 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
         return dataSource.count
     }
 
+    var selectedSubject: RLMSubject? = nil
+
     func sortBy(_ sort: Sort) {
         switch sort {
         case .firstName: dataSource = RLMSubject.findAll(sortedBy: "firstName")
@@ -86,6 +88,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
 
     func form(at indexPath: IndexPath) -> Form {
         let subject = dataSource[indexPath.row]
+        selectedSubject = subject
         let formLog = subject.todayForm
 
         let isSubmitted = formLog.publishState != .local
@@ -107,8 +110,8 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
             }
         }
 
-        return Form(viewModels: header + formLog.rows.map({
-            self.viewModel(for: $0, editable: !isSubmitted, at: indexPath, updateCallback: updateClientDate)
+        return Form(viewModels: header + formLog.rows.enumerated().map({ index, row in
+            self.viewModel(for: row, editable: !isSubmitted, at: indexPath, for: index, updateCallback: updateClientDate)
         }))
     }
 
@@ -116,15 +119,16 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
     private func viewModel(for row: RLMLogRow,
                            editable: Bool,
                            at indexPath: IndexPath,
+                           for rowIndex: Int,
                            updateCallback: @escaping (Date) -> Void) -> AnyCellViewModel {
         switch row.rowType {
-        case .option: return viewModel(for: row.option!, editable: editable, at: indexPath, updateCallback: updateCallback)
-        case .time: return viewModel(for: row.time!, editable: editable, at: indexPath, updateCallback: updateCallback)
-        case .switcher: return viewModel(for: row.switcher!, editable: editable, at: indexPath, updateCallback: updateCallback)
-        case .note: return viewModel(for: row.note!, editable: editable, at: indexPath, updateCallback: updateCallback)
-        case .photo: return viewModel(for: row.photo!, editable: editable, at: indexPath, updateCallback: updateCallback)
-        case .injury: return viewModel(for: row.injury!, editable: editable, at: indexPath, updateCallback: updateCallback)
-        case .tags: return viewModel(for: row.tags!, editable: editable, at: indexPath, updateCallback: updateCallback)
+        case .option: return viewModel(for: row.option!, editable: editable, at: indexPath, for: rowIndex, updateCallback: updateCallback)
+        case .time: return viewModel(for: row.time!, editable: editable, at: indexPath, for: rowIndex, updateCallback: updateCallback)
+        case .switcher: return viewModel(for: row.switcher!, editable: editable, at: indexPath, for: rowIndex, updateCallback: updateCallback)
+        case .note: return viewModel(for: row.note!, editable: editable, at: indexPath, for: rowIndex, updateCallback: updateCallback)
+        case .photo: return viewModel(for: row.photo!, editable: editable, at: indexPath, for: rowIndex, updateCallback: updateCallback)
+        case .injury: return viewModel(for: row.injury!, editable: editable, at: indexPath, for: rowIndex, updateCallback: updateCallback)
+        case .tags: return viewModel(for: row.tags!, editable: editable, at: indexPath, for: rowIndex, updateCallback: updateCallback)
         }
     }
 }

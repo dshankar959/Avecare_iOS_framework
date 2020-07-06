@@ -13,6 +13,7 @@ struct SubjectDetailsNotesViewModel: CellViewModel {
     var note: String?
 
     var onTextChange: ((CellType) -> Void)?
+    var onRemoveCell: (() -> Void)? = nil
 
     let isEditable: Bool
 
@@ -27,6 +28,7 @@ struct SubjectDetailsNotesViewModel: CellViewModel {
         if isEditable {
             cell.onTextChange = onTextChange
             cell.textView.isEditable = true
+            cell.onRemoveCell = onRemoveCell
         } else {
             cell.textView.isEditable = false
         }
@@ -36,7 +38,7 @@ struct SubjectDetailsNotesViewModel: CellViewModel {
 }
 
 
-class SubjectDetailsNotesView: BaseXibView {
+class SubjectDetailsNotesView: LogFormCellView {
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -88,5 +90,4 @@ extension SubjectDetailsNotesView: UITextViewDelegate {
 
         return (currentLength + addition) <= characterLimit
     }
-
 }

@@ -19,6 +19,7 @@ extension SubjectListDataProvider {
     func viewModel(for row: RLMLogInjuryRow,
                    editable: Bool,
                    at indexPath: IndexPath,
+                   for rowIndex: Int,
                    updateCallback: @escaping (Date) -> Void) -> SubjectAccidentReportViewModel {
 
         var viewModel = SubjectAccidentReportViewModel(row: row, isEditable: editable)
@@ -41,6 +42,15 @@ extension SubjectListDataProvider {
             pickerViewModel.action = viewModel.action
             pickerViewModel.setup(cell: view)
         })
+
+        viewModel.onRemoveCell = { [weak self] in
+            if let subject = self?.selectedSubject {
+                RLMLogForm.writeTransaction {
+                    subject.todayForm.rows.remove(at: rowIndex)
+                }
+                self?.delegate?.didUpdateModel(at: indexPath)
+            }
+        }
 
         return viewModel
     }

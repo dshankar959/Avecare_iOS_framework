@@ -2,7 +2,7 @@ import UIKit
 
 
 
-class SubjectDetailsSegmentView: BaseXibView {
+class SubjectDetailsSegmentView: LogFormCellView {
 
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -50,6 +50,7 @@ struct SubjectDetailsSegmentViewModel: CellViewModel {
     var selectedSegmentIndex: Int = 0
 
     var action: Action? = nil
+    var onRemoveCell: (() -> Void)? = nil
 
     let isEditable: Bool
 
@@ -72,6 +73,7 @@ struct SubjectDetailsSegmentViewModel: CellViewModel {
             cell.onClick = action?.onClick
             cell.onSegmentChange = action?.onSegmentChange
             cell.segmentControl.isUserInteractionEnabled = true
+            cell.onRemoveCell = onRemoveCell
         } else {
             cell.segmentControl.isUserInteractionEnabled = false
         }

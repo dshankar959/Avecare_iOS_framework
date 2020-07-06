@@ -21,6 +21,7 @@ extension SubjectListDataProvider {
     func viewModel(for row: RLMLogNoteRow,
                    editable: Bool,
                    at indexPath: IndexPath,
+                   for rowIndex: Int,
                    updateCallback: @escaping (Date) -> Void) -> SubjectDetailsNotesViewModel {
 
         var viewModel = SubjectDetailsNotesViewModel(row: row, isEditable: editable)
@@ -35,6 +36,15 @@ extension SubjectListDataProvider {
             }
 
             updateCallback(Date())
+        }
+
+        viewModel.onRemoveCell = { [weak self] in
+            if let subject = self?.selectedSubject {
+                RLMLogForm.writeTransaction {
+                    subject.todayForm.rows.remove(at: rowIndex)
+                }
+                self?.delegate?.didUpdateModel(at: indexPath)
+            }
         }
 
         return viewModel

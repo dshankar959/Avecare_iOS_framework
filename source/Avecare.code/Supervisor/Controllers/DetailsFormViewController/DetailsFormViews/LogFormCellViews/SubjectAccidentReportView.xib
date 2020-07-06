@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,11 +27,18 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="glI-IS-z5A" userLabel="right_space">
-                    <rect key="frame" x="718" y="0.0" width="38" height="176"/>
+                    <rect key="frame" x="618" y="0.0" width="38" height="176"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ag4-WP-QCU" userLabel="trailing space">
+                    <rect key="frame" x="656" y="0.0" width="100" height="176"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="wtS-z0-vJ3"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zce-jv-4LU">
-                    <rect key="frame" x="38" y="0.0" width="680" height="176"/>
+                    <rect key="frame" x="38" y="0.0" width="580" height="176"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-icon" translatesAutoresizingMaskIntoConstraints="NO" id="COM-rY-MCb">
                             <rect key="frame" x="16" y="16" width="40" height="40"/>
@@ -49,14 +56,14 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mBp-PC-q5M">
-                            <rect key="frame" x="68" y="33" width="576" height="33.5"/>
+                            <rect key="frame" x="68" y="33" width="476" height="50.5"/>
                             <string key="text">Your child may have experienced a mild bump, scrape, or bite. This is NOT an emergency.  Please connect with your child’s educator upon pick up.</string>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" name="LightText2"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dxj-mb-Dwu" customClass="PickerViewFormView" customModule="educator" customModuleProvider="target">
-                            <rect key="frame" x="68" y="94" width="596" height="62"/>
+                            <rect key="frame" x="68" y="94" width="496" height="62"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="62" id="QaR-E1-kom"/>
@@ -82,14 +89,17 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="ZPi-Eh-ycf" firstAttribute="trailing" secondItem="ag4-WP-QCU" secondAttribute="trailing" id="Fg0-A5-HbE"/>
                 <constraint firstItem="zce-jv-4LU" firstAttribute="top" secondItem="RnR-38-8bo" secondAttribute="top" id="LWk-Mt-bps"/>
                 <constraint firstItem="glI-IS-z5A" firstAttribute="leading" secondItem="zce-jv-4LU" secondAttribute="trailing" id="OMr-we-zw9"/>
+                <constraint firstItem="ag4-WP-QCU" firstAttribute="leading" secondItem="glI-IS-z5A" secondAttribute="trailing" id="agW-bD-4xa"/>
                 <constraint firstAttribute="bottom" secondItem="lAD-B3-Vlz" secondAttribute="bottom" id="bUF-s7-TrD"/>
-                <constraint firstAttribute="trailing" secondItem="glI-IS-z5A" secondAttribute="trailing" id="c8b-Un-j4L"/>
                 <constraint firstAttribute="bottom" secondItem="glI-IS-z5A" secondAttribute="bottom" id="cB3-J9-yoU"/>
                 <constraint firstItem="zce-jv-4LU" firstAttribute="bottom" secondItem="RnR-38-8bo" secondAttribute="bottom" id="dIv-Su-f0i"/>
                 <constraint firstItem="glI-IS-z5A" firstAttribute="top" secondItem="RnR-38-8bo" secondAttribute="top" id="dKd-3C-yvZ"/>
                 <constraint firstItem="lAD-B3-Vlz" firstAttribute="leading" secondItem="RnR-38-8bo" secondAttribute="leading" id="fB6-aI-USP"/>
+                <constraint firstItem="ag4-WP-QCU" firstAttribute="top" secondItem="ZPi-Eh-ycf" secondAttribute="top" id="fcF-J9-ts3"/>
+                <constraint firstItem="ZPi-Eh-ycf" firstAttribute="bottom" secondItem="ag4-WP-QCU" secondAttribute="bottom" id="fnY-8v-Iwq"/>
                 <constraint firstItem="lAD-B3-Vlz" firstAttribute="top" secondItem="RnR-38-8bo" secondAttribute="top" id="heK-Ba-2xN"/>
                 <constraint firstItem="lAD-B3-Vlz" firstAttribute="width" secondItem="RnR-38-8bo" secondAttribute="width" multiplier="0.05" id="rrB-Ed-bd6"/>
                 <constraint firstItem="glI-IS-z5A" firstAttribute="width" secondItem="RnR-38-8bo" secondAttribute="width" multiplier="0.05" id="sJZ-VG-hp3"/>

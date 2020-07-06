@@ -33,22 +33,37 @@ extension SubjectListDataProvider {
     func viewModel(for row: RLMLogSwitcherRow,
                    editable: Bool,
                    at indexPath: IndexPath,
+                   for rowIndex: Int,
                    updateCallback: @escaping (Date) -> Void) -> SubjectDetailsSegmentViewModel {
 
         var viewModel = SubjectDetailsSegmentViewModel(row: row, isEditable: editable)
+
         viewModel.action = .init(onClick: { [weak self] view in
-            self?.showTimePicker(from: view, row: row, at: indexPath, updateCallback: updateCallback)
+            self?.showTimePicker(from: view, row: row, at: indexPath, for: rowIndex, updateCallback: updateCallback)
         }, onSegmentChange: { view, index in
             RLMLogSwitcherRow.writeTransaction {
                 row.selectedValue = row.options[index].value
             }
             updateCallback(Date())
         })
+
+        viewModel.onRemoveCell = { [weak self] in
+            if let subject = self?.selectedSubject {
+                RLMLogForm.writeTransaction {
+                    subject.todayForm.rows.remove(at: rowIndex)
+                }
+                self?.delegate?.didUpdateModel(at: indexPath)
+            }
+        }
+
         return viewModel
     }
 
 
-    private func showTimePicker(from view: SubjectDetailsSegmentView, row: RLMLogSwitcherRow, at indexPath: IndexPath,
+    private func showTimePicker(from view: SubjectDetailsSegmentView,
+                                row: RLMLogSwitcherRow,
+                                at indexPath: IndexPath,
+                                for rowIndex: Int,
                                 updateCallback: @escaping (Date) -> Void) {
 
         guard let responder = delegate?.customResponder else { return }
@@ -70,7 +85,7 @@ extension SubjectListDataProvider {
                 }
             }
             updateCallback(Date())
-            self?.viewModel(for: row, editable: true, at: indexPath, updateCallback: updateCallback).setup(cell: view)
+            self?.viewModel(for: row, editable: true, at: indexPath, for: rowIndex, updateCallback: updateCallback).setup(cell: view)
             responder.resignFirstResponder()
         }, onCancel: {
             responder.resignFirstResponder()

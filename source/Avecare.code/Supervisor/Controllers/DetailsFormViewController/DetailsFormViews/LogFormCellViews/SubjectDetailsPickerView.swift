@@ -9,6 +9,7 @@ struct SubjectDetailsPickerViewModel: CellViewModel {
     let title: String
     var selectedOption: String
     var action: ((CellType) -> Void)? = nil
+    var onRemoveCell: (() -> Void)? = nil
     let isEditable: Bool
 
     func setup(cell: CellType) {
@@ -20,12 +21,13 @@ struct SubjectDetailsPickerViewModel: CellViewModel {
 
         if isEditable {
             cell.onClick = action
+            cell.onRemoveCell = onRemoveCell
         }
     }
 }
 
 
-class SubjectDetailsPickerView: BaseXibView {
+class SubjectDetailsPickerView: LogFormCellView {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var selectedOptionButton: UIButton!

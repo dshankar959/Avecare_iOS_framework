@@ -326,6 +326,7 @@
 		DC05B3C2247B5AD70014779D /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
 		DC05B3CE247C45000014779D /* PanningInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3CD247C45000014779D /* PanningInteractionController.swift */; };
 		DC05B3CF247C45000014779D /* PanningInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3CD247C45000014779D /* PanningInteractionController.swift */; };
+		DC1982F224AFA74600763076 /* LogFormCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC1982F124AFA74600763076 /* LogFormCellView.swift */; };
 		DC225E38246C68BF00094BB0 /* CheckmarkFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67DF806241BFE6800793A9C /* CheckmarkFormView.swift */; };
 		DC225E3F246C787F00094BB0 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC225E3E246C787F00094BB0 /* DateCell.swift */; };
 		DC3617F324770B4D004C0B83 /* UserAuthenticateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3617F224770B4D004C0B83 /* UserAuthenticateService.swift */; };
@@ -696,6 +697,7 @@
 		D48B06C16950ED61770C4604 /* Pods-educator.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(appstore).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
 		DC05B3CD247C45000014779D /* PanningInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanningInteractionController.swift; sourceTree = "<group>"; };
+		DC1982F124AFA74600763076 /* LogFormCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogFormCellView.swift; sourceTree = "<group>"; };
 		DC225E3E246C787F00094BB0 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		DC3617F224770B4D004C0B83 /* UserAuthenticateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthenticateService.swift; sourceTree = "<group>"; };
 		DC3E80AD248591B3003983E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
@@ -1986,6 +1988,7 @@
 		F67DF7F7241BFE6800793A9C /* LogFormCellViews */ = {
 			isa = PBXGroup;
 			children = (
+				DC1982F124AFA74600763076 /* LogFormCellView.swift */,
 				F67DF7FC241BFE6800793A9C /* SubjectDetailsPickerView.swift */,
 				F67DF7F9241BFE6800793A9C /* SubjectDetailsPickerView.xib */,
 				F67DF7FA241BFE6800793A9C /* SubjectDetailsNotesView.swift */,
@@ -2470,6 +2473,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				755EAEAA241ABB6900A6BA4D /* Session.swift in Sources */,
+				DC1982F224AFA74600763076 /* LogFormCellView.swift in Sources */,
 				75886DD6241932BA0079C080 /* CustomSplitViewController.swift in Sources */,
 				DCC2DDCE247EA37D00FAFC35 /* GuardianFeed.swift in Sources */,
 				75886D5C2419327F0079C080 /* XibView.swift in Sources */,

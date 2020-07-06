@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -28,11 +28,18 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q9S-ld-u8h" userLabel="right_space">
-                    <rect key="frame" x="718" y="0.0" width="38" height="170"/>
+                    <rect key="frame" x="618" y="0.0" width="38" height="170"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k1h-01-t5i" userLabel="trailing space">
+                    <rect key="frame" x="656" y="0.0" width="100" height="170"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="z37-vZ-jbM"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
-                    <rect key="frame" x="38" y="0.0" width="680" height="170"/>
+                    <rect key="frame" x="38" y="0.0" width="580" height="170"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil-icon" translatesAutoresizingMaskIntoConstraints="NO" id="Rpl-Y1-OcA">
                             <rect key="frame" x="16" y="16" width="40" height="40"/>
@@ -50,10 +57,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CbQ-FS-v8J">
-                            <rect key="frame" x="68" y="39" width="596" height="115"/>
+                            <rect key="frame" x="68" y="39" width="496" height="115"/>
                             <subviews>
                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="T4P-nb-3Jv">
-                                    <rect key="frame" x="0.0" y="0.0" width="596" height="115"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="496" height="115"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" priority="250" constant="115" id="0TZ-Fg-qqI"/>
@@ -102,7 +109,9 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="KgC-w4-LwL" firstAttribute="width" secondItem="U39-Iw-sxa" secondAttribute="width" multiplier="0.05" id="163-91-XG2"/>
-                <constraint firstAttribute="trailing" secondItem="Q9S-ld-u8h" secondAttribute="trailing" id="9vY-L7-NJ0"/>
+                <constraint firstItem="k1h-01-t5i" firstAttribute="leading" secondItem="Q9S-ld-u8h" secondAttribute="trailing" id="2dd-dr-eHR"/>
+                <constraint firstItem="k1h-01-t5i" firstAttribute="top" secondItem="U39-Iw-sxa" secondAttribute="top" id="7v6-7x-R88"/>
+                <constraint firstAttribute="trailing" secondItem="k1h-01-t5i" secondAttribute="trailing" id="AqA-IH-kPU"/>
                 <constraint firstItem="iN0-l3-epB" firstAttribute="bottom" secondItem="U39-Iw-sxa" secondAttribute="bottom" id="BPa-8x-mSW"/>
                 <constraint firstAttribute="bottom" secondItem="Q9S-ld-u8h" secondAttribute="bottom" id="EPU-uu-yeG"/>
                 <constraint firstItem="iN0-l3-epB" firstAttribute="leading" secondItem="KgC-w4-LwL" secondAttribute="trailing" id="GsX-ve-xvo"/>
@@ -113,6 +122,7 @@
                 <constraint firstItem="Q9S-ld-u8h" firstAttribute="top" secondItem="U39-Iw-sxa" secondAttribute="top" id="dW4-IX-ZLr"/>
                 <constraint firstItem="iN0-l3-epB" firstAttribute="top" secondItem="U39-Iw-sxa" secondAttribute="top" id="g8i-cn-2bX"/>
                 <constraint firstItem="Q9S-ld-u8h" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="trailing" id="mF2-tm-tSa"/>
+                <constraint firstAttribute="bottom" secondItem="k1h-01-t5i" secondAttribute="bottom" id="xki-wA-vc2"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="372" y="-230"/>

@@ -15,6 +15,7 @@ struct SubjectDetailsPhotoViewModel: CellViewModel {
     var note: String?
     var title: String
     var action: Action? = nil
+    var onRemoveCell: (() -> Void)? = nil
 
     let isEditable: Bool
 
@@ -28,6 +29,7 @@ struct SubjectDetailsPhotoViewModel: CellViewModel {
             cell.onTextChange = action?.onTextChange
             cell.onPhotoTap = action?.onPhotoTap
             cell.textView.isEditable = true
+            cell.onRemoveCell = onRemoveCell
         } else {
             cell.textView.isEditable = false
         }
@@ -35,7 +37,7 @@ struct SubjectDetailsPhotoViewModel: CellViewModel {
 }
 
 
-class SubjectDetailsPhotoView: BaseXibView {
+class SubjectDetailsPhotoView: LogFormCellView {
 
     @IBOutlet weak var photoImageView: UIImageView!
     @IBOutlet weak var textContainerView: UIView!

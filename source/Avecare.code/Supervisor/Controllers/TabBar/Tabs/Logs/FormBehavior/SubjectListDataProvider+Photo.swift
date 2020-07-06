@@ -24,6 +24,7 @@ extension SubjectListDataProvider {
     func viewModel(for row: RLMLogPhotoRow,
                    editable: Bool,
                    at indexPath: IndexPath,
+                   for rowIndex: Int,
                    updateCallback: @escaping (Date) -> Void) -> SubjectDetailsPhotoViewModel {
 
         var viewModel = SubjectDetailsPhotoViewModel(row: row, isEditable: editable, storage: imageStorageService)
@@ -38,8 +39,17 @@ extension SubjectListDataProvider {
             }
             updateCallback(Date())
         }, onPhotoTap: { [weak self] view in
-            self?.showImagePicker(from: view, row: row, at: indexPath, updateCallback: updateCallback)
+            self?.showImagePicker(from: view, row: row, for: rowIndex, updateCallback: updateCallback)
         })
+
+        viewModel.onRemoveCell = { [weak self] in
+            if let subject = self?.selectedSubject {
+                RLMLogForm.writeTransaction {
+                    subject.todayForm.rows.remove(at: rowIndex)
+                }
+                self?.delegate?.didUpdateModel(at: indexPath)
+            }
+        }
 
         return viewModel
     }
@@ -47,7 +57,7 @@ extension SubjectListDataProvider {
 
     private func showImagePicker(from view: SubjectDetailsPhotoView,
                                  row: RLMLogPhotoRow,
-                                 at indexPath: IndexPath,
+                                 for rowIndex: Int,
                                  updateCallback: @escaping (Date) -> Void) {
 
         let imagePicker = ImagePickerController()

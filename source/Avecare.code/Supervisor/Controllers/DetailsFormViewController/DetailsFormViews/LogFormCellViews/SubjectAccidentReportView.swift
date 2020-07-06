@@ -9,6 +9,7 @@ struct SubjectAccidentReportViewModel: CellViewModel {
     let iconColor: UIColor?
 
     var action: PickerViewFormViewModel.Action? = nil
+    var onRemoveCell: (() -> Void)? = nil
 
     let isEditable: Bool
 
@@ -20,6 +21,7 @@ struct SubjectAccidentReportViewModel: CellViewModel {
         var viewModel = Self.pickerViewModel(from: time)
         if isEditable {
             viewModel.action = action
+            cell.onRemoveCell = onRemoveCell
         }
         viewModel.setup(cell: cell.pickerView)
     }
@@ -34,7 +36,7 @@ struct SubjectAccidentReportViewModel: CellViewModel {
     }
 }
 
-class SubjectAccidentReportView: BaseXibView {
+class SubjectAccidentReportView: LogFormCellView {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var detailsLabel: UILabel!

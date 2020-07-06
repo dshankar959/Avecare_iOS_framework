@@ -25,11 +25,18 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bWK-uH-r6d" userLabel="right_spacer">
-                    <rect key="frame" x="771.5" y="0.0" width="40.5" height="72"/>
+                    <rect key="frame" x="671.5" y="0.0" width="40.5" height="72"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ccz-iD-P4c" userLabel="trailing space">
+                    <rect key="frame" x="712" y="0.0" width="100" height="72"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="sIb-Wp-CVL"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
-                    <rect key="frame" x="40.5" y="0.0" width="731" height="72"/>
+                    <rect key="frame" x="40.5" y="0.0" width="631" height="72"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-icon" translatesAutoresizingMaskIntoConstraints="NO" id="xFo-hb-4ii">
                             <rect key="frame" x="16" y="16" width="40" height="40"/>
@@ -47,7 +54,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1ce-Pe-FDI">
-                            <rect key="frame" x="633" y="6" width="82" height="60"/>
+                            <rect key="frame" x="533" y="6" width="82" height="60"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="gbT-6H-yha"/>
                             </constraints>
@@ -75,17 +82,20 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="ccz-iD-P4c" firstAttribute="leading" secondItem="bWK-uH-r6d" secondAttribute="trailing" id="0D8-ZW-gbd"/>
                 <constraint firstAttribute="bottom" secondItem="bWK-uH-r6d" secondAttribute="bottom" id="4Dw-0O-sPA"/>
                 <constraint firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="5gY-MR-3SV"/>
                 <constraint firstAttribute="bottom" secondItem="Fw1-TX-43D" secondAttribute="bottom" id="F2q-K1-ODi"/>
                 <constraint firstItem="Fw1-TX-43D" firstAttribute="top" secondItem="Emn-yg-2eu" secondAttribute="top" id="FD5-KE-AS5"/>
                 <constraint firstItem="iN0-l3-epB" firstAttribute="leading" secondItem="Fw1-TX-43D" secondAttribute="trailing" id="G3V-BX-6hB"/>
                 <constraint firstItem="bWK-uH-r6d" firstAttribute="width" secondItem="Emn-yg-2eu" secondAttribute="width" multiplier="0.05" id="Rfw-ow-36h"/>
+                <constraint firstAttribute="bottom" secondItem="ccz-iD-P4c" secondAttribute="bottom" id="Sa4-1u-ART"/>
                 <constraint firstItem="bWK-uH-r6d" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="trailing" id="Urc-aO-8iK"/>
+                <constraint firstItem="ccz-iD-P4c" firstAttribute="top" secondItem="Emn-yg-2eu" secondAttribute="top" id="Wh4-O1-rwg"/>
+                <constraint firstAttribute="trailing" secondItem="ccz-iD-P4c" secondAttribute="trailing" id="c7r-RU-yPH"/>
                 <constraint firstItem="Fw1-TX-43D" firstAttribute="leading" secondItem="Emn-yg-2eu" secondAttribute="leading" id="cao-RF-TOs"/>
                 <constraint firstItem="Fw1-TX-43D" firstAttribute="width" secondItem="Emn-yg-2eu" secondAttribute="width" multiplier="0.05" id="kfn-X1-UIX"/>
                 <constraint firstItem="iN0-l3-epB" firstAttribute="top" secondItem="Emn-yg-2eu" secondAttribute="top" id="kk8-t3-9ex"/>
-                <constraint firstAttribute="trailing" secondItem="bWK-uH-r6d" secondAttribute="trailing" id="lKn-gd-tRZ"/>
                 <constraint firstItem="bWK-uH-r6d" firstAttribute="top" secondItem="Emn-yg-2eu" secondAttribute="top" id="xvc-hm-bY7"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -18,9 +18,11 @@ extension SubjectListDataProvider {
     func viewModel(for row: RLMLogTagsRow,
                    editable: Bool,
                    at indexPath: IndexPath,
+                   for rowIndex: Int,
                    updateCallback: @escaping (Date) -> Void) -> AnyCellViewModel {
 
         var tagsModel = SubjectDetailsTagsViewModel(row: row, isEditable: editable)
+
         tagsModel.action = { [weak self] view in
             self?.showTagPicker(from: view, row: row, at: indexPath, updateCallback: updateCallback)
         }
@@ -30,6 +32,15 @@ extension SubjectListDataProvider {
                 row.selectedValues.remove(at: index)
             }
             self?.delegate?.didUpdateModel(at: indexPath)
+        }
+
+        tagsModel.onRemoveCell = { [weak self] in
+            if let subject = self?.selectedSubject {
+                RLMLogForm.writeTransaction {
+                    subject.todayForm.rows.remove(at: rowIndex)
+                }
+                self?.delegate?.didUpdateModel(at: indexPath)
+            }
         }
 
         if row.selectedValues.count > 0 {

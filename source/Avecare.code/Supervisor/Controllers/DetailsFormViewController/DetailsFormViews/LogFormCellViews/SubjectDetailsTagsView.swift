@@ -10,6 +10,7 @@ struct SubjectDetailsTagsViewModel: CellViewModel {
     var selectOptionTitle: String
     var action: ((CellType) -> Void)? = nil
     var deleteAction: ((Int) -> Void)?
+    var onRemoveCell: (() -> Void)? = nil
     let isEditable: Bool
     var selectedOptions = [RLMOptionValue]()
 
@@ -25,12 +26,13 @@ struct SubjectDetailsTagsViewModel: CellViewModel {
         if isEditable {
             cell.onClick = action
             cell.onDelete = deleteAction
+            cell.onRemoveCell = onRemoveCell
         }
     }
 }
 
 
-class SubjectDetailsTagsView: BaseXibView {
+class SubjectDetailsTagsView: LogFormCellView {
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var selectOptionButton: UIButton!

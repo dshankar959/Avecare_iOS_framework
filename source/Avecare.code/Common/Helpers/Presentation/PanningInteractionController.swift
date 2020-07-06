@@ -64,5 +64,4 @@ class PanningInteractionController: UIPercentDrivenInteractiveTransition {
             break
         }
     }
-
 }
