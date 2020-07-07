@@ -31,6 +31,7 @@ import Kingfisher
         return Device.current
     }()
 
+    var _session: Session = Session()       // treat as #internal.  Use Global: `appSession` instead to read.  Underscore to write.
     var _syncEngine = SyncEngine()          // treat as #internal.  Use Global: `syncEngine` instead to read.  Underscore to write.
 
     var _loggerDirectory: URL = URL(fileURLWithPath: "")    // location of all log files.
@@ -67,6 +68,13 @@ import Kingfisher
         DDLogDebug(appNameVersionAndBuildDateString())
         DDLogDebug("server url: \(appSettings.serverURLstring)")
 
+        // Construct session
+        if let lastUsername = appSettings.lastUsername,
+            let userProfile = UserKeychainService.getUserProfile(with: lastUsername),
+            let currentToken = UserKeychainService.getCurrentToken() {
+            _session = Session(token: currentToken, userProfile: userProfile)
+        }
+        
         UITabBar.appearance().unselectedItemTintColor = R.color.darkText()
 
         NotificationCenter.default.addObserver(self,
