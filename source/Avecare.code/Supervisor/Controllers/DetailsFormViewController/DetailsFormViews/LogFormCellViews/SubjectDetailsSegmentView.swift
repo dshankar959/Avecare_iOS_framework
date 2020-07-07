@@ -70,6 +70,7 @@ struct SubjectDetailsSegmentViewModel: CellViewModel {
         cell.segmentControl.selectedSegmentIndex = selectedSegmentIndex
 
         if isEditable {
+            cell.swipeToDeleteEnabled = true
             cell.onClick = action?.onClick
             cell.onSegmentChange = action?.onSegmentChange
             cell.segmentControl.isUserInteractionEnabled = true

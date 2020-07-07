@@ -20,6 +20,7 @@ struct SubjectDetailsPickerViewModel: CellViewModel {
         cell.selectedOptionButton.setTitle(selectedOption, for: .normal)
 
         if isEditable {
+            cell.swipeToDeleteEnabled = true
             cell.onClick = action
             cell.onRemoveCell = onRemoveCell
         }

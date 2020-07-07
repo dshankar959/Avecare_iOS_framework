@@ -26,6 +26,7 @@ struct SubjectDetailsNotesViewModel: CellViewModel {
         cell.textView.text = note
 
         if isEditable {
+            cell.swipeToDeleteEnabled = true
             cell.onTextChange = onTextChange
             cell.textView.isEditable = true
             cell.onRemoveCell = onRemoveCell

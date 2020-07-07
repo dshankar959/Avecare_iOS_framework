@@ -24,6 +24,7 @@ struct SubjectDetailsTagsViewModel: CellViewModel {
         cell.isEditable = isEditable
 
         if isEditable {
+            cell.swipeToDeleteEnabled = true
             cell.onClick = action
             cell.onDelete = deleteAction
             cell.onRemoveCell = onRemoveCell
