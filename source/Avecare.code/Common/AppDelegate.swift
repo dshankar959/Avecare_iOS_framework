@@ -74,7 +74,7 @@ import Kingfisher
             let currentToken = UserKeychainService.getCurrentToken() {
             _session = Session(token: currentToken, userProfile: userProfile)
         }
-        
+
         UITabBar.appearance().unselectedItemTintColor = R.color.darkText()
 
         NotificationCenter.default.addObserver(self,

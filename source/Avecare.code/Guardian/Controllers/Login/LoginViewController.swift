@@ -34,7 +34,7 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 //        loginField?.text = "sdwornik@spiria.com"
 //        loginField?.text = "guardian@example.net"
 //        loginField?.text = "shankardevika@yahoo.ca"
-//        loginField?.text = "dshankar@spiria.com"
+        loginField?.text = "dshankar@spiria.com"
 //        loginField?.text = "smoon@spiria.com"
 
 //        loginField?.text = "parent1@example.net"
