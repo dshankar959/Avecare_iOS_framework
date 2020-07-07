@@ -27,7 +27,8 @@ final class UserAuthenticateService: IndicatorProtocol {
                 Crashlytics.crashlytics().setUserID(userProfile.email)
                 #endif
 
-                // Update data to construct valid session
+                // Update session and data to construct valid session
+                appDelegate._session = Session(token: token, userProfile: userProfile)
                 appSettings.lastUsername = userCredentials.username
                 UserKeychainService.saveUserProfile(userProfile)
                 UserKeychainService.saveCurrentToken(token: token)
@@ -155,6 +156,7 @@ final class UserAuthenticateService: IndicatorProtocol {
         DDLogInfo("Resetting app.")
         appDelegate._syncEngine = SyncEngine()
         appDelegate._appSettings = AppSettings()
+        appDelegate._session = Session()
 
         // give extra time for animations and 'writes' to settle.
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
