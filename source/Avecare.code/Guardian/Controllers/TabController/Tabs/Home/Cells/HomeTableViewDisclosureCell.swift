@@ -11,11 +11,17 @@ struct HomeTableViewDisclosureCellModel: CellViewModel {
     func setup(cell: CellType) {
         cell.iconImageView.layer.cornerRadius = cell.iconImageView.frame.width / 4
         cell.iconImageView.clipsToBounds = true
-        if feed.feedItemType == .subjectDailyLog,
-            let photoURL = subjectImageURL,
-            let image = UIImage(contentsOfFile: photoURL.path) {
-            cell.iconImageView.image = image
-            cell.iconImageView.contentMode = .scaleAspectFit
+        if feed.feedItemType == .subjectDailyLog {
+            if let photoURL = subjectImageURL,
+                let image = UIImage(contentsOfFile: photoURL.path) {
+                    cell.iconImageView.image = image
+                    cell.iconImageView.contentMode = .scaleAspectFit
+            } else {
+                let iconColor = R.color.blueIcon()
+                cell.iconImageView.backgroundColor = iconColor?.withAlphaComponent(0.3)
+                cell.iconImageView.image = R.image.userIcon()
+                cell.iconImageView.tintColor = iconColor
+            }
             cell.subtitleLabel.text = feed.date.dateStringWithDayOfWeekHumanFriendly
         } else {
             let icon: UIImage?, iconColor: UIColor?
@@ -23,9 +29,6 @@ struct HomeTableViewDisclosureCellModel: CellViewModel {
             case .message:
                 icon = R.image.hwccccLogoIcon()
                 iconColor = R.color.separator()
-            case .subjectDailyLog:
-                icon = R.image.userIcon()
-                iconColor = R.color.blueIcon()
             case .subjectInjury:
                 icon = R.image.exclamationIcon()
                 iconColor = R.color.redIcon()
