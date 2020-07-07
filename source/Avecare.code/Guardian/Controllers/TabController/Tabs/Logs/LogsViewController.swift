@@ -18,6 +18,7 @@ class LogsViewController: UIViewController {
         performSegue(withIdentifier: R.segue.logsViewController.showMenuFromLogs, sender: nil)
     }
 
+    private var reloadPage = true
     private let dataProvider = DefaultLogsDataProvider()
     private lazy var slideInTransitionDelegate = SlideInPresentationManager()
     private let subjectListDataProvider = DefaultSubjectListDataProvider()
@@ -69,27 +70,34 @@ class LogsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if reloadPage {
+            if selectedLogId == nil {
+                    selectedSubjectIdFromFeed = nil
+                }
 
-        if selectedLogId == nil {
-            selectedSubjectIdFromFeed = nil
+                if let selectedDateFromFeed = selectedDateFromFeed {
+                    calendarView.scrollToDate(selectedDateFromFeed.previous(.sunday, includingTheDate: true),
+                                              animateScroll: false)
+                    calendarView.selectDates([selectedDateFromFeed])
+                } else {
+                    calendarView.scrollToDate(Date().previous(.sunday, includingTheDate: true),
+                                              animateScroll: false)
+                    calendarView.selectDates([Date()])
+                }
+
+                updateScreen()
         }
 
-        if let selectedDateFromFeed = selectedDateFromFeed {
-            calendarView.scrollToDate(selectedDateFromFeed.previous(.sunday, includingTheDate: true),
-                                      animateScroll: false)
-            calendarView.selectDates([selectedDateFromFeed])
-        } else {
-            calendarView.scrollToDate(Date().previous(.sunday, includingTheDate: true),
-                                      animateScroll: false)
-            calendarView.selectDates([Date()])
-        }
+        reloadPage = true
 
-        updateScreen()
+
     }
 
     override func viewDidDisappear(_ animated: Bool) {
-        selectedLogId = nil
         super.viewDidDisappear(animated)
+        if reloadPage {
+            selectedLogId = nil
+        }
     }
 
     @IBAction func subjectSelectButtonTouched(_ sender: UIButton) {
@@ -200,6 +208,21 @@ extension LogsViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableView.automaticDimension
         }
     }
+
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        if let model = dataProvider.model(for: indexPath) as? LogsPhotoTableViewCellModel {
+            reloadPage = false
+            let storyboard = UIStoryboard(name: "FullScreenPhoto", bundle: .main)
+            if let controller = storyboard.instantiateViewController(withIdentifier: "FullSCreenPhotoController") as? FullScreenPhotoController {
+                controller.modalPresentationStyle = .fullScreen
+                controller.image = model.image
+                self.present(controller, animated: true, completion: nil)
+            }
+
+        }
+    }
+    
 }
 
 

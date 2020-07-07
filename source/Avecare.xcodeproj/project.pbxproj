@@ -320,6 +320,8 @@
 		D0C4C802249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C801249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift */; };
 		D0C4C804249BFBB000E16023 /* RLMActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C803249BFBB000E16023 /* RLMActivity.swift */; };
 		D0C4C805249BFBB500E16023 /* RLMActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C803249BFBB000E16023 /* RLMActivity.swift */; };
+		D0D7954B24B4BD9A00813FEB /* FullScreenPhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0D7954A24B4BD9A00813FEB /* FullScreenPhoto.storyboard */; };
+		D0D7954D24B4BDDB00813FEB /* FullScreenPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D7954C24B4BDDB00813FEB /* FullScreenPhotoController.swift */; };
 		DA3FE2DB8C4BA18334A1EB22 /* Pods_parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */; };
 		DC05B3C2247B5AD70014779D /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
 		DC05B3CE247C45000014779D /* PanningInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3CD247C45000014779D /* PanningInteractionController.swift */; };
@@ -688,6 +690,8 @@
 		D0C4C7FD249A548200E16023 /* RLMInjury.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMInjury.swift; sourceTree = "<group>"; };
 		D0C4C801249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NotificationTypeDataProvider+publishing.swift"; sourceTree = "<group>"; };
 		D0C4C803249BFBB000E16023 /* RLMActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMActivity.swift; sourceTree = "<group>"; };
+		D0D7954A24B4BD9A00813FEB /* FullScreenPhoto.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FullScreenPhoto.storyboard; sourceTree = "<group>"; };
+		D0D7954C24B4BDDB00813FEB /* FullScreenPhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenPhotoController.swift; sourceTree = "<group>"; };
 		D48B06C16950ED61770C4604 /* Pods-educator.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(appstore).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
 		DC05B3CD247C45000014779D /* PanningInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanningInteractionController.swift; sourceTree = "<group>"; };
@@ -1457,6 +1461,8 @@
 			isa = PBXGroup;
 			children = (
 				75886D74241932AB0079C080 /* SplashViewController.swift */,
+				D0D7954A24B4BD9A00813FEB /* FullScreenPhoto.storyboard */,
+				D0D7954C24B4BDDB00813FEB /* FullScreenPhotoController.swift */,
 				75886D75241932AB0079C080 /* guardian.storyboard */,
 				F663BB7A2435206F003279B9 /* Login */,
 				75886D6F241932AB0079C080 /* SubjectList */,
@@ -2184,6 +2190,7 @@
 				DC9D131324AB5DB700DEBA61 /* LogsTagsTableViewCell.xib in Resources */,
 				61547716ED0704A1F4601513 /* StoriesDetailsPhotoView.xib in Resources */,
 				61547079FFE82CF82DB8CA3D /* LogsOptionTableViewCell.xib in Resources */,
+				D0D7954B24B4BD9A00813FEB /* FullScreenPhoto.storyboard in Resources */,
 				6154771965713AD841B786F4 /* LogsNoteTableViewCell.xib in Resources */,
 				DC4FFA0D2470B9AE0079A27C /* ProfileSubjectImageCollectionViewCell.xib in Resources */,
 				61547AC2A51905EE35445079 /* LogsTimeDetailsTableViewCell.xib in Resources */,
@@ -2752,6 +2759,7 @@
 				6154749EE82ECA275C5FD8F2 /* PinView.swift in Sources */,
 				DCF9140B2492C3900043123F /* syncOrganizationTemplates.swift in Sources */,
 				75865C0624743CE2002E7427 /* syncUnitSupervisors.swift in Sources */,
+				D0D7954D24B4BDDB00813FEB /* FullScreenPhotoController.swift in Sources */,
 				75EB59D92461858700E077E5 /* RLMCleanable.swift in Sources */,
 				61547EFCF73D0FF79FA58C02 /* PinField.swift in Sources */,
 				DC5E9907247555720088083C /* EducatorBioTableViewCell.swift in Sources */,

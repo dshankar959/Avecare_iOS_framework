@@ -40,7 +40,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app uses GPS to tag content with location data.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app enables you to use your local camera photos for content.</string>
+	<string>This app enables you to use photos from your library.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Font Awesome 5 Duotone-Solid-900</string>
@@ -50,7 +50,7 @@
 		<string>Font Awesome 5 Pro-Solid-900</string>
 	</array>
 	<key>UIFileSharingEnabled</key>
-	<false/>
+	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -69,5 +69,7 @@
 	<string>Light</string>
 	<key>FirebaseScreenReportingEnabled</key>
 	<false/>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>This app needs permission to save photos to your device.</string>
 </dict>
 </plist>
