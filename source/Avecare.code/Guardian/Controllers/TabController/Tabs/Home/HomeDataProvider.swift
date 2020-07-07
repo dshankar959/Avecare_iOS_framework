@@ -69,7 +69,8 @@ class DefaultHomeDataProvider: HomeDataProvider {
     }()*/
 
     var hasImportantItems: Bool {
-        if dataSource[0].header?.text == NSLocalizedString("home_important_section_title", comment: "").uppercased(),
+        if dataSource.count > 0,
+            dataSource[0].header?.text == NSLocalizedString("home_important_section_title", comment: "").uppercased(),
             dataSource[0].records.count > 0 {
             return true
         } else {
