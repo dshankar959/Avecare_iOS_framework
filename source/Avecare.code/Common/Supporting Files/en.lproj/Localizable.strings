@@ -151,3 +151,6 @@
 "image_has_been_saved_message" = "Image has been saved to Photos.";
 "saved_error_title" = "Save error!";
 "saved_title" = "Saved!";
+"gallery_permission" = "Permission required";
+"gallery_permission_text" = "Please allow access to Photos from settings app";
+"settings_action_title" = "Settings";
