@@ -7,6 +7,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Font Awesome 5 Pro-Solid-900.otf">
+            <string>FontAwesome5Pro-Solid</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Stories Side View Controller-->
         <scene sceneID="oFg-uV-dkq">
@@ -89,6 +94,14 @@
                                             <action selector="goBackWithSender:" destination="1BJ-xr-72L" eventType="touchUpInside" id="qQj-57-U8e"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uUe-mD-Tem">
+                                        <rect key="frame" x="310" y="5" width="30" height="34"/>
+                                        <fontDescription key="fontDescription" name="FontAwesome5Pro-Solid" family="Font Awesome 5 Pro" pointSize="22"/>
+                                        <state key="normal" title=""/>
+                                        <connections>
+                                            <action selector="savePdfPressed:" destination="1BJ-xr-72L" eventType="touchUpInside" id="9xc-dg-R1r"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
@@ -96,6 +109,8 @@
                                     <constraint firstItem="29H-0u-Anf" firstAttribute="top" secondItem="cQf-HQ-72j" secondAttribute="bottom" id="CQ9-9j-ud9"/>
                                     <constraint firstItem="29H-0u-Anf" firstAttribute="leading" secondItem="dbB-LC-Xr4" secondAttribute="leading" id="EfR-p1-6g0"/>
                                     <constraint firstAttribute="bottom" secondItem="29H-0u-Anf" secondAttribute="bottom" id="Pm2-23-26C"/>
+                                    <constraint firstItem="cQf-HQ-72j" firstAttribute="leading" secondItem="uUe-mD-Tem" secondAttribute="trailing" constant="20" id="RrP-KJ-Rea"/>
+                                    <constraint firstItem="uUe-mD-Tem" firstAttribute="centerY" secondItem="cQf-HQ-72j" secondAttribute="centerY" id="ZiJ-uL-h8k"/>
                                     <constraint firstAttribute="trailing" secondItem="29H-0u-Anf" secondAttribute="trailing" id="vgH-PL-Ksc"/>
                                     <constraint firstItem="cQf-HQ-72j" firstAttribute="top" secondItem="dbB-LC-Xr4" secondAttribute="top" id="vwX-Rb-z7s"/>
                                 </constraints>
@@ -112,6 +127,7 @@
                     </view>
                     <connections>
                         <outlet property="pdfView" destination="29H-0u-Anf" id="wGb-PG-hCH"/>
+                        <outlet property="savePDFButton" destination="uUe-mD-Tem" id="TUS-uE-uuB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fKr-UH-amY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
