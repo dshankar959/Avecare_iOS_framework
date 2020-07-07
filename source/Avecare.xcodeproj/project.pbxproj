@@ -110,9 +110,9 @@
 		61547F86427E44844CC9DC71 /* SubjectListDataProvider+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477C6C7DC9B6372B7ACC6 /* SubjectListDataProvider+Common.swift */; };
 		6A216CA06A17B11A8377AD9C /* Pods_educator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */; };
 		751B4C5C247EF9B6001B8035 /* syncSubjectLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478D41647CC7CBA087361 /* syncSubjectLogs.swift */; };
+		751CE2F024B53D73002C4FC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
+		751CE2F124B53D74002C4FC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
 		7523497524A477E8000C873E /* AboutFormProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7523497424A477E8000C873E /* AboutFormProvider.swift */; };
-		7541BC6924B3BD140026CCA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
-		7541BC6A24B3BD160026CCA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
 		7541BC6D24B3D15B0026CCA1 /* FormTemplateRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */; };
 		7541BC6E24B3D15B0026CCA1 /* FormTemplateRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */; };
 		754E1EA52436505300C8FD30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 754E1EA42436505300C8FD30 /* GoogleService-Info.plist */; };
@@ -2109,7 +2109,7 @@
 			files = (
 				F67DF813241BFE6800793A9C /* SubjectDetailsPickerView.xib in Resources */,
 				75886DF7241932BA0079C080 /* DefaultCellView.xib in Resources */,
-				7541BC6924B3BD140026CCA1 /* Assets.xcassets in Resources */,
+				751CE2F024B53D73002C4FC0 /* Assets.xcassets in Resources */,
 				F65549FA24564F2100574872 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
 				F67DF812241BFE6800793A9C /* SubjectDetailsSegmentView.xib in Resources */,
 				75886D222419327F0079C080 /* LaunchScreen.storyboard in Resources */,
@@ -2162,6 +2162,7 @@
 				75886D232419327F0079C080 /* LaunchScreen.storyboard in Resources */,
 				DC3E80D0248596FC003983E2 /* Profile.storyboard in Resources */,
 				F65549F524564F2100574872 /* Font Awesome 5 Duotone-Solid-900.otf in Resources */,
+				751CE2F124B53D74002C4FC0 /* Assets.xcassets in Resources */,
 				F65549FB24564F2100574872 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
 				7541BC6E24B3D15B0026CCA1 /* FormTemplateRows.json in Resources */,
 				75886D8F241932AB0079C080 /* guardian.storyboard in Resources */,
@@ -2183,7 +2184,6 @@
 				61547181EE77EC951C1F78A1 /* PinView.xib in Resources */,
 				61547E8B27EB4246046B1174 /* PinCell.xib in Resources */,
 				F65549F924564F2100574872 /* Font Awesome 5 Pro-Light-300.otf in Resources */,
-				7541BC6A24B3BD160026CCA1 /* Assets.xcassets in Resources */,
 				615471AAF5F6CA37ECCB646D /* StoriesTableViewCell.xib in Resources */,
 				DC3E80C2248594C0003983E2 /* SupervisorFilterTableViewCell.xib in Resources */,
 				615472CBDE78C09CE3F64F4F /* SupervisorCollectionViewCell.xib in Resources */,

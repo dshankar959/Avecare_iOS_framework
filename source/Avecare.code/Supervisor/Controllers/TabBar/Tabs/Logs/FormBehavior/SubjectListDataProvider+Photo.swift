@@ -69,7 +69,7 @@ extension SubjectListDataProvider {
             }
 
             PHImageManager.default().requestImage(for: asset,
-                                                  targetSize: PHImageManagerMaximumSize,
+                                                  targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), //PHImageManagerMaximumSize,
                                                   contentMode: .aspectFit,
                                                   options: nil) { [weak self] (image, info) in
 

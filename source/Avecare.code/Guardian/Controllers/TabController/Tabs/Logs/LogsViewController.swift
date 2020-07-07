@@ -222,7 +222,7 @@ extension LogsViewController: UITableViewDelegate, UITableViewDataSource {
 
         }
     }
-    
+
 }
 
 
