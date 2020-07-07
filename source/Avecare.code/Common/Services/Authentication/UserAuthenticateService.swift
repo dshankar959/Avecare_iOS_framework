@@ -117,7 +117,7 @@ final class UserAuthenticateService: IndicatorProtocol {
         UserAPIService.logout { [weak self] result in
             switch result {
             case .success(let message):
-                DDLogVerbose("Logged out from the serve successfully.✅  [with status code = \(message)]")
+                DDLogVerbose("Logged out from the server successfully.✅  [with status code = \(message)]")
                 UserKeychainService.saveCurrentToken(token: nil)
                 self?.resetSyncEngine {
                     completion(nil)
@@ -131,7 +131,7 @@ final class UserAuthenticateService: IndicatorProtocol {
     }
 
 
-    private func resetSyncEngine(completion:@escaping () -> Void) {
+    func resetSyncEngine(completion:@escaping () -> Void) {
         syncEngine.stopSyncTimer()
         syncEngine.isSyncCancelled = true
         syncEngine.notifySyncStateChanged(message: "...cancelling...")

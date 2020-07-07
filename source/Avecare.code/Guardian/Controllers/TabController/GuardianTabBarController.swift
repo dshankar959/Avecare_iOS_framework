@@ -27,6 +27,8 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         DDLogInfo("")
+
+        NotificationCenter.default.addObserver(self, selector: #selector(logout), name: .didReceiveUnauthorizedError, object: nil)
     }
 
     override func viewWillLayoutSubviews() {
@@ -43,6 +45,13 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
         }
     }
 
+    @objc private func logout() {
+        DDLogVerbose("Log out due to anauthorized token (401 Error")
+        UserKeychainService.saveCurrentToken(token: nil)
+        onLogout()
+        UserAuthenticateService.shared.resetSyncEngine {}
+    }
+
     func onLogout() {
         loginFlowNavigation?.popToRootViewController(animated: false)
         dismiss(animated: true, completion: nil)
@@ -52,5 +61,9 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
         homeViewController?.refreshData(completion: { (error) in
             completion(error)
         })
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
