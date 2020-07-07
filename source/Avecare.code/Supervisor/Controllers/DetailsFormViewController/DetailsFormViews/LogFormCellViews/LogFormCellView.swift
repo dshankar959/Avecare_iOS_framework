@@ -27,6 +27,7 @@ class LogFormCellView: BaseXibView {
         return self.frame.width - spacerWidth - 2 * removeButtonWidth
     }
 
+    var swipeToDeleteEnabled = false
     var onRemoveCell: (() -> Void)?
 
     override func setup() {
@@ -56,6 +57,7 @@ class LogFormCellView: BaseXibView {
                                              height: frameHeight))
             coverView!.backgroundColor = R.color.background()
             addSubview(coverView!)
+            coverView!.isHidden = true
         } else {
             coverView!.frame = CGRect(x: coverViewOriginX,
                                       y: 0,
@@ -75,6 +77,7 @@ class LogFormCellView: BaseXibView {
             }
             addSubview(removeButton!)
             sendSubviewToBack(removeButton!)
+            removeButton!.isHidden = true
         } else {
             removeButton!.frame = CGRect(x: removeButtonOriginX,
                                          y: 0,
@@ -90,6 +93,7 @@ class LogFormCellView: BaseXibView {
             backgroundView!.backgroundColor = .red
             addSubview(backgroundView!)
             sendSubviewToBack(backgroundView!)
+            backgroundView!.isHidden = true
         } else {
             backgroundView!.frame = CGRect(x: 0,
                                            y: 0,
@@ -104,61 +108,58 @@ class LogFormCellView: BaseXibView {
 
     @objc private func didRotate(note: Notification) {
         setupSwipeToDeleteViews()
+        restoreViews()
     }
 
     private func restoreViews() {
         if isSwiped {
             sendSubviewToBack(removeButton!)
-            UIView.animate(withDuration: 0.3) { [weak self] in
-                self?.setViews(for: .initial)
-            }
+            setViews(for: .initial)
         }
     }
 
     @objc private func managePan(_ gesture: UIPanGestureRecognizer) {
-        let translateX = gesture.translation(in: self.superview).x
+        if swipeToDeleteEnabled {
+            let translateX = gesture.translation(in: self.superview).x
 
-        switch gesture.state {
-        case .began:
-            if !isSwiped {
-                NotificationCenter.default.post(name: .swipedBeginsInLogForm, object: nil)
-            } else {
-                sendSubviewToBack(removeButton!)
-            }
-        case .changed:
-            if !isSwiped, translateX < 0 {
-                translateViews(for: translateX)
-            } else if isSwiped {
-                if translateX < removeButtonWidth {
-                    translateViews(for: translateX - removeButtonWidth)
+            switch gesture.state {
+            case .began:
+                if !isSwiped {
+                    NotificationCenter.default.post(name: .swipedBeginsInLogForm, object: nil)
+
+                    coverView!.isHidden = false
+                    removeButton!.isHidden = false
+                    backgroundView!.isHidden = false
                 } else {
-                    translateViews(for: 0)
+                    sendSubviewToBack(removeButton!)
                 }
-            }
-        case .cancelled:
-            setViews(for: .initial)
-        case .ended:
-            if (!isSwiped && translateX < removeButtonWidth - frame.width * 0.9) ||
-                (isSwiped && translateX < 2 * removeButtonWidth - frame.width * 0.9) {
-                removeRow()
-            } else {
-                if (!isSwiped && translateX < -removeButtonWidth / 2) ||
-                    (isSwiped && translateX < removeButtonWidth / 2 ) {
-                    UIView.animate(withDuration: 0.3, animations: { [weak self] in
-                        self?.setViews(for: .swiped)
-                    }) { [weak self] finished in
-                        if finished, let nonNilSelf = self {
-                            nonNilSelf.bringSubviewToFront(nonNilSelf.removeButton!)
-                        }
-                    }
-                } else {
-                    UIView.animate(withDuration: 0.3) { [weak self] in
-                        self?.setViews(for: .initial)
+            case .changed:
+                if !isSwiped, translateX < 0 {
+                    translateViews(for: translateX)
+                } else if isSwiped {
+                    if translateX < removeButtonWidth {
+                        translateViews(for: translateX - removeButtonWidth)
+                    } else {
+                        translateViews(for: 0)
                     }
                 }
+            case .cancelled:
+                setViews(for: .initial)
+            case .ended:
+                if (!isSwiped && translateX < removeButtonWidth - frame.width * 0.9) ||
+                    (isSwiped && translateX < 2 * removeButtonWidth - frame.width * 0.9) {
+                    removeRow()
+                } else {
+                    if (!isSwiped && translateX < -removeButtonWidth / 2) ||
+                        (isSwiped && translateX < removeButtonWidth / 2 ) {
+                        setViews(for: .swiped)
+                    } else {
+                        setViews(for: .initial)
+                    }
+                }
+            default:
+                break
             }
-        default:
-            break
         }
     }
 
@@ -195,11 +196,23 @@ class LogFormCellView: BaseXibView {
     private func setViews(for state: SwipingState) {
         switch state {
         case .initial:
-            translateViews(for: 0)
-            isSwiped = false
+            UIView.animate(withDuration: 0.3, animations: {
+                self.translateViews(for: 0)
+            }) { finished in
+                self.coverView!.isHidden = true
+                self.removeButton!.isHidden = true
+                self.backgroundView!.isHidden = true
+
+                self.isSwiped = false
+            }
+
         case .swiped:
-            translateViews(for: -removeButtonWidth)
-            isSwiped = true
+            UIView.animate(withDuration: 0.3, animations: {
+                self.translateViews(for: -self.removeButtonWidth)
+            }) { finished in
+                self.bringSubviewToFront(self.removeButton!)
+                self.isSwiped = true
+            }
         }
     }
 

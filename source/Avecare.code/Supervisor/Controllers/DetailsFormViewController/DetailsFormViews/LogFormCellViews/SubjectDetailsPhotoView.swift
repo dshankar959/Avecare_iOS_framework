@@ -26,6 +26,7 @@ struct SubjectDetailsPhotoViewModel: CellViewModel {
         cell.updatePlaceholderVisibility()
 
         if isEditable {
+            cell.swipeToDeleteEnabled = true
             cell.onTextChange = action?.onTextChange
             cell.onPhotoTap = action?.onPhotoTap
             cell.textView.isEditable = true

@@ -20,6 +20,7 @@ struct SubjectAccidentReportViewModel: CellViewModel {
 
         var viewModel = Self.pickerViewModel(from: time)
         if isEditable {
+            cell.swipeToDeleteEnabled = true
             viewModel.action = action
             cell.onRemoveCell = onRemoveCell
         }
