@@ -239,6 +239,10 @@ func getAppErrorFromMoya(with error: MoyaError) -> AppError {
             }
         }
 
+        if response?.statusCode == 401 {
+            NotificationCenter.default.post(name: .didReceiveUnauthorizedError, object: nil)
+        }
+
         appError = NetworkError.HTTP(description: description, domain: "\(response?.statusCode ?? 0)").message
     }
 
@@ -248,5 +252,9 @@ func getAppErrorFromMoya(with error: MoyaError) -> AppError {
     }
 
     return appError
+}
 
+
+public extension Notification.Name {
+    static let didReceiveUnauthorizedError = Notification.Name("didReceiveUnauthorizedError")
 }

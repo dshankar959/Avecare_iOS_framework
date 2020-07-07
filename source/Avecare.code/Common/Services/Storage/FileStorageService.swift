@@ -51,6 +51,9 @@ struct FileStorageService {
         if appSession.isSignedIn() || appSession.token.isFake {
             let currentUser = appSession.userProfile
             return FileStorageService.appDirectory(for: currentUser)!
+        } else if let lastUsername = appSettings.lastUsername { // Prevent fatal error when automaic logout
+            let lastUser = UserProfile(userCredentials: UserCredentials(email: lastUsername, password: ""))
+            return FileStorageService.appDirectory(for: lastUser)!
         } else {    // nope
             DDLogError("No active session.  Please sign-in first.")
             fatalError("No active session.  Please sign-in first.")
