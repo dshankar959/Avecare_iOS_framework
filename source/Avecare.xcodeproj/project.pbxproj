@@ -241,6 +241,8 @@
 		75886DF8241932BA0079C080 /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DCD241932BA0079C080 /* DefaultTableViewCell.swift */; };
 		75886DF9241932BA0079C080 /* LeftSideNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75886DCF241932BA0079C080 /* LeftSideNavigationBarView.swift */; };
 		75886DFA241932BA0079C080 /* LeftSideNavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75886DD0241932BA0079C080 /* LeftSideNavigationBarView.xib */; };
+		7589D47224B61A3B0057A914 /* DataProvider+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7589D47124B61A3B0057A914 /* DataProvider+Sync.swift */; };
+		7589D47324B61A3B0057A914 /* DataProvider+Sync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7589D47124B61A3B0057A914 /* DataProvider+Sync.swift */; };
 		75BFA30D24A4F13300E7D01A /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BFA30B24A4F13300E7D01A /* CustomTabBarView.swift */; };
 		75BFA30E24A4F13300E7D01A /* SupervisorTabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BFA30C24A4F13300E7D01A /* SupervisorTabBarButton.swift */; };
 		75D0ACF7249C28E2007562D0 /* PullToRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */; };
@@ -644,6 +646,7 @@
 		75886DCD241932BA0079C080 /* DefaultTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewCell.swift; sourceTree = "<group>"; };
 		75886DCF241932BA0079C080 /* LeftSideNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftSideNavigationBarView.swift; sourceTree = "<group>"; };
 		75886DD0241932BA0079C080 /* LeftSideNavigationBarView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LeftSideNavigationBarView.xib; sourceTree = "<group>"; };
+		7589D47124B61A3B0057A914 /* DataProvider+Sync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DataProvider+Sync.swift"; sourceTree = "<group>"; };
 		75BFA30B24A4F13300E7D01A /* CustomTabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		75BFA30C24A4F13300E7D01A /* SupervisorTabBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisorTabBarButton.swift; sourceTree = "<group>"; };
 		75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshProtocol.swift; sourceTree = "<group>"; };
@@ -1226,6 +1229,7 @@
 			children = (
 				755EAEBA241AC6CC00A6BA4D /* DatabaseLayer.swift */,
 				755EAEB9241AC6CC00A6BA4D /* DataProvider.swift */,
+				7589D47124B61A3B0057A914 /* DataProvider+Sync.swift */,
 			);
 			path = "DataAccessLayers(DAL)";
 			sourceTree = "<group>";
@@ -2562,6 +2566,7 @@
 				615477CD524B2F1C20B297C9 /* InstitutionsAPIService.swift in Sources */,
 				75EB59D82461858700E077E5 /* RLMCleanable.swift in Sources */,
 				75EB5A112466683300E077E5 /* syncInstitutionDetails.swift in Sources */,
+				7589D47224B61A3B0057A914 /* DataProvider+Sync.swift in Sources */,
 				D0A6441C248AA9000041A69B /* StoriesDataProvider+PDF.swift in Sources */,
 				6154728032D3CB5837855C66 /* OrganizationsAPIService.swift in Sources */,
 				61547B7AB691E28FECCD6B86 /* SubjectsAPIService.swift in Sources */,
@@ -2809,6 +2814,7 @@
 				61547D0BE9189E92DB28BD3E /* FilesResponseModel.swift in Sources */,
 				615473E75C758CC6A9261774 /* RLMPublishable.swift in Sources */,
 				61547083A234F7DE9A8C4E4D /* syncSubjectLogs.swift in Sources */,
+				7589D47324B61A3B0057A914 /* DataProvider+Sync.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

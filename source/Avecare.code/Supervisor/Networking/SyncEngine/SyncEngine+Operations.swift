@@ -13,10 +13,22 @@ extension SyncEngine {
             return
         }
 
+        if !appSettings.enableSyncUp {
+            DDLogDebug("🔻❌ sync UP ⬆️ disabled.  ❎❎")
+            syncCompletion(nil)
+            return
+        }
+
         if self.isSyncBlocked {
             syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
             return
         }
+
+
+        self.syncUPunitStories() { error in
+            DDLogVerbose("syncUPunitStories ♓️ closure")
+            if let error = error { syncCompletion(error) } else {
+//                syncCompletion(nil)
 
         // Dependancy tree of sync operations.
         self.syncDOWNuserAccountDetails() { error in
@@ -54,7 +66,9 @@ extension SyncEngine {
                                                                                             if let error = error { syncCompletion(error) } else {
                                                                                                 self.syncDOWNunitStories { error in
                                                                                                     DDLogVerbose("syncDOWNunitStories ♓️ closure")
-                                                                                                    syncCompletion(error)
+                                                                                                    if let error = error { syncCompletion(error) } else {
+                                                                                                        syncCompletion(nil)
+                                                                                                    }
                                                                                                 }
                                                                                             }
                                                                                         }
@@ -77,6 +91,9 @@ extension SyncEngine {
                     }
                 }
             }
+        }
+
+        }
         }
 
     } // syncOperations(..)

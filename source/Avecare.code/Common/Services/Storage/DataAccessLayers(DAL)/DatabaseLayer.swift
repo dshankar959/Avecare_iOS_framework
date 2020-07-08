@@ -241,10 +241,10 @@ extension DatabaseLayer where Self: Object {
                 case .initial:
                 return  // ignore first setup
                 case .update:
-                    //                case .update(let objects, let deletions, let insertions, let modifications):
+                    //  case .update(let objects, let deletions, let insertions, let modifications):
                     /// .. a write transaction has been committed which either changed which objects are in the collection,
                     /// and/or modified one or more of the objects in the collection.
-                    //                    DDLogDebug("NotificationToken triggered on: \(observer!) for object: \(T.self)")
+                    //  DDLogDebug("NotificationToken triggered on: \(observer!) for object: \(T.self)")
                     /*
                      DDLogDebug("(triggered!) - objects count = \(objects.count)")
                      for object in objects {

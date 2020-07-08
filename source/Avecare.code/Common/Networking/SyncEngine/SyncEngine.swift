@@ -118,7 +118,8 @@ extension SyncEngine {
         }
 
         if self.isSyncBlocked {
-            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
+//            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
+            syncCompletion(nil)
             return
         }
 
