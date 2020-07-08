@@ -322,6 +322,7 @@
 		D0C4C805249BFBB500E16023 /* RLMActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C4C803249BFBB000E16023 /* RLMActivity.swift */; };
 		D0D7954B24B4BD9A00813FEB /* FullScreenPhoto.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0D7954A24B4BD9A00813FEB /* FullScreenPhoto.storyboard */; };
 		D0D7954D24B4BDDB00813FEB /* FullScreenPhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D7954C24B4BDDB00813FEB /* FullScreenPhotoController.swift */; };
+		D0D7955024B61D9000813FEB /* WebViewFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0D7954F24B61D9000813FEB /* WebViewFormView.swift */; };
 		DA3FE2DB8C4BA18334A1EB22 /* Pods_parent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */; };
 		DC05B3C2247B5AD70014779D /* SlideInPresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */; };
 		DC05B3CE247C45000014779D /* PanningInteractionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC05B3CD247C45000014779D /* PanningInteractionController.swift */; };
@@ -692,6 +693,7 @@
 		D0C4C803249BFBB000E16023 /* RLMActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RLMActivity.swift; sourceTree = "<group>"; };
 		D0D7954A24B4BD9A00813FEB /* FullScreenPhoto.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = FullScreenPhoto.storyboard; sourceTree = "<group>"; };
 		D0D7954C24B4BDDB00813FEB /* FullScreenPhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenPhotoController.swift; sourceTree = "<group>"; };
+		D0D7954F24B61D9000813FEB /* WebViewFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewFormView.swift; sourceTree = "<group>"; };
 		D48B06C16950ED61770C4604 /* Pods-educator.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(appstore).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(appstore).xcconfig"; sourceTree = "<group>"; };
 		DC05B3C0247B564F0014779D /* SlideInPresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInPresentationAnimator.swift; sourceTree = "<group>"; };
 		DC05B3CD247C45000014779D /* PanningInteractionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanningInteractionController.swift; sourceTree = "<group>"; };
@@ -1950,6 +1952,7 @@
 			isa = PBXGroup;
 			children = (
 				299B3580241F907E00D6F9A5 /* LabelFormView.swift */,
+				D0D7954F24B61D9000813FEB /* WebViewFormView.swift */,
 				DCF914152497B7DC0043123F /* MarginFormView.swift */,
 				299B357F241F907E00D6F9A5 /* FormSpacerView.swift */,
 				F67DF7F7241BFE6800793A9C /* LogFormCellViews */,
@@ -2479,6 +2482,7 @@
 				75886D142419327F0079C080 /* LocationManager.swift in Sources */,
 				75EB5A232466FE9800E077E5 /* syncOrganizationDetails.swift in Sources */,
 				75886D342419327F0079C080 /* DiskHelper.swift in Sources */,
+				D0D7955024B61D9000813FEB /* WebViewFormView.swift in Sources */,
 				75886D2C2419327F0079C080 /* AppError.swift in Sources */,
 				75886D4C2419327F0079C080 /* Dictionary.swift in Sources */,
 				75EB5A142466791A00E077E5 /* UserCredentials.swift in Sources */,

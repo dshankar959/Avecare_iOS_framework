@@ -1,6 +1,6 @@
 import UIKit
 import SnapKit
-
+import WebKit
 
 
 @IBDesignable class DetailsView: BaseXibView {
@@ -71,5 +71,20 @@ extension DetailsView: CustomResponder {
         customInputView = nil
         customInputAccessoryView = nil
         return true
+    }
+
+    func allignStackViewForWebView() {
+
+        stackView.autoresizesSubviews = true
+        stackView.clipsToBounds = true
+        stackView.backgroundColor = UIColor.orange
+        stackView.isHidden = false
+        stackView.snp.makeConstraints { (make) in
+            make.top.equalTo(contentView.snp.top).offset(0)
+            make.bottom.equalTo(contentView.snp.bottom).offset(0)
+            make.leading.equalTo(contentView.snp.leading).offset(2)
+            make.trailing.equalTo(contentView.snp.trailing).offset(0)
+            
+        }
     }
 }

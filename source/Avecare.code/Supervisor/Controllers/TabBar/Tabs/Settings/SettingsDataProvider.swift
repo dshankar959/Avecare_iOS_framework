@@ -8,14 +8,15 @@ protocol SettingsDataProvider: class {
     var numberOfRows: Int { get }
     func model(for indexPath: IndexPath) -> SettingTableViewCellModel
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath)
-    func aboutForm() -> Form
     func privacyPolicyForm() -> Form
+    func termsAndConditionsForm() -> Form
+
 }
 
 protocol SettingsDataProviderDelegate: class {
     func didUpdateModel(at indexPath: IndexPath)
-    func showAbout()
     func showPrivacyPolicy()
+    func showTermsAndConditions()
 //    func showRules()
 }
 
@@ -26,16 +27,29 @@ class DefaultSettingDataProvider: SettingsDataProvider {
 
     weak var delegate: SettingsDataProviderDelegate? {
         didSet {
+            let infoText = appSession.userProfile.email
+            let version = appVersionAndBuildDateString()
             dataSource = [
-                SettingTableViewCellModel(icon: R.image.infoIcon(),
-                                          color: R.color.blueIcon(),
-                                          text: NSLocalizedString("settings_menutitle_about_the_app", comment: ""),
-                                          action: delegate?.showAbout),
+
+                SettingTableViewCellModel(icon: R.image.scrollIcon(),
+                                                          color: R.color.blueIcon(),
+                                                          text: NSLocalizedString("settings_menutitle_terms_of_use_policy", comment: ""), isEnabled: true,
+                                                          action: delegate?.showTermsAndConditions),
 
                 SettingTableViewCellModel(icon: R.image.shieldIcon(),
                                           color: R.color.blueIcon(),
-                                          text: NSLocalizedString("settings_menutitle_privacy_policy", comment: ""),
-                                          action: delegate?.showPrivacyPolicy)
+                                          text: NSLocalizedString("settings_menutitle_privacy_policy", comment: ""), isEnabled: true,
+                                          action: delegate?.showPrivacyPolicy),
+
+                SettingTableViewCellModel(icon: R.image.avatar_default(),
+                                          color: R.color.blueIcon(),
+                                          text: infoText, isEnabled: false,
+                                          action: nil),
+
+                SettingTableViewCellModel(icon: R.image.infoIcon(),
+                                          color: UIColor.gray,
+                text: version, isEnabled: false,
+                action: nil)
 /*
                 SettingTableViewCellModel(icon: R.image.scrollIcon(),
                                           color: R.color.blueIcon(),
@@ -82,23 +96,14 @@ class DefaultSettingDataProvider: SettingsDataProvider {
         model(for: indexPath).action?()
     }
 
-
-    func aboutForm() -> Form {
-        let fontSize: CGFloat = hardwareDevice.isPad ? 16.0 : 14.0
-
-        var infoText = appSession.userProfile.email
-        infoText += "\n\n\(appVersionAndBuildDateString())"
-
+    func privacyPolicyForm() -> Form {
         return Form(viewModels: [
-            LabelFormViewModel(font: UIFont.systemFont(ofSize: fontSize), color: .black, text: infoText)])
+            WebViewFormViewModel(urlString: "https://avecare.ca/privacy/")])
     }
 
-
-    func privacyPolicyForm() -> Form {
-        let fontSize: CGFloat = hardwareDevice.isPad ? 16.0 : 14.0
-
+    func termsAndConditionsForm() -> Form {
         return Form(viewModels: [
-            LabelFormViewModel(font: UIFont.systemFont(ofSize: fontSize), color: .black, text: "")])
+            WebViewFormViewModel(urlString: "https://avecare.ca/terms/")])
     }
 
 }

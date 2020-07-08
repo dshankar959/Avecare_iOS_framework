@@ -9,6 +9,7 @@ struct SettingTableViewCellModel: CellViewModel {
     let icon: UIImage?
     let color: UIColor?
     let text: String
+    let isEnabled: Bool
 
     let action: (() -> Void)?
 
@@ -19,6 +20,10 @@ struct SettingTableViewCellModel: CellViewModel {
 
         cell.mainContentView.iconColor = color
         cell.mainContentView.iconImage = icon
-        cell.mainContentView.nameText = text
+        cell.mainContentView.nameLabel.text = text
+        cell.mainContentView.nameLabel.numberOfLines = 0
+        if !isEnabled{
+            cell.mainContentView.nameLabel.textColor = UIColor.gray
+        }
     }
 }

@@ -1,5 +1,5 @@
 import UIKit
-
+import WebKit
 
 
 enum AboutDetails: String, CaseIterable {
@@ -10,21 +10,21 @@ enum AboutDetails: String, CaseIterable {
 
 class AboutDetailsViewController: UIViewController {
 
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
-
+    @IBOutlet weak var webView: WKWebView!
     var aboutDetails: AboutDetails = .termsAndConditions
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        titleLabel.text = NSLocalizedString(aboutDetails.rawValue, comment: "")
-
+        var url: URL?
         switch aboutDetails {
         case .termsAndConditions:
-            contentLabel.text = "termsAndConditions"
+            url = URL(string: "https://avecare.ca/terms/")
         case .privacyPolicy:
-            contentLabel.text = "privacyPolicy"
+            url = URL(string: "https://avecare.ca/privacy/")
+        }
+        if let url = url {
+            let request = URLRequest(url: url)
+            webView.load(request)
         }
     }
 

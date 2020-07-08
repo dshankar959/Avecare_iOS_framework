@@ -27,7 +27,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voG-tI-YTw" userLabel="ContentView">
                             <rect key="frame" x="0.0" y="0.0" width="734" height="684"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QNU-ej-ARP">
+                                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QNU-ej-ARP">
                                     <rect key="frame" x="40" y="40" width="754" height="564"/>
                                     <constraints>
                                         <constraint firstAttribute="height" priority="100" id="uVP-jG-BO1"/>

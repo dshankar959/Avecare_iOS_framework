@@ -45,7 +45,16 @@ extension SettingsSideViewController: UITableViewDelegate, UITableViewDataSource
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataProvider.model(for: indexPath)
-        return tableView.dequeueReusableCell(withModel: model, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withModel: model, for: indexPath)
+
+        if !model.isEnabled {
+          cell.selectionStyle = .none
+          cell.isUserInteractionEnabled = false
+        } else {
+          cell.selectionStyle = .default
+          cell.isUserInteractionEnabled = true
+        }
+        return cell
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -65,21 +74,25 @@ extension SettingsSideViewController: SettingsDataProviderDelegate {
         }
     }
 
-    func showAbout() {
-        DDLogVerbose("")
-
-        if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
-            let form = dataProvider.aboutForm()
-            detailsViewController.detailsView.setFormViews(form.viewModels)
-        }
-    }
-
     func showPrivacyPolicy() {
         DDLogVerbose("")
 
         if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
             let form = dataProvider.privacyPolicyForm()
             detailsViewController.detailsView.setFormViews(form.viewModels)
+            detailsViewController.detailsView.allignStackViewForWebView()
+
+        }
+    }
+
+    func showTermsAndConditions() {
+        DDLogVerbose("")
+
+        if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            let form = dataProvider.termsAndConditionsForm()
+            detailsViewController.detailsView.setFormViews(form.viewModels)
+            detailsViewController.detailsView.allignStackViewForWebView()
+
         }
     }
 

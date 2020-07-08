@@ -20,8 +20,8 @@
             <rect key="frame" x="0.0" y="0.0" width="400" height="72"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Class Activity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqJ-jT-6u7">
-                    <rect key="frame" x="66" y="25.5" width="112" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Class ActivityClass ActivityClass ActivityClass ActivityClass ActivityClass Activity" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tqJ-jT-6u7">
+                    <rect key="frame" x="66" y="25.5" width="334" height="21"/>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                     <color key="textColor" name="DarkText"/>
                     <nil key="highlightedColor"/>
@@ -37,6 +37,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="eaG-6r-n3b" firstAttribute="leading" secondItem="AeB-YM-zIM" secondAttribute="leading" constant="16" id="1aU-H9-BQX"/>
+                <constraint firstItem="XLw-4a-gA9" firstAttribute="trailing" secondItem="tqJ-jT-6u7" secondAttribute="trailing" id="az1-iw-xb4"/>
                 <constraint firstItem="tqJ-jT-6u7" firstAttribute="centerY" secondItem="eaG-6r-n3b" secondAttribute="centerY" id="pgi-Wa-V5R"/>
                 <constraint firstItem="eaG-6r-n3b" firstAttribute="centerY" secondItem="AeB-YM-zIM" secondAttribute="centerY" id="zRe-8I-yhi"/>
                 <constraint firstItem="tqJ-jT-6u7" firstAttribute="leading" secondItem="eaG-6r-n3b" secondAttribute="trailing" constant="10" id="zfr-oU-8g6"/>
