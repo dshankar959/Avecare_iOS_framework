@@ -7,14 +7,30 @@ extension SyncEngine {
     func syncOperations(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
 
-        if !appSettings.enableSyncDown {
-            DDLogDebug("🔻❌ sync DOWN ⬇️ disabled.  ❎❎")
-            syncCompletion(nil)
-            return
+        syncUPoperations() { error in
+            DDLogVerbose("syncUPoperations ♓️ closure")
+            if let error = error { syncCompletion(error) } else {
+                self.syncDOWNoperations() { error in
+                    DDLogVerbose("syncDOWNoperations ♓️ closure")
+                    if let error = error { syncCompletion(error) } else {
+                        syncCompletion(nil)
+                    }
+                }
+            }
         }
 
-        if !appSettings.enableSyncUp {
-            DDLogDebug("🔻❌ sync UP ⬆️ disabled.  ❎❎")
+    }
+
+}
+
+
+extension SyncEngine {
+
+    func syncDOWNoperations(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+        DDLogVerbose("")
+
+        if !appSettings.enableSyncDown {
+            DDLogDebug("🔻❌ sync DOWN ⬇️ disabled.  ❎❎")
             syncCompletion(nil)
             return
         }
@@ -23,12 +39,6 @@ extension SyncEngine {
             syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
             return
         }
-
-
-        self.syncUPunitStories() { error in
-            DDLogVerbose("syncUPunitStories ♓️ closure")
-            if let error = error { syncCompletion(error) } else {
-//                syncCompletion(nil)
 
         // Dependancy tree of sync operations.
         self.syncDOWNuserAccountDetails() { error in
@@ -92,11 +102,38 @@ extension SyncEngine {
                 }
             }
         }
+    } // syncDOWNoperations(..)
 
-        }
+}
+
+
+
+extension SyncEngine {
+
+    func syncUPoperations(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+        DDLogVerbose("")
+
+        if !appSettings.enableSyncUp {
+            DDLogDebug("🔻❌ sync UP ⬆️ disabled.  ❎❎")
+            syncCompletion(nil)
+            return
         }
 
-    } // syncOperations(..)
+        if self.isSyncBlocked {
+            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
+            return
+        }
+
+
+        // Dependancy tree of sync operations.
+        self.syncUPunitStories() { error in
+            DDLogVerbose("syncUPunitStories ♓️ closure")
+            if let error = error { syncCompletion(error) } else {
+                syncCompletion(nil)
+            }
+        }
+
+    } // syncUPoperations(..)
 
 
     func isSyncUpRequired() -> Bool {

@@ -1,6 +1,8 @@
 import UIKit
+import CocoaLumberjack
 import PDFKit
 import MobileCoreServices
+import RealmSwift
 
 
 
@@ -16,6 +18,9 @@ class StoriesSideViewController: UIViewController {
         return provider
     }()
 
+    // DB write notifications
+    private var dbNotificationsToken: NotificationToken? = nil
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +35,19 @@ class StoriesSideViewController: UIViewController {
         if dataProvider.numberOfRows > 0 {
             dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        dbNotifications(true)
+    }
+
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        dbNotifications(false)
     }
 
 
@@ -84,7 +102,6 @@ extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-
         // Not showing delete option if there is only one story or the story is already published
         if self.dataProvider.numberOfRows < 2 || self.dataProvider.isRowStoryPublished(at: indexPath) {
             return []
@@ -109,6 +126,7 @@ extension StoriesSideViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
 }
+
 
 extension StoriesSideViewController: StoriesDataProviderDelegate, IndicatorProtocol {
 
@@ -159,6 +177,26 @@ extension StoriesSideViewController: StoriesDataProviderDelegate, IndicatorProto
             } else if indexes.contains(toIndexPath) {
                 tableView.reloadRows(at: indexes, with: .automatic)
             }
+        }
+    }
+
+}
+
+
+extension StoriesSideViewController {
+
+    func dbNotifications(_ enable: Bool) {
+        if enable {
+            if dbNotificationsToken == nil {
+//                DDLogDebug("[RLMStory] dbNotifications: ON 🔔")
+                dbNotificationsToken = RLMStory().setupNotificationToken(for: self) { [weak self] in
+                    self?.tableView.reloadData()
+                }
+            }
+        } else {  // disable
+//            DDLogDebug("[RLMStory] dbNotifications: OFF 🔕")
+            dbNotificationsToken?.invalidate()
+            dbNotificationsToken = nil
         }
     }
 

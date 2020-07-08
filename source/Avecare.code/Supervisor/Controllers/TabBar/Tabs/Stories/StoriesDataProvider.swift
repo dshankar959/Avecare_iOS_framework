@@ -101,6 +101,8 @@ class StoriesDataProvider: StoriesDataProviderIO {
 
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath) {
         let targetId = dataSource[indexPath.row].id
+        DDLogVerbose("selected story: \"\(dataSource[indexPath.row].title)\", .id = \(targetId)")
+
         let last = selectedStory?.id
         // update new selection
         selectedStory = dataSource[indexPath.row]
@@ -119,7 +121,6 @@ class StoriesDataProvider: StoriesDataProviderIO {
         return Form(viewModels: [
             titleViewModel(for: story),
             subtitleViewModel(for: story).inset(by: .init(top: 20, left: 0, bottom: 20, right: 0)),
-           // bodyViewModel(for: story),
             getPDFThumbViewModel(for: story).inset(by: .init(top: 20, left: 0, bottom: 0, right: 0))
         ])
     }

@@ -4,7 +4,7 @@ import CocoaLumberjack
 
 
 struct SyncConfig {
-    static let timerInterval: TimeInterval = 3600 // seconds
+    static let timerInterval: TimeInterval = 5*60 // every 5 min.
 }
 
 enum SyncState {

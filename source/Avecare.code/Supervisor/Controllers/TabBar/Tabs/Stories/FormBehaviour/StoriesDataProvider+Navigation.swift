@@ -55,16 +55,12 @@ extension StoriesDataProvider: StoriesDataProviderNavigation, IndicatorProtocol 
 
 
     func publishStory(_ story: RLMStory) {
-//        guard let unitId = RLMSupervisor.details?.primaryUnitId else {
-//            return
-//        }
-
         RLMStory.writeTransaction {
             story.clientLastUpdated = Date()
             story.publishState = .publishing
         }
 
-        // update UI to block editing
+        // Update UI to block editing.
         var row = self.dataSource.count - 1
         let dSource = self.dataSource
         if let firstPublished = self.dataSource.first(where: { $0.rawPublishState == 2 }) {
@@ -72,74 +68,25 @@ extension StoriesDataProvider: StoriesDataProviderNavigation, IndicatorProtocol 
         }
         row = (row < 0) ? 0 : row
 
-        // new position for a subimitted story has to be after all the unpublished ones
+        // New position for a submitted story has to be after all the unpublished ones
         let newPosition = IndexPath(row: row, section: 0)
         guard let index = self.dataSource.firstIndex(of: story) else {
             return
         }
+
         let currentPosition = IndexPath(row: index, section: 0)
-/*
-        //  update serverDate
-        RLMStory.writeTransaction {
-            story.serverLastUpdated = response.serverLastUpdated
-            story.publishState = .published
-        }
-*/
         self.delegate?.didUpdateModel(at: currentPosition, details: true)
         self.sort()
         self.delegate?.moveStory(at: currentPosition, to: newPosition)
-
 
         syncEngine.syncAll { error in
             syncEngine.print_isSyncingStatus_description()
             if let error = error {
                 DDLogError("\(error)")
                 self.showErrorAlert(error)
-            } else {
-                // nothing to do?
             }
         }
 
-
-/*
-        let model = PublishStoryRequestModel(unitId: unitId, story: story, storage: imageStorageService)
-
-        showActivityIndicator(withStatus: NSLocalizedString("publishing_status", comment: ""))
-        UnitAPIService.publishStory(model) { [weak self] result in
-            switch result {
-            case .success(let response):
-                self?.hideActivityIndicator()
-
-                // update UI to block editing
-                var row = (self?.dataSource.count ?? 0) - 1
-                if let dSource = self?.dataSource, let firstPublished = self?.dataSource.first(where: { $0.rawPublishState == 2 }) {
-                    row = (dSource.firstIndex(of: firstPublished)  ?? 0) - 1
-                }
-                row = (row < 0) ? 0 : row
-
-                // new position for a subimitted story has to be after all the unpublished ones
-                let newPosition = IndexPath(row: row, section: 0)
-                guard let index = self?.dataSource.firstIndex(of: story) else {
-                    return
-                }
-                let currentPosition = IndexPath(row: index, section: 0)
-
-                //  update serverDate
-                RLMStory.writeTransaction {
-                    story.serverLastUpdated = response.serverLastUpdated
-                    story.publishState = .published
-                }
-
-                self?.delegate?.didUpdateModel(at: currentPosition, details: true)
-                self?.sort()
-                self?.delegate?.moveStory(at: currentPosition, to: newPosition)
-
-            case .failure(let error):
-                self?.hideActivityIndicator()
-                DDLogError("\(error)")
-            }
-        }
-*/
     }
 
 }

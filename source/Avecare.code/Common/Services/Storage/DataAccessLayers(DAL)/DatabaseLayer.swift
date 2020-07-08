@@ -239,24 +239,24 @@ extension DatabaseLayer where Self: Object {
             if observer != nil {
                 switch changes {
                 case .initial:
-                return  // ignore first setup
-                case .update:
-                    //  case .update(let objects, let deletions, let insertions, let modifications):
+                    return  // ignore first setup
+                case .update(_, _, _, _):
+//                case .update(let objects, let deletions, let insertions, let modifications):
                     /// .. a write transaction has been committed which either changed which objects are in the collection,
                     /// and/or modified one or more of the objects in the collection.
-                    //  DDLogDebug("NotificationToken triggered on: \(observer!) for object: \(T.self)")
-                    /*
-                     DDLogDebug("(triggered!) - objects count = \(objects.count)")
-                     for object in objects {
-                     if let id = object.value(forKey: "id") as? String {
-                     DDLogDebug("id = \(id)")
-                     }
-                     }
+//                    DDLogDebug("NotificationToken triggered on: \(observer!) for object: \(T.self)")
+/*
+                    DDLogDebug("(triggered!) - objects count = \(objects.count)")
+                    for object in objects {
+                        if let id = object.value(forKey: "id") as? String {
+                            DDLogDebug("id = \(id)")
+                        }
+                    }
 
-                     DDLogDebug("deletions = \(deletions)")
-                     DDLogDebug("insertions = \(insertions)")
-                     DDLogDebug("modifications = \(modifications)")
-                     */
+                    DDLogDebug("deletions = \(deletions)")
+                    DDLogDebug("insertions = \(insertions)")
+                    DDLogDebug("modifications = \(modifications)")
+*/
                     block()
                 case .error(let err):
                     // An error occurred while opening the Realm file on the background worker thread

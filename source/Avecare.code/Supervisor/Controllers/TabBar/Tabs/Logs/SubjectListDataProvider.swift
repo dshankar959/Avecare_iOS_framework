@@ -68,7 +68,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
 
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath) {
         let targetId = dataSource[indexPath.row].id
-        DDLogVerbose("selected subject: \(dataSource[indexPath.row].fullName), .id = \(targetId)")
+        DDLogVerbose("selected subject: \"\(dataSource[indexPath.row].fullName)\", .id = \(targetId)")
         var indexes = [IndexPath]()
 
         // update previous selection
