@@ -136,4 +136,66 @@ extension SyncEngine {
         operationQueue.addOperations(operations, waitUntilFinished: false)  // trigger!
     }
 
+
+    func syncUPsubjectLogs(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+        DDLogVerbose("")
+
+        // Use function name as key.
+        let syncKey = "\(#function)".removeBrackets()
+
+        if self.isSyncBlocked {
+            syncStates[syncKey] = .complete
+            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
+            return
+        }
+
+        if syncStates[syncKey] == .syncing {
+            DDLogDebug("\(syncKey) =🔄= .syncing")
+        }
+
+        syncStates[syncKey] = .syncing
+        notifySyncStateChanged(message: "Syncing up 🔺 subject logs")
+
+        // Collect any `RLMLogForm` objects that have their publish state set to `publishing`.
+        let allFormLogsForPublishing: [RLMLogForm]
+
+        allFormLogsForPublishing = RLMLogForm.findAllToSync()
+
+        DDLogVerbose("Daily log form objects to sync up = \(allFormLogsForPublishing.count)")
+        notifySyncStateChanged(message: "\(allFormLogsForPublishing.count) daily log forms remaining to sync up ↑")
+
+        if allFormLogsForPublishing.count <= 0 {
+            DDLogDebug("⬆️ UP syncComplete!")
+            syncStates[syncKey] = .complete
+            syncCompletion(nil)
+            return
+        }
+
+        let form = allFormLogsForPublishing.first!
+
+        let imageStorageService = DocumentService()
+        let request = LogFormAPIModel(form: form, storage: imageStorageService)
+
+        SubjectsAPIService.publishDailyLog(log: request) { [weak self] result in
+            switch result {
+            case .success(let response):
+                DDLogVerbose("success")
+                //  update serverDate
+                RLMLogForm.writeTransaction {
+                    form.serverLastUpdated = response.logForm.serverLastUpdated
+                    form.publishState = .published
+                }
+                DDLogDebug("⬆️ UP syncComplete!  story.id = \(form.id)")
+
+                self?.syncUPsubjectLogs(syncCompletion)    // recurse for anymore
+
+            case .failure(let error):
+                self?.syncStates[syncKey] = .complete
+                DDLogError("\(error)")
+                syncCompletion(error)
+            }
+        }
+
+    }
+
 }

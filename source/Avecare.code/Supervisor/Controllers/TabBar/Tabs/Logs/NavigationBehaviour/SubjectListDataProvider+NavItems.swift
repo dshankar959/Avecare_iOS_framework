@@ -61,32 +61,21 @@ extension SubjectListDataProvider: IndicatorProtocol {
 
     func publishDailyForm(at indexPath: IndexPath) {
         let form = dataSource[indexPath.row].todayForm
-        let request = LogFormAPIModel(form: form, storage: imageStorageService)
 
         RLMLogForm.writeTransaction {
             form.clientLastUpdated = Date()
             form.publishState = .publishing
         }
 
-        showActivityIndicator(withStatus: NSLocalizedString("logs_activity_indicator_publishing_status", comment: ""))
+        self.delegate?.didUpdateModel(at: indexPath)
 
-        SubjectsAPIService.publishDailyLog(log: request) { [weak self] result in
-            switch result {
-            case .success(let response):
-                DDLogVerbose("success")
-                self?.showSuccessIndicator(withStatus: NSLocalizedString("logs_activity_indicator_published_status", comment: ""))
-
-                RLMLogForm.writeTransaction {
-                    form.serverLastUpdated = response.logForm.serverLastUpdated
-                    form.publishState = .published
-                }
-
-                self?.delegate?.didUpdateModel(at: indexPath)
-            case .failure(let error):
+        syncEngine.syncAll { error in
+            if let error = error {
                 DDLogError("\(error)")
-                self?.showErrorAlert(error)
+                self.showErrorAlert(error)
             }
         }
+
     }
 
 }
