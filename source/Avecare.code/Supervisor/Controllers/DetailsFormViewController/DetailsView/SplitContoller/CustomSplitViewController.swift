@@ -42,7 +42,7 @@ class CustomSplitViewController: UIViewController {
         }
     }
 
-    func setLeftViewController(_ controller: UIViewController?) {
+    private func setLeftViewController(_ controller: UIViewController?) {
         if let controller = leftViewController {
             controller.willMove(toParent: nil)
             controller.view.removeFromSuperview()
@@ -58,9 +58,18 @@ class CustomSplitViewController: UIViewController {
         }
 
         leftViewController = controller
+
+        if let detailsViewController = rightViewController as? DetailsFormViewController {
+            if leftViewController is LogsSideViewController {
+                detailsViewController.detailsView.stackViewTrailing.constant = -60
+            } else {
+                detailsViewController.detailsView.stackViewTrailing.constant = 40
+            }
+        }
+
     }
 
-    func setRightViewController(_ controller: UIViewController?) {
+    private func setRightViewController(_ controller: UIViewController?) {
         if let controller = rightViewController {
             controller.willMove(toParent: nil)
             controller.view.removeFromSuperview()

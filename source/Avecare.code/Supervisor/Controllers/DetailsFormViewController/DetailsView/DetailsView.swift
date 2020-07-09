@@ -8,6 +8,7 @@ import SnapKit
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var stackViewTrailing: NSLayoutConstraint!
 
     var customInputView: UIView?
     var customInputAccessoryView: UIView?
