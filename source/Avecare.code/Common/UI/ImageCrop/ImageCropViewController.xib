@@ -26,7 +26,8 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n60-1Q-cen">
-                    <rect key="frame" x="10" y="964" width="48" height="30"/>
+                    <rect key="frame" x="10" y="943" width="97" height="51"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
                     <state key="normal" title="Cancel">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
@@ -35,7 +36,8 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BDB-Oj-xs0">
-                    <rect key="frame" x="1319" y="964" width="37" height="30"/>
+                    <rect key="frame" x="1282" y="943" width="74" height="51"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
                     <state key="normal" title="Done">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
