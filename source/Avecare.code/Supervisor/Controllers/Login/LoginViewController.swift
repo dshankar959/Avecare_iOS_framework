@@ -53,12 +53,18 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 //        loginField?.text = "room_test@spiria.com"
 //        passwordField?.text = "Test123t"
 
-        #else
+        #endif
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        #if !DEBUG
 
         loginField?.text = appSettings.lastUsername
+        passwordField?.text = ""
 
         #endif
-
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
