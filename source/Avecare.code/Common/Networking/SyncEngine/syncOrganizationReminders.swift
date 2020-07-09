@@ -60,4 +60,56 @@ extension SyncEngine {
             }
         }
     }
+
+
+    func syncUPorganizationReminders(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+        DDLogVerbose("")
+
+        // Use function name as key.
+        let syncKey = "\(#function)".removeBrackets()
+
+        if self.isSyncBlocked {
+            syncStates[syncKey] = .complete
+            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
+            return
+        }
+
+        if syncStates[syncKey] == .syncing {
+            DDLogDebug("\(syncKey) =🔄= .syncing")
+        }
+
+        syncStates[syncKey] = .syncing
+        notifySyncStateChanged(message: "Syncing up 🔺 Organization reminders")
+
+        // Collect any `reminder` objects that have their publish state set to `publishing`.
+        let allRemindersForPublishing: [RLMReminder]
+
+        allRemindersForPublishing = RLMReminder.findAllToSync()
+
+        DDLogVerbose("Reminder objects to sync up = \(allRemindersForPublishing.count)")
+        notifySyncStateChanged(message: "\(allRemindersForPublishing.count) reminders remaining to sync up ↑")
+
+        if allRemindersForPublishing.count <= 0 {
+            DDLogDebug("⬆️ UP syncComplete!")
+            syncStates[syncKey] = .complete
+            syncCompletion(nil)
+            return
+        }
+
+        NotificationsAPIService.publishReminders(data: allRemindersForPublishing, completion: { [weak self] result in
+            switch result {
+            case .success(let publishedReminders):
+                for reminder in publishedReminders {
+                    reminder.publishState = .published
+                    DDLogDebug("⬆️ UP syncComplete!  reminder.id = \(reminder.id)")
+                }
+                RLMReminder.createOrUpdateAll(with: publishedReminders, update: true)
+                self?.syncUPorganizationReminders(syncCompletion)    // recurse for anymore
+            case .failure(let error):
+                self?.syncStates[syncKey] = .complete
+                DDLogError("\(error)")
+                syncCompletion(error)
+            }
+        })
+    }
 }

@@ -60,4 +60,57 @@ extension SyncEngine {
             }
         }
     }
+
+    func syncUPinjuries(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+        DDLogVerbose("")
+
+        // Use function name as key.
+        let syncKey = "\(#function)".removeBrackets()
+
+        if self.isSyncBlocked {
+            syncStates[syncKey] = .complete
+            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
+            return
+        }
+
+        if syncStates[syncKey] == .syncing {
+            DDLogDebug("\(syncKey) =🔄= .syncing")
+        }
+
+        syncStates[syncKey] = .syncing
+        notifySyncStateChanged(message: "Syncing up 🔺 Subject Injuries")
+
+        // Collect any `reminder` objects that have their publish state set to `publishing`.
+        let allInjuriesForPublishing: [RLMInjury]
+
+        allInjuriesForPublishing = RLMInjury.findAllToSync()
+
+        DDLogVerbose("Injury objects to sync up = \(allInjuriesForPublishing.count)")
+        notifySyncStateChanged(message: "\(allInjuriesForPublishing.count) injuries remaining to sync up ↑")
+
+        if allInjuriesForPublishing.count <= 0 {
+            DDLogDebug("⬆️ UP syncComplete!")
+            syncStates[syncKey] = .complete
+            syncCompletion(nil)
+            return
+        }
+
+        NotificationsAPIService.publishInjuries(data: allInjuriesForPublishing, completion: { [weak self] result in
+            switch result {
+            case .success(let publishedInjuries):
+                for injury in publishedInjuries {
+                    injury.publishState = .published
+                    DDLogDebug("⬆️ UP syncComplete!  injury.id = \(injury.id)")
+                }
+                RLMInjury.createOrUpdateAll(with: publishedInjuries, update: true)
+
+                self?.syncUPinjuries(syncCompletion)    // recurse for anymore
+
+            case .failure(let error):
+                self?.syncStates[syncKey] = .complete
+                DDLogError("\(error)")
+                syncCompletion(error)
+            }
+        })
+    }
 }

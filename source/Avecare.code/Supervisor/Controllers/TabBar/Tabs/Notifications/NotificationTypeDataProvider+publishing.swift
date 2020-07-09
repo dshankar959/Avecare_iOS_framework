@@ -17,70 +17,44 @@ extension DefaultNotificationTypeDataProvider {
     }
 
     func completeDailyChecklist() {
-        if let unitId = RLMSupervisor.details?.primaryUnitId {
-            let dailyTasks = checklistDataProvider.dailyTaskForm
 
-            RLMDailyTaskForm.writeTransaction {
-                dailyTasks.publishState = .publishing
-            }
+        let dailyTasks = checklistDataProvider.dailyTaskForm
 
-            NotificationsAPIService.publishDailyTaskForm(unitId: unitId, data: dailyTasks) { [weak self] result in
-                switch result {
-                case .success(let publishedDailyTasks):
-                    self?.delegate?.showAlert(title: NSLocalizedString("notification_daily_checklist_published_title", comment: ""),
-                                             message: NSLocalizedString("notification_daily_checklist_published_message", comment: ""))
-                    RLMDailyTaskForm.writeTransaction {
-                        dailyTasks.serverLastUpdated = publishedDailyTasks.serverLastUpdated
-                        dailyTasks.publishState = .published
-                    }
-                    self?.checklistDataProvider.didUpdateModel()
-                case .failure(let error):
-                    DDLogError("\(error)")
-
-                    if error.userInfo.contains("already exist") {
-                        RLMDailyTaskForm.writeTransaction {
-                            dailyTasks.publishState = .published
-                        }
-
-                        self?.checklistDataProvider.didUpdateModel()
-                        self?.delegate?.showAlert(title: NSLocalizedString("notification_daily_checklist_already_published_title", comment: ""),
-                                                  message: NSLocalizedString("notification_daily_checklist_already_published_message", comment: ""))
-                    }
-                }
-            }
+        RLMDailyTaskForm.writeTransaction {
+            dailyTasks.publishState = .publishing
         }
+
+        self.delegate?.showAlert(title: NSLocalizedString("notification_daily_checklist_published_title", comment: ""),
+        message: NSLocalizedString("notification_daily_checklist_published_message", comment: ""))
+
+        self.checklistDataProvider.didUpdateModel()
+
+        callSyncEngineUpdate()
     }
 
     func createClassActivity() {
+
+        // Create Activity in DB with publishing status
         let activity = RLMActivity(id: newUUID)
         activity.activityDate = classActivityFormProvider.activityDate
         activity.activityOption = classActivityFormProvider.selectedActivity
         activity.unit = classActivityFormProvider.unit
         activity.instructions = classActivityFormProvider.activityInstructions
+        activity.rawPublishState = 1
         RLMActivity.createOrUpdateAll(with: [activity], update: false)
-        classActivityFormProvider.clearAll()
 
-        publsihActivity(activity: activity)
+        // Update UI for next entry
+        classActivityFormProvider.clearAll()
         self.delegate?.showAlert(title: NSLocalizedString("notification_sent_title", comment: ""),
                                  message: NSLocalizedString("notification_activity_sent_message", comment: ""))
-    }
 
-    func publsihActivity(activity: RLMActivity) {
-        if let unitId = RLMSupervisor.details?.primaryUnitId {
-            NotificationsAPIService.publishActivity(uintId: unitId, data: activity, completion: { result in
-                switch result {
-                case .success(let publishedActivity):
-                    publishedActivity.publishState = .published
-                    RLMActivity.createOrUpdateAll(with: [publishedActivity], update: true)
-                case .failure(let error):
-                    DDLogError("\(error)")
-                }
-            })
-        }
+        callSyncEngineUpdate()
     }
 
     func createInjuryReport() {
         var dSource = [RLMInjury]()
+
+        // Create Injuries in DB with publishing status
         for subject in injuryFormProvider.injurySubjects {
             let injury = RLMInjury(id: newUUID)
             injury.message = injuryFormProvider.additionalMessage
@@ -91,29 +65,20 @@ extension DefaultNotificationTypeDataProvider {
             dSource.insert(injury, at: 0)
             RLMInjury.createOrUpdateAll(with: dSource, update: false)
         }
-        publishInjuries(injuries: dSource)
+
+        // Update UI for next entry
         self.injuryFormProvider.clearAll()
         self.delegate?.showAlert(title: NSLocalizedString("notification_sent_title", comment: ""),
                                  message: NSLocalizedString("notification_injury_sent_message", comment: ""))
-    }
 
-    func publishInjuries(injuries: [RLMInjury]) {
-        NotificationsAPIService.publishInjuries(data: injuries, completion: { result in
-            switch result {
-            case .success(let publishedInjuries):
-                for injury in publishedInjuries {
-                    injury.publishState = .published
-                }
-                RLMInjury.createOrUpdateAll(with: publishedInjuries, update: true)
-            case .failure(let error):
-                DDLogError("\(error)")
-            }
-        })
+        callSyncEngineUpdate()
     }
 
 
     func createReminderandPublish() {
         var dSource = [RLMReminder]()
+
+        // Create reminders in DB with publishing status
         for subject in reminderFormProvider.subjects {
             let reminder = RLMReminder(id: newUUID)
             reminder.message = reminderFormProvider.additionalMessage
@@ -123,24 +88,22 @@ extension DefaultNotificationTypeDataProvider {
             dSource.insert(reminder, at: 0)
             RLMReminder.createOrUpdateAll(with: dSource, update: false)
         }
-        publishReminders(reminders: dSource)
+
+        // Update UI for next entry
         self.reminderFormProvider.clearAll()
         self.delegate?.showAlert(title: NSLocalizedString("notification_sent_title", comment: ""),
                                  message: NSLocalizedString("notification_reminder_sent_message", comment: ""))
+
+        callSyncEngineUpdate()
+
     }
 
-    func publishReminders(reminders: [RLMReminder]) {
-
-        NotificationsAPIService.publishReminders(data: reminders, completion: { result in
-            switch result {
-            case .success(let publishedReminders):
-                for reminder in publishedReminders {
-                    reminder.publishState = .published
-                }
-                RLMReminder.createOrUpdateAll(with: publishedReminders, update: true)
-            case .failure(let error):
+    func callSyncEngineUpdate() {
+        // Silent Sync call
+        syncEngine.syncAll { error in
+            if let error = error {
                 DDLogError("\(error)")
             }
-        })
+        }
     }
 }
