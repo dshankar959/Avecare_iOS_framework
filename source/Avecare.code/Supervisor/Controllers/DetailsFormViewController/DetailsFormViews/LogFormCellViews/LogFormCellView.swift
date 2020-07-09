@@ -120,6 +120,9 @@ class LogFormCellView: BaseXibView {
 
     @objc private func managePan(_ gesture: UIPanGestureRecognizer) {
         if swipeToDeleteEnabled {
+            if coverView!.frame.height == 0 { // Check if frame shrunk to 0 when views are created
+                setupSwipeToDeleteViews()
+            }
             if let scrollView = superview?.superview?.superview as? UIScrollView {
                 // Determine scroll speed
                 let scrollSpeed = scrollView.panGestureRecognizer.velocity(in: scrollView.superview)
@@ -159,8 +162,8 @@ class LogFormCellView: BaseXibView {
                 case .cancelled:
                     setViews(for: .initial)
                 case .ended:
-                    if (!isSwiped && translateX < removeButtonWidth - frame.width * 0.9) ||
-                        (isSwiped && translateX < 2 * removeButtonWidth - frame.width * 0.9) {
+                    if (!isSwiped && translateX < removeButtonWidth - (frame.width - removeButtonWidth) * 0.9) ||
+                    (isSwiped && translateX < 2 * removeButtonWidth - (frame.width - removeButtonWidth) * 0.9) {
                         removeRow()
                     } else {
                         if (!isSwiped && translateX < -removeButtonWidth / 2) ||
