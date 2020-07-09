@@ -22,7 +22,7 @@ struct SettingTableViewCellModel: CellViewModel {
         cell.mainContentView.iconImage = icon
         cell.mainContentView.nameLabel.text = text
         cell.mainContentView.nameLabel.numberOfLines = 0
-        if !isEnabled{
+        if !isEnabled {
             cell.mainContentView.nameLabel.textColor = UIColor.gray
         }
     }
