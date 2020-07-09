@@ -14,6 +14,7 @@
                 <outlet property="contentView" destination="voG-tI-YTw" id="ENM-sx-w7M"/>
                 <outlet property="scrollView" destination="d1i-nm-rB1" id="u30-bm-plI"/>
                 <outlet property="stackView" destination="QNU-ej-ARP" id="scv-ny-FM1"/>
+                <outlet property="stackViewTrailing" destination="kyS-L4-a2q" id="pb8-kM-HNE"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -27,8 +28,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voG-tI-YTw" userLabel="ContentView">
                             <rect key="frame" x="0.0" y="0.0" width="734" height="684"/>
                             <subviews>
-                                <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QNU-ej-ARP">
-                                    <rect key="frame" x="40" y="40" width="754" height="564"/>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QNU-ej-ARP">
+                                    <rect key="frame" x="40" y="40" width="654" height="564"/>
                                     <constraints>
                                         <constraint firstAttribute="height" priority="100" id="uVP-jG-BO1"/>
                                     </constraints>
@@ -38,7 +39,7 @@
                             <constraints>
                                 <constraint firstItem="QNU-ej-ARP" firstAttribute="top" secondItem="voG-tI-YTw" secondAttribute="top" constant="40" id="ZYf-Tp-zGa"/>
                                 <constraint firstAttribute="bottom" secondItem="QNU-ej-ARP" secondAttribute="bottom" priority="250" constant="80" id="jF3-4n-wKH"/>
-                                <constraint firstAttribute="trailing" secondItem="QNU-ej-ARP" secondAttribute="trailing" constant="-60" id="kyS-L4-a2q"/>
+                                <constraint firstAttribute="trailing" secondItem="QNU-ej-ARP" secondAttribute="trailing" constant="40" id="kyS-L4-a2q"/>
                                 <constraint firstItem="QNU-ej-ARP" firstAttribute="leading" secondItem="voG-tI-YTw" secondAttribute="leading" constant="40" id="qzP-xm-0s4"/>
                             </constraints>
                         </view>

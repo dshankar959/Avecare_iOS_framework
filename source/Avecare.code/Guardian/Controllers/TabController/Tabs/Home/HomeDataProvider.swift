@@ -31,7 +31,7 @@ class DefaultHomeDataProvider: HomeDataProvider {
 
 
     var hasImportantItems: Bool {
-        if dataSource.count > 0,
+        if dataSource.count > 0,    // race condition safety
             dataSource[0].header?.text == NSLocalizedString("home_important_section_title", comment: "").uppercased(),
             dataSource[0].records.count > 0 {
             return true

@@ -89,7 +89,6 @@ extension RLMSubject: DataProvider {
         // Collect the subjects log forms and sort by last updated.
         let allLogForms = RLMLogForm.findAll(withSubjectID: self.id)
         let sortedLogForms = RLMLogForm.sortObjectsByLastUpdated(order: .orderedAscending, allLogForms)
-//        let sortedLogForms = allLogForms.sorted(by: { $0.clientLastUpdated.compare($1.clientLastUpdated) == .orderedAscending})
 
         // Use the most recent form.
         if let form = sortedLogForms.last {

@@ -120,45 +120,62 @@ class LogFormCellView: BaseXibView {
 
     @objc private func managePan(_ gesture: UIPanGestureRecognizer) {
         if swipeToDeleteEnabled {
-            let translateX = gesture.translation(in: self.superview).x
+            if coverView!.frame.height == 0 { // Check if frame shrunk to 0 when views are created
+                setupSwipeToDeleteViews()
+            }
+            if let scrollView = superview?.superview?.superview as? UIScrollView {
+                // Determine scroll speed
+                let scrollSpeed = scrollView.panGestureRecognizer.velocity(in: scrollView.superview)
 
-            switch gesture.state {
-            case .began:
-                if !isSwiped {
-                    NotificationCenter.default.post(name: .swipedBeginsInLogForm, object: nil)
+                // Prevent swiping when scrolling
+                let isScrolling: Bool
+                let translateX: CGFloat
+                if scrollSpeed.y < 100, scrollSpeed.y > -100 {
+                    isScrolling = false
+                    translateX = gesture.translation(in: self.superview).x
+                } else {
+                    isScrolling = true
+                    translateX = 0
+                }
 
-                    coverView!.isHidden = false
-                    removeButton!.isHidden = false
-                    backgroundView!.isHidden = false
-                } else {
-                    sendSubviewToBack(removeButton!)
-                }
-            case .changed:
-                if !isSwiped, translateX < 0 {
-                    translateViews(for: translateX)
-                } else if isSwiped {
-                    if translateX < removeButtonWidth {
-                        translateViews(for: translateX - removeButtonWidth)
+                switch gesture.state {
+                case .began:
+                    if !isSwiped {
+                        NotificationCenter.default.post(name: .swipedBeginsInLogForm, object: nil)
+
+                        coverView!.isHidden = false
+                        removeButton!.isHidden = false
+                        backgroundView!.isHidden = false
                     } else {
-                        translateViews(for: 0)
+                        sendSubviewToBack(removeButton!)
                     }
-                }
-            case .cancelled:
-                setViews(for: .initial)
-            case .ended:
-                if (!isSwiped && translateX < removeButtonWidth - frame.width * 0.9) ||
-                    (isSwiped && translateX < 2 * removeButtonWidth - frame.width * 0.9) {
-                    removeRow()
-                } else {
-                    if (!isSwiped && translateX < -removeButtonWidth / 2) ||
-                        (isSwiped && translateX < removeButtonWidth / 2 ) {
-                        setViews(for: .swiped)
+                case .changed:
+                    if !isSwiped, !isScrolling, translateX < 0 {
+                        translateViews(for: translateX)
+                    } else if isSwiped {
+                        if translateX < removeButtonWidth {
+                            translateViews(for: translateX - removeButtonWidth)
+                        } else {
+                            translateViews(for: 0)
+                        }
+                    }
+                case .cancelled:
+                    setViews(for: .initial)
+                case .ended:
+                    if (!isSwiped && translateX < removeButtonWidth - (frame.width - removeButtonWidth) * 0.9) ||
+                    (isSwiped && translateX < 2 * removeButtonWidth - (frame.width - removeButtonWidth) * 0.9) {
+                        removeRow()
                     } else {
-                        setViews(for: .initial)
+                        if (!isSwiped && translateX < -removeButtonWidth / 2) ||
+                            (isSwiped && translateX < removeButtonWidth / 2 ) {
+                            setViews(for: .swiped)
+                        } else {
+                            setViews(for: .initial)
+                        }
                     }
+                default:
+                    break
                 }
-            default:
-                break
             }
         }
     }

@@ -50,7 +50,9 @@ extension SyncEngine {
                                                                                     DDLogVerbose("syncDOWNunitStories ♓️ closure")
                                                                                     self.syncDOWNsubjectLogs { error in
                                                                                         DDLogVerbose("syncDOWNsubjectLogs ♓️ closure")
-                                                                                        syncCompletion(error)
+                                                                                        if let error = error { syncCompletion(error) } else {
+                                                                                            syncCompletion(nil)
+                                                                                        }
                                                                                     }
                                                                                 }
                                                                             }

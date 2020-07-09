@@ -4,7 +4,7 @@ import CocoaLumberjack
 
 
 struct SyncConfig {
-    static let timerInterval: TimeInterval = 3600 // seconds
+    static let timerInterval: TimeInterval = 5*60 // every 5 min.
 }
 
 enum SyncState {
@@ -118,7 +118,8 @@ extension SyncEngine {
         }
 
         if self.isSyncBlocked {
-            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
+//            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
+            syncCompletion(nil)
             return
         }
 

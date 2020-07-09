@@ -62,4 +62,68 @@ extension SyncEngine {
             }
         }
     }
+
+
+    func syncUPOrganizationActivities(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+        DDLogVerbose("")
+
+        // Use function name as key.
+        let syncKey = "\(#function)".removeBrackets()
+
+        if self.isSyncBlocked {
+            syncStates[syncKey] = .complete
+            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
+            return
+        }
+
+        if syncStates[syncKey] == .syncing {
+            DDLogDebug("\(syncKey) =🔄= .syncing")
+        }
+
+        syncStates[syncKey] = .syncing
+        notifySyncStateChanged(message: "Syncing up 🔺 Organization Activities")
+
+        // Collect any `reminder` objects that have their publish state set to `publishing`.
+        let allActivitiesForPublishing: [RLMActivity]
+
+        allActivitiesForPublishing = RLMActivity.findAllToSync()
+
+        DDLogVerbose("Activity objects to sync up = \(allActivitiesForPublishing.count)")
+        notifySyncStateChanged(message: "\(allActivitiesForPublishing.count) activities remaining to sync up ↑")
+
+        if allActivitiesForPublishing.count <= 0 {
+            DDLogDebug("⬆️ UP syncComplete!")
+            syncStates[syncKey] = .complete
+            syncCompletion(nil)
+            return
+        }
+
+        let activity = allActivitiesForPublishing.first!
+
+        if let unitId = RLMSupervisor.details?.primaryUnitId {
+
+            NotificationsAPIService.publishActivity(uintId: unitId, data: activity, completion: { [weak self] result in
+                switch result {
+                case .success(let publishedActivity):
+
+                    publishedActivity.publishState = .published
+                    DDLogDebug("⬆️ UP syncComplete!  activity.id = \(publishedActivity.id)")
+                    RLMActivity.createOrUpdateAll(with: [publishedActivity], update: true)
+
+                    self?.syncUPOrganizationActivities(syncCompletion)    // recurse for anymore
+
+                case .failure(let error):
+                    self?.syncStates[syncKey] = .complete
+                    DDLogError("\(error)")
+                    syncCompletion(error)
+                }
+            })
+        } else {
+            syncStates[syncKey] = .complete
+            let error = AppError(title: "🤔", userInfo: "Missing unit id", code: "🤔", type: "")    // should never happen.
+            syncCompletion(error)
+            return
+        }
+    }
+
 }

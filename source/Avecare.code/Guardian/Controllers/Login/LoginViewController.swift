@@ -32,9 +32,9 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 
         #if DEBUG
 //        loginField?.text = "sdwornik@spiria.com"
-//        loginField?.text = "guardian@example.net"
+        loginField?.text = "guardian@example.net"
 //        loginField?.text = "shankardevika@yahoo.ca"
-        loginField?.text = "dshankar@spiria.com"
+//        loginField?.text = "dshankar@spiria.com"
 //        loginField?.text = "smoon@spiria.com"
 
 //        loginField?.text = "parent1@example.net"
@@ -43,7 +43,7 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 //        loginField?.text = "parent4@example.net"
 
         // auto-sign-in, to speed up local testing.
-//        getCodeAction(sender: UIButton())
+        getCodeAction(sender: UIButton())
 
         #else
 

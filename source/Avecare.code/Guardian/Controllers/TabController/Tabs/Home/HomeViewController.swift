@@ -276,15 +276,4 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
 
-    // TODO: review technical design on how we should handle dismissing notifications [S.D]
-/*
-    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        guard dataProvider.canDismiss(at: indexPath) else { return nil }
-        let action = UIContextualAction(style: .destructive, title: "Dismiss") { _, _, closure in
-            DDLogVerbose("Dismiss")
-            closure(true)
-        }
-        return UISwipeActionsConfiguration(actions: [action])
-    }
-*/
 }

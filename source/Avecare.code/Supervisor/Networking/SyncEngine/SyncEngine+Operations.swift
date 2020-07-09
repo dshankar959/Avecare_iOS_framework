@@ -7,6 +7,28 @@ extension SyncEngine {
     func syncOperations(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
 
+        syncUPoperations() { error in
+            DDLogVerbose("syncUPoperations ♓️ closure")
+            if let error = error { syncCompletion(error) } else {
+                self.syncDOWNoperations() { error in
+                    DDLogVerbose("syncDOWNoperations ♓️ closure")
+                    if let error = error { syncCompletion(error) } else {
+                        syncCompletion(nil)
+                    }
+                }
+            }
+        }
+
+    }
+
+}
+
+
+extension SyncEngine {
+
+    func syncDOWNoperations(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+        DDLogVerbose("")
+
         if !appSettings.enableSyncDown {
             DDLogDebug("🔻❌ sync DOWN ⬇️ disabled.  ❎❎")
             syncCompletion(nil)
@@ -54,7 +76,9 @@ extension SyncEngine {
                                                                                             if let error = error { syncCompletion(error) } else {
                                                                                                 self.syncDOWNunitStories { error in
                                                                                                     DDLogVerbose("syncDOWNunitStories ♓️ closure")
-                                                                                                    syncCompletion(error)
+                                                                                                    if let error = error { syncCompletion(error) } else {
+                                                                                                        syncCompletion(nil)
+                                                                                                    }
                                                                                                 }
                                                                                             }
                                                                                         }
@@ -78,8 +102,62 @@ extension SyncEngine {
                 }
             }
         }
+    } // syncDOWNoperations(..)
 
-    } // syncOperations(..)
+}
+
+
+
+extension SyncEngine {
+
+    func syncUPoperations(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+        DDLogVerbose("")
+
+        if !appSettings.enableSyncUp {
+            DDLogDebug("🔻❌ sync UP ⬆️ disabled.  ❎❎")
+            syncCompletion(nil)
+            return
+        }
+
+        if self.isSyncBlocked {
+            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
+            return
+        }
+
+        // Dependancy tree of sync operations.
+        self.syncUPunitStories() { error in
+            DDLogVerbose("syncUPunitStories ♓️ closure")
+            if let error = error { syncCompletion(error) } else {
+                self.syncUPsubjectLogs() { error in
+                    DDLogVerbose("syncUPsubjectLogs ♓️ closure")
+                    if let error = error { syncCompletion(error) } else {
+                        self.syncUPorganizationReminders() { error in
+                            DDLogVerbose("syncUPorganizationReminders ♓️ closure")
+                            if let error = error { syncCompletion(error) } else {
+                                self.syncUPinjuries() { error in
+                                    DDLogVerbose("syncUPinjuries ♓️ closure")
+                                    if let error = error { syncCompletion(error) } else {
+                                        self.syncUPOrganizationActivities() { error in
+                                            DDLogVerbose("syncUPOrganizationActivities ♓️ closure")
+                                            if let error = error { syncCompletion(error) } else {
+                                                self.syncUPDailyTaskChecklist() { error in
+                                                    DDLogVerbose("syncUPDailyTaskChecklist ♓️ closure")
+                                                    if let error = error { syncCompletion(error) } else {
+                                                        syncCompletion(nil)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    } // syncUPoperations(..)
 
 
     func isSyncUpRequired() -> Bool {

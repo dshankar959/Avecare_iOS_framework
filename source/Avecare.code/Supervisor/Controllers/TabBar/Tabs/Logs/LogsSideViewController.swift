@@ -1,4 +1,5 @@
 import UIKit
+import RealmSwift
 
 
 
@@ -13,6 +14,9 @@ class LogsSideViewController: UIViewController {
         return provider
     }()
 
+    // DB update notifications
+    private var dbNotificationsToken: NotificationToken? = nil
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,12 +29,30 @@ class LogsSideViewController: UIViewController {
         }
     }
 
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        dbNotifications(true)
+    }
+
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        dbNotifications(false)
+    }
+
+
     @IBAction func didChangeSegmentControl(_ sender: UISegmentedControl) {
         guard let sort = SubjectListDataProvider.Sort(rawValue: sender.selectedSegmentIndex) else {
             return
         }
         dataProvider.sortBy(sort)
         tableView.reloadData()
+    }
+
+    deinit {
     }
 }
 
@@ -79,6 +101,29 @@ extension LogsSideViewController: CustomResponderProvider {
     var customResponder: CustomResponder? {
         guard let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController else { return nil }
         return detailsViewController.detailsView
+    }
+
+}
+
+
+extension LogsSideViewController {
+
+    func dbNotifications(_ enable: Bool) {
+        if enable {
+            if dbNotificationsToken == nil {
+//                DDLogDebug("[RLMLogForm] dbNotifications: ON 🔔")
+                dbNotificationsToken = RLMLogForm().setupNotificationToken(for: self) { [weak self] in
+                    if let segmentControl = self?.sortSegmentControl {
+                        self?.didChangeSegmentControl(segmentControl)
+                        self?.tableView.reloadData()
+                    }
+                }
+            }
+        } else {  // disable
+//            DDLogDebug("[RLMLogForm] dbNotifications: OFF 🔕")
+            dbNotificationsToken?.invalidate()
+            dbNotificationsToken = nil
+        }
     }
 
 }
