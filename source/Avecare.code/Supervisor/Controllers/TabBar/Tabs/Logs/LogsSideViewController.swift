@@ -22,13 +22,16 @@ class LogsSideViewController: UIViewController {
         super.viewDidLoad()
 
         didChangeSegmentControl(sortSegmentControl)
+    }
 
-        // select first row by default
-        if dataProvider.numberOfRows > 0 {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // select first row by default only when setected id is not set before
+        if dataProvider.numberOfRows > 0 &&  dataProvider.selectedId == nil {
             dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
         }
     }
-
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

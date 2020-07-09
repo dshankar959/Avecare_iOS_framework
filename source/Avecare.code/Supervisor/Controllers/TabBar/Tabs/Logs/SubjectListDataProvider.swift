@@ -15,6 +15,7 @@ struct Form {
 protocol SubjectListDataProviderIO: class {
     var delegate: SubjectListDataProviderDelegate? { get set }
     var numberOfRows: Int { get }
+    var selectedId: String? { get }
     func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel
     func sortBy(_ sort: SubjectListDataProvider.Sort)
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath)
@@ -38,7 +39,7 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
         case date = 2
     }
 
-    private var selectedId: String?
+    var selectedId: String?
     var delegate: SubjectListDataProviderDelegate?
     weak var subtitleDateLabel: UILabel?
 
