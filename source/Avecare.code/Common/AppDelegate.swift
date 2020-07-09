@@ -100,8 +100,8 @@ import Kingfisher
     @objc func reachabilityChanged(note: Notification) {
         let reachability = note.object as! Reachability
 
-        /// TESTING!
-        /// Fake losing internet connection.
+//        / TESTING!
+//        / Fake losing internet connection.
 //        #if DEBUG || targetEnvironment(simulator)
 //            self._isDataConnection = false
 //            DDLogDebug("⚠️ [FAKE] 📵  Network not reachable. ⚠️")

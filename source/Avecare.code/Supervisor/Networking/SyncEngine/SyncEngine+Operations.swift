@@ -131,7 +131,27 @@ extension SyncEngine {
                 self.syncUPsubjectLogs() { error in
                     DDLogVerbose("syncUPsubjectLogs ♓️ closure")
                     if let error = error { syncCompletion(error) } else {
-                        syncCompletion(nil)
+                        self.syncUPorganizationReminders() { error in
+                            DDLogVerbose("syncUPorganizationReminders ♓️ closure")
+                            if let error = error { syncCompletion(error) } else {
+                                self.syncUPinjuries() { error in
+                                    DDLogVerbose("syncUPinjuries ♓️ closure")
+                                    if let error = error { syncCompletion(error) } else {
+                                        self.syncUPOrganizationActivities() { error in
+                                            DDLogVerbose("syncUPOrganizationActivities ♓️ closure")
+                                            if let error = error { syncCompletion(error) } else {
+                                                self.syncUPDailyTaskChecklist() { error in
+                                                    DDLogVerbose("syncUPDailyTaskChecklist ♓️ closure")
+                                                    if let error = error { syncCompletion(error) } else {
+                                                        syncCompletion(nil)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
