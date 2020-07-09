@@ -18,7 +18,7 @@ class StoriesSideViewController: UIViewController {
         return provider
     }()
 
-    // DB write notifications
+    // DB update notifications
     private var dbNotificationsToken: NotificationToken? = nil
 
 
@@ -35,8 +35,6 @@ class StoriesSideViewController: UIViewController {
         if dataProvider.numberOfRows > 0 {
             dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
         }
-
-        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveSyncComplete), name: .didCompleteSync, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -66,13 +64,7 @@ class StoriesSideViewController: UIViewController {
         self.present(pickerController, animated: true)
     }
 
-    @objc private func didReceiveSyncComplete() {
-        // Retrieve data from db again
-        dataProvider.fetchAll()
-    }
-
     deinit {
-        NotificationCenter.default.removeObserver(self)
     }
 
 }
@@ -201,6 +193,8 @@ extension StoriesSideViewController {
             if dbNotificationsToken == nil {
 //                DDLogDebug("[RLMStory] dbNotifications: ON 🔔")
                 dbNotificationsToken = RLMStory().setupNotificationToken(for: self) { [weak self] in
+                    // Update data from db again
+                    self?.dataProvider.fetchAll()
                     self?.tableView.reloadData()
                 }
             }
