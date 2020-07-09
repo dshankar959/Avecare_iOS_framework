@@ -23,6 +23,8 @@ class LogsSideViewController: UIViewController {
         if dataProvider.numberOfRows > 0 {
             dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
         }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveSyncComplete), name: .didCompleteSync, object: nil)
     }
 
     @IBAction func didChangeSegmentControl(_ sender: UISegmentedControl) {
@@ -31,6 +33,15 @@ class LogsSideViewController: UIViewController {
         }
         dataProvider.sortBy(sort)
         tableView.reloadData()
+    }
+
+    @objc private func didReceiveSyncComplete() {
+        // Retrieve data from db again
+        didChangeSegmentControl(sortSegmentControl)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 }
 

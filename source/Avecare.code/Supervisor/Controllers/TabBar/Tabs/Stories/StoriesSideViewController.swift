@@ -35,6 +35,8 @@ class StoriesSideViewController: UIViewController {
         if dataProvider.numberOfRows > 0 {
             dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
         }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(didReceiveSyncComplete), name: .didCompleteSync, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +64,15 @@ class StoriesSideViewController: UIViewController {
 
         pickerController.modalPresentationStyle = .fullScreen
         self.present(pickerController, animated: true)
+    }
+
+    @objc private func didReceiveSyncComplete() {
+        // Retrieve data from db again
+        dataProvider.fetchAll()
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
 }
