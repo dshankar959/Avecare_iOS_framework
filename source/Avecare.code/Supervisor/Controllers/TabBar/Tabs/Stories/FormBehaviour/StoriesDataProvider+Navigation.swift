@@ -80,7 +80,6 @@ extension StoriesDataProvider: StoriesDataProviderNavigation, IndicatorProtocol 
         self.delegate?.moveStory(at: currentPosition, to: newPosition)
 
         syncEngine.syncAll { error in
-            syncEngine.print_isSyncingStatus_description()
             if let error = error {
                 DDLogError("\(error)")
                 self.showErrorAlert(error)

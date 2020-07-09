@@ -170,6 +170,7 @@ extension SyncEngine {
         UnitAPIService.publishStory(model) { [weak self] result in
             switch result {
             case .success(let response):
+                DDLogVerbose("success")
                 //  update serverDate
                 RLMStory.writeTransaction {
                     story.serverLastUpdated = response.serverLastUpdated

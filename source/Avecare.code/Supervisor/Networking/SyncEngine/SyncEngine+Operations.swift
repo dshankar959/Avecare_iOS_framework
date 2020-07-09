@@ -124,12 +124,16 @@ extension SyncEngine {
             return
         }
 
-
         // Dependancy tree of sync operations.
         self.syncUPunitStories() { error in
             DDLogVerbose("syncUPunitStories ♓️ closure")
             if let error = error { syncCompletion(error) } else {
-                syncCompletion(nil)
+                self.syncUPsubjectLogs() { error in
+                    DDLogVerbose("syncUPsubjectLogs ♓️ closure")
+                    if let error = error { syncCompletion(error) } else {
+                        syncCompletion(nil)
+                    }
+                }
             }
         }
 
