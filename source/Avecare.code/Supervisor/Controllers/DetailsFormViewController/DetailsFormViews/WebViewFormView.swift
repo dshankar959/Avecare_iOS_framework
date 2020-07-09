@@ -34,7 +34,7 @@ struct WebViewFormViewModel: CellViewModel {
         cell.backgroundColor = UIColor.white
 
         webView.snp.makeConstraints { maker in
-            maker.edges.equalToSuperview().inset( UIEdgeInsets(top: -40, left: -38, bottom: -80, right: 60))
+            maker.edges.equalToSuperview().inset( UIEdgeInsets(top: -40, left: -38, bottom: -80, right: -40))
         }
 
         if isDataConnection {
