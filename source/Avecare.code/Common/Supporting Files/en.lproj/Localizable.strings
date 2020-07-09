@@ -155,3 +155,4 @@
 "gallery_permission" = "Permission required";
 "gallery_permission_text" = "Please allow access to Photos from settings app";
 "settings_action_title" = "Settings";
+"settings_no_internet_message" = "Oops, you seem to be offline. Please connect to the internet to load this important content.";

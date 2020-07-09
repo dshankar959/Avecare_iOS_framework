@@ -25,7 +25,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no-pdf-placeholder" translatesAutoresizingMaskIntoConstraints="NO" id="Hq5-wc-8rf">
-                    <rect key="frame" x="200" y="0.0" width="300" height="300"/>
+                    <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
                     <color key="backgroundColor" name="red-icon"/>
                     <gestureRecognizers/>
                     <constraints>
@@ -37,7 +37,7 @@
                     </connections>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t04-ou-L96">
-                    <rect key="frame" x="466" y="0.0" width="44" height="44"/>
+                    <rect key="frame" x="266" y="0.0" width="44" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="vgA-cn-mGe"/>
                         <constraint firstAttribute="width" constant="44" id="ycP-Ja-5Qt"/>
@@ -55,7 +55,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="t04-ou-L96" firstAttribute="top" secondItem="f2A-7a-y5P" secondAttribute="top" id="Sia-GY-oLE"/>
-                <constraint firstItem="Hq5-wc-8rf" firstAttribute="centerX" secondItem="f2A-7a-y5P" secondAttribute="centerX" id="YTV-y8-RTf"/>
+                <constraint firstItem="Hq5-wc-8rf" firstAttribute="leading" secondItem="f2A-7a-y5P" secondAttribute="leading" id="ZLZ-kq-wvk"/>
                 <constraint firstItem="t04-ou-L96" firstAttribute="trailing" secondItem="Hq5-wc-8rf" secondAttribute="trailing" constant="10" id="rZV-nu-iPN"/>
                 <constraint firstItem="Hq5-wc-8rf" firstAttribute="top" secondItem="f2A-7a-y5P" secondAttribute="topMargin" id="xgw-Jl-ufj"/>
             </constraints>

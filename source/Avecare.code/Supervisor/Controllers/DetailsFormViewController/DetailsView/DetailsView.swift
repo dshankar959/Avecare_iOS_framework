@@ -74,17 +74,8 @@ extension DetailsView: CustomResponder {
     }
 
     func allignStackViewForWebView() {
-
-        stackView.autoresizesSubviews = true
-        stackView.clipsToBounds = true
+        stackView.clipsToBounds = false
         stackView.backgroundColor = UIColor.orange
         stackView.isHidden = false
-        stackView.snp.makeConstraints { (make) in
-            make.top.equalTo(contentView.snp.top).offset(0)
-            make.bottom.equalTo(contentView.snp.bottom).offset(0)
-            make.leading.equalTo(contentView.snp.leading).offset(2)
-            make.trailing.equalTo(contentView.snp.trailing).offset(0)
-            
-        }
     }
 }
