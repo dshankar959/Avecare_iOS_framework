@@ -31,16 +31,24 @@ class FullScreenPhotoController: UIViewController, UIScrollViewDelegate {
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
 
         if error != nil {
-            let ac = UIAlertController(title: NSLocalizedString("gallery_permission", comment: ""), message: NSLocalizedString("gallery_permission_text", comment: ""), preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: NSLocalizedString("barbutton_title_cancel", comment: ""), style: .cancel))
-            ac.addAction(UIAlertAction(title: NSLocalizedString("settings_action_title", comment: ""), style: .default, handler: { action in
+            let ac = UIAlertController(title: NSLocalizedString("gallery_permission", comment: ""),
+                                       message: NSLocalizedString("gallery_permission_text", comment: ""),
+                                       preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: NSLocalizedString("barbutton_title_cancel", comment: ""),
+                                       style: .cancel))
+            ac.addAction(UIAlertAction(title: NSLocalizedString("settings_action_title", comment: ""),
+                                       style: .default,
+                                       handler: { action in
                 UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
             }))
             present(ac, animated: true)
         } else {
 
-            let ac = UIAlertController(title: NSLocalizedString("saved_title", comment: ""), message: NSLocalizedString("image_has_been_saved_message", comment: ""), preferredStyle: .alert)
-            ac.addAction(UIAlertAction(title: NSLocalizedString("alert_ok", comment: ""), style: .default))
+            let ac = UIAlertController(title: NSLocalizedString("saved_title", comment: ""),
+                                       message: NSLocalizedString("image_has_been_saved_message", comment: ""),
+                                       preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: NSLocalizedString("alert_ok", comment: ""),
+                                       style: .default))
             present(ac, animated: true)
         }
 
