@@ -60,10 +60,8 @@ class LoginViewController: UIViewController, IndicatorProtocol {
         super.viewWillAppear(animated)
 
         #if !DEBUG
-
-        loginField?.text = appSettings.lastUsername
-        passwordField?.text = ""
-
+            loginField?.text = appSettings.lastUsername
+            passwordField?.text = ""
         #endif
     }
 
