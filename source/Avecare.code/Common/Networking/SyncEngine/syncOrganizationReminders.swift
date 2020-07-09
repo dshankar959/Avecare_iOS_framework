@@ -60,4 +60,85 @@ extension SyncEngine {
             }
         }
     }
+
+
+    func syncUPorganizationReminders(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
+        DDLogVerbose("")
+
+        // Use function name as key.
+        let syncKey = "\(#function)".removeBrackets()
+
+        if self.isSyncBlocked {
+            syncStates[syncKey] = .complete
+            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
+            return
+        }
+
+        if syncStates[syncKey] == .syncing {
+            DDLogDebug("\(syncKey) =🔄= .syncing")
+        }
+
+        syncStates[syncKey] = .syncing
+        notifySyncStateChanged(message: "Syncing up 🔺 Organization reminders")
+
+        // Collect any `reminder` objects that have their publish state set to `publishing`.
+        let allRemindersForPublishing: [RLMReminder]
+
+        allRemindersForPublishing = RLMReminder.findAllToSync()
+
+        DDLogVerbose("Reminder objects to sync up = \(allRemindersForPublishing.count)")
+        notifySyncStateChanged(message: "\(allRemindersForPublishing.count) reminders remaining to sync up ↑")
+
+        if allRemindersForPublishing.count <= 0 {
+            DDLogDebug("⬆️ UP syncComplete!")
+            syncStates[syncKey] = .complete
+            syncCompletion(nil)
+            return
+        }
+
+
+
+
+
+
+
+
+        let story = allRemindersForPublishing.first!
+
+        var unitId: String = ""
+
+        if let unit = story.unit {
+            unitId = unit.id
+        } else {
+            syncStates[syncKey] = .complete
+            let error = AppError(title: "🤔", userInfo: "Missing unit id", code: "🤔", type: "")    // should never happen.
+            syncCompletion(error)
+            return
+        }
+
+        let imageStorageService = DocumentService()
+        let model = PublishStoryRequestModel(unitId: unitId, story: story, storage: imageStorageService)
+
+        UnitAPIService.publishStory(model) { [weak self] result in
+            switch result {
+            case .success(let response):
+                //  update serverDate
+                RLMStory.writeTransaction {
+                    story.serverLastUpdated = response.serverLastUpdated
+                    story.publishState = .published
+                }
+                DDLogDebug("⬆️ UP syncComplete!  story.id = \(story.id)")
+
+                self?.syncUPunitStories(syncCompletion)    // recurse for anymore
+
+            case .failure(let error):
+                self?.syncStates[syncKey] = .complete
+                DDLogError("\(error)")
+                syncCompletion(error)
+            }
+        }
+
+    }
+
+
 }
