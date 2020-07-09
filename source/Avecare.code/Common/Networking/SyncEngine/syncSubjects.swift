@@ -23,8 +23,6 @@ extension SyncEngine {
         syncStates[syncKey] = .syncing
         notifySyncStateChanged(message: "Syncing down 🔻 subject details")
 
-        // FIXME:  probably best to compare and remove only the differences between lists of subjects.  (server DB vs local DB)
-
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor {
             if let unitId = RLMSupervisor.details?.primaryUnitId {
@@ -32,8 +30,15 @@ extension SyncEngine {
                     switch result {
                     case .success(let details):
                         let existingSubjects = RLMSubject.findAll()
-                        existingSubjects.forEach { subject in
-                            subject.delete() // note: safely remove because it doesn't have linked object
+                        existingSubjects.forEach { existingSubject in
+                            var existInServer = false
+                            for subject in details where subject.id == existingSubject.id {
+                                existInServer = true
+                                break
+                            }
+                            if !existInServer {
+                                existingSubject.delete() // safely remove because it doesn't have linked object
+                            }
                         }
 
                         // Update with new data.
