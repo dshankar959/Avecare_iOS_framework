@@ -185,7 +185,7 @@ extension SyncEngine {
                     form.serverLastUpdated = response.logForm.serverLastUpdated
                     form.publishState = .published
                 }
-                DDLogDebug("⬆️ UP syncComplete!  story.id = \(form.id)")
+                DDLogDebug("⬆️ UP syncComplete!  form.id = \(form.id)")
 
                 self?.syncUPsubjectLogs(syncCompletion)    // recurse for anymore
 
