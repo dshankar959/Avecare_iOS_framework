@@ -146,3 +146,11 @@
 "time_ago_1_minute_future" = "1 minute from now";
 "time_ago_a_minute_future" = "a minute from now";
 "time_ago_seconds_future" = "{second} seconds from now";
+"time_ago_seconds_future" = "{second} seconds from now";
+"time_ago_seconds_future" = "{second} seconds from now";
+"image_has_been_saved_message" = "Image has been saved to your Photos Library.";
+"saved_error_title" = "Save error!";
+"saved_title" = "Saved!";
+"gallery_permission" = "Permission required";
+"gallery_permission_text" = "Please allow access to Photos from settings app";
+"settings_action_title" = "Settings";
