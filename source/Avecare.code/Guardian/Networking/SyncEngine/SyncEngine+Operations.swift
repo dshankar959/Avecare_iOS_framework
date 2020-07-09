@@ -52,6 +52,7 @@ extension SyncEngine {
                                                                                         DDLogVerbose("syncDOWNsubjectLogs ♓️ closure")
                                                                                         if let error = error { syncCompletion(error) } else {
                                                                                             syncCompletion(nil)
+                                                                                        }
                                                                                     }
                                                                                 }
                                                                             }

@@ -61,6 +61,7 @@ extension SyncEngine {
         }
     }
 
+    
     func syncUPinjuries(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
 
@@ -113,4 +114,5 @@ extension SyncEngine {
             }
         })
     }
+
 }
