@@ -123,24 +123,25 @@ extension DefaultNotificationTypeDataProvider {
             dSource.insert(reminder, at: 0)
             RLMReminder.createOrUpdateAll(with: dSource, update: false)
         }
-        publishReminders(reminders: dSource)
+        //publishReminders(reminders: dSource)
+        //TODO SYNCUP CALL
         self.reminderFormProvider.clearAll()
         self.delegate?.showAlert(title: NSLocalizedString("notification_sent_title", comment: ""),
                                  message: NSLocalizedString("notification_reminder_sent_message", comment: ""))
     }
 
-    func publishReminders(reminders: [RLMReminder]) {
-
-        NotificationsAPIService.publishReminders(data: reminders, completion: { result in
-            switch result {
-            case .success(let publishedReminders):
-                for reminder in publishedReminders {
-                    reminder.publishState = .published
-                }
-                RLMReminder.createOrUpdateAll(with: publishedReminders, update: true)
-            case .failure(let error):
-                DDLogError("\(error)")
-            }
-        })
-    }
+//    func publishReminders(reminders: [RLMReminder]) {
+//
+//        NotificationsAPIService.publishReminders(data: reminders, completion: { result in
+//            switch result {
+//            case .success(let publishedReminders):
+//                for reminder in publishedReminders {
+//                    reminder.publishState = .published
+//                }
+//                RLMReminder.createOrUpdateAll(with: publishedReminders, update: true)
+//            case .failure(let error):
+//                DDLogError("\(error)")
+//            }
+//        })
+//    }
 }

@@ -96,49 +96,20 @@ extension SyncEngine {
             return
         }
 
-
-
-
-
-
-
-
-        let story = allRemindersForPublishing.first!
-
-        var unitId: String = ""
-
-        if let unit = story.unit {
-            unitId = unit.id
-        } else {
-            syncStates[syncKey] = .complete
-            let error = AppError(title: "🤔", userInfo: "Missing unit id", code: "🤔", type: "")    // should never happen.
-            syncCompletion(error)
-            return
-        }
-
-        let imageStorageService = DocumentService()
-        let model = PublishStoryRequestModel(unitId: unitId, story: story, storage: imageStorageService)
-
-        UnitAPIService.publishStory(model) { [weak self] result in
+        NotificationsAPIService.publishReminders(data: allRemindersForPublishing, completion: { [weak self] result in
             switch result {
-            case .success(let response):
-                //  update serverDate
-                RLMStory.writeTransaction {
-                    story.serverLastUpdated = response.serverLastUpdated
-                    story.publishState = .published
+            case .success(let publishedReminders):
+                for reminder in publishedReminders {
+                    reminder.publishState = .published
+                    DDLogDebug("⬆️ UP syncComplete!  reminder.id = \(reminder.id)")
                 }
-                DDLogDebug("⬆️ UP syncComplete!  story.id = \(story.id)")
-
-                self?.syncUPunitStories(syncCompletion)    // recurse for anymore
-
+                RLMReminder.createOrUpdateAll(with: publishedReminders, update: true)
+                self?.syncUPorganizationReminders(syncCompletion)    // recurse for anymore
             case .failure(let error):
                 self?.syncStates[syncKey] = .complete
                 DDLogError("\(error)")
                 syncCompletion(error)
             }
-        }
-
+        })
     }
-
-
 }
