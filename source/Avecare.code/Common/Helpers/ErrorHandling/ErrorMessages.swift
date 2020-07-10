@@ -117,8 +117,8 @@ enum NetworkError {
                             type: self)
 
         case .NetworkConnectionLost:
-            return AppError(title: NSLocalizedString("error_network_connection_lost_title", comment: ""),
-                            userInfo: NSLocalizedString("error_network_connection_lost_userinfo", comment: ""),
+            return AppError(title: NSLocalizedString("no_internet_title", comment: ""),
+                            userInfo: NSLocalizedString("settings_no_internet_message", comment: ""),
                             code: "0",  // unreachable
                 type: self)
 
@@ -243,7 +243,11 @@ func getAppErrorFromMoya(with error: MoyaError) -> AppError {
             NotificationCenter.default.post(name: .didReceiveUnauthorizedError, object: nil)
         }
 
-        appError = NetworkError.HTTP(description: description, domain: "\(response?.statusCode ?? 0)").message
+        if isDataConnection {
+            appError = NetworkError.HTTP(description: description, domain: "\(response?.statusCode ?? 0)").message
+        } else {
+            appError = NetworkError.NetworkConnectionLost.message
+        }
     }
 
     // fyi
