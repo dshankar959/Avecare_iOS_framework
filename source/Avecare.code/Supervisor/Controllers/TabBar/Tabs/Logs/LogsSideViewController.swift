@@ -37,6 +37,9 @@ class LogsSideViewController: UIViewController {
         super.viewWillAppear(animated)
 
         dbNotifications(true)
+        if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.updateSyncButton()
+        }
     }
 
 
@@ -87,6 +90,7 @@ extension LogsSideViewController: SubjectListDataProviderDelegate {
         }
 
         if model.isSelected, let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.updateSyncButton()
             let form = dataProvider.form(at: indexPath)
             detailsViewController.detailsView.setFormViews(form.viewModels)
             detailsViewController.navigationHeaderView.items = dataProvider.navigationItems(at: indexPath)

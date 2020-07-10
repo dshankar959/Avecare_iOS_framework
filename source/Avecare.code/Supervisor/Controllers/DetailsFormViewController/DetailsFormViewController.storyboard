@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina3_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,6 +27,19 @@
                                     <outletCollection property="gestureRecognizers" destination="fcr-qY-MuE" appends="YES" id="b57-fq-lF3"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WjW-LU-ykP">
+                                <rect key="frame" x="30" y="32" width="200" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="SDb-Zh-tF7"/>
+                                    <constraint firstAttribute="width" constant="200" id="vqE-ts-1Jf"/>
+                                </constraints>
+                                <state key="normal">
+                                    <attributedString key="attributedTitle"/>
+                                </state>
+                                <connections>
+                                    <action selector="syncButtonPressed:" destination="0X2-x4-A7G" eventType="touchUpInside" id="aYK-l9-FIA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -34,9 +47,11 @@
                             <constraint firstAttribute="bottom" secondItem="00E-sC-XG0" secondAttribute="bottom" id="ErY-zS-RhV"/>
                             <constraint firstItem="00E-sC-XG0" firstAttribute="leading" secondItem="4ga-M4-UIt" secondAttribute="leading" constant="30" id="Llg-Eu-4FN"/>
                             <constraint firstItem="00E-sC-XG0" firstAttribute="top" secondItem="bkF-nQ-xbH" secondAttribute="bottom" id="OIz-Zm-0cm"/>
-                            <constraint firstItem="bkF-nQ-xbH" firstAttribute="leading" secondItem="4ga-M4-UIt" secondAttribute="leading" id="Wl0-I5-6T7"/>
+                            <constraint firstItem="00E-sC-XG0" firstAttribute="top" secondItem="WjW-LU-ykP" secondAttribute="bottom" constant="8" id="Vv0-RD-x9I"/>
                             <constraint firstItem="bkF-nQ-xbH" firstAttribute="bottom" secondItem="4ga-M4-UIt" secondAttribute="top" constant="70" id="fIH-zo-rBp"/>
                             <constraint firstItem="4ga-M4-UIt" firstAttribute="trailing" secondItem="00E-sC-XG0" secondAttribute="trailing" constant="30" id="itV-QL-ahH"/>
+                            <constraint firstItem="WjW-LU-ykP" firstAttribute="leading" secondItem="00E-sC-XG0" secondAttribute="leading" id="kbH-gK-2Gd"/>
+                            <constraint firstItem="bkF-nQ-xbH" firstAttribute="leading" secondItem="4ga-M4-UIt" secondAttribute="leading" id="kkh-fQ-oSi"/>
                             <constraint firstItem="4ga-M4-UIt" firstAttribute="trailing" secondItem="bkF-nQ-xbH" secondAttribute="trailing" id="rqW-Sl-Das"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4ga-M4-UIt"/>
@@ -46,6 +61,7 @@
                         <outlet property="bottomConstraint" destination="ErY-zS-RhV" id="4PA-Iv-9NE"/>
                         <outlet property="detailsView" destination="00E-sC-XG0" id="QMU-dH-0Zn"/>
                         <outlet property="navigationHeaderView" destination="bkF-nQ-xbH" id="jK9-Pw-gQg"/>
+                        <outlet property="synStatusButton" destination="WjW-LU-ykP" id="cXg-DL-c2j"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ci0-yO-BJL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -55,7 +71,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="39" y="128"/>
+            <point key="canvasLocation" x="37.5" y="127.5"/>
         </scene>
     </scenes>
 </document>

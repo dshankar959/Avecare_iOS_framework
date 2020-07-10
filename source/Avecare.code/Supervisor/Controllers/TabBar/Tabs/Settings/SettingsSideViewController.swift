@@ -28,6 +28,15 @@ class SettingsSideViewController: UIViewController, IndicatorProtocol {
         configSignoutButton()
     }
 
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.updateSyncButton()
+        }
+    }
+
     private func configSignoutButton() {
         signOutButton.nameText = NSLocalizedString("settings_menutitle_sign_out", comment: "")
         signOutButton.iconImage = R.image.signoutIcon()
@@ -78,6 +87,7 @@ extension SettingsSideViewController: SettingsDataProviderDelegate {
         DDLogVerbose("")
 
         if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.updateSyncButton()
             let form = dataProvider.privacyPolicyForm()
             detailsViewController.detailsView.setFormViews(form.viewModels)
             detailsViewController.detailsView.allignStackViewForWebView()
@@ -89,6 +99,7 @@ extension SettingsSideViewController: SettingsDataProviderDelegate {
         DDLogVerbose("")
 
         if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.updateSyncButton()
             let form = dataProvider.termsAndConditionsForm()
             detailsViewController.detailsView.setFormViews(form.viewModels)
             detailsViewController.detailsView.allignStackViewForWebView()
