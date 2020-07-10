@@ -24,10 +24,10 @@ struct WebViewFormViewModel: CellViewModel {
             cell.addSubview(tView)
 
             tView.snp.makeConstraints { maker in
-                maker.width.equalTo(450)
+                maker.width.equalTo(400)
                 maker.height.equalTo(200)
                 maker.top.equalTo(40)
-                maker.left.equalTo(40)
+                maker.left.equalTo(-15)
             }
         }
 
