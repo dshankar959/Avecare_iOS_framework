@@ -37,6 +37,9 @@ class LogsSideViewController: UIViewController {
         super.viewWillAppear(animated)
 
         dbNotifications(true)
+        if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.updateSyncButton()
+        }
     }
 
 

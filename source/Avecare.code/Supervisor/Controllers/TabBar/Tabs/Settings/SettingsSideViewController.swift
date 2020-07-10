@@ -28,6 +28,15 @@ class SettingsSideViewController: UIViewController, IndicatorProtocol {
         configSignoutButton()
     }
 
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.updateSyncButton()
+        }
+    }
+
     private func configSignoutButton() {
         signOutButton.nameText = NSLocalizedString("settings_menutitle_sign_out", comment: "")
         signOutButton.iconImage = R.image.signoutIcon()
