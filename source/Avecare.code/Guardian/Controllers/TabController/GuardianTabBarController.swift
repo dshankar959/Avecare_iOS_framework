@@ -28,6 +28,7 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
         super.viewDidLoad()
         DDLogInfo("")
 
+        syncEngine.resetSyncTimer()
         NotificationCenter.default.addObserver(self, selector: #selector(logout), name: .didReceiveUnauthorizedError, object: nil)
     }
 

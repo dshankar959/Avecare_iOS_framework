@@ -50,7 +50,7 @@ extension SyncEngine {
 
 
     func resetSyncTimer() {
-        DDLogVerbose("⏰ - resetSyncTimer")
+        DDLogVerbose("⏰ - resetSyncTimer: timer interval set to \(SyncConfig.timerInterval) seconds.")
         stopSyncTimer()
         startSyncTimer()
     }

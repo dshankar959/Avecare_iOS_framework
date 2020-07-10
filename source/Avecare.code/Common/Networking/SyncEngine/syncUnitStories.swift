@@ -145,7 +145,7 @@ extension SyncEngine {
 
         DDLogVerbose("Story objects to sync up = \(allStoriesForPublishing.count)")
         notifySyncStateChanged(message: "\(allStoriesForPublishing.count) documents remaining to sync up ↑")
-        
+
         if allStoriesForPublishing.count <= 0 {
             DDLogDebug("⬆️ UP syncComplete!")
             syncStates[syncKey] = .complete
