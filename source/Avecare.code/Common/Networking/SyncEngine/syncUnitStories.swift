@@ -136,14 +136,16 @@ extension SyncEngine {
         syncStates[syncKey] = .syncing
         notifySyncStateChanged(message: "Syncing up 🔺 Unit stories")
 
-        // Collect any `story` objects that have their publish state set to `publishing`.
-        let allStoriesForPublishing: [RLMStory]
+        // Collect any `story` objects that have their publish state set to `publishing`
+        let allStoriesForPublishingRaw = RLMStory.findAllToSync()
 
-        allStoriesForPublishing = RLMStory.findAllToSync()
+        // sort the list so the server date gets updated in the same order as updatedate locally.
+        let allStoriesForPublishing = RLMStory.sortObjectsByLastUpdated(order: .orderedAscending, allStoriesForPublishingRaw)
+
 
         DDLogVerbose("Story objects to sync up = \(allStoriesForPublishing.count)")
         notifySyncStateChanged(message: "\(allStoriesForPublishing.count) documents remaining to sync up ↑")
-
+        
         if allStoriesForPublishing.count <= 0 {
             DDLogDebug("⬆️ UP syncComplete!")
             syncStates[syncKey] = .complete
