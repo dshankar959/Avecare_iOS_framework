@@ -29,7 +29,6 @@ import UIKit
         }
     }
 
-
     func updateButtons() {
         stackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
 

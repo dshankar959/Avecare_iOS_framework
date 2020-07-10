@@ -161,9 +161,14 @@ extension SyncEngine {
 
 
     func isSyncUpRequired() -> Bool {
-        /// ...
-        false
-    }
 
+        return (RLMStory.findAllToSync().count +
+            RLMInjury.findAllToSync().count +
+            RLMLogForm.findAllToSync().count +
+            RLMActivity.findAllToSync().count +
+            RLMDailyTaskForm.findAllToSync().count +
+            RLMReminder.findAllToSync().count) > 0
+
+    }
 
 }

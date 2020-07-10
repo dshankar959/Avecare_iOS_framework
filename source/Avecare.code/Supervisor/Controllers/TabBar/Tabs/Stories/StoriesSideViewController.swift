@@ -161,6 +161,7 @@ extension StoriesSideViewController: StoriesDataProviderDelegate, IndicatorProto
         }
 
         if details, model.isSelected, let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.updateSyncButton()
             let form = dataProvider.form(at: indexPath)
             detailsViewController.detailsView.setFormViews(form.viewModels)
             detailsViewController.navigationHeaderView.items = dataProvider.navigationItems(at: indexPath)

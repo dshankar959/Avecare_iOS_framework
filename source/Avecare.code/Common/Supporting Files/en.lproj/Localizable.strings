@@ -156,3 +156,8 @@
 "gallery_permission_text" = "Please allow access to Photos from settings app";
 "settings_action_title" = "Settings";
 "settings_no_internet_message" = "Oops, you seem to be offline. Please connect to the internet to load this important content.";
+"all_synced" = "All synced";
+"all_synced_offline" = "All synced - Offline";
+"waiting_to_sync" = "Waiting to sync";
+"waiting_to_sync_offline" = "Waiting to sync - Offline";
+"syncing_title" = "Syncing . . .";

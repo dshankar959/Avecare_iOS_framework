@@ -60,6 +60,7 @@ extension NotificationSideViewController: NotificationTypeDataProviderDelegate, 
         }
 
         if model.isSelected, let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.updateSyncButton()
             let form = dataProvider.loadForm(at: indexPath)
             detailsViewController.detailsView.setFormViews(form.viewModels)
             detailsViewController.navigationHeaderView.items = dataProvider.navigationItems(at: indexPath, type: model.type)

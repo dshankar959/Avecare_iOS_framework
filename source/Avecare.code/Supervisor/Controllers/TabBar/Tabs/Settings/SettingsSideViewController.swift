@@ -78,6 +78,7 @@ extension SettingsSideViewController: SettingsDataProviderDelegate {
         DDLogVerbose("")
 
         if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.updateSyncButton()
             let form = dataProvider.privacyPolicyForm()
             detailsViewController.detailsView.setFormViews(form.viewModels)
             detailsViewController.detailsView.allignStackViewForWebView()
@@ -89,6 +90,7 @@ extension SettingsSideViewController: SettingsDataProviderDelegate {
         DDLogVerbose("")
 
         if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.updateSyncButton()
             let form = dataProvider.termsAndConditionsForm()
             detailsViewController.detailsView.setFormViews(form.viewModels)
             detailsViewController.detailsView.allignStackViewForWebView()

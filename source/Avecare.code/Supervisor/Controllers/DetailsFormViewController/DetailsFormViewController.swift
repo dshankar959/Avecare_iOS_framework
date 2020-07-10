@@ -1,5 +1,6 @@
 import UIKit
 import SnapKit
+import CocoaLumberjack
 
 
 
@@ -9,6 +10,15 @@ class DetailsFormViewController: UIViewController {
     @IBOutlet weak var navigationHeaderView: DetailsNavigationView!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
 
+    @IBOutlet weak var synStatusButton: UIButton!
+    @IBAction func syncButtonPressed(_ sender: Any) {
+        // Silent Sync call
+        syncEngine.syncAll { error in
+            if let error = error {
+                DDLogError("\(error)")
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +32,48 @@ class DetailsFormViewController: UIViewController {
                                                selector: #selector(keyboardWillHide(_:)),
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.syncing), name: .syncStateChanged, object: nil)
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.syncDidComplete), name: .didCompleteSync, object: nil)
+    }
+
+    @objc func syncDidComplete() {
+        var attributes = [NSAttributedString.Key: AnyObject]()
+        attributes[.foregroundColor] = R.color.blueIcon()
+        var stringToShow = NSLocalizedString("all_synced", comment: "")
+        if !isDataConnection {
+            stringToShow = NSLocalizedString("all_synced_offline", comment: "")
+        }
+        let title = NSAttributedString(string: stringToShow, attributes: attributes)
+        synStatusButton.setAttributedTitle(title, for: .normal)
+    }
+
+    @objc func syncing() {
+        var attributes = [NSAttributedString.Key: AnyObject]()
+        attributes[.foregroundColor] = UIColor.blue
+        let title = NSAttributedString(string: NSLocalizedString("syncing_title", comment: ""), attributes: attributes)
+        synStatusButton.setAttributedTitle(title, for: .normal)
+    }
+
+    func updateSyncButton() {
+
+        if syncEngine.isSyncUpRequired() {
+            if syncEngine.isSyncing {
+                syncing()
+            } else {
+                var attributes = [NSAttributedString.Key: AnyObject]()
+                attributes[.foregroundColor] = R.color.redIcon()
+                var stringToShow = NSLocalizedString("waiting_to_sync", comment: "")
+                if !isDataConnection {
+                    stringToShow = NSLocalizedString("waiting_to_sync_offline", comment: "")
+                }
+                let title = NSAttributedString(string: stringToShow, attributes: attributes)
+                synStatusButton.setAttributedTitle(title, for: .normal)
+            }
+        } else {
+                self.syncDidComplete()
+            }
     }
 
 
