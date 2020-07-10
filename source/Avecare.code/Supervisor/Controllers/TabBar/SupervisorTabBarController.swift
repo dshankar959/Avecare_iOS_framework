@@ -34,7 +34,9 @@ class SupervisorTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         configureTabBar()
+        syncEngine.resetSyncTimer()
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -4,7 +4,11 @@ import CocoaLumberjack
 
 
 struct SyncConfig {
-    static let timerInterval: TimeInterval = 5*60 // every 5 min.
+    #if QA
+        static let timerInterval: TimeInterval = 1*60 // every 1 min.
+    #else // beta / prod.
+        static let timerInterval: TimeInterval = 5*60 // every 5 min.
+    #endif
 }
 
 enum SyncState {

@@ -26,7 +26,7 @@ class LogsSideViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         // select first row by default only when setected id is not set before
         if dataProvider.numberOfRows > 0 &&  dataProvider.selectedId == nil {
             dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))

@@ -134,7 +134,6 @@ final class UserAuthenticateService: IndicatorProtocol {
     func resetSyncEngine(completion:@escaping () -> Void) {
         syncEngine.stopSyncTimer()
         syncEngine.isSyncCancelled = true
-        syncEngine.notifySyncStateChanged(message: "...cancelling...")
 
         if syncEngine.isSyncing {
             DDLogInfo("Waiting for sync to complete.")
