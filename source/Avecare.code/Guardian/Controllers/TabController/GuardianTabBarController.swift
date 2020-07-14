@@ -1,5 +1,6 @@
 import UIKit
 import CocoaLumberjack
+import FirebaseCrashlytics
 
 
 
@@ -28,6 +29,11 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
         super.viewDidLoad()
         DDLogInfo("")
 
+        #if !DEBUG
+            // #Crashlytics logging
+            Crashlytics.crashlytics().setUserID(appSession.userProfile.email)
+        #endif
+
         syncEngine.resetSyncTimer()
         NotificationCenter.default.addObserver(self, selector: #selector(logout), name: .didReceiveUnauthorizedError, object: nil)
     }
@@ -47,7 +53,7 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
     }
 
     @objc private func logout() {
-        DDLogVerbose("Log out due to anauthorized token (401 Error")
+        DDLogVerbose("Log out due to an unauthorized token (401 Error")
         UserKeychainService.saveCurrentToken(token: nil)
         onLogout()
         UserAuthenticateService.shared.resetSyncEngine {}

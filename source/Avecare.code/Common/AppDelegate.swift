@@ -56,6 +56,14 @@ import Kingfisher
         // Kingfisher disk image cache
         ImageCache.default.diskStorage.config.sizeLimit = 100 * 1024 //bytes
 
+        #if DEBUG || targetEnvironment(simulator)
+            DDLogDebug("⚠️  #DEBUG build ❕ Crashlytics DISABLED. ❕")
+        #else
+            DDLogDebug("⚠️  #RELEASE buid❕ Crashlytics ENABLED.  ⚠️")
+            FirebaseApp.configure()
+            analyzeCrashlytics()
+        #endif
+
         #if GUARDIAN
             DDLogInfo("GUARDIAN.  [eg. \"Parent\", \"Pet Owner\", etc.]")
         #elseif SUPERVISOR
@@ -68,7 +76,7 @@ import Kingfisher
         DDLogDebug(appNameVersionAndBuildDateString())
         DDLogDebug("server url: \(appSettings.serverURLstring)")
 
-        // Construct session
+        // Re-construct session
         if let lastUsername = appSettings.lastUsername,
             let userProfile = UserKeychainService.getUserProfile(with: lastUsername),
             let currentToken = UserKeychainService.getCurrentToken() {
@@ -86,53 +94,8 @@ import Kingfisher
             DDLogError("could not start reachability notifier ⁉️")
         }
 
-        #if DEBUG || targetEnvironment(simulator)
-            DDLogDebug("⚠️  #DEBUG build ❕ Crashlytics DISABLED. ❕")
-        #else
-            DDLogDebug("⚠️  #RELEASE buid❕ Crashlytics ENABLED.  ⚠️")
-            FirebaseApp.configure()
-        #endif
-
         DDLogInfo("")
         return true
-    }
-
-    @objc func reachabilityChanged(note: Notification) {
-        let reachability = note.object as! Reachability
-
-        /// TESTING!
-        /// Fake losing internet connection.
-//        #if DEBUG || targetEnvironment(simulator)
-//            self._isDataConnection = false
-//            DDLogDebug("⚠️ [FAKE] 📵  Network not reachable. ⚠️")
-//            return
-//        #endif
-
-
-        switch reachability.connection {
-        case .wifi:
-            DDLogDebug(" 📶  Reachable via WiFi")
-            self._isDataConnection = true
-/*
-            if !appSession.isSignedIn() || appSession.token.isFake {
-                // If we just have a fake token, because we were offline, then try to auto-signIn.
-                autoSignIn()
-            }
-*/
-        case .cellular:
-            DDLogDebug(" 📲  Reachable via Cellular")
-            self._isDataConnection = true
-/*
-            if !appSession.isSignedIn() || appSession.token.isFake {
-                // If we just have a fake token, because we were offline, then try to auto-signIn.
-                autoSignIn()
-            }
-*/
-        case .none,
-            .unavailable:
-            DDLogDebug(" 📵  Network not reachable")
-            self._isDataConnection = false
-        }
     }
 
 

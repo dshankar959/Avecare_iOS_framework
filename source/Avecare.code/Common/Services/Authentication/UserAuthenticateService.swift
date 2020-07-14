@@ -1,6 +1,5 @@
 import Foundation
 import CocoaLumberjack
-import FirebaseCrashlytics
 
 
 
@@ -21,11 +20,6 @@ final class UserAuthenticateService: IndicatorProtocol {
             case .success(let token):
                 DDLogVerbose("Successful login.  👍  [withToken = \(token)]")
                 let userProfile = UserProfile(userCredentials: userCredentials)
-
-                #if !DEBUG
-                // #Crashlytics logging
-                Crashlytics.crashlytics().setUserID(userProfile.email)
-                #endif
 
                 // Update session and data to construct valid session
                 appDelegate._session = Session(token: token, userProfile: userProfile)

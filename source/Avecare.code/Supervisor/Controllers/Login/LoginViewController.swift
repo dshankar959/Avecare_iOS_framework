@@ -63,6 +63,13 @@ class LoginViewController: UIViewController, IndicatorProtocol {
             loginField?.text = appSettings.lastUsername
             passwordField?.text = ""
         #endif
+
+
+        // Prod.
+        // ====
+//        loginField?.text = "testroom100@gmail.com"
+//        passwordField?.text = "Spiria123"
+
     }
 
     @objc func keyboardWillShow(notification: NSNotification) {
@@ -82,7 +89,6 @@ class LoginViewController: UIViewController, IndicatorProtocol {
     }
 
     func updateViewForKeyboard(notification: NSNotification) {
-
         guard let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else {
            // if keyboard size is not available for some reason, dont do anything
             self.view.frame.origin.y = 0
@@ -96,6 +102,9 @@ class LoginViewController: UIViewController, IndicatorProtocol {
     }
 
     @IBAction func signInAction(sender: UIButton) {
+        // Force a test crash
+//        fatalError()
+
         guard let email = loginField?.text, let password = passwordField?.text else {
             self.showErrorAlert(AuthError.emptyCredentials.message)
             return

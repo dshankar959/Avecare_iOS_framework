@@ -1,6 +1,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import FirebaseCrashlytics
 
 
 
@@ -34,6 +35,11 @@ class SupervisorTabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        #if !DEBUG
+            // #Crashlytics logging
+            Crashlytics.crashlytics().setUserID(appSession.userProfile.email)
+        #endif
 
         configureTabBar()
         syncEngine.resetSyncTimer()
