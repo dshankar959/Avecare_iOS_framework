@@ -18,6 +18,10 @@ class SettingsSideViewController: UIViewController, IndicatorProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // Force a test crash
+        fatalError()    // FIXME:  remove for release.
+
+
         navigationController?.setNavigationBarHidden(true, animated: false)
         tableView.register(nibModels: [SettingTableViewCellModel.self])
 

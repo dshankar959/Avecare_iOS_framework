@@ -115,8 +115,6 @@
 		7523497524A477E8000C873E /* AboutFormProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7523497424A477E8000C873E /* AboutFormProvider.swift */; };
 		7541BC6D24B3D15B0026CCA1 /* FormTemplateRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */; };
 		7541BC6E24B3D15B0026CCA1 /* FormTemplateRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */; };
-		754E1EA52436505300C8FD30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 754E1EA42436505300C8FD30 /* GoogleService-Info.plist */; };
-		754E1EA72436506900C8FD30 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 754E1EA62436506900C8FD30 /* GoogleService-Info.plist */; };
 		755EAEAA241ABB6900A6BA4D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEA9241ABB6900A6BA4D /* Session.swift */; };
 		755EAEAB241ABB6900A6BA4D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEA9241ABB6900A6BA4D /* Session.swift */; };
 		755EAEC1241AC6CC00A6BA4D /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEB9241AC6CC00A6BA4D /* DataProvider.swift */; };
@@ -127,8 +125,8 @@
 		7563166124BE21B4007D31B4 /* AppDelegate+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563165E24BE21B3007D31B4 /* AppDelegate+Reachability.swift */; };
 		7563166224BE21B4007D31B4 /* AppDelegate+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563165F24BE21B4007D31B4 /* AppDelegate+Logging.swift */; };
 		7563166324BE21B4007D31B4 /* AppDelegate+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563165F24BE21B4007D31B4 /* AppDelegate+Logging.swift */; };
-		7563166524BE229E007D31B4 /* AppDelegate+FirebaseCrashlytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563166424BE229E007D31B4 /* AppDelegate+FirebaseCrashlytics.swift */; };
-		7563166624BE229E007D31B4 /* AppDelegate+FirebaseCrashlytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563166424BE229E007D31B4 /* AppDelegate+FirebaseCrashlytics.swift */; };
+		7563166524BE229E007D31B4 /* AppDelegate+SentrySDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563166424BE229E007D31B4 /* AppDelegate+SentrySDK.swift */; };
+		7563166624BE229E007D31B4 /* AppDelegate+SentrySDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563166424BE229E007D31B4 /* AppDelegate+SentrySDK.swift */; };
 		756D6A19246DE37500DF17E7 /* RLMFormTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615475A03445475FEEADDF5A /* RLMFormTemplate.swift */; };
 		75716F84246B9F28002B049C /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75716F83246B9F28002B049C /* UINavigationController.swift */; };
 		75716F85246B9F28002B049C /* UINavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75716F83246B9F28002B049C /* UINavigationController.swift */; };
@@ -562,8 +560,6 @@
 		69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_educator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7523497424A477E8000C873E /* AboutFormProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutFormProvider.swift; sourceTree = "<group>"; };
 		7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FormTemplateRows.json; sourceTree = "<group>"; };
-		754E1EA42436505300C8FD30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		754E1EA62436506900C8FD30 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		755EAEA7241AB64200A6BA4D /* parent.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = parent.entitlements; sourceTree = "<group>"; };
 		755EAEA8241AB64200A6BA4D /* educator.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = educator.entitlements; sourceTree = "<group>"; };
 		755EAEA9241ABB6900A6BA4D /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -571,7 +567,7 @@
 		755EAEBA241AC6CC00A6BA4D /* DatabaseLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseLayer.swift; sourceTree = "<group>"; };
 		7563165E24BE21B3007D31B4 /* AppDelegate+Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Reachability.swift"; sourceTree = "<group>"; };
 		7563165F24BE21B4007D31B4 /* AppDelegate+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Logging.swift"; sourceTree = "<group>"; };
-		7563166424BE229E007D31B4 /* AppDelegate+FirebaseCrashlytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+FirebaseCrashlytics.swift"; sourceTree = "<group>"; };
+		7563166424BE229E007D31B4 /* AppDelegate+SentrySDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+SentrySDK.swift"; sourceTree = "<group>"; };
 		75716F83246B9F28002B049C /* UINavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UINavigationController.swift; sourceTree = "<group>"; };
 		75865C0424743CE1002E7427 /* syncUnitSupervisors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncUnitSupervisors.swift; sourceTree = "<group>"; };
 		7587162C23DB928300CD262A /* educator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = educator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1248,7 +1244,7 @@
 				75886CDE2419327F0079C080 /* AppDelegate.swift */,
 				7563165F24BE21B4007D31B4 /* AppDelegate+Logging.swift */,
 				7563165E24BE21B3007D31B4 /* AppDelegate+Reachability.swift */,
-				7563166424BE229E007D31B4 /* AppDelegate+FirebaseCrashlytics.swift */,
+				7563166424BE229E007D31B4 /* AppDelegate+SentrySDK.swift */,
 				75886CCC2419327F0079C080 /* UINVC.swift */,
 				F663BB7D243521AC003279B9 /* UI */,
 				75886CDC2419327F0079C080 /* AppSettings */,
@@ -1465,7 +1461,6 @@
 			isa = PBXGroup;
 			children = (
 				75886D6C241932AB0079C080 /* guardian-Info.plist */,
-				754E1EA62436506900C8FD30 /* GoogleService-Info.plist */,
 				75886D6D241932AB0079C080 /* R.guardian.generated.swift */,
 			);
 			path = "Supporting Files";
@@ -1585,7 +1580,6 @@
 			isa = PBXGroup;
 			children = (
 				75886D9F241932BA0079C080 /* supervisor-Info.plist */,
-				754E1EA42436505300C8FD30 /* GoogleService-Info.plist */,
 				75886D9E241932BA0079C080 /* R.supervisor.generated.swift */,
 			);
 			path = "Supporting Files";
@@ -2039,12 +2033,11 @@
 			buildPhases = (
 				5BE138F6FD70E29B2F7FDDB6 /* [CP] Check Pods Manifest.lock */,
 				75CE0403240F0DBB006ED2EC /* Run Script: SwiftLint */,
-				754E1EA0243648BB00C8FD30 /* Firebase Analytics  (GoogleService-Info.plist) */,
 				F675182A23FB330700464728 /* R.swift */,
 				7587162823DB928300CD262A /* Sources */,
 				7587162923DB928300CD262A /* Frameworks */,
 				7587162A23DB928300CD262A /* Resources */,
-				754E1E9F243648B700C8FD30 /* Firebase Crashlytics */,
+				754E1E9F243648B700C8FD30 /* Send DSYM file to Sentry  (bitcode = NO) */,
 				124DD9B2434ABA84E14DF614 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -2062,12 +2055,11 @@
 			buildPhases = (
 				1CAA465F2CABE03DA99459C6 /* [CP] Check Pods Manifest.lock */,
 				75886E01241933680079C080 /* Run Script: SwiftLint */,
-				754E1EA3243648CB00C8FD30 /* Firebase Analytics  (GoogleService-Info.plist) */,
 				F675182E23FB33C700464728 /* R.swift */,
 				75EB874E23DB93B00068A3A7 /* Sources */,
 				75EB874F23DB93B00068A3A7 /* Frameworks */,
 				75EB875023DB93B00068A3A7 /* Resources */,
-				754E1EA2243648C900C8FD30 /* Firebase Crashlytics */,
+				754E1EA2243648C900C8FD30 /* Send DSYM file to Sentry  (bitcode = NO) */,
 				0ECA01A240BAEC5117C727F9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -2128,7 +2120,6 @@
 				F65549FA24564F2100574872 /* Font Awesome 5 Brands-Regular-400.otf in Resources */,
 				F67DF812241BFE6800793A9C /* SubjectDetailsSegmentView.xib in Resources */,
 				75886D222419327F0079C080 /* LaunchScreen.storyboard in Resources */,
-				754E1EA52436505300C8FD30 /* GoogleService-Info.plist in Resources */,
 				299B358A241F907E00D6F9A5 /* FormTextView.xib in Resources */,
 				75886DFA241932BA0079C080 /* LeftSideNavigationBarView.xib in Resources */,
 				DC3E80D724859D95003983E2 /* Login.storyboard in Resources */,
@@ -2186,7 +2177,6 @@
 				75886D9B241932AB0079C080 /* TabBar.storyboard in Resources */,
 				DC3E80C9248595ED003983E2 /* Logs.storyboard in Resources */,
 				DC4FFA0A2470B9AE0079A27C /* ProfileMenuTableViewCell.xib in Resources */,
-				754E1EA72436506900C8FD30 /* GoogleService-Info.plist in Resources */,
 				75886D8C241932AB0079C080 /* SubjectList.storyboard in Resources */,
 				75886D212419327F0079C080 /* DefaultColorTheme.xcassets in Resources */,
 				F65549FD24564F2100574872 /* Font Awesome 5 Pro-Solid-900.otf in Resources */,
@@ -2299,7 +2289,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		754E1E9F243648B700C8FD30 /* Firebase Crashlytics */ = {
+		754E1E9F243648B700C8FD30 /* Send DSYM file to Sentry  (bitcode = NO) */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2310,34 +2300,16 @@
 				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
 			);
-			name = "Firebase Crashlytics";
+			name = "Send DSYM file to Sentry  (bitcode = NO)";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "INFO_PLIST_PATH=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\necho \"INFO_PLIST_PATH = ${INFO_PLIST_PATH}\"\n\nDSYM_FILE_PATH=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\necho \"DSYM_FILE_PATH = ${DSYM_FILE_PATH}/Contents/Resources/DWARF/${TARGET_NAME}\"\n\nif [ \"${CONFIGURATION}\" != \"Debug(Beta)\" ] && [ \"${CONFIGURATION}\" != \"Debug(QA)\" ]\nthen\n    echo \".../FirebaseCrashlytics/run\"\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\nelse\n    echo \"No FirebaseCrashlytics/run in Debug build\"\nfi\n";
+			shellScript = "INFO_PLIST_PATH=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\necho \"INFO_PLIST_PATH = ${INFO_PLIST_PATH}\"\n\nDSYM_FILE_PATH=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\necho \"DSYM_FILE_PATH = ${DSYM_FILE_PATH}/Contents/Resources/DWARF/${TARGET_NAME}\"\n\nif [ \"${CONFIGURATION}\" != \"Debug(Beta)\" ] && [ \"${CONFIGURATION}\" != \"Debug(QA)\" ]\nthen\n    echo \"sentry-cli triggered ...\"\n\n    if which sentry-cli >/dev/null; then\n        # defined in project `Build Settings` to automatically handle multiple configurations.\n#        export SENTRY_ORG=avecare\n#        export SENTRY_PROJECT=educator-release\n#        export SENTRY_AUTH_TOKEN=afeb2e94598c4b6b96c363d07b62296b6fb9e470aec7465d8f0f962716c47a22\n\n        ERROR=$(sentry-cli upload-dif \"$DWARF_DSYM_FOLDER_PATH\" 2>&1 >/dev/null)\n    \n        if [ ! $? -eq 0 ]; then\n            echo \"warning: sentry-cli - $ERROR\"\n        fi\n        else\n            echo \"warning: sentry-cli not installed, download from https://github.com/getsentry/sentry-cli\"\n    fi\n\nelse\n    echo \"No sentry-cli in Debug build\"\nfi\n";
 		};
-		754E1EA0243648BB00C8FD30 /* Firebase Analytics  (GoogleService-Info.plist) */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Firebase Analytics  (GoogleService-Info.plist)";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "TARGET_CATEGORY=\"Supervisor\"\n\n# Name of the resource we're selectively copying\nGOOGLESERVICE_INFO_PLIST=\"GoogleService-Info.plist\"\n\nGOOGLESERVICE_INFO_QA=\"${PROJECT_DIR}/FirebaseAnalytics/${TARGET_NAME}/qa/${GOOGLESERVICE_INFO_PLIST}\"\nGOOGLESERVICE_INFO_BETA=\"${PROJECT_DIR}/FirebaseAnalytics/${TARGET_NAME}/beta/${GOOGLESERVICE_INFO_PLIST}\"\nGOOGLESERVICE_INFO_PROD=\"${PROJECT_DIR}/FirebaseAnalytics/${TARGET_NAME}/prod/${GOOGLESERVICE_INFO_PLIST}\"\n\n# Make sure the qa version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_QA}\"\nif [ ! -f $GOOGLESERVICE_INFO_QA ]\nthen\n    echo \"No QA GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the beta version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_BETA}\"\nif [ ! -f $GOOGLESERVICE_INFO_BETA ]\nthen\n    echo \"No Beta GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the prod version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\n    echo \"No Production GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\n#PLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\nPLIST_DESTINATION=\"${PROJECT_DIR}/Avecare.code/${TARGET_CATEGORY}/Supporting Files/${GOOGLESERVICE_INFO_PLIST}\"\n\nif [ \"${CONFIGURATION}\" == \"Release(QA)\" ]; then\n    echo \"using ...qa/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_QA}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Release(Beta)\" ]; then\n    echo \"using ...beta/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_BETA}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Release(AppStore)\" ]; then\n    echo \"using ...prod/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nelse\n    echo \"${CONFIGURATION}\"\n    echo \"ignoring GoogleService-Info.plist replacement\"\nfi\n";
-		};
-		754E1EA2243648C900C8FD30 /* Firebase Crashlytics */ = {
+		754E1EA2243648C900C8FD30 /* Send DSYM file to Sentry  (bitcode = NO) */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2348,32 +2320,14 @@
 				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 				"$(DWARF_DSYM_FOLDER_PATH)/$(DWARF_DSYM_FILE_NAME)/Contents/Resources/DWARF/$(TARGET_NAME)",
 			);
-			name = "Firebase Crashlytics";
+			name = "Send DSYM file to Sentry  (bitcode = NO)";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "INFO_PLIST_PATH=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\necho \"INFO_PLIST_PATH = ${INFO_PLIST_PATH}\"\n\nDSYM_FILE_PATH=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\necho \"DSYM_FILE_PATH = ${DSYM_FILE_PATH}/Contents/Resources/DWARF/${TARGET_NAME}\"\n\nif [ \"${CONFIGURATION}\" != \"Debug(Beta)\" ] && [ \"${CONFIGURATION}\" != \"Debug(QA)\" ]\nthen\n    echo \".../FirebaseCrashlytics/run\"\n    \"${PODS_ROOT}/FirebaseCrashlytics/run\"\nelse\n    echo \"No FirebaseCrashlytics/run in Debug build\"\nfi\n";
-		};
-		754E1EA3243648CB00C8FD30 /* Firebase Analytics  (GoogleService-Info.plist) */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Firebase Analytics  (GoogleService-Info.plist)";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "TARGET_CATEGORY=\"Guardian\"\n\n# Name of the resource we're selectively copying\nGOOGLESERVICE_INFO_PLIST=\"GoogleService-Info.plist\"\n\nGOOGLESERVICE_INFO_QA=\"${PROJECT_DIR}/FirebaseAnalytics/${TARGET_NAME}/qa/${GOOGLESERVICE_INFO_PLIST}\"\nGOOGLESERVICE_INFO_BETA=\"${PROJECT_DIR}/FirebaseAnalytics/${TARGET_NAME}/beta/${GOOGLESERVICE_INFO_PLIST}\"\nGOOGLESERVICE_INFO_PROD=\"${PROJECT_DIR}/FirebaseAnalytics/${TARGET_NAME}/prod/${GOOGLESERVICE_INFO_PLIST}\"\n\n# Make sure the qa version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_QA}\"\nif [ ! -f $GOOGLESERVICE_INFO_QA ]\nthen\n    echo \"No QA GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the beta version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_BETA}\"\nif [ ! -f $GOOGLESERVICE_INFO_BETA ]\nthen\n    echo \"No Beta GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Make sure the prod version of GoogleService-Info.plist exists\necho \"Looking for ${GOOGLESERVICE_INFO_PLIST} in ${GOOGLESERVICE_INFO_PROD}\"\nif [ ! -f $GOOGLESERVICE_INFO_PROD ]\nthen\n    echo \"No Production GoogleService-Info.plist found. Please ensure it's in the proper directory.\"\n    exit 1\nfi\n\n# Get a reference to the destination location for the GoogleService-Info.plist\n#PLIST_DESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\nPLIST_DESTINATION=\"${PROJECT_DIR}/Avecare.code/${TARGET_CATEGORY}/Supporting Files/${GOOGLESERVICE_INFO_PLIST}\"\n\nif [ \"${CONFIGURATION}\" == \"Release(QA)\" ]; then\n    echo \"using ...qa/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_QA}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Release(Beta)\" ]; then\n    echo \"using ...beta/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_BETA}\" \"${PLIST_DESTINATION}\"\nelif [ \"${CONFIGURATION}\" == \"Release(AppStore)\" ]; then\n    echo \"using ...prod/${GOOGLESERVICE_INFO_PLIST}\"\n    cp \"${GOOGLESERVICE_INFO_PROD}\" \"${PLIST_DESTINATION}\"\nelse\n    echo \"${CONFIGURATION}\"\n    echo \"ignoring GoogleService-Info.plist replacement\"\nfi\n";
+			shellScript = "INFO_PLIST_PATH=\"${BUILT_PRODUCTS_DIR}/${INFOPLIST_PATH}\"\necho \"INFO_PLIST_PATH = ${INFO_PLIST_PATH}\"\n\nDSYM_FILE_PATH=\"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}\"\necho \"DSYM_FILE_PATH = ${DSYM_FILE_PATH}/Contents/Resources/DWARF/${TARGET_NAME}\"\n\nif [ \"${CONFIGURATION}\" != \"Debug(Beta)\" ] && [ \"${CONFIGURATION}\" != \"Debug(QA)\" ]\nthen\n    echo \"sentry-cli triggered ...\"\n\n    if which sentry-cli >/dev/null; then\n        # defined in project `Build Settings` to automatically handle multiple configurations.\n#        export SENTRY_ORG=avecare\n#        export SENTRY_PROJECT=educator-release\n#        export SENTRY_AUTH_TOKEN=afeb2e94598c4b6b96c363d07b62296b6fb9e470aec7465d8f0f962716c47a22\n\n        ERROR=$(sentry-cli upload-dif \"$DWARF_DSYM_FOLDER_PATH\" 2>&1 >/dev/null)\n    \n        if [ ! $? -eq 0 ]; then\n            echo \"warning: sentry-cli - $ERROR\"\n        fi\n        else\n            echo \"warning: sentry-cli not installed, download from https://github.com/getsentry/sentry-cli\"\n    fi\n\nelse\n    echo \"No sentry-cli in Debug build\"\nfi\n\n";
 		};
 		75886E01241933680079C080 /* Run Script: SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2503,7 +2457,7 @@
 				DC05B3CE247C45000014779D /* PanningInteractionController.swift in Sources */,
 				75886DF2241932BA0079C080 /* SupervisorTabBarController.swift in Sources */,
 				75886D0E2419327F0079C080 /* AvecareAPI+sampleData.swift in Sources */,
-				7563166524BE229E007D31B4 /* AppDelegate+FirebaseCrashlytics.swift in Sources */,
+				7563166524BE229E007D31B4 /* AppDelegate+SentrySDK.swift in Sources */,
 				D0C4C802249AB47800E16023 /* NotificationTypeDataProvider+publishing.swift in Sources */,
 				75886DD4241932BA0079C080 /* R.supervisor.generated.swift in Sources */,
 				DCB33D6224A63CC500C5AC0E /* RLMLogTagsRow.swift in Sources */,
@@ -2686,7 +2640,7 @@
 				75886D132419327F0079C080 /* UINVC.swift in Sources */,
 				75886D172419327F0079C080 /* UserProfile.swift in Sources */,
 				DC9D131424AB5DBB00DEBA61 /* LogsTagsTableViewCell.swift in Sources */,
-				7563166624BE229E007D31B4 /* AppDelegate+FirebaseCrashlytics.swift in Sources */,
+				7563166624BE229E007D31B4 /* AppDelegate+SentrySDK.swift in Sources */,
 				75886D97241932AB0079C080 /* LogsViewController.swift in Sources */,
 				DC4EA6D424916889007A36C0 /* RLMInjuryOption.swift in Sources */,
 				755EAEAB241ABB6900A6BA4D /* Session.swift in Sources */,
@@ -3123,6 +3077,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Supervisor/Supporting Files/supervisor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3133,6 +3088,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor.qa";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SENTRY_AUTH_TOKEN = afeb2e94598c4b6b96c363d07b62296b6fb9e470aec7465d8f0f962716c47a22;
+				SENTRY_DSN = "https://a6773cf1aba34e24a77c5f3866b4a23c@o420374.ingest.sentry.io/5338493";
+				SENTRY_ORG = avecare;
+				SENTRY_PROJECT = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG QA SUPERVISOR";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -3148,6 +3107,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Guardian/Supporting Files/guardian-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3228,6 +3188,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Supervisor/Supporting Files/supervisor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3238,6 +3199,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor.qa";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SENTRY_AUTH_TOKEN = afeb2e94598c4b6b96c363d07b62296b6fb9e470aec7465d8f0f962716c47a22;
+				SENTRY_DSN = "https://a6773cf1aba34e24a77c5f3866b4a23c@o420374.ingest.sentry.io/5338493";
+				SENTRY_ORG = avecare;
+				SENTRY_PROJECT = "educator-qa";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "QA SUPERVISOR";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -3253,6 +3218,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Guardian/Supporting Files/guardian-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3278,6 +3244,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Supervisor/Supporting Files/supervisor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3288,6 +3255,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor.beta";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SENTRY_AUTH_TOKEN = afeb2e94598c4b6b96c363d07b62296b6fb9e470aec7465d8f0f962716c47a22;
+				SENTRY_DSN = "https://a6773cf1aba34e24a77c5f3866b4a23c@o420374.ingest.sentry.io/5338493";
+				SENTRY_ORG = avecare;
+				SENTRY_PROJECT = "";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG BETA SUPERVISOR";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -3303,6 +3274,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Supervisor/Supporting Files/supervisor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3313,6 +3285,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor.beta";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SENTRY_AUTH_TOKEN = afeb2e94598c4b6b96c363d07b62296b6fb9e470aec7465d8f0f962716c47a22;
+				SENTRY_DSN = "https://a6773cf1aba34e24a77c5f3866b4a23c@o420374.ingest.sentry.io/5338493";
+				SENTRY_ORG = avecare;
+				SENTRY_PROJECT = "educator-beta";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "BETA SUPERVISOR";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -3383,6 +3359,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Supervisor/Supporting Files/supervisor-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3393,6 +3370,10 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SENTRY_AUTH_TOKEN = afeb2e94598c4b6b96c363d07b62296b6fb9e470aec7465d8f0f962716c47a22;
+				SENTRY_DSN = "https://a6773cf1aba34e24a77c5f3866b4a23c@o420374.ingest.sentry.io/5338493";
+				SENTRY_ORG = avecare;
+				SENTRY_PROJECT = "educator-release";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "APPSTORE SUPERVISOR";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -3408,6 +3389,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Guardian/Supporting Files/guardian-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3433,6 +3415,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Guardian/Supporting Files/guardian-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3458,6 +3441,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = ...;
 				DEVELOPMENT_TEAM = RHNS93D9UP;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/Avecare.code/Guardian/Supporting Files/guardian-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (

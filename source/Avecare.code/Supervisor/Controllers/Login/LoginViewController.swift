@@ -67,8 +67,8 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 
         // Prod.
         // ====
-//        loginField?.text = "testroom100@gmail.com"
-//        passwordField?.text = "Spiria123"
+        loginField?.text = "testroom100@gmail.com"
+        passwordField?.text = "Spiria123"
 
     }
 
@@ -102,9 +102,6 @@ class LoginViewController: UIViewController, IndicatorProtocol {
     }
 
     @IBAction func signInAction(sender: UIButton) {
-        // Force a test crash
-//        fatalError()
-
         guard let email = loginField?.text, let password = passwordField?.text else {
             self.showErrorAlert(AuthError.emptyCredentials.message)
             return

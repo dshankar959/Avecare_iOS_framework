@@ -27,32 +27,8 @@ lane :reset_build_env_ios do
   ENV["TARGET_SELECTION"] = 'target1'   # // educator
   sh "git checkout -- \"#{app_info_plist_path}\""
 
-  # // reset Firebase: GoogleService-Info.plist
-  #
-  build_target_generic = $build_target_generics[ENV["TARGET_SELECTION"]]
-  build_target_generic_path = $build_target_generics[ENV["TARGET_SELECTION"]].capitalize
-  plist_folder = ENV["SOURCE_ROOT"] + "/#{$project_name}.code/#{build_target_generic_path}/Supporting Files/"
-
-  plist_filename = "GoogleService-Info.plist"
-
-  googleServiceInfo_plist_path = plist_folder + plist_filename
-
-  sh "git checkout -- \"#{googleServiceInfo_plist_path}\""
-
-
   ENV["TARGET_SELECTION"] = 'target2'   # // parent
   sh "git checkout -- \"#{app_info_plist_path}\""
-
-  # // reset Firebase: GoogleService-Info.plist
-  #
-  build_target_generic = $build_target_generics[ENV["TARGET_SELECTION"]]
-  build_target_generic_path = $build_target_generics[ENV["TARGET_SELECTION"]].capitalize
-  plist_folder = ENV["SOURCE_ROOT"] + "/#{$project_name}.code/#{build_target_generic_path}/Supporting Files/"
-
-  googleServiceInfo_plist_path = plist_folder + plist_filename
-
-  sh "git checkout -- \"#{googleServiceInfo_plist_path}\""
-
 
 end
 

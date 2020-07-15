@@ -1,6 +1,6 @@
 import UIKit
 import CocoaLumberjack
-import FirebaseCrashlytics
+import Sentry
 
 
 
@@ -30,8 +30,15 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
         DDLogInfo("")
 
         #if !DEBUG
-            // #Crashlytics logging
-            Crashlytics.crashlytics().setUserID(appSession.userProfile.email)
+            // #Sentry logging
+            let user = User()
+
+            if let accountTypeId = appSession.userProfile.accountTypeId {
+                user.userId = accountTypeId
+            }
+            user.email = appSession.userProfile.email
+
+            SentrySDK.setUser(user)
         #endif
 
         syncEngine.resetSyncTimer()

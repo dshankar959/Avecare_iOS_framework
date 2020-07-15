@@ -3,7 +3,6 @@ import CocoaLumberjack
 import IHProgressHUD
 import DeviceKit
 import Reachability
-import Firebase
 import Kingfisher
 
 
@@ -56,13 +55,7 @@ import Kingfisher
         // Kingfisher disk image cache
         ImageCache.default.diskStorage.config.sizeLimit = 100 * 1024 //bytes
 
-        #if DEBUG || targetEnvironment(simulator)
-            DDLogDebug("⚠️  #DEBUG build ❕ Crashlytics DISABLED. ❕")
-        #else
-            DDLogDebug("⚠️  #RELEASE buid❕ Crashlytics ENABLED.  ⚠️")
-            FirebaseApp.configure()
-            analyzeCrashlytics()
-        #endif
+        setupSentrySDK()
 
         #if GUARDIAN
             DDLogInfo("GUARDIAN.  [eg. \"Parent\", \"Pet Owner\", etc.]")

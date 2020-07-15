@@ -71,5 +71,7 @@
 	<false/>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This app needs permission to save photos to your device.</string>
+	<key>sentrySDKdsn</key>
+	<string>$(SENTRY_DSN)</string>
 </dict>
 </plist>
