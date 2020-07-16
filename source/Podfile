@@ -98,7 +98,7 @@ def common_pods
 
   # Effortless ZIP Handling in Swift
   # https://github.com/weichsel/ZIPFoundation
-#  pod 'ZIPFoundation'
+  pod 'ZIPFoundation'
 
   # A lightweight, pure-Swift library for downloading and caching images from the web.
   # https://github.com/onevcat/Kingfisher
