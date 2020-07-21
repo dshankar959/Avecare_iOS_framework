@@ -1,7 +1,7 @@
 "authenticate_signing_in" = "Signing in ...";
 "authenticate_syncing" = "Syncing ...";
 "authenticate_signing_out" = "Signing Out...";
-"requst_onetime_password" = "Requesting one-time password ...";
+"request_onetime_password" = "Requesting one-time password ...";
 "new_onetime_password_resent" = "New one-time password re-sent. 🔢";
 "subjectlist_all" = "all";
 "educator_training_header" = "degrees, certifications, and training";

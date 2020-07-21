@@ -19,7 +19,7 @@ class SettingsSideViewController: UIViewController, IndicatorProtocol {
         super.viewDidLoad()
 
         // Force a test crash
-        fatalError()    // FIXME:  remove for release.
+//        fatalError()    // FIXME:  remove for release.
 
 
         navigationController?.setNavigationBarHidden(true, animated: false)

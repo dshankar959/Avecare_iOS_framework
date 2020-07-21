@@ -43,7 +43,7 @@ struct SubjectListTableViewCellModel: CellViewModel {
         cell.backgroundColor = isSelected ? R.color.background() : .white
         cell.subjectNameLabel.text = "\(lastName), \(firstName)"
 
-        if let fontAwesomeFont = UIFont(name: "FontAwesome5Pro-Light", size: 14) {
+        if let fontAwesomeFont = R.font.fontAwesome5ProLight(size: 14) {
             let birthDateAttributedString = NSAttributedString(string: Date.fullMonthDayYearFormatter.string(from: birthDate) + "  \u{f1fd}",
                                                                attributes: [NSAttributedString.Key.font: fontAwesomeFont])
             cell.birthDateLabel.attributedText = birthDateAttributedString

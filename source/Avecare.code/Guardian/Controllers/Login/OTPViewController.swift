@@ -78,7 +78,7 @@ extension OTPViewController {
             self.showErrorAlert(AuthError.emptyCredentials.message)
             return
         }
-        showActivityIndicator(withStatus: NSLocalizedString("requst_onetime_password", comment: ""))
+        showActivityIndicator(withStatus: NSLocalizedString("request_onetime_password", comment: ""))
 
         // otp redo
         UserAPIService.requestOTP(email: email) { [weak self] result in
