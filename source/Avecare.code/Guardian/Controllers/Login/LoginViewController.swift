@@ -49,6 +49,8 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
 
         loginField?.text = appSettings.lastUsername
 
+//        loginField?.text = "testroom100@gmail.com"
+
         #endif
     }
 
