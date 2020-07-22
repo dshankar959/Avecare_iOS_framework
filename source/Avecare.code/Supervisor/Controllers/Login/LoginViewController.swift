@@ -29,6 +29,10 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
 
+        // #ui automated testing support
+        loginField?.accessibilityIdentifier = "ui_loginField"
+        passwordField?.accessibilityIdentifier = "ui_passwordField"
+
         #if DEBUG
 
 //        loginField?.text = "535cc_Room_100@avecare.com" // School Age
@@ -64,11 +68,15 @@ class LoginViewController: UIViewController, IndicatorProtocol {
             passwordField?.text = ""
         #endif
 
-
-        // Prod.
+/*
+        // Prod. testing
         // ====
-//        loginField?.text = "testroom100@gmail.com"
-//        passwordField?.text = "Spiria123"
+        loginField?.text = "testroom100@gmail.com"
+        passwordField?.text = "Spiria123"
+
+        loginField?.text = "535cc_Room_300@avecare.com" // Toddler
+        passwordField?.text = "123456"
+*/
 
     }
 
@@ -102,9 +110,6 @@ class LoginViewController: UIViewController, IndicatorProtocol {
     }
 
     @IBAction func signInAction(sender: UIButton) {
-        // Force a test crash
-//        fatalError()
-
         guard let email = loginField?.text, let password = passwordField?.text else {
             self.showErrorAlert(AuthError.emptyCredentials.message)
             return

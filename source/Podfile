@@ -56,10 +56,10 @@ def common_pods
   pod 'SwiftLint'
 #  pod 'SwiftLint', '~> 0.38.2'
 
-  # Add the pod for Firebase Crashlytics
-  pod 'Firebase/Crashlytics'
-  # add the Firebase pod for Google Analytics
-  pod 'Firebase/Analytics'
+  # Sentry is a service that helps you monitor and fix crashes in realtime.
+  # Official Sentry SDK for iOS / tvOS / macOS / watchOS
+  # https://github.com/getsentry/sentry-cocoa
+  pod 'Sentry'
 
   # Realm is a mobile database: a replacement for Core Data & SQLite
   # https://github.com/realm/realm-cocoa
@@ -98,7 +98,7 @@ def common_pods
 
   # Effortless ZIP Handling in Swift
   # https://github.com/weichsel/ZIPFoundation
-#  pod 'ZIPFoundation'
+  pod 'ZIPFoundation'
 
   # A lightweight, pure-Swift library for downloading and caching images from the web.
   # https://github.com/onevcat/Kingfisher

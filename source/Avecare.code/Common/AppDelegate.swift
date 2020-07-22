@@ -3,7 +3,6 @@ import CocoaLumberjack
 import IHProgressHUD
 import DeviceKit
 import Reachability
-import Firebase
 import Kingfisher
 
 
@@ -39,7 +38,6 @@ import Kingfisher
 
     var _selectedSubjectId: String? = nil
 
-//    var _isShuttingDown: Bool = false
 
 
     // MARK: -
@@ -53,16 +51,10 @@ import Kingfisher
         setupLoggingFramework()
         DDLogInfo("")
 
+        setupSentrySDK()
+
         // Kingfisher disk image cache
         ImageCache.default.diskStorage.config.sizeLimit = 100 * 1024 //bytes
-
-        #if DEBUG || targetEnvironment(simulator)
-            DDLogDebug("⚠️  #DEBUG build ❕ Crashlytics DISABLED. ❕")
-        #else
-            DDLogDebug("⚠️  #RELEASE buid❕ Crashlytics ENABLED.  ⚠️")
-            FirebaseApp.configure()
-            analyzeCrashlytics()
-        #endif
 
         #if GUARDIAN
             DDLogInfo("GUARDIAN.  [eg. \"Parent\", \"Pet Owner\", etc.]")
@@ -76,7 +68,7 @@ import Kingfisher
         DDLogDebug(appNameVersionAndBuildDateString())
         DDLogDebug("server url: \(appSettings.serverURLstring)")
 
-        // Re-construct session
+        // Re-construct any previous existing session if the user didn't sign-out.
         if let lastUsername = appSettings.lastUsername,
             let userProfile = UserKeychainService.getUserProfile(with: lastUsername),
             let currentToken = UserKeychainService.getCurrentToken() {

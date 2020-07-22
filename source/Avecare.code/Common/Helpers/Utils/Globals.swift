@@ -105,3 +105,11 @@ func resetUserAppDirectory() {
     // wipes DB, etc.
     FileManager.default.removeDirectory(userAppDirectory)
 }
+
+
+func printAllFonts() {
+    UIFont.familyNames.forEach({ familyName in
+        let fontNames = UIFont.fontNames(forFamilyName: familyName)
+        print(familyName, fontNames)
+    })
+}

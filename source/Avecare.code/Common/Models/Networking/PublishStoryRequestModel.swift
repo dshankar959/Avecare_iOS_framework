@@ -44,16 +44,3 @@ extension PublishStoryRequestModel: MultipartEncodable {
     }
 
 }
-
-/*
-struct PublishStoryResponseModel: Decodable {
-
-    let id: String
-    let unitId: String
-    let updatedAt: String
-//    let thumbnails: String?
-    let storyFile: FilesResponseModel.File
-
-    let story: RLMStory
-}
-*/

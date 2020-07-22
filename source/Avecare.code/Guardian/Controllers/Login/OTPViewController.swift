@@ -24,6 +24,9 @@ class OTPViewController: UIViewController, IndicatorProtocol, PinViewDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        // #ui automated testing support
+        otpField?.accessibilityIdentifier = "ui_otpField"
+
         let firstCell = otpField?.collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? PinCell
         firstCell?.pinField.becomeFirstResponder()
 
@@ -78,7 +81,7 @@ extension OTPViewController {
             self.showErrorAlert(AuthError.emptyCredentials.message)
             return
         }
-        showActivityIndicator(withStatus: NSLocalizedString("requst_onetime_password", comment: ""))
+        showActivityIndicator(withStatus: NSLocalizedString("request_onetime_password", comment: ""))
 
         // otp redo
         UserAPIService.requestOTP(email: email) { [weak self] result in

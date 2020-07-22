@@ -19,6 +19,10 @@ extension Bundle {
         return bundleIdentifier!
     }
 
+    var sentrySDKdsn: String {
+        return infoDictionary?["sentrySDKdsn"] as! String
+    }
+
 }
 
 

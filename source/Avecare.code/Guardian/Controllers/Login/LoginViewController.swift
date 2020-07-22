@@ -30,6 +30,9 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        // #ui automated testing support
+        loginField?.accessibilityIdentifier = "ui_loginField"
+
         #if DEBUG
 //        loginField?.text = "sdwornik@spiria.com"
         loginField?.text = "guardian@example.net"
@@ -48,6 +51,11 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
         #else
 
         loginField?.text = appSettings.lastUsername
+/*
+        // Prod.
+        // ====
+        loginField?.text = "avecare2020@gmail.com"
+*/
 
 //        loginField?.text = "testroom100@gmail.com"
 
@@ -67,7 +75,7 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
             return
         }
 
-        showActivityIndicator(withStatus: NSLocalizedString("requst_onetime_password", comment: ""))
+        showActivityIndicator(withStatus: NSLocalizedString("request_onetime_password", comment: ""))
 
         // otp
         UserAPIService.requestOTP(email: email) { [weak self] result in

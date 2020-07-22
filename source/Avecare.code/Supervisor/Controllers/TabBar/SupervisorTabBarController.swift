@@ -1,7 +1,7 @@
 import Foundation
 import UIKit
 import SnapKit
-import FirebaseCrashlytics
+import Sentry
 
 
 
@@ -37,8 +37,15 @@ class SupervisorTabBarController: UITabBarController {
         super.viewDidLoad()
 
         #if !DEBUG
-            // #Crashlytics logging
-            Crashlytics.crashlytics().setUserID(appSession.userProfile.email)
+            // #Sentry logging
+            let user = User()
+
+            if let accountTypeId = appSession.userProfile.accountTypeId {
+                user.userId = accountTypeId
+            }
+            user.email = appSession.userProfile.email
+
+            SentrySDK.setUser(user)     // fyi:  https://github.com/getsentry/sentry-cocoa/blob/master/Samples/iOS-Swift/iOS-Swift/ViewController.swift
         #endif
 
         configureTabBar()

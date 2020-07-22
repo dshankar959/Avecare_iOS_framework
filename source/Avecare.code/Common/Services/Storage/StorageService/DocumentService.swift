@@ -7,6 +7,7 @@ struct DocumentService {
 
     let directory: URL
 
+
     init() {
         directory = userAppDirectory.appendingPathComponent("documents")
         _ = FileManager.default.createDirectory(directory)
@@ -32,7 +33,6 @@ struct DocumentService {
         pdf.write(to: pdfURL)
     }
 
-
     func saveRemoteFile(_ remoteFileURL: URL, name: String = newUUID, type: String) throws -> URL {
         DDLogVerbose("Loading file from: \(remoteFileURL)")
 
@@ -55,7 +55,6 @@ struct DocumentService {
         FileManager.default.removeFileAt(url)
     }
 
-
     func fileURL(name: String, type: String) -> URL? {
         let imageURL = directory.appendingPathComponent(name).appendingPathExtension(type)
         guard FileManager.default.fileExists(atPath: imageURL.path) else {
@@ -70,4 +69,5 @@ struct DocumentService {
         let pdfDocumentPage = pdfDocument?.page(at: pageIndex)
         return pdfDocumentPage?.thumbnail(of: thumbnailSize, for: PDFDisplayBox.trimBox)
     }
+
 }
