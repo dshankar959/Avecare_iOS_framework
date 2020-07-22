@@ -78,7 +78,8 @@ struct UserAPIService {
 
 extension UserAPIService {
 
-    static func submitUserFeedback(comments: String,
+    static func submitUserFeedback(for session: Session,
+                                   comments: String,
                                    withLogfiles: Bool,
                                    completion:@escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
@@ -96,11 +97,12 @@ extension UserAPIService {
             userComments += "\n\n\(appNameVersionAndBuildDateString())\nserver: \(serverType)"
         }
 
-        let model = UserFeedbackRequestModel(title: appSession.userProfile.email,
+        let model = UserFeedbackRequestModel(for: session,
                                              comments: userComments,
                                              includeLogfiles: withLogfiles)
 
-        apiProvider.request(.submitUserFeedback(comments: model)) { result in
+        apiProvider.request(.submitUserFeedback(comments: model),
+                            callbackQueue: DispatchQueue.global(qos: .utility)) { result in   // separate thread
             switch result {
             case .success:
                 DDLogVerbose("// success")

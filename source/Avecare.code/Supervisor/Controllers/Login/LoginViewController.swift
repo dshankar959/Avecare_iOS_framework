@@ -31,7 +31,7 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 
         // #ui automated testing support
         loginField?.accessibilityIdentifier = "ui_loginField"
-        passwordField?.accessibilityIdentifier = "passwordField"
+        passwordField?.accessibilityIdentifier = "ui_passwordField"
 
         #if DEBUG
 
@@ -68,11 +68,15 @@ class LoginViewController: UIViewController, IndicatorProtocol {
             passwordField?.text = ""
         #endif
 
-
-        // Prod.
+/*
+        // Prod. testing
         // ====
-//        loginField?.text = "testroom100@gmail.com"
-//        passwordField?.text = "Spiria123"
+        loginField?.text = "testroom100@gmail.com"
+        passwordField?.text = "Spiria123"
+
+        loginField?.text = "535cc_Room_300@avecare.com" // Toddler
+        passwordField?.text = "123456"
+*/
 
     }
 

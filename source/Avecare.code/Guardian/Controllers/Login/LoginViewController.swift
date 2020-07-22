@@ -30,6 +30,9 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        // #ui automated testing support
+        loginField?.accessibilityIdentifier = "ui_loginField"
+
         #if DEBUG
 //        loginField?.text = "sdwornik@spiria.com"
         loginField?.text = "guardian@example.net"
@@ -48,11 +51,11 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
         #else
 
         loginField?.text = appSettings.lastUsername
-
+/*
         // Prod.
         // ====
         loginField?.text = "avecare2020@gmail.com"
-
+*/
 
         #endif
     }

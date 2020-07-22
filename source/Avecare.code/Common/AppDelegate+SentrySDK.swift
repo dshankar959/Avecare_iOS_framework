@@ -15,15 +15,27 @@ extension AppDelegate {
 
             SentrySDK.start { options in
                 options.dsn = Bundle.main.sentrySDKdsn
+
                 options.beforeSend = { event in
                     DDLogDebug("sentry event: \(event)")
                     if event.level == .error || event.level == .fatal {
                         DDLogDebug("sentry event.level: \(event.level.rawValue)")
-                        DDLogError("A crash occured.  🤔")
+                        DDLogWarn("A crash occured.  🤔")
 
-                        UserAPIService.submitUserFeedback(comments: "Sentry detected a crash.  🤔", withLogfiles: true) { error in
-                            if let error = error {
-                                DDLogError("error = \(error)")
+                        if let userEmail = event.user?.email {
+                            // Fake out a session for the crashed user.
+                            let userCredentials = UserCredentials(email: userEmail, password: "")
+                            let userProfile = UserProfile(userCredentials: userCredentials)
+                            var token = APIToken()
+                            token.isFake = true
+                            let session = Session(token: token, userProfile: userProfile)
+
+                            UserAPIService.submitUserFeedback(for: session,
+                                                              comments: "Sentry detected a crash.  🤔",
+                                                              withLogfiles: true) { error in
+                                if let error = error {
+                                    DDLogError("submitUserFeedback error = \(error)")
+                                }
                             }
                         }
                     }
@@ -34,7 +46,13 @@ extension AppDelegate {
                 options.logLevel = SentryLogLevel.verbose
                 options.enableAutoSessionTracking = true
                 options.attachStacktrace = true
-                options.sessionTrackingIntervalMillis = 5_000}
+                options.sessionTrackingIntervalMillis = 5_000
+            }
+
+        if let reportCount = SentryCrash.sharedInstance()?.reportCount {
+            DDLogWarn("Pending crash reports = \(reportCount)")
+        }
+
         #endif
     }
 

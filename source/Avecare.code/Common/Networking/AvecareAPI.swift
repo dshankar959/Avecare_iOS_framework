@@ -210,8 +210,11 @@ extension AvecareAPI: TargetType {
             ], encoding: URLEncoding.default)
 
         case .subjectPublishDailyLog(let request as MultipartEncodable),
-             .unitPublishStory(let request as MultipartEncodable),
-             .submitUserFeedback(let request as MultipartEncodable):
+             .unitPublishStory(let request as MultipartEncodable):
+            return .uploadMultipart(request.formData)
+
+        case .submitUserFeedback(let request as MultipartEncodable):
+            DDLogDebug(".submitUserFeedback parameters: \(request)")
             return .uploadMultipart(request.formData)
 
         default:

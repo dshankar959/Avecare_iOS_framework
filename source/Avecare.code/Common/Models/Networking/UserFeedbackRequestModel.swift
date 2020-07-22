@@ -6,13 +6,13 @@ import ZIPFoundation
 
 struct UserFeedbackRequestModel {
 
-    let id: String
-    let serverLastUpdated: Date? = nil
-    let clientLastUpdated: Date = Date()
-    let title: String
-    let comments: String
-    var logfilesURL: URL? = nil
-
+    private let id: String
+    private let serverLastUpdated: Date? = nil
+    private let clientLastUpdated: Date = Date()
+    private let title: String
+    private let comments: String
+    private var logfilesURL: URL? = nil
+    private let session: Session
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -23,9 +23,10 @@ struct UserFeedbackRequestModel {
         case fileAttachment = "file"
     }
 
-    init(title: String, comments: String, includeLogfiles: Bool) {
+    init(for session: Session, comments: String, includeLogfiles: Bool) {
+        self.session = session
         self.id = newUUID
-        self.title = title
+        self.title = session.userProfile.email
         self.comments = comments
 
         if includeLogfiles {
@@ -74,7 +75,7 @@ extension UserFeedbackRequestModel {
         var tempDirectory: URL? = nil
 
         let fileManager = FileManager()
-        let profile = appSession.userProfile
+        let profile = session.userProfile
         let email = profile.email
         let zippedFilename = "\(email)_\(Date.shortISO8601FileStringFromDate(Date())).zip"
         tempDirectory = FileStorageService.createTempDirectory()
@@ -110,18 +111,19 @@ extension UserFeedbackRequestModel {
         }
 
         // Add DB file to zip package.
-        do {
-            if let archive = Archive(url: destinationURL!, accessMode: .update) {
-                try archive.addEntry(with: DALConfig.realmStoreName, relativeTo: userAppDirectory)
-                DDLogVerbose("zipped realm DB file in: \(zippedFilename)")
+        if let userAppDirectory = FileStorageService.appDirectory(for: session.userProfile) {
+            do {
+                if let archive = Archive(url: destinationURL!, accessMode: .update) {
+                    try archive.addEntry(with: DALConfig.realmStoreName, relativeTo: userAppDirectory)
+                    DDLogVerbose("zipped realm DB file in: \(zippedFilename)")
+                }
+            } catch {
+                DDLogError("🤔 Adding DB entry to ZIP archive failed with error:\(error)")
+                return nil
             }
-        } catch {
-            DDLogError("🤔 Adding DB entry to ZIP archive failed with error:\(error)")
-            return nil
         }
 
         let zippedFilenameURL = tempDirectory?.appendingPathComponent(zippedFilename)
-
         return zippedFilenameURL
     }
 
