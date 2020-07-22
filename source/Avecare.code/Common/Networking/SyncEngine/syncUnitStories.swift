@@ -139,9 +139,8 @@ extension SyncEngine {
         // Collect any `story` objects that have their publish state set to `publishing`
         let allStoriesForPublishingRaw = RLMStory.findAllToSync()
 
-        // sort the list so the server date gets updated in the same order as updatedate locally.
+        // sort the list so the server date gets updated in the same order as updated locally.
         let allStoriesForPublishing = RLMStory.sortObjectsByLastUpdated(order: .orderedAscending, allStoriesForPublishingRaw)
-
 
         DDLogVerbose("Story objects to sync up = \(allStoriesForPublishing.count)")
         notifySyncStateChanged(message: "\(allStoriesForPublishing.count) documents remaining to sync up ↑")

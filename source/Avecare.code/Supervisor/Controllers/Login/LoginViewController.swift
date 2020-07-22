@@ -29,6 +29,10 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                                                name: UIResponder.keyboardWillHideNotification,
                                                object: nil)
 
+        // #ui automated testing support
+        loginField?.accessibilityIdentifier = "ui_loginField"
+        passwordField?.accessibilityIdentifier = "passwordField"
+
         #if DEBUG
 
 //        loginField?.text = "535cc_Room_100@avecare.com" // School Age

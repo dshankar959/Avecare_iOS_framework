@@ -21,7 +21,6 @@ class SettingsSideViewController: UIViewController, IndicatorProtocol {
         // Force a test crash
 //        fatalError()    // FIXME:  remove for release.
 
-
         navigationController?.setNavigationBarHidden(true, animated: false)
         tableView.register(nibModels: [SettingTableViewCellModel.self])
 

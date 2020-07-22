@@ -74,3 +74,43 @@ struct UserAPIService {
         }
     }
 }
+
+
+extension UserAPIService {
+
+    static func submitUserFeedback(comments: String,
+                                   withLogfiles: Bool,
+                                   completion:@escaping (_ error: AppError?) -> Void) {
+        DDLogVerbose("")
+
+        // Append some additional helpful info.  (fyi)
+        let servers = Servers()
+        let serverType = servers.valueFromDescription(appSettings.serverURLstring)
+        let isCustomType = (serverType == servers.customType) ? true : false
+
+        var userComments = comments
+
+        if isCustomType {
+            userComments += "\n\n\(appNameVersionAndBuildDateString())\nserver: \(appSettings.serverURLstring)"
+        } else {
+            userComments += "\n\n\(appNameVersionAndBuildDateString())\nserver: \(serverType)"
+        }
+
+        let model = UserFeedbackRequestModel(title: appSession.userProfile.email,
+                                             comments: userComments,
+                                             includeLogfiles: withLogfiles)
+
+        apiProvider.request(.submitUserFeedback(comments: model)) { result in
+            switch result {
+            case .success:
+                DDLogVerbose("// success")
+                FileManager().clearTmpDirectory()
+                appDelegate.clearLogFiles()
+                completion(nil)
+            case .failure(let error):
+                completion(getAppErrorFromMoya(with: error))
+            }
+        }
+    }
+
+}

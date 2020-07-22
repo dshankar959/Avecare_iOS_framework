@@ -35,8 +35,18 @@ extension AppDelegate {
             DDLogInfo("=============================================================================================================")
             DDLogInfo("log files location: \(appDelegate._loggerDirectory)")
         }
-
     }
 
+
+    func clearLogFiles() {
+        if var logFiles = FileManager.default.getAllFilesIn(appDelegate._loggerDirectory) {
+            logFiles.removeFirst() // leave alone most recent log file
+
+            // remove any old files
+            for file in logFiles {
+                FileManager.default.removeFileAt(file)
+            }
+        }
+    }
 
 }

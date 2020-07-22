@@ -43,6 +43,8 @@ private struct APIConfig {
 
 
 enum AvecareAPI { // API Services
+    // MARK: - FEEDBACK
+    case submitUserFeedback(comments: UserFeedbackRequestModel)
     // MARK: - USER
     case login(creds: UserCredentials)
     case logout
@@ -64,7 +66,7 @@ enum AvecareAPI { // API Services
     case organizationDetails(id: String)
     case organizationDailyTemplates(id: String)
 //    case organizationInstitutions(id: String)
-    case organizationSubjectTypes(id: String)
+//    case organizationSubjectTypes(id: String)
     case organizationDailyTasks(id: String)
     case organizationActivities(id: String)
     case organizationInjuries(id: String)
@@ -110,6 +112,8 @@ extension AvecareAPI: TargetType {
         case .logout: return "/users/logout"
         case .oneTimePassword: return "/users/otp"
 
+        case .submitUserFeedback: return "/crash_reports/"
+
         case .accountInfo: return "/accounts"
 
         case .guardianDetails(let id): return "/guardians/\(id)"
@@ -125,7 +129,7 @@ extension AvecareAPI: TargetType {
         case .organizationDetails(let id): return "/organizations/\(id)"
         case .organizationDailyTemplates(let id): return "/organizations/\(id)/daily-subject-log-templates"
 //        case .organizationInstitutions(let id): return "/organizations/\(id)/institutions"
-        case .organizationSubjectTypes(let id): return "/organizations/\(id)/subject-types"     // might not be required
+//        case .organizationSubjectTypes(let id): return "/organizations/\(id)/subject-types"     // might not be required
         case .organizationDailyTasks(let id): return "/organizations/\(id)/available-daily-tasks"
         case .organizationActivities(let id): return "/organizations/\(id)/available-activities"
         case .organizationInjuries(let id): return "/organizations/\(id)/available-injuries"
@@ -167,7 +171,8 @@ extension AvecareAPI: TargetType {
              .unitCreateInjury,
              .unitCreateReminder,
              .subjectPublishDailyLog,
-             .unitPublishStory:
+             .unitPublishStory,
+             .submitUserFeedback:
             return .post
         default: return .get
         }
@@ -205,7 +210,8 @@ extension AvecareAPI: TargetType {
             ], encoding: URLEncoding.default)
 
         case .subjectPublishDailyLog(let request as MultipartEncodable),
-             .unitPublishStory(let request as MultipartEncodable):
+             .unitPublishStory(let request as MultipartEncodable),
+             .submitUserFeedback(let request as MultipartEncodable):
             return .uploadMultipart(request.formData)
 
         default:
