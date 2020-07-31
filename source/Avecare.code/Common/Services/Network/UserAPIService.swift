@@ -14,22 +14,29 @@ struct UserAPIService {
             return completion(.failure(AuthError.emptyCredentials.message))
         }
 
-        apiProvider.request(.login(creds: userCreds)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    //  convert JSON response into our 'decodable' model object using Moya's own .map function.
-                    //  let rawJSON = try response.mapJSON()
-                    //  DDLogDebug("raw JSON: \(rawJSON)\n")
-                    let token = try response.map(APIToken.self)
-                    completion(.success(token))
-                } catch {
-                    DDLogError("JSON MAPPING ERROR = \(error)")
-                    completion(.failure(JSONError.failedToMapData.message))
-                }
-            case .failure(let error):
-                completion(.failure(getAppErrorFromMoya(with: error)))
-            }
+        apiProvider.request(.login(creds: userCreds),
+                            callbackQueue: DispatchQueue.global(qos: .utility)) { result in
+                                switch result {
+                                case .success(let response):
+                                    do {
+                                        //  convert JSON response into our 'decodable' model object using Moya's own .map function.
+                                        //  let rawJSON = try response.mapJSON()
+                                        //  DDLogDebug("raw JSON: \(rawJSON)\n")
+                                        let token = try response.map(APIToken.self)
+                                        DispatchQueue.main.async() {
+                                            completion(.success(token))
+                                        }
+                                    } catch {
+                                        DDLogError("JSON MAPPING ERROR = \(error)")
+                                        DispatchQueue.main.async() {
+                                            completion(.failure(JSONError.failedToMapData.message))
+                                        }
+                                    }
+                                case .failure(let error):
+                                    DispatchQueue.main.async() {
+                                        completion(.failure(getAppErrorFromMoya(with: error)))
+                                    }
+                                }
         }
     }
 
@@ -43,34 +50,46 @@ struct UserAPIService {
             return completion(.failure(AuthError.emptyCredentials.message))
         }
 
-        apiProvider.request(.oneTimePassword(email: email)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    //  convert JSON response into our 'decodable' model object using Moya's own .map function.
-                    //  let rawJSON = try response.mapJSON()
-                    //  DDLogDebug("raw JSON: \(rawJSON)\n")
-                    let message = try response.mapString()
-                    completion(.success(message))
-                } catch {
-                    DDLogError("JSON MAPPING ERROR = \(error)")
-                    completion(.failure(JSONError.failedToMapData.message))
-                }
-            case .failure(let error):
-                completion(.failure(getAppErrorFromMoya(with: error)))
-            }
+        apiProvider.request(.oneTimePassword(email: email),
+                            callbackQueue: DispatchQueue.global(qos: .utility)) { result in
+                                switch result {
+                                case .success(let response):
+                                    do {
+                                        //  convert JSON response into our 'decodable' model object using Moya's own .map function.
+                                        //  let rawJSON = try response.mapJSON()
+                                        //  DDLogDebug("raw JSON: \(rawJSON)\n")
+                                        let message = try response.mapString()
+                                        DispatchQueue.main.async() {
+                                            completion(.success(message))
+                                        }
+                                    } catch {
+                                        DDLogError("JSON MAPPING ERROR = \(error)")
+                                        DispatchQueue.main.async() {
+                                            completion(.failure(JSONError.failedToMapData.message))
+                                        }
+                                    }
+                                case .failure(let error):
+                                    DispatchQueue.main.async() {
+                                        completion(.failure(getAppErrorFromMoya(with: error)))
+                                    }
+                                }
         }
     }
 
 
     static func logout(completion:@escaping (Result<Int, AppError>) -> Void) {
-        apiProvider.request(.logout) { result in
-            switch result {
-            case .success(let response):
-                completion(.success(response.statusCode))
-            case .failure(let error):
-                completion(.failure(getAppErrorFromMoya(with: error)))
-            }
+        apiProvider.request(.logout,
+                            callbackQueue: DispatchQueue.global(qos: .utility)) { result in
+                                switch result {
+                                case .success(let response):
+                                    DispatchQueue.main.async() {
+                                        completion(.success(response.statusCode))
+                                    }
+                                case .failure(let error):
+                                    DispatchQueue.main.async() {
+                                        completion(.failure(getAppErrorFromMoya(with: error)))
+                                    }
+                                }
         }
     }
 }
@@ -101,17 +120,20 @@ extension UserAPIService {
                                              comments: userComments,
                                              includeLogfiles: withLogfiles)
 
-        apiProvider.request(.submitUserFeedback(comments: model),
-                            callbackQueue: DispatchQueue.global(qos: .utility)) { result in   // separate thread
-            switch result {
-            case .success:
-                DDLogVerbose("// success")
-                FileManager().clearTmpDirectory()
-                appDelegate.clearLogFiles()
-                completion(nil)
-            case .failure(let error):
-                completion(getAppErrorFromMoya(with: error))
-            }
+        apiProvider.request(.submitUserFeedback(comments: model)) { result in
+                                switch result {
+                                case .success:
+                                    DDLogVerbose("// success")
+                                    FileManager().clearTmpDirectory()
+                                    appDelegate.clearLogFiles()
+                                    DispatchQueue.main.async() {
+                                        completion(nil)
+                                    }
+                                case .failure(let error):
+                                    DispatchQueue.main.async() {
+                                        completion(getAppErrorFromMoya(with: error))
+                                    }
+                                }
         }
     }
 

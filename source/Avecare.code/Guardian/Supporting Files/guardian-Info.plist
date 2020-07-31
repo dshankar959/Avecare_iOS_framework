@@ -67,8 +67,6 @@
 	</array>
 	<key>UIUserInterfaceStyle</key>
 	<string>Light</string>
-	<key>FirebaseScreenReportingEnabled</key>
-	<false/>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>This app needs permission to save photos to your device.</string>
 	<key>sentrySDKdsn</key>

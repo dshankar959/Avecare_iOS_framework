@@ -61,6 +61,11 @@ extension DatabaseLayer where Self: Object {
                 }
         })
 
+        // {ERROR} [PERSISTENCE] mmap() failed:Cannot allocate memory size: 25346048 offset: 67108864 #6572
+        // Realm v5.x only
+        // https://github.com/realm/realm-cocoa/issues/6572
+//        config.maximumNumberOfActiveVersions = 3      // testing...
+
         config.fileURL = userRealmFile
 
         config.shouldCompactOnLaunch = { (totalBytes: Int, usedBytes: Int) -> Bool in

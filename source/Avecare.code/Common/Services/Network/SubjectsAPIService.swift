@@ -5,19 +5,26 @@ import CocoaLumberjack
 struct SubjectsAPIService {
 
     static func publishDailyLog(log: LogFormAPIModel, completion: @escaping (Result<LogFormAPIModel, AppError>) -> Void) {
-        apiProvider.request(.subjectPublishDailyLog(request: log)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let mappedResponse = try response.map(LogFormAPIModel.self)
-                    completion(.success(mappedResponse))
-                } catch {
-                    DDLogError("JSON MAPPING ERROR = \(error)")
-                    completion(.failure(JSONError.failedToMapData.message))
-                }
-            case .failure(let error):
-                completion(.failure(getAppErrorFromMoya(with: error)))
-            }
+        apiProvider.request(.subjectPublishDailyLog(request: log),
+                            callbackQueue: DispatchQueue.global(qos: .utility)) { result in
+                                switch result {
+                                case .success(let response):
+                                    do {
+                                        let mappedResponse = try response.map(LogFormAPIModel.self)
+                                        DispatchQueue.main.async() {
+                                            completion(.success(mappedResponse))
+                                        }
+                                    } catch {
+                                        DDLogError("JSON MAPPING ERROR = \(error)")
+                                        DispatchQueue.main.async() {
+                                            completion(.failure(JSONError.failedToMapData.message))
+                                        }
+                                    }
+                                case .failure(let error):
+                                    DispatchQueue.main.async() {
+                                        completion(.failure(getAppErrorFromMoya(with: error)))
+                                    }
+                                }
         }
     }
 
@@ -60,19 +67,26 @@ struct SubjectsAPIService {
 
 
     static func getLogs(request: SubjectLogsRequest, completion: @escaping (Result<[LogFormAPIModel], AppError>) -> Void) {
-        apiProvider.request(.subjectGetLogs(request: request)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    let mappedResponse = try response.map(APIPaginatedResponse<LogFormAPIModel>.self)
-                    completion(.success(mappedResponse.results))
-                } catch {
-                    DDLogError("JSON MAPPING ERROR = \(error)")
-                    completion(.failure(JSONError.failedToMapData.message))
-                }
-            case .failure(let error):
-                completion(.failure(getAppErrorFromMoya(with: error)))
-            }
+        apiProvider.request(.subjectGetLogs(request: request),
+                            callbackQueue: DispatchQueue.global(qos: .utility)) { result in
+                                switch result {
+                                case .success(let response):
+                                    do {
+                                        let mappedResponse = try response.map(APIPaginatedResponse<LogFormAPIModel>.self)
+                                        DispatchQueue.main.async() {
+                                            completion(.success(mappedResponse.results))
+                                        }
+                                    } catch {
+                                        DDLogError("JSON MAPPING ERROR = \(error)")
+                                        DispatchQueue.main.async() {
+                                            completion(.failure(JSONError.failedToMapData.message))
+                                        }
+                                    }
+                                case .failure(let error):
+                                    DispatchQueue.main.async() {
+                                        completion(.failure(getAppErrorFromMoya(with: error)))
+                                    }
+                                }
         }
     }
 
