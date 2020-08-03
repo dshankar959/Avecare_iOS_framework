@@ -109,6 +109,8 @@
 		61547F44C319932DE7A455BA /* StoriesDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154717A69B557EB291B8570 /* StoriesDetailsViewController.swift */; };
 		61547F86427E44844CC9DC71 /* SubjectListDataProvider+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477C6C7DC9B6372B7ACC6 /* SubjectListDataProvider+Common.swift */; };
 		6A216CA06A17B11A8377AD9C /* Pods_educator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */; };
+		750135ED24D7939400BAFCBC /* RLMDailyTaskForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750135EC24D7939400BAFCBC /* RLMDailyTaskForm.swift */; };
+		750135EE24D7939400BAFCBC /* RLMDailyTaskForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750135EC24D7939400BAFCBC /* RLMDailyTaskForm.swift */; };
 		751B4C5C247EF9B6001B8035 /* syncSubjectLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478D41647CC7CBA087361 /* syncSubjectLogs.swift */; };
 		751CE2F024B53D73002C4FC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
 		751CE2F124B53D74002C4FC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
@@ -560,6 +562,7 @@
 		61F4A7EF07DB298479023526 /* Pods-educator.release(beta).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-educator.release(beta).xcconfig"; path = "Target Support Files/Pods-educator/Pods-educator.release(beta).xcconfig"; sourceTree = "<group>"; };
 		66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_educator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		750135EC24D7939400BAFCBC /* RLMDailyTaskForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMDailyTaskForm.swift; sourceTree = "<group>"; };
 		7523497424A477E8000C873E /* AboutFormProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutFormProvider.swift; sourceTree = "<group>"; };
 		7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FormTemplateRows.json; sourceTree = "<group>"; };
 		755EAEA7241AB64200A6BA4D /* parent.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = parent.entitlements; sourceTree = "<group>"; };
@@ -1741,6 +1744,7 @@
 				75EB59B12461858700E077E5 /* FormRows */,
 				75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */,
 				75EB59BE2461858700E077E5 /* RLMCleanable.swift */,
+				750135EC24D7939400BAFCBC /* RLMDailyTaskForm.swift */,
 				61547B3327B0C7C4F06CDC0D /* RLMDailyTask.swift */,
 				D0C4C803249BFBB000E16023 /* RLMActivity.swift */,
 				D0C4C7FD249A548200E16023 /* RLMInjury.swift */,
@@ -2586,6 +2590,7 @@
 				615471C3EAAA9F493D956400 /* SubjectListDataProvider+NavItems.swift in Sources */,
 				6154733769337340AB149C8B /* CustomInput.swift in Sources */,
 				61547F86427E44844CC9DC71 /* SubjectListDataProvider+Common.swift in Sources */,
+				750135ED24D7939400BAFCBC /* RLMDailyTaskForm.swift in Sources */,
 				6154726061B2E96DC4B60087 /* TimeRangePickerView.swift in Sources */,
 				61547E94A113A96589BB4C99 /* DocumentService.swift in Sources */,
 				75EB5A042463C03300E077E5 /* RLMGuardian.swift in Sources */,
@@ -2714,6 +2719,7 @@
 				DC3E80E62486A9D8003983E2 /* FeedDetailsViewController.swift in Sources */,
 				75886D4B2419327F0079C080 /* UITableViewCell.swift in Sources */,
 				75886D512419327F0079C080 /* CGPoint.swift in Sources */,
+				750135EE24D7939400BAFCBC /* RLMDailyTaskForm.swift in Sources */,
 				75886D0D2419327F0079C080 /* AvecareAPI.swift in Sources */,
 				7563166324BE21B4007D31B4 /* AppDelegate+Logging.swift in Sources */,
 				F6A5E13D2444DE8D00FD77B6 /* SingleValuePickerView.swift in Sources */,

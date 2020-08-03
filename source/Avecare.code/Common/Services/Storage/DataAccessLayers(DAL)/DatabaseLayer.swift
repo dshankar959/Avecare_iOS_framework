@@ -61,11 +61,6 @@ extension DatabaseLayer where Self: Object {
                 }
         })
 
-        // {ERROR} [PERSISTENCE] mmap() failed:Cannot allocate memory size: 25346048 offset: 67108864 #6572
-        // Realm v5.x only
-        // https://github.com/realm/realm-cocoa/issues/6572
-//        config.maximumNumberOfActiveVersions = 3      // testing...
-
         config.fileURL = userRealmFile
 
         config.shouldCompactOnLaunch = { (totalBytes: Int, usedBytes: Int) -> Bool in
@@ -115,9 +110,13 @@ extension DatabaseLayer where Self: Object {
         autoreleasepool {
             do {
                 let database = Self.getDatabase()
-                try database?.write {
+
+                try database?.safeWrite {
                     database?.add(self)
                 }
+//                try database?.write {
+//                    database?.add(self)
+//                }
             } catch let error {
                 DDLogError("Database error: \(error)")
                 fatalError("Database error: \(error)")
@@ -125,21 +124,6 @@ extension DatabaseLayer where Self: Object {
         }
     }
 
-/*
-    func create<T: Object>(_ object: T = self as! Object) {
-        autoreleasepool {
-            do {
-                let database = self.getDatabase()
-                try database?.write {
-                    database?.add(object)
-                }
-            } catch let error {
-                DDLogError("Database error: \(error)")
-                fatalError("Database error: \(error)")
-            }
-        }
-    }
-*/
 
     // note: 'primary id' required for this to function.
     static func createOrUpdateAll(with objects: [Self], update: Bool = true) {
@@ -171,21 +155,6 @@ extension DatabaseLayer where Self: Object {
         }
     }
 
-/*
-    func delete<T: Object>(object: T) {
-        autoreleasepool {
-            do {
-                let database = self.getDatabase()
-                try database?.write {
-                    database?.delete(object)
-                }
-            } catch let error {
-                DDLogError("Database error: \(error)")
-                fatalError("Database error: \(error)")
-            }
-        }
-    }
-*/
 
     static func deleteAll(objects: [Self]) {
         autoreleasepool {
@@ -223,9 +192,13 @@ extension DatabaseLayer where Self: Object {
         autoreleasepool {
             do {
                 let database = getDatabase()
-                try database?.write {
+
+                try database?.safeWrite {
                     writeTransactionBlock()
                 }
+//                try database?.write {
+//                    writeTransactionBlock()
+//                }
             } catch let error {
                 DDLogError("Database error: \(error)")
                 fatalError("Database error: \(error)")
@@ -278,6 +251,21 @@ extension DatabaseLayer where Self: Object {
     // https://stackoverflow.com/a/45810078/7599
     func forceRefresh() {
         Self.getDatabase()?.refresh()
+    }
+
+}
+
+
+
+// https://stackoverflow.com/a/54203871/7599
+extension Realm {
+
+    public func safeWrite(_ block: (() throws -> Void)) throws {
+        if isInWriteTransaction {
+            try block()
+        } else {
+            try write(block)
+        }
     }
 
 }

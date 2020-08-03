@@ -2,6 +2,7 @@ import UIKit
 import CocoaLumberjack
 
 
+
 protocol FormProvider {
     func form() -> Form
     func isPublishable() -> Bool
@@ -27,37 +28,37 @@ class ChecklistFormProvider {
 
     var dailyTaskForm: RLMDailyTaskForm {
         // Collect saved dailyTasks and sort by last updated.
-        let allDailyTasks = RLMDailyTaskForm.findAll()
-        let sortedDailyTasks = RLMDailyTaskForm.sortObjectsByLastUpdated(order: .orderedAscending, allDailyTasks)
+        let allDailyTaskForms = RLMDailyTaskForm.findAll()
+        let sortedForms = RLMDailyTaskForm.sortObjectsByLastUpdated(order: .orderedAscending, allDailyTaskForms)
 
         // Use the most recent form.
-        if let dailyTasks = sortedDailyTasks.last {
-            if let clientLastUpdated = dailyTasks.clientLastUpdated {
+        if let dailyTaskForm = sortedForms.last {
+            if let clientLastUpdated = dailyTaskForm.clientLastUpdated {
                 if Calendar.current.isDateInToday(clientLastUpdated) {
-                    return dailyTasks
+                    return dailyTaskForm
                 }
-            } else if let serverLastUpdated = dailyTasks.serverLastUpdated,
+            } else if let serverLastUpdated = dailyTaskForm.serverLastUpdated,
                 Calendar.current.isDateInToday(serverLastUpdated) {
                 RLMDailyTaskForm.writeTransaction {
-                    dailyTasks.clientLastUpdated = Date()
+                    dailyTaskForm.clientLastUpdated = Date()
                 }
-                return dailyTasks
+                return dailyTaskForm
             }
         }
 
-        DDLogDebug("🆕 Adding new daily tasks")
-        let dailyTasks = RLMDailyTaskForm(id: newUUID)
-        dailyTasks.clientLastUpdated = Date()
+        DDLogDebug("🆕 Adding new daily task form.")
+        let dailyTaskForm = RLMDailyTaskForm(id: newUUID)
+        dailyTaskForm.clientLastUpdated = Date()
         let availableTasks = RLMDailyTaskOption.findAll().filter { $0.isActive }
         for task in availableTasks {
             let dailyTask = RLMDailyTask()
             dailyTask.dailyTaskOption = task
             dailyTask.completed = false
-            dailyTasks.tasks.append(dailyTask)
+            dailyTaskForm.tasks.append(dailyTask)
         }
 
-        dailyTasks.create()
-        return dailyTasks
+        dailyTaskForm.create()
+        return dailyTaskForm
     }
 }
 
@@ -88,7 +89,11 @@ extension ChecklistFormProvider: FormProvider {
 
         let isSubmitted = dailyTaskForm.publishState != .local
 
-        models += dailyTaskForm.tasks.map { task in
+        models += dailyTaskForm.tasks.sorted(by: {
+                guard let order0 = $0.dailyTaskOption?.order else { return false }
+                guard let order1 = $1.dailyTaskOption?.order else { return false }
+                return order0 < order1
+            }).map { task in
             return CheckmarkFormViewModel(isEditable: !isSubmitted,
                                           title: task.dailyTaskOption?.name ?? "",
                                           isChecked: task.completed,

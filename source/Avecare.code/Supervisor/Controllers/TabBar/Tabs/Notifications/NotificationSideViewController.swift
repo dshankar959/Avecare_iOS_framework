@@ -18,18 +18,34 @@ class NotificationSideViewController: UIViewController {
         super.viewDidLoad()
 
         tableView.register(nibModels: [NotificationTypeTableViewCellModel.self])
-
-        if dataProvider.numberOfRows > 0 {
-            dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
-        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
+        NotificationCenter.default.addObserver(self, selector: #selector(updateView),
+                                               name: UIApplication.willEnterForegroundNotification,
+                                               object: nil)
+
         if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
             detailsViewController.updateSyncButton()
         }
+
+        updateView()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        NotificationCenter.default.removeObserver(self, name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+
+    @objc func updateView() {
+        if dataProvider.numberOfRows > 0 {
+            dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
+        }
+
+        tableView.reloadData()
     }
 
 }

@@ -83,19 +83,17 @@ class DefaultNotificationTypeDataProvider: NotificationTypeDataProvider {
 
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath) {
         if isSelected {
-            if let last = lastSelectedIndexPath {
-                if last != indexPath {
-                    // deselect
-                    dataSource[last.row].isSelected = false
-                    delegate?.didUpdateModel(at: last)
-                } else {
-                    // already selected
-                    return
-                }
+            if let last = lastSelectedIndexPath, last != indexPath {
+                // deselect
+                dataSource[last.row].isSelected = false
+                delegate?.didUpdateModel(at: last)
             }
+
+            // Refresh.
             dataSource[indexPath.row].isSelected = isSelected
             lastSelectedIndexPath = indexPath
             delegate?.didUpdateModel(at: indexPath)
+
         } else {
             guard let last = lastSelectedIndexPath, last == indexPath else {
                 return
