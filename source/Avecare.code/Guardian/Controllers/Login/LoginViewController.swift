@@ -34,13 +34,13 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
         loginField?.accessibilityIdentifier = "ui_loginField"
 
         #if DEBUG
-//        loginField?.text = "sdwornik@spiria.com"
+        loginField?.text = "sdwornik@spiria.com"
 //        loginField?.text = "guardian@example.net"
 //        loginField?.text = "shankardevika@yahoo.ca"
 //        loginField?.text = "dshankar@spiria.com"
 //        loginField?.text = "smoon@spiria.com"
 
-        loginField?.text = "parent1@example.net"
+//        loginField?.text = "parent1@example.net"
 //        loginField?.text = "parent2@example.net"
 //        loginField?.text = "parent3@example.net"
 //        loginField?.text = "parent4@example.net"

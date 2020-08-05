@@ -56,7 +56,7 @@ class RLMSubject: RLMDefaults {
             // load and save image during json response decoding synchronously
             if let profilePhoto = try values.decodeIfPresent(String.self, forKey: .profilePhoto),
                let url = URL(string: profilePhoto) {
-                _ = try DocumentService().saveRemoteFile(url, name: id, type: "jpg")
+                _ = try? DocumentService().saveRemoteFile(url, name: id, type: "jpg")   // TODO: optimize fetching URL data. (don't do it in here)
             }
 
             self.unitIds = try values.decode(List<String>.self, forKey: .unitIds)

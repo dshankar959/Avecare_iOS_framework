@@ -352,7 +352,6 @@
 		DC3E80EA2486BDDE003983E2 /* FeedsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80E92486BDDE003983E2 /* FeedsAPIService.swift */; };
 		DC3E80EE2486BFCF003983E2 /* RLMMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */; };
 		DC3E80F12486C9F6003983E2 /* RLMMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80ED2486BFCF003983E2 /* RLMMessage.swift */; };
-		DC3E80F22486C9FB003983E2 /* FeedsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80E92486BDDE003983E2 /* FeedsAPIService.swift */; };
 		DC3E80F32486CA28003983E2 /* FeedDetailsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC3E80EF2486C8B7003983E2 /* FeedDetailsDataProvider.swift */; };
 		DC4EA6D3249151F1007A36C0 /* syncOrganizationInjuries.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC4EA6D2249151F1007A36C0 /* syncOrganizationInjuries.swift */; };
 		DC4EA6D424916889007A36C0 /* RLMInjuryOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615473EE5A59F3D396DA45E8 /* RLMInjuryOption.swift */; };
@@ -2510,7 +2509,6 @@
 				7565D34724C7C5000045A7E9 /* UserFeedbackRequestModel.swift in Sources */,
 				F67DF832241C009800793A9C /* ContentSizedTableView.swift in Sources */,
 				75886D442419327F0079C080 /* FileManager.swift in Sources */,
-				DC3E80F22486C9FB003983E2 /* FeedsAPIService.swift in Sources */,
 				75EB59C22461858700E077E5 /* RLMLogOptionRow.swift in Sources */,
 				75BFA30E24A4F13300E7D01A /* SupervisorTabBarButton.swift in Sources */,
 				F67DF81E241BFE6800793A9C /* TagListFormView.swift in Sources */,

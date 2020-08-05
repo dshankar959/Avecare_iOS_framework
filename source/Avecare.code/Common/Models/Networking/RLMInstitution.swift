@@ -31,7 +31,7 @@ class RLMInstitution: RLMDefaults {
 
             if let mealPlan = try values.decodeIfPresent(String.self, forKey: .mealPlan),
                 let url = URL(string: mealPlan) {
-                _ = try DocumentService().saveRemoteFile(url, name: CodingKeys.mealPlan.rawValue, type: "pdf")
+                _ = try? DocumentService().saveRemoteFile(url, name: CodingKeys.mealPlan.rawValue, type: "pdf") // TODO: optimize fetching URL data. (don't do it in here)
             }
 
 //            if let eventsCalendar = try values.decodeIfPresent(String.self, forKey: .eventsCalendar),
