@@ -5,14 +5,14 @@ import RealmSwift
 
 extension DataProvider where Self: Object {    // +Sync
 
-    static func findAllToSync() -> [Self] {
+    static func findAllToSync(detached: Bool = false) -> [Self] {
         let database = getDatabase()
 
         guard let allObjects = database?.objects(Self.self).filter("rawPublishState = \(PublishState.publishing.rawValue)") else {
             return []
         }
 
-        return allObjects.map { $0.detached() }
+        return allObjects.map { return detached ? $0.detached() : $0 }
     }
 
 

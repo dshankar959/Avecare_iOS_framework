@@ -82,7 +82,7 @@ extension SyncEngine {
         notifySyncStateChanged(message: "Syncing up 🔺 Subject Injuries")
 
         // Collect any `reminder` objects that have their publish state set to `publishing`.
-        let allInjuriesForPublishing = RLMInjury.findAllToSync()
+        let allInjuriesForPublishing = RLMInjury.findAllToSync(detached: true)
 
         DDLogVerbose("Injury objects to sync up = \(allInjuriesForPublishing.count)")
         notifySyncStateChanged(message: "\(allInjuriesForPublishing.count) injuries remaining to sync up ↑")

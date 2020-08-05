@@ -157,9 +157,7 @@ extension SyncEngine {
         notifySyncStateChanged(message: "Syncing up 🔺 subject logs")
 
         // Collect any `RLMLogForm` objects that have their publish state set to `publishing`.
-        let allFormLogsForPublishing: [RLMLogForm]
-
-        allFormLogsForPublishing = RLMLogForm.findAllToSync()
+        let allFormLogsForPublishing = RLMLogForm.findAllToSync()
 
         DDLogVerbose("Daily log form objects to sync up = \(allFormLogsForPublishing.count)")
         notifySyncStateChanged(message: "\(allFormLogsForPublishing.count) daily log forms remaining to sync up ↑")

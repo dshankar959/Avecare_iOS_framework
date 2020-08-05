@@ -68,7 +68,7 @@ extension SyncEngine {
         // Collect any `Checklist` objects that have their publish state set to `publishing`.
         let allDailyTasksForPublishing: [RLMDailyTaskForm]
 
-        allDailyTasksForPublishing = RLMDailyTaskForm.findAllToSync()
+        allDailyTasksForPublishing = RLMDailyTaskForm.findAllToSync(detached: true)
 
         DDLogVerbose("Daily Task list objects to sync up = \(allDailyTasksForPublishing.count)")
         notifySyncStateChanged(message: "\(allDailyTasksForPublishing.count) daily Task lists remaining to sync up ↑")
