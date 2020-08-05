@@ -22,6 +22,7 @@ class RLMReminder: RLMDefaults, RLMPublishable, DataProvider {
             try super.decode(from: decoder)
 
             let container = try decoder.container(keyedBy: CodingKeys.self)
+
             let subId = try container.decode(String.self, forKey: .subjectId)
             self.subject = RLMSubject.find(withID: subId)
 
@@ -40,6 +41,7 @@ class RLMReminder: RLMDefaults, RLMPublishable, DataProvider {
             try super.encode(to: encoder)
 
             var container = encoder.container(keyedBy: CodingKeys.self)
+
             try container.encode(reminderOption?.id, forKey: .reminderId)
             try container.encode(subject?.id, forKey: .subjectId)
             if let message = message {

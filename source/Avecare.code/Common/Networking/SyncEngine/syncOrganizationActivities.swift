@@ -84,9 +84,7 @@ extension SyncEngine {
         notifySyncStateChanged(message: "Syncing up 🔺 Organization Activities")
 
         // Collect any `reminder` objects that have their publish state set to `publishing`.
-        let allActivitiesForPublishing: [RLMActivity]
-
-        allActivitiesForPublishing = RLMActivity.findAllToSync()
+        let allActivitiesForPublishing = RLMActivity.findAllToSync()
 
         DDLogVerbose("Activity objects to sync up = \(allActivitiesForPublishing.count)")
         notifySyncStateChanged(message: "\(allActivitiesForPublishing.count) activities remaining to sync up ↑")

@@ -10,24 +10,22 @@ struct NotificationsAPIService {
         apiProvider.request(.unitPublishDailyTaskForm(id: unitId, request: data),
                             callbackQueue: DispatchQueue.global(qos: .utility),
                             completion: { result in
-                                switch result {
-                                case .success(let response):
-                                    do {
-                                        let dailyTaskForm = try JSONDecoder().decode(RLMDailyTaskForm.self, from: response.data)
-                                        DispatchQueue.main.async() {
-                                            completion(.success(dailyTaskForm))
-                                        }
-                                    } catch {
-                                        DDLogError("JSON MAPPING ERROR = \(error)")
-                                        DispatchQueue.main.async() {
-                                            completion(.failure(JSONError.failedToMapData.message))
-                                        }
-                                    }
-                                case .failure(let error):
-                                    DispatchQueue.main.async() {
-                                        completion(.failure(getAppErrorFromMoya(with: error)))
-                                    }
-                                }
+            switch result {
+            case .success(let response):
+                DispatchQueue.main.async() {
+                    do {
+                        let dailyTaskForm = try JSONDecoder().decode(RLMDailyTaskForm.self, from: response.data)
+                        completion(.success(dailyTaskForm))
+                    } catch {
+                        DDLogError("JSON MAPPING ERROR = \(error)")
+                        completion(.failure(JSONError.failedToMapData.message))
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async() {
+                    completion(.failure(getAppErrorFromMoya(with: error)))
+                }
+            }
         })
     }
 
@@ -37,24 +35,22 @@ struct NotificationsAPIService {
         apiProvider.request(.unitCreateReminder(payLoad: data),
                             callbackQueue: DispatchQueue.global(qos: .utility),
                             completion: { result in
-                                switch result {
-                                case .success(let response):
-                                    do {
-                                        let reminders = try JSONDecoder().decode([RLMReminder].self, from: response.data)
-                                        DispatchQueue.main.async() {
-                                            completion(.success(reminders))
-                                        }
-                                    } catch {
-                                        DDLogError("JSON MAPPING ERROR = \(error)")
-                                        DispatchQueue.main.async() {
-                                            completion(.failure(JSONError.failedToMapData.message))
-                                        }
-                                    }
-                                case .failure(let error):
-                                    DispatchQueue.main.async() {
-                                        completion(.failure(getAppErrorFromMoya(with: error)))
-                                    }
-                                }
+            switch result {
+            case .success(let response):
+                DispatchQueue.main.async() {
+                    do {
+                        let reminders = try JSONDecoder().decode([RLMReminder].self, from: response.data)
+                        completion(.success(reminders))
+                    } catch {
+                        DDLogError("JSON MAPPING ERROR = \(error)")
+                        completion(.failure(JSONError.failedToMapData.message))
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async() {
+                    completion(.failure(getAppErrorFromMoya(with: error)))
+                }
+            }
         })
     }
 
@@ -64,24 +60,22 @@ struct NotificationsAPIService {
         apiProvider.request(.unitCreateActivity(id: uintId, request: data),
                             callbackQueue: DispatchQueue.global(qos: .utility),
                             completion: { result in
-                                switch result {
-                                case .success(let response):
-                                    do {
-                                        let activity = try JSONDecoder().decode(RLMActivity.self, from: response.data)
-                                        DispatchQueue.main.async() {
-                                            completion(.success(activity))
-                                        }
-                                    } catch {
-                                        DDLogError("JSON MAPPING ERROR = \(error)")
-                                        DispatchQueue.main.async() {
-                                            completion(.failure(JSONError.failedToMapData.message))
-                                        }
-                                    }
-                                case .failure(let error):
-                                    DispatchQueue.main.async() {
-                                        completion(.failure(getAppErrorFromMoya(with: error)))
-                                    }
-                                }
+            switch result {
+            case .success(let response):
+                DispatchQueue.main.async() {
+                    do {
+                        let activity = try JSONDecoder().decode(RLMActivity.self, from: response.data)
+                        completion(.success(activity))
+                    } catch {
+                        DDLogError("JSON MAPPING ERROR = \(error)")
+                        completion(.failure(JSONError.failedToMapData.message))
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async() {
+                    completion(.failure(getAppErrorFromMoya(with: error)))
+                }
+            }
         })
     }
 
@@ -91,24 +85,22 @@ struct NotificationsAPIService {
         apiProvider.request(.unitCreateInjury(payLoad: data),
                             callbackQueue: DispatchQueue.global(qos: .utility),
                             completion: { result in
-                                switch result {
-                                case .success(let response):
-                                    do {
-                                        let injuries = try JSONDecoder().decode([RLMInjury].self, from: response.data)
-                                        DispatchQueue.main.async() {
-                                            completion(.success(injuries))
-                                        }
-                                    } catch {
-                                        DDLogError("JSON MAPPING ERROR = \(error)")
-                                        DispatchQueue.main.async() {
-                                            completion(.failure(JSONError.failedToMapData.message))
-                                        }
-                                    }
-                                case .failure(let error):
-                                    DispatchQueue.main.async() {
-                                        completion(.failure(getAppErrorFromMoya(with: error)))
-                                    }
-                                }
+            switch result {
+            case .success(let response):
+                DispatchQueue.main.async() {
+                    do {
+                        let injuries = try JSONDecoder().decode([RLMInjury].self, from: response.data)
+                        completion(.success(injuries))
+                    } catch {
+                        DDLogError("JSON MAPPING ERROR = \(error)")
+                        completion(.failure(JSONError.failedToMapData.message))
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async() {
+                    completion(.failure(getAppErrorFromMoya(with: error)))
+                }
+            }
         })
     }
 }

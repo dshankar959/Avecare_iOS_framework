@@ -12,7 +12,7 @@ extension DataProvider where Self: Object {    // +Sync
             return []
         }
 
-        return allObjects.map { $0 }
+        return allObjects.map { $0.detached() }
     }
 
 
