@@ -90,7 +90,7 @@ extension SyncEngine {
 
                     publishedDailyTaskForm.publishState = .published
                     DDLogDebug("⬆️ UP syncComplete!  dailyTaskForm.id = \(publishedDailyTaskForm.id)")
-                    RLMDailyTaskForm.createOrUpdateAll(with: [publishedDailyTaskForm], update: true)
+                    RLMDailyTaskForm.createOrUpdateAll(with: [publishedDailyTaskForm])
 
                     self?.syncUPDailyTaskChecklist(syncCompletion)    // recurse for anymore
 

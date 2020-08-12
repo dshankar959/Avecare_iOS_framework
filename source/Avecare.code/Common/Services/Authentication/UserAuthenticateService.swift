@@ -11,6 +11,59 @@ final class UserAuthenticateService: IndicatorProtocol {
     // MARK: - Sign-in
 
     func signIn(userCredentials: UserCredentials, completion:@escaping (AppError?) -> Void) {
+/*
+        // -
+        #if DEBUG && targetEnvironment(simulator)
+        // ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~
+        // Impersonate a real client on Prod. server.  Comment out this section to disable.
+        // Here be dragons! Tread lightly.
+        // Must do a fresh install.
+        let userCredentials = UserCredentials(email: "rfitzgerald@mcdermott.com", password: "")
+        let userProfile = UserProfile(userCredentials: userCredentials)
+        let clientToken = APIToken(withToken: "a0c813fbddbacd5c244edb22a25e5adfbb27ed6c",
+                                   accountType: "guardian",
+                                   accountTypeId: "4380864b-9af8-4195-86e6-a3b5b517194c",
+                                   isFakeToken: false)
+        appSettings.serverURLstring = ServerURLs.production.description // prod. server
+
+        // then.. login as the client to test their DB.
+        DDLogError("~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~")
+        DDLogError(" ATTENTION!  Testing user DB inception.")
+        DDLogError("~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~\n")
+
+        // Override any previous session
+        appDelegate._session = Session(token: clientToken, userProfile: userProfile)
+
+        self.onSignInLaunchCheck()
+
+        // override
+        appSettings.rememberLastUsername = false
+        appSettings.enableSyncUp = false
+        appSettings.enableSyncDown = true
+
+        RLMAccountInfo.saveAccountInfo(for: clientToken.accountType, with: clientToken.accountTypeId)
+
+        if appSettings.isFirstLogin() {
+            do {  // some DB defaults.
+                let data = try Data(resource: R.file.formTemplateRowsJson)
+                let log = try JSONDecoder().decode([RLMLogChooseRow].self, from: data)
+
+                // Add default rows, et al.
+                RLMLogChooseRow.createOrUpdateAll(with: log)
+
+            } catch {
+                DDLogError("JSON Decoding error = \(error)")
+                fatalError("JSON Decoding error = \(error)")
+            }
+        }
+
+        completion(nil)
+        return
+
+        #endif
+        // -
+*/
+
         showActivityIndicator(withStatus: NSLocalizedString("authenticate_signing_in", comment: ""))
 
         UserAPIService.authenticateUserWith(userCreds: userCredentials) { [weak self] result in

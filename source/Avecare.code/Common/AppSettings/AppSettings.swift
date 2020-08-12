@@ -3,6 +3,7 @@ import CocoaLumberjack
 
 
 
+private let kServerURLkey = "serverURL"
 private let kUseBiometricAuthenticationKey = "useBiometricAuthentication"
 private let kRememberLastUsernameKey = "rememberLastUsername"
 private let kLastUsernameKey = "lastUsername"
@@ -32,8 +33,21 @@ class AppSettings {
     }
 
     var serverURLstring: String {
-        let url = Servers().defaultRuntimeURLstring()
-        return url
+        get {
+            if let url = userDefaults(for: nil).string(forKey: kServerURLkey) {
+                return url
+            } else { // defaults
+                let url = Servers().defaultRuntimeURLstring()
+                self.serverURLstring = url    // save it.
+                return url
+            }
+        }
+        set (newValue) {
+            DDLogDebug("new server url: \(newValue)")
+            let defaults = userDefaults(for: nil)
+            defaults.set(newValue, forKey: kServerURLkey)
+            defaults.synchronize()
+        }
     }
 
     var useBiometricAuthentication: Bool {

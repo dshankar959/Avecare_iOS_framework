@@ -84,7 +84,7 @@ class SyncEngine {
         }
     }
 
-
+/*
     let syncOperationsQueue: OperationQueue = {
         let q = OperationQueue()
         q.name = "syncOperationsQueue"
@@ -92,7 +92,7 @@ class SyncEngine {
 
         return q
     }()
-
+*/
 
     init() {
         NotificationCenter.default.addObserver(self, selector: #selector(didCompleteSyncAll), name: .didCompleteSync, object: SyncEngine.self)

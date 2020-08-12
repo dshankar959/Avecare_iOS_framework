@@ -1,9 +1,10 @@
 import UIKit
+import CocoaLumberjack
 import SnapKit
 
 
 
-class AboutTableViewController: UITableViewController {
+class AboutTableViewController: UITableViewController, IndicatorProtocol {
 
     let dataProvider = AboutDataProvider()
     let appInfoView = AppInfoView(frame: CGRect.zero)
@@ -44,30 +45,76 @@ extension AboutTableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dataProvider.numberOfRows
+        return dataProvider.numberOfRows(for: section)
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let model = dataProvider.model(for: indexPath)
         let cell = tableView.dequeueReusableCell(withAnyModel: model, for: indexPath)
+
+        if indexPath.section == AboutSections.support.rawValue, let cell = cell as? AboutTableViewCell {
+            cell.accessoryViewLabel.text = ""
+        }
+
         return cell
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let details = AboutDetails.allCases[indexPath.row]
-        performSegue(withIdentifier: R.segue.aboutTableViewController.details, sender: details)
+        if indexPath.section == AboutSections.about.rawValue {
+            let details = AboutDetails.allCases[indexPath.row]
+            performSegue(withIdentifier: R.segue.aboutTableViewController.details, sender: details)
+        } else {
+            sendFeedbackLogs()
+        }
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
         headerView.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9529411765, blue: 0.9725490196, alpha: 1)
+
+        let titleLabel: UILabel = UILabel()
+        titleLabel.numberOfLines = 0
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        titleLabel.textColor = titleLabel.textColor.withAlphaComponent(0.60)
+
+        headerView.setSubviewForAutoLayout(titleLabel)
+
+        titleLabel.snp.remakeConstraints { (make) -> Void in
+            make.width.height.equalToSuperview()
+            make.left.equalTo(25)   // to match Storyboard offset
+        }
+
+        switch section {
+        case AboutSections.support.rawValue:
+            titleLabel.text = "Support"
+        default:
+            titleLabel.text = ""
+        }
+
         return headerView
     }
 
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 10
+        switch section {
+        case AboutSections.support.rawValue:
+            return navigationController?.navigationBar.frame.size.height ?? 44
+        default:
+            return 10
+        }
     }
+
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return navigationController?.navigationBar.frame.size.height ?? 44
+    }
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView()
+        footerView.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9529411765, blue: 0.9725490196, alpha: 1)
+        return footerView
+    }
+
 }
 
 
@@ -81,31 +128,62 @@ extension AboutTableViewController {
         }
     }
 
+
+    func sendFeedbackLogs() {
+        showActivityIndicator(withStatus: "Sending feedback package.")
+
+        UserAPIService.submitUserFeedback(for: appSession,
+                                          comments: "User submitted feedback.  ⭐",
+                                          withLogfiles: true) { [weak self] error in
+            if let error = error {
+                DDLogError("submitUserFeedback error = \(error)")
+                self?.showErrorAlert(error)
+            } else {
+                self?.showSuccessIndicator(withStatus: "Success! 👍")
+            }
+        }
+    }
+
+
+    func navigateToUserFeedback() {
+    }
+
 }
 
 
 // MARK: -
-private enum AboutSection: Int, CaseIterable {
-    case `default` = 0
+private enum AboutSections: Int, CaseIterable {
+    case about = 0
+    case support = 1
 }
 
 class AboutDataProvider {
 
-    private lazy var dataSource: [AboutTableViewCellModel] = [
-        AboutTableViewCellModel(menuTitle: NSLocalizedString(AboutDetails.termsAndConditions.rawValue, comment: "")),
-        AboutTableViewCellModel(menuTitle: NSLocalizedString(AboutDetails.privacyPolicy.rawValue, comment: ""))
+    private struct Section {
+        let menus: [AboutTableViewCellModel]
+    }
+
+    private lazy var dataSource: [Section] = [
+        Section(menus: [    // about
+            AboutTableViewCellModel(menuTitle: NSLocalizedString(AboutDetails.termsAndConditions.rawValue, comment: "")),
+            AboutTableViewCellModel(menuTitle: NSLocalizedString(AboutDetails.privacyPolicy.rawValue, comment: ""))
+        ]),
+        Section(menus: [    // support
+            AboutTableViewCellModel(menuTitle: NSLocalizedString("Send feedback logs", comment: "feedback"))
+        ])
     ]
 
     var numberOfSections: Int {
-        return AboutSection.allCases.count
+        return AboutSections.allCases.count
     }
 
-    var numberOfRows: Int {
-        return dataSource.count
+    func numberOfRows(for section: Int) -> Int {
+        return dataSource[section].menus.count
     }
 
     func model(for indexPath: IndexPath) -> AboutTableViewCellModel {
-        return dataSource[indexPath.row]
+        return dataSource[indexPath.section].menus[indexPath.row]
     }
+
 
 }

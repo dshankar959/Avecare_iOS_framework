@@ -51,12 +51,10 @@ class LoginViewController: UIViewController, SeguePerformer, IndicatorProtocol {
         #else
 
         loginField?.text = appSettings.lastUsername
-/*
+
         // Prod.
         // ====
-        loginField?.text = "avecare2020@gmail.com"
-*/
-
+//        loginField?.text = "avecare2020@gmail.com"
 //        loginField?.text = "testroom100@gmail.com"
 
         #endif

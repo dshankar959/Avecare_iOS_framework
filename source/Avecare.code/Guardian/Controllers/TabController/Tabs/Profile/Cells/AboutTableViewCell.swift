@@ -17,6 +17,7 @@ struct AboutTableViewCellModel: CellViewModel {
 class AboutTableViewCell: UITableViewCell {
 
     @IBOutlet weak var menuTitleLabel: UILabel!
+    @IBOutlet weak var accessoryViewLabel: UILabel!
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

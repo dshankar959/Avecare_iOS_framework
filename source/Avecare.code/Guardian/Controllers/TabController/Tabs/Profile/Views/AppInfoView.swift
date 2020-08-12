@@ -23,6 +23,7 @@ class AppInfoView: UIView {
                                               attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: fontSize)])
                                               .withLineSpacing(7, centered: true)
         appInfoLabel.attributedText = attrInfoText
+        appInfoLabel.textColor = .gray
 
         self.setSubviewForAutoLayout(appInfoLabel)
 
