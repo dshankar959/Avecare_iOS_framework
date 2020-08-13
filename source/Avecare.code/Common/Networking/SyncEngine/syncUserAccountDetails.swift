@@ -35,7 +35,7 @@ extension SyncEngine {
                     switch result {
                     case .success(let details):
                         if let existingSupervisor = RLMSupervisor.find(withID: details.id) {
-                            existingSupervisor.clean()  // note: clears the linked list of objects only
+                            existingSupervisor.clean()  // note: *only* clears the linked list of objects (educationalBackground)
                         }
                         // Update with new data.
                         RLMSupervisor.createOrUpdateAll(with: [details])

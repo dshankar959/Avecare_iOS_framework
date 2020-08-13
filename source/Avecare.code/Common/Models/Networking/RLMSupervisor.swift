@@ -57,22 +57,18 @@ class RLMSupervisor: RLMDefaults {
     }
 }
 
-extension RLMSupervisor {
+
+extension RLMSupervisor: DataProvider, RLMCleanable {
+
     func photoURL(using storage: DocumentService) -> URL? {
         return storage.fileURL(name: id, type: "jpg")
     }
-}
-
-
-extension RLMSupervisor: DataProvider, RLMCleanable {
 
     func clean() {
         // clear the linked list of objects only
         for item in educationalBackground {
             item.delete()
         }
-
-//        delete()
     }
 
     static var details: RLMSupervisor? {

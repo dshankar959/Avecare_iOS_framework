@@ -41,6 +41,11 @@ extension SyncEngine {
                 }
             }
 
+            // Clean.  And update.
+            let allSupervisors = RLMSupervisor.findAll()
+            allSupervisors.forEach({ $0.clean() })
+            RLMSupervisor.deleteAll(objects: allSupervisors)
+
             var operations: [BlockOperation] = []
 
             for (index, unit) in allUnits.enumerated() {
