@@ -1597,8 +1597,8 @@
 				75886DC6241932BA0079C080 /* SplashViewController.swift */,
 				75886DC7241932BA0079C080 /* supervisor.storyboard */,
 				F6B7F28D24254D9B003E16AE /* Login */,
+				75886DA3241932BA0079C080 /* TabController */,
 				F67DF7E9241BFD2600793A9C /* DetailsFormViewController */,
-				75886DA3241932BA0079C080 /* TabBar */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1611,7 +1611,7 @@
 			path = SplitContoller;
 			sourceTree = "<group>";
 		};
-		75886DA3241932BA0079C080 /* TabBar */ = {
+		75886DA3241932BA0079C080 /* TabController */ = {
 			isa = PBXGroup;
 			children = (
 				75886DC5241932BA0079C080 /* SupervisorTabBarController.swift */,
@@ -1620,7 +1620,7 @@
 				75886DA4241932BA0079C080 /* Tabs */,
 				DC3E80E02485A1B0003983E2 /* TabBar.storyboard */,
 			);
-			path = TabBar;
+			path = TabController;
 			sourceTree = "<group>";
 		};
 		75886DA4241932BA0079C080 /* Tabs */ = {

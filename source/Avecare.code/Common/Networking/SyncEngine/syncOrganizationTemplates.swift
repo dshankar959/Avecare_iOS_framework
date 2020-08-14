@@ -31,8 +31,7 @@ extension SyncEngine {
                 OrganizationsAPIService.getOrganizationLogTemplates(id: institutionDetails.organizationId) { [weak self] result in
                     switch result {
                     case .success(let templates):
-                        // TODO: compare versions, and id's, to preserve old templates?
-                        // for now, delete all existing templates
+                        // Refresh with a full delete of all existing form templates.
                         RLMFormTemplate.findAll().forEach({
                             $0.clean()
                             $0.delete()

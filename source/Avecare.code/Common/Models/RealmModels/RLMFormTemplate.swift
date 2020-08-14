@@ -46,7 +46,10 @@ class RLMFormTemplate: RLMDefaults {
 extension RLMFormTemplate: DataProvider, RLMCleanable {
 
     static func find(withSubjectType id: String) -> RLMFormTemplate? {
-        return getDatabase()?.objects(RLMFormTemplate.self).filter("subjectType = %@", id).first
+        let allFormTemplates = RLMFormTemplate.findAll()
+        let result = allFormTemplates.filter { $0.subjectType == id }.sorted { $0.version > $1.version }.first
+
+        return result
     }
 
     func clean() {

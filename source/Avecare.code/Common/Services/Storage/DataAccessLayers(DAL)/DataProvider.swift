@@ -14,7 +14,6 @@ extension DataProvider where Self: Object {
         return database?.object(ofType: Self.self, forPrimaryKey: withID)
     }
 
-
     static func findAll() -> [Self] {
         if let database = getDatabase() {
             return database.objects(Self.self).map {
