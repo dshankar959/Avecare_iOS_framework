@@ -1,4 +1,5 @@
 import UIKit
+import SnapKit
 
 
 
@@ -13,6 +14,7 @@ struct ProfileSubjectTableViewCellModel: CellViewModel {
 
 }
 
+
 class ProfileSubjectTableViewCell: UITableViewCell {
 
     @IBOutlet weak var subjectsCollectionView: UICollectionView!
@@ -22,6 +24,7 @@ class ProfileSubjectTableViewCell: UITableViewCell {
     weak var dataProvider: SubjectListDataProvider?
     weak var parentVC: ProfileViewController?
 
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -29,6 +32,16 @@ class ProfileSubjectTableViewCell: UITableViewCell {
             ProfileSubjectImageCollectionViewCellModel.self
         ])
     }
+
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        selectedSubjectNameLabel.snp.updateConstraints { (make) -> Void in
+            make.right.equalToSuperview()
+        }
+    }
+
 
     func refreshView() {
         guard let dataProvider = dataProvider,
@@ -52,6 +65,7 @@ class ProfileSubjectTableViewCell: UITableViewCell {
         subjectsCollectionView.reloadData()
     }
 
+
     private func setLabels(forModelAt indexPath: IndexPath) {
         guard let model = dataProvider?.model(at: indexPath) else {
             return
@@ -68,13 +82,22 @@ class ProfileSubjectTableViewCell: UITableViewCell {
         }
 
         selectedSubjectDOBLabel.textColor = selectedSubjectNameLabel.textColor
+
+        selectedSubjectNameLabel.adjustsFontSizeToFitWidth = true
+        selectedSubjectNameLabel.text = "abc def ghi jkl mno opq rst uvw xyz"
+
     }
+
 }
 
+
+
 extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataProvider?.numberOfRows ?? 0
     }
+
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let model = dataProvider?.profileCellViewModel(for: indexPath) else {
@@ -97,6 +120,7 @@ extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionV
         return cell
     }
 
+
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -104,6 +128,7 @@ extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionV
         let height = width * 0.95
         return CGSize(width: width, height: height)
     }
+
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let selectedModel = dataProvider?.model(at: indexPath) else {
@@ -113,6 +138,7 @@ extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionV
         parentVC?.subjectSelection?.subject = selectedModel
         parentVC?.updateSupervisors()
     }
+
 
     // Scroll snapping
     func scrollViewWillEndDragging(_ scrollView: UIScrollView,
@@ -149,8 +175,10 @@ extension ProfileSubjectTableViewCell: UICollectionViewDataSource, UICollectionV
         }
     }
 
+
     // Velocity is measured in points per millisecond.
     private var snapToMostVisibleColumnVelocityThreshold: CGFloat {
         return 0.3
     }
+
 }

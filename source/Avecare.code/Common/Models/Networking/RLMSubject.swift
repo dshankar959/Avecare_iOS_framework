@@ -110,7 +110,7 @@ extension RLMSubject: DataProvider {
         form.subject = self
 
         if let template = RLMFormTemplate.find(withSubjectType: subjectTypeId) {
-            DDLogDebug("Loading template: \(template.id)")
+            DDLogDebug("Loading template: \(template.id), version: \(template.version)")
             let rows = template.rows.detached()
             rows.forEach({ $0.prepareForReuse() })
             form.rows.append(objectsIn: rows)
