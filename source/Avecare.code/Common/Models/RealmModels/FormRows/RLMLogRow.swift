@@ -156,7 +156,7 @@ extension RLMLogRow: DataProvider, RLMCleanable, RLMReusable {
         } else if let injury = injury {
             injury.delete()
         } else if let tags = tags {
-            tags.delete()
+            tags.clean()
         }
 
         delete()

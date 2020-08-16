@@ -31,19 +31,35 @@ extension SyncEngine {
                 OrganizationsAPIService.getOrganizationLogTemplates(id: institutionDetails.organizationId) { [weak self] result in
                     switch result {
                     case .success(let templates):
+/*
+                        let localFormTemplates = RLMFormTemplate.findAll()
+
+                        // Merge results.
+                        for template in templates {
+                            if let localFormTemplate = RLMFormTemplate.find(withID: template.id),
+                                localFormTemplate.version == template.version {
+                                continue
+                            } else {
+                                // save downloaded template
+                                RLMFormTemplate.createOrUpdateAll(with: [template])
+                            }
+                        }
+*/
+
                         // Refresh with a full delete of all existing form templates.
                         RLMFormTemplate.findAll().forEach({
                             $0.clean()
                             $0.delete()
                         })
 
-/*                        // Will we ever have more then one org. at a time?
+/*                        // Will we ever have more then one org. at a time?  [FUTURE!?]
                         guard let organization = RLMOrganization.details(for: institutionDetails.organizationId) else {
                             fatalError()
                         }
                         // link with organization  (inverse relationship).  Is this even needed???
                         templates.forEach({ $0.organization = organization })
 */
+
                         // save downloaded template(s)
                         RLMFormTemplate.createOrUpdateAll(with: templates)
                         DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMFormTemplate.className())\' items in DB: \(RLMFormTemplate.findAll().count)")
