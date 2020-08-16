@@ -203,6 +203,8 @@ extension SyncEngine {
             operationQueue.addOperations(operations, waitUntilFinished: false)  // trigger!
         } else {
             DDLogWarn("No supervisor accounts to sync down.")
+            DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSupervisor.className())\' items in DB: \(RLMSupervisor.findAll().count)")
+            syncCompletion(nil)
         }
     }
 

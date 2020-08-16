@@ -31,12 +31,6 @@ class SyncEngine {
     // Array of collected closures to call when sync is complete due to multiple triggers.
     var closuresToPerformWhenSyncComplete: [(_ error: AppError?) -> Void] = []
 
-//    var syncOperationsBlock: ((_ error: AppError?) -> Void)
-
-//    var centralManagerDidUpdateState: ((_ state: Bool) -> Void) = {_ in
-//    }
-
-
     var syncStates: [String: SyncState] = [:]
 
     var isSyncing: Bool {

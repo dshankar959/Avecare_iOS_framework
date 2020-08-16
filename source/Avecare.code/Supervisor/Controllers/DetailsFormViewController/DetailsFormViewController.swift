@@ -56,8 +56,8 @@ class DetailsFormViewController: UIViewController {
         synStatusButton.setAttributedTitle(title, for: .normal)
     }
 
+    
     func updateSyncButton() {
-
         if syncEngine.isSyncUpRequired() {
             if syncEngine.isSyncing {
                 syncing()

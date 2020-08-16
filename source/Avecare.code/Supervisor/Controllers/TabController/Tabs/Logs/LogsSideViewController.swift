@@ -33,7 +33,7 @@ class LogsSideViewController: UIViewController {
         // Refresh any subject's empty daily log template in case they were missed and a template was added afterwards.
         // (no need to re-install the app)
         RLMLogForm.findAll().forEach({
-            if $0.rows.isEmpty {    // empty log?
+            if $0.rows.isEmpty || $0.subject == nil {    // empty log? or a log with no subject?
                 $0.clean()
                 $0.delete()
             }
@@ -48,17 +48,18 @@ class LogsSideViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        // select first row by default only when setected id is not set before
-        if dataProvider.numberOfRows > 0 &&  dataProvider.selectedId == nil {
+        // select first row by default upon first view.
+        if dataProvider.numberOfRows > 0 && dataProvider.currentSelection() == nil {
             dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
         }
+
     }
 
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
-        dbNotifications(false)
+//        dbNotifications(false)
     }
 
 
@@ -131,10 +132,24 @@ extension LogsSideViewController {
         if enable {
             if dbNotificationsToken == nil {
 //                DDLogDebug("[RLMLogForm] dbNotifications: ON 🔔")
-                dbNotificationsToken = RLMLogForm().setupNotificationToken(for: self) { [weak self] in
+                dbNotificationsToken = RLMSubject().setupNotificationToken(for: self) { [weak self] in
                     if let segmentControl = self?.sortSegmentControl {
                         self?.didChangeSegmentControl(segmentControl)
-                        self?.tableView.reloadData()
+
+                        if let dataProvider = self?.dataProvider {
+
+                            if dataProvider.numberOfRows > 0 && dataProvider.currentSelection() == nil {
+                                dataProvider.setSelected(true, at: IndexPath(row: 0, section: 0))
+                            }
+
+                            if dataProvider.numberOfRows <= 0 {
+                                // No subjects in the list.  Clear details view completely.
+                                if let detailsViewController = self?.customSplitController?.rightViewController as? DetailsFormViewController {
+                                    detailsViewController.updateSyncButton()
+                                    detailsViewController.detailsView.setFormViews([])
+                                }
+                            }
+                        }
                     }
                 }
             }

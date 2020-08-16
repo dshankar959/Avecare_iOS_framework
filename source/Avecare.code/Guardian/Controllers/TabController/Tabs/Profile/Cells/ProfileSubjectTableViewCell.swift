@@ -84,8 +84,6 @@ class ProfileSubjectTableViewCell: UITableViewCell {
         selectedSubjectDOBLabel.textColor = selectedSubjectNameLabel.textColor
 
         selectedSubjectNameLabel.adjustsFontSizeToFitWidth = true
-        selectedSubjectNameLabel.text = "abc def ghi jkl mno opq rst uvw xyz"
-
     }
 
 }

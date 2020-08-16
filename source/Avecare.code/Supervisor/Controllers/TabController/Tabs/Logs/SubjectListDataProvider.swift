@@ -19,6 +19,7 @@ protocol SubjectListDataProviderIO: class {
     func model(for indexPath: IndexPath) -> SubjectListTableViewCellModel
     func sortBy(_ sort: SubjectListDataProvider.Sort)
     func setSelected(_ isSelected: Bool, at indexPath: IndexPath)
+    func currentSelection() -> IndexPath?
     func form(at indexPath: IndexPath) -> Form
 
     func navigationItems(at indexPath: IndexPath) -> [DetailsNavigationView.Item]
@@ -85,6 +86,19 @@ class SubjectListDataProvider: SubjectListDataProviderIO, DateSubtitleViewModelD
         indexes.forEach { path in
             delegate?.didUpdateModel(at: path)
         }
+    }
+
+    func currentSelection() -> IndexPath? {
+        var indexPath: IndexPath? = nil
+
+        if selectedId == nil { return nil }
+
+        for (index, item) in dataSource.enumerated() where item.id == selectedId {
+            indexPath = IndexPath(row: index, section: 0)
+            break
+        }
+
+        return indexPath
     }
 
     func form(at indexPath: IndexPath) -> Form {
