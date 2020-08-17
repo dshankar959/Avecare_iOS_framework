@@ -1,5 +1,6 @@
 import UIKit
 import Kingfisher
+import SnapKit
 
 
 
@@ -9,11 +10,22 @@ class SubjectListTableViewCell: UITableViewCell {
     @IBOutlet weak var subjectNameLabel: UILabel!
     @IBOutlet weak var birthDateLabel: UILabel!
 
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
         photoImageView.layer.cornerRadius = 8
         photoImageView.layer.masksToBounds = true
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+
+        subjectNameLabel.adjustsFontSizeToFitWidth = true
+
+        subjectNameLabel.snp.updateConstraints { (make) -> Void in
+            make.right.equalToSuperview()
+        }
     }
 
 }

@@ -13,7 +13,7 @@ import SnapKit
 
         titleLabel.adjustsFontSizeToFitWidth = true
         logoIcon.contentMode = .scaleAspectFit
-
+/*
         logoIcon.snp.remakeConstraints { (make) -> Void in
             make.width.equalTo(100)
             make.height.equalTo(25)
@@ -25,6 +25,15 @@ import SnapKit
             make.height.equalTo(25)
             make.top.equalTo(self.logoIcon.snp.top)
             make.left.equalTo(logoIcon.snp.right).offset(20)
+            make.right.equalToSuperview()
+        }
+*/
+        logoIcon.isHidden = true    // need the UI space.
+
+        titleLabel.snp.remakeConstraints { [unowned self] (make) -> Void in
+            make.height.equalTo(25)
+            make.top.equalTo(self.logoIcon.snp.top)
+            make.left.equalToSuperview().offset(10)
             make.right.equalToSuperview()
         }
 
