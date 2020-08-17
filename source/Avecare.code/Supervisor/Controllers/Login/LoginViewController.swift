@@ -43,6 +43,7 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 //        loginField?.text = "supervisor@example.net"
         loginField?.text = "room_13@avecare.com"    // quarantine / tcdsb
 
+
         passwordField?.text = "123456"
 
 //        loginField?.text = "room100_littlemonkey@gmail.com"    // Devika
@@ -51,6 +52,7 @@ class LoginViewController: UIViewController, IndicatorProtocol {
 //        loginField?.text = "room_crybabies@avecare.com"
 //        passwordField?.text = "crybaby123"
 
+//        loginField?.text = "room_g3@avecare.com"
 //        loginField?.text = "roomg3@spiria.com"
 //        passwordField?.text = "hnpura69"
 

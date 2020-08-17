@@ -1,5 +1,6 @@
 import UIKit
 import CocoaLumberjack
+import RealmSwift
 
 
 
@@ -10,6 +11,9 @@ class ProfileViewController: UIViewController, IndicatorProtocol {
     let dataProvider: ProfileDataProvider = DefaultProfileDataProvider()
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
     weak var subjectSelection: SubjectSelectionProtocol?
+
+    // DB update notifications
+    private var dbNotificationsToken: NotificationToken? = nil
 
 
     override func viewDidLoad() {
@@ -29,6 +33,8 @@ class ProfileViewController: UIViewController, IndicatorProtocol {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        dbNotifications(true)
 
         updateSupervisors()
     }
@@ -157,6 +163,20 @@ extension ProfileViewController: ViewControllerWithSupervisorFilterViewCell {
 
     func educatorDidSelect(selectedEducatorId: String) {
         performSegue(withIdentifier: R.segue.profileViewController.educatorDetails, sender: selectedEducatorId)
+    }
+
+
+    func dbNotifications(_ enable: Bool) {
+        if enable {
+            if dbNotificationsToken == nil {
+                dbNotificationsToken = RLMSupervisor().setupNotificationToken(for: self) { [weak self] in
+                    self?.updateSupervisors()
+                }
+            }
+        } else {  // disable
+            dbNotificationsToken?.invalidate()
+            dbNotificationsToken = nil
+        }
     }
 
 }
