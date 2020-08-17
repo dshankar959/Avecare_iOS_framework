@@ -29,16 +29,20 @@ extension SyncEngine {
                 UnitAPIService.getSubjects(unitId: unitId) { [weak self] result in
                     switch result {
                     case .success(let details):
+
                         let existingSubjects = RLMSubject.findAll()
                         existingSubjects.forEach { existingSubject in
                             var existInServer = false
-                            for subject in details where subject.id == existingSubject.id {
+
+                            for subject in details where subject == existingSubject {
                                 existInServer = true
                                 break
                             }
+
                             if !existInServer {
                                 existingSubject.delete() // safely remove because it doesn't have linked object
                             }
+
                         }
 
                         // Update with new data.
@@ -59,6 +63,14 @@ extension SyncEngine {
                     case .success(let details):
                         // Update with new data.
                         RLMSubject.createOrUpdateAll(with: details)
+/*
+                        // Delete any subject's that have been removed from a unit.
+                        RLMSubject.findAll().forEach({
+                            if $0.unitIds.isEmpty {    // a subject that doesn't belong to a unit?
+                                $0.delete()
+                            }
+                        })
+*/
                         DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMSubject.className())\' items in DB: \(RLMSubject.findAll().count)")
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(nil)

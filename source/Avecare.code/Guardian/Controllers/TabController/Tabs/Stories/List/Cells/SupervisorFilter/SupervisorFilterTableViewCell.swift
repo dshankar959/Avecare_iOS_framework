@@ -1,6 +1,8 @@
 import Foundation
 import UIKit
 
+
+
 struct SupervisorFilterTableViewCellModel: CellViewModel {
     typealias CellType = SupervisorFilterTableViewCell
 
@@ -10,6 +12,7 @@ struct SupervisorFilterTableViewCellModel: CellViewModel {
         cell.dataProvider = dataProvider
     }
 }
+
 
 class SupervisorFilterTableViewCell: UITableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -29,7 +32,9 @@ class SupervisorFilterTableViewCell: UITableViewCell {
     }
 }
 
+
 extension SupervisorFilterTableViewCell: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dataProvider?.numberOfRows ?? 0
     }
@@ -95,7 +100,9 @@ extension SupervisorFilterTableViewCell: UICollectionViewDataSource, UICollectio
             parentVC.educatorDidSelect(selectedEducatorId: selectedModel.id)
         }
     }
+
 }
+
 
 protocol ViewControllerWithSupervisorFilterViewCell: class {
     func educatorDidSelect(selectedEducatorId: String)

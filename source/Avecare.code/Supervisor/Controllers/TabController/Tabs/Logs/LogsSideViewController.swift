@@ -30,15 +30,6 @@ class LogsSideViewController: UIViewController {
 
         dbNotifications(true)
 
-        // Refresh any subject's empty daily log template in case they were missed and a template was added afterwards.
-        // (no need to re-install the app)
-        RLMLogForm.findAll().forEach({
-            if $0.rows.isEmpty || $0.subject == nil {    // empty log? or a log with no subject?
-                $0.clean()
-                $0.delete()
-            }
-        })
-
         if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
             detailsViewController.updateSyncButton()
         }

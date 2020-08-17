@@ -3,7 +3,6 @@ import UIKit
 
 protocol SubjectListDataProvider: class {
     var allSubjectsIncluded: Bool { get set }
-
     var numberOfRows: Int { get }
 
     func model(at indexPath: IndexPath) -> RLMSubject
@@ -18,6 +17,7 @@ class DefaultSubjectListDataProvider: SubjectListDataProvider {
 
     var allSubjectsIncluded: Bool = false
     private let storage = DocumentService()
+
 
     init(allSubjectsIncluded: Bool = false) {
         self.allSubjectsIncluded = allSubjectsIncluded

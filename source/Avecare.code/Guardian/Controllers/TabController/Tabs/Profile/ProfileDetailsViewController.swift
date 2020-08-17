@@ -21,15 +21,18 @@ class ProfileDetailsViewController: UIViewController, IndicatorProtocol, WKNavig
         if let attachmentURL = attachmentURL {
             loadContentforAttachment(attachmentURL: attachmentURL )
              self.navigationItem.rightBarButtonItem = nil
-        } else if let institution = RLMInstitution.findAll().first {
 
+        } else if let institution = RLMInstitution.findAll().first {
             if let fileURL = institution.mealPlanURL(using: DocumentService()) {
                self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", style:
                 UIBarButtonItem.Style.plain, target: self, action: #selector(pdfSavePressed))
+
                 let textAttributes = [
                 NSAttributedString.Key.font: UIFont(name: "FontAwesome5Pro-Solid", size: 22.0)!]
+
                 self.navigationItem.rightBarButtonItem?.setTitleTextAttributes(textAttributes, for: .normal)
                 self.navigationItem.rightBarButtonItem?.setTitleTextAttributes(textAttributes, for: .selected)
+
                 loadPDFdocument(url: fileURL)
             }
         }

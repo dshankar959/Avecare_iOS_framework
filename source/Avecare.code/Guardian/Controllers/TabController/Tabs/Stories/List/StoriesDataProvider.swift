@@ -28,13 +28,14 @@ class DefaultSupervisorsDataProvider: SupervisorsDataProvider {
             if unitIds.count > 0 {
                 dataSource = filter(for: RLMSupervisor.findAll(), with: unitIds)
             } else {
-                dataSource = RLMSupervisor.findAll()
+                dataSource = []     // no educators.  Most likely because the subject isn't linked to a unit.
             }
         }
     }
 
     private func filter(for supervisors: [RLMSupervisor], with unitIds: [String]) -> [RLMSupervisor] {
         var result = [RLMSupervisor]()
+
         unitIds.forEach { unitId in
             var filteredSupervisors = [RLMSupervisor]()
             for supervisor in supervisors {
@@ -45,6 +46,7 @@ class DefaultSupervisorsDataProvider: SupervisorsDataProvider {
             }
             result.append(contentsOf: filteredSupervisors)
         }
+
         return result
     }
 

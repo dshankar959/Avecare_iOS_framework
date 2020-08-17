@@ -34,7 +34,7 @@ extension SyncEngine {
 /*
                         let localFormTemplates = RLMFormTemplate.findAll()
 
-                        // Merge results.
+                        // Merge results.  (still needs nore work)
                         for template in templates {
                             if let localFormTemplate = RLMFormTemplate.find(withID: template.id),
                                 localFormTemplate.version == template.version {
@@ -43,6 +43,23 @@ extension SyncEngine {
                                 // save downloaded template
                                 RLMFormTemplate.createOrUpdateAll(with: [template])
                             }
+                        }
+*/
+/*
+                        let localFormTemplates = RLMFormTemplate.findAll()
+
+                        localFormTemplates.forEach { existingSubject in
+                            var existInServer = false
+
+                            for subject in details where subject == existingSubject {
+                                existInServer = true
+                                break
+                            }
+
+                            if !existInServer {
+                                existingSubject.delete() // safely remove because it doesn't have linked object
+                            }
+
                         }
 */
 
