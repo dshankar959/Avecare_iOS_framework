@@ -91,8 +91,9 @@ class StoriesListViewController: UIViewController, IndicatorProtocol, PullToRefr
     private func updateScreen() {
         if let selectedSubject = subjectSelection?.subject {
             dataProvider.refreshData(with: Array(selectedSubject.unitIds))
-        } else {
-            dataProvider.refreshData(with: [String]())
+        } else {    // view = "all"
+            let allUnitIds: [String] = RLMSubject.findAll().map { ($0.unitIds.first ?? "") }
+            dataProvider.refreshData(with: allUnitIds.uniqueValues)
         }
 
         updateSubjectFilterButton()

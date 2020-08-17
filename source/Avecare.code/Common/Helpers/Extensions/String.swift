@@ -1,6 +1,5 @@
 import Foundation
-import UIKit
-import CoreGraphics
+import CocoaLumberjack
 
 
 
@@ -45,13 +44,50 @@ extension String {
         return alphaNumericRandomString
     }
 
+
     var URLEscapedString: String {
         return self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed)!
     }
 
+
     var utf8Encoded: Data {
         return data(using: .utf8)!
     }
+
+
+    // https://stackoverflow.com/a/50220217/7599
+    func parse<D>(to type: D.Type) -> D? where D: Decodable {
+
+        let data: Data = self.utf8Encoded
+
+        let decoder = JSONDecoder()
+
+        do {
+            let _object = try decoder.decode(type, from: data)
+            return _object
+
+        } catch {
+            DDLogError("JSON Decoding error = \(error)")
+            return nil
+        }
+    }
+
+
+    // https://stackoverflow.com/a/30450559/7599
+    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+
+        return ceil(boundingBox.height)
+    }
+
+    func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)
+
+        return ceil(boundingBox.width)
+    }
+
 
     var isFilePath: Bool {
         return hasPrefix("file://")
@@ -85,9 +121,7 @@ extension String {
         return strCopy
     }
 
-
 }
-
 
 
 extension NSAttributedString {

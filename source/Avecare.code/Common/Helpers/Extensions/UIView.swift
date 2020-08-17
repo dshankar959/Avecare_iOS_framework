@@ -22,8 +22,4 @@ extension UIView {
         self.layer.cornerRadius = cornerRadius
     }
 
-//    func copyView<T: UIView>() -> T {
-//        return NSKeyedUnarchiver.unarchiveObject(with: NSKeyedArchiver.archivedData(withRootObject: self)) as! T
-//    }
-
 }

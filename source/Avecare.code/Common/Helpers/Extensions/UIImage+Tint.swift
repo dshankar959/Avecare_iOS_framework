@@ -1,5 +1,6 @@
 import UIKit
 
+
 extension UIImage {
 
     func tintWithColor(color: UIColor) -> UIImage {
@@ -25,9 +26,23 @@ extension UIImage {
         return newImage!
     }
 
+
+    func scaled(to size: CGSize) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, 0)
+
+        let origin = CGPoint(x: (size.width - self.size.width) / 2.0, y: (size.height - self.size.height) / 2.0)
+        draw(at: origin)
+
+        let scaledImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        return scaledImage
+    }
 }
 
+
 extension UIImageView {
+
     func tintWithColor(color: UIColor) {
         self.image = self.image?.tintWithColor(color: color)
     }
