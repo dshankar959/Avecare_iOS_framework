@@ -138,6 +138,7 @@ extension LogsSideViewController {
                                 if let detailsViewController = self?.customSplitController?.rightViewController as? DetailsFormViewController {
                                     detailsViewController.updateSyncButton()
                                     detailsViewController.detailsView.setFormViews([])
+                                    detailsViewController.navigationHeaderView.items = []   // remove `+` and `Publish` buttons.
                                 }
                             }
                         }
