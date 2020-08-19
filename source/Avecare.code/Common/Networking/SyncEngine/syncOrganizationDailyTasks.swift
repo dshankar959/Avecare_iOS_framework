@@ -43,68 +43,8 @@ extension SyncEngine {
             }
         } else {
             DDLogWarn("Nothing to sync down here for Guardian")
-        }
-    }
-
-    func syncUPDailyTaskChecklist(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
-        DDLogVerbose("")
-
-        // Use function name as key.
-        let syncKey = "\(#function)".removeBrackets()
-
-        if self.isSyncBlocked {
-            syncStates[syncKey] = .complete
-            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
-            return
-        }
-
-        if syncStates[syncKey] == .syncing {
-            DDLogDebug("\(syncKey) =🔄= .syncing")
-        }
-
-        syncStates[syncKey] = .syncing
-        notifySyncStateChanged(message: "Syncing up 🔺 Daily Task Checklist")
-
-        // Collect any `Checklist` objects that have their publish state set to `publishing`.
-        let allDailyTasksForPublishing: [RLMDailyTaskForm]
-
-        allDailyTasksForPublishing = RLMDailyTaskForm.findAllToSync(detached: true)
-
-        DDLogVerbose("Daily Task list objects to sync up = \(allDailyTasksForPublishing.count)")
-        notifySyncStateChanged(message: "\(allDailyTasksForPublishing.count) daily Task lists remaining to sync up ↑")
-
-        if allDailyTasksForPublishing.count <= 0 {
-            DDLogDebug("⬆️ UP syncComplete!")
-            syncStates[syncKey] = .complete
+            self.syncStates[syncKey] = .complete
             syncCompletion(nil)
-            return
-        }
-
-        let dailyTaskForm = allDailyTasksForPublishing.first!
-
-        if let unitId = RLMSupervisor.details?.primaryUnitId {
-
-            NotificationsAPIService.publishDailyTaskForm(unitId: unitId, data: dailyTaskForm, completion: { [weak self] result in
-                switch result {
-                case .success(let publishedDailyTaskForm):
-
-                    publishedDailyTaskForm.publishState = .published
-                    DDLogDebug("⬆️ UP syncComplete!  dailyTaskForm.id = \(publishedDailyTaskForm.id)")
-                    RLMDailyTaskForm.createOrUpdateAll(with: [publishedDailyTaskForm])
-
-                    self?.syncUPDailyTaskChecklist(syncCompletion)    // recurse for anymore
-
-                case .failure(let error):
-                    self?.syncStates[syncKey] = .complete
-                    DDLogError("\(error)")
-                    syncCompletion(error)
-                }
-            })
-        } else {
-            syncStates[syncKey] = .complete
-            let error = AppError(title: "🤔", userInfo: "Missing unit id", code: "🤔", type: "")    // should never happen.
-            syncCompletion(error)
-            return
         }
     }
 

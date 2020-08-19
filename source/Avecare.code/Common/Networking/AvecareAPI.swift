@@ -90,12 +90,12 @@ enum AvecareAPI { // API Services
     case unitCreateReminder(payLoad: [RLMReminder])
     // MARK: - UNITS
     case unitDetails(id: String)
-    case unitPublishDailyTaskForm(id: String, request: RLMDailyTaskForm)
     case unitSubjects(id: String)
     case unitSupervisors(id: String)
     case unitPublishStory(story: PublishStoryRequestModel)
-//    case unitPublishedStories(unitId: String)
     case unitPublishedStories(request: PublishedStoriesRequestModel)
+    case unitPublishDailyTaskForm(id: String, request: RLMDailyTaskForm)
+    case unitPublishedDailyTaskForms(request: UnitAPIService.DailyTaskFormsRequest)
 
 }
 
@@ -153,6 +153,8 @@ extension AvecareAPI: TargetType {
 
         case .unitDetails(let id): return "/units/\(id)"
         case .unitPublishDailyTaskForm(let id, _): return "/units/\(id)/daily-tasks/"
+        case .unitPublishedDailyTaskForms(let request): return "/units/\(request.unitId)/daily-tasks/"
+
         case .unitSubjects(let id): return "/units/\(id)/subjects"
         case .unitSupervisors(let id): return "/units/\(id)/supervisors"
         case .unitPublishStory(let story): return "/units/\(story.unitId)/stories/"
@@ -196,6 +198,14 @@ extension AvecareAPI: TargetType {
 
         case .subjectGetLogs(let request):
             DDLogDebug(".subjectGetLogs parameters: .serverLastUpdated = \(request.serverLastUpdated)")
+            return .requestParameters(parameters: [
+                "startDate": request.startDate,
+                "endDate": request.endDate,
+                "lastUpdatedAt": request.serverLastUpdated
+            ], encoding: URLEncoding.default)
+
+        case .unitPublishedDailyTaskForms(let request):
+            DDLogDebug(".unitGetDailyTaskForms parameters: .serverLastUpdated = \(request.serverLastUpdated)")
             return .requestParameters(parameters: [
                 "startDate": request.startDate,
                 "endDate": request.endDate,

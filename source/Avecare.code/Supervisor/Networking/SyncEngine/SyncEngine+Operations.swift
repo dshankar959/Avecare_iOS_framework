@@ -59,25 +59,28 @@ extension SyncEngine {
                                                 self.syncDOWNorganizationDailyTasks { error in
                                                     DDLogVerbose("syncDOWNorganizationDailyTasks ♓️ closure")
                                                     if let error = error { syncCompletion(error) } else {
-                                                        self.syncDOWNorganizationActivities { error in
-                                                            DDLogVerbose("syncDOWNorganizationActivities ♓️ closure")
-                                                            if let error = error { syncCompletion(error) } else {
-                                                                self.syncDOWNorganizationInjuries { error in
-                                                                    DDLogVerbose("syncDOWNorganizationInjuries ♓️ closure")
-                                                                    if let error = error { syncCompletion(error) } else {
-                                                                        self.syncDOWNorganizationReminders { error in
-                                                                            DDLogVerbose("syncDOWNorganizationReminders ♓️ closure")
-                                                                            if let error = error { syncCompletion(error) } else {
-                                                                                self.syncDOWNsubjects() { error in
-                                                                                    DDLogVerbose("syncDOWNsubjects ♓️ closure")
-                                                                                    if let error = error { syncCompletion(error) } else {
-                                                                                        self.syncDOWNsubjectLogs { error in
-                                                                                            DDLogVerbose("syncDOWNsubjectLogs ♓️ closure")
-                                                                                            if let error = error { syncCompletion(error) } else {
-                                                                                                self.syncDOWNunitStories { error in
-                                                                                                    DDLogVerbose("syncDOWNunitStories ♓️ closure")
-                                                                                                    if let error = error { syncCompletion(error) } else {
-                                                                                                        syncCompletion(nil)
+                                                        self.syncDOWNunitDailyTaskChecklists() { error in
+                                                            DDLogVerbose("syncDOWNunitDailyTaskChecklists ♓️ closure")
+                                                            self.syncDOWNorganizationActivities { error in
+                                                                DDLogVerbose("syncDOWNorganizationActivities ♓️ closure")
+                                                                if let error = error { syncCompletion(error) } else {
+                                                                    self.syncDOWNorganizationInjuries { error in
+                                                                        DDLogVerbose("syncDOWNorganizationInjuries ♓️ closure")
+                                                                        if let error = error { syncCompletion(error) } else {
+                                                                            self.syncDOWNorganizationReminders { error in
+                                                                                DDLogVerbose("syncDOWNorganizationReminders ♓️ closure")
+                                                                                if let error = error { syncCompletion(error) } else {
+                                                                                    self.syncDOWNsubjects() { error in
+                                                                                        DDLogVerbose("syncDOWNsubjects ♓️ closure")
+                                                                                        if let error = error { syncCompletion(error) } else {
+                                                                                            self.syncDOWNsubjectLogs { error in
+                                                                                                DDLogVerbose("syncDOWNsubjectLogs ♓️ closure")
+                                                                                                if let error = error { syncCompletion(error) } else {
+                                                                                                    self.syncDOWNunitStories { error in
+                                                                                                        DDLogVerbose("syncDOWNunitStories ♓️ closure")
+                                                                                                        if let error = error { syncCompletion(error) } else {
+                                                                                                            syncCompletion(nil)
+                                                                                                        }
                                                                                                     }
                                                                                                 }
                                                                                             }

@@ -105,4 +105,5 @@ struct FeedsAPIService {
             }
         }
     }
+
 }

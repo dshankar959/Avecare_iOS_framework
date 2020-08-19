@@ -48,3 +48,14 @@ class RLMDailyTaskForm: RLMDefaults, RLMPublishable, DataProvider {
         }
     }
 }
+
+
+
+extension RLMDailyTaskForm: RLMCleanable {
+
+    func clean() {
+        tasks.forEach({ $0.clean() })
+        delete()
+    }
+
+}

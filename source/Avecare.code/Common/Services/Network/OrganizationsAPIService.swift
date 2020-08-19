@@ -10,24 +10,24 @@ struct OrganizationsAPIService {
 
         apiProvider.request(.organizationDetails(id: id),
                             callbackQueue: DispatchQueue.global(qos: .utility)) { result in
-                                switch result {
-                                case .success(let response):
-                                    do {
-                                        let mappedResponse = try response.map(OrganizationDetailsResponse.self)
-                                        DispatchQueue.main.async() {
-                                            completion(.success(mappedResponse))
-                                        }
-                                    } catch {
-                                        DDLogError("JSON MAPPING ERROR = \(error)")
-                                        DispatchQueue.main.async() {
-                                            completion(.failure(JSONError.failedToMapData.message))
-                                        }
-                                    }
-                                case .failure(let error):
-                                    DispatchQueue.main.async() {
-                                        completion(.failure(getAppErrorFromMoya(with: error)))
-                                    }
-                                }
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(OrganizationDetailsResponse.self)
+                    DispatchQueue.main.async() {
+                        completion(.success(mappedResponse))
+                    }
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    DispatchQueue.main.async() {
+                        completion(.failure(JSONError.failedToMapData.message))
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async() {
+                    completion(.failure(getAppErrorFromMoya(with: error)))
+                }
+            }
         }
     }
 
@@ -39,24 +39,24 @@ struct OrganizationsAPIService {
 
         apiProvider.request(.organizationDailyTemplates(id: id),
                             callbackQueue: DispatchQueue.global(qos: .utility)) { result in
-                                switch result {
-                                case .success(let response):
-                                    do {
-                                        let mappedResponse = try response.map(LogTemplatesResult.self)
-                                        DispatchQueue.main.async() {
-                                            completion(.success(mappedResponse.results))
-                                        }
-                                    } catch {
-                                        DDLogError("JSON MAPPING ERROR = \(error)")
-                                        DispatchQueue.main.async() {
-                                            completion(.failure(JSONError.failedToMapData.message))
-                                        }
-                                    }
-                                case .failure(let error):
-                                    DispatchQueue.main.async() {
-                                        completion(.failure(getAppErrorFromMoya(with: error)))
-                                    }
-                                }
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(LogTemplatesResult.self)
+                    DispatchQueue.main.async() {
+                        completion(.success(mappedResponse.results))
+                    }
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    DispatchQueue.main.async() {
+                        completion(.failure(JSONError.failedToMapData.message))
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async() {
+                    completion(.failure(getAppErrorFromMoya(with: error)))
+                }
+            }
         }
     }
 
@@ -66,24 +66,24 @@ struct OrganizationsAPIService {
 
         apiProvider.request(.organizationDailyTasks(id: organizationId),
                             callbackQueue: DispatchQueue.global(qos: .utility)) { result in
-                                switch result {
-                                case .success(let response):
-                                    do {
-                                        let mappedResponse = try response.map(RLMDailyTasksResponse.self)
-                                        DispatchQueue.main.async() {
-                                            completion(.success(mappedResponse.results))
-                                        }
-                                    } catch {
-                                        DDLogError("JSON MAPPING ERROR = \(error)")
-                                        DispatchQueue.main.async() {
-                                            completion(.failure(JSONError.failedToMapData.message))
-                                        }
-                                    }
-                                case .failure(let error):
-                                    DispatchQueue.main.async() {
-                                        completion(.failure(getAppErrorFromMoya(with: error)))
-                                    }
-                                }
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(RLMDailyTasksResponse.self)
+                    DispatchQueue.main.async() {
+                        completion(.success(mappedResponse.results))
+                    }
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    DispatchQueue.main.async() {
+                        completion(.failure(JSONError.failedToMapData.message))
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async() {
+                    completion(.failure(getAppErrorFromMoya(with: error)))
+                }
+            }
         }
     }
 
@@ -93,24 +93,24 @@ struct OrganizationsAPIService {
 
         apiProvider.request(.organizationActivities(id: organizationId),
                             callbackQueue: DispatchQueue.global(qos: .utility)) { result in
-                                switch result {
-                                case .success(let response):
-                                    do {
-                                        let mappedResponse = try response.map(RLMActivitiesResponse.self)
-                                        DispatchQueue.main.async() {
-                                            completion(.success(mappedResponse.results))
-                                        }
-                                    } catch {
-                                        DDLogError("JSON MAPPING ERROR = \(error)")
-                                        DispatchQueue.main.async() {
-                                            completion(.failure(JSONError.failedToMapData.message))
-                                        }
-                                    }
-                                case .failure(let error):
-                                    DispatchQueue.main.async() {
-                                        completion(.failure(getAppErrorFromMoya(with: error)))
-                                    }
-                                }
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(RLMActivitiesResponse.self)
+                    DispatchQueue.main.async() {
+                        completion(.success(mappedResponse.results))
+                    }
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    DispatchQueue.main.async() {
+                        completion(.failure(JSONError.failedToMapData.message))
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async() {
+                    completion(.failure(getAppErrorFromMoya(with: error)))
+                }
+            }
         }
     }
 
@@ -120,24 +120,24 @@ struct OrganizationsAPIService {
 
         apiProvider.request(.organizationInjuries(id: organizationId),
                             callbackQueue: DispatchQueue.global(qos: .utility)) { result in
-                                switch result {
-                                case .success(let response):
-                                    do {
-                                        let mappedResponse = try response.map(RLMInjuriesResponse.self)
-                                        DispatchQueue.main.async() {
-                                            completion(.success(mappedResponse.results))
-                                        }
-                                    } catch {
-                                        DDLogError("JSON MAPPING ERROR = \(error)")
-                                        DispatchQueue.main.async() {
-                                            completion(.failure(JSONError.failedToMapData.message))
-                                        }
-                                    }
-                                case .failure(let error):
-                                    DispatchQueue.main.async() {
-                                        completion(.failure(getAppErrorFromMoya(with: error)))
-                                    }
-                                }
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(RLMInjuriesResponse.self)
+                    DispatchQueue.main.async() {
+                        completion(.success(mappedResponse.results))
+                    }
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    DispatchQueue.main.async() {
+                        completion(.failure(JSONError.failedToMapData.message))
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async() {
+                    completion(.failure(getAppErrorFromMoya(with: error)))
+                }
+            }
         }
     }
 
@@ -148,24 +148,24 @@ struct OrganizationsAPIService {
 
         apiProvider.request(.organizationReminders(id: organizationId),
                             callbackQueue: DispatchQueue.global(qos: .utility)) { result in
-                                switch result {
-                                case .success(let response):
-                                    do {
-                                        let mappedResponse = try response.map(RLMRemindersResponse.self)
-                                        DispatchQueue.main.async() {
-                                            completion(.success(mappedResponse.results))
-                                        }
-                                    } catch {
-                                        DDLogError("JSON MAPPING ERROR = \(error)")
-                                        DispatchQueue.main.async() {
-                                            completion(.failure(JSONError.failedToMapData.message))
-                                        }
-                                    }
-                                case .failure(let error):
-                                    DispatchQueue.main.async() {
-                                        completion(.failure(getAppErrorFromMoya(with: error)))
-                                    }
-                                }
+            switch result {
+            case .success(let response):
+                do {
+                    let mappedResponse = try response.map(RLMRemindersResponse.self)
+                    DispatchQueue.main.async() {
+                        completion(.success(mappedResponse.results))
+                    }
+                } catch {
+                    DDLogError("JSON MAPPING ERROR = \(error)")
+                    DispatchQueue.main.async() {
+                        completion(.failure(JSONError.failedToMapData.message))
+                    }
+                }
+            case .failure(let error):
+                DispatchQueue.main.async() {
+                    completion(.failure(getAppErrorFromMoya(with: error)))
+                }
+            }
         }
     }
 

@@ -40,3 +40,14 @@ class RLMDailyTask: Object, Codable, DataProvider {
         }
     }
 }
+
+
+
+extension RLMDailyTask: RLMCleanable {
+
+    func clean() {
+        dailyTaskOption?.delete()
+        delete()
+    }
+
+}

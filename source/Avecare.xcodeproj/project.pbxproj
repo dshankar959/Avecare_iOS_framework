@@ -117,6 +117,7 @@
 		7523497524A477E8000C873E /* AboutFormProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7523497424A477E8000C873E /* AboutFormProvider.swift */; };
 		7541BC6D24B3D15B0026CCA1 /* FormTemplateRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */; };
 		7541BC6E24B3D15B0026CCA1 /* FormTemplateRows.json in Resources */ = {isa = PBXBuildFile; fileRef = 7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */; };
+		75526CBB24ECEC7700C43FA8 /* syncUnitDailyTaskChecklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75526CBA24ECEC7700C43FA8 /* syncUnitDailyTaskChecklist.swift */; };
 		755EAEAA241ABB6900A6BA4D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEA9241ABB6900A6BA4D /* Session.swift */; };
 		755EAEAB241ABB6900A6BA4D /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEA9241ABB6900A6BA4D /* Session.swift */; };
 		755EAEC1241AC6CC00A6BA4D /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEB9241AC6CC00A6BA4D /* DataProvider.swift */; };
@@ -566,6 +567,7 @@
 		750135EC24D7939400BAFCBC /* RLMDailyTaskForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMDailyTaskForm.swift; sourceTree = "<group>"; };
 		7523497424A477E8000C873E /* AboutFormProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutFormProvider.swift; sourceTree = "<group>"; };
 		7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FormTemplateRows.json; sourceTree = "<group>"; };
+		75526CBA24ECEC7700C43FA8 /* syncUnitDailyTaskChecklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncUnitDailyTaskChecklist.swift; sourceTree = "<group>"; };
 		755EAEA7241AB64200A6BA4D /* parent.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = parent.entitlements; sourceTree = "<group>"; };
 		755EAEA8241AB64200A6BA4D /* educator.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = educator.entitlements; sourceTree = "<group>"; };
 		755EAEA9241ABB6900A6BA4D /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
@@ -1736,6 +1738,7 @@
 				DCF914192497E44C0043123F /* syncOrganizationReminders.swift */,
 				75EB5A1C2466EE1100E077E5 /* syncSubjects.swift */,
 				61547E6D4475B73BAAE9DBEE /* syncUnitStories.swift */,
+				75526CBA24ECEC7700C43FA8 /* syncUnitDailyTaskChecklist.swift */,
 				615478D41647CC7CBA087361 /* syncSubjectLogs.swift */,
 			);
 			path = SyncEngine;
@@ -2575,6 +2578,7 @@
 				61547E7DB73F3A508FC8C0BE /* ClassActivityFormProvider.swift in Sources */,
 				61547AB56925D866968908B6 /* RemindersFormProvider.swift in Sources */,
 				61547E52DF293A83AFAA7AEE /* SingleValuePickerView.swift in Sources */,
+				75526CBB24ECEC7700C43FA8 /* syncUnitDailyTaskChecklist.swift in Sources */,
 				DC225E38246C68BF00094BB0 /* CheckmarkFormView.swift in Sources */,
 				75716F84246B9F28002B049C /* UINavigationController.swift in Sources */,
 				D0C4C7FE249A548200E16023 /* RLMInjury.swift in Sources */,
