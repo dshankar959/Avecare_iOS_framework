@@ -94,6 +94,10 @@ extension SyncEngine {
                 }
 
                 OperationQueue.main.addOperation(completionOperation)
+            } else {    // no units.
+                DDLogDebug("⬇️ DOWN syncComplete!  Total \'\(RLMInstitution.className())\' items in DB: \(RLMInstitution.findAll().count)")
+                self.syncStates[syncKey] = .complete
+                syncCompletion(nil)
             }
         }
 

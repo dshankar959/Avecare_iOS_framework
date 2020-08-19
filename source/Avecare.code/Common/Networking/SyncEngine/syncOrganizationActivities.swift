@@ -45,6 +45,7 @@ extension SyncEngine {
             }
 
         } else {  // guardian
+
             if let organizationId = RLMOrganization.findAll().first?.id {
                 OrganizationsAPIService.getAvailableActivities(for: organizationId) { [weak self] result in
                     switch result {
@@ -57,6 +58,12 @@ extension SyncEngine {
                     case .failure(let error):
                         self?.syncStates[syncKey] = .complete
                         syncCompletion(error)
+//                        // non-fatal?
+//                        if error.code == "403" {
+//                            syncCompletion(nil)
+//                        } else {
+//                            syncCompletion(error)
+//                        }
                     }
                 }
             }
