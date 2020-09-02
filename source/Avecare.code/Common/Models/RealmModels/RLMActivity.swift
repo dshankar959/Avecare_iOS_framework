@@ -21,6 +21,7 @@ class RLMActivity: RLMDefaults, RLMPublishable, DataProvider {
 
         do {
             try super.decode(from: decoder)
+
             let container = try decoder.container(keyedBy: CodingKeys.self)
             let activityOptionId = try container.decode(String.self, forKey: .activityId)
             self.activityOption = RLMActivityOption.find(withID: activityOptionId)
@@ -44,6 +45,7 @@ class RLMActivity: RLMDefaults, RLMPublishable, DataProvider {
     override func encode(to encoder: Encoder) throws {
         do {
             try super.encode(to: encoder)
+
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(activityOption?.id, forKey: .activityId)
             try container.encode(unit?.id, forKey: .unitId)

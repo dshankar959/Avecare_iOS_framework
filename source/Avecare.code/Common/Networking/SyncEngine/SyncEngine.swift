@@ -94,7 +94,6 @@ class SyncEngine {
 
 
     deinit {
-        NotificationCenter.default.removeObserver(self)
         DDLogWarn("\(self)")
     }
 

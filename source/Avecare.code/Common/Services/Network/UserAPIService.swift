@@ -122,19 +122,19 @@ extension UserAPIService {
                                              includeLogfiles: withLogfiles)
 
         apiProvider.request(.submitUserFeedback(comments: model)) { result in
-                                switch result {
-                                case .success:
-                                    DDLogVerbose("// success")
-                                    FileManager().clearTmpDirectory()
-                                    appDelegate.clearLogFiles()
-                                    DispatchQueue.main.async() {
-                                        completion(nil)
-                                    }
-                                case .failure(let error):
-                                    DispatchQueue.main.async() {
-                                        completion(getAppErrorFromMoya(with: error))
-                                    }
-                                }
+            switch result {
+            case .success:
+                DDLogVerbose("// success")
+                FileManager().clearTmpDirectory()
+                appDelegate.clearLogFiles()
+                DispatchQueue.main.async() {
+                    completion(nil)
+                }
+            case .failure(let error):
+                DispatchQueue.main.async() {
+                    completion(getAppErrorFromMoya(with: error))
+                }
+            }
         }
     }
 

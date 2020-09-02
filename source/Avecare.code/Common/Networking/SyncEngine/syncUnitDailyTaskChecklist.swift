@@ -121,10 +121,16 @@ extension SyncEngine {
             NotificationsAPIService.publishDailyTaskForm(unitId: unitId, data: dailyTaskForm, completion: { [weak self] result in
                 switch result {
                 case .success(let publishedDailyTaskForm):
-                    publishedDailyTaskForm.publishState = .published
-                    DDLogDebug("⬆️ UP syncComplete!  dailyTaskForm.id = \(publishedDailyTaskForm.id)")
-                    RLMDailyTaskForm.createOrUpdateAll(with: [publishedDailyTaskForm])
+                    DDLogVerbose("success")
 
+                    if let form = RLMDailyTaskForm.find(withID: publishedDailyTaskForm.id) {
+                        RLMDailyTaskForm.writeTransaction {
+                            form.serverLastUpdated = publishedDailyTaskForm.serverLastUpdated
+                            form.publishState = .published
+                        }
+                    }
+
+                    DDLogDebug("⬆️ UP syncComplete!  dailyTaskForm.id = \(publishedDailyTaskForm.id)")
                     self?.syncUPDailyTaskChecklist(syncCompletion)    // recurse for anymore
 
                 case .failure(let error):

@@ -36,7 +36,7 @@ class RLMDailyTaskForm: RLMDefaults, RLMPublishable, DataProvider {
         do {
             try super.encode(to: encoder)
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(Date.yearMonthDayFormatter.string(from: clientLastUpdated ?? Date()), forKey: .date)
+            try container.encode(Date.yearMonthDayFormatter.string(from: clientLastUpdated!), forKey: .date)
             // tasks
             var tasksContainer = container.nestedUnkeyedContainer(forKey: .tasks)
             for task in self.tasks {

@@ -46,7 +46,7 @@ class ImageCropViewController: UIViewController {
 
 
     @IBAction func finishButtonTouched(_ sender: UIButton) {
-        cropPickerView.crop { (error, image) in
+        cropPickerView.crop { (error, image, crop) in
             if let error = error as NSError? {
                 DDLogError(error.localizedDescription)
                 self.onFinish?(nil)

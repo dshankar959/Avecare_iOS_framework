@@ -77,7 +77,4 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
         })
     }
 
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
 }

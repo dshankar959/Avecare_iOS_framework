@@ -43,6 +43,9 @@ struct SubjectsAPIService {
 
     // MARK: -
     static func publishDailyLog(log: LogFormAPIModel, completion: @escaping (Result<LogFormAPIModel, AppError>) -> Void) {
+        let subjectName = RLMSubject.find(withID: log.subjectId)?.fullName ?? "<RLMSubject>"
+        DDLogVerbose("Publish daily log [id:\(log.id)] for subject: \"\(subjectName)\"")
+
         apiProvider.request(.subjectPublishDailyLog(request: log),
                             callbackQueue: DispatchQueue.global(qos: .utility)) { result in
             switch result {

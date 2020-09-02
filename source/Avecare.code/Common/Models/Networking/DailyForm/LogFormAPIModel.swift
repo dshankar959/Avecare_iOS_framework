@@ -32,8 +32,8 @@ struct LogFormAPIModel {
             fatalError()
         }
         self.subjectId = subjectId
-        self.date = Date()
         self.logForm = form
+        self.date = form.clientLastUpdated!     // should *never be* nil
 
         // files array used only when receive response from server
         self.files = .init()
@@ -83,7 +83,8 @@ extension LogFormAPIModel: MultipartEncodable {
             data.append(.init(provider: .data(value), name: CodingKeys.id.rawValue))
         }
 
-        if let value = Date.logFormStringFromDate(Date()).data(using: .utf8) {
+        // Use form's date. Don't overwrite with current.
+        if let value = Date.logFormStringFromDate(date).data(using: .utf8) {
             data.append(.init(provider: .data(value), name: CodingKeys.date.rawValue))
         }
 

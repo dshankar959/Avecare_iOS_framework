@@ -69,6 +69,7 @@ extension SyncEngine {
                     if let lastSavedLog = sortedLogs.last,
                         let clientLastUpdated = lastSavedLog.clientLastUpdated,
                         Calendar.current.isDateInToday(clientLastUpdated) {
+                        DDLogVerbose("Today's subject log is already in our database.")
                         return
                     }
                 }
@@ -178,7 +179,7 @@ extension SyncEngine {
             return
         }
 
-        let form = allFormLogsForPublishing.first!
+        let form = allFormLogsForPublishing.first!.detached()   // .detached() makes it more thread-safe
 
         let imageStorageService = DocumentService()
         let request = LogFormAPIModel(form: form, storage: imageStorageService)
@@ -188,12 +189,14 @@ extension SyncEngine {
             case .success(let response):
                 DDLogVerbose("success")
                 //  update serverDate
-                RLMLogForm.writeTransaction {
-                    form.serverLastUpdated = response.logForm.serverLastUpdated
-                    form.publishState = .published
+                if let form = RLMLogForm.find(withID: response.id) {
+                    RLMLogForm.writeTransaction {
+                        form.serverLastUpdated = response.logForm.serverLastUpdated
+                        form.publishState = .published
+                    }
                 }
-                DDLogDebug("⬆️ UP syncComplete!  form.id = \(form.id)")
 
+                DDLogDebug("⬆️ UP syncComplete!  form.id = \(form.id)")
                 self?.syncUPsubjectLogs(syncCompletion)    // recurse for anymore
 
             case .failure(let error):
