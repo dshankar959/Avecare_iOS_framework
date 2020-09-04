@@ -168,7 +168,7 @@ class LogFormCellView: BaseXibView {
                 case .ended:
                     scrollView.isScrollEnabled = true
                     if (!isSwiped && translateX < removeButtonWidth - (frame.width - removeButtonWidth) * 0.9) ||
-                    (isSwiped && translateX < 2 * removeButtonWidth - (frame.width - removeButtonWidth) * 0.9) {
+                        (isSwiped && translateX < 2 * removeButtonWidth - (frame.width - removeButtonWidth) * 0.9) {
                         removeRow()
                     } else {
                         if (!isSwiped && translateX < -removeButtonWidth / 2) ||

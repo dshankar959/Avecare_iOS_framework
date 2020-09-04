@@ -1,5 +1,6 @@
 import UIKit
 import CocoaLumberjack
+import SnapKit
 
 
 
@@ -14,6 +15,10 @@ class SettingsSideViewController: UIViewController, IndicatorProtocol {
         return provider
     }()
 
+    var userFeedbackVC: UserFeedbackVC!
+
+
+    // MARK: -
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +34,7 @@ class SettingsSideViewController: UIViewController, IndicatorProtocol {
         }
 
         configSignoutButton()
+
     }
 
 
@@ -86,15 +92,12 @@ extension SettingsSideViewController: SettingsDataProviderDelegate {
         }
     }
 
-    func showPrivacyPolicy() {
+    func showfeedback() {
         DDLogVerbose("")
 
         if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
-            detailsViewController.updateSyncButton()
-            let form = dataProvider.privacyPolicyForm()
-            detailsViewController.detailsView.setFormViews(form.viewModels)
-            detailsViewController.detailsView.allignStackViewForWebView()
-
+            userFeedbackVC = UserFeedbackVC(withViewModel: UserFeedbackViewModel())
+            detailsViewController.setChildViewController(vc: userFeedbackVC)
         }
     }
 
@@ -102,13 +105,32 @@ extension SettingsSideViewController: SettingsDataProviderDelegate {
         DDLogVerbose("")
 
         if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.removeChildViewController(vc: userFeedbackVC)
+            userFeedbackVC = nil
+
             detailsViewController.updateSyncButton()
             let form = dataProvider.termsAndConditionsForm()
             detailsViewController.detailsView.setFormViews(form.viewModels)
-            detailsViewController.detailsView.allignStackViewForWebView()
+            detailsViewController.detailsView.alignStackViewForWebView()
 
         }
     }
+
+    func showPrivacyPolicy() {
+        DDLogVerbose("")
+
+        if let detailsViewController = customSplitController?.rightViewController as? DetailsFormViewController {
+            detailsViewController.removeChildViewController(vc: userFeedbackVC)
+            userFeedbackVC = nil
+
+            detailsViewController.updateSyncButton()
+            let form = dataProvider.privacyPolicyForm()
+            detailsViewController.detailsView.setFormViews(form.viewModels)
+            detailsViewController.detailsView.alignStackViewForWebView()
+
+        }
+    }
+
 
 }
 

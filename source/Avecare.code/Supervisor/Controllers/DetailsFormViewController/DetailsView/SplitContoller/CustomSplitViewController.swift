@@ -13,6 +13,7 @@ extension UIViewController {
 
 
 class CustomSplitViewController: UIViewController {
+
     @IBInspectable var leftControllerStoryboardName: String?
     @IBInspectable var leftControllerIdentifier: String?
     @IBInspectable var rightControllerStoryboardName: String?

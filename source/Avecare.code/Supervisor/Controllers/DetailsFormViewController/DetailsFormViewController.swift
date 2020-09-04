@@ -117,3 +117,26 @@ class DetailsFormViewController: UIViewController {
     }
 
 }
+
+
+
+extension DetailsFormViewController {
+
+    func setChildViewController(vc: UIViewController?) {
+        if let childViewController = vc {
+            self.add(childViewController)
+
+            childViewController.view.snp.remakeConstraints { (make) in
+                make.top.right.bottom.equalTo(detailsView)
+                make.left.equalTo(detailsView).offset(2)    // divider line
+            }
+        }
+    }
+
+    func removeChildViewController(vc: UIViewController?) {
+        if let childViewController = vc {
+            childViewController.remove()
+        }
+    }
+
+}

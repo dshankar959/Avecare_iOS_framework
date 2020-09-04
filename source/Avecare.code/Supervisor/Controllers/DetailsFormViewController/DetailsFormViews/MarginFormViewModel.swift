@@ -6,7 +6,6 @@ struct MarginFormViewModel: AnyCellViewModel {
     let height: CGFloat
 
     func setup(cell: UIView) {
-
     }
 
     func buildView() -> UIView {

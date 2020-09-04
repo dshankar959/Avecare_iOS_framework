@@ -39,6 +39,7 @@ extension UIViewController {
         return topController
     }
 
+
     func topViewController(rootViewController: UIViewController?) -> UIViewController? {
         guard let rootViewController = rootViewController else {
             return nil
@@ -60,12 +61,14 @@ extension UIViewController {
         }
     }
 
+
     // https://stackoverflow.com/a/47360437/7599
     var isModal: Bool {
         return presentingViewController != nil ||
             navigationController?.presentingViewController?.presentedViewController === navigationController ||
             tabBarController?.presentingViewController is UITabBarController
     }
+
 
     // Walk through memory and return a ViewController of a class 'Kind', if found.
     public static func findVC<T: UIViewController>(vcKind: T.Type? = nil) -> T? {
@@ -104,6 +107,26 @@ extension UIViewController {
         }
 
         return nil
+    }
+
+
+    func add(_ child: UIViewController) {
+        addChild(child)
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+    }
+
+
+    func remove() {
+        // Just to be safe, we check that this view controller
+        // is actually added to a parent before removing it.
+        guard parent != nil else {
+            return
+        }
+
+        willMove(toParent: nil)
+        view.removeFromSuperview()
+        removeFromParent()
     }
 
 }

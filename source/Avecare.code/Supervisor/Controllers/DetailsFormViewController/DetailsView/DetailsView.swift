@@ -74,7 +74,7 @@ extension DetailsView: CustomResponder {
         return true
     }
 
-    func allignStackViewForWebView() {
+    func alignStackViewForWebView() {
         stackView.clipsToBounds = false
         stackView.backgroundColor = UIColor.orange
         stackView.isHidden = false

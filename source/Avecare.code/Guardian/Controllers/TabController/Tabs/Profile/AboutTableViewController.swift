@@ -64,7 +64,8 @@ extension AboutTableViewController {
             let details = AboutDetails.allCases[indexPath.row]
             performSegue(withIdentifier: R.segue.aboutTableViewController.details, sender: details)
         } else {
-            sendFeedbackLogs()
+//            sendFeedbackLogs()
+            navigateToUserFeedback()
         }
 
         tableView.deselectRow(at: indexPath, animated: true)
@@ -129,23 +130,11 @@ extension AboutTableViewController {
     }
 
 
-    func sendFeedbackLogs() {
-        showActivityIndicator(withStatus: "Sending feedback package.")
+    private func navigateToUserFeedback() {
+        let vm = UserFeedbackViewModel()
+        let vc = UserFeedbackVC(withViewModel: vm)
 
-        UserAPIService.submitUserFeedback(for: appSession,
-                                          comments: "User submitted feedback.  ⭐",
-                                          withLogfiles: true) { [weak self] error in
-            if let error = error {
-                DDLogError("submitUserFeedback error = \(error)")
-                self?.showErrorAlert(error)
-            } else {
-                self?.showSuccessIndicator(withStatus: "Success! 👍")
-            }
-        }
-    }
-
-
-    func navigateToUserFeedback() {
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 
 }
@@ -153,8 +142,8 @@ extension AboutTableViewController {
 
 // MARK: -
 private enum AboutSections: Int, CaseIterable {
-    case about = 0
-    case support = 1
+    case support = 0
+    case about = 1
 }
 
 class AboutDataProvider {
@@ -164,12 +153,12 @@ class AboutDataProvider {
     }
 
     private lazy var dataSource: [Section] = [
+        Section(menus: [    // support
+            AboutTableViewCellModel(menuTitle: NSLocalizedString("Send us feedback", comment: "feedback"))
+        ]),
         Section(menus: [    // about
             AboutTableViewCellModel(menuTitle: NSLocalizedString(AboutDetails.termsAndConditions.rawValue, comment: "")),
             AboutTableViewCellModel(menuTitle: NSLocalizedString(AboutDetails.privacyPolicy.rawValue, comment: ""))
-        ]),
-        Section(menus: [    // support
-            AboutTableViewCellModel(menuTitle: NSLocalizedString("Send feedback logs", comment: "feedback"))
         ])
     ]
 
