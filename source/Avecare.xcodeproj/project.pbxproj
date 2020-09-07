@@ -111,6 +111,8 @@
 		6A216CA06A17B11A8377AD9C /* Pods_educator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */; };
 		750135ED24D7939400BAFCBC /* RLMDailyTaskForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750135EC24D7939400BAFCBC /* RLMDailyTaskForm.swift */; };
 		750135EE24D7939400BAFCBC /* RLMDailyTaskForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750135EC24D7939400BAFCBC /* RLMDailyTaskForm.swift */; };
+		7501C02725061FEB00E8AFE5 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7501C02625061FEB00E8AFE5 /* AppInfoView.swift */; };
+		7501C02825061FEB00E8AFE5 /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7501C02625061FEB00E8AFE5 /* AppInfoView.swift */; };
 		751B4C5C247EF9B6001B8035 /* syncSubjectLogs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615478D41647CC7CBA087361 /* syncSubjectLogs.swift */; };
 		751CE2F024B53D73002C4FC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
 		751CE2F124B53D74002C4FC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6DBA7F024295A94006C83E7 /* Assets.xcassets */; };
@@ -334,7 +336,6 @@
 		75EB5A2A246770B900E077E5 /* SubjectsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */; };
 		75EB5A2D2467A21600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A2C2467A21600E077E5 /* SyncEngine+Operations.swift */; };
 		75EB5A312467A26600E077E5 /* SyncEngine+Operations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */; };
-		75EDAD0624A3CEE600FF3E8A /* AppInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EDAD0524A3CEE600FF3E8A /* AppInfoView.swift */; };
 		75EDAD0824A3FDA100FF3E8A /* AboutDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EDAD0724A3FDA100FF3E8A /* AboutDetailsViewController.swift */; };
 		D0A64418248AA5C90041A69B /* PDFThumbViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A64417248AA5C90041A69B /* PDFThumbViewModel.swift */; };
 		D0A6441A248AA6E50041A69B /* PDFThumbView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A64419248AA6E50041A69B /* PDFThumbView.xib */; };
@@ -583,6 +584,7 @@
 		66EA2C0F4C0FFA37B6A34BFD /* Pods_parent.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_parent.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		69C07FEAA6B00BB61FD774F1 /* Pods_educator.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_educator.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		750135EC24D7939400BAFCBC /* RLMDailyTaskForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMDailyTaskForm.swift; sourceTree = "<group>"; };
+		7501C02625061FEB00E8AFE5 /* AppInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		7523497424A477E8000C873E /* AboutFormProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutFormProvider.swift; sourceTree = "<group>"; };
 		7541BC6C24B3D15B0026CCA1 /* FormTemplateRows.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FormTemplateRows.json; sourceTree = "<group>"; };
 		75526CBA24ECEC7700C43FA8 /* syncUnitDailyTaskChecklist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncUnitDailyTaskChecklist.swift; sourceTree = "<group>"; };
@@ -718,7 +720,6 @@
 		75EB5A2C2467A21600E077E5 /* SyncEngine+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncEngine+Operations.swift"; sourceTree = "<group>"; };
 		75EB5A302467A26500E077E5 /* SyncEngine+Operations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SyncEngine+Operations.swift"; sourceTree = "<group>"; };
 		75EB875223DB93B00068A3A7 /* parent.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = parent.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		75EDAD0524A3CEE600FF3E8A /* AppInfoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppInfoView.swift; sourceTree = "<group>"; };
 		75EDAD0724A3FDA100FF3E8A /* AboutDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutDetailsViewController.swift; sourceTree = "<group>"; };
 		8D907A25403C3C2B03771D87 /* Pods-parent.release(qa).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent.release(qa).xcconfig"; path = "Target Support Files/Pods-parent/Pods-parent.release(qa).xcconfig"; sourceTree = "<group>"; };
 		BD9B063DD34D2DCB204B671C /* Pods-parent.release(appstore).xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-parent.release(appstore).xcconfig"; path = "Target Support Files/Pods-parent/Pods-parent.release(appstore).xcconfig"; sourceTree = "<group>"; };
@@ -1591,7 +1592,6 @@
 		75886D83241932AB0079C080 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				75EDAD0424A3CEE600FF3E8A /* Views */,
 				DC3E80D2248596FC003983E2 /* Profile.storyboard */,
 				DC4FFA032470B9120079A27C /* Cells */,
 				75886D85241932AB0079C080 /* ProfileViewController.swift */,
@@ -1890,17 +1890,10 @@
 			path = SyncEngine;
 			sourceTree = "<group>";
 		};
-		75EDAD0424A3CEE600FF3E8A /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				75EDAD0524A3CEE600FF3E8A /* AppInfoView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		D0C4C7F42497F12900E16023 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7501C02625061FEB00E8AFE5 /* AppInfoView.swift */,
 				D0C4C7F22497F11400E16023 /* PdfView.swift */,
 			);
 			path = Views;
@@ -2515,6 +2508,7 @@
 				75886D282419327F0079C080 /* AppDelegate.swift in Sources */,
 				75886D402419327F0079C080 /* Bundle+AppInfo.swift in Sources */,
 				75EB59C82461858700E077E5 /* RLMOptionValue.swift in Sources */,
+				7501C02725061FEB00E8AFE5 /* AppInfoView.swift in Sources */,
 				75EB5A1D2466EE1100E077E5 /* syncSubjects.swift in Sources */,
 				75886DD7241932BA0079C080 /* SettingTableViewCellModel.swift in Sources */,
 				75EB59D02461858700E077E5 /* RLMLogForm.swift in Sources */,
@@ -2719,7 +2713,6 @@
 			files = (
 				75EB59E424618EF600E077E5 /* SyncEngine.swift in Sources */,
 				755EAEC2241AC6CC00A6BA4D /* DataProvider.swift in Sources */,
-				75EDAD0624A3CEE600FF3E8A /* AppInfoView.swift in Sources */,
 				DCF914102493BAAD0043123F /* RLMActivityOption.swift in Sources */,
 				75EDAD0824A3FDA100FF3E8A /* AboutDetailsViewController.swift in Sources */,
 				DCF9141B2497EDCB0043123F /* RLMReminderOption.swift in Sources */,
@@ -2818,6 +2811,7 @@
 				75886D512419327F0079C080 /* CGPoint.swift in Sources */,
 				750135EE24D7939400BAFCBC /* RLMDailyTaskForm.swift in Sources */,
 				75886D0D2419327F0079C080 /* AvecareAPI.swift in Sources */,
+				7501C02825061FEB00E8AFE5 /* AppInfoView.swift in Sources */,
 				7563166324BE21B4007D31B4 /* AppDelegate+Logging.swift in Sources */,
 				F6A5E13D2444DE8D00FD77B6 /* SingleValuePickerView.swift in Sources */,
 				75886D1B2419327F0079C080 /* Servers.swift in Sources */,

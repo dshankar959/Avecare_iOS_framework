@@ -26,16 +26,16 @@ class AppInfoView: UIView {
         appInfoLabel.textColor = .gray
 
         self.setSubviewForAutoLayout(appInfoLabel)
-
-        appInfoLabel.snp.remakeConstraints { [unowned self] (make) -> Void in
-            make.width.height.equalToSuperview()
-            make.centerX.equalTo(self)
-        }
     }
 
 
     override func layoutSubviews() {
         super.layoutSubviews()
+
+        appInfoLabel.snp.remakeConstraints { [unowned self] (make) -> Void in
+            make.width.height.equalToSuperview()
+            make.centerX.equalTo(self)
+        }
     }
 
 

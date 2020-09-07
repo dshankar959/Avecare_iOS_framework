@@ -51,6 +51,23 @@ extension UserFeedbackVC {  // UITableViewDataSource
         return cell
     }
 
+
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: UserFeedbackRow.send.rowHeight*2))
+
+        let appInfoView = AppInfoView(frame: CGRect.zero)
+
+        footerView.setSubviewForAutoLayout(appInfoView)
+
+        appInfoView.snp.remakeConstraints { (make) -> Void in
+            make.width.equalToSuperview()
+            make.height.equalTo(footerView.frame.size.height)
+            make.centerX.equalToSuperview()
+        }
+
+        return footerView
+    }
+
 }
 
 
@@ -130,6 +147,5 @@ extension UserFeedbackVC: ToggleTableViewCellDelegate, ButtonTableViewCellDelega
         }
 
     }
-
 
 }

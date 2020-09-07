@@ -10,7 +10,6 @@ class UserFeedbackVC: UITableViewController, IndicatorProtocol {
     var viewModel: UserFeedbackViewModel!     // Always valid through dependency injection.
 
 
-
     // MARK: - Initializers(...)
 
     required init?(coder aDecoder: NSCoder) {

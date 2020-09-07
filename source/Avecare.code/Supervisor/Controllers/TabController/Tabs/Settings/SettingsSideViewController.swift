@@ -27,6 +27,7 @@ class SettingsSideViewController: UIViewController, IndicatorProtocol {
 //        fatalError()
 
         navigationController?.setNavigationBarHidden(true, animated: false)
+
         tableView.register(nibModels: [SettingTableViewCellModel.self])
 
         if dataProvider.numberOfRows > 0 {
@@ -34,7 +35,6 @@ class SettingsSideViewController: UIViewController, IndicatorProtocol {
         }
 
         configSignoutButton()
-
     }
 
 
@@ -45,6 +45,7 @@ class SettingsSideViewController: UIViewController, IndicatorProtocol {
             detailsViewController.updateSyncButton()
         }
     }
+
 
     private func configSignoutButton() {
         signOutButton.nameText = NSLocalizedString("settings_menutitle_sign_out", comment: "")
