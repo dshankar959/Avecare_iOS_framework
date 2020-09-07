@@ -118,7 +118,7 @@ def common_pods
 
   # Crop image
   # https://github.com/pikachu987/CropPickerView
-  pod 'CropPickerView'
+  pod 'CropPickerView', :tag => '0.2.1', :git => 'https://github.com/pikachu987/CropPickerView.git'
 
   # Calendar library
   # https://github.com/patchthecode/JTAppleCalendar
