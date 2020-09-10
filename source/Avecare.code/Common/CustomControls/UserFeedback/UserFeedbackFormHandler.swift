@@ -131,8 +131,6 @@ extension UserFeedbackVC: ToggleTableViewCellDelegate, ButtonTableViewCellDelega
         DDLogVerbose("comments = \(viewModel.userComments)")
         DDLogVerbose("includeLogfiles = \(viewModel.includeLogfiles)")
 
-        showSuccessIndicator(withStatus: "Success! 👍") // testing
-
         showActivityIndicator(withStatus: "Sending feedback package.")
 
         UserAPIService.submitUserFeedback(for: appSession,

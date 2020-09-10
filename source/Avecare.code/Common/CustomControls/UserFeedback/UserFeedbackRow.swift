@@ -27,7 +27,7 @@ enum UserFeedbackRow {
     var rowHeight: CGFloat {
         switch self {
         case .comments:
-            return hardwareDevice.isPad ? 130 : 180
+            return hardwareDevice.isPad ? 115 : 180
         case .logfiles, .send, .none:
             return 60
         }
