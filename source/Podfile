@@ -63,8 +63,7 @@ def common_pods
 
   # Realm is a mobile database: a replacement for Core Data & SQLite
   # https://github.com/realm/realm-cocoa
-#  pod 'RealmSwift'
-  pod 'RealmSwift', '~> 4.4.1'  # until this is fixed:  https://github.com/realm/realm-cocoa/issues/6572#issuecomment-648424433
+  pod 'RealmSwift'
 
   # Replacement for Apple's Reachability re-written in Swift with closures
   # https://github.com/ashleymills/Reachability.swift
