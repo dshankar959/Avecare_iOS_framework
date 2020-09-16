@@ -78,11 +78,11 @@ extension RLMStory: RLMCleanable, DataProvider {
 
 struct PublishedStoriesRequestModel: Codable {
 
-    let unitId: String
-    let resultsOffset: Int = 0
-    let resultsLimit: Int = 0
-    let startDate: String = ""
-    let endDate: String = ""
+    var unitId: String
+    var resultsOffset: Int = 0
+    var resultsLimit: Int = 0
+    var startDate: String = ""
+    var endDate: String = ""
     var serverLastUpdated: String = ""
 
 

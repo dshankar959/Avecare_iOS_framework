@@ -16,6 +16,7 @@ post_install do |installer|
             config.build_settings['DEBUG_INFORMATION_FORMAT'] = 'dwarf'
             config.build_settings['SWIFT_VERSION'] = '5.0'  # default
             config.build_settings['ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES'] = '$(inherited)'
+            config.build_settings['ONLY_ACTIVE_ARCH'] = 'YES'
 
             if [
                 ].include? target.name
@@ -32,7 +33,19 @@ post_install do |installer|
               config.build_settings['SWIFT_VERSION'] = '5.0'
             end
 
-            if ['SwiftLint'
+            if ['SwiftLint',
+                'ReachabilitySwift',
+                'CocoaLumberjack',
+                'CocoaLumberjack/Swift',
+                'SwiftPullToRefresh',
+                'Sentry',
+                'SegueManager',
+                'SegueManager/R.swift',
+                'R.swift',
+                'R.swift.Library',
+                'KeychainAccess',
+                'IHProgressHUD',
+                'CropPickerView'
               ].include? target.name
               config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '12.0'
             end
