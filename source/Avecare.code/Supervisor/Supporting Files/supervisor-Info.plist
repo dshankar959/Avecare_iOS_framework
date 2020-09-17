@@ -40,7 +40,7 @@
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app uses GPS to tag content with location data.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>This app enables you to use photos from your library.</string>
+	<string>Use photos from your library to share precious learning moments.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Font Awesome 5 Duotone-Solid-900</string>
