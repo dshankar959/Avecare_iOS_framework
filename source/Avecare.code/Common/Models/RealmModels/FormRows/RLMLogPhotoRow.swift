@@ -1,4 +1,5 @@
 import RealmSwift
+import CocoaLumberjack
 
 
 
@@ -62,7 +63,15 @@ class RLMLogPhotoRow: Object, Codable {
 extension RLMLogPhotoRow: DataProvider, RLMCleanable {
 
     func clean() {
-        //TODO: remove local photo
+        // Remove local photo file.
+        let service = DocumentService()
+        let userAppDirectory = service.directory
+        let localImageURL = userAppDirectory.appendingPathComponent(id).appendingPathExtension("jpg")   // .id matches image filename
+
+        if FileManager.default.fileExists(atPath: localImageURL.path) {
+            DDLogVerbose("cleaning: remove photo file: \(id).jpg")
+            _ = try? DocumentService().removeFile(at: localImageURL)
+        }
 
         delete()
     }
