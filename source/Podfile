@@ -56,7 +56,7 @@ def common_pods
   # Sentry is a service that helps you monitor and fix crashes in realtime.
   # Official Sentry SDK for iOS / tvOS / macOS / watchOS
   # https://github.com/getsentry/sentry-cocoa
-  pod 'Sentry'
+  pod 'Sentry', '~> 5.2.2'
 
   # Realm is a mobile database: a replacement for Core Data & SQLite
   # https://github.com/realm/realm-cocoa
