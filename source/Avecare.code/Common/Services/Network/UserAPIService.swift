@@ -109,12 +109,12 @@ extension UserAPIService {
         let serverType = servers.valueFromDescription(appSettings.serverURLstring)
         let isCustomType = (serverType == servers.customType) ? true : false
 
-        var userComments = comments
+        var userComments = comments + "\n\nPlatform: iOS"
 
         if isCustomType {
-            userComments += "\n\n\(appNameVersionAndBuildDateString())\nserver: \(appSettings.serverURLstring)"
+            userComments += "\n\(appNameVersionAndBuildDateString())\nserver: \(appSettings.serverURLstring)"
         } else {
-            userComments += "\n\n\(appNameVersionAndBuildDateString())\nserver: \(serverType)"
+            userComments += "\n\(appNameVersionAndBuildDateString())\nserver: \(serverType)"
         }
 
         let model = UserFeedbackRequestModel(for: session,
