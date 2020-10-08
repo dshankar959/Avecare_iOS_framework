@@ -11,9 +11,12 @@ extension AvecareAPI {
 
     var sampleData: Data {
         DDLogDebug("sampleData...  { Stubbed response }")
-
-        return "default data".utf8Encoded
-
+        switch self {
+        case .login:
+            return "{\"accountType\":\"guardian\",\"accountTypeId\":\"sample_id\",\"token\":\"sample_token\"}".utf8Encoded
+        default:
+            return "default data".utf8Encoded
+        }
     }
 
 }
