@@ -38,6 +38,16 @@
                ReferencedContainer = "container:Avecare.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "DC868AB4252F676200E4983C"
+               BuildableName = "ParentTests.xctest"
+               BlueprintName = "ParentTests"
+               ReferencedContainer = "container:Avecare.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

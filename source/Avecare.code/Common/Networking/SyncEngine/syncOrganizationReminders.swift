@@ -28,7 +28,7 @@ extension SyncEngine {
             if let unitId = RLMSupervisor.details?.primaryUnitId,
                 let unitDetails = RLMUnit.details(for: unitId),
                 let institutionDetails = RLMInstitution.details(for: unitDetails.institutionId) {
-                OrganizationsAPIService.getAvailableReminders(organizationId: institutionDetails.organizationId) { [weak self] result in
+                OrganizationsAPIService.getAvailableReminders(for: institutionDetails.organizationId) { [weak self] result in
                     switch result {
                     case .success(let reminders):
                         // Update with new data.
@@ -44,7 +44,7 @@ extension SyncEngine {
             }
         } else {
             if let organizationId = RLMOrganization.findAll().first?.id {
-                OrganizationsAPIService.getAvailableReminders(organizationId: organizationId) { [weak self] result in
+                OrganizationsAPIService.getAvailableReminders(for: organizationId) { [weak self] result in
                     switch result {
                     case .success(let reminders):
                         // Update with new data.

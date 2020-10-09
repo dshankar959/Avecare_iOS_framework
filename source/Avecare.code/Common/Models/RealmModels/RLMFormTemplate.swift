@@ -7,7 +7,7 @@ class RLMFormTemplate: RLMDefaults {
 
     @objc dynamic var version: Int = 0
     @objc dynamic var subjectType: String = ""
-//    @objc dynamic var organization: RLMOrganization?
+    @objc dynamic var organization: String = ""
 
     let rows = List<RLMLogRow>()
 
@@ -16,6 +16,7 @@ class RLMFormTemplate: RLMDefaults {
         case version
         case template
         case subjectType
+        case organization
     }
 
     override class func indexedProperties() -> [String] {
@@ -30,6 +31,7 @@ class RLMFormTemplate: RLMDefaults {
 
             version = try values.decode(Int.self, forKey: .version)
             subjectType = try values.decode(String.self, forKey: .subjectType)
+            organization = try values.decode(String.self, forKey: .organization)
 
             let rows = try values.decode([RLMLogRow].self, forKey: .template)
             self.rows.append(objectsIn: rows)
