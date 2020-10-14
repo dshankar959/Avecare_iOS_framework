@@ -4,7 +4,7 @@ import RealmSwift
 
 
 struct DALConfig {
-    static let DatabaseSchemaVersion: UInt64 = 1
+    static let DatabaseSchemaVersion: UInt64 = 2
     static let realmStoreName: String = "avecare.realm"   // default
     static var userRealmFileURL: URL?
 }

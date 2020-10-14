@@ -57,7 +57,7 @@ extension APITests {
         self.waitForExpectations(timeout: 1.0, handler: nil)
     }
 
-    func testSubjectsAPI() throws {
+    func testGuardianSubjectsAPI() throws {
         // given
         let guardianId = "test_guardian_id"
         let expectation = self.expectation(description: "Subjects")
@@ -66,13 +66,15 @@ extension APITests {
             // then
             switch result {
             case .success(let subjects):
-                if subjects.count == 2 {
+                if subjects.count == 2,
+                    subjects.first?.id == "first_subject_id",
+                    subjects.last?.id == "second_subject_id" {
                     expectation.fulfill()
                 } else {
-                    XCTFail("Wrong subject count: \(subjects.count)")
+                    XCTFail("Wrong guardian subjects: \(subjects)")
                 }
             case .failure(let error):
-                XCTFail("Failed to get subjects: \(error)")
+                XCTFail("Failed to get guardian subjects: \(error)")
             }
         }
         self.waitForExpectations(timeout: 1.0, handler: nil)

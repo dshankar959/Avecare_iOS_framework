@@ -55,7 +55,7 @@
 		61547527266DD8DB51B90A5A /* HomeTableViewDisclosureCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6154786288CE3337831B8CEB /* HomeTableViewDisclosureCell.swift */; };
 		6154752751D03A37500C2868 /* SupervisorCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615477A2F255F1B2F5FE6614 /* SupervisorCollectionViewCell.swift */; };
 		615475CA76FACDD26C7D99CF /* RLMDailyTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547B3327B0C7C4F06CDC0D /* RLMDailyTask.swift */; };
-		615475EBD951B074817F96F2 /* UnitAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615479056980C7871D32751E /* UnitAPIService.swift */; };
+		615475EBD951B074817F96F2 /* UnitsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615479056980C7871D32751E /* UnitsAPIService.swift */; };
 		61547626B3CD3ABAA074B6A9 /* SubjectListDataProvider+Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615472DEED205F376B08C4D7 /* SubjectListDataProvider+Switch.swift */; };
 		6154769C2EB5AE3A9AF2AD45 /* TimeRangePickerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547987775C9B210B22AA84 /* TimeRangePickerView.xib */; };
 		61547716ED0704A1F4601513 /* StoriesDetailsPhotoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61547ED5799922B0A2DB9C2C /* StoriesDetailsPhotoView.xib */; };
@@ -315,7 +315,7 @@
 		75EB59FC24632D1F00E077E5 /* syncUnitDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB59FA24632D1F00E077E5 /* syncUnitDetails.swift */; };
 		75EB5A042463C03300E077E5 /* RLMGuardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A032463C03300E077E5 /* RLMGuardian.swift */; };
 		75EB5A052463C03300E077E5 /* RLMGuardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A032463C03300E077E5 /* RLMGuardian.swift */; };
-		75EB5A0C2465D76A00E077E5 /* UnitAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615479056980C7871D32751E /* UnitAPIService.swift */; };
+		75EB5A0C2465D76A00E077E5 /* UnitsAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615479056980C7871D32751E /* UnitsAPIService.swift */; };
 		75EB5A0D2465D77900E077E5 /* RLMAccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61547A4597BB6D889FB8F580 /* RLMAccountInfo.swift */; };
 		75EB5A112466683300E077E5 /* syncInstitutionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */; };
 		75EB5A122466683300E077E5 /* syncInstitutionDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB5A102466683300E077E5 /* syncInstitutionDetails.swift */; };
@@ -412,6 +412,10 @@
 		DC9622CE252F851100FFB8F4 /* APITests+Guardians.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9622CB252F84EE00FFB8F4 /* APITests+Guardians.swift */; };
 		DC9622D1252F942300FFB8F4 /* APITests+Organizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9622CF252F92E100FFB8F4 /* APITests+Organizations.swift */; };
 		DC9622D2252F942400FFB8F4 /* APITests+Organizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9622CF252F92E100FFB8F4 /* APITests+Organizations.swift */; };
+		DC9622D52535E19D00FFB8F4 /* APITests+Institutions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9622D32535E15E00FFB8F4 /* APITests+Institutions.swift */; };
+		DC9622D62535E19E00FFB8F4 /* APITests+Institutions.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9622D32535E15E00FFB8F4 /* APITests+Institutions.swift */; };
+		DC9622D92535F3CA00FFB8F4 /* APITests+Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9622D72535E60B00FFB8F4 /* APITests+Units.swift */; };
+		DC9622DA2535F3CB00FFB8F4 /* APITests+Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9622D72535E60B00FFB8F4 /* APITests+Units.swift */; };
 		DC9D130524AA1B7400DEBA61 /* TagPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D6524AA121300C5AC0E /* TagPickerViewController.swift */; };
 		DC9D130624AA59A600DEBA61 /* RLMLogTagsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB33D6124A63CC500C5AC0E /* RLMLogTagsRow.swift */; };
 		DC9D130824AA899900DEBA61 /* SubjectDetailsTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9D130724AA899900DEBA61 /* SubjectDetailsTagsView.swift */; };
@@ -574,7 +578,7 @@
 		615478C7FFEB976D5EBE27D8 /* SubjectPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubjectPickerViewController.swift; sourceTree = "<group>"; };
 		615478D41647CC7CBA087361 /* syncSubjectLogs.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = syncSubjectLogs.swift; sourceTree = "<group>"; };
 		615478D8AB934A1DD5AD4BF9 /* SubjectListDataProvider+Injury.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SubjectListDataProvider+Injury.swift"; sourceTree = "<group>"; };
-		615479056980C7871D32751E /* UnitAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitAPIService.swift; sourceTree = "<group>"; };
+		615479056980C7871D32751E /* UnitsAPIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnitsAPIService.swift; sourceTree = "<group>"; };
 		615479269DCBED93B225DDA3 /* SubjectAccidentReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubjectAccidentReportView.xib; sourceTree = "<group>"; };
 		6154797C8F550C18F3AB7FBF /* DocumentService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DocumentService.swift; sourceTree = "<group>"; };
 		61547987775C9B210B22AA84 /* TimeRangePickerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimeRangePickerView.xib; sourceTree = "<group>"; };
@@ -829,6 +833,8 @@
 		DC8B7E01248A80270000414D /* ImageCropViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCropViewController.xib; sourceTree = "<group>"; };
 		DC9622CB252F84EE00FFB8F4 /* APITests+Guardians.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APITests+Guardians.swift"; sourceTree = "<group>"; };
 		DC9622CF252F92E100FFB8F4 /* APITests+Organizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APITests+Organizations.swift"; sourceTree = "<group>"; };
+		DC9622D32535E15E00FFB8F4 /* APITests+Institutions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APITests+Institutions.swift"; sourceTree = "<group>"; };
+		DC9622D72535E60B00FFB8F4 /* APITests+Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "APITests+Units.swift"; sourceTree = "<group>"; };
 		DC9D130724AA899900DEBA61 /* SubjectDetailsTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectDetailsTagsView.swift; sourceTree = "<group>"; };
 		DC9D130924AA89BE00DEBA61 /* SubjectDetailsTagsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubjectDetailsTagsView.xib; sourceTree = "<group>"; };
 		DC9D130B24AA917C00DEBA61 /* TagCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1514,7 +1520,7 @@
 				75886D032419327F0079C080 /* UserAPIService.swift */,
 				61547D73CFED29A678ACDFD5 /* OrganizationsAPIService.swift */,
 				615476E15206D0F7BC7080C8 /* InstitutionsAPIService.swift */,
-				615479056980C7871D32751E /* UnitAPIService.swift */,
+				615479056980C7871D32751E /* UnitsAPIService.swift */,
 				615477F9336DCCFCFBC69A09 /* SubjectsAPIService.swift */,
 				DCB33D4C24A3C7A200C5AC0E /* NotificationsAPIService.swift */,
 				DC3E80E92486BDDE003983E2 /* FeedsAPIService.swift */,
@@ -2031,6 +2037,8 @@
 				DC868A85252F49A700E4983C /* APITests+Supervisors.swift */,
 				DC9622CB252F84EE00FFB8F4 /* APITests+Guardians.swift */,
 				DC9622CF252F92E100FFB8F4 /* APITests+Organizations.swift */,
+				DC9622D32535E15E00FFB8F4 /* APITests+Institutions.swift */,
+				DC9622D72535E60B00FFB8F4 /* APITests+Units.swift */,
 			);
 			path = CommonTests;
 			sourceTree = "<group>";
@@ -2790,7 +2798,7 @@
 				6154738E944061FE15757FAD /* RLMAccountInfo.swift in Sources */,
 				61547C7098FB4A48FF8B56DC /* RLMSupervisor.swift in Sources */,
 				75EB59C62461858700E077E5 /* RLMLogInjuryRow.swift in Sources */,
-				615475EBD951B074817F96F2 /* UnitAPIService.swift in Sources */,
+				615475EBD951B074817F96F2 /* UnitsAPIService.swift in Sources */,
 				75B49B2E25012335007D61FF /* UserFeedbackFormHandler.swift in Sources */,
 				6154724046F3B4B42269D31C /* RLMUnit.swift in Sources */,
 				DCF914182497E28E0043123F /* RLMReminderOption.swift in Sources */,
@@ -2873,7 +2881,7 @@
 				75886D572419327F0079C080 /* IndicatorProtocol.swift in Sources */,
 				75886D292419327F0079C080 /* AppDelegate.swift in Sources */,
 				75886D412419327F0079C080 /* Bundle+AppInfo.swift in Sources */,
-				75EB5A0C2465D76A00E077E5 /* UnitAPIService.swift in Sources */,
+				75EB5A0C2465D76A00E077E5 /* UnitsAPIService.swift in Sources */,
 				F663BB6F2435119C003279B9 /* APIResponse.swift in Sources */,
 				75886D91241932AB0079C080 /* HomeDataProvider.swift in Sources */,
 				DC4FFA1C247488A90079A27C /* AboutTableViewCell.swift in Sources */,
@@ -3055,7 +3063,9 @@
 			files = (
 				DC868AA7252F674A00E4983C /* EducatorTests.swift in Sources */,
 				DC9622CD252F851000FFB8F4 /* APITests+Guardians.swift in Sources */,
+				DC9622D92535F3CA00FFB8F4 /* APITests+Units.swift in Sources */,
 				DC868AD5252F684F00E4983C /* APITests+Supervisors.swift in Sources */,
+				DC9622D52535E19D00FFB8F4 /* APITests+Institutions.swift in Sources */,
 				DC868AD7252F6C4500E4983C /* APITests.swift in Sources */,
 				DC9622D1252F942300FFB8F4 /* APITests+Organizations.swift in Sources */,
 			);
@@ -3067,7 +3077,9 @@
 			files = (
 				DC868AD4252F684B00E4983C /* APITests.swift in Sources */,
 				DC9622CE252F851100FFB8F4 /* APITests+Guardians.swift in Sources */,
+				DC9622DA2535F3CB00FFB8F4 /* APITests+Units.swift in Sources */,
 				DC868AB8252F676200E4983C /* ParentTests.swift in Sources */,
+				DC9622D62535E19E00FFB8F4 /* APITests+Institutions.swift in Sources */,
 				DC868AD8252F6C5E00E4983C /* APITests+Supervisors.swift in Sources */,
 				DC9622D2252F942400FFB8F4 /* APITests+Organizations.swift in Sources */,
 			);

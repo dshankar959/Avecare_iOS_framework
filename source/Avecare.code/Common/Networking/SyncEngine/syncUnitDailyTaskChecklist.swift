@@ -27,9 +27,9 @@ extension SyncEngine {
         if appSession.userProfile.isSupervisor,
             let unitId = RLMSupervisor.details?.primaryUnitId {
 
-            let request = UnitAPIService.DailyTaskFormsRequest(unitId: unitId)
+            let request = UnitsAPIService.DailyTaskFormsRequest(unitId: unitId)
 
-            UnitAPIService.getPublishedDailyTaskForms(request: request) { [weak self] result in
+            UnitsAPIService.getPublishedDailyTaskForms(request: request) { [weak self] result in
                 switch result {
                 case .success(let publishedDailyTaskForms):
 

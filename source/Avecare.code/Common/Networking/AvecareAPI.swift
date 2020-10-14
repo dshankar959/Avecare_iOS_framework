@@ -95,7 +95,7 @@ enum AvecareAPI { // API Services
     case unitPublishStory(story: PublishStoryRequestModel)
     case unitPublishedStories(request: PublishedStoriesRequestModel)
     case unitPublishDailyTaskForm(id: String, request: RLMDailyTaskForm)
-    case unitPublishedDailyTaskForms(request: UnitAPIService.DailyTaskFormsRequest)
+    case unitPublishedDailyTaskForms(request: UnitsAPIService.DailyTaskFormsRequest)
 
 }
 

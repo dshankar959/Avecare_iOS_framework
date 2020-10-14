@@ -26,7 +26,7 @@ extension SyncEngine {
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor {
             if let unitId = RLMSupervisor.details?.primaryUnitId {
-                UnitAPIService.getSubjects(unitId: unitId) { [weak self] result in
+                UnitsAPIService.getSubjects(unitId: unitId) { [weak self] result in
                     switch result {
                     case .success(let details):
 

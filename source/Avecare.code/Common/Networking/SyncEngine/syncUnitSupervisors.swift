@@ -59,7 +59,7 @@ extension SyncEngine {
                     let semaphore = DispatchSemaphore(value: 0) // serialize async API executions in this thread.
 
                     // Get list of supervisors for this unit.
-                    UnitAPIService.getSupervisorAccounts(unitId: unitId) { [weak self] result in
+                    UnitsAPIService.getSupervisorAccounts(unitId: unitId) { [weak self] result in
                         DDLogDebug("#️⃣ \(index+1) of \(allUnits.count) Unit(s)")
                         apiResult = result
 

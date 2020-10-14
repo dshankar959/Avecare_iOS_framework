@@ -35,6 +35,14 @@ extension AvecareAPI {
             return "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"id\":\"sample_injury_id\",\"name\":\"sample_injury_name\",\"description\":\"sample_injury_description\",\"isActive\":true}]}".utf8Encoded
         case .organizationReminders:
             return "{\"count\":1,\"next\":null,\"previous\":null,\"results\":[{\"id\":\"sample_reminder_id\",\"name\":\"sample_reminder_name\",\"description\":\"sample_reminder_description\",\"isActive\":true,\"order\":1}]}".utf8Encoded
+        case .institutionDetails:
+            return "{\"id\":\"test_institution_id\",\"isActive\":true,\"name\":\"Test School\",\"mealPlan\":\"https://sample.mealplan.link\",\"organizationId\":\"test_organization_id\"}".utf8Encoded
+        case .unitDetails:
+            return "{\"id\":\"test_unit_id\",\"institutionId\":\"test_institution_id\",\"name\":\"Test Class\"}".utf8Encoded
+        case .unitSubjects:
+            return "{\"count\":2,\"next\":null,\"previous\":null,\"results\":[{\"id\":\"first_subject_id\",\"firstName\":\"First\",\"middleName\":\"Sample\",\"lastName\":\"Subject\",\"birthday\":\"2011-09-17\",\"profilePhoto\":\"https://sample.profilePhoto.link\",\"subjectTypeId\":\"first_subject_type_id\",\"unitIds\":[\"sample_unit_id\"],\"photoConsent\":true},{\"id\":\"second_subject_id\",\"firstName\":\"Second\",\"middleName\":\"Sample\",\"lastName\":\"Subject\",\"birthday\":\"2015-06-22\",\"profilePhoto\":\"https://sample.profilePhoto.link\",\"subjectTypeId\":\"second_subject_type_id\",\"unitIds\":[\"sample_unit_id\"],\"photoConsent\":true}]}".utf8Encoded
+        case .unitSupervisors:
+            return "{\"count\":2,\"next\":null,\"previous\":null,\"results\":[{\"id\":\"first_supervisor_id\",\"title\":\"Ms\",\"firstName\":\"First\",\"middleName\":\"Supervisor\",\"lastName\":\"Name\",\"isUnitType\":false,\"primaryUnitId\":\"sample_unit_id\",\"showInUnitList\":true},{\"id\":\"second_supervisor_id\",\"title\":\"Mr\",\"firstName\":\"Second\",\"middleName\":\"Supervisor\",\"lastName\":\"Name\",\"isUnitType\":true,\"primaryUnitId\":\"sample_unit_id\",\"showInUnitList\":true}]}".utf8Encoded
         default:
             return "default data".utf8Encoded
         }

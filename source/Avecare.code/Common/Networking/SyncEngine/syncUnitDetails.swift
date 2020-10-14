@@ -26,7 +26,7 @@ extension SyncEngine {
         // Sync down from server and update our local DB.
         if appSession.userProfile.isSupervisor {
             if let unitId = RLMSupervisor.details?.primaryUnitId {
-                UnitAPIService.getUnitDetails(unitId: unitId) { [weak self] result in
+                UnitsAPIService.getUnitDetails(unitId: unitId) { [weak self] result in
                     switch result {
                     case .success(let details):
                         // Update with new data.
@@ -75,7 +75,7 @@ extension SyncEngine {
 
                             let semaphore = DispatchSemaphore(value: 0) // serialize async API executions in this thread.
 
-                            UnitAPIService.getUnitDetails(unitId: unitId) { [weak self] result in
+                            UnitsAPIService.getUnitDetails(unitId: unitId) { [weak self] result in
                                 DDLogDebug("#️⃣ \(index+1) of \(allSubjects.count) Subject(s)")
                                 apiResult = result
 

@@ -25,7 +25,7 @@ extension SyncEngine {
 
         if appSession.userProfile.isSupervisor {
             if let unitId = RLMSupervisor.details?.primaryUnitId {
-                UnitAPIService.getPublishedStories(unitId: unitId) { [weak self] result in
+                UnitsAPIService.getPublishedStories(unitId: unitId) { [weak self] result in
                     switch result {
                     case .success(let stories):
                         // link with unit
@@ -83,7 +83,7 @@ extension SyncEngine {
 
                         let semaphore = DispatchSemaphore(value: 0) // serialize async API executions in this thread.
 
-                        UnitAPIService.getPublishedStories(unitId: unitId) { [weak self] result in
+                        UnitsAPIService.getPublishedStories(unitId: unitId) { [weak self] result in
                             DDLogDebug("#️⃣ \(index+1) of \(unitIds.count) Unit(s)")
                             apiResult = result
 
@@ -168,7 +168,7 @@ extension SyncEngine {
         let imageStorageService = DocumentService()
         let model = PublishStoryRequestModel(unitId: unitId, story: story, storage: imageStorageService)
 
-        UnitAPIService.publishStory(model) { [weak self] result in
+        UnitsAPIService.publishStory(model) { [weak self] result in
             switch result {
             case .success(let response):
                 DDLogVerbose("success")
