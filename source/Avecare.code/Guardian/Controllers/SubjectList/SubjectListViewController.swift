@@ -21,7 +21,7 @@ class SubjectListViewController: UIViewController {
     private let drawerHeight = CGFloat(22)
     var contentHeight: CGFloat {
         // should not be greater then screen size -> This is done by SlideInPresentationController
-        return CGFloat(dataProvider.numberOfRows) * cellHeight + drawerHeight
+        return CGFloat(dataProvider.numberOfRows) * cellHeight + drawerHeight + CGFloat(UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0)
     }
 
     var panningInterationController: PanningInteractionController?
