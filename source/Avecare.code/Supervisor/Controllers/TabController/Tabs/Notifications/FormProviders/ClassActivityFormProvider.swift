@@ -12,16 +12,10 @@ class ClassActivityFormProvider {
 
     var activityDateString: String? {
         guard let date = activityDate else { return nil }
-        return dateFormatter.string(from: date)
+        return Date.monthDayYearFormatter.string(from: date)
     }
 
     var activityInstructions: String = ""
-
-    lazy var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yy / MM / dd"
-        return formatter
-    }()
 
     init(indexPath: IndexPath) {
         self.indexPath = indexPath

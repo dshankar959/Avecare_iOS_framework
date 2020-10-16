@@ -59,9 +59,14 @@ class FeedDetailsViewController: UIViewController, IndicatorProtocol {
                 if let error = error {
                     self?.showErrorAlert(error)
                 } else {
-                    var bodyText = activity?.activityOption?.descriptions
-                    bodyText?.append("\n\n")
-                    bodyText?.append(activity?.instructions ?? "")
+                    var bodyText: String = ""
+
+                    if let activityDescription = activity?.activityOption?.descriptions {
+                        bodyText = activityDescription
+                    }
+
+                    bodyText.append("\n\n")
+                    bodyText.append(activity?.instructions ?? "")
 
                     self?.bodyLabel.text = bodyText
                     self?.setTexts(withSender: activity?.unit?.name,

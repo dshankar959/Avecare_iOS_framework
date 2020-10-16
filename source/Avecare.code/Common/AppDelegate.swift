@@ -61,6 +61,17 @@ import Kingfisher
         #elseif SUPERVISOR
             DDLogInfo("SUPERVISOR.  [eg. \"Educator\", \"Animal Trainer\", etc.]")
         #endif
+
+        if appSettings.isTesting {
+            DDLogError("~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~")
+            DDLogError(" ATTENTION!  SYSTEM UNDER TEST -")
+            DDLogError("~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~\n")
+        }
+
+        // Programmatically enabling CFNetwork diagnostic logging:
+        // https://stackoverflow.com/a/48971763/7599
+//        setenv("CFNETWORK_DIAGNOSTICS", "2", 1)
+
     }
 
 

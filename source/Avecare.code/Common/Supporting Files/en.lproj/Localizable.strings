@@ -75,7 +75,7 @@
 "notification_inspections_and_drills_select_activity_title" = "Select Activity";
 "notification_inspections_and_drills_select_activity_placetolder" = "No activity selected";
 "notification_inspections_and_drills_select_date_title" = "Select Date";
-"notification_inspections_and_drills_select_date_placeholder" = "YY / MM / DD";
+"notification_inspections_and_drills_select_date_placeholder" = "Select";
 "notification_inspections_and_drills_special_instruction_title" = "Special Instructions (if any)";
 "notification_inspections_and_drills_special_instruction_placeholder" = "140 characters maximum.";
 "notification_injury_report_select_child_title" = "Select Child";
