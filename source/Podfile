@@ -73,8 +73,8 @@ def common_pods
 
   # A clean and lightweight progress HUD based on SVProgressHUD, converted to Swift with the help of Swiftify.
   # https://github.com/Swiftify-Corp/IHProgressHUD
-  #pod 'IHProgressHUD'
-  pod 'IHProgressHUD', :git => 'https://github.com/Swiftify-Corp/IHProgressHUD.git'
+  pod 'IHProgressHUD'
+  # pod 'IHProgressHUD', :git => 'https://github.com/Swiftify-Corp/IHProgressHUD.git'
 
   # A Swift Autolayout DSL for iOS & OS X
   # https://github.com/SnapKit/SnapKit
