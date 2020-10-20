@@ -2,7 +2,7 @@ import UIKit
 import CocoaLumberjack
 import IHProgressHUD
 import DeviceKit
-import Reachability
+import Connectivity
 import Kingfisher
 
 
@@ -15,14 +15,7 @@ import Kingfisher
     // https://stackoverflow.com/questions/45832155/how-do-i-refactor-my-code-to-call-appdelegate-on-the-main-thread/45833540#45833540
     static var _applicationDelegate: AppDelegate!   // treat as #internal.  Use Global: `appDelegate` instead to read.  Underscore to write.
 
-    let reachability = { () -> Reachability in
-        do {
-            return try Reachability(hostname: ServerURLs.reachability.description)
-        } catch let error {
-            DDLogError("Reachability error: \(error)")
-            fatalError("Reachability error: \(error)")
-        }
-    }()
+    let connectivity: Connectivity = Connectivity()
 
     var _isDataConnection: Bool = false     // treat as #internal.  Use Global: `isDataConnection` instead to read.  Underscore to write.
 
@@ -88,14 +81,14 @@ import Kingfisher
 
         UITabBar.appearance().unselectedItemTintColor = R.color.darkText()
 
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(reachabilityChanged(note:)),
-                                               name: .reachabilityChanged, object: reachability)
-        do {
-            try reachability.startNotifier()
-        } catch {
-            DDLogError("could not start reachability notifier ⁉️")
+        let connectivityChanged: (Connectivity) -> Void = { [weak self] connectivity in
+            self?.updateConnectionStatus(connectivity.status)
         }
+
+        connectivity.whenConnected = connectivityChanged
+        connectivity.whenDisconnected = connectivityChanged
+        connectivity.framework = .network
+        connectivity.startNotifier()
 
         DDLogInfo("")
         return true

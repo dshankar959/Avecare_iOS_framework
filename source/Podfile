@@ -53,6 +53,9 @@ def common_pods
   pod 'SwiftLint'
 #  pod 'SwiftLint', '~> 0.38.2'
 
+  # To be also considered... 🤔  (future?)
+  # https://github.com/nicklockwood/SwiftFormat
+
   # Sentry is a service that helps you monitor and fix crashes in realtime.
   # Official Sentry SDK for iOS / tvOS / macOS / watchOS
   # https://github.com/getsentry/sentry-cocoa
@@ -65,7 +68,12 @@ def common_pods
   # Replacement for Apple's Reachability re-written in Swift with closures
   # https://github.com/ashleymills/Reachability.swift
   #  pod 'ReachabilitySwift', '~> 4.1.0'
-  pod 'ReachabilitySwift'
+#  pod 'ReachabilitySwift'
+
+  # Wrapper for Apple's Reachability providing a reliable measure of whether Internet connectivity is available.
+  # (where Reachability alone can only indicate whether an interface is available that might allow a connection)
+  # https://github.com/rwbutler/Connectivity
+  pod "Connectivity"
 
   # Network abstraction layer written in Swift.
   # https://github.com/Moya/Moya

@@ -142,6 +142,8 @@ final class UserAuthenticateService: IndicatorProtocol {
         } else if versionCompare == .orderedAscending {
             /// previousAppVersion < currentAppVersion
             DDLogVerbose("(previousAppVersion [\(previousAppVersion)] < newAppVersion [\(currentAppVersion)])  [UPGRADE!]  🌈")
+            DDLogVerbose("(.. or it's a fresh install...)")
+
             // critical upgrades..
 
             appSettings.enableSyncUp = true

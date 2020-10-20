@@ -125,8 +125,8 @@
 		755EAEC2241AC6CC00A6BA4D /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEB9241AC6CC00A6BA4D /* DataProvider.swift */; };
 		755EAEC3241AC6CC00A6BA4D /* DatabaseLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEBA241AC6CC00A6BA4D /* DatabaseLayer.swift */; };
 		755EAEC4241AC6CC00A6BA4D /* DatabaseLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755EAEBA241AC6CC00A6BA4D /* DatabaseLayer.swift */; };
-		7563166024BE21B4007D31B4 /* AppDelegate+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563165E24BE21B3007D31B4 /* AppDelegate+Reachability.swift */; };
-		7563166124BE21B4007D31B4 /* AppDelegate+Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563165E24BE21B3007D31B4 /* AppDelegate+Reachability.swift */; };
+		7563166024BE21B4007D31B4 /* AppDelegate+Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563165E24BE21B3007D31B4 /* AppDelegate+Connectivity.swift */; };
+		7563166124BE21B4007D31B4 /* AppDelegate+Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563165E24BE21B3007D31B4 /* AppDelegate+Connectivity.swift */; };
 		7563166224BE21B4007D31B4 /* AppDelegate+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563165F24BE21B4007D31B4 /* AppDelegate+Logging.swift */; };
 		7563166324BE21B4007D31B4 /* AppDelegate+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563165F24BE21B4007D31B4 /* AppDelegate+Logging.swift */; };
 		7563166524BE229E007D31B4 /* AppDelegate+SentrySDK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7563166424BE229E007D31B4 /* AppDelegate+SentrySDK.swift */; };
@@ -628,7 +628,7 @@
 		755EAEA9241ABB6900A6BA4D /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		755EAEB9241AC6CC00A6BA4D /* DataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		755EAEBA241AC6CC00A6BA4D /* DatabaseLayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseLayer.swift; sourceTree = "<group>"; };
-		7563165E24BE21B3007D31B4 /* AppDelegate+Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Reachability.swift"; sourceTree = "<group>"; };
+		7563165E24BE21B3007D31B4 /* AppDelegate+Connectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Connectivity.swift"; sourceTree = "<group>"; };
 		7563165F24BE21B4007D31B4 /* AppDelegate+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Logging.swift"; sourceTree = "<group>"; };
 		7563166424BE229E007D31B4 /* AppDelegate+SentrySDK.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+SentrySDK.swift"; sourceTree = "<group>"; };
 		7565D34624C7C5000045A7E9 /* UserFeedbackRequestModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserFeedbackRequestModel.swift; sourceTree = "<group>"; };
@@ -1369,8 +1369,8 @@
 			isa = PBXGroup;
 			children = (
 				75886CDE2419327F0079C080 /* AppDelegate.swift */,
+				7563165E24BE21B3007D31B4 /* AppDelegate+Connectivity.swift */,
 				7563165F24BE21B4007D31B4 /* AppDelegate+Logging.swift */,
-				7563165E24BE21B3007D31B4 /* AppDelegate+Reachability.swift */,
 				7563166424BE229E007D31B4 /* AppDelegate+SentrySDK.swift */,
 				75886CCC2419327F0079C080 /* UINVC.swift */,
 				F663BB7D243521AC003279B9 /* UI */,
@@ -2887,7 +2887,7 @@
 				75EB59E324618EF600E077E5 /* SyncEngine.swift in Sources */,
 				F67DF819241BFE6800793A9C /* SubjectDetailsPhotoView.swift in Sources */,
 				61547A0B9B3214E6EF1BF7BE /* GuardiansAPIService.swift in Sources */,
-				7563166024BE21B4007D31B4 /* AppDelegate+Reachability.swift in Sources */,
+				7563166024BE21B4007D31B4 /* AppDelegate+Connectivity.swift in Sources */,
 				751B4C5C247EF9B6001B8035 /* syncSubjectLogs.swift in Sources */,
 				615477CD524B2F1C20B297C9 /* InstitutionsAPIService.swift in Sources */,
 				75EB59D82461858700E077E5 /* RLMCleanable.swift in Sources */,
@@ -3050,7 +3050,7 @@
 				75886D472419327F0079C080 /* DateTimes.swift in Sources */,
 				75EB5A152466791A00E077E5 /* UserCredentials.swift in Sources */,
 				75886D3B2419327F0079C080 /* DynamicCodingKey.swift in Sources */,
-				7563166124BE21B4007D31B4 /* AppDelegate+Reachability.swift in Sources */,
+				7563166124BE21B4007D31B4 /* AppDelegate+Connectivity.swift in Sources */,
 				75EB5A27246770B900E077E5 /* InstitutionsAPIService.swift in Sources */,
 				F6A5E1552444DF5400FD77B6 /* DocumentService.swift in Sources */,
 				75886D312419327F0079C080 /* Percentage.swift in Sources */,
