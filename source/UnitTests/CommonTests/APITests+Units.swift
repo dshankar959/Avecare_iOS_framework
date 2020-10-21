@@ -68,13 +68,84 @@ extension APITests {
             // then
             switch result {
             case .success(let supervisorAccounts):
-                if supervisorAccounts.count > 0 {
+                if supervisorAccounts.count == 2,
+                   supervisorAccounts.first?.supervisorId == "first_supervisor_id", supervisorAccounts.last?.supervisorId == "second_supervisor_id" {
                     expectation.fulfill()
                 } else {
-                    XCTFail("Wrong unit supervisors:")
+                    XCTFail("Wrong unit supervisors:\(supervisorAccounts)")
                 }
             case .failure(let error):
                 XCTFail("Failed to get unit supervisors: \(error)")
+            }
+        }
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
+    func testUnitPublishStoryAPI() throws {
+        // given
+        let unitId = "test_unit_id"
+        let story = RLMStory()
+        let model = PublishStoryRequestModel(unitId: unitId, story: story, storage: DocumentService())
+        let expectation = self.expectation(description: "Unit Publish Story")
+        // when
+        UnitsAPIService.publishStory(model) { (result) in
+            // then
+            switch result {
+            case .success(let story):
+                if story.title == "Test Story" {
+                    expectation.fulfill()
+                } else {
+                    XCTFail("Wrong published story: \(story)")
+                }
+            case .failure(let error):
+                XCTFail("Failed to publish story: \(error)")
+            }
+        }
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
+    func testUnitPublishedStoriesAPI() throws {
+        // given
+        let unitId = "test_unit_id"
+        let expectation = self.expectation(description: "Unit Published Stories")
+        // when
+        UnitsAPIService.getPublishedStories(unitId: unitId) { (result) in
+            // then
+            switch result {
+            case .success(let stories):
+                if stories.count == 2,
+                   stories.first?.title == "First Story",
+                   stories.last?.title == "Second Story" {
+                    expectation.fulfill()
+                } else {
+                    XCTFail("Wrong published stories: \(stories)")
+                }
+            case .failure(let error):
+                XCTFail("Failed to get unit published stories: \(error)")
+            }
+        }
+        self.waitForExpectations(timeout: 1.0, handler: nil)
+    }
+
+    func testUintPublishedDailyTaskFormsAPI() throws {
+        // given
+        let unitId = "test_unit_id"
+        let request = UnitsAPIService.DailyTaskFormsRequest(unitId: unitId)
+        let expectation = self.expectation(description: "Unit Published Daily Task Forms")
+        // when
+        UnitsAPIService.getPublishedDailyTaskForms(request: request) { (result) in
+            // then
+            switch result {
+            case .success(let dailyTaskForms):
+                if dailyTaskForms.count == 1,
+                   dailyTaskForms.first?.id == "sample_daily_task_form_id",
+                   dailyTaskForms.first?.tasks.count == 2 {
+                    expectation.fulfill()
+                } else {
+                    XCTFail("Wrong published daily task forms: \(dailyTaskForms)")
+                }
+            case .failure(let error):
+                XCTFail("Failed to get unit published daily task forms: \(error)")
             }
         }
         self.waitForExpectations(timeout: 1.0, handler: nil)

@@ -133,8 +133,10 @@ struct UnitsAPIService {
                     for story in mappedResponse.results {
                         stories.append(story)
 
-                        if let storyFileURL = story.storyFileURL, let url = URL(string: storyFileURL) {
-                            _ = try storage.saveRemoteFile(url, name: story.id, type: "pdf")
+                        if !appSettings.isTesting {
+                            if let storyFileURL = story.storyFileURL, let url = URL(string: storyFileURL) {
+                                _ = try storage.saveRemoteFile(url, name: story.id, type: "pdf")
+                            }
                         }
                     }
 
