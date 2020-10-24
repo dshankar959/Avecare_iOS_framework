@@ -17,6 +17,7 @@ class StoriesListViewController: UIViewController, IndicatorProtocol, PullToRefr
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         subjectSelection = tabBarController as? GuardianTabBarController
 
         tableView.contentInset = UIEdgeInsets(top: -1, left: 0, bottom: 0, right: 0)
@@ -39,11 +40,20 @@ class StoriesListViewController: UIViewController, IndicatorProtocol, PullToRefr
                 self?.updateScreen()
             }
         }
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.syncDidComplete), name: .didCompleteSync, object: nil)
+    }
+
+    @objc func syncDidComplete() {
+        updateScreen()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateScreen()
+
+        if !syncEngine.isSyncing {
+            updateScreen()
+        }
     }
 
     private func refreshData(completion: @escaping (AppError?) -> Void) {

@@ -89,12 +89,17 @@ struct PublishedStoriesRequestModel: Codable {
     init(id: String) {
         self.unitId = id
 
-        let allStories = RLMStory.findAll()
-        let sortedStories = RLMStory.sortObjectsByLastUpdated(order: .orderedDescending, allStories)
-        let publishedStories = sortedStories.filter { $0.rawPublishState == PublishState.published.rawValue }
+        if appSession.userProfile.isGuardian {
+            // Limit request window to match daily logs.
+            serverLastUpdated = Date.local24hrFormatISO8601StringFromDate(SubjectsAPIService.startDateOfLogsHistory)
+        } else { // Supervisor
+            let allStories = RLMStory.findAll()
+            let sortedStories = RLMStory.sortObjectsByLastUpdated(order: .orderedDescending, allStories)
+            let publishedStories = sortedStories.filter { $0.rawPublishState == PublishState.published.rawValue }
 
-        if let lastUpdated = publishedStories.first?.serverLastUpdated {
-            serverLastUpdated = Date.ISO8601StringFromDate(lastUpdated)
+            if let lastUpdated = publishedStories.first?.serverLastUpdated {
+                serverLastUpdated = Date.ISO8601StringFromDate(lastUpdated)
+            }
         }
     }
 

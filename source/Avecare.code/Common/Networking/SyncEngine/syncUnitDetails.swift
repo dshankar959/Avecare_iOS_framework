@@ -61,6 +61,7 @@ extension SyncEngine {
                 }
 
                 // Clean.  To avoid dangling units that we may not have access to anymore.
+                // Due to Subjects moving to other units.
                 RLMUnit.deleteAll(objects: RLMUnit.findAll())
 
                 var operations: [BlockOperation] = []

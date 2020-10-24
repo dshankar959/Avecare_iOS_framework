@@ -12,9 +12,6 @@ class ProfileViewController: UIViewController, IndicatorProtocol {
     lazy var slideInTransitionDelegate = SlideInPresentationManager()
     weak var subjectSelection: SubjectSelectionProtocol?
 
-    // DB update notifications
-    private var dbNotificationsToken: NotificationToken? = nil
-
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +26,16 @@ class ProfileViewController: UIViewController, IndicatorProtocol {
         ])
 
         self.navigationController?.hideHairline()
+
+        NotificationCenter.default.addObserver(self, selector: #selector(self.syncDidComplete), name: .didCompleteSync, object: nil)
+    }
+
+    @objc func syncDidComplete() {
+        updateSupervisors()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        dbNotifications(true)
 
         updateSupervisors()
     }
@@ -95,8 +96,8 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
         }
 
         if let supervisorCell = cell as? SupervisorFilterTableViewCell {
-            supervisorCell.refreshView()
             supervisorCell.parentVC = self
+            supervisorCell.refreshView()
         }
 
         if indexPath.section < 2 {
@@ -163,20 +164,6 @@ extension ProfileViewController: ViewControllerWithSupervisorFilterViewCell {
 
     func educatorDidSelect(selectedEducatorId: String) {
         performSegue(withIdentifier: R.segue.profileViewController.educatorDetails, sender: selectedEducatorId)
-    }
-
-
-    func dbNotifications(_ enable: Bool) {
-        if enable {
-            if dbNotificationsToken == nil {
-                dbNotificationsToken = RLMSupervisor().setupNotificationToken(for: self) { [weak self] in
-                    self?.updateSupervisors()
-                }
-            }
-        } else {  // disable
-            dbNotificationsToken?.invalidate()
-            dbNotificationsToken = nil
-        }
     }
 
 }

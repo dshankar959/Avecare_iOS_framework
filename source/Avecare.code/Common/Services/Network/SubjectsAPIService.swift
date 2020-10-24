@@ -5,7 +5,7 @@ import CocoaLumberjack
 struct SubjectsAPIService {
 
     struct SubjectLogsRequest {
-        let subjectId: String
+        var subjectId: String = ""
         var serverLastUpdated: String = ""
 
         var startDate: String {
@@ -25,10 +25,14 @@ struct SubjectsAPIService {
         }
 
 
-        init(id: String) {
-            self.subjectId = id
+        init(id: String? = nil) {
+            guard let subjectId = id else {
+                return
+            }
 
-            let allDailyLogForms = RLMLogForm.findAll(withSubjectID: id)
+            self.subjectId = subjectId
+
+            let allDailyLogForms = RLMLogForm.findAll(withSubjectID: subjectId)
             let sortedDailyLogForms = RLMLogForm.sortObjectsByLastUpdated(order: .orderedDescending, allDailyLogForms)
             let publishedDailyLogForms = sortedDailyLogForms.filter { $0.rawPublishState == PublishState.published.rawValue }
 

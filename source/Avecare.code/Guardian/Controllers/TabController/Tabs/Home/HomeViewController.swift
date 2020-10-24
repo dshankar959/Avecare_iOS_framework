@@ -34,8 +34,7 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
 
         self.navigationController?.hideHairline()
         tableView.tableFooterView = UIView() // remove bottom margin of the last cell
-        tableView.register(UINib(nibName: "NoItemTableViewCell", bundle: nil),
-                           forCellReuseIdentifier: noItemCellIdntifier)
+        tableView.register(UINib(nibName: "NoItemTableViewCell", bundle: nil), forCellReuseIdentifier: noItemCellIdntifier)
 
         setupPullToRefresh(for: self.tableView) { [weak self] in
             self?.isRefreshing = true
