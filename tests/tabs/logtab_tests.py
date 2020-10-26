@@ -1,8 +1,9 @@
+from tests.browserstackconfig import EnvironmentSetuptest
 from tests.configfile import EnvironmentSetup
 from utilities.teststatus import TestStatus
 from Pages.tabs.logsTab import LogsTab
 
-class LogTabTest(EnvironmentSetup):
+class LogTabTest(EnvironmentSetuptest):
 
     def test_LogTab(self):
         self.lt = LogsTab(self.driver)
