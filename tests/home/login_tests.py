@@ -4,19 +4,16 @@ import selenium
 import pytest
 import os
 from imageio import imread
-
-
 import unittest
 from selenium import webdriver
 import datetime
 from appium import webdriver
 #from appium.webdriver import webdriver
 from Pages.home.login_page import LoginPage
-from tests.configfile import EnvironmentSetup
 from utilities.teststatus import TestStatus
+from tests.browserstackconfig import EnvironmentSetuptest
 
-
-class LoginTests(EnvironmentSetup):
+class LoginTests(EnvironmentSetuptest):
 
     @pytest.mark.tryfirst
     def test_validLogin(self):

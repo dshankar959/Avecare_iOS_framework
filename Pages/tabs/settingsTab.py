@@ -28,10 +28,10 @@ class SettingsTab(BasePage):
         self.elementClick(self._settings_tab, locatorType="xpath")
         self.elementClick(self._terms_conditions, locatorType="xpath")
         self.elementClick(self._privacy_policy, locatorType="xpath")
-        self.elementClick(self._email_tab, locatorType="xpath")
-        self.getText(self._email_tab, locatorType="xpath")
-        self.elementClick(self._build_number, locatorType="xpath")
-        self.getText(self._build_number, locatorType="xpath")
+        # self.elementClick(self._email_tab, locatorType="xpath")
+        # self.getText(self._email_tab, locatorType="xpath")
+        # self.elementClick(self._build_number, locatorType="xpath")
+        # self.getText(self._build_number, locatorType="xpath")
         self.elementClick(self._sign_out, locatorType="xpath")
 
     def settingstab(self):

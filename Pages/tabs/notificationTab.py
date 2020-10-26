@@ -52,7 +52,7 @@ class NotificationTab(BasePage):
 
     ################################# REMINDERS ########################################
     _reminder = "//XCUIElementTypeStaticText[@name='Reminders']"
-    _add_child_injury = "//XCUIElementTypeStaticText[@name='Add a schild']"
+    _add_child_injury = "//XCUIElementTypeStaticText[@name='Add a child']"
     _select_all = "//XCUIElementTypeButton[@name='Select All']"
     _select_reminder = "//XCUIElementTypeStaticText[@name='No reminder selected.']"
     _additional_info = "//XCUIElementTypeTextView"

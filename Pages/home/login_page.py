@@ -17,7 +17,8 @@ class LoginPage(BasePage):
     _email_field = "//XCUIElementTypeTextField[@name='ui_loginField']"
     #_password_field = "//XCUIElementTypeSecureTextField[@name='Password']"
     _password_field = "//XCUIElementTypeSecureTextField[@name='ui_passwordField']"
-    _signin_button = "//XCUIElementTypeButton[@name='Sign In']"
+   # _signin_button = "//XCUIElementTypeButton[@name='Sign In']"
+    _signin_button = "//XCUIElementTypeButton[@name='ui_loginButton']"
     _login_logo="hwcccc-logo-icon"
 
     #### Methods to perform action

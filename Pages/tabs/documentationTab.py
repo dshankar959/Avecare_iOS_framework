@@ -23,7 +23,7 @@ class DocumentationTab(BasePage):
     #_doc_title = "//XCUIElementTypeStaticText[@name='Type Your Title Here']"
     _add_pdf = "(//XCUIElementTypeImage[@name='no-pdf-placeholder'])[2]"
     #_add_pdf = "//XCUIElementTypeImage"
-    _select_photo = "//XCUIElementTypeCell[@name='1, pdf']"
+    _select_photo = "//XCUIElementTypeCell[@name='Nikon, pdf']"
     # _ipad_location = "//XCUIElementTypeButton[@name='Locations']"
     # _icloud_drive = "//XCUIElementTypeStaticText[@name='iCloud Drive']"
     # _browser = "//XCUIElementTypeButton[@name='Browse']"
@@ -47,7 +47,7 @@ class DocumentationTab(BasePage):
             time.sleep(2)
             self.elementClick(self._select_photo, locatorType="xpath")
             self.elementClick(self._publish_button, locatorType="xpath")
-            time.sleep(2)
+            time.sleep(4)
 
 
 
