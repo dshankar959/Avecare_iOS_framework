@@ -77,7 +77,6 @@ fastlane/builds
 fastlane/README.md
 
 source/Pods/
-/Podfile.lock
 source/Podfile.lock
 source/Avecare.xcworkspace/contents.xcworkspacedata
 source/Avecare.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
