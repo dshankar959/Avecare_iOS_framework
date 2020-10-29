@@ -111,10 +111,12 @@ extension UserAPIService {
 
         var userComments = comments + "\n\nPlatform: iOS"
 
+        userComments += "\nDevice name: \"\(hardwareDevice.name ?? "")\""
+
         if isCustomType {
-            userComments += "\n\(appNameVersionAndBuildDateString())\nserver: \(appSettings.serverURLstring)"
+            userComments += "\nApp Build: \(appNameVersionAndBuildDateString())\nserver: \(appSettings.serverURLstring)"
         } else {
-            userComments += "\n\(appNameVersionAndBuildDateString())\nserver: \(serverType)"
+            userComments += "\nApp Build: \(appNameVersionAndBuildDateString())\nserver: \(serverType)"
         }
 
         let model = UserFeedbackRequestModel(for: session,

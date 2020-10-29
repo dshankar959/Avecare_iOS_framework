@@ -77,7 +77,11 @@ extension UserFeedbackRequestModel {
         let fileManager = FileManager()
         let profile = session.userProfile
         let email = profile.email
-        let zippedFilename = "\(email)_iOS_\(Date.shortISO8601FileStringFromDate(Date())).zip"
+
+        let servers = Servers()
+        let serverType = servers.valueFromDescription(appSettings.serverURLstring)
+
+        let zippedFilename = "\(email)_iOS_\(serverType)_\(Date.shortISO8601FileStringFromDate(Date())).zip"
         tempDirectory = FileStorageService.createTempDirectory()
 
         // Start with the log files.
