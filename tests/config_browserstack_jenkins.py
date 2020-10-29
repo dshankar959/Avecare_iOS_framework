@@ -1,0 +1,50 @@
+import datetime
+import os
+import unittest
+
+from appium import webdriver
+
+from Pages.home.login_page import LoginPage
+
+user_name = os.getenv("BROWSERSTACK_USERNAME")
+access_key = os.getenv("BROWSERSTACK_ACCESS_KEY")
+browserstack_local = os.getenv("BROWSERSTACK_LOCAL")
+browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
+app = os.getenv("BROWSERSTACK_APP_ID")
+
+
+class EnvironmentSetupJenkins(unittest.TestCase):
+
+    def setUp(self):
+        print("Running one time setUp at: "+str(datetime.datetime.now()))
+        desired_cap = {
+        'app': app,
+        'device': 'iPad 7th',
+        'os_version': "13",
+
+        # 'browserstack.local': browserstack_local,
+        # 'browserstack.localIdentifier': browserstack_local_identifier
+
+        # Set your access credentials
+        "browserstack.user": "torontoqaspiriac1",
+        "browserstack.key": "pmxn6rnEczeHs4cSxEzb",
+
+        # Set other BrowserStack capabilities
+        "project": "Avecare-Educator",
+        "build": "Python iOS",
+        "name": "first_test"
+        }
+
+        self.driver = webdriver.Remote("https://"+user_name+":"+access_key+"@hub-cloud.browserstack.com/wd/hub", desired_cap)
+        self.driver.implicitly_wait(6000)
+
+        # Write your custom code here
+        lp = LoginPage(self.driver)
+        # lp.login("535cc_Room_300@avecare.com", "123456")
+        #lp.login("room100_littlemonkey@gmail.com", "Spiria123")
+
+    def tearDown(self):
+        if (self.driver != None):
+            print("-------------------------------------------")
+            print("Run Completed at : " + str(datetime.datetime.now()))
+            self.driver.quit()
