@@ -82,3 +82,4 @@ source/Avecare.xcworkspace/contents.xcworkspacedata
 source/Avecare.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
 /source/fastlane/README.md
 /source/fastlane/report.xml
+/source/fastlane/test_output

@@ -33,7 +33,7 @@ extension APITests {
                 XCTFail("Failed to get unit details: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testUnitSubjectsAPI() throws {
@@ -56,7 +56,7 @@ extension APITests {
                 XCTFail("Failed to get unit subjects: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testUnitSupervisorsAPI() throws {
@@ -78,7 +78,7 @@ extension APITests {
                 XCTFail("Failed to get unit supervisors: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testUnitPublishStoryAPI() throws {
@@ -101,7 +101,7 @@ extension APITests {
                 XCTFail("Failed to publish story: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testUnitPublishedStoriesAPI() throws {
@@ -124,7 +124,7 @@ extension APITests {
                 XCTFail("Failed to get unit published stories: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testUintPublishedDailyTaskFormsAPI() throws {
@@ -148,6 +148,6 @@ extension APITests {
                 XCTFail("Failed to get unit published daily task forms: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 }

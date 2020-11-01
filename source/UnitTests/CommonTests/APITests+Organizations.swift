@@ -33,7 +33,7 @@ extension APITests {
                 XCTFail("Failed to get organization details: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testOrganizationLogTemplatesAPI() throws {
@@ -55,7 +55,7 @@ extension APITests {
                 XCTFail("Failed to get organization templates: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testOrganizationAvailableDailyTasksAPI() throws {
@@ -76,7 +76,7 @@ extension APITests {
                 XCTFail("Failed to get organization daily tasks: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testOrganizationAvailableActivitiesAPI() throws {
@@ -97,7 +97,7 @@ extension APITests {
                 XCTFail("Failed to get organization activitis: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testOrganizationAvailableInjuriesAPI() throws {
@@ -118,7 +118,7 @@ extension APITests {
                 XCTFail("Failed to get organization injuries: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testOrganizationAvailableReminderssAPI() throws {
@@ -139,6 +139,6 @@ extension APITests {
                 XCTFail("Failed to get organization reminders: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 }

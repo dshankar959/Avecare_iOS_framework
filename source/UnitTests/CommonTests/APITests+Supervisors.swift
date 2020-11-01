@@ -34,6 +34,6 @@ extension APITests {
                 XCTFail("Failed to get supervisor details: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 }

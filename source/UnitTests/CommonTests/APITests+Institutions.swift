@@ -33,6 +33,6 @@ extension APITests {
                 XCTFail("Failed to get institution details: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 }

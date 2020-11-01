@@ -158,23 +158,23 @@ private_lane :build4Android do |options|
   gradle(task: 'assemble', flavor: flavor, build_type: 'Release', project_dir: './')
 
 #  sh("mv", "../android/app/build/outputs/apk/release/app-release.apk", ".")
-  ENV["APK_OUTPUT_PATH]"] = "#{Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}"
-  puts "original APK path is: " + ENV["APK_OUTPUT_PATH]"]
+  ENV["APK_OUTPUT_PATH"] = "#{Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH]}"
+  puts "original APK path is: " + ENV["APK_OUTPUT_PATH"]
 
   # Rename output apk file to our own format to aid QA in tracking versions.
-  # apk_output_filename = File.basename(ENV["APK_OUTPUT_PATH]"])
-  apk_output_dir = File.dirname(ENV["APK_OUTPUT_PATH]"])
+  # apk_output_filename = File.basename(ENV["APK_OUTPUT_PATH"])
+  apk_output_dir = File.dirname(ENV["APK_OUTPUT_PATH"])
 
   ENV["APK_FILENAME"] = "#{$project_name}_" + ENV["APP_VERSION"] + "_" + options[:target] + "_" + ENV["BUILD_NUMBER"] + "(" + ENV["UNIX_TIME"] + ")" + ".apk"
 
   new_apk_output = apk_output_dir + "/" + ENV["APK_FILENAME"]
 
-  File.rename(ENV["APK_OUTPUT_PATH]"], new_apk_output)
+  File.rename(ENV["APK_OUTPUT_PATH"], new_apk_output)
 
-  ENV["APK_OUTPUT_PATH]"] = new_apk_output
-  puts "new APK path is: " + ENV["APK_OUTPUT_PATH]"]
+  ENV["APK_OUTPUT_PATH"] = new_apk_output
+  puts "new APK path is: " + ENV["APK_OUTPUT_PATH"]
 
-  Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH] = ENV["APK_OUTPUT_PATH]"]
+  Actions.lane_context[SharedValues::GRADLE_APK_OUTPUT_PATH] = ENV["APK_OUTPUT_PATH"]
 
   post_to_slack(message: "👍  build COMPLETE!  🎉", platform: 'android')
 
@@ -252,7 +252,7 @@ private_lane :send_to_appcenter do |options|
     release_notes = ENV["IPA_FILENAME"]
 
   else # android
-    file_path = ENV["APK_OUTPUT_PATH]"]
+    file_path = ENV["APK_OUTPUT_PATH"]
     release_notes = ENV["APK_FILENAME"]
   end
 
@@ -281,7 +281,7 @@ private_lane :send_to_PlayStore do |options|
 
   post_to_slack(message: "📡  Sending to Google PlayStore ...", platform: 'android')
 
-  puts "APK path is: " + ENV["APK_OUTPUT_PATH]"]
+  puts "APK path is: " + ENV["APK_OUTPUT_PATH"]
 
 #  myConfiguration = $configurations[options[:target]]
 
@@ -290,7 +290,7 @@ private_lane :send_to_PlayStore do |options|
   upload_to_play_store(
     package_name: package_name,
     json_key: "#{Dir.pwd}/../_CI_support/api-5993437258774407914-985010-5d1536dab018.json",
-    apk: ENV["APK_OUTPUT_PATH]"],
+    apk: ENV["APK_OUTPUT_PATH"],
     track: 'beta', # Manually release to `production`.
     skip_upload_metadata: true,
     skip_upload_images: true,
@@ -309,6 +309,11 @@ end
 # This lane is called, only if the executed lane was successful.
 after_all do |lane|
   puts "after_all ... "
+
+  if isTesting() == 'true'
+    post_to_slack(message: "tests complete")
+  end
+
 end
 
 
@@ -334,6 +339,16 @@ private_lane :post_to_slack do |options|
 
 end
 
+
+def setTesting(setState)
+    ENV["IS_TESTING"] = setState
+    puts "setTesting(" + ENV["IS_TESTING"] + ")"
+end
+
+
+def isTesting()
+  return ENV["IS_TESTING"]
+end
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

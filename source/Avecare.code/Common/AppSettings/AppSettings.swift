@@ -20,7 +20,8 @@ private let kEnableSyncDownKey = "enableSyncDown"
 class AppSettings {
 
     var isTesting = false
-    var isHTTPlogging = true            // lots of extra debug info.
+    var expectationsTimeout = 2.0
+    var isHTTPlogging = true    // lots of extra debug info.
 
     // MARK: -
 

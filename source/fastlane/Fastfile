@@ -1,11 +1,12 @@
 import("./Fastfile.utils")
 
 
-lane :testing do
+lane :testing do |options|
 
 #sh "pwd"
 #sh "env"
 #sh "gem environment"
+
 
 end
 
@@ -191,6 +192,18 @@ end
 
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# testing
+lane :educator_qa_ios_tests do
+  unitTesting('target1', 'qa', 'iPad Pro (9.7-inch)')
+end
+
+lane :parent_qa_ios_tests do
+  unitTesting('target2', 'qa', 'iPhone 11 Pro')
+end
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 def prepareBuildAndTestflight(target_selection, build_type)
 
   ENV["TARGET_SELECTION"] = target_selection
@@ -204,3 +217,25 @@ def prepareBuildAndTestflight(target_selection, build_type)
 end
 
 
+def unitTesting(target_selection, build_type, device_type)
+
+  ENV["TARGET_SELECTION"] = target_selection
+  ENV["BUILD_TYPE"] = build_type
+
+  prepare(platform: "ios")
+
+  setTesting('true')
+
+  post_to_slack(message: "running tests... ")
+
+  myScheme = build_scheme(ENV["TARGET_SELECTION"], ENV["BUILD_TYPE"])
+
+  run_tests(
+    workspace: "./#{$project_name}.xcworkspace",
+    scheme: myScheme,
+    device: device_type,
+    clean: true
+    )
+
+
+end

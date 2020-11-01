@@ -36,7 +36,7 @@ class APITests: XCTestCase {
                 XCTFail("Failed to authenticate: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testRequestOTPAPI() throws {
@@ -54,7 +54,7 @@ class APITests: XCTestCase {
                 XCTFail("Failed to request OTP: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testLogoutAPI() throws {
@@ -75,6 +75,6 @@ class APITests: XCTestCase {
                 XCTFail("Failed to logout: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 }

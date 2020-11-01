@@ -48,12 +48,13 @@ struct SubjectsAPIService {
     // MARK: -
     static func publishDailyLog(log: LogFormAPIModel, completion: @escaping (Result<LogFormAPIModel, AppError>) -> Void) {
         let subjectName = RLMSubject.find(withID: log.subjectId)?.fullName ?? "<RLMSubject>"
-        DDLogVerbose("Publish daily log [id:\(log.id)] for subject: \"\(subjectName)\"")
+        DDLogVerbose("Publish daily log [id:\(log.id)] for subject: \"\(subjectName)\" [\(log.subjectId)]")
 
         apiProvider.request(.subjectPublishDailyLog(request: log),
                             callbackQueue: DispatchQueue.global(qos: .utility)) { result in
             switch result {
             case .success(let response):
+                DDLogVerbose("Success ✅ publishing daily log [id:\(log.id)] for subject: \"\(subjectName)\" [\(log.subjectId)]")
                 DispatchQueue.main.async() {
                     do {
                         let mappedResponse = try response.map(LogFormAPIModel.self)
@@ -64,6 +65,7 @@ struct SubjectsAPIService {
                     }
                 }
             case .failure(let error):
+                DDLogVerbose("Failed ❌ to publish daily log [id:\(log.id)] for subject: \"\(subjectName)\" [\(log.subjectId)]")
                 DispatchQueue.main.async() {
                     completion(.failure(getAppErrorFromMoya(with: error)))
                 }

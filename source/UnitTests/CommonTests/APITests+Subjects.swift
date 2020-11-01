@@ -39,7 +39,7 @@ extension APITests {
                 XCTFail("Failed to publish daily log: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testGetLogsAPI() throws {
@@ -61,6 +61,6 @@ extension APITests {
                 XCTFail("Failed to get daily logs: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 }

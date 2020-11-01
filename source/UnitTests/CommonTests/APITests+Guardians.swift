@@ -33,7 +33,7 @@ extension APITests {
                 XCTFail("Failed to get guardian details: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testGuardianFeedsAPI() throws {
@@ -54,7 +54,7 @@ extension APITests {
                 XCTFail("Failed to get feeds: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 
     func testGuardianSubjectsAPI() throws {
@@ -77,6 +77,6 @@ extension APITests {
                 XCTFail("Failed to get guardian subjects: \(error)")
             }
         }
-        self.waitForExpectations(timeout: 1.0, handler: nil)
+        self.waitForExpectations(timeout: appSettings.expectationsTimeout, handler: nil)
     }
 }
