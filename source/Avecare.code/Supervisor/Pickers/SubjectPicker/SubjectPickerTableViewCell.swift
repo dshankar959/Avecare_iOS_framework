@@ -24,6 +24,9 @@ class SubjectPickerTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
+        // #ui automated testing support
+        checkboxImageView.accessibilityIdentifier = "ui_supervisor_subjectpicker_checkbox"
+
         photoImageView.layer.cornerRadius = 12
         photoImageView.layer.masksToBounds = true
     }

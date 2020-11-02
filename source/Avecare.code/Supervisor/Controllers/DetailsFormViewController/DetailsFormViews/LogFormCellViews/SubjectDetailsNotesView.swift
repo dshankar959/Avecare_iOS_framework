@@ -54,6 +54,9 @@ class SubjectDetailsNotesView: LogFormCellView {
     override func setup() {
         super.setup()
 
+        // #ui automated testing support
+        textView.accessibilityIdentifier = "ui_supervisor_logs_editorsNote"
+
         iconImageView.layer.masksToBounds = true
         iconImageView.layer.cornerRadius = 12
 

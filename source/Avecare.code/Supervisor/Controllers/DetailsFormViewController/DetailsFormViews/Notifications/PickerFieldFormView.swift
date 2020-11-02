@@ -174,16 +174,21 @@ struct PickerViewFormViewModel: CellViewModel {
     override var inputAccessoryView: UIView? {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 50))
         toolbar.barStyle = .default
-        toolbar.items = [
-            UIBarButtonItem(title: NSLocalizedString("barbutton_title_cancel", comment: ""),
-                            style: .plain,
-                            target: self,
-                            action: #selector(cancelInput)),
-            UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: NSLocalizedString("barbutton_title_done", comment: ""),
-                            style: .plain,
-                            target: self,
-                            action: #selector(doneInput))]
+        let cancelBarButton = UIBarButtonItem(title: NSLocalizedString("barbutton_title_cancel", comment: ""),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(cancelInput))
+        cancelBarButton.accessibilityIdentifier = "ui_supervisor_picker_cancelButton" // #ui automated testing support
+
+        let doneBarButton = UIBarButtonItem(title: NSLocalizedString("barbutton_title_done", comment: ""),
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(doneInput))
+        doneBarButton.accessibilityIdentifier = "ui_supervisor_picker_doneButton" // #ui automated testing support
+
+        toolbar.items = [cancelBarButton,
+                         UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
+                         doneBarButton]
         return toolbar
     }
 
