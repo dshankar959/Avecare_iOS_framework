@@ -20,6 +20,9 @@ struct SubjectDetailsPhotoViewModel: CellViewModel {
     let isEditable: Bool
 
     func setup(cell: CellType) {
+        // #ui automated testing support
+        cell.textView.accessibilityIdentifier = "ui_supervisor_logs_caption"
+
         cell.textViewTitle.text = title
         cell.textView.text = note
         cell.setImage(image)
