@@ -66,6 +66,10 @@ extension InjuryReportFormProvider: FormProvider {
         datePicker.datePickerMode = .time
         datePicker.backgroundColor = .white
 
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
+
         let right = PickerViewFormViewModel(title: NSLocalizedString("notification_injury_report_select_time_title", comment: ""),
                                             placeholder: NSLocalizedString("notification_injury_report_select_time_placeholder", comment: ""),
                                             accessory: .clock,

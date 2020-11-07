@@ -28,6 +28,10 @@ extension SubjectListDataProvider {
         picker.backgroundColor = .white
         picker.datePickerMode = .time
 
+        if #available(iOS 13.4, *) {
+            picker.preferredDatePickerStyle = .wheels
+        }
+
         viewModel.action = .init(onClick: { view in
             picker.date = row.time
             view.becomeFirstResponder()

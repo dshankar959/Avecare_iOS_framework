@@ -60,6 +60,10 @@ extension ClassActivityFormProvider: FormProvider {
         datePicker.datePickerMode = .date
         datePicker.minimumDate = Date()
 
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
+
         let right = PickerViewFormViewModel(title: NSLocalizedString("notification_inspections_and_drills_select_date_title", comment: ""),
                                             placeholder: NSLocalizedString("notification_inspections_and_drills_select_date_placeholder", comment: ""),
                                             accessory: .calendar,

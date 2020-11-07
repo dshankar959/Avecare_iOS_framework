@@ -51,9 +51,12 @@ extension SubjectListDataProvider {
                                 at indexPath: IndexPath,
                                 for rowIndex: Int,
                                 updateCallback: @escaping (Date) -> Void) {
+
         guard let responder = delegate?.customResponder else { return }
 
-        let picker = TimeRangePickerView(frame: CGRect(x: 0, y: 0, width: 320, height: 278))
+        let pickerViewFrame = CGRect(x: 0, y: 0, width: 320, height: 278)
+        let picker = TimeRangePickerView(frame: pickerViewFrame)
+
         picker.startTimePicker.date = row.startTime
         if let endTime = row.endTime {
             picker.endTimePicker.date = endTime

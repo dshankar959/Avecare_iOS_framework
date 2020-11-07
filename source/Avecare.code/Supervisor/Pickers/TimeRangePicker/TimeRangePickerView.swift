@@ -6,6 +6,20 @@ class TimeRangePickerView: BaseXibView {
     @IBOutlet weak var startTimePicker: UIDatePicker!
     @IBOutlet weak var endTimePicker: UIDatePicker!
 
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        if #available(iOS 13.4, *) {
+            startTimePicker.preferredDatePickerStyle = .wheels
+            endTimePicker.preferredDatePickerStyle = .wheels
+        }
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
     var isDoublePicker: Bool = true {
         didSet {
             pickerTitlesView.isHidden = !isDoublePicker
