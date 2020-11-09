@@ -1,9 +1,9 @@
-import Foundation
 import UIKit
 
 
 
 struct FormTextViewModel: CellViewModel {
+
     typealias CellType = FormTextView
 
     let font: UIFont
@@ -13,6 +13,7 @@ struct FormTextViewModel: CellViewModel {
     let isEditable: Bool
 
     var onChange: ((CellType, String?) -> Void)?
+
 
     func setup(cell: CellType) {
         if isEditable {
@@ -43,13 +44,18 @@ struct FormTextViewModel: CellViewModel {
 
         cell.textView.isUserInteractionEnabled = isEditable
     }
+
 }
 
+
+
 class FormTextView: BaseXibView {
+
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var textViewPlaceholder: UILabel!
 
     var onChange: ((FormTextView, String?) -> Void)?
+
 
     override func setup() {
         super.setup()
@@ -68,7 +74,10 @@ class FormTextView: BaseXibView {
     }
 }
 
+
+
 extension FormTextView: UITextViewDelegate {
+
     public func textViewDidBeginEditing(_ textView: UITextView) {
         textViewPlaceholder.isHidden = true
     }
@@ -80,4 +89,10 @@ extension FormTextView: UITextViewDelegate {
     public func textViewDidChange(_ textView: UITextView) {
         onChange?(self, textView.text)
     }
+
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+        return newText.count <= 99  // MAX chars. allowed on the server-side schema.
+    }
+
 }
