@@ -8,7 +8,7 @@ from utilities.teststatus import TestStatus
 
 class DocumentationTabTest(EnvironmentSetupJenkins):
 
-    def test_NotificationTab(self):
+    def test_DocummentationTab(self):
         self.dt = DocumentationTab(self.driver)
         self.dt.DocumentTab()
 
