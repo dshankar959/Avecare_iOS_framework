@@ -1,4 +1,4 @@
-from tests.configfile_browserstack import EnvironmentSetuptest
+from tests.configfile_browserstack import EnvironmentSetupBrowserstack
 from tests.configfile import EnvironmentSetup
 from utilities.teststatus import TestStatus
 from Pages.tabs.logsTab import LogsTab
