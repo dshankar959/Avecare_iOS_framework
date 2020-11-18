@@ -1,5 +1,6 @@
 import datetime
 import time
+import datetime as dt
 from datetime import date
 from curses.ascii import TAB
 
@@ -40,13 +41,13 @@ class LogsTab(BasePage):
     _emotion_done_button = "//XCUIElementTypeButton[@name='Done']"
 
     _rest_time_done = "//XCUIElementTypeButton[@name='Done']"
-    _educator_note = "(//XCUIElementTypeStaticText[@name='140 characters maximum.'])"
+    _educator_note = "//XCUIElementTypeTextView[@name='ui_supervisor_logs_editorsNote']"
     _bathroom1_wet = "(//XCUIElementTypeButton[@name='Wet'])[1]"
     _bathroom2_dry = "(//XCUIElementTypeButton[@name='Dry'])[2]"
     _bathroom3_bm = "(//XCUIElementTypeButton[@name='BM'])[3]"
     _bathroom4_toilet = "(//XCUIElementTypeButton[@name='Toilet'])[4]"
     _select_picture = "//XCUIElementTypeImage[@name='camera-plus']"
-    _add_caption = "(//XCUIElementTypeStaticText[@name='140 characters maximum.'])[2]"
+    _add_caption = "//XCUIElementTypeTextView[@name='ui_supervisor_logs_caption']"
     _add_row = "//XCUIElementTypeButton[@name='plus icon']"
     _publish_button = "//XCUIElementTypeStaticText[@name='Publish']"
     _published_checkmark = "(//XCUIElementTypeButton[@name='checkmark'])"
@@ -59,7 +60,7 @@ class LogsTab(BasePage):
     _picker_minute = "//XCUIElementTypeApplication[@name='Daily Wonders']/XCUIElementTypeWindow[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeDatePicker/XCUIElementTypePicker/XCUIElementTypePickerWheel[2]"
     _picker_ampm = "//XCUIElementTypeApplication[@name='Daily Wonders']/XCUIElementTypeWindow[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeDatePicker/XCUIElementTypePicker/XCUIElementTypePickerWheel[3]"
     _picker_date = "//XCUIElementTypePickerWheel"
-    _photo_access_Ok_button = "//XCUIElementTypeButton[@name='OK']"
+    _photo_access_button = "//XCUIElementTypeButton[@name='Allow Access to All Photos']"
     _first_photo = "//XCUIElementTypeCell[@name='Photo 3']"
     _photo_add_done_button = "//XCUIElementTypeButton[@name='Done (1)']"
     _photo_crap_done_button = "//XCUIElementTypeButton[@name='Done']"
@@ -76,6 +77,11 @@ class LogsTab(BasePage):
             time.sleep(2)
             children.click()
             time.sleep(3)
+
+            self.log.info("Started checking published log for each child")
+
+            time.sleep(3)
+            print("Lets fill the log for child#", child)
             self.elementClick(self._snack1, locatorType="xpath")
             self.elementClick(self._lunch, locatorType="xpath")
             self.elementClick(self._snack2, locatorType="xpath")
@@ -102,8 +108,8 @@ class LogsTab(BasePage):
             self.elementClick(self._educator_note, locatorType="xpath")
             time.sleep(2)
             ## get current date and time
-            currentdate = datetime.datetime.today()
-            self.sendKeys(currentdate, self._educator_note, locatorType="xpath")
+            currentdate = dt.datetime.today().strftime("%m/%d/%Y")
+            self.sendKeys("Educator note test for", self._educator_note, locatorType="xpath")
             self.driver.hide_keyboard()
             self.elementClick(self._bathroom1_wet, locatorType="xpath")
             self.elementClick(self._bathroom2_dry, locatorType="xpath")
@@ -121,8 +127,8 @@ class LogsTab(BasePage):
 
             # #### Select photo and add ####
             self.elementClick(self._camera_button, locatorType="xpath")
-            if self.isElementDisplayed(self._photo_access_Ok_button, locatorType="xpath"):
-                self.elementClick(self._photo_access_Ok_button, locatorType="xpath")
+            if self.isElementDisplayed(self._photo_access_button, locatorType="xpath"):
+                self.elementClick(self._photo_access_button, locatorType="xpath")
             else:
                 print("There is dialog present")
 

@@ -1,10 +1,12 @@
 from Pages.tabs.logsTab import LogsTab
 from Pages.tabs.documentationTab import DocumentationTab
 from tests.configfile import EnvironmentSetup
+from tests.configfile_browserstack_jenkins import EnvironmentSetupJenkins
+from tests.configfile_browserstack import EnvironmentSetupBrowserstack
 from utilities.teststatus import TestStatus
 
 
-class DocumentationTabTest(EnvironmentSetup):
+class DocumentationTabTest(EnvironmentSetupJenkins):
 
     def test_NotificationTab(self):
         self.dt = DocumentationTab(self.driver)

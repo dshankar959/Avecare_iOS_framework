@@ -3,16 +3,16 @@ import time
 import selenium
 import pytest
 import os
-from imageio import imread
 import unittest
 from selenium import webdriver
 import datetime
 from appium import webdriver
 #from appium.webdriver import webdriver
 from Pages.home.login_page import LoginPage
-from tests.config_browserstack_jenkins import EnvironmentSetupJenkins
+from tests.configfile_browserstack_jenkins import EnvironmentSetupJenkins
 from utilities.teststatus import TestStatus
-from tests.browserstackconfig import EnvironmentSetuptest
+from tests.configfile_browserstack import EnvironmentSetupBrowserstack
+from tests.configfile import EnvironmentSetup
 
 class LoginTests(EnvironmentSetupJenkins):
 

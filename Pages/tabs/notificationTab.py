@@ -24,6 +24,7 @@ class NotificationTab(BasePage):
     _daily_log = "//XCUIElementTypeButton[@name='Daily log']"
     _signed_inout = "//XCUIElementTypeButton[@name='Check children in and out']"
     _complete_button = "//XCUIElementTypeButton[@name='Complete']"
+    _checklist = "//XCUIElementTypeApplication[@name='Daily Wonders']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther"
 
     #################################### INSPECTIONS AND DRILLS ####################################################
 
@@ -35,8 +36,8 @@ class NotificationTab(BasePage):
     _calender_button = "//XCUIElementTypeStaticText[@name='YY / MM / DD']"
     _activities = "//XCUIElementTypePickerWheel"
     _select_date_1 = "//XCUIElementTypePicker"
-    _done_button = "//XCUIElementTypeButton[@name='Done']"
-    #_done_button = "//*[contains(@name='Done')]"
+    _done_button = "//XCUIElementTypeButton[@name='ui_supervisor_picker_doneButton']"
+    
     _special_instruction = "//XCUIElementTypeTextView"
     _send_button = "//XCUIElementTypeButton[@name='Send']"
 
@@ -62,11 +63,15 @@ class NotificationTab(BasePage):
     def DailyChecklist(self):
         #### Daily Checklist Publish #####
         self.elementClick(self._notification_tab, locatorType="xpath")
-        #self.elementClick(self._daily_healthcheck, locatorType="xpath")
+        time.sleep(3)
+
+        ##self.elementClick(self._daily_healthcheck, locatorType="xpath")
         self.elementClick(self._daily_log, locatorType="xpath")
         self.elementClick(self._signed_inout, locatorType="xpath")
         self.elementClick(self._check_playground, locatorType="xpath")
         self.elementClick(self._check_toiletpaper, locatorType="xpath")
+
+
         time.sleep(3)
         self.elementClick(self._complete_button, locatorType="xpath")
         time.sleep(3)
@@ -79,7 +84,8 @@ class NotificationTab(BasePage):
         self.elementClick(self._select_activity, locatorType="xpath")
         current_activity = self.getElement(self._activities, locatorType="xpath")
         print(current_activity.get_attribute('value'))
-        current_activity.send_keys("Lock down")
+        current_activity.send_keys("Immunization Record")
+        time.sleep(2)
         #touch.tap(element=None, x=699, y=761, count=1).release().perform()
         self.elementClick(self._done_button, locatorType="xpath")
         time.sleep(2)

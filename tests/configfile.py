@@ -12,9 +12,9 @@ class EnvironmentSetup(unittest.TestCase):
         print("Running one time setUp at: "+str(datetime.datetime.now()))
         self.desired_caps = {}
         self.desired_caps['platformName'] = 'iOS'
-        self.desired_caps['platformVersion'] = '13.3'
+        self.desired_caps['platformVersion'] = '14.1'
         self.desired_caps['automationName'] = 'XCUITest'
-        self.desired_caps['deviceName'] = 'iPad Air (3rd generation)'
+        self.desired_caps['deviceName'] = 'iPad Air (4th generation)'
         self.desired_caps['orientation'] = 'PORTRAIT'
         #self.desired_caps['fullReset'] = 'true'
         self.desired_caps['newCommandTimeout'] = '1000'
@@ -28,7 +28,6 @@ class EnvironmentSetup(unittest.TestCase):
         self.driver.implicitly_wait(6000)
 
         lp = LoginPage(self.driver)
-        #lp.login("535cc_Room_300@avecare.com", "123456")
         lp.login("room100_littlemonkey@gmail.com", "Spiria123")
 
 
