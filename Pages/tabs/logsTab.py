@@ -130,10 +130,8 @@ class LogsTab(BasePage):
             if self.isElementDisplayed(self._photo_access_button, locatorType="xpath"):
                 self.elementClick(self._photo_access_button, locatorType="xpath")
             else:
-                print("There is dialog present")
-
+                print("There is No Permission Access Dialog present")
             self.elementClick(self._first_photo, locatorType="xpath")
-
             self.elementClick(self._photo_add_done_button, locatorType="xpath")
             self.elementClick(self._photo_crap_done_button, locatorType="xpath")
 

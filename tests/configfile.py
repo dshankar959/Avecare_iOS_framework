@@ -24,7 +24,7 @@ class EnvironmentSetup(unittest.TestCase):
         # self.desired_caps['app'] = '//Users//qa//Desktop//Avecare//educator.app'
         self.desired_caps[
             'app'] = '/Users/qa/Library/Developer/Xcode/DerivedData/Avecare-evxvokdsbzlpouejaywqfbcdxrcg/Build/Products/Debug(QA)-iphonesimulator/educator.app'
-        self.driver = webdriver.Remote('http://localhost:4723/wd/hub', self.desired_caps)
+        self.driver = webdriver.Remote('http://localhost:4724/wd/hub', self.desired_caps)
         self.driver.implicitly_wait(6000)
 
         lp = LoginPage(self.driver)

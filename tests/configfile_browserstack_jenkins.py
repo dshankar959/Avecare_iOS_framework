@@ -8,7 +8,7 @@ from Pages.home.login_page import LoginPage
 
 user_name = os.getenv("BROWSERSTACK_USERNAME")
 access_key = os.getenv("BROWSERSTACK_ACCESS_KEY")
-build_name = os.getenv("BROWSERSTACK_BUILD_NAME")
+#build_name = os.getenv("BROWSERSTACK_BUILD_NAME")
 browserstack_local = os.getenv("BROWSERSTACK_LOCAL")
 browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
 app = os.getenv("BROWSERSTACK_APP_ID")
@@ -27,8 +27,12 @@ class EnvironmentSetupJenkins(unittest.TestCase):
         # 'browserstack.localIdentifier': browserstack_local_identifier
 
         # Set your access credentials
-        "browserstack.user": "torontoqaspiriac1",
-        "browserstack.key": "pmxn6rnEczeHs4cSxEzb",
+        # "browserstack.user": "torontoqaspiriac1",
+        # "browserstack.key": "pmxn6rnEczeHs4cSxEzb",
+
+        ## Using devikar69@gmail.com credentials
+        "browserstack.user": "dferrari2",
+        "browserstack.key": "c9z8dL3Qk4XqR8y3zMkP",
 
          # 'browserstack.user': user_name,
          # 'browserstack.key': access_key,
@@ -39,12 +43,12 @@ class EnvironmentSetupJenkins(unittest.TestCase):
         "name": "first_test"
         }
 
-        self.driver = webdriver.Remote("https://"+user_name+":"+access_key+"@hub-cloud.browserstack.com/wd/hub",
-                                       desired_cap)
+        # self.driver = webdriver.Remote("https://"+user_name+":"+access_key+"@hub-cloud.browserstack.com/wd/hub",
+        #                                desired_cap)
 
-        # self.driver = webdriver.Remote(
-        #     command_executor='https://hub-cloud.browserstack.com/wd/hub',
-        #     desired_capabilities=desired_cap)
+        self.driver = webdriver.Remote(
+            command_executor='https://hub-cloud.browserstack.com/wd/hub',
+            desired_capabilities=desired_cap)
 
         self.driver.implicitly_wait(6000)
 
