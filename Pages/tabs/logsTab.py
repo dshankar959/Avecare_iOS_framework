@@ -1,5 +1,8 @@
 import datetime
 import time
+from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import datetime as dt
 from datetime import date
 from curses.ascii import TAB
@@ -50,7 +53,7 @@ class LogsTab(BasePage):
     _add_caption = "//XCUIElementTypeTextView[@name='ui_supervisor_logs_caption']"
     _add_row = "//XCUIElementTypeButton[@name='plus icon']"
     _publish_button = "//XCUIElementTypeStaticText[@name='Publish']"
-    _published_checkmark = "(//XCUIElementTypeButton[@name='checkmark'])"
+    _published_checkmark = "//XCUIElementTypeButton[@name='checkmark']"
     #_scroll_point = "//XCUIElementTypeOther[@name='Vertical scroll bar, 2 pages']"
     _scroll_point = "//XCUIElementTypeApplication[@name='Daily Wonders']/XCUIElementTypeWindow[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeOther[2]/XCUIElementTypeOther/XCUIElementTypeScrollView/XCUIElementTypeOther[1]/XCUIElementTypeOther/XCUIElementTypeOther[8]/XCUIElementTypeOther/XCUIElementTypeOther[3]"
     _caption = "Caption"
@@ -61,12 +64,20 @@ class LogsTab(BasePage):
     _picker_ampm = "//XCUIElementTypeApplication[@name='Daily Wonders']/XCUIElementTypeWindow[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther[3]/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeOther/XCUIElementTypeDatePicker/XCUIElementTypePicker/XCUIElementTypePickerWheel[3]"
     _picker_date = "//XCUIElementTypePickerWheel"
     _photo_access_button = "//XCUIElementTypeButton[@name='Allow Access to All Photos']"
-    _first_photo = "//XCUIElementTypeCell[@name='Photo 3']"
     _photo_add_done_button = "//XCUIElementTypeButton[@name='Done (1)']"
     _photo_crap_done_button = "//XCUIElementTypeButton[@name='Done']"
+    _first_photo = "//XCUIElementTypeCell[@name='Photo 1']/XCUIElementTypeOther/XCUIElementTypeImage"
+    _fourth_photo = "/XCUIElementTypeCell[@name='Photo 4']/XCUIElementTypeOther/XCUIElementTypeImage"
+    _photo_gallery_cancel_button = "//XCUIElementTypeButton[@name='Cancel']"
 
+
+    def accept_photo_permission_dialog(self):
+        self.elementClick(self._camera_button, locatorType="xpath")
+        self.elementClick(self._photo_access_button, locatorType="xpath")
+        self.elementClick(self._photo_gallery_cancel_button, locatorType='xpath')
 
     def prepare_child_log(self):
+        global children
         total_children = self.getElementList(self._children_list, locatorType="xpath")
         print("The total number of children in this Room =", + len(total_children))
 
@@ -109,7 +120,7 @@ class LogsTab(BasePage):
             time.sleep(2)
             ## get current date and time
             currentdate = dt.datetime.today().strftime("%m/%d/%Y")
-            self.sendKeys("Educator note test for", self._educator_note, locatorType="xpath")
+            self.sendKeys(currentdate, self._educator_note, locatorType="xpath")
             self.driver.hide_keyboard()
             self.elementClick(self._bathroom1_wet, locatorType="xpath")
             self.elementClick(self._bathroom2_dry, locatorType="xpath")
@@ -123,25 +134,38 @@ class LogsTab(BasePage):
             tc = Scrolling(self.driver)
             #tc.scroll_to_element(self)
             tc.scroll_to_element(self, direction="up", click=False)
-            time.sleep(5)
+            time.sleep(2)
 
             # #### Select photo and add ####
             self.elementClick(self._camera_button, locatorType="xpath")
-            if self.isElementDisplayed(self._photo_access_button, locatorType="xpath"):
-                self.elementClick(self._photo_access_button, locatorType="xpath")
-            else:
-                print("There is No Permission Access Dialog present")
             self.elementClick(self._first_photo, locatorType="xpath")
             self.elementClick(self._photo_add_done_button, locatorType="xpath")
             self.elementClick(self._photo_crap_done_button, locatorType="xpath")
 
+            # time.sleep(3)
+            #
+            # try:
+            #     if self.isElementDisplayed(self._photo_access_button, locatorType="xpath"):
+            #         self.elementClick(self._photo_access_button, locatorType="xpath")
+            #         self.elementClick(self._first_photo, locatorType="xpath")
+            #     else:
+            #         self.elementClick(self._fourth_photo, locatorType="xpath")
+            #
+            # except NoSuchElementException:
+            #     print("There is NO Permission Access Dialog present")
+
+            # self.waitForElement(self._photo_access_button, locatorType="xpath")
+            # time.sleep(5)
+
             self.screenShot("passed")
             self.elementClick(self._publish_button, locatorType="xpath")
             time.sleep(2)
-            tc.scroll_to_element(self, direction="down", click=False)
-            time.sleep(5)
+            # tc.scroll_to_element(self, direction="down", click=False)
+            # time.sleep(5)
             total_children = self.getElementList(self._children_list, locatorType="xpath")
+        print("All children logs have been published now")
 
     def totalkids(self):
+        self.accept_photo_permission_dialog()
+        time.sleep(3)
         self.prepare_child_log()
-        print("Logs have been filled")

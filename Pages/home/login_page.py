@@ -38,7 +38,6 @@ class LoginPage(BasePage):
 
 
     def login(self, email, password):
-
         self.enterEmail(email)
         self.enterPassword(password)
         self.clicksigninButton()

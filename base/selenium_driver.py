@@ -211,7 +211,7 @@ class SeleniumDriver():
             return False
 
     def waitForElement(self, locator, locatorType="id",
-                               timeout=10, pollFrequency=0.5):
+                               timeout=3, pollFrequency=0.5):
         element = None
         try:
             byType = self.getByType(locatorType)
@@ -222,7 +222,9 @@ class SeleniumDriver():
                                  ignored_exceptions=[NoSuchElementException,
                                                      ElementNotVisibleException,
                                                      ElementNotSelectableException])
-            element = wait.until(EC.element_to_be_clickable((byType, locator)))
+            #element = wait.until(EC.element_to_be_clickable((byType, locator)))
+            element = wait.until(EC._element_if_visible((byType, locator)))
+
             self.log.info("Element appeared on the web page")
         except:
             self.log.info("Element not appeared on the web page")

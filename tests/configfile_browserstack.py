@@ -37,16 +37,16 @@ class EnvironmentSetupBrowserstack(unittest.TestCase):
             "name": "iOS_Educator UI TEST"
         }
 
-        # Initialize the remote Webdriver using BrowserStack remote URL
-        # and desired capabilities defined above
+        """ Initialize the remote Webdriver using BrowserStack remote URL
+         and desired capabilities defined above """
         self.driver = webdriver.Remote(
             command_executor="http://hub-cloud.browserstack.com/wd/hub",
             desired_capabilities=desired_cap
         )
         self.driver.implicitly_wait(6000)
+
         # Write your custom code here
         lp = LoginPage(self.driver)
-        #lp.login("535cc_Room_300@avecare.com", "123456")
         lp.login("room100_littlemonkey@gmail.com", "Spiria123")
 
     def tearDown(self):

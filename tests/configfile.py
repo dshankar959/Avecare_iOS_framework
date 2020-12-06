@@ -19,8 +19,10 @@ class EnvironmentSetup(unittest.TestCase):
         #self.desired_caps['fullReset'] = 'true'
         self.desired_caps['newCommandTimeout'] = '1000'
         self.desired_caps['autoGrantPermissions'] = 'true'
+        self.desired_caps['permissions, photos'] = 'YES'
         #self.desired_caps['autoDismissAlerts'] = 'true'
-        # self.desired_caps['permission', 'microphone'] = 'NO'
+        #self.desired_caps['autoAcceptAlerts'] = 'true'
+        #self.desired_caps['permissions', 'microphone'] = 'NO'
         # self.desired_caps['app'] = '//Users//qa//Desktop//Avecare//educator.app'
         self.desired_caps[
             'app'] = '/Users/qa/Library/Developer/Xcode/DerivedData/Avecare-evxvokdsbzlpouejaywqfbcdxrcg/Build/Products/Debug(QA)-iphonesimulator/educator.app'

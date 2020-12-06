@@ -32,8 +32,8 @@ class NotificationTab(BasePage):
     _ok_button = "//XCUIElementTypeButton[@name='OK']"
     _form_dropdown_icon = "//XCUIElementTypeImage[@name='form-dropdown-icon']"
     _select_activity = "//XCUIElementTypeStaticText[@name='No activity selected']"
-    #_calender_button = "//XCUIElementTypeImage[@name='form-calendar-icon']"
-    _calender_button = "//XCUIElementTypeStaticText[@name='YY / MM / DD']"
+    _calender_button = "//XCUIElementTypeImage[@name='form-calendar-icon']"
+    #_calender_button = "//XCUIElementTypeStaticText[@name='YY / MM / DD']"
     _activities = "//XCUIElementTypePickerWheel"
     _select_date_1 = "//XCUIElementTypePicker"
     _done_button = "//XCUIElementTypeButton[@name='ui_supervisor_picker_doneButton']"
@@ -145,12 +145,8 @@ class NotificationTab(BasePage):
         self.elementClick(self._send_button,locatorType="xpath")
 
 
-    def dailychecklist(self):
+    def notifications(self):
         self.DailyChecklist()
-    def inspectionanddrills(self):
-        self.InspectionsDrills()
-    def injuryreport(self):
+        # self.InspectionsDrills()
         self.InjuryReport()
-    def reminders(self):
         self.Reminders()
-

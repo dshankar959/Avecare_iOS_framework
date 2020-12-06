@@ -8,7 +8,7 @@ from Pages.home.login_page import LoginPage
 
 user_name = os.getenv("BROWSERSTACK_USERNAME")
 access_key = os.getenv("BROWSERSTACK_ACCESS_KEY")
-#build_name = os.getenv("BROWSERSTACK_BUILD_NAME")
+build_name = os.getenv("BROWSERSTACK_BUILD_NAME")
 browserstack_local = os.getenv("BROWSERSTACK_LOCAL")
 browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
 app = os.getenv("BROWSERSTACK_APP_ID")
@@ -22,6 +22,8 @@ class EnvironmentSetupJenkins(unittest.TestCase):
         'app': app,
         'device': 'iPad 7th',
         'os_version': "13",
+        'name': 'BStack-[Jenkins] iOSEducator app',  # test name
+        'build': "Python iOS Browserstack and Jenkins",  # CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
 
         # 'browserstack.local': browserstack_local,
         # 'browserstack.localIdentifier': browserstack_local_identifier
@@ -39,8 +41,8 @@ class EnvironmentSetupJenkins(unittest.TestCase):
 
         # Set other BrowserStack capabilities
         "project": "Avecare-Educator",
-        "build": "Python iOS Browserstack and Jenkins",
-        "name": "first_test"
+        # "build": "Python iOS Browserstack and Jenkins",
+        # "name": "first_test"
         }
 
         # self.driver = webdriver.Remote("https://"+user_name+":"+access_key+"@hub-cloud.browserstack.com/wd/hub",
