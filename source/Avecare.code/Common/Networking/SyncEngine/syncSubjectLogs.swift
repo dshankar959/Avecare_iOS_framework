@@ -195,7 +195,15 @@ extension SyncEngine {
                         form.publishState = .published
                     }
                 }
-
+/*
+                /// TESTING!  [SD]
+                if let form2 = RLMLogForm.find(withID: response.id) {
+                    if form2.publishState != .published {
+                        DDLogError("error: failed to set published state")
+                        fatalError("error: failed to set published state")
+                    }
+                }
+*/
                 DDLogDebug("⬆️ UP syncComplete!  form.id = \(form.id)")
                 self?.syncUPsubjectLogs(syncCompletion)    // recurse for anymore
 

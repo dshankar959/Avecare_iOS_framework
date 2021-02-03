@@ -12,6 +12,8 @@ extension DataProvider where Self: Object {    // +Sync
             return []
         }
 
+//        DDLogDebug("allObjects[\(Self.description())] = \(allObjects.count)")
+
         return allObjects.map { return detached ? $0.detached() : $0 }
     }
 

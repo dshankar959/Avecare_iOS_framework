@@ -123,13 +123,22 @@ class LoginViewController: UIViewController, IndicatorProtocol {
         let userCredentials = UserCredentials(email: email, password: password)
         UserAuthenticateService.shared.signIn(userCredentials: userCredentials) { [weak self] error in
             if let error = error {
-                self?.handleError(error)
+                DDLogError("\(error)")
+                self?.showErrorAlert(error)
             } else {
                 self?.showActivityIndicator(withStatus: NSLocalizedString("authenticate_syncing", comment: ""))
                 syncEngine.syncAll { error in
                     syncEngine.print_isSyncingStatus_description()
                     if let error = error {
-                        self?.handleError(error)
+                        DDLogError("\(error)")
+                        if error.code == "409" {
+                            // Continue on.. albeit with a broken sync.
+                            // But at least we can get into the app for some feedback logs.
+                            self?.performSegue(withIdentifier: R.segue.loginViewController.tabbar, sender: nil)
+                        } else {
+                            self?.showErrorAlert(error)
+                        }
+
                     } else {
                         self?.hideActivityIndicator()
                         self?.performSegue(withIdentifier: R.segue.loginViewController.tabbar, sender: nil)
@@ -137,12 +146,6 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                 }
             }
         }
-    }
-
-
-    private func handleError(_ error: AppError) {
-        DDLogError("\(error)")
-        self.showErrorAlert(error)
     }
 
 

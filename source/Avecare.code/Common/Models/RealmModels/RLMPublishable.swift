@@ -20,8 +20,8 @@ extension RLMPublishable {
     var publishState: PublishState {
         get {
             guard let state = PublishState(rawValue: rawPublishState) else {
-                DDLogError("RLMStory.rawPublishState invalid value")
-                fatalError("RLMStory.rawPublishState invalid value")
+                DDLogError(".rawPublishState invalid value")
+                fatalError(".rawPublishState invalid value")
             }
             return state
         }

@@ -193,12 +193,12 @@ extension DatabaseLayer where Self: Object {
             do {
                 let database = getDatabase()
 
-                try database?.safeWrite {
-                    writeTransactionBlock()
-                }
-//                try database?.write {
+//                try database?.safeWrite {
 //                    writeTransactionBlock()
 //                }
+                try database?.write {
+                    writeTransactionBlock()
+                }
             } catch let error {
                 DDLogError("Database error: \(error)")
                 fatalError("Database error: \(error)")

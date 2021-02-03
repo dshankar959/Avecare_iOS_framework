@@ -35,7 +35,7 @@ class DetailsFormViewController: UIViewController {
 
         NotificationCenter.default.addObserver(self, selector: #selector(self.syncing), name: .syncStateChanged, object: nil)
 
-        NotificationCenter.default.addObserver(self, selector: #selector(self.syncDidComplete), name: .didCompleteSync, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.updateSyncButton), name: .didCompleteSync, object: nil)
     }
 
     @objc func syncDidComplete() {
@@ -56,7 +56,7 @@ class DetailsFormViewController: UIViewController {
         synStatusButton.setAttributedTitle(title, for: .normal)
     }
 
-    func updateSyncButton() {
+    @objc func updateSyncButton() {
         if syncEngine.isSyncUpRequired() {
             if syncEngine.isSyncing {
                 syncing()
@@ -71,8 +71,8 @@ class DetailsFormViewController: UIViewController {
                 synStatusButton.setAttributedTitle(title, for: .normal)
             }
         } else {
-                self.syncDidComplete()
-            }
+            self.syncDidComplete()
+        }
     }
 
 

@@ -159,6 +159,6 @@
 "no_internet_title" = "No Internet Connection";
 "all_synced" = "All synced";
 "all_synced_offline" = "All synced - Offline";
-"waiting_to_sync" = "Waiting to sync";
-"waiting_to_sync_offline" = "Waiting to sync - Offline";
+"waiting_to_sync" = "Sync pending";
+"waiting_to_sync_offline" = "Sync pending - Offline";
 "syncing_title" = "Syncing . . .";

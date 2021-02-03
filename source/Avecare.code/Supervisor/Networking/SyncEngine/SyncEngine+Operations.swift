@@ -146,6 +146,18 @@ extension SyncEngine {
                                                 self.syncUPDailyTaskChecklist() { error in
                                                     DDLogVerbose("syncUPDailyTaskChecklist ♓️ closure")
                                                     if let error = error { syncCompletion(error) } else {
+
+/*
+                                                        /// TESTING!  [SD]
+                                                        let forms = RLMLogForm.findAll()
+                                                        // reset
+                                                        for form in forms {
+                                                            RLMLogForm.writeTransaction {
+                                                                form.publishState = .publishing
+                                                            }
+                                                        }
+*/
+
                                                         syncCompletion(nil)
                                                     }
                                                 }
