@@ -28,8 +28,10 @@ disabled_rules: # rule identifiers to exclude from running
   - multiple_closures_with_trailing_closure
   - unused_setter_value
   - weak_delegate
-  - cyclomatic_complexity
   - orphaned_doc_comment
+  - comment_spacing
+  - inclusive_language
+  - unused_capture_list
 
 cyclomatic_complexity:
   - 20 # warning

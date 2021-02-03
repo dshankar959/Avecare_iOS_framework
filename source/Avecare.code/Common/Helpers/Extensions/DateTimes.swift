@@ -185,6 +185,7 @@ extension Date {
         return Calendar.current.date(byAdding: components, to: startOfMonth)!
     }
 
+    // swiftlint:disable cyclomatic_complexity
     func timeAgo(numericDates: Bool = false, dayAbove: Bool = true) -> String {
         let calendar = Calendar.current
         let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfMonth, .month, .year, .second]
@@ -277,6 +278,7 @@ extension Date {
             }
         }
     }
+    // swiftlint:enabled cyclomatic_complexity
 
     var dateStringHumanFriendly: String {
         return Date.fullMonthDayYearFormatter.string(from: self)
