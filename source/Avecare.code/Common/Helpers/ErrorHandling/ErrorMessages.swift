@@ -5,6 +5,7 @@ import Moya
 // MARK: - constants
 
 struct HTTPerror {
+    static let code_409 = "409" // CONFLICT.  Indicates a request conflict with current state of the target resource.
     static let code_410 = "410" // GONE.  Indicates that the resource requested is no longer available and will not be available again.
 }
 

@@ -66,8 +66,18 @@ struct SubjectsAPIService {
                 }
             case .failure(let error):
                 DDLogVerbose("Failed ❌ to publish daily log [id:\(log.id)] for subject: \"\(subjectName)\" [\(log.subjectId)]")
-                DispatchQueue.main.async() {
-                    completion(.failure(getAppErrorFromMoya(with: error)))
+
+                let underlyingError = getAppErrorFromMoya(with: error)
+
+                if underlyingError.code == HTTPerror.code_409 { // "Log for this date and subject already exists"
+                    DDLogVerbose("👍 Server already contains published daily log [id:\(log.id)] for subject: \"\(subjectName)\" [\(log.subjectId)]")
+                    DispatchQueue.main.async() {
+                        completion(.success(log))   // set it and forget it.
+                    }
+                } else {
+                    DispatchQueue.main.async() {
+                        completion(.failure(underlyingError))
+                    }
                 }
             }
         }

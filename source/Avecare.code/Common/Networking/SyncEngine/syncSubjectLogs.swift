@@ -187,7 +187,7 @@ extension SyncEngine {
         SubjectsAPIService.publishDailyLog(log: request) { [weak self] result in
             switch result {
             case .success(let response):
-                DDLogVerbose("success")
+                DDLogVerbose("✅ success")
                 //  update serverDate
                 if let form = RLMLogForm.find(withID: response.id) {
                     RLMLogForm.writeTransaction {

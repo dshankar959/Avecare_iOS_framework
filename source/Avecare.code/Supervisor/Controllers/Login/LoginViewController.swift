@@ -131,9 +131,8 @@ class LoginViewController: UIViewController, IndicatorProtocol {
                     syncEngine.print_isSyncingStatus_description()
                     if let error = error {
                         DDLogError("\(error)")
-                        if error.code == "409" {
-                            // Continue on.. albeit with a broken sync.
-                            // But at least we can get into the app for some feedback logs.
+                        if error.code == HTTPerror.code_409 { // failed sync error
+                            // Continue on.. . but at least we can get into the app for some feedback logs (if need be).
                             self?.performSegue(withIdentifier: R.segue.loginViewController.tabbar, sender: nil)
                         } else {
                             self?.showErrorAlert(error)
