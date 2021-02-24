@@ -90,6 +90,10 @@ import Kingfisher
         connectivity.framework = .network
         connectivity.startNotifier()
 
+        #if GUARDIAN
+        UNUserNotificationCenter.current().delegate = self
+        #endif
+
         DDLogInfo("")
         return true
     }

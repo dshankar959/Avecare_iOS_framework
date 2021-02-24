@@ -4,7 +4,7 @@ import Sentry
 
 
 
-private enum TabBarItems: String, CaseIterable {
+enum TabBarItems: String, CaseIterable {
     case home = "Home"
     case stories = "Documentation"
     case logs = "Logs"
@@ -42,6 +42,7 @@ class GuardianTabBarController: UITabBarController, SubjectSelectionProtocol {
         #endif
 
         syncEngine.resetSyncTimer()
+
         NotificationCenter.default.addObserver(self, selector: #selector(logout), name: .didReceiveUnauthorizedError, object: nil)
     }
 

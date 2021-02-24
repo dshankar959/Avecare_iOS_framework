@@ -1,0 +1,9 @@
+{
+  "aps": {
+    "alert": "Breaking News!",
+    "sound": "default",
+    "link_url": "https://avecare.ca",
+    "message": "Snowball fights on playground."
+  }
+}
+

@@ -274,6 +274,11 @@
 		75BFA30D24A4F13300E7D01A /* CustomTabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BFA30B24A4F13300E7D01A /* CustomTabBarView.swift */; };
 		75BFA30E24A4F13300E7D01A /* SupervisorTabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75BFA30C24A4F13300E7D01A /* SupervisorTabBarButton.swift */; };
 		75D0ACF7249C28E2007562D0 /* PullToRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */; };
+		75D49E5325E6981500BDB916 /* AppDelegate+APN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D49E5225E6981500BDB916 /* AppDelegate+APN.swift */; };
+		75D49E5425E6981500BDB916 /* AppDelegate+APN.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D49E5225E6981500BDB916 /* AppDelegate+APN.swift */; };
+		75D49E6825E6E28B00BDB916 /* HomeViewController+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D49E6725E6E28B00BDB916 /* HomeViewController+Navigation.swift */; };
+		75D49E6E25E6F44D00BDB916 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D49E6D25E6F44D00BDB916 /* Data.swift */; };
+		75D49E6F25E6F44D00BDB916 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D49E6D25E6F44D00BDB916 /* Data.swift */; };
 		75D62235245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
 		75D62236245B14490032F53D /* RLMInstitution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D62234245B14480032F53D /* RLMInstitution.swift */; };
 		75D7FF5C2470FC6F0002E1F9 /* LogFormAPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615473C479A061F759D2F5FC /* LogFormAPIModel.swift */; };
@@ -729,6 +734,9 @@
 		75BFA30B24A4F13300E7D01A /* CustomTabBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarView.swift; sourceTree = "<group>"; };
 		75BFA30C24A4F13300E7D01A /* SupervisorTabBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupervisorTabBarButton.swift; sourceTree = "<group>"; };
 		75D0ACF6249C28E2007562D0 /* PullToRefreshProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PullToRefreshProtocol.swift; sourceTree = "<group>"; };
+		75D49E5225E6981500BDB916 /* AppDelegate+APN.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+APN.swift"; sourceTree = "<group>"; };
+		75D49E6725E6E28B00BDB916 /* HomeViewController+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HomeViewController+Navigation.swift"; sourceTree = "<group>"; };
+		75D49E6D25E6F44D00BDB916 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		75D62234245B14480032F53D /* RLMInstitution.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMInstitution.swift; sourceTree = "<group>"; };
 		75E2EBF9246C1DDD00A3D51F /* RLMDefaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMDefaults.swift; sourceTree = "<group>"; };
 		75EB59B22461858700E077E5 /* RLMLogTimeRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RLMLogTimeRow.swift; sourceTree = "<group>"; };
@@ -1375,6 +1383,7 @@
 				7563165E24BE21B3007D31B4 /* AppDelegate+Connectivity.swift */,
 				7563165F24BE21B4007D31B4 /* AppDelegate+Logging.swift */,
 				7563166424BE229E007D31B4 /* AppDelegate+SentrySDK.swift */,
+				75D49E5225E6981500BDB916 /* AppDelegate+APN.swift */,
 				75886CCC2419327F0079C080 /* UINVC.swift */,
 				F663BB7D243521AC003279B9 /* UI */,
 				75886CDC2419327F0079C080 /* AppSettings */,
@@ -1507,6 +1516,7 @@
 				75886CEF2419327F0079C080 /* Bundle+AppInfo.swift */,
 				75886CF92419327F0079C080 /* CGFloat.swift */,
 				75886CF72419327F0079C080 /* CGPoint.swift */,
+				75D49E6D25E6F44D00BDB916 /* Data.swift */,
 				75886CF22419327F0079C080 /* DateTimes.swift */,
 				75886CF52419327F0079C080 /* Dictionary.swift */,
 				75886CF12419327F0079C080 /* FileManager.swift */,
@@ -1649,6 +1659,7 @@
 			isa = PBXGroup;
 			children = (
 				75886D7C241932AB0079C080 /* HomeViewController.swift */,
+				75D49E6725E6E28B00BDB916 /* HomeViewController+Navigation.swift */,
 				75886D7A241932AB0079C080 /* HomeDataProvider.swift */,
 				DC3E80E52486A9D8003983E2 /* FeedDetailsViewController.swift */,
 				DC3E80EF2486C8B7003983E2 /* FeedDetailsDataProvider.swift */,
@@ -2956,8 +2967,10 @@
 				75EB5A042463C03300E077E5 /* RLMGuardian.swift in Sources */,
 				75B49B46250258DD007D61FF /* ButtonTableViewCell.swift in Sources */,
 				615474FBE2BC3129D99399BF /* TextField.swift in Sources */,
+				75D49E5325E6981500BDB916 /* AppDelegate+APN.swift in Sources */,
 				7563166224BE21B4007D31B4 /* AppDelegate+Logging.swift in Sources */,
 				DCB33D6424A63E4C00C5AC0E /* SubjectListDataProvider+Tags.swift in Sources */,
+				75D49E6E25E6F44D00BDB916 /* Data.swift in Sources */,
 				6154779079D0A089A6510394 /* StoriesTableViewCell.swift in Sources */,
 				DC9D130D24AA917C00DEBA61 /* TagCollectionViewCell.swift in Sources */,
 				7523497524A477E8000C873E /* AboutFormProvider.swift in Sources */,
@@ -2987,6 +3000,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				75EB59E424618EF600E077E5 /* SyncEngine.swift in Sources */,
+				75D49E6825E6E28B00BDB916 /* HomeViewController+Navigation.swift in Sources */,
 				755EAEC2241AC6CC00A6BA4D /* DataProvider.swift in Sources */,
 				DCF914102493BAAD0043123F /* RLMActivityOption.swift in Sources */,
 				75EDAD0824A3FDA100FF3E8A /* AboutDetailsViewController.swift in Sources */,
@@ -3046,6 +3060,7 @@
 				75886D8E241932AB0079C080 /* SplashViewController.swift in Sources */,
 				75886D0F2419327F0079C080 /* AvecareAPI+sampleData.swift in Sources */,
 				75886D532419327F0079C080 /* UIViewController.swift in Sources */,
+				75D49E6F25E6F44D00BDB916 /* Data.swift in Sources */,
 				75EB59C52461858700E077E5 /* FormRowIconProtocol.swift in Sources */,
 				75886D9A241932AB0079C080 /* GuardianTabBarController.swift in Sources */,
 				75886D89241932AB0079C080 /* R.guardian.generated.swift in Sources */,
@@ -3154,6 +3169,7 @@
 				DCB33D5F24A4EE8300C5AC0E /* NoItemTableViewCell.swift in Sources */,
 				75EB59CB2461858700E077E5 /* RLMLogPhotoRow.swift in Sources */,
 				615472FD03343E8BBC254253 /* LogsViewModelFactory.swift in Sources */,
+				75D49E5425E6981500BDB916 /* AppDelegate+APN.swift in Sources */,
 				DCFFD6F7246DA4E10080DEA6 /* SlideInPresentationManager.swift in Sources */,
 				615474F1719D19B2A4E58928 /* HomeTableVIewHeaderView.swift in Sources */,
 				61547527266DD8DB51B90A5A /* HomeTableViewDisclosureCell.swift in Sources */,
@@ -3513,7 +3529,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor.qa";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3543,7 +3559,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-guardian.qa";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3629,7 +3645,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor.qa";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3659,7 +3675,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-guardian.qa";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3689,7 +3705,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor.beta";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3719,7 +3735,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor.beta";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3806,7 +3822,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-supervisor";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -3837,7 +3853,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-guardian";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
@@ -3868,7 +3884,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-guardian.beta";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3898,7 +3914,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.avecare.hwcccc-guardian.beta";
 				PRODUCT_MODULE_NAME = "$(PRODUCT_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
