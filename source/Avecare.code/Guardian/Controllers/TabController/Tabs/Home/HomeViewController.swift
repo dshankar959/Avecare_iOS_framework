@@ -59,7 +59,8 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
 
         NotificationCenter.default.addObserver(self, selector: #selector(navigateDeepLink), name: .didReceivePushNotification, object: nil)
 
-        appDelegate.requestAuthorizationForPushNotifications()
+        // TODO:  push notifications.
+//        appDelegate.requestAuthorizationForPushNotifications()
     }
 
 

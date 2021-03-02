@@ -21,9 +21,19 @@ extension AppDelegate {
             DDLogDebug(" 📡  Reachable.  ✅")
             self._isDataConnection = true
 
+            // Trigger a silent sync in case of a glitchy data connection.
+            DispatchQueue.main.async {
+                syncEngine.triggerSync()
+            }
+
         case .connectedViaWiFi:
             DDLogDebug(" 📶  Reachable via WiFi")
             self._isDataConnection = true
+
+            // Trigger a silent sync in case of a glitchy data connection.
+            DispatchQueue.main.async {
+                syncEngine.triggerSync()
+            }
 
         case .connectedViaCellular:
             DDLogDebug(" 📲  Reachable via Cellular")

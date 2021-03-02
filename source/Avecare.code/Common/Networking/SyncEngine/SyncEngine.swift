@@ -108,6 +108,16 @@ extension SyncEngine {
     func syncAll(_ syncCompletion:@escaping (_ error: AppError?) -> Void) {
         DDLogVerbose("")
 
+        if !appSession.isSignedIn() || appSession.token.isFake {
+            DDLogError("⚠️ Auth required.")
+//            appDelegate.autoSignIn() { error in
+//                if error != nil {
+//                    syncCompletion(AuthError.expiredSession.message)
+//                }
+//            }
+            return
+        }
+
         if !appSettings.enableSyncUp && !appSettings.enableSyncDown {
             DDLogDebug("🔺🔻❌ sync UP/DOWN ⬆️⬇️ disabled.  ❎❎")
             syncCompletion(nil)
@@ -117,16 +127,6 @@ extension SyncEngine {
         if self.isSyncBlocked {
 //            syncCompletion(isSyncCancelled ? nil : NetworkError.NetworkConnectionLost.message)
             syncCompletion(nil)
-            return
-        }
-
-        if !appSession.isSignedIn() || appSession.token.isFake {
-            DDLogError("⚠️ Auth required.")
-//            appDelegate.autoSignIn() { error in
-//                if error != nil {
-//                    syncCompletion(AuthError.expiredSession.message)
-//                }
-//            }
             return
         }
 
