@@ -9,7 +9,6 @@ final class UserAuthenticateService: IndicatorProtocol {
 
 
     // MARK: - Sign-in
-
     func signIn(userCredentials: UserCredentials, completion:@escaping (AppError?) -> Void) {
 /*
         // -
@@ -18,17 +17,17 @@ final class UserAuthenticateService: IndicatorProtocol {
         // Impersonate a real client on Prod. server.  Comment out this section to disable.
         // Here be dragons! Tread lightly.
         // Must do a fresh install.
-        let userCredentials = UserCredentials(email: "rfitzgerald@mcdermott.com", password: "")
+        let userCredentials = UserCredentials(email: "holly.lysyshinmohawkcollege.ca", password: "")
         let userProfile = UserProfile(userCredentials: userCredentials)
-        let clientToken = APIToken(withToken: "a0c813fbddbacd5c244edb22a25e5adfbb27ed6c",
+        let clientToken = APIToken(withToken: "995dd05ae80e2c9e065bdbfeb11f555ddad5527f",
                                    accountType: "guardian",
-                                   accountTypeId: "4380864b-9af8-4195-86e6-a3b5b517194c",
+                                   accountTypeId: "d2311532-0ef9-4659-9178-e73fef871cd1",
                                    isFakeToken: false)
         appSettings.serverURLstring = ServerURLs.production.description // prod. server
 
         // then.. login as the client to test their DB.
         DDLogError("~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~")
-        DDLogError(" ATTENTION!  Testing user DB inception.")
+        DDLogError(" ATTENTION!  Testing user inception.")
         DDLogError("~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~  ~ ⚠️ ~\n")
 
         // Override any previous session
@@ -36,6 +35,7 @@ final class UserAuthenticateService: IndicatorProtocol {
 
         self.onSignInLaunchCheck()
 
+        DDLogWarn("⚠️ - override  - ⚠️")
         // override
         appSettings.rememberLastUsername = false
         appSettings.enableSyncUp = false
@@ -61,9 +61,10 @@ final class UserAuthenticateService: IndicatorProtocol {
         return
 
         #endif
-        // -
+        // MARK: -
 */
 
+        // MARK: -
         showActivityIndicator(withStatus: NSLocalizedString("authenticate_signing_in", comment: ""))
 
         UserAPIService.authenticateUserWith(userCreds: userCredentials) { [weak self] result in
@@ -108,6 +109,8 @@ final class UserAuthenticateService: IndicatorProtocol {
 
 
     private func onSignInLaunchCheck() {
+        DDLogInfo("")
+
         DALConfig.userRealmFileURL = nil    // reset DB access.
 
         appSettings.userLoginCount += 1

@@ -66,7 +66,7 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
 
     @objc func navigateDeepLink(notification: NSNotification) {
         DDLogVerbose("‼️")
-
+/*
         if let info = notification.userInfo as? [String: Any] {
 
             if let navC = tabBarController?.viewControllers?[TabBarItems.home.index] as? UINavigationController {
@@ -76,6 +76,7 @@ class HomeViewController: UIViewController, IndicatorProtocol, PullToRefreshProt
                 self.tabBarController?.selectedIndex = TabBarItems.home.index
             }
         }
+*/
     }
 
 

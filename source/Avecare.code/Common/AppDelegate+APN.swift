@@ -3,6 +3,7 @@ import CocoaLumberjack
 import UserNotifications
 
 
+#if GUARDIAN
 
 extension Notification.Name {
     static let didReceivePushNotification = Notification.Name("didReceivePushNotification")
@@ -167,3 +168,5 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 
 }
+
+#endif

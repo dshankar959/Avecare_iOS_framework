@@ -69,7 +69,7 @@ extension SyncEngine {
                     if let lastSavedLog = sortedLogs.last,
                         let clientLastUpdated = lastSavedLog.clientLastUpdated,
                         Calendar.current.isDateInToday(clientLastUpdated) {
-                        DDLogVerbose("Today's subject log is already in our database.")
+                        DDLogVerbose("Today's subject [\(lastSavedLog.subject?.fullName ?? "")] log is already in our database.")
                         return
                     }
                 }

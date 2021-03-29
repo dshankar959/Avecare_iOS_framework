@@ -67,13 +67,15 @@ extension SyncEngine {
                         case .success(let supervisorAccounts):
                             DDLogDebug("getSupervisorAccounts: .success")
 
+                            let filteredAccounts = supervisorAccounts.filter { $0.isUnitType == false }
+
                             // Now get the profile details for each supervisor in the list.
-                            self?.syncSupervisorProfiles(supervisorAccounts) { [weak self] error in
+                            self?.syncSupervisorProfiles(filteredAccounts) { [weak self] error in
                                 if let error = error {
                                     apiResult = .failure(error)
                                     self?.syncStates[syncKey] = .complete
                                 } else {
-                                    DDLogDebug("syncSupervisorProfiles: #️⃣ \(index+1) .success")
+                                    DDLogDebug("syncSupervisorProfiles for unit: #️⃣ \(index+1) .success")
                                 }
 
                                 semaphore.signal()
