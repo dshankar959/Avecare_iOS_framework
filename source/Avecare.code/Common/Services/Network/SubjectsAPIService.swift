@@ -45,7 +45,6 @@ struct SubjectsAPIService {
     }
 
 
-    // MARK: -
     static func publishDailyLog(log: LogFormAPIModel, completion: @escaping (Result<LogFormAPIModel, AppError>) -> Void) {
         let subjectName = RLMSubject.find(withID: log.subjectId)?.fullName ?? "<RLMSubject>"
         DDLogVerbose("Publish daily log [id:\(log.id)] for subject: \"\(subjectName)\" [\(log.subjectId)]")
