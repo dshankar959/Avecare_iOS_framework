@@ -11,7 +11,8 @@ access_key = os.getenv("BROWSERSTACK_ACCESS_KEY")
 build_name = os.getenv("BROWSERSTACK_BUILD_NAME")
 browserstack_local = os.getenv("BROWSERSTACK_LOCAL")
 browserstack_local_identifier = os.getenv("BROWSERSTACK_LOCAL_IDENTIFIER")
-app = os.getenv("BROWSERSTACK_APP_ID")
+#app = os.getenv("BROWSERSTACK_APP_ID")
+#app_url = "bs://111cabd70b47356120be9185dfd0af976e9f52f1"
 
 
 class EnvironmentSetupJenkins(unittest.TestCase):
@@ -19,7 +20,7 @@ class EnvironmentSetupJenkins(unittest.TestCase):
     def setUp(self):
         print("Running one time setUp at: "+str(datetime.datetime.now()))
         desired_cap = {
-        'app': app,
+        "app": "bs://111cabd70b47356120be9185dfd0af976e9f52f1",
         'device': 'iPad 7th',
         'os_version': "13",
         'name': 'BStack-[Jenkins] iOSEducator app',  # test name
@@ -29,12 +30,12 @@ class EnvironmentSetupJenkins(unittest.TestCase):
         # 'browserstack.localIdentifier': browserstack_local_identifier
 
         # Set your access credentials
-        # "browserstack.user": "torontoqaspiriac1",
-        # "browserstack.key": "pmxn6rnEczeHs4cSxEzb",
+        "browserstack.user": "gatineauqa1",
+        "browserstack.key": "VAn9nnjDxxsshxN4WRNt",
 
         ## Using devikar69@gmail.com credentials
-        "browserstack.user": "dferrari2",
-        "browserstack.key": "c9z8dL3Qk4XqR8y3zMkP",
+        # "browserstack.user": "dferrari2",
+        # "browserstack.key": "c9z8dL3Qk4XqR8y3zMkP",
 
          # 'browserstack.user': user_name,
          # 'browserstack.key': access_key,

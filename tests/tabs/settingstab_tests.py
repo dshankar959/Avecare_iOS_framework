@@ -7,6 +7,7 @@ from utilities.teststatus import TestStatus
 
 
 
+
 class SettingsTabTest(EnvironmentSetupJenkins):
 
     def test_SettingsTab(self):
