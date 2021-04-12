@@ -19,7 +19,8 @@ class LoginPage(BasePage):
     _password_field = "//XCUIElementTypeSecureTextField[@name='ui_passwordField']"
    # _signin_button = "//XCUIElementTypeButton[@name='Sign In']"
     _signin_button = "//XCUIElementTypeButton[@name='ui_loginButton']"
-    _login_logo="hwcccc-logo-icon"
+    _login_logo = "hwcccc-logo-icon"
+    _first_name_tab = "//XCUIElementTypeButton[@name='First Name']"
 
     #### Methods to perform action
 
@@ -43,7 +44,7 @@ class LoginPage(BasePage):
         self.clicksigninButton()
 
     def verifyLoginSuccessful(self):
-        logo = self.isElementPresent(self._login_logo, locatorType="accessibility")
+        logo = self.isElementPresent(self._first_name_tab, locatorType="xpath")
         print("Login success")
         return logo
 

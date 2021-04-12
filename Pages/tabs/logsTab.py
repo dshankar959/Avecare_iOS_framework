@@ -1,5 +1,7 @@
 import datetime
 import time
+
+from pandas.tests.dtypes.test_missing import now
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -119,7 +121,7 @@ class LogsTab(BasePage):
             self.elementClick(self._educator_note, locatorType="xpath")
             time.sleep(2)
             ## get current date and time
-            currentdate = dt.datetime.today().strftime("%m/%d/%Y")
+            currentdate = now.strftime("%d/%m/%Y %H:%M:%S")
             self.sendKeys(currentdate, self._educator_note, locatorType="xpath")
             self.driver.hide_keyboard()
             self.elementClick(self._bathroom1_wet, locatorType="xpath")
@@ -142,8 +144,8 @@ class LogsTab(BasePage):
             self.elementClick(self._photo_add_done_button, locatorType="xpath")
             self.elementClick(self._photo_crap_done_button, locatorType="xpath")
 
-            # time.sleep(3)
-            #
+            time.sleep(3)
+
             # try:
             #     if self.isElementDisplayed(self._photo_access_button, locatorType="xpath"):
             #         self.elementClick(self._photo_access_button, locatorType="xpath")
@@ -153,11 +155,11 @@ class LogsTab(BasePage):
             #
             # except NoSuchElementException:
             #     print("There is NO Permission Access Dialog present")
-
+            #
             # self.waitForElement(self._photo_access_button, locatorType="xpath")
             # time.sleep(5)
-
-            self.screenShot("passed")
+            #
+            # self.screenShot("passed")
             self.elementClick(self._publish_button, locatorType="xpath")
             time.sleep(2)
             # tc.scroll_to_element(self, direction="down", click=False)
@@ -166,6 +168,7 @@ class LogsTab(BasePage):
         print("All children logs have been published now")
 
     def totalkids(self):
+        time.sleep(8)
         self.accept_photo_permission_dialog()
         time.sleep(3)
         self.prepare_child_log()
