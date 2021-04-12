@@ -21,8 +21,8 @@ class EnvironmentSetupJenkins(unittest.TestCase):
         print("Running one time setUp at: "+str(datetime.datetime.now()))
         desired_cap = {
         "app": "bs://111cabd70b47356120be9185dfd0af976e9f52f1",
-        'device': 'iPad 7th',
-        'os_version': "13",
+        'device': 'iPad 8th',
+        'os_version': "14",
         'name': 'BStack-[Jenkins] iOSEducator app',  # test name
         'build': "Python iOS Browserstack and Jenkins",  # CI/CD job name using BROWSERSTACK_BUILD_NAME env variable
 
