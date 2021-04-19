@@ -14,7 +14,7 @@ from utilities.teststatus import TestStatus
 from tests.configfile_browserstack import EnvironmentSetupBrowserstack
 from tests.configfile import EnvironmentSetup
 
-class LoginTests(EnvironmentSetup):
+class LoginTests(EnvironmentSetupJenkins):
 
     @pytest.mark.tryfirst
     def test_validLogin(self):
