@@ -6,7 +6,7 @@ from tests.configfile_browserstack import EnvironmentSetupBrowserstack
 from utilities.teststatus import TestStatus
 
 
-class NotificationTabTest(EnvironmentSetupBrowserstack):
+class NotificationTabTest(EnvironmentSetupJenkins):
 
     def test_NotificationTab(self):
         self.nt = NotificationTab(self.driver)

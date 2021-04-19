@@ -6,7 +6,7 @@ from tests.configfile_browserstack import EnvironmentSetupBrowserstack
 from utilities.teststatus import TestStatus
 
 
-class DocumentationTabTest(EnvironmentSetupBrowserstack):
+class DocumentationTabTest(EnvironmentSetupJenkins):
 
     def test_DocummentationTab(self):
         self.dt = DocumentationTab(self.driver)

@@ -8,7 +8,7 @@ from utilities.teststatus import TestStatus
 
 
 
-class SettingsTabTest(EnvironmentSetupBrowserstack):
+class SettingsTabTest(EnvironmentSetupJenkins):
 
     def test_SettingsTab(self):
         self.st = SettingsTab(self.driver)
