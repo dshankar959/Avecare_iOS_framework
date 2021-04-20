@@ -13,6 +13,6 @@ tc3 = unittest.TestLoader().loadTestsFromTestCase(DocumentationTabTest)
 tc4 = unittest.TestLoader().loadTestsFromTestCase(SettingsTabTest)
 
 ### Create a test suite combining all test classes
-smokeTest = unittest.TestSuite([tc1, tc2, tc3, tc4])
+smokeTest = unittest.TestSuite([tc3, tc2, tc1, tc4])
 
 unittest.TextTestRunner(verbosity=2).run(smokeTest)
